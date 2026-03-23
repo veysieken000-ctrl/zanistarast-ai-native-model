@@ -1,0 +1,140 @@
+{
+  "@context": {
+    "name": "http://schema.org/name",
+    "description": "http://schema.org/description",
+    "type": "@type",
+    "id": "@id",
+
+    "grounds": "http://example.org/grounds",
+    "validates": "http://example.org/validates",
+    "filters": "http://example.org/filters",
+    "integrates": "http://example.org/integrates",
+    "stabilizes": "http://example.org/stabilizes",
+    "produces": "http://example.org/produces",
+    "constrains": "http://example.org/constrains",
+    "dependsOn": "http://example.org/dependsOn",
+    "precedes": "http://example.org/precedes",
+    "invalidates": "http://example.org/invalidates",
+
+    "hasDefinition": "http://example.org/hasDefinition",
+    "hasFunction": "http://example.org/hasFunction",
+    "hasRule": "http://example.org/hasRule",
+    "hasFormula": "http://example.org/hasFormula"
+  },
+
+  "@graph": [
+
+    {
+      "id": "Hebun",
+      "type": "OntologicalLayer",
+      "name": "Hebûn",
+      "hasDefinition": "Layered structure of existence",
+      "hasFunction": "Grounds all higher layers"
+    },
+
+    {
+      "id": "Zanabun",
+      "type": "EpistemicLayer",
+      "name": "Zanabûn",
+      "dependsOn": "Hebun",
+      "hasFunction": "Validates knowledge through structured verification"
+    },
+
+    {
+      "id": "Mabun",
+      "type": "EconomicLayer",
+      "name": "Mabûn",
+      "dependsOn": ["Hebun", "Zanabun"],
+      "hasFunction": "Stabilizes structural-economic balance"
+    },
+
+    {
+      "id": "Rasterast",
+      "type": "MethodLayer",
+      "name": "Rasterast",
+      "filters": "KnowledgeClaims",
+      "hasFunction": "Removes epistemic distortion"
+    },
+
+    {
+      "id": "Zanistarast",
+      "type": "SynthesisLayer",
+      "name": "Zanistarast",
+      "integrates": ["Hebun", "Zanabun", "Mabun", "Rasterast"],
+      "produces": "NewrozaKawaCivilization"
+    },
+
+    {
+      "id": "NewrozaKawaCivilization",
+      "type": "CivilizationModel",
+      "name": "Newroza Kawa Civilization",
+      "dependsOn": "Zanistarast",
+      "hasFunction": "Represents stable civilization output"
+    },
+
+    {
+      "id": "Truth",
+      "type": "Principle",
+      "constrains": "Power"
+    },
+
+    {
+      "id": "Evidence",
+      "type": "Principle",
+      "invalidates": "Ideology"
+    },
+
+    {
+      "id": "Structure",
+      "type": "Principle",
+      "constrains": "Narrative"
+    },
+
+    {
+      "id": "Consistency",
+      "type": "Principle",
+      "filters": "Noise"
+    },
+
+    {
+      "id": "Responsibility",
+      "type": "Constraint",
+      "stabilizes": "Mabun"
+    },
+
+    {
+      "id": "Alignment",
+      "type": "StabilityMetric"
+    },
+
+    {
+      "id": "Entropy",
+      "type": "StabilityMetric"
+    },
+
+    {
+      "id": "Coherence",
+      "type": "StabilityMetric"
+    },
+
+    {
+      "id": "KnowledgeFunction",
+      "type": "Process",
+      "hasFormula": "Knowledge = f(Being, Validation)"
+    },
+
+    {
+      "id": "EconomyFunction",
+      "type": "Process",
+      "hasFormula": "Economy = f(Knowledge, Responsibility)"
+    },
+
+    {
+      "id": "CivilizationFunction",
+      "type": "Process",
+      "hasFormula": "Civilization = f(Truth, Structure, Justice)"
+    }
+
+  ]
+}
+
