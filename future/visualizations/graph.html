@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Zanistarast Graph</title>
+  <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+</head>
+<body>
+
+<h2>Zanistarast Knowledge Graph</h2>
+<div id="network" style="width:100%;height:600px;"></div>
+
+<script>
+const nodes = new vis.DataSet([
+  {id:1,label:"Hebûn"},
+  {id:2,label:"Zanabûn"},
+  {id:3,label:"Mabûn"},
+  {id:4,label:"Rasterast"},
+  {id:5,label:"Zanistarast"},
+  {id:6,label:"Civilization"}
+]);
+
+const edges = new vis.DataSet([
+  {from:1,to:2,label:"grounds"},
+  {from:2,to:3,label:"informs"},
+  {from:4,to:3,label:"filters"},
+  {from:5,to:1,label:"integrates"},
+  {from:5,to:2,label:"integrates"},
+  {from:5,to:3,label:"integrates"},
+  {from:5,to:6,label:"produces"}
+]);
+
+const container = document.getElementById("network");
+const data = {nodes:nodes, edges:edges};
+
+new vis.Network(container, data, {});
+</script>
+
+</body>
+</html>
+
