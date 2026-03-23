@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Zanistarast AI Query Demo</h2>
+
+<input id="query" placeholder="Ask something..." />
+<button onclick="run()">Run</button>
+
+<p id="output"></p>
+
+<script>
+function run() {
+  let q = document.getElementById("query").value.toLowerCase();
+  let result = "";
+
+  if(q.includes("civilization")) {
+    result = "Produced by: Zanistarast";
+  } else if(q.includes("ideology")) {
+    result = "Invalidated by: Evidence";
+  } else if(q.includes("stability")) {
+    result = "Depends on: Alignment, Coherence, Responsibility";
+  } else {
+    result = "Query not found in demo.";
+  }
+
+  document.getElementById("output").innerText = result;
+}
+</script>
+
+</body>
+</html>
+
