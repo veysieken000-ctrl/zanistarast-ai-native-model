@@ -1,0 +1,24 @@
+@prefix ex: <http://zanistarast.org/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+ex:Hebun rdf:type ex:OntologicalLayer .
+ex:Zanabun rdf:type ex:EpistemicLayer .
+ex:Mabun rdf:type ex:EconomicLayer .
+ex:Rasterast rdf:type ex:MethodLayer .
+ex:Zanistarast rdf:type ex:SynthesisLayer .
+ex:Civilization rdf:type ex:CivilizationModel .
+
+ex:Hebun ex:grounds ex:Zanabun .
+ex:Zanabun ex:dependsOn ex:Hebun .
+ex:Mabun ex:dependsOn ex:Zanabun .
+ex:Rasterast ex:filters ex:Claims .
+
+ex:Zanistarast ex:integrates ex:Hebun .
+ex:Zanistarast ex:integrates ex:Zanabun .
+ex:Zanistarast ex:integrates ex:Mabun .
+ex:Zanistarast ex:integrates ex:Rasterast .
+ex:Zanistarast ex:produces ex:Civilization .
+
+ex:Truth ex:constrains ex:Power .
+ex:Evidence ex:invalidates ex:Ideology .
+ex:Structure ex:constrains ex:Narrative .
