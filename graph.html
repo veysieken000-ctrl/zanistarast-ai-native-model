@@ -3,6 +3,30 @@
 <head>
   <title>Graph — Zanistarast</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .graph-wrapper {
+      margin-top: 30px;
+      overflow-x: auto;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    #graph-svg {
+      width: 1150px;
+      height: 520px;
+    }
+
+    #graph-details {
+      margin-top: 30px;
+      padding: 20px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      text-align: left;
+    }
+  </style>
 </head>
 
 <body>
@@ -18,26 +42,24 @@
 
 <div class="container">
 
-<h1>System Graph</h1>
+  <h1>Interactive System Graph</h1>
 
-<p>
-Hebûn → Zanabûn → Mabûn → Rasterast → Zanistarast → Civilization
-</p>
+  <p>
+    Click any node to inspect its structural relations.
+  </p>
 
-<p>
-This page will evolve into an interactive knowledge graph.
-</p>
+  <div class="graph-wrapper">
+    <svg id="graph-svg"></svg>
+  </div>
 
-<p>
-For now, explore the raw structure:
-</p>
-
-<a href="https://github.com/veysieken000-ctrl/zanistarast-ai-native-model/tree/main/graph">
-View Graph Repository
-</a>
+  <div id="graph-details">
+    <h3>Graph Inspector</h3>
+    <p>Click a node to see incoming and outgoing relations.</p>
+  </div>
 
 </div>
 
+<script src="graph.js"></script>
 </body>
 </html>
 
