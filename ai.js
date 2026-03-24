@@ -2,19 +2,17 @@ function askAI() {
   const input = document.getElementById("ai-input").value.toLowerCase().trim();
   const output = document.getElementById("ai-output");
 
-  const graph = {
-    "hebûn": ["zanabûn"],
-    "hebun": ["zanabûn"],
-    "zanabûn": ["mabûn"],
-    "zanabun": ["mabûn"],
-    "mabûn": ["rasterast"],
-    "mabun": ["rasterast"],
-    "rasterast": ["zanistarast"],
-    "zanistarast": ["civilization"],
-    "truth": ["civilization"],
-    "structure": ["civilization"],
-    "consistency": ["civilization"],
-    "civilization": ["produced by zanistarast", "stabilized by truth", "supported by structure", "ordered by consistency"]
+  const answers = {
+    "civilization": "Civilization is produced by Zanistarast and stabilized by truth, structure, and consistency.",
+    "truth": "Truth stabilizes civilization and anchors legitimacy in the system.",
+    "structure": "Structure supports civilization by organizing relations and preventing collapse.",
+    "consistency": "Consistency orders the system and reduces contradiction.",
+    "zanistarast": "Zanistarast is the synthesis layer that produces civilization from coherent lower layers.",
+    "rasterast": "Rasterast filters distortion and prepares the system for synthesis.",
+    "mabun": "Mabûn stabilizes structural-economic order through responsibility.",
+    "zanabun": "Zanabûn validates knowledge and connects being to structured understanding.",
+    "hebun": "Hebûn grounds the system ontologically and makes higher layers possible.",
+    "hebûn": "Hebûn grounds the system ontologically and makes higher layers possible."
   };
 
   if (!input) {
@@ -22,10 +20,10 @@ function askAI() {
     return;
   }
 
-  if (graph[input]) {
-    output.innerHTML = "<strong>Answer:</strong> " + input + " → " + graph[input].join(", ");
+  if (answers[input]) {
+    output.innerHTML = "<strong>Answer:</strong> " + answers[input];
   } else {
-    output.innerHTML = "<strong>Answer:</strong> No relation found.";
+    output.innerHTML = "<strong>Answer:</strong> No interpretation found in the current system.";
   }
 }
 
