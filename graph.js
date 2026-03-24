@@ -185,3 +185,18 @@ edges.forEach(function (edge) {
 
 nodes.forEach(drawNode);
 
+function runQuery() {
+  const input = document.getElementById("query-input").value.toLowerCase();
+  const resultDiv = document.getElementById("query-result");
+
+  let result = "No result.";
+
+  edges.forEach(function(edge) {
+    if (input.includes(edge.to.toLowerCase())) {
+      result = edge.from + " → " + edge.label + " → " + edge.to;
+    }
+  });
+
+  resultDiv.innerHTML = "<strong>Result:</strong> " + result;
+}
+
