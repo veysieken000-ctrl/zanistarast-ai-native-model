@@ -6,7 +6,7 @@ const nodes = [
     label: "Hebûn",
     description: "Ontological foundation of the system.",
     role: "Grounds all higher layers.",
-    function: "Defines existence constraints.",
+    func: "Defines existence constraints.",
     formula: "Existence → Constraint → Structure"
   },
   {
@@ -16,7 +16,7 @@ const nodes = [
     label: "Zanabûn",
     description: "Epistemic validation layer.",
     role: "Validates knowledge claims.",
-    function: "Filters knowledge through structure.",
+    func: "Filters knowledge through structure.",
     formula: "Knowledge → Validation → Coherence"
   },
   {
@@ -26,7 +26,7 @@ const nodes = [
     label: "Mabûn",
     description: "Structural-economic balance layer.",
     role: "Stabilizes responsibility-based systems.",
-    function: "Balances responsibility and entropy.",
+    func: "Balances responsibility and entropy.",
     formula: "Stability = f(Responsibility, Order)"
   },
   {
@@ -36,7 +36,7 @@ const nodes = [
     label: "Rasterast",
     description: "Consistency filtering method.",
     role: "Filters distortion and bias.",
-    function: "Removes invalid structures.",
+    func: "Removes invalid structures.",
     formula: "Input → Filter → Valid Output"
   },
   {
@@ -45,8 +45,8 @@ const nodes = [
     y: 180,
     label: "Zanistarast",
     description: "Synthesis layer of the framework.",
-    role: "Integrates all coherent layers.",
-    function: "Builds unified system logic.",
+    role: "Integrates all coherent lower layers.",
+    func: "Builds unified system logic.",
     formula: "Integration → Coherence → System"
   },
   {
@@ -56,7 +56,7 @@ const nodes = [
     label: "Civilization",
     description: "Output of structured systems.",
     role: "Represents stable system result.",
-    function: "Embeds knowledge into reality.",
+    func: "Embeds knowledge into reality.",
     formula: "Structure → Stability → Civilization"
   },
   {
@@ -66,7 +66,7 @@ const nodes = [
     label: "Truth",
     description: "Primary governing principle.",
     role: "Anchors legitimacy.",
-    function: "Constrains system behavior.",
+    func: "Constrains system behavior.",
     formula: "Truth → Constraint → Order"
   },
   {
@@ -76,7 +76,7 @@ const nodes = [
     label: "Structure",
     description: "Structural principle.",
     role: "Supports system stability.",
-    function: "Organizes relations.",
+    func: "Organizes relations.",
     formula: "Structure → Relation → Stability"
   },
   {
@@ -86,11 +86,10 @@ const nodes = [
     label: "Consistency",
     description: "Coherence principle.",
     role: "Ensures system continuity.",
-    function: "Eliminates contradictions.",
+    func: "Eliminates contradictions.",
     formula: "Consistency → Order → Continuity"
   }
 ];
-
 
 const edges = [
   { from: "Hebun", to: "Zanabun", label: "grounds" },
@@ -98,7 +97,6 @@ const edges = [
   { from: "Mabun", to: "Rasterast", label: "feeds" },
   { from: "Rasterast", to: "Zanistarast", label: "filters" },
   { from: "Zanistarast", to: "Civilization", label: "produces" },
-
   { from: "Truth", to: "Civilization", label: "stabilizes" },
   { from: "Structure", to: "Civilization", label: "supports" },
   { from: "Consistency", to: "Civilization", label: "orders" }
@@ -154,26 +152,34 @@ function drawNode(node) {
   g.appendChild(rect);
   g.appendChild(text);
 
-  g.addEventListener("click", () => {
-    const outgoing = edges.filter(e => e.from === node.id);
-    const incoming = edges.filter(e => e.to === node.id);
+  g.addEventListener("click", function () {
+    const outgoing = edges.filter(function (e) { return e.from === node.id; });
+    const incoming = edges.filter(function (e) { return e.to === node.id; });
 
-    details.innerHTML = `
-  <h3>${node.label}</h3>
-  <p><strong>Description:</strong> ${node.description}</p>
-  <p><strong>Role:</strong> ${node.role}</p>
-  <p><strong>Function:</strong> ${node.function}</p>
-  <p><strong>Formula:</strong> ${node.formula}</p>
-  <p><strong>Outgoing:</strong> ${outgoing.length ? outgoing.map(e => `${e.label} → ${e.to}`).join(", ") : "None"}</p>
-  <p><strong>Incoming:</strong> ${incoming.length ? incoming.map(e => `${e.from} → ${e.label}`).join(", ") : "None"}</p>
-`;
+    const outgoingText = outgoing.length
+      ? outgoing.map(function (e) { return e.label + " → " + e.to; }).join(", ")
+      : "None";
+
+    const incomingText = incoming.length
+      ? incoming.map(function (e) { return e.from + " → " + e.label; }).join(", ")
+      : "None";
+
+    details.innerHTML =
+      "<h3>" + node.label + "</h3>" +
+      "<p><strong>Description:</strong> " + node.description + "</p>" +
+      "<p><strong>Role:</strong> " + node.role + "</p>" +
+      "<p><strong>Function:</strong> " + node.func + "</p>" +
+      "<p><strong>Formula:</strong> " + node.formula + "</p>" +
+      "<p><strong>Outgoing:</strong> " + outgoingText + "</p>" +
+      "<p><strong>Incoming:</strong> " + incomingText + "</p>";
+  });
 
   svg.appendChild(g);
 }
 
-edges.forEach(edge => {
-  const fromNode = nodes.find(n => n.id === edge.from);
-  const toNode = nodes.find(n => n.id === edge.to);
+edges.forEach(function (edge) {
+  const fromNode = nodes.find(function (n) { return n.id === edge.from; });
+  const toNode = nodes.find(function (n) { return n.id === edge.to; });
   drawLine(fromNode.x, fromNode.y, toNode.x, toNode.y, edge.label);
 });
 
