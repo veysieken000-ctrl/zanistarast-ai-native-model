@@ -5,7 +5,9 @@ const nodes = [
     y: 180,
     label: "Hebûn",
     description: "Ontological foundation of the system.",
-    role: "Grounds all higher layers."
+    role: "Grounds all higher layers.",
+    function: "Defines existence constraints.",
+    formula: "Existence → Constraint → Structure"
   },
   {
     id: "Zanabun",
@@ -13,7 +15,9 @@ const nodes = [
     y: 180,
     label: "Zanabûn",
     description: "Epistemic validation layer.",
-    role: "Validates knowledge claims through structure."
+    role: "Validates knowledge claims.",
+    function: "Filters knowledge through structure.",
+    formula: "Knowledge → Validation → Coherence"
   },
   {
     id: "Mabun",
@@ -21,7 +25,9 @@ const nodes = [
     y: 180,
     label: "Mabûn",
     description: "Structural-economic balance layer.",
-    role: "Stabilizes responsibility-based order."
+    role: "Stabilizes responsibility-based systems.",
+    function: "Balances responsibility and entropy.",
+    formula: "Stability = f(Responsibility, Order)"
   },
   {
     id: "Rasterast",
@@ -29,7 +35,9 @@ const nodes = [
     y: 180,
     label: "Rasterast",
     description: "Consistency filtering method.",
-    role: "Filters distortion, bias, and invalid claims."
+    role: "Filters distortion and bias.",
+    function: "Removes invalid structures.",
+    formula: "Input → Filter → Valid Output"
   },
   {
     id: "Zanistarast",
@@ -37,15 +45,19 @@ const nodes = [
     y: 180,
     label: "Zanistarast",
     description: "Synthesis layer of the framework.",
-    role: "Integrates all coherent lower layers."
+    role: "Integrates all coherent layers.",
+    function: "Builds unified system logic.",
+    formula: "Integration → Coherence → System"
   },
   {
     id: "Civilization",
     x: 1020,
     y: 180,
     label: "Civilization",
-    description: "Civilizational output of structural coherence.",
-    role: "Represents stable integrated system output."
+    description: "Output of structured systems.",
+    role: "Represents stable system result.",
+    function: "Embeds knowledge into reality.",
+    formula: "Structure → Stability → Civilization"
   },
   {
     id: "Truth",
@@ -53,15 +65,19 @@ const nodes = [
     y: 360,
     label: "Truth",
     description: "Primary governing principle.",
-    role: "Constrains power and anchors legitimacy."
+    role: "Anchors legitimacy.",
+    function: "Constrains system behavior.",
+    formula: "Truth → Constraint → Order"
   },
   {
     id: "Structure",
     x: 500,
     y: 360,
     label: "Structure",
-    description: "Structural principle of the model.",
-    role: "Supports order and blocks narrative drift."
+    description: "Structural principle.",
+    role: "Supports system stability.",
+    function: "Organizes relations.",
+    formula: "Structure → Relation → Stability"
   },
   {
     id: "Consistency",
@@ -69,9 +85,12 @@ const nodes = [
     y: 360,
     label: "Consistency",
     description: "Coherence principle.",
-    role: "Orders the system and filters noise."
+    role: "Ensures system continuity.",
+    function: "Eliminates contradictions.",
+    formula: "Consistency → Order → Continuity"
   }
 ];
+
 
 const edges = [
   { from: "Hebun", to: "Zanabun", label: "grounds" },
@@ -140,13 +159,14 @@ function drawNode(node) {
     const incoming = edges.filter(e => e.to === node.id);
 
     details.innerHTML = `
-      <h3>${node.label}</h3>
-      <p><strong>Description:</strong> ${node.description}</p>
-      <p><strong>Role:</strong> ${node.role}</p>
-      <p><strong>Outgoing:</strong> ${outgoing.length ? outgoing.map(e => `${e.label} → ${e.to}`).join(", ") : "None"}</p>
-      <p><strong>Incoming:</strong> ${incoming.length ? incoming.map(e => `${e.from} → ${e.label}`).join(", ") : "None"}</p>
-    `;
-  });
+  <h3>${node.label}</h3>
+  <p><strong>Description:</strong> ${node.description}</p>
+  <p><strong>Role:</strong> ${node.role}</p>
+  <p><strong>Function:</strong> ${node.function}</p>
+  <p><strong>Formula:</strong> ${node.formula}</p>
+  <p><strong>Outgoing:</strong> ${outgoing.length ? outgoing.map(e => `${e.label} → ${e.to}`).join(", ") : "None"}</p>
+  <p><strong>Incoming:</strong> ${incoming.length ? incoming.map(e => `${e.from} → ${e.label}`).join(", ") : "None"}</p>
+`;
 
   svg.appendChild(g);
 }
