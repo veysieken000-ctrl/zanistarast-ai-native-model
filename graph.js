@@ -1,14 +1,76 @@
 const nodes = [
-  { id: "Hebun", x: 120, y: 180, label: "Hebûn" },
-  { id: "Zanabun", x: 300, y: 180, label: "Zanabûn" },
-  { id: "Mabun", x: 480, y: 180, label: "Mabûn" },
-  { id: "Rasterast", x: 660, y: 180, label: "Rasterast" },
-  { id: "Zanistarast", x: 840, y: 180, label: "Zanistarast" },
-  { id: "Civilization", x: 1020, y: 180, label: "Civilization" },
-
-  { id: "Truth", x: 250, y: 360, label: "Truth" },
-  { id: "Structure", x: 500, y: 360, label: "Structure" },
-  { id: "Consistency", x: 750, y: 360, label: "Consistency" }
+  {
+    id: "Hebun",
+    x: 120,
+    y: 180,
+    label: "Hebûn",
+    description: "Ontological foundation of the system.",
+    role: "Grounds all higher layers."
+  },
+  {
+    id: "Zanabun",
+    x: 300,
+    y: 180,
+    label: "Zanabûn",
+    description: "Epistemic validation layer.",
+    role: "Validates knowledge claims through structure."
+  },
+  {
+    id: "Mabun",
+    x: 480,
+    y: 180,
+    label: "Mabûn",
+    description: "Structural-economic balance layer.",
+    role: "Stabilizes responsibility-based order."
+  },
+  {
+    id: "Rasterast",
+    x: 660,
+    y: 180,
+    label: "Rasterast",
+    description: "Consistency filtering method.",
+    role: "Filters distortion, bias, and invalid claims."
+  },
+  {
+    id: "Zanistarast",
+    x: 840,
+    y: 180,
+    label: "Zanistarast",
+    description: "Synthesis layer of the framework.",
+    role: "Integrates all coherent lower layers."
+  },
+  {
+    id: "Civilization",
+    x: 1020,
+    y: 180,
+    label: "Civilization",
+    description: "Civilizational output of structural coherence.",
+    role: "Represents stable integrated system output."
+  },
+  {
+    id: "Truth",
+    x: 250,
+    y: 360,
+    label: "Truth",
+    description: "Primary governing principle.",
+    role: "Constrains power and anchors legitimacy."
+  },
+  {
+    id: "Structure",
+    x: 500,
+    y: 360,
+    label: "Structure",
+    description: "Structural principle of the model.",
+    role: "Supports order and blocks narrative drift."
+  },
+  {
+    id: "Consistency",
+    x: 750,
+    y: 360,
+    label: "Consistency",
+    description: "Coherence principle.",
+    role: "Orders the system and filters noise."
+  }
 ];
 
 const edges = [
@@ -79,6 +141,8 @@ function drawNode(node) {
 
     details.innerHTML = `
       <h3>${node.label}</h3>
+      <p><strong>Description:</strong> ${node.description}</p>
+      <p><strong>Role:</strong> ${node.role}</p>
       <p><strong>Outgoing:</strong> ${outgoing.length ? outgoing.map(e => `${e.label} → ${e.to}`).join(", ") : "None"}</p>
       <p><strong>Incoming:</strong> ${incoming.length ? incoming.map(e => `${e.from} → ${e.label}`).join(", ") : "None"}</p>
     `;
