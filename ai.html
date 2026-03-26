@@ -1,84 +1,98 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Zanistarast AI</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="Interactive Zanistarast interface for querying a structured, testable framework for natural, computational, and human systems." />
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
-<div id="navbar"></div>
+  <div id="navbar"></div>
 
-<script>
-fetch("components/navbar.html")
-  .then(res => res.text())
-  .then(data => {
-    document.getElementById("navbar").innerHTML = data;
-  });
-</script>
-  
-<div class="container">
+  <script>
+    fetch("components/navbar.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("navbar").innerHTML = data;
+      });
+  </script>
 
-  <h1>Zanistarast AI</h1>
+  <div class="container">
 
-  <p>Ask questions about the system.</p>
+    <h1>Zanistarast AI</h1>
 
- <div class="section">
-  <h2>Ask the System</h2>
-  <p>
-    Enter a keyword or concept from the Zanistarast framework and receive a structured response.
-  </p>
-<div style="margin-top:18px;">
-  <p><strong>Example prompts:</strong></p>
+    <p class="subtitle">
+      Ask about the framework through an interactive query interface.
+    </p>
 
-  <button onclick="document.getElementById('ai-input').value='truth'; askAI();" style="margin:6px; padding:10px 14px; border:1px solid #ccc; border-radius:8px; background:#f5f5f5; cursor:pointer;">
-    truth
-  </button>
+    <div class="section">
+      <h2>Ask the Framework</h2>
+      <p>
+        Zanistarast is a structured, testable framework for modeling natural, computational, and human systems.
+        Enter a keyword or concept to receive a structured response from the current system.
+      </p>
 
-  <button onclick="document.getElementById('ai-input').value='civilization'; askAI();" style="margin:6px; padding:10px 14px; border:1px solid #ccc; border-radius:8px; background:#f5f5f5; cursor:pointer;">
-    civilization
-  </button>
+      <div style="margin-top:18px;">
+        <p><strong>Example prompts:</strong></p>
 
-  <button onclick="document.getElementById('ai-input').value='hebun'; askAI();" style="margin:6px; padding:10px 14px; border:1px solid #ccc; border-radius:8px; background:#f5f5f5; cursor:pointer;">
-    hebun
-  </button>
+        <button onclick="document.getElementById('ai-input').value='truth'; askAI();" style="margin:6px; padding:10px 14px; border:1px solid #ccc; border-radius:8px; background:#f5f5f5; cursor:pointer;">
+          truth
+        </button>
 
-  <button onclick="document.getElementById('ai-input').value='zanistarast'; askAI();" style="margin:6px; padding:10px 14px; border:1px solid #ccc; border-radius:8px; background:#f5f5f5; cursor:pointer;">
-    zanistarast
-  </button>
-</div>
-  <div style="margin-top:20px; padding:16px; border:1px solid #ddd; border-radius:10px; background:#fafafa;">
-  <p><strong>How to use:</strong></p>
-  <p>1. Choose an example prompt or type your own concept.</p>
-  <p>2. Click <strong>Ask</strong>.</p>
-  <p>3. Read the structured response from the current Zanistarast system.</p>
-</div>
-   <div style="margin-top:20px;">
-    <input id="ai-input" type="text" placeholder="Try: truth, civilization, hebun, zanistarast" style="width:100%; max-width:700px; padding:14px; border-radius:8px; border:1px solid #ccc; font-size:16px;">
+        <button onclick="document.getElementById('ai-input').value='civilization'; askAI();" style="margin:6px; padding:10px 14px; border:1px solid #ccc; border-radius:8px; background:#f5f5f5; cursor:pointer;">
+          civilization
+        </button>
+
+        <button onclick="document.getElementById('ai-input').value='hebun'; askAI();" style="margin:6px; padding:10px 14px; border:1px solid #ccc; border-radius:8px; background:#f5f5f5; cursor:pointer;">
+          hebun
+        </button>
+
+        <button onclick="document.getElementById('ai-input').value='zanistarast'; askAI();" style="margin:6px; padding:10px 14px; border:1px solid #ccc; border-radius:8px; background:#f5f5f5; cursor:pointer;">
+          zanistarast
+        </button>
+      </div>
+
+      <div style="margin-top:20px; padding:16px; border:1px solid #ddd; border-radius:10px; background:#fafafa;">
+        <p><strong>How to use:</strong></p>
+        <p>1. Choose an example prompt or type your own concept.</p>
+        <p>2. Click <strong>Ask</strong>.</p>
+        <p>3. Read the structured response from the current Zanistarast system.</p>
+      </div>
+
+      <div style="margin-top:20px;">
+        <input
+          id="ai-input"
+          type="text"
+          placeholder="Try: truth, civilization, hebun, zanistarast"
+          style="width:100%; max-width:700px; padding:14px; border-radius:8px; border:1px solid #ccc; font-size:15px;"
+        />
+      </div>
+
+      <div style="margin-top:14px;">
+        <button onclick="askAI()" style="padding:12px 22px; border:none; border-radius:8px; background:#111; color:#fff; font-size:15px; cursor:pointer;">
+          Ask
+        </button>
+      </div>
+
+      <div id="ai-loading" class="ai-loading" style="display:none;">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span style="margin-left:10px;">Thinking...</span>
+      </div>
+
+      <div id="ai-output" class="response-box">
+        <strong>Answer:</strong> Your response will appear here.
+      </div>
+    </div>
+
   </div>
 
-    <button onclick="askAI()" style="padding:12px 22px; border:none; border-radius:8px; background:#111; color:#fff; font-size:15px; cursor:pointer;">
-      Ask
-    </button>
-  </div>
-  
- <div id="ai-loading" class="ai-loading" style="display:none;">
-  <span class="dot"></span>
-  <span class="dot"></span>
-  <span class="dot"></span>
-  <span style="margin-left:10px;">Thinking...</span>
-</div>
-
-<div id="ai-output" class="response-box">
-  <strong>Answer:</strong> Your response will appear here.
-</div>
-
-</div>
-
-<script src="ai.js"></script>
+  <script src="ai.js"></script>
 </body>
 </html>
-
 
 
 
