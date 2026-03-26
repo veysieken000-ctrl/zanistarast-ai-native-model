@@ -121,8 +121,42 @@ h1 {
   text-decoration: none;
   border-radius: 8px;
 }
-Dikkat
-Dosyanın en altına ekle
-Eski stilleri silme
-Şimdilik sadece ekleme yap
 
+.buttons a:hover {
+  background: #333;
+  transform: translateY(-2px);
+  transition: 0.2s ease;
+}
+
+.repo-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.repo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+}
+
+.repo-card a {
+  color: #111;
+  font-weight: bold;
+}
+
+.section h2 {
+  margin-top: 0;
+  font-size: 26px;
+}
+
+.section p {
+  line-height: 1.7;
+  color: #333;
+}
+
+button {
+  transition: 0.2s ease;
+}
+
+button:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
