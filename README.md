@@ -139,5 +139,7 @@ Evidence > Ideology
 Kodu kopyala
 
 ---
+## System Diagram
 
+See: /theory/system-diagram.md
 
