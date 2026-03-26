@@ -185,3 +185,20 @@ button:hover {
 .nav-right a:hover {
   color: #fff;
 }
+@media (max-width: 768px) {
+  .nav-right {
+    display: none;
+  }
+
+  .container {
+    padding: 16px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .lead {
+    font-size: 14px;
+  }
+}
