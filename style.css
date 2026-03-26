@@ -202,3 +202,57 @@ button:hover {
     font-size: 14px;
   }
 }
+.container {
+  padding-top: 36px;
+  padding-bottom: 36px;
+}
+
+.section,
+.repo-card,
+#graph-details,
+.quote {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.section {
+  background: linear-gradient(180deg, #ffffff 0%, #fcfcfc 100%);
+}
+
+.buttons a,
+.nav-right a,
+button {
+  transition: all 0.25s ease;
+}
+
+.buttons a:hover,
+button:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.repo-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 22px;
+  border: 1px solid #e7e7e7;
+}
+
+.repo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.quote {
+  border-left: 4px solid #8fb8ff;
+}
+
+h1, h2, h3 {
+  letter-spacing: -0.02em;
+}
+
+.subtitle,
+.section p {
+  max-width: 780px;
+}
+
+
