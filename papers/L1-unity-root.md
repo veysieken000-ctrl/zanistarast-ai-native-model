@@ -97,4 +97,13 @@ Zanistarast formalizes this as:
 
 Systems derived from a single consistent root structure  
 → show higher coherence and predictability.
+This principle is not isolated.
+
+Similar root-based structures appear in:
+
+- mathematics
+- computation
+- natural systems
+
+Zanistarast attempts to formalize this recurring pattern.
 
