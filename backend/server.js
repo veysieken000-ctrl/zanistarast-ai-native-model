@@ -29,7 +29,7 @@ app.post("/api/ask", async (req, res) => {
 
     return res.json({
       answer: "Backend is ready. Live AI connection will be added in the next step.",
-      system: systemPrompt
+      systemPrompt
     });
   } catch (error) {
     return res.status(500).json({
@@ -41,3 +41,4 @@ app.post("/api/ask", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
