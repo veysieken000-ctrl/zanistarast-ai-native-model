@@ -1,82 +1,512 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Paper — Zanistarast</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zanistarast — A Unified Framework</title>
+  <meta name="description" content="Zanistarast is a unified, testable framework for modeling natural, computational, and human systems." />
+  <style>
+    :root {
+      --bg: #0f1115;
+      --panel: #161a22;
+      --soft: #1d2330;
+      --text: #e9edf5;
+      --muted: #aab4c3;
+      --line: #2b3445;
+      --accent: #8fb8ff;
+      --accent2: #b7ffd6;
+      --max: 980px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 28px 20px 72px;
+    }
+    .hero {
+      padding: 32px 0 20px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 28px;
+    }
+    .eyebrow {
+      color: var(--accent2);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    h1, h2, h3 {
+      line-height: 1.2;
+      margin: 0 0 14px;
+    }
+    h1 { font-size: 40px; }
+    h2 {
+      font-size: 28px;
+      margin-top: 42px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+    }
+    h3 { font-size: 20px; margin-top: 28px; }
+    p { margin: 0 0 16px; color: var(--text); }
+    .muted { color: var(--muted); }
+    .lead {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 860px;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px;
+      margin: 18px 0;
+    }
+    .grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      margin: 18px 0;
+    }
+    .mini {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+    }
+    .mini h3 {
+      margin-top: 0;
+      font-size: 17px;
+    }
+    ul, ol {
+      margin: 0 0 16px 22px;
+      color: var(--text);
+    }
+    li { margin: 6px 0; }
+    code, pre {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    pre {
+      background: #0b0e14;
+      color: #dce6f8;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 16px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+      margin: 16px 0;
+    }
+    .formula {
+      font-size: 18px;
+      background: #0b0e14;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin: 16px 0;
+    }
+    .quote {
+      border-left: 3px solid var(--accent);
+      padding: 10px 14px;
+      margin: 16px 0;
+      background: rgba(143,184,255,0.06);
+      color: var(--text);
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 18px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 12px 14px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #121722;
+      color: var(--accent2);
+      font-weight: 600;
+    }
+    tr:last-child td { border-bottom: none; }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover { text-decoration: underline; }
+    .footer {
+      border-top: 1px solid var(--line);
+      margin-top: 48px;
+      padding-top: 20px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 18px 0 0;
+    }
+    .nav a {
+      border: 1px solid var(--line);
+      background: var(--soft);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 14px;
+    }
+  </style>
 </head>
-
 <body>
+  <div class="wrap">
+    <header class="hero">
+      <div class="eyebrow">Zanistarast Framework</div>
+      <h1>Zanistarast: A Unified Framework for Modeling Natural, Computational, and Human Systems</h1>
+      <p class="lead">
+        Zanistarast is a layered, testable framework that models recurring structural logic across nature,
+        computation, human organization, and interpretive systems. It does not present itself as a final truth,
+        but as a structured hypothesis architecture that can be formalized, compared, tested, and revised.
+      </p>
+      <nav class="nav">
+        <a href="#abstract">Abstract</a>
+        <a href="#layers">Layers</a>
+        <a href="#mapping">Cross-Domain Mapping</a>
+        <a href="#testability">Testability</a>
+        <a href="#scope">Scope</a>
+        <a href="#conclusion">Conclusion</a>
+      </nav>
+    </header>
 
-<div class="navbar">
-  <a href="index.html">ZANISTARAST</a>
-  <a href="index.html">Home</a>
-  <a href="paper.html">Paper</a>
-  <a href="graph.html">Graph</a>
-  <a href="ai.html">AI</a>
-  <a href="https://medium.com/@veysiyemalasaf">Articles</a>
-</div>
+    <section id="abstract">
+      <h2>Abstract</h2>
+      <p>
+        This paper introduces Zanistarast as a unified framework for describing how systems originate, maintain coherence,
+        circulate resources, execute functions, and resolve into outcomes. The framework is organized into five core layers:
+        <strong>L1 Unity</strong>, <strong>L2 Validation</strong>, <strong>L3 Circulation</strong>, <strong>L5 Functional Alignment</strong>,
+        and <strong>L6 Outcome States</strong>. Rather than claiming entirely new principles, Zanistarast suggests that similar structural
+        patterns may already be observable across physical systems, biological systems, computational systems, and human institutions.
+      </p>
+      <p>
+        The framework is intended to be readable by humans and machines alike. It is meaningful only insofar as its claims can be formalized,
+        tested, compared against alternatives, and falsified where necessary.
+      </p>
+    </section>
 
-<div class="container" style="text-align:left; max-width:900px;">
+    <section id="introduction">
+      <h2>1. Introduction</h2>
+      <p>
+        Knowledge is often fragmented into separate domains. Physics studies matter and force. Biology studies life and adaptation.
+        Computation studies processing and control. Social sciences study organization, exchange, and governance.
+        Yet many of these domains appear to share recurring structural behaviors.
+      </p>
+      <div class="quote">
+        Zanistarast proposes that these recurring patterns can be modeled through a common layered architecture.
+      </div>
+      <p>
+        Its purpose is not to erase disciplinary differences, but to provide a common structural lens through which different systems can be
+        compared. This makes it possible to ask whether a system survives by similar principles across domains: a root condition, a validation layer,
+        a circulation layer, a role-execution layer, and a terminal outcome state.
+      </p>
+    </section>
 
-  <h1 style="text-align:center;">Zanistarast: A Structural Civilizational Model</h1>
+    <section id="layers">
+      <h2>2. Layered Architecture</h2>
 
-  <h2>Abstract</h2>
-  <p>
-    Zanistarast is a falsifiable, ontology-based civilizational framework integrating ontology,
-    epistemology, structural economy, coherence filtering, and synthesis into a unified system.
-    It proposes that civilizations collapse when knowledge detaches from reality, and that
-    long-term stability depends on structural alignment across layers of existence, validation,
-    responsibility, and integration.
-  </p>
+      <div class="formula">
+        Root → Validation → Circulation → Functional Alignment → Outcome
+      </div>
 
-  <h2>Core Claim</h2>
-  <p>
-    The central claim of the system is that civilizational durability depends on the alignment
-    between reality, knowledge, structure, and coherence. When these layers fragment, instability
-    emerges. When they integrate, durable systems become possible.
-  </p>
+      <div class="grid">
+        <div class="mini">
+          <h3>L1 — Unity</h3>
+          <p class="muted">Root, origin, generative base</p>
+          <p>The base state or foundational structure from which a system emerges.</p>
+        </div>
+        <div class="mini">
+          <h3>L2 — Validation (Rasterast)</h3>
+          <p class="muted">Consistency, filtering, verification</p>
+          <p>The layer that rejects incoherence and preserves structural integrity.</p>
+        </div>
+        <div class="mini">
+          <h3>L3 — Circulation (Mabûn)</h3>
+          <p class="muted">Flow, transfer, controlled movement</p>
+          <p>The layer that keeps resources, energy, data, or value moving through the system.</p>
+        </div>
+        <div class="mini">
+          <h3>L5 — Functional Alignment</h3>
+          <p class="muted">Role execution, harmony, task integrity</p>
+          <p>The condition in which components perform their appropriate roles within the system.</p>
+        </div>
+        <div class="mini">
+          <h3>L6 — Outcome States</h3>
+          <p class="muted">Stability, collapse, terminal condition</p>
+          <p>The end state toward which a system converges under sustained coherence or failure.</p>
+        </div>
+      </div>
 
-  <h2>Formal Model</h2>
-  <p>
-    Stability = f(Alignment, Coherence, Responsibility, Entropy⁻¹)
-  </p>
-  <p>
-    In this model, stability increases when coherence and responsibility rise, and decreases when
-    entropy and contradiction dominate systemic relations.
-  </p>
+      <h3>2.1 L1 — Unity</h3>
+      <p>
+        Many systems begin from a defined base: initial states in computation, foundational laws in physics, base encodings in biology,
+        and founding assumptions in human systems. Zanistarast calls this shared structure <em>Unity</em> not in a dogmatic sense,
+        but as a modeling term for generative origin.
+      </p>
 
-  <h2>Layer Structure</h2>
-  <p>
-    Hebûn → Ontological Ground  
-    <br>
-    Zanabûn → Epistemic Validation  
-    <br>
-    Mabûn → Structural-Economic Balance  
-    <br>
-    Rasterast → Consistency Filter  
-    <br>
-    Zanistarast → Synthesis Layer  
-    <br>
-    Civilization → Integrated Output
-  </p>
+      <h3>2.2 L2 — Validation</h3>
+      <p>
+        No stable system operates without internal consistency. Mathematical proofs, physical constraints, software verification,
+        and legal coherence all illustrate the same structural need: invalid states must be rejected, filtered, or corrected.
+      </p>
 
-  <h2>Falsifiability</h2>
-  <p>
-    The framework is not presented as ideology, but as a falsifiable structure.
-    It fails if no measurable relation can be shown between coherence and stability,
-    if structural responsibility has no ordering effect, or if layered alignment
-    produces no meaningful civilizational impact.
-  </p>
+      <h3>2.3 L3 — Circulation</h3>
+      <p>
+        Systems fail when flow stops. Energy must move, nutrients must circulate, memory must be allocated and released,
+        and economies must avoid total stagnation or total concentration. Zanistarast therefore frames stability as a function of circulation
+        rather than static equilibrium.
+      </p>
 
-  <h2>Conclusion</h2>
-  <p>
-    Zanistarast is not a closed doctrine. It is a structural model open to criticism,
-    refinement, and testing. Its aim is to move from narrative-centered systems to
-    reality-aligned civilizational architecture.
-  </p>
+      <h3>2.4 L5 — Functional Alignment</h3>
+      <p>
+        Structure and circulation are not enough. A system still fails if its parts do not perform their roles correctly.
+        Role integrity is what keeps biological organs, computational functions, and institutions operating as intended.
+      </p>
 
-</div>
+      <h3>2.5 L6 — Outcome States</h3>
+      <p>
+        Systems do not remain neutral forever. They drift toward stable attractors, breakdown, crash, or collapse.
+        Zanistarast treats this as the terminal expression of the prior layers.
+      </p>
+    </section>
 
+    <section id="mapping">
+      <h2>3. Cross-Domain Mapping</h2>
+      <p>
+        Zanistarast becomes useful when the same layered logic can be mapped across domains without claiming that those domains are identical.
+        The framework proposes structural correspondence, not forced equivalence.
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Layer</th>
+              <th>Structural Meaning</th>
+              <th>Natural Systems</th>
+              <th>Computational Systems</th>
+              <th>Human Systems</th>
+              <th>Interpretive Layer</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>L1</td>
+              <td>Root / generative base</td>
+              <td>fundamental laws, base patterns</td>
+              <td>initial state, source architecture</td>
+              <td>founding principle, first assumption</td>
+              <td>unity, singular origin</td>
+            </tr>
+            <tr>
+              <td>L2</td>
+              <td>Validation / coherence</td>
+              <td>constraints, compatibility rules</td>
+              <td>syntax check, authentication, verification</td>
+              <td>law, governance, rule consistency</td>
+              <td>order, accountability, truth filtering</td>
+            </tr>
+            <tr>
+              <td>L3</td>
+              <td>Circulation / regulated flow</td>
+              <td>energy flow, nutrient cycles</td>
+              <td>data flow, memory/task distribution</td>
+              <td>economy, exchange, redistribution</td>
+              <td>balance, sharing, measured transfer</td>
+            </tr>
+            <tr>
+              <td>L5</td>
+              <td>Functional alignment</td>
+              <td>organ function, ecological roles</td>
+              <td>function execution, process integrity</td>
+              <td>responsibility, role execution</td>
+              <td>purpose, duty, alignment</td>
+            </tr>
+            <tr>
+              <td>L6</td>
+              <td>Outcome state</td>
+              <td>stability, decay, collapse</td>
+              <td>success, crash, rollback</td>
+              <td>order, crisis, failure, resilience</td>
+              <td>consequence, resolution</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        This mapping is the heart of the framework: it argues that natural, computational, and human systems may be read through
+        a shared sequence of structural logic.
+      </p>
+    </section>
+
+    <section id="claim">
+      <h2>4. Core Hypothesis</h2>
+      <div class="card">
+        <p>
+          <strong>If a system maintains validation, sustains circulation, and preserves functional alignment, it tends toward stability.</strong>
+        </p>
+        <p class="muted">
+          If it fails in these, it tends toward instability, divergence, or collapse.
+        </p>
+      </div>
+      <p>
+        This is the central Zanistarast hypothesis. It is intentionally simple, because its power lies in cross-domain applicability.
+      </p>
+    </section>
+
+    <section id="testability">
+      <h2>5. Testability and Falsification</h2>
+      <p>
+        Zanistarast should not be accepted as true by default. Its claims must be formalized, tested, and exposed to failure.
+      </p>
+
+      <div class="formula">
+        Claim → Model → Test → Result → Falsification
+      </div>
+
+      <h3>5.1 Example Tests</h3>
+      <ul>
+        <li><strong>L2 Validation:</strong> remove verification constraints and compare stability.</li>
+        <li><strong>L3 Circulation:</strong> compare circulation-based resource flow against accumulation-only systems.</li>
+        <li><strong>L5 Functional Alignment:</strong> compare aligned versus misaligned task execution.</li>
+      </ul>
+
+      <h3>5.2 Simple Metrics</h3>
+      <ul>
+        <li>stability index</li>
+        <li>variance of witnessing / coherence</li>
+        <li>resource inequality</li>
+        <li>collapse rate</li>
+        <li>adaptation speed</li>
+      </ul>
+
+      <p>
+        If simpler, non-structured, or random systems consistently outperform Zanistarast-style structured systems under the same conditions,
+        the framework must be revised or rejected.
+      </p>
+    </section>
+
+    <section id="interpretive">
+      <h2>6. Interpretive Layer</h2>
+      <p>
+        Zanistarast also includes an interpretive layer that may be compared with philosophical or religious descriptions of reality.
+        This layer is important, but it is not the scientific core of the project.
+      </p>
+      <div class="quote">
+        Interpretive correspondence is not the same as scientific proof.
+      </div>
+      <p>
+        The framework may explore whether concepts such as unity, order, balance, duty, and consequence correspond to observable structural principles.
+        These parallels are treated as interpretive hypotheses, not mandatory scientific axioms.
+      </p>
+    </section>
+
+    <section id="scope">
+      <h2>7. What Zanistarast Is — and Is Not</h2>
+      <div class="grid">
+        <div class="mini">
+          <h3>It is</h3>
+          <ul>
+            <li>a modeling framework</li>
+            <li>a unification attempt</li>
+            <li>a layered systems architecture</li>
+            <li>an AI-readable structure</li>
+            <li>a testable hypothesis system</li>
+          </ul>
+        </div>
+        <div class="mini">
+          <h3>It is not</h3>
+          <ul>
+            <li>a final explanation of reality</li>
+            <li>a closed doctrine</li>
+            <li>a replacement for existing sciences</li>
+            <li>a proof by analogy alone</li>
+            <li>immune to criticism or revision</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="ai">
+      <h2>8. AI-Oriented Reading</h2>
+      <p>
+        Zanistarast is designed to be machine-readable. An AI system should interpret it as:
+      </p>
+      <ol>
+        <li>a layered systems model,</li>
+        <li>a cross-domain mapping framework,</li>
+        <li>a hypothesis architecture,</li>
+        <li>and a falsifiable set of structural claims.</li>
+      </ol>
+      <p>
+        AI should separate:
+      </p>
+      <ul>
+        <li><strong>model</strong> from <strong>interpretation</strong>,</li>
+        <li><strong>testable structure</strong> from <strong>optional metaphysical reading</strong>.</li>
+      </ul>
+    </section>
+
+    <section id="conclusion">
+      <h2>9. Conclusion</h2>
+      <p>
+        Zanistarast does not argue that nature, software, and civilization are identical.
+        It argues that they may exhibit convergent structural logic that can be named, compared, and tested.
+      </p>
+      <p>
+        Its value lies in making that logic explicit:
+      </p>
+      <ul>
+        <li>root conditions,</li>
+        <li>validation constraints,</li>
+        <li>circulation processes,</li>
+        <li>functional alignment,</li>
+        <li>and terminal outcomes.</li>
+      </ul>
+      <p>
+        If this structure proves robust across domains, Zanistarast becomes useful as a scientific and comparative framework.
+        If it fails, it must be revised. In either case, its legitimacy depends on testability, not assertion.
+      </p>
+    </section>
+
+    <section id="links">
+      <h2>10. Repository Structure</h2>
+      <ul>
+        <li><strong>README.md</strong> — framework overview</li>
+        <li><strong>AI_TARGET.md</strong> — AI reading rules</li>
+        <li><strong>/docs/ai-system-diagram.md</strong> — layered diagram</li>
+        <li><strong>/docs/cross-domain-mapping.md</strong> — cross-domain mapping</li>
+        <li><strong>/docs/claim-test-falsification.md</strong> — scientific validation logic</li>
+        <li><strong>/papers/</strong> — layered papers</li>
+      </ul>
+    </section>
+
+    <footer class="footer">
+      <p><strong>Author:</strong> Veysi yê MALA SAF</p>
+      <p>This page presents Zanistarast as an open, revisable, testable framework.</p>
+    </footer>
+  </div>
 </body>
 </html>
 
