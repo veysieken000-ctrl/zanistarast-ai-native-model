@@ -2,6 +2,41 @@ function askAI() {
   var input = document.getElementById("ai-input").value.toLowerCase().trim();
   var output = document.getElementById("ai-output");
 
+  // loading
+  output.innerHTML = "<em>Thinking...</em>";
+
+  setTimeout(() => {
+    let response = "";
+
+    if (input === "") {
+      response = "Please enter a question or keyword.";
+    } else if (answers[input]) {
+      response = answers[input];
+    } else {
+      response = "No interpretation found in the current system.";
+    }
+
+    typeText("Answer: " + response, output);
+  }, 600);
+}
+
+function typeText(text, element) {
+  element.innerHTML = "";
+  let i = 0;
+
+  function typing() {
+    if (i < text.length) {
+      element.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typing, 15);
+    }
+  }
+
+  typing();
+}
+  var input = document.getElementById("ai-input").value.toLowerCase().trim();
+  var output = document.getElementById("ai-output");
+
   var answers = {
     "civilization": "Civilization is produced by Zanistarast and stabilized by truth, structure, and consistency.",
     "truth": "Truth stabilizes civilization and anchors legitimacy in the system.",
