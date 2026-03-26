@@ -37,14 +37,15 @@
   <div id="query-result" style="margin-top:15px;"></div>
 </div>
 
-  <div class="navbar">
-  <a href="index.html">ZANISTARAST</a>
-  <a href="index.html">Home</a>
-  <a href="paper.html">Paper</a>
-  <a href="graph.html">Graph</a>
-  <a href="https://github.com/veysieken000-ctrl/zanistarast-ai-native-model">Model</a>
-  <a href="https://medium.com/@veysiyemalasaf">Articles</a>
-</div>
+ <div id="navbar"></div>
+
+<script>
+fetch("components/navbar.html")
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("navbar").innerHTML = data;
+  });
+</script>
 
 <div class="container">
 
