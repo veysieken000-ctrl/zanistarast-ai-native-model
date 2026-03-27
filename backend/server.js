@@ -1,14 +1,9 @@
-require("dotenv").config();
-import OpenAI from "openai";
+import dotenv from "dotenv";
+import express from "express";
+import cors from "cors";
+import { systemPrompt } from "./prompt.js";
 
-const client = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
-});
-
-const express = require("express");
-const cors = require("cors");
-
-const { systemPrompt } = require("./prompt");
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -19,7 +14,7 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.json({
     status: "ok",
-    message: "Zanistarast backend is running."
+    message: "zanistarast backend is running"
   });
 });
 
@@ -33,8 +28,12 @@ app.post("/api/ask", async (req, res) => {
       });
     }
 
-    if (!process.env.OPENAI_API_KEY || process.env.OPENAI_API_KEY === "your_api_key_here") {
-      return res.json({
+    if (
+      !process.env.OPENAI_API_KEY ||
+      process.env.OPENAI_API_KEY === "your_api_key_here" ||
+      process.env.OPENAI_API_KEY === "PASTE_YOUR_API_KEY_HERE"
+    ) {
+      return res.status(500).json({
         answer: "Backend is ready, but no live API key is configured yet."
       });
     }
@@ -43,7 +42,7 @@ app.post("/api/ask", async (req, res) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
+        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`
       },
       body: JSON.stringify({
         model: "gpt-4o-mini",
@@ -63,6 +62,7 @@ app.post("/api/ask", async (req, res) => {
     }
 
     const data = await response.json();
+
     const answer =
       data.choices &&
       data.choices[0] &&
@@ -72,7 +72,6 @@ app.post("/api/ask", async (req, res) => {
         : "No answer returned from API.";
 
     return res.json({ answer });
-
   } catch (error) {
     return res.status(500).json({
       answer: "Server error. Please try again later."
@@ -83,8 +82,6 @@ app.post("/api/ask", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
-
-
 
 
 
