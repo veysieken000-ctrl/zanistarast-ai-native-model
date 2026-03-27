@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:3000";
+const API_BASE_URL = "https://zanistarast-ai-server.onrender.com";
 
 function typeText(element, htmlPrefix, text, speed = 18) {
   let i = 0;
