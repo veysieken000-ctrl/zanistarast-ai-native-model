@@ -1,3 +1,5 @@
+const API_BASE_URL = "http://localhost:3000";
+
 function typeText(element, htmlPrefix, text, speed = 18) {
   let i = 0;
   element.innerHTML = htmlPrefix;
@@ -27,7 +29,7 @@ async function askAI() {
   output.innerHTML = "<strong>Answer:</strong> ";
 
   try {
-    const response = await fetch("http://localhost:3000/api/ask", {
+    const response = await fetch(`${API_BASE_URL}/api/ask`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -68,7 +70,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
-
-
-
 
