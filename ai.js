@@ -13,46 +13,62 @@ function typeText(element, htmlPrefix, text, speed = 18) {
   step();
 }
 
-function askAI() {
-  const input = document.getElementById("ai-input").value.toLowerCase().trim();
+async function askAI() {
+  const input = document.getElementById("ai-input").value.trim();
   const output = document.getElementById("ai-output");
   const loading = document.getElementById("ai-loading");
 
-  const answers = {
-    "civilization": "Civilization is produced by Zanistarast and stabilized by truth, structure, and consistency.",
-    "medeniyet": "Medeniyet, Zanistarast içinde hakikat, yapı ve tutarlılık ile kurulan düzenli sistemik üretimdir.",
-    "truth": "Truth stabilizes civilization and anchors legitimacy in the system.",
-    "gerçek": "Gerçek, sistemin doğrulanabilir temelini oluşturur ve yapıyı sabitler.",
-    "structure": "Structure supports civilization by organizing relations and preventing collapse.",
-    "yapı": "Yapı, ilişkileri düzenler, dağılmayı önler ve sistemin taşıyıcı iskeletini kurar.",
-    "consistency": "Consistency orders the system and reduces contradiction.",
-    "tutarlılık": "Tutarlılık, çelişkiyi azaltır ve sistemin doğrulama katmanını güçlendirir.",
-    "zanistarast": "Zanistarast is a layered, falsifiable structural framework that models recurring patterns across natural, computational, and human systems.",
-    "rasterast": "Rasterast filters distortion and prepares the system for synthesis.",
-    "mabûn": "Mabûn stabilizes structural-economic order through responsibility.",
-    "mabun": "Mabûn stabilizes structural-economic order through responsibility.",
-    "zanabûn": "Zanabûn validates knowledge and connects being to structured understanding.",
-    "zanabun": "Zanabûn validates knowledge and connects being to structured understanding.",
-    "hebûn": "Hebûn grounds the system ontologically and makes higher layers possible.",
-    "hebun": "Hebûn grounds the system ontologically and makes higher layers possible."
-  };
-
-  if (input === "") {
-    output.innerHTML = "<strong>Answer:</strong> Please enter a question or keyword.";
+  if (!input) {
+    output.innerHTML = "<strong>Answer:</strong> Please enter a question.";
     return;
   }
 
   loading.style.display = "flex";
   output.innerHTML = "<strong>Answer:</strong> ";
 
-  let finalAnswer = answers[input];
+  try {
+    const response = await fetch("http://localhost:3000/api/ask", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        question: input
+      })
+    });
 
-  if (!finalAnswer) {
-    finalAnswer = "No interpretation found in the current Zanistarast system.";
-  }
+    const data = await response.json();
 
-  setTimeout(() => {
     loading.style.display = "none";
-    typeText(output, "<strong>Answer:</strong> ", finalAnswer, 18);
-  }, 900);
+
+    typeText(
+      output,
+      "<strong>Answer:</strong> ",
+      data.answer || "No response from server.",
+      18
+    );
+
+  } catch (error) {
+    loading.style.display = "none";
+
+    output.innerHTML =
+      "<strong>Answer:</strong> Connection error. Backend not reachable.";
+  }
 }
+
+// Enter ile gönderme
+document.addEventListener("DOMContentLoaded", () => {
+  const input = document.getElementById("ai-input");
+
+  if (input) {
+    input.addEventListener("keypress", function (e) {
+      if (e.key === "Enter") {
+        askAI();
+      }
+    });
+  }
+});
+
+
+
+
