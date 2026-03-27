@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: zanistarast-backend
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    plan: free
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
