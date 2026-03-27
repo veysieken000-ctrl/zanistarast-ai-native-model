@@ -1,6 +1,12 @@
+require("dotenv").config();
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY
+});
+
 const express = require("express");
 const cors = require("cors");
-require("dotenv").config();
 
 const { systemPrompt } = require("./prompt");
 
