@@ -81,6 +81,17 @@
 
   <script src="ai.js"></script>
   <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    const prompt = params.get("prompt");
+    const input = document.getElementById("ai-input");
+
+    if (prompt && input) {
+      input.value = prompt;
+    }
+  });
+</script>
+  <script>
     function setPrompt(value) {
       document.getElementById("ai-input").value = value;
       askAI();
