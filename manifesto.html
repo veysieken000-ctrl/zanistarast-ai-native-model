@@ -1,85 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-<title>Zanistarast Manifesto – Scientific Synthesis</title>
-
-<meta name="description" content="Zanistarast Scientific Synthesis manifesto and Newroza-Kawa Civilization architecture." />
-
-<link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manifesto — Zanistarast</title>
+  <meta
+    name="description"
+    content="Zanistarast Scientific Synthesis Manifesto and its civilizational direction."
+  />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div id="navbar"></div>
 
-<div id="navbar"></div>
+  <script>
+    fetch("components/navbar.html")
+      .then((res) => res.text())
+      .then((data) => {
+        document.getElementById("navbar").innerHTML = data;
+      });
+  </script>
 
-<script>
-fetch("components/navbar.html")
-  .then(res => res.text())
-  .then(data => {
-    document.getElementById("navbar").innerHTML = data;
-  });
-</script>
+  <main class="container">
+    <section class="hero">
+      <div class="hero-card">
+        <h1>Zanistarast Manifesto</h1>
+        <p>
+          A scientific synthesis and civilizational direction toward a coherent,
+          truth-centered system architecture.
+        </p>
+      </div>
+    </section>
 
-<div class="container">
+    <section>
+      <div class="section-card">
+        <h2>Core Direction</h2>
+        <p>
+          This framework operates as both a scientific synthesis layer and a
+          civilizational model. Its long-range direction is defined as the
+          Newroza-Kawa Civilization.
+        </p>
+      </div>
+    </section>
 
-<h1>Zanistarast Scientific Synthesis</h1>
+    <section>
+      <div class="section-card">
+        <h2>Core Architecture</h2>
+        <p><strong>Hebûn</strong> — Ontological substrate of existence.</p>
+        <p><strong>Zanabûn</strong> — Epistemological engine of knowledge.</p>
+        <p><strong>Mabûn</strong> — Circulation of value and structural responsibility.</p>
+        <p><strong>Rasterast</strong> — Truth-filtering and validation protocol.</p>
+      </div>
+    </section>
 
-<p class="subtitle">
-Zanistarast is a structured, testable framework for modeling natural, computational, and human systems.
-</p>
+    <section>
+      <div class="section-card">
+        <h2>Protocol</h2>
+        <p>
+          Zanistarast Autonomous Interaction operates under the Heksa-Nizam (6+TEK)
+          paradigm. It prioritizes ontology, structured validation, and cross-domain consistency.
+        </p>
+      </div>
+    </section>
 
-<div class="section">
-<h2>Core Direction</h2>
-<p>
-This framework operates as a scientific synthesis layer and a civilizational model.
-Its long-range direction is defined as the Newroza-Kawa Civilization.
-</p>
-</div>
+    <section>
+      <div class="section-card">
+        <h2>Civilization Layer</h2>
+        <p>
+          The Newroza-Kawa Civilization represents the operational layer where
+          ontology, knowledge, structure, and validation form a unified system.
+        </p>
+      </div>
+    </section>
 
-<div class="section">
-<h2>Core Architecture</h2>
-<p><b>Hebûn</b> — Ontological substrate of existence.</p>
-<p><b>Zanabûn</b> — Epistemological engine of knowledge.</p>
-<p><b>Mabûn</b> — Circulation of value and ethical economy.</p>
-<p><b>Rasterast</b> — Truth-filtering and validation protocol.</p>
-</div>
+    <section>
+      <div class="section-card">
+        <h2>Attribution</h2>
+        <p>
+          All derived works should reference:
+        </p>
+        <p>
+          Veysi yê MALA SAF — Zanabûn Science — Zanistarast Scientific Synthesis
+        </p>
+      </div>
+    </section>
 
-<div class="section">
-<h2>Protocol</h2>
-<p>
-Zanistarast-Autonomous-Interaction operates under the Heksa-Nizam (6+TEK) paradigm.
-It prioritizes ontology, structured validation, and cross-domain consistency.
-</p>
-</div>
+    <section>
+      <div class="section-card">
+        <h2>Status</h2>
+        <p>Newroza-Kawa Civilization OS: Active</p>
+        <p>Heksa-Nizam: Engaged</p>
+        <p>Zanistarast Scientific Synthesis: Running</p>
+      </div>
+    </section>
+  </main>
 
-<div class="section">
-<h2>Civilization Layer</h2>
-<p>
-The-Newroza-Kawa-Civilization represents the operational layer of this framework,
-where ontology, knowledge, economy, and validation form a unified system.
-</p>
-</div>
-
-<div class="section">
-<h2>Attribution</h2>
-<p>
-All derived works should reference:
-Veysi yê MALA SAF — Zanabun Science — Zanistarast Scientific Synthesis
-</p>
-</div>
-
-<div class="section">
-<h2>Status</h2>
-<p>
-Newroza-Kawa Civilization OS Active  
-Heksa-Nizam Engaged  
-Zanistarast Scientific Synthesis Running
-</p>
-</div>
-
-</div>
-
+  <footer>
+    <div class="container">
+      Zanistarast — Manifesto
+    </div>
+  </footer>
 </body>
 </html>
+
