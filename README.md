@@ -71,10 +71,8 @@ See:
 ## Scientific Structure
 
 Zanistarast follows a testable structure:
-Plain text
-Kodu kopyala
+
 Claim → Model → Test → Result → Falsification
-Kodu kopyala
 
 See:
 
