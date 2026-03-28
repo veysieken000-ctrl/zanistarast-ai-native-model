@@ -338,4 +338,33 @@ footer {
   }
 }
 
+/* GRAPH PAGE FIX */
+.graph-detail,
+#graph-detail,
+.graph-info,
+#graph-info {
+  background: #ffffff !important;
+  color: #111111 !important;
+  border-radius: 18px;
+  padding: 24px;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+.graph-detail *,
+#graph-detail *,
+.graph-info *,
+#graph-info * {
+  color: #111111 !important;
+}
+
+.graph-detail strong,
+#graph-detail strong,
+.graph-info strong,
+#graph-info strong {
+  color: #000000 !important;
+}
+
+svg text {
+  fill: #ffffff;
+}
 
