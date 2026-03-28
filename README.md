@@ -1,4 +1,17 @@
 # Zanistarast
+Zanistarast Scientific Synthesis is presented here as a natural science framework for ontology, epistemology, validation, structural order, and civilizational continuity. It does not begin from the assumption that science must be adjusted to human preference; rather, it begins from the principle that human systems must be reorganized in accordance with reality, structure, and scientific coherence.
+
+Within this framework, the Newroza-Kawa Civilization is not treated as a cultural ornament or optional narrative layer, but as the civilizational expression of a deeper structural necessity: when ontology, knowledge, responsibility, and validation are correctly aligned, coherent order emerges as a natural requirement rather than an ideological choice.
+
+Zanistarast therefore defines scientific synthesis not as a human-centered negotiation with truth, but as a disciplined effort to align human beings, institutions, and civilizational forms with the laws, limits, and structure of reality. Science does not change according to the human; the human must learn to live according to science. In this sense, the 6+TEK / 6+Ehad principle is presented as a structural requirement of valid order, not as an arbitrary doctrine.
+
+## Core Position
+
+- Science is not revised to fit human preference.
+- Human systems must be revised to fit reality.
+- Civilizational coherence requires ontological grounding, epistemic validity, structural discipline, and ethical responsibility.
+- The Newroza-Kawa Civilization is presented as the civilizational form of that coherence.
+- 6+TEK / 6+Ehad is treated as a structural principle of order, not as a rhetorical slogan.
 
 A Unified Framework for Modeling Natural, Computational, and Human Systems
 
