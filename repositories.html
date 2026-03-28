@@ -1,116 +1,141 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
- <title>Zanistarast Repositories — System Architecture and Modules</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<meta name="description" content="Explore all core repositories of the Zanistarast system including ontology, logic, AI interface, and structural mapping modules.">
-<meta property="og:title" content="Zanistarast Repositories — System Architecture and Modules">
-<meta property="og:description" content="Explore the full repository structure of the Zanistarast framework.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://veysieken000-ctrl.github.io/zanistarast-ai-native-model/repositories.html">
-<link rel="stylesheet" href="style.css"> 
-<link rel="stylesheet" href="style.css">
-  <style>
-    .repo-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
-    }
-
-    .repo-card {
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      padding: 24px;
-      text-align: left;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    }
-
-    .repo-card h2 {
-      margin-top: 0;
-      font-size: 22px;
-    }
-
-    .repo-card p {
-      font-size: 15px;
-      line-height: 1.6;
-    }
-
-    .repo-card a {
-      display: inline-block;
-      margin-top: 12px;
-      font-weight: bold;
-      text-decoration: none;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Repositories — Zanistarast</title>
+  <meta
+    name="description"
+    content="Repository structure of the Zanistarast system and its scientific, civilizational, and AI-native components."
+  />
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
+  <div id="navbar"></div>
 
-<div id="navbar"></div>
+  <script>
+    fetch("components/navbar.html")
+      .then((res) => res.text())
+      .then((data) => {
+        document.getElementById("navbar").innerHTML = data;
+      });
+  </script>
 
-<script>
-fetch("components/navbar.html")
-  .then(res => res.text())
-  .then(data => {
-    document.getElementById("navbar").innerHTML = data;
-  });
-</script>
-
-  <div class="container">
-    <h1>Repositories</h1>
-    <p class="subtitle">
-      Explore the core repositories of the Zanistarast system.
-    </p>
-
-    <div class="repo-grid">
-
-      <div class="repo-card">
-        <h2>Hebûn–Zanabûn</h2>
+  <main class="container">
+    <section class="hero">
+      <div class="hero-card">
+        <h1>Repositories</h1>
         <p>
-          Foundational ontological and epistemological repository of the system.
+          This page maps the public repository structure of Zanistarast as a
+          scientific synthesis, AI-native system, and civilizational framework.
         </p>
-        <a href="https://github.com/veysieken000-ctrl/hebun-zanabun">→ Open Repository</a>
       </div>
+    </section>
 
-      <div class="repo-card">
-        <h2>The Newroza-Kawa Civilization Theses</h2>
+    <section>
+      <div class="section-card">
+        <h2>Repository Function</h2>
         <p>
-          Civilizational thesis layer and macro-historical framing repository.
+          These repositories are not presented as isolated code containers.
+          They are structural components of a larger system: theory, synthesis,
+          interface, validation, and civilizational direction.
         </p>
-        <a href="https://github.com/veysieken000-ctrl/The-Newroza-Kawa-Civilization-Theses">→ Open Repository</a>
       </div>
+    </section>
 
-      <div class="repo-card">
-        <h2>ZANISTARAST-TEORILER</h2>
+    <section>
+      <div class="repo-grid">
+        <div class="repo-card">
+          <h3>Zanistarast AI Native Model</h3>
+          <p>
+            The main live repository of the system. It integrates the public site,
+            AI interface, graph, manifesto, paper, and structural navigation.
+          </p>
+          <p>
+            <strong>System role:</strong> public synthesis layer
+          </p>
+          <a href="https://github.com/veysieken000-ctrl/zanistarast-ai-native-model" target="_blank">Open Repository</a>
+        </div>
+
+        <div class="repo-card">
+          <h3>ZANISTARAST-TEORILER</h3>
+          <p>
+            The theoretical foundation archive. It carries the conceptual and
+            scientific architecture behind the Zanistarast framework.
+          </p>
+          <p>
+            <strong>System role:</strong> theory layer
+          </p>
+          <a href="https://github.com/veysieken000-ctrl/ZANISTARAST-TEORILER" target="_blank">Open Repository</a>
+        </div>
+
+        <div class="repo-card">
+          <h3>Hebûn-Zanabûn</h3>
+          <p>
+            The ontological and epistemological core. This repository clarifies
+            being, knowledge, and the conditions of structural validity.
+          </p>
+          <p>
+            <strong>System role:</strong> ontology / epistemology
+          </p>
+          <a href="https://github.com/veysieken000-ctrl/Hebun-Zanabun" target="_blank">Open Repository</a>
+        </div>
+
+        <div class="repo-card">
+          <h3>Mabûn</h3>
+          <p>
+            The responsibility and circulation layer. It concerns structure,
+            value flow, continuity, and economic-ethical organization.
+          </p>
+          <p>
+            <strong>System role:</strong> structure / responsibility
+          </p>
+          <a href="https://github.com/veysieken000-ctrl/Mabun" target="_blank">Open Repository</a>
+        </div>
+
+        <div class="repo-card">
+          <h3>Rasterast</h3>
+          <p>
+            The method layer of correct reading. It functions as a validation,
+            filtration, and interpretation protocol against distortion.
+          </p>
+          <p>
+            <strong>System role:</strong> method / validation
+          </p>
+          <a href="https://github.com/veysieken000-ctrl/Rasterast" target="_blank">Open Repository</a>
+        </div>
+
+        <div class="repo-card">
+          <h3>Newroza-Kawa Civilization</h3>
+          <p>
+            The civilizational expression of structural coherence. This layer
+            presents the long-range civilizational orientation of the system.
+          </p>
+          <p>
+            <strong>System role:</strong> civilization layer
+          </p>
+          <a href="https://github.com/veysieken000-ctrl" target="_blank">Open Architect Profile</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-card">
+        <h2>Structural Reading</h2>
         <p>
-          Theoretical expansion and conceptual development layer.
+          The repositories should be read as one connected architecture:
+          ontology, epistemology, responsibility, method, synthesis, and
+          civilization. Their purpose is not fragmentation, but ordered integration.
         </p>
-        <a href="https://github.com/veysieken000-ctrl/ZANISTARAST-TEORILER">→ Open Repository</a>
       </div>
+    </section>
+  </main>
 
-      <div class="repo-card">
-        <h2>Zanistarast Ontology</h2>
-        <p>
-          Formal ontology and machine-readable structural layer.
-        </p>
-        <a href="https://github.com/veysieken000-ctrl/zanistarast-ontology">→ Open Repository</a>
-      </div>
-
-      <div class="repo-card">
-        <h2>Zanistarast AI Native Model</h2>
-        <p>
-          Main live system repository including homepage, paper, graph, and AI interface.
-        </p>
-        <a href="https://github.com/veysieken000-ctrl/zanistarast-ai-native-model">→ Open Repository</a>
-      </div>
-
+  <footer>
+    <div class="container">
+      Zanistarast — Repository Structure
     </div>
-  </div>
-
+  </footer>
 </body>
 </html>
 
