@@ -4,93 +4,88 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Zanistarast AI</title>
-  <meta name="description" content="Interactive Zanistarast interface for querying a structured, testable framework for natural, computational, and human systems." />
+  <meta
+    name="description"
+    content="Interactive Zanistarast interface for querying a structured, testable framework for natural, computational, and human systems."
+  />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
   <div id="navbar"></div>
 
   <script>
     fetch("components/navbar.html")
-      .then(res => res.text())
-      .then(data => {
+      .then((res) => res.text())
+      .then((data) => {
         document.getElementById("navbar").innerHTML = data;
       });
   </script>
 
-  <div class="container">
-
-    <h1>Zanistarast AI</h1>
-
-    <p class="subtitle">
-      Zanistarast is a structured, testable framework for modeling natural, computational, and human systems.
-    </p>
-
-    <div class="section">
-      <h2>Ask the Framework</h2>
-      <p>
-        Use this interactive interface to ask about the framework and receive a structured response from the current Zanistarast system.
-      </p>
-
-      <div style="margin-top:18px;">
-        <p><strong>Example prompts:</strong></p>
-
-        <button onclick="document.getElementById('ai-input').value='truth'; askAI();" style="margin:6px; padding:10px 14px; border:1px solid #ccc; border-radius:8px; background:#f5f5f5; cursor:pointer;">
-          truth
-        </button>
-
-        <button onclick="document.getElementById('ai-input').value='civilization'; askAI();" style="margin:6px; padding:10px 14px; border:1px solid #ccc; border-radius:8px; background:#f5f5f5; cursor:pointer;">
-          civilization
-        </button>
-
-        <button onclick="document.getElementById('ai-input').value='hebun'; askAI();" style="margin:6px; padding:10px 14px; border:1px solid #ccc; border-radius:8px; background:#f5f5f5; cursor:pointer;">
-          hebun
-        </button>
-
-        <button onclick="document.getElementById('ai-input').value='zanistarast'; askAI();" style="margin:6px; padding:10px 14px; border:1px solid #ccc; border-radius:8px; background:#f5f5f5; cursor:pointer;">
-          zanistarast
-        </button>
+  <main class="container ai-wrap">
+    <section class="hero">
+      <div class="hero-card">
+        <h1>Zanistarast AI</h1>
+        <p>
+          Use this interface to ask about the Zanistarast framework and receive
+          a structured response from the current live system.
+        </p>
       </div>
+    </section>
 
-      <div style="margin-top:20px; padding:16px; border:1px solid #ddd; border-radius:10px; background:#fafafa;">
-        <p><strong>How to use:</strong></p>
-        <p>1. Choose an example prompt or type your own concept.</p>
-        <p>2. Click <strong>Ask</strong>.</p>
-        <p>3. Read the structured response from the current Zanistarast system.</p>
-      </div>
+    <section>
+      <div class="ai-card">
+        <h2>Ask the Framework</h2>
+        <p class="small">
+          The system detects the user language and responds in the same language.
+        </p>
 
-      <div style="margin-top:20px;">
-        <input
-          id="ai-input"
-          type="text"
-          placeholder="Try: truth, civilization, hebun, zanistarast"
-          style="width:100%; max-width:700px; padding:14px; border-radius:8px; border:1px solid #ccc; font-size:15px;"
-        />
-      </div>
+        <div class="example-prompts">
+          <button type="button" onclick="setPrompt('truth')">truth</button>
+          <button type="button" onclick="setPrompt('civilization')">civilization</button>
+          <button type="button" onclick="setPrompt('hebun')">hebun</button>
+          <button type="button" onclick="setPrompt('zanistarast')">zanistarast</button>
+        </div>
 
-      <div style="margin-top:14px;">
-        <button onclick="askAI()" style="padding:12px 22px; border:none; border-radius:8px; background:#111; color:#fff; font-size:15px; cursor:pointer;">
-          Ask
-        </button>
-      </div>
+        <div class="section-card" style="margin-top: 18px;">
+          <h2>How to use</h2>
+          <p>1. Choose an example prompt or type your own concept.</p>
+          <p>2. Click <strong>Ask</strong>.</p>
+          <p>3. Read the structured response from the current Zanistarast system.</p>
+        </div>
 
-      <div id="ai-loading" class="ai-loading" style="display:none;">
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span style="margin-left:10px;">Thinking...</span>
-      </div>
+        <div style="margin-top: 18px;">
+          <input
+            id="ai-input"
+            type="text"
+            placeholder="Try: truth, civilization, hebun, zanistarast"
+          />
+        </div>
 
-      <div id="ai-output" class="response-box">
-        <strong>Answer:</strong> Your response will appear here.
+        <div class="ai-actions">
+          <button type="button" onclick="askAI()">Ask</button>
+          <div id="ai-loading">Thinking...</div>
+        </div>
+
+        <div id="ai-output" class="answer-card">
+          <strong>Answer:</strong> Your response will appear here.
+        </div>
       </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      Zanistarast AI Interface
     </div>
-
-  </div>
+  </footer>
 
   <script src="ai.js"></script>
+  <script>
+    function setPrompt(value) {
+      document.getElementById("ai-input").value = value;
+      askAI();
+    }
+  </script>
 </body>
 </html>
-
 
