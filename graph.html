@@ -9,6 +9,7 @@
     content="Visual graph of the Zanistarast system and its core structural relations."
   />
   <link rel="stylesheet" href="style.css" />
+
   <style>
     .graph-shell {
       display: grid;
@@ -20,7 +21,7 @@
       border-radius: 24px;
       padding: 20px;
       overflow: auto;
-      border: 1px solid rgba(0,0,0,0.08);
+      border: 1px solid rgba(0, 0, 0, 0.08);
     }
 
     .graph-board svg {
@@ -41,6 +42,12 @@
       fill: #2a3139;
     }
 
+    .graph-node.active {
+      fill: #4c5cff !important;
+      stroke: #2f3bff;
+      stroke-width: 2;
+    }
+
     .graph-label {
       fill: #ffffff;
       font-size: 16px;
@@ -58,7 +65,7 @@
       color: #111111;
       border-radius: 24px;
       padding: 28px;
-      border: 1px solid rgba(0,0,0,0.08);
+      border: 1px solid rgba(0, 0, 0, 0.08);
       min-height: 220px;
     }
 
@@ -90,8 +97,13 @@
       border-radius: 999px;
       background: #ffffff;
       color: #0d1015;
-      font-weight: 600;
+      font-weight: 700;
       text-decoration: none;
+      transition: 0.2s ease;
+    }
+
+    .graph-link-card a:hover {
+      transform: translateY(-2px);
     }
 
     @media (max-width: 900px) {
@@ -130,31 +142,95 @@
           <line class="graph-line" x1="600" y1="70" x2="220" y2="150" />
           <line class="graph-line" x1="600" y1="70" x2="520" y2="150" />
           <line class="graph-line" x1="600" y1="70" x2="820" y2="150" />
-          <line class="graph-line" x1="220" y1="190" x2="520" y2="260" />
-          <line class="graph-line" x1="520" y1="190" x2="820" y2="260" />
+          <line class="graph-line" x1="220" y1="190" x2="340" y2="260" />
+          <line class="graph-line" x1="520" y1="190" x2="600" y2="260" />
+          <line class="graph-line" x1="820" y1="190" x2="860" y2="260" />
 
           <!-- Top node -->
-          <rect class="graph-node" x="500" y="30" rx="18" ry="18" width="200" height="56" onclick="showDetail('zanistarast')" />
+          <rect
+            class="graph-node"
+            x="500"
+            y="30"
+            rx="18"
+            ry="18"
+            width="200"
+            height="56"
+            onclick="showDetail('zanistarast', this)"
+          />
           <text class="graph-label" x="600" y="65" text-anchor="middle">Zanistarast</text>
 
           <!-- Row 2 -->
-          <rect class="graph-node" x="150" y="120" rx="18" ry="18" width="140" height="56" onclick="showDetail('truth')" />
+          <rect
+            class="graph-node"
+            x="150"
+            y="120"
+            rx="18"
+            ry="18"
+            width="140"
+            height="56"
+            onclick="showDetail('truth', this)"
+          />
           <text class="graph-label" x="220" y="155" text-anchor="middle">Truth</text>
 
-          <rect class="graph-node" x="450" y="120" rx="18" ry="18" width="140" height="56" onclick="showDetail('structure')" />
+          <rect
+            class="graph-node"
+            x="450"
+            y="120"
+            rx="18"
+            ry="18"
+            width="140"
+            height="56"
+            onclick="showDetail('structure', this)"
+          />
           <text class="graph-label" x="520" y="155" text-anchor="middle">Structure</text>
 
-          <rect class="graph-node" x="750" y="120" rx="18" ry="18" width="140" height="56" onclick="showDetail('consistency')" />
+          <rect
+            class="graph-node"
+            x="750"
+            y="120"
+            rx="18"
+            ry="18"
+            width="140"
+            height="56"
+            onclick="showDetail('consistency', this)"
+          />
           <text class="graph-label" x="820" y="155" text-anchor="middle">Consistency</text>
 
           <!-- Row 3 -->
-          <rect class="graph-node" x="260" y="230" rx="18" ry="18" width="160" height="56" onclick="showDetail('hebun')" />
+          <rect
+            class="graph-node"
+            x="260"
+            y="230"
+            rx="18"
+            ry="18"
+            width="160"
+            height="56"
+            onclick="showDetail('hebun', this)"
+          />
           <text class="graph-label" x="340" y="265" text-anchor="middle">Hebûn</text>
 
-          <rect class="graph-node" x="520" y="230" rx="18" ry="18" width="160" height="56" onclick="showDetail('zanabun')" />
+          <rect
+            class="graph-node"
+            x="520"
+            y="230"
+            rx="18"
+            ry="18"
+            width="160"
+            height="56"
+            onclick="showDetail('zanabun', this)"
+          />
           <text class="graph-label" x="600" y="265" text-anchor="middle">Zanabûn</text>
 
-          <rect class="graph-node" x="780" y="230" rx="18" ry="18" width="160" height="56" onclick="showDetail('rasterast')" />
+          <rect
+            class="graph-node"
+            x="780"
+            y="230"
+            rx="18"
+            ry="18"
+            width="160"
+            height="56"
+            onclick="showDetail('rasterast', this)"
+          />
           <text class="graph-label" x="860" y="265" text-anchor="middle">Rasterast</text>
         </svg>
       </div>
@@ -184,87 +260,98 @@
     </div>
   </footer>
 
-    <script>
-  const graphData = {
-    zanistarast: {
-      title: "Zanistarast",
-      html: `
-        <p><strong>Description:</strong> Integrative system layer of the framework.</p>
-        <p><strong>Role:</strong> Unifies ontology, knowledge, method, and structure into a coherent model.</p>
-        <p><strong>Function:</strong> Connects all layers into one testable civilizational architecture.</p>
-        <p><strong>Formula:</strong> Integration → Coherence → Stability</p>
-      `
-    },
-    truth: {
-      title: "Truth",
-      html: `
-        <p><strong>Description:</strong> Primary governing principle.</p>
-        <p><strong>Role:</strong> Anchors legitimacy.</p>
-        <p><strong>Function:</strong> Constrains system behavior.</p>
-        <p><strong>Formula:</strong> Truth → Constraint → Validity</p>
-      `
-    },
-    structure: {
-      title: "Structure",
-      html: `
-        <p><strong>Description:</strong> Organizational form of the system.</p>
-        <p><strong>Role:</strong> Holds components together.</p>
-        <p><strong>Function:</strong> Prevents fragmentation.</p>
-        <p><strong>Formula:</strong> Structure → Coherence → Continuity</p>
-      `
-    },
-    consistency: {
-      title: "Consistency",
-      html: `
-        <p><strong>Description:</strong> Coherence principle.</p>
-        <p><strong>Role:</strong> Ensures system continuity.</p>
-        <p><strong>Function:</strong> Eliminates contradictions.</p>
-        <p><strong>Formula:</strong> Consistency → Stability</p>
-      `
-    },
-    hebun: {
-      title: "Hebûn",
-      html: `
-        <p><strong>Description:</strong> Ontological layer of being.</p>
-        <p><strong>Role:</strong> Grounds the framework in reality.</p>
-        <p><strong>Function:</strong> Defines what exists and what can be structurally recognized.</p>
-        <p><strong>Formula:</strong> Being → Ground → Ontology</p>
-      `
-    },
-    zanabun: {
-      title: "Zanabûn",
-      html: `
-        <p><strong>Description:</strong> Epistemological layer of knowledge.</p>
-        <p><strong>Role:</strong> Organizes how reality becomes knowable.</p>
-        <p><strong>Function:</strong> Connects observation, validation, and interpretation.</p>
-        <p><strong>Formula:</strong> Being → Knowledge → Verification</p>
-      `
-    },
-    rasterast: {
-      title: "Rasterast",
-      html: `
-        <p><strong>Description:</strong> Method layer of correct interpretation.</p>
-        <p><strong>Role:</strong> Filters distortion.</p>
-        <p><strong>Function:</strong> Protects structure from narrative corruption.</p>
-        <p><strong>Formula:</strong> Correct Reading → Structural Validity</p>
-      `
+  <script>
+    const graphData = {
+      zanistarast: {
+        title: "Zanistarast",
+        html: `
+          <p><strong>Description:</strong> Integrative system layer of the framework.</p>
+          <p><strong>Role:</strong> Unifies ontology, knowledge, method, and structure into a coherent model.</p>
+          <p><strong>Function:</strong> Connects all layers into one testable civilizational architecture.</p>
+          <p><strong>Formula:</strong> Integration → Coherence → Stability</p>
+        `
+      },
+      truth: {
+        title: "Truth",
+        html: `
+          <p><strong>Description:</strong> Primary governing principle.</p>
+          <p><strong>Role:</strong> Anchors legitimacy.</p>
+          <p><strong>Function:</strong> Constrains system behavior.</p>
+          <p><strong>Formula:</strong> Truth → Constraint → Validity</p>
+        `
+      },
+      structure: {
+        title: "Structure",
+        html: `
+          <p><strong>Description:</strong> Organizational form of the system.</p>
+          <p><strong>Role:</strong> Holds components together.</p>
+          <p><strong>Function:</strong> Prevents fragmentation.</p>
+          <p><strong>Formula:</strong> Structure → Coherence → Continuity</p>
+        `
+      },
+      consistency: {
+        title: "Consistency",
+        html: `
+          <p><strong>Description:</strong> Coherence principle.</p>
+          <p><strong>Role:</strong> Ensures system continuity.</p>
+          <p><strong>Function:</strong> Eliminates contradictions.</p>
+          <p><strong>Formula:</strong> Consistency → Stability</p>
+        `
+      },
+      hebun: {
+        title: "Hebûn",
+        html: `
+          <p><strong>Description:</strong> Ontological layer of being.</p>
+          <p><strong>Role:</strong> Grounds the framework in reality.</p>
+          <p><strong>Function:</strong> Defines what exists and what can be structurally recognized.</p>
+          <p><strong>Formula:</strong> Being → Ground → Ontology</p>
+        `
+      },
+      zanabun: {
+        title: "Zanabûn",
+        html: `
+          <p><strong>Description:</strong> Epistemological layer of knowledge.</p>
+          <p><strong>Role:</strong> Organizes how reality becomes knowable.</p>
+          <p><strong>Function:</strong> Connects observation, validation, and interpretation.</p>
+          <p><strong>Formula:</strong> Being → Knowledge → Verification</p>
+        `
+      },
+      rasterast: {
+        title: "Rasterast",
+        html: `
+          <p><strong>Description:</strong> Method layer of correct interpretation.</p>
+          <p><strong>Role:</strong> Filters distortion.</p>
+          <p><strong>Function:</strong> Protects structure from narrative corruption.</p>
+          <p><strong>Formula:</strong> Correct Reading → Structural Validity</p>
+        `
+      }
+    };
+
+    function showDetail(key, el) {
+      const box = document.getElementById("graph-detail");
+      const item = graphData[key];
+      const aiLink = document.getElementById("graph-ai-link");
+
+      if (!item) return;
+
+      document.querySelectorAll(".graph-node").forEach((node) => {
+        node.classList.remove("active");
+      });
+
+      if (el) {
+        el.classList.add("active");
+      }
+
+      box.innerHTML = `
+        <h3>${item.title}</h3>
+        ${item.html}
+      `;
+
+      if (aiLink) {
+        aiLink.href = `ai.html?prompt=${encodeURIComponent(item.title)}`;
+      }
     }
-  };
+  </script>
+</body>
+</html>
 
-  function showDetail(key) {
-    const box = document.getElementById("graph-detail");
-    const item = graphData[key];
-    const aiLink = document.getElementById("graph-ai-link");
-
-    if (!item) return;
-
-    box.innerHTML = `
-      <h3>${item.title}</h3>
-      ${item.html}
-    `;
-
-    if (aiLink) {
-      aiLink.href = `ai.html?prompt=${encodeURIComponent(item.title)}`;
-    }
-  }
-</script>
