@@ -1,87 +1,268 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Graph — Zanistarast</title>
-  <link rel="stylesheet" href="style.css">
+  <meta
+    name="description"
+    content="Visual graph of the Zanistarast system and its core structural relations."
+  />
+  <link rel="stylesheet" href="style.css" />
   <style>
-    .graph-wrapper {
-      margin-top: 30px;
-      overflow-x: auto;
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 20px;
+    .graph-shell {
+      display: grid;
+      gap: 20px;
     }
 
-    #graph-svg {
-      width: 1150px;
-      height: 520px;
+    .graph-board {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 20px;
+      overflow: auto;
+      border: 1px solid rgba(0,0,0,0.08);
     }
 
-    #graph-details {
-      margin-top: 30px;
-      padding: 20px;
-      background: #fff;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      text-align: left;
+    .graph-board svg {
+      min-width: 1100px;
+      height: 380px;
+      display: block;
+    }
+
+    .graph-node {
+      fill: #20252c;
+      stroke: #2b3139;
+      stroke-width: 1.2;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .graph-node:hover {
+      fill: #2a3139;
+    }
+
+    .graph-label {
+      fill: #ffffff;
+      font-size: 16px;
+      font-family: Inter, Arial, sans-serif;
+      pointer-events: none;
+    }
+
+    .graph-line {
+      stroke: #9aa4af;
+      stroke-width: 2;
+    }
+
+    .graph-detail-box {
+      background: #ffffff;
+      color: #111111;
+      border-radius: 24px;
+      padding: 28px;
+      border: 1px solid rgba(0,0,0,0.08);
+      min-height: 220px;
+    }
+
+    .graph-detail-box h3 {
+      margin-top: 0;
+      margin-bottom: 14px;
+      color: #111111;
+      font-size: 1.4rem;
+    }
+
+    .graph-detail-box p {
+      color: #222222;
+      margin: 10px 0;
+      line-height: 1.7;
+    }
+
+    .graph-detail-box strong {
+      color: #000000;
+    }
+
+    .graph-link-card {
+      margin-top: 8px;
+    }
+
+    .graph-link-card a {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: #ffffff;
+      color: #0d1015;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    @media (max-width: 900px) {
+      .graph-board svg {
+        min-width: 980px;
+      }
     }
   </style>
 </head>
-
 <body>
-<div style="margin-top:30px;">
-  <h3>Query System</h3>
-  <input id="query-input" placeholder="Ask a system question..." style="width:100%; padding:10px; margin-top:10px;">
-  <button onclick="runQuery()" style="margin-top:10px;">Run Query</button>
-  <div id="query-result" style="margin-top:15px;"></div>
-</div>
+  <div id="navbar"></div>
 
- <div id="navbar"></div>
+  <script>
+    fetch("components/navbar.html")
+      .then((res) => res.text())
+      .then((data) => {
+        document.getElementById("navbar").innerHTML = data;
+      });
+  </script>
 
-<script>
-fetch("components/navbar.html")
-  .then(res => res.text())
-  .then(data => {
-    document.getElementById("navbar").innerHTML = data;
-  });
-</script>
+  <main class="container">
+    <section class="hero">
+      <div class="hero-card">
+        <h1>Graph</h1>
+        <p>
+          Explore the structural relations inside the Zanistarast framework.
+          Click a node to inspect its role in the system.
+        </p>
+      </div>
+    </section>
 
-<div class="container">
+    <section class="graph-shell">
+      <div class="graph-board">
+        <svg viewBox="0 0 1200 380" xmlns="http://www.w3.org/2000/svg">
+          <!-- Lines -->
+          <line class="graph-line" x1="600" y1="70" x2="220" y2="150" />
+          <line class="graph-line" x1="600" y1="70" x2="520" y2="150" />
+          <line class="graph-line" x1="600" y1="70" x2="820" y2="150" />
+          <line class="graph-line" x1="220" y1="190" x2="520" y2="260" />
+          <line class="graph-line" x1="520" y1="190" x2="820" y2="260" />
 
-  <h1>Interactive System Graph</h1>
+          <!-- Top node -->
+          <rect class="graph-node" x="500" y="30" rx="18" ry="18" width="200" height="56" onclick="showDetail('zanistarast')" />
+          <text class="graph-label" x="600" y="65" text-anchor="middle">Zanistarast</text>
 
-  <p>
-    Click any node to inspect its structural relations.
-  </p>
+          <!-- Row 2 -->
+          <rect class="graph-node" x="150" y="120" rx="18" ry="18" width="140" height="56" onclick="showDetail('truth')" />
+          <text class="graph-label" x="220" y="155" text-anchor="middle">Truth</text>
 
-  <div class="graph-wrapper">
-    <svg id="graph-svg"></svg>
-  </div>
+          <rect class="graph-node" x="450" y="120" rx="18" ry="18" width="140" height="56" onclick="showDetail('structure')" />
+          <text class="graph-label" x="520" y="155" text-anchor="middle">Structure</text>
 
-  <div id="graph-details">
-    <h3>Graph Inspector</h3>
-    <p>Click a node to see incoming and outgoing relations.</p>
-  </div>
+          <rect class="graph-node" x="750" y="120" rx="18" ry="18" width="140" height="56" onclick="showDetail('consistency')" />
+          <text class="graph-label" x="820" y="155" text-anchor="middle">Consistency</text>
 
-<div class="section">
-  <h2>Ask the AI About the Graph</h2>
-  <p>
-    After exploring the system graph, continue in the AI interface to ask about a concept, layer, or relation.
-  </p>
-  <p>
-    Examples: truth, civilization, hebun, structure, consistency.
-  </p>
-  <p style="margin-top:16px;">
-    <a href="ai.html" style="display:inline-block; padding:12px 20px; background:#111; color:#fff; text-decoration:none; border-radius:8px;">
-      Open AI Interface
-    </a>
-  </p>
-</div>
-  
-</div>
+          <!-- Row 3 -->
+          <rect class="graph-node" x="260" y="230" rx="18" ry="18" width="160" height="56" onclick="showDetail('hebun')" />
+          <text class="graph-label" x="340" y="265" text-anchor="middle">Hebûn</text>
 
-<script src="graph.js"></script>
+          <rect class="graph-node" x="520" y="230" rx="18" ry="18" width="160" height="56" onclick="showDetail('zanabun')" />
+          <text class="graph-label" x="600" y="265" text-anchor="middle">Zanabûn</text>
+
+          <rect class="graph-node" x="780" y="230" rx="18" ry="18" width="160" height="56" onclick="showDetail('rasterast')" />
+          <text class="graph-label" x="860" y="265" text-anchor="middle">Rasterast</text>
+        </svg>
+      </div>
+
+      <div id="graph-detail" class="graph-detail-box">
+        <h3>Select a node</h3>
+        <p>Click a concept above to view its structural description.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-card graph-link-card">
+        <h2>Ask the AI About the Graph</h2>
+        <p>
+          After exploring the system graph, continue in the AI interface to ask
+          about a concept, layer, or relation.
+        </p>
+        <p>Examples: truth, civilization, hebun, structure, consistency.</p>
+        <a href="ai.html">Open AI Interface</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      Zanistarast Graph Interface
+    </div>
+  </footer>
+
+  <script>
+    const graphData = {
+      zanistarast: {
+        title: "Zanistarast",
+        html: `
+          <p><strong>Description:</strong> Integrative system layer of the framework.</p>
+          <p><strong>Role:</strong> Unifies ontology, knowledge, method, and structure into a coherent model.</p>
+          <p><strong>Function:</strong> Connects all layers into one testable civilizational architecture.</p>
+          <p><strong>Formula:</strong> Integration → Coherence → Stability</p>
+        `
+      },
+      truth: {
+        title: "Truth",
+        html: `
+          <p><strong>Description:</strong> Primary governing principle.</p>
+          <p><strong>Role:</strong> Anchors legitimacy.</p>
+          <p><strong>Function:</strong> Constrains system behavior.</p>
+          <p><strong>Formula:</strong> Truth → Constraint → Validity</p>
+        `
+      },
+      structure: {
+        title: "Structure",
+        html: `
+          <p><strong>Description:</strong> Organizational form of the system.</p>
+          <p><strong>Role:</strong> Holds components together.</p>
+          <p><strong>Function:</strong> Prevents fragmentation.</p>
+          <p><strong>Formula:</strong> Structure → Coherence → Continuity</p>
+        `
+      },
+      consistency: {
+        title: "Consistency",
+        html: `
+          <p><strong>Description:</strong> Coherence principle.</p>
+          <p><strong>Role:</strong> Ensures system continuity.</p>
+          <p><strong>Function:</strong> Eliminates contradictions.</p>
+          <p><strong>Formula:</strong> Consistency → Stability</p>
+        `
+      },
+      hebun: {
+        title: "Hebûn",
+        html: `
+          <p><strong>Description:</strong> Ontological layer of being.</p>
+          <p><strong>Role:</strong> Grounds the framework in reality.</p>
+          <p><strong>Function:</strong> Defines what exists and what can be structurally recognized.</p>
+          <p><strong>Formula:</strong> Being → Ground → Ontology</p>
+        `
+      },
+      zanabun: {
+        title: "Zanabûn",
+        html: `
+          <p><strong>Description:</strong> Epistemological layer of knowledge.</p>
+          <p><strong>Role:</strong> Organizes how reality becomes knowable.</p>
+          <p><strong>Function:</strong> Connects observation, validation, and interpretation.</p>
+          <p><strong>Formula:</strong> Being → Knowledge → Verification</p>
+        `
+      },
+      rasterast: {
+        title: "Rasterast",
+        html: `
+          <p><strong>Description:</strong> Method layer of correct interpretation.</p>
+          <p><strong>Role:</strong> Filters distortion.</p>
+          <p><strong>Function:</strong> Protects structure from narrative corruption.</p>
+          <p><strong>Formula:</strong> Correct Reading → Structural Validity</p>
+        `
+      }
+    };
+
+    function showDetail(key) {
+      const box = document.getElementById("graph-detail");
+      const item = graphData[key];
+
+      if (!item) return;
+
+      box.innerHTML = `
+        <h3>${item.title}</h3>
+        ${item.html}
+      `;
+    }
+  </script>
 </body>
 </html>
 
