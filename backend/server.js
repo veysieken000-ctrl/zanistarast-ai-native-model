@@ -44,15 +44,15 @@ app.post("/api/ask", async (req, res) => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${process.env.OPENAI_API_KEY}`
       },
+
       body: JSON.stringify({
-        model: "gpt-4o-mini",
-        messages: [
-          { role: "system", content: systemPrompt },
-          { role: "user", content: question }
-        ],
-        temperature: 0.4
-      })
-    });
+  model: "gpt-4o-mini",
+  messages: [
+    { role: "system", content: systemPrompt },
+    { role: "user", content: question }
+  ],
+  temperature: 0.8
+})
 
     if (!response.ok) {
       const errorText = await response.text();
