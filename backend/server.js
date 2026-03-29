@@ -40,22 +40,27 @@ const history = Array.isArray(req.body.history) ? req.body.history : [];
     }
 
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`
-      },
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
+  },
+  body: JSON.stringify({
+    model: "gpt-4o-mini",
+    messages: [
+      { role: "system", content: systemPrompt },
+      ...(history || []),
+      { role: "user", content: question }
+    ],
+    temperature: 0.8
+  })
+});
 
-      body: JSON.stringify({
-  model: "gpt-4o-mini",
- 
-  messages: [
-  { role: "system", content: systemPrompt },
-  ...history,
-  { role: "user", content: question }
-],
-  temperature: 0.8
-})
+if (!response.ok) {
+  const errorText = await response.text();
+  console.error("OpenAI API error:", errorText);
+  return res.status(500).json({ error: "OpenAI API failed" });
+}
 
     if (!response.ok) {
       const errorText = await response.text();
