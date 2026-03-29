@@ -42,17 +42,34 @@ function escapeHtml(str) {
 }
 
 function extractFollowUpSuggestions(text) {
-  const matches = text.match(/İstersen[^.!?]*\?/gim);
-  return matches ? matches.slice(0, 2) : [];
+  const lines = text
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
+
+  const matches = lines.filter((line) =>
+    /^İstersen\b/i.test(line)
+  );
+
+  return matches.slice(0, 2);
 }
 
 function renderFollowUpButtons(text) {
   const suggestions = extractFollowUpSuggestions(text);
 
-  if (!suggestions.length) return "";
+  if (!suggestions.length) {
+    return `
+      <div style="margin-top:14px; color:#666; font-size:14px;">
+        Devam etmek için <strong>evet</strong>, <strong>başla</strong> veya <strong>devam et</strong> yazabilirsin.
+      </div>
+    `;
+  }
 
   return `
-    <div class="ai-followups" style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
+    <div style="margin-top:14px; color:#666; font-size:14px;">
+      Devam etmek için aşağıdaki öneriye tıklayabilir ya da <strong>evet</strong> yazabilirsin.
+    </div>
+    <div class="ai-followups" style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
       ${suggestions
         .map(
           (item) => `
@@ -78,6 +95,7 @@ function renderFollowUpButtons(text) {
     </div>
   `;
 }
+
 
 function formatAnswer(text) {
   if (!text) return "";
