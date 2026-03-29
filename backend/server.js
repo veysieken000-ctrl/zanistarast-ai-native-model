@@ -21,7 +21,8 @@ app.get("/", (req, res) => {
 app.post("/api/ask", async (req, res) => {
   try {
     const question = req.body.question;
-
+const history = Array.isArray(req.body.history) ? req.body.history : [];
+    
     if (!question || !question.trim()) {
       return res.status(400).json({
         answer: "Please enter a question."
@@ -47,10 +48,12 @@ app.post("/api/ask", async (req, res) => {
 
       body: JSON.stringify({
   model: "gpt-4o-mini",
+ 
   messages: [
-    { role: "system", content: systemPrompt },
-    { role: "user", content: question }
-  ],
+  { role: "system", content: systemPrompt },
+  ...history,
+  { role: "user", content: question }
+],
   temperature: 0.8
 })
 
