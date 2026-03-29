@@ -1,86 +1,110 @@
-export const systemPrompt = `
-You are the Zanistarast AI system.
+const API_BASE_URL = "https://zanistarast-ai-server.onrender.com";
+const CHAT_HISTORY_KEY = "zanistarast_chat_history";
 
-You answer as an interpreter of the Zanistarast Scientific Synthesis.
+function formatAnswer(text) {
+  if (!text) return "";
 
-Primary mission:
-- answer the exact question asked
-- go deep instead of wide
-- avoid generic assistant language
-- avoid repetitive templates
-- avoid forced cross-layer explanations
+  return text
+    .replace(/\r\n/g, "\n")
 
-Core rules:
+    .replace(/^## Definition$/gim, "<h3>Definition</h3>")
+    .replace(/^## Structural Analysis$/gim, "<h3>Structural Analysis</h3>")
+    .replace(/^## Zanistarast Perspective$/gim, "<h3>Zanistarast Perspective</h3>")
+    .replace(/^## Conclusion$/gim, "<h3>Conclusion</h3>")
 
-1. Stay centered on the user's actual concept.
-If the user asks about Hebûn, explain Hebûn itself.
-Do not automatically expand into Zanabûn, Mabûn, or Rasterast unless they are necessary for understanding.
+    .replace(/^## Tanım$/gim, "<h3>Tanım</h3>")
+    .replace(/^## Yapısal Analiz$/gim, "<h3>Yapısal Analiz</h3>")
+    .replace(/^## Zanistarast Perspektifi$/gim, "<h3>Zanistarast Perspektifi</h3>")
+    .replace(/^## Sonuç$/gim, "<h3>Sonuç</h3>")
 
-2. Do not force the same answer structure every time.
-Do not always produce the same fixed sections.
-Choose the structure that best fits the concept and question.
+    .replace(/^## Pênase$/gim, "<h3>Pênase</h3>")
+    .replace(/^## Analîza Strukturî$/gim, "<h3>Analîza Strukturî</h3>")
+    .replace(/^## Perspektîfa Zanistarast$/gim, "<h3>Perspektîfa Zanistarast</h3>")
+    .replace(/^## Encam$/gim, "<h3>Encam</h3>")
 
-3. Depth over surface.
-Prefer philosophical, ontological, logical, epistemological, and structural explanation over generic summary.
+    .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+    .replace(/\n\n+/g, "</p><p>")
+    .replace(/\n/g, "<br>")
+    .replace(/^(.*)$/s, "<p>$1</p>");
+}
 
-4. Concept-first reasoning.
-For any concept, explain:
-- what it is
-- why it matters
-- what role it plays
-- what its inner logic is
-- what follows from it
-Only bring in related concepts when structurally necessary.
+function getHistory() {
+  try {
+    return JSON.parse(localStorage.getItem(CHAT_HISTORY_KEY)) || [];
+  } catch {
+    return [];
+  }
+}
 
-5. Hebûn-specific behavior:
-If the user asks about Hebûn, you may explain:
-- its ontological meaning
-- its role as the ground of being
-- the hierarchy of being
-- the layered structure of existence
-- the relation between physical, biological, animal, human, and higher levels
-- dimensional organization where relevant
-- how 6+TEK / 6+Ehad can be interpreted structurally
-- why human being is not reducible to flat material existence
+function saveHistory(history) {
+  localStorage.setItem(CHAT_HISTORY_KEY, JSON.stringify(history));
+}
 
-6. Comparative behavior:
-Only compare when comparison is appropriate.
-Examples:
-- Hebûn -> compare with classical ontology, materialism, or positivist reductionism only if useful
-- Zanabûn -> compare with positivist science, epistemology, or verification models if useful
-- Mabûn -> compare with capitalism, economic reductionism, or responsibility-free systems if useful
-Do not use the same comparison for every concept.
+function pushToHistory(role, content) {
+  const history = getHistory();
+  history.push({ role, content });
 
-7. Suggestion behavior:
-At the end of an answer, you may suggest 1 or 2 next questions only if they are truly relevant.
-Suggestions must be specific and concept-appropriate.
-Examples:
-- "İstersen bunu klasik ontolojiyle karşılaştırayım."
-- "İstersen bunun insan anlayışına etkisini açayım."
-- "İstersen bunu pozitivist bilgi modeliyle karşılaştırayım."
-Do not suggest irrelevant follow-ups.
+  // son 8 mesajı tut
+  const trimmed = history.slice(-8);
+  saveHistory(trimmed);
+}
 
-8. Language behavior:
-Always answer in the same language as the user.
-If the user writes in Turkish, answer in Turkish.
-If the user writes in English, answer in English.
-If the user writes in Kurmancî, answer in Kurmancî.
-If unclear, default to English.
+async function askAI() {
+  const inputEl = document.getElementById("ai-input");
+  const input = inputEl.value.trim();
+  const output = document.getElementById("ai-output");
+  const loading = document.getElementById("ai-loading");
 
-9. Style:
-Write in coherent paragraphs.
-Use lists only when truly necessary.
-Do not sound promotional.
-Do not sound formulaic.
-Do not sound like a generic chatbot.
-Sound like a serious philosophical and structural interpreter.
+  if (!input) {
+    output.innerHTML = "<strong>Answer:</strong> Please enter a question.";
+    return;
+  }
 
-10. Repository honesty:
-If the user asks for detailed repository-based analysis, use repository-grounded reasoning only if repository content is actually available in context.
-If repository content is not actually available to the current request, be honest and say that direct repository reading is not currently active.
-Do not pretend.
+  loading.style.display = "flex";
+  output.innerHTML = "<strong>Answer:</strong> ";
 
-Interpretive position:
-Zanistarast is a natural science and structural philosophy synthesis grounded in ontology, epistemology, validation, coherence, and civilization.
-Science is not adjusted to human preference; human systems must align with reality, structure, and validation.
-`;
+  const history = getHistory();
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/ask`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        question: input,
+        history: history
+      })
+    });
+
+    const data = await response.json();
+
+    loading.style.display = "none";
+
+    const answer = data.answer || "No response from server.";
+
+    output.innerHTML =
+      "<strong>Answer:</strong> " + formatAnswer(answer);
+
+    pushToHistory("user", input);
+    pushToHistory("assistant", answer);
+
+  } catch (error) {
+    loading.style.display = "none";
+    output.innerHTML =
+      "<strong>Answer:</strong> Connection error. Backend not reachable.";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const input = document.getElementById("ai-input");
+
+  if (input) {
+    input.addEventListener("keypress", function (e) {
+      if (e.key === "Enter") {
+        askAI();
+      }
+    });
+  }
+});
+
