@@ -1,32 +1,6 @@
 const API_BASE_URL = "https://zanistarast-ai-server.onrender.com";
 const CHAT_HISTORY_KEY = "zanistarast_chat_history";
-
-function formatAnswer(text) {
-  if (!text) return "";
-
-  return text
-    .replace(/\r\n/g, "\n")
-
-    .replace(/^## Definition$/gim, "<h3>Definition</h3>")
-    .replace(/^## Structural Analysis$/gim, "<h3>Structural Analysis</h3>")
-    .replace(/^## Zanistarast Perspective$/gim, "<h3>Zanistarast Perspective</h3>")
-    .replace(/^## Conclusion$/gim, "<h3>Conclusion</h3>")
-
-    .replace(/^## Tanım$/gim, "<h3>Tanım</h3>")
-    .replace(/^## Yapısal Analiz$/gim, "<h3>Yapısal Analiz</h3>")
-    .replace(/^## Zanistarast Perspektifi$/gim, "<h3>Zanistarast Perspektifi</h3>")
-    .replace(/^## Sonuç$/gim, "<h3>Sonuç</h3>")
-
-    .replace(/^## Pênase$/gim, "<h3>Pênase</h3>")
-    .replace(/^## Analîza Strukturî$/gim, "<h3>Analîza Strukturî</h3>")
-    .replace(/^## Perspektîfa Zanistarast$/gim, "<h3>Perspektîfa Zanistarast</h3>")
-    .replace(/^## Encam$/gim, "<h3>Encam</h3>")
-
-    .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
-    .replace(/\n\n+/g, "</p><p>")
-    .replace(/\n/g, "<br>")
-    .replace(/^(.*)$/s, "<p>$1</p>");
-}
+const FOLLOW_UP_KEY = "zanistarast_follow_up";
 
 function getHistory() {
   try {
@@ -43,15 +17,106 @@ function saveHistory(history) {
 function pushToHistory(role, content) {
   const history = getHistory();
   history.push({ role, content });
-
-  // son 8 mesajı tut
-  const trimmed = history.slice(-8);
-  saveHistory(trimmed);
+  saveHistory(history.slice(-8));
 }
 
-async function askAI() {
+function saveFollowUp(text) {
+  if (text) {
+    localStorage.setItem(FOLLOW_UP_KEY, text);
+  }
+}
+
+function getFollowUp() {
+  return localStorage.getItem(FOLLOW_UP_KEY) || "";
+}
+
+function clearFollowUp() {
+  localStorage.removeItem(FOLLOW_UP_KEY);
+}
+
+function escapeHtml(str) {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function extractFollowUpSuggestions(text) {
+  const matches = text.match(/İstersen[^.!?]*\?/gim);
+  return matches ? matches.slice(0, 2) : [];
+}
+
+function renderFollowUpButtons(text) {
+  const suggestions = extractFollowUpSuggestions(text);
+
+  if (!suggestions.length) return "";
+
+  return `
+    <div class="ai-followups" style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
+      ${suggestions
+        .map(
+          (item) => `
+            <button
+              type="button"
+              class="ai-followup-btn"
+              data-followup="${escapeHtml(item)}"
+              style="
+                padding:10px 14px;
+                border:none;
+                border-radius:999px;
+                background:#111;
+                color:#fff;
+                cursor:pointer;
+                font-size:14px;
+              "
+            >
+              ${escapeHtml(item)}
+            </button>
+          `
+        )
+        .join("")}
+    </div>
+  `;
+}
+
+function formatAnswer(text) {
+  if (!text) return "";
+
+  const safe = escapeHtml(text)
+    .replace(/\r\n/g, "\n")
+    .replace(/\n\n+/g, "</p><p>")
+    .replace(/\n/g, "<br>");
+
+  return `<p>${safe}</p>${renderFollowUpButtons(text)}`;
+}
+
+function normalizeShortFollowUp(input) {
+  const shortValue = input.trim().toLowerCase();
+  const followUp = getFollowUp();
+
+  const triggers = [
+    "evet",
+    "başla",
+    "tamam",
+    "devam et",
+    "olur",
+    "aç",
+    "anlat",
+    "karşılaştır"
+  ];
+
+  if (triggers.includes(shortValue) && followUp) {
+    return followUp;
+  }
+
+  return input;
+}
+
+async function askAI(customInput = null) {
   const inputEl = document.getElementById("ai-input");
-  const input = inputEl.value.trim();
+  const rawInput = customInput !== null ? customInput : inputEl.value.trim();
+  const input = normalizeShortFollowUp(rawInput);
+
   const output = document.getElementById("ai-output");
   const loading = document.getElementById("ai-loading");
 
@@ -83,17 +148,42 @@ async function askAI() {
 
     const answer = data.answer || "No response from server.";
 
-    output.innerHTML =
-      "<strong>Answer:</strong> " + formatAnswer(answer);
+    output.innerHTML = `<strong>Answer:</strong> ${formatAnswer(answer)}`;
 
     pushToHistory("user", input);
     pushToHistory("assistant", answer);
 
+    const suggestions = extractFollowUpSuggestions(answer);
+    if (suggestions.length) {
+      saveFollowUp(suggestions[0]);
+    } else {
+      clearFollowUp();
+    }
+
+    if (customInput === null) {
+      inputEl.value = "";
+    }
+
+    bindFollowUpButtons();
   } catch (error) {
     loading.style.display = "none";
     output.innerHTML =
       "<strong>Answer:</strong> Connection error. Backend not reachable.";
   }
+}
+
+function bindFollowUpButtons() {
+  const buttons = document.querySelectorAll(".ai-followup-btn");
+
+  buttons.forEach((button) => {
+    button.onclick = () => {
+      const followup = button.getAttribute("data-followup");
+      if (followup) {
+        saveFollowUp(followup);
+        askAI(followup);
+      }
+    };
+  });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -106,5 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
+  bindFollowUpButtons();
 });
 
