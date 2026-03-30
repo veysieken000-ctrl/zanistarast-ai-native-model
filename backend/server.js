@@ -2,7 +2,45 @@ import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 import { systemPrompt } from "./prompt.js";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const knowledge = [
+  {
+    name: "hebun",
+    text: fs.readFileSync(path.join(__dirname, "knowledge", "hebun.txt"), "utf-8")
+  },
+  {
+    name: "zanabun",
+    text: fs.readFileSync(path.join(__dirname, "knowledge", "zanabun.txt"), "utf-8")
+  },
+  {
+    name: "mabun",
+    text: fs.readFileSync(path.join(__dirname, "knowledge", "mabun.txt"), "utf-8")
+  },
+  {
+    name: "rasterast",
+    text: fs.readFileSync(path.join(__dirname, "knowledge", "rasterast.txt"), "utf-8")
+  }
+];
+
+function simpleSearch(question) {
+  const lowerQuestion = question.toLowerCase();
+
+  const bestMatch = knowledge
+    .map((item) => ({
+      name: item.name,
+      score: lowerQuestion.includes(item.name) ? 1 : 0,
+      text: item.text
+    }))
+    .sort((a, b) => b.score - a.score)[0];
+
+  return bestMatch?.text || "";
+}
 dotenv.config();
 
 const app = express();
