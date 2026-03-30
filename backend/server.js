@@ -1,14 +1,21 @@
 import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
-import { systemPrompt } from "./prompt.js";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { splitTextIntoChunks } from "./semantic.js";
+
+import { systemPrompt } from "./prompt.js";
+import { splitTextIntoChunks, scoreSemanticMatch } from "./semantic.js";
+
+dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// =======================
+// 📚 KNOWLEDGE LOAD
+// =======================
 
 const rawKnowledge = [
   {
@@ -29,6 +36,7 @@ const rawKnowledge = [
   }
 ];
 
+// 🔥 chunk'a çevir
 const knowledge = rawKnowledge.flatMap(item => {
   const chunks = splitTextIntoChunks(item.text);
 
@@ -38,32 +46,38 @@ const knowledge = rawKnowledge.flatMap(item => {
   }));
 });
 
-
-import { scoreSemanticMatch } from "./semantic.js";
+// =======================
+// 🔍 SEARCH (YENİ)
+// =======================
 
 function simpleSearch(question) {
-  const results = knowledge.map(k => {
-    const score = scoreSemanticMatch(question, k.text);
+  const results = knowledge.map((item) => {
+    const score = scoreSemanticMatch(question, item.text);
+
     return {
-      name: k.name,
+      name: item.name,
       score,
-      text: k.text
+      text: item.text
     };
   });
 
-  const best = results.sort((a, b) => b.score - a.score)[0];
+  const ranked = results
+    .filter((item) => item.score > 0)
+    .sort((a, b) => b.score - a.score);
 
-  if (!best || best.score === 0) {
+  if (!ranked.length) {
     return "";
   }
 
-  return best.text;
-}
-    .sort((a, b) => b.score - a.score)[0];
+  // 🔥 EN İYİ 3 PARÇA
+  const topChunks = ranked.slice(0, 3).map((item) => item.text);
 
-  return bestMatch?.text || "";
+  return topChunks.join("\n\n---\n\n");
 }
-dotenv.config();
+
+// =======================
+// 🚀 SERVER
+// =======================
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -81,8 +95,8 @@ app.get("/", (req, res) => {
 app.post("/api/ask", async (req, res) => {
   try {
     const question = req.body.question;
-const history = Array.isArray(req.body.history) ? req.body.history : [];
-    
+    const history = Array.isArray(req.body.history) ? req.body.history : [];
+
     if (!question || !question.trim()) {
       return res.status(400).json({
         answer: "Please enter a question."
@@ -99,47 +113,41 @@ const history = Array.isArray(req.body.history) ? req.body.history : [];
       });
     }
 
+    // 🔥 CONTEXT BURADA
     const context = simpleSearch(question);
-    if (!context || context.trim() === "") {
-  return res.json({
-    answer: "Bu konu Zanistarast veri tabanında henüz tanımlı değil."
-  });
-}
+
+    if (!context) {
+      return res.json({
+        answer: "Bu konu Zanistarast veri tabanında henüz tanımlı değil."
+      });
+    }
 
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
-  },
-  body: JSON.stringify({
-    model: "gpt-4o-mini",
-    
-    messages: [
-  {
-    role: "system",
-    content: `${systemPrompt}
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: "gpt-4o-mini",
+        messages: [
+          {
+            role: "system",
+            content: `${systemPrompt}
 
 Aşağıdaki bilgi dışında hiçbir şey kullanma.
 Eğer cevap bu bilgi içinde yoksa:
-"Bu konu Zanistarast veri tabanında henüz tanımlı değil." de.
+"Bu konu zanistarast veri tabanında henüz tanımlı değil." de.
 
 Bilgi:
 ${context}`
-  
-  ...history,
-  { role: "user", content: question }
-]
-    
-    temperature: 0.8
-  })
-});
-
-if (!response.ok) {
-  const errorText = await response.text();
-  console.error("OpenAI API error:", errorText);
-  return res.status(500).json({ error: "OpenAI API failed" });
-}
+          },
+          ...history,
+          { role: "user", content: question }
+        ],
+        temperature: 0.7
+      })
+    });
 
     if (!response.ok) {
       const errorText = await response.text();
@@ -159,6 +167,7 @@ if (!response.ok) {
         : "No answer returned from API.";
 
     return res.json({ answer });
+
   } catch (error) {
     return res.status(500).json({
       answer: "Server error. Please try again later."
@@ -169,6 +178,9 @@ if (!response.ok) {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+
+
 
 
 
