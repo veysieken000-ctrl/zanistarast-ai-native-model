@@ -6,7 +6,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 import { systemPrompt } from "./prompt.js";
-import { splitTextIntoChunks, scoreSemanticMatch } from "./semantic.js";
+import { splitTextIntoChunks } from "./semantic.js";
 import { getEmbedding, cosineSimilarity } from "./embedding.js";
 
 dotenv.config();
@@ -14,38 +14,106 @@ dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.use(cors());
+app.use(express.json());
+
 // =======================
-// 📚 KNOWLEDGE LOAD
+// KNOWLEDGE FILES
 // =======================
 
 const rawKnowledge = [
   {
     name: "hebun",
+    aliases: [
+      "hebun",
+      "hebûn",
+      "being",
+      "ontology",
+      "ontological",
+      "varlık",
+      "ontoloji",
+      "gerçeklik zemini"
+    ],
     text: fs.readFileSync(path.join(__dirname, "knowledge", "hebun.txt"), "utf-8")
   },
   {
     name: "zanabun",
+    aliases: [
+      "zanabun",
+      "zanabûn",
+      "knowledge",
+      "epistemology",
+      "epistemological",
+      "bilgi",
+      "epistemoloji",
+      "doğrulama"
+    ],
     text: fs.readFileSync(path.join(__dirname, "knowledge", "zanabun.txt"), "utf-8")
   },
   {
     name: "mabun",
+    aliases: [
+      "mabun",
+      "mabûn",
+      "economy",
+      "value",
+      "capitalism",
+      "kapitalizm",
+      "ekonomi",
+      "değer"
+    ],
     text: fs.readFileSync(path.join(__dirname, "knowledge", "mabun.txt"), "utf-8")
   },
   {
     name: "rasterast",
+    aliases: [
+      "rasterast",
+      "method",
+      "validation",
+      "consistency",
+      "yöntem",
+      "metodoloji",
+      "doğrulama",
+      "tutarlılık"
+    ],
     text: fs.readFileSync(path.join(__dirname, "knowledge", "rasterast.txt"), "utf-8")
+  },
+  {
+    name: "zanistarast",
+    aliases: [
+      "zanistarast",
+      "civilization",
+      "medeniyet",
+      "uygarlık",
+      "newroza kawa",
+      "newroza-kawa",
+      "scientific synthesis",
+      "bilimsel sentez"
+    ],
+    text: fs.readFileSync(path.join(__dirname, "knowledge", "zanistarast.txt"), "utf-8")
   }
 ];
 
-// 🔥 chunk'a çevir
-const knowledge = rawKnowledge.flatMap(item => {
+// =======================
+// CHUNKING
+// =======================
+
+const knowledge = rawKnowledge.flatMap((item) => {
   const chunks = splitTextIntoChunks(item.text);
 
-  return chunks.map(chunk => ({
+  return chunks.map((chunk) => ({
     name: item.name,
+    aliases: item.aliases,
     text: chunk
   }));
 });
+
+// =======================
+// EMBEDDINGS
+// =======================
 
 let embeddedKnowledge = [];
 
@@ -65,14 +133,29 @@ async function buildKnowledgeEmbeddings() {
 }
 
 // =======================
-// 🔍 SEARCH (YENİ)
+// RETRIEVAL
 // =======================
 
-async function simpleSearch(question) {
+async function retrieveContext(question) {
   if (!embeddedKnowledge.length) {
     return "";
   }
 
+  const lowerQuestion = question.toLowerCase();
+
+  // 1) Strong alias match first
+  const aliasMatches = embeddedKnowledge.filter((item) =>
+    item.aliases.some((alias) => lowerQuestion.includes(alias))
+  );
+
+  if (aliasMatches.length) {
+    return aliasMatches
+      .slice(0, 3)
+      .map((item) => item.text)
+      .join("\n\n---\n\n");
+  }
+
+  // 2) Vector similarity fallback
   const questionEmbedding = await getEmbedding(question);
 
   const ranked = embeddedKnowledge
@@ -80,40 +163,28 @@ async function simpleSearch(question) {
       ...item,
       score: cosineSimilarity(questionEmbedding, item.embedding)
     }))
-    .filter((item) => item.score > 0)
     .sort((a, b) => b.score - a.score);
 
   if (!ranked.length) {
     return "";
   }
 
-  const topChunks = ranked.slice(0, 3).map((item) => item.text);
+  const bestScore = ranked[0].score;
 
-  return topChunks.join("\n\n---\n\n");
-}
-  const ranked = results
-    .filter((item) => item.score > 0)
-    .sort((a, b) => b.score - a.score);
-
-  if (!ranked.length) {
+  // reject weak matches
+  if (bestScore < 0.2) {
     return "";
   }
 
-  // 🔥 EN İYİ 3 PARÇA
-  const topChunks = ranked.slice(0, 3).map((item) => item.text);
-
-  return topChunks.join("\n\n---\n\n");
+  return ranked
+    .slice(0, 3)
+    .map((item) => item.text)
+    .join("\n\n---\n\n");
 }
 
 // =======================
-// 🚀 SERVER
+// ROUTES
 // =======================
-
-const app = express();
-const PORT = process.env.PORT || 3000;
-
-app.use(cors());
-app.use(express.json());
 
 app.get("/", (req, res) => {
   res.json({
@@ -133,22 +204,17 @@ app.post("/api/ask", async (req, res) => {
       });
     }
 
-    if (
-      !process.env.OPENAI_API_KEY ||
-      process.env.OPENAI_API_KEY === "your_api_key_here" ||
-      process.env.OPENAI_API_KEY === "PASTE_YOUR_API_KEY_HERE"
-    ) {
+    if (!process.env.OPENAI_API_KEY) {
       return res.status(500).json({
         answer: "Backend is ready, but no live API key is configured yet."
       });
     }
 
-    // 🔥 CONTEXT BURADA
-    const context = await simpleSearch(question);
+    const context = await retrieveContext(question);
 
     if (!context) {
       return res.json({
-        answer: "Bu konu Zanistarast veri tabanında henüz tanımlı değil."
+        answer: "This concept is not yet defined in the Zanistarast knowledge base."
       });
     }
 
@@ -156,7 +222,7 @@ app.post("/api/ask", async (req, res) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`
+        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
       },
       body: JSON.stringify({
         model: "gpt-4o-mini",
@@ -165,17 +231,18 @@ app.post("/api/ask", async (req, res) => {
             role: "system",
             content: `${systemPrompt}
 
-Aşağıdaki bilgi dışında hiçbir şey kullanma.
-Eğer cevap bu bilgi içinde yoksa:
-"Bu konu zanistarast veri tabanında henüz tanımlı değil." de.
+Use only the knowledge provided below.
+Do not invent external definitions.
+If the answer is not supported by the provided context, say:
+"This concept is not yet defined in the Zanistarast knowledge base."
 
-Bilgi:
+Knowledge:
 ${context}`
           },
           ...history,
           { role: "user", content: question }
         ],
-        temperature: 0.7
+        temperature: 0.6
       })
     });
 
@@ -189,15 +256,9 @@ ${context}`
     const data = await response.json();
 
     const answer =
-      data.choices &&
-      data.choices[0] &&
-      data.choices[0].message &&
-      data.choices[0].message.content
-        ? data.choices[0].message.content
-        : "No answer returned from API.";
+      data.choices?.[0]?.message?.content || "No answer returned from API.";
 
     return res.json({ answer });
-
   } catch (error) {
     return res.status(500).json({
       answer: "Server error. Please try again later."
@@ -205,17 +266,17 @@ ${context}`
   }
 });
 
+// =======================
+// STARTUP
+// =======================
+
 buildKnowledgeEmbeddings()
   .then(() => {
     app.listen(PORT, () => {
-      console.log(\`Server running on port \${PORT}\`);
+      console.log(`Server running on port ${PORT}`);
     });
   })
   .catch((error) => {
     console.error("Failed to build knowledge embeddings:", error);
   });
-
-
-
-
 
