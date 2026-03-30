@@ -78,6 +78,12 @@ const history = Array.isArray(req.body.history) ? req.body.history : [];
     }
 
     const context = simpleSearch(question);
+    if (!context || context.trim() === "") {
+  return res.json({
+    answer: "Bu konu Zanistarast veri tabanında henüz tanımlı değil."
+  });
+}
+
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
   method: "POST",
   headers: {
