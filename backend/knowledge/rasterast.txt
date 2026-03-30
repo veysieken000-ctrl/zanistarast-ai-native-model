@@ -1,1 +1,123 @@
-Rasterast metodoloji katmanıdır. Doğru okuma ve doğrulama yöntemidir.
+# RASTERAST — Structural Validation and Consistency Filtering Method
+
+Rasterast is the methodological layer of the Zanistarast system. It defines how claims, models, and knowledge are evaluated, filtered, and validated.
+
+Rasterast is not a descriptive method. It is a structural filter that determines whether a system can survive under consistency.
+
+## Core Principle
+
+Validity(X) = Consistency(Ontology, Epistemology, Structure, Outcome)
+
+A claim is valid only if it remains consistent across:
+
+- Ontological structure (Hebûn)
+- Epistemological validation (Zanabûn)
+- Structural implementation (Mabûn)
+- Resulting outcomes (real-world consequences)
+
+If any of these fail, the claim is invalid.
+
+## Consistency Filtering
+
+Rasterast operates as a filter:
+
+- If narrative > structure → reject  
+- If structure > reality → collapse  
+- Only consistency survives  
+
+This eliminates:
+
+- ideological claims  
+- unsupported abstractions  
+- structurally unstable systems  
+
+## Multi-Layer Validation
+
+A valid system must pass:
+
+1. Ontological Test  
+Does it align with the structure of existence?
+
+2. Epistemological Test  
+Is it properly validated?
+
+3. Structural Test  
+Can it be implemented without contradiction?
+
+4. Outcome Test  
+Does it produce stable and coherent results?
+
+Failure at any stage leads to rejection.
+
+## Against Narrative Dominance
+
+Rasterast rejects systems where:
+
+- storytelling replaces structure  
+- belief replaces validation  
+- authority replaces coherence  
+
+Because such systems cannot survive structural testing.
+
+## Structural Truth
+
+In Rasterast:
+
+Truth is not declared.  
+Truth is what survives consistency.
+
+This removes subjective bias and ideological distortion.
+
+## Dynamic Testing
+
+Rasterast is not static. It continuously tests:
+
+- new knowledge  
+- new structures  
+- new systems  
+
+If a system fails under expansion, it is unstable.
+
+## System Role
+
+In Zanistarast:
+
+- Hebûn defines what exists  
+- Zanabûn defines what is known  
+- Mabûn defines what is sustained  
+- Rasterast defines what is valid  
+
+Rasterast is the final filter.
+
+## Logical Consequence
+
+If validity requires consistency, then:
+
+- contradiction = invalidity  
+- instability = failure  
+- inconsistency = rejection  
+
+Thus, only structurally coherent systems remain.
+
+## Methodological Depth
+
+Rasterast does not ask only:
+
+“Is this true?”
+
+It asks:
+
+- is this consistent  
+- is this stable  
+- does it survive cross-layer testing  
+
+Thus, Rasterast is not classical method.  
+It is structural validation.
+
+## Final Statement
+
+Truth is not what is said.  
+Truth is what survives structure.
+
+Rasterast is the system that filters reality through consistency and removes everything that cannot hold.
+
