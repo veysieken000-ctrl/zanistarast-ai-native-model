@@ -1,0 +1,1 @@
+Hebun ontoloji katmanıdır. Varlığın yapısını inceler.
