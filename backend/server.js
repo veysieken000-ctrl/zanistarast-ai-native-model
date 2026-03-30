@@ -77,6 +77,7 @@ const history = Array.isArray(req.body.history) ? req.body.history : [];
       });
     }
 
+    const context = simpleSearch(question);
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
   method: "POST",
   headers: {
@@ -85,11 +86,16 @@ const history = Array.isArray(req.body.history) ? req.body.history : [];
   },
   body: JSON.stringify({
     model: "gpt-4o-mini",
+    
     messages: [
-      { role: "system", content: systemPrompt },
-      ...(history || []),
-      { role: "user", content: question }
-    ],
+  {
+    role: "system",
+    content: `${systemPrompt}\n\nSadece aşağıdaki bilgiye göre cevap ver:\n\n${context}`
+  },
+  ...history,
+  { role: "user", content: question }
+]
+    
     temperature: 0.8
   })
 });
