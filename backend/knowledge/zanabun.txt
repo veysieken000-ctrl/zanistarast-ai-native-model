@@ -1,1 +1,133 @@
-Zanabun epistemoloji katmanıdır. Bilginin nasıl oluştuğunu inceler.
+# ZANABÛN — Epistemological Structure of Knowledge
+
+Zanabûn is the epistemological layer of the Zanistarast system. It defines how knowledge is formed, validated, structured, and sustained across different layers of reality.
+
+Zanabûn rejects both naive empiricism and purely abstract reasoning. Knowledge is not merely observation, nor is it detached logic. It is structured validation across layers.
+
+## Core Principle: Dual-Knower Validation
+
+The central principle of Zanabûn is the "Dual-Knower" model:
+
+A valid piece of knowledge must satisfy two conditions:
+
+1. Observational Grounding  
+The knowledge must be connected to observable or measurable phenomena.
+
+2. Structural Consistency  
+The knowledge must remain coherent across ontological layers.
+
+If one of these fails, the knowledge is incomplete or invalid.
+
+## Knowledge as Structured Process
+
+Zanabûn defines knowledge as a function:
+
+Knowledge = f(Being)
+
+This means knowledge is not independent. It emerges from the structure of existence defined in Hebûn.
+
+Thus:
+- invalid ontology → invalid knowledge  
+- inconsistent structure → unstable knowledge  
+
+## Rejection of Isolated Models
+
+Zanabûn rejects:
+
+- Pure empiricism (data without structure)  
+- Pure rationalism (logic without grounding)  
+- Ideological systems (belief without validation)  
+
+All of these fail because they break the dual validation requirement.
+
+## Layer-Based Knowledge
+
+Knowledge must be valid across layers:
+
+- Physical knowledge → must respect physical laws  
+- Biological knowledge → must respect life systems  
+- Mental knowledge → must align with cognition  
+- Ethical knowledge → must reflect responsibility  
+- Civilizational knowledge → must scale structurally  
+
+A knowledge claim valid in only one layer is insufficient.
+
+## Validation Mechanism
+
+Zanabûn evaluates knowledge through:
+
+- Ontological compatibility (Hebûn alignment)  
+- Internal logical consistency  
+- Cross-layer stability  
+- Reproducibility (where applicable)  
+
+If a claim fails in any of these, it is filtered out.
+
+## Against Positivism
+
+Zanabûn differs from classical positivist science:
+
+Positivism:
+- focuses on observable data  
+- often ignores structural and ontological depth  
+
+Zanabûn:
+- includes observation  
+- but requires structural coherence  
+
+Thus, Zanabûn expands science rather than rejecting it.
+
+## Knowledge Stability
+
+A knowledge system is stable if:
+
+- it does not collapse under cross-layer analysis  
+- it maintains consistency under expansion  
+- it produces reliable predictions or structures  
+
+Unstable knowledge leads to systemic failure in higher layers.
+
+## Role in the System
+
+In Zanistarast:
+
+- Hebûn defines what exists  
+- Zanabûn defines how it is known  
+
+Without Zanabûn:
+- knowledge becomes fragmented  
+- truth becomes relative  
+- systems become unreliable  
+
+## Logical Consequence
+
+If knowledge must satisfy dual validation, then:
+
+- belief is not knowledge  
+- data alone is not knowledge  
+- coherence alone is not knowledge  
+
+Only structured, validated, and consistent knowledge survives.
+
+## Epistemological Depth
+
+Zanabûn does not ask only:
+
+“What do we know?”
+
+It asks:
+
+- how do we validate knowledge  
+- how does knowledge remain stable  
+- how does knowledge scale across systems  
+
+Thus, Zanabûn is not descriptive epistemology.  
+It is structural epistemology.
+
+## Final Statement
+
+Knowledge is not accumulation.  
+It is validation under structure.
+
+Zanabûn is the system that ensures knowledge remains grounded, coherent, and stable across all layers of existence.
+
