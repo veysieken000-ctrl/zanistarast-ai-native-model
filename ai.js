@@ -129,7 +129,6 @@ function normalizeShortFollowUp(input) {
 
   return input;
 }
-
 async function askAI(customInput = null) {
   const inputEl = document.getElementById("ai-input");
   const rawInput = customInput !== null ? customInput : inputEl.value.trim();
