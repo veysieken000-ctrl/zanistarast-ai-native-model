@@ -7,6 +7,7 @@ import { fileURLToPath } from "url";
 
 import { systemPrompt } from "./prompt.js";
 import { splitTextIntoChunks, scoreSemanticMatch } from "./semantic.js";
+import { getEmbedding, cosineSimilarity } from "./embedding.js";
 
 dotenv.config();
 
@@ -45,6 +46,23 @@ const knowledge = rawKnowledge.flatMap(item => {
     text: chunk
   }));
 });
+
+let embeddedKnowledge = [];
+
+async function buildKnowledgeEmbeddings() {
+  const items = [];
+
+  for (const item of knowledge) {
+    const embedding = await getEmbedding(item.text);
+
+    items.push({
+      ...item,
+      embedding
+    });
+  }
+
+  embeddedKnowledge = items;
+}
 
 // =======================
 // 🔍 SEARCH (YENİ)
@@ -175,10 +193,15 @@ ${context}`
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
-
+buildKnowledgeEmbeddings()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(\`Server running on port \${PORT}\`);
+    });
+  })
+  .catch((error) => {
+    console.error("Failed to build knowledge embeddings:", error);
+  });
 
 
 
