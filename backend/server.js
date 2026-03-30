@@ -68,17 +68,29 @@ async function buildKnowledgeEmbeddings() {
 // 🔍 SEARCH (YENİ)
 // =======================
 
-function simpleSearch(question) {
-  const results = knowledge.map((item) => {
-    const score = scoreSemanticMatch(question, item.text);
+async function simpleSearch(question) {
+  if (!embeddedKnowledge.length) {
+    return "";
+  }
 
-    return {
-      name: item.name,
-      score,
-      text: item.text
-    };
-  });
+  const questionEmbedding = await getEmbedding(question);
 
+  const ranked = embeddedKnowledge
+    .map((item) => ({
+      ...item,
+      score: cosineSimilarity(questionEmbedding, item.embedding)
+    }))
+    .filter((item) => item.score > 0)
+    .sort((a, b) => b.score - a.score);
+
+  if (!ranked.length) {
+    return "";
+  }
+
+  const topChunks = ranked.slice(0, 3).map((item) => item.text);
+
+  return topChunks.join("\n\n---\n\n");
+}
   const ranked = results
     .filter((item) => item.score > 0)
     .sort((a, b) => b.score - a.score);
@@ -132,7 +144,7 @@ app.post("/api/ask", async (req, res) => {
     }
 
     // 🔥 CONTEXT BURADA
-    const context = simpleSearch(question);
+    const context = await simpleSearch(question);
 
     if (!context) {
       return res.json({
