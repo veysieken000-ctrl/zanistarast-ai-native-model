@@ -28,15 +28,26 @@ const knowledge = [
   }
 ];
 
-function simpleSearch(question) {
-  const lowerQuestion = question.toLowerCase();
+import { scoreSemanticMatch } from "./semantic.js";
 
-  const bestMatch = knowledge
-    .map((item) => ({
-      name: item.name,
-      score: lowerQuestion.includes(item.name) ? 1 : 0,
-      text: item.text
-    }))
+function simpleSearch(question) {
+  const results = knowledge.map(k => {
+    const score = scoreSemanticMatch(question, k.text);
+    return {
+      name: k.name,
+      score,
+      text: k.text
+    };
+  });
+
+  const best = results.sort((a, b) => b.score - a.score)[0];
+
+  if (!best || best.score === 0) {
+    return "";
+  }
+
+  return best.text;
+}
     .sort((a, b) => b.score - a.score)[0];
 
   return bestMatch?.text || "";
