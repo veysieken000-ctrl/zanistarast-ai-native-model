@@ -1,0 +1,1 @@
+Mabun ekonomik yapı katmanıdır. Değer ve üretimi inceler.
