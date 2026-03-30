@@ -63,7 +63,11 @@
 
         <div class="ai-actions">
           <button type="button" onclick="askAI()">Ask</button>
-          <div id="ai-loading">Thinking...</div>
+          <div id="ai-loading" class="ai-loading" style="display:none;">
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span style="margin-left:10px;">Thinking...</span>
         </div>
 
         <div id="ai-output" class="answer-card">
