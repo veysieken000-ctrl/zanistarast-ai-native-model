@@ -90,8 +90,15 @@ const history = Array.isArray(req.body.history) ? req.body.history : [];
     messages: [
   {
     role: "system",
-    content: `${systemPrompt}\n\nSadece aşağıdaki bilgiye göre cevap ver:\n\n${context}`
-  },
+    content: `${systemPrompt}
+
+Aşağıdaki bilgi dışında hiçbir şey kullanma.
+Eğer cevap bu bilgi içinde yoksa:
+"Bu konu Zanistarast veri tabanında henüz tanımlı değil." de.
+
+Bilgi:
+${context}`
+  
   ...history,
   { role: "user", content: question }
 ]
