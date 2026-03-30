@@ -1,0 +1,1 @@
+Rasterast metodoloji katmanıdır. Doğru okuma ve doğrulama yöntemidir.
