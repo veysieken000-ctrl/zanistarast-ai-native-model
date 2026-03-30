@@ -5,11 +5,12 @@ import { systemPrompt } from "./prompt.js";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { splitTextIntoChunks } from "./semantic.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const knowledge = [
+const rawKnowledge = [
   {
     name: "hebun",
     text: fs.readFileSync(path.join(__dirname, "knowledge", "hebun.txt"), "utf-8")
@@ -27,6 +28,16 @@ const knowledge = [
     text: fs.readFileSync(path.join(__dirname, "knowledge", "rasterast.txt"), "utf-8")
   }
 ];
+
+const knowledge = rawKnowledge.flatMap(item => {
+  const chunks = splitTextIntoChunks(item.text);
+
+  return chunks.map(chunk => ({
+    name: item.name,
+    text: chunk
+  }));
+});
+
 
 import { scoreSemanticMatch } from "./semantic.js";
 
