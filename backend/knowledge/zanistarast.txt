@@ -1,61 +1,97 @@
-# ZANISTARAST — Bilimsel Sentez ve Medeniyet Çerçevesi
+Zanistarast is a unified scientific synthesis framework that integrates ontology (Hebûn), epistemology (Zanabûn), structural economy (Mabûn), and consistency methodology (Rasterast) into a coherent system aimed at understanding, stabilizing, and advancing civilization.
 
-Zanistarast, Hebûn, Zanabûn, Mabûn ve Rasterast katmanlarını bir araya getiren bilimsel sentez sistemidir. Bu sistem yalnızca tek tek kavramların toplamı değildir; onların tutarlı bir bütünlük içinde işlemesini sağlayan üst yapıdır.
+It is not a single discipline, but a multi-layered system that connects physics, biology, cognition, ethics, and civilization into a structured model of reality.
 
-Hebûn varlığın ontolojik temelini kurar.
-Zanabûn bilginin nasıl doğrulanacağını belirler.
-Mabûn değerin, üretimin ve sorumluluğun yapısal-ekonomik dengesini kurar.
-Rasterast ise bunların hepsini tutarlılık filtresinden geçirir.
+Zanistarast is built on the principle:
 
-Bu nedenle Zanistarast, yalnızca bir teori değil, çok katmanlı bir gerçeklik okuma sistemidir.
+Truth > Power  
+Reality > Narrative  
+Structure > Ideology
 
-## Temel İlke
+The system operates through four foundational pillars:
 
-Gerçeklik ancak şu dört koşul birlikte sağlandığında tutarlı biçimde anlaşılır:
+1. Hebûn (Ontology):
+   Defines what exists and how existence is structured.
+   Core rule:
+   Upper Layer ⊇ Lower Layer
+   If violation occurs → invalid
 
-- ontolojik zemin
-- epistemolojik doğrulama
-- yapısal sürdürülebilirlik
-- metodolojik tutarlılık
+2. Zanabûn (Epistemology):
+   Defines how knowledge is verified.
+   Knowledge must pass:
+   - Observation
+   - Structural consistency
+   - Cross-layer validation
 
-Bu dört katman birbirinden koparsa sistem parçalanır.
+3. Mabûn (Structural Economy):
+   Defines how systems sustain themselves.
+   Economy is not only financial, but structural:
+   Economy = f(Knowledge, Responsibility)
 
-## Bilimsel Konum
+4. Rasterast (Methodology):
+   Defines how systems are tested.
+   Core function:
+   Validity(X) = Consistency(Ontology, Epistemology, Structure, Outcome)
 
-Zanistarast kendisini ideolojik anlatı olarak değil, doğal bilim ve yapısal felsefe sentezi olarak tanımlar.
+Zanistarast introduces a layered model of existence:
 
-Temel iddiası şudur:
+DIMENSION ↓
+PHYSICAL → BIOLOGICAL → COGNITIVE → ETHICAL → CIVILIZATIONAL → TEMPORAL → UNIFIED FIELD
 
-Bilim insana göre değişmez.
-İnsan, gerçekliğe, yapıya ve doğrulamaya göre kendisini yeniden düzenlemek zorundadır.
+Each layer:
+- Emerges from the previous
+- Does not violate it
+- Expands its structure
 
-Bu yüzden Zanistarast, insan merkezli rahatlatıcı anlatıları değil, gerçeklik merkezli yapısal uyumu savunur.
+The goal of Zanistarast is:
 
-## Medeniyet Boyutu
+To create a Civilization Stability Engine
 
-Zanistarast’a göre medeniyet, yalnızca teknik gelişme ya da kurumsal örgütlenme değildir.
-Medeniyet, ontoloji, bilgi, sorumluluk ve doğrulama birlikte çalıştığında ortaya çıkan yüksek katmanlı düzendir.
+Defined as:
 
-Bu bağlamda Newroza-Kawa Uygarlığı, kültürel bir süs değil; tutarlı yapısal düzenin medeniyet düzeyindeki ifadesidir.
+Civilization Stability = f(Reality Alignment, Structural Consistency, Ethical Responsibility)
 
-Yani:
-- gerçeklikten kopuk bilgi medeniyet kuramaz
-- doğrulamasız yapı uzun süre yaşayamaz
-- sorumluluksuz ekonomi çöküş üretir
-- ontolojik temelsiz sistemler dağılır
+A system is considered stable if:
+- It aligns with reality
+- It maintains structural coherence
+- It preserves ethical responsibility
 
-## Mantıksal Sonuç
+Zanistarast rejects:
+- Ideological systems without structure
+- Scientific claims without validation
+- Power structures without ethical grounding
 
-Zanistarast şunu söyler:
+Zanistarast is falsifiable.
 
-- Gerçek > Güç
-- Yapı > Anlatı
-- Kanıt > İdeoloji
+The system is invalid if:
+- It cannot increase measurable consistency
+- It fails cross-layer validation
+- It produces structural instability
+- It contradicts observable reality
 
-Bir sistem, bu üç eksende tutarlı değilse, uzun vadede ayakta kalamaz.
+Zanistarast is not static.
 
-## Sonuç
+It is:
+- Evolvable
+- Testable
+- Expandable
 
-Zanistarast, varlık, bilgi, değer ve doğrulama katmanlarını birleştiren bütünsel bilimsel sentezdir.
-Amacı yalnızca açıklamak değil, yapısal olarak tutarlı medeniyet zemini kurmaktır.
+It functions as:
+
+- A scientific framework
+- A civilizational model
+- A decision-making system
+- An AI-compatible structured knowledge system
+
+Zanistarast does not aim to replace science.
+
+It aims to:
+
+Integrate fragmented knowledge into a unified, reality-aligned system.
+
+Ultimately, Zanistarast defines a new approach:
+
+Not "what do we believe?"  
+But  
+"What remains consistent across all layers of reality?"
 
