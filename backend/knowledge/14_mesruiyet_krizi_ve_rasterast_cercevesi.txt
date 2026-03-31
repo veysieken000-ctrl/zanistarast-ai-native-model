@@ -1,0 +1,135 @@
+[MODULE] MESRUIYET_KRIZI_VE_RASTERAST_CERCEVESI
+
+[CORE_DEFINITION]
+Meşruiyet krizi, bir düzenin neden bağlayıcı olduğunu açıklayamaması durumudur.
+
+Rasterast'a göre meşruiyet:
+- çoğunlukla oluşmaz
+- güçle kurulmaz
+- faydayla tamamlanmaz
+
+Meşruiyet, varlık-bilgi-değer-hüküm zincirinin birlikte işlemesiyle oluşur.
+
+---
+
+[CRISIS_MODEL]
+Meşruiyet krizi üç düzeyde görülür:
+
+1. Norm krizi
+- Doğru ile yanlış karışır
+- Hak ile çıkar yer değiştirir
+- Değerler görecelileşir
+
+2. Otorite krizi
+- Kim hükmediyor sorusu açık kalır
+- Yetki ile haklılık karıştırılır
+- Yönetim güç üzerinden okunur
+
+3. Hesap krizi
+- Eylemin nihai karşılığı unutulur
+- Yargı propaganda olur
+- Sorumluluk duygusu zayıflar
+
+---
+
+[ONTOLOGICAL_NECESSITY]
+Rasterast'a göre meşruiyetin ontolojik temeli vardır.
+
+Varlık:
+- rastgele değildir
+- okunabilir düzene sahiptir
+- katmanlıdır
+
+Bu nedenle hüküm de:
+- keyfi olamaz
+- ölçüsüz olamaz
+- yalnız insan iradesine indirgenemez
+
+---
+
+[EPISTEMIC_NECESSITY]
+Bilgi tek başına veri değildir.
+
+Bilgi şu üçlüyle tamamlanır:
+- akıl
+- kalp/vicdan
+- şahitlik
+
+Yani bilgi:
+- ölçülür
+- tartılır
+- toplumsal zeminde doğrulanır
+
+Bu bağ koparsa meşruiyet de kopar.
+
+---
+
+[AHLAK_YARGI_LINE]
+Meşruiyet için şu hat korunmalıdır:
+
+- Hüküm
+- Ahlak
+- Yargı
+
+Hüküm varsa ama ahlak yoksa:
+→ sistem sertleşir
+
+Ahlak varsa ama yargı yoksa:
+→ sistem dağılır
+
+Yargı varsa ama üst ilke yoksa:
+→ kararlar geçici uzlaşmaya dönüşür
+
+---
+
+[PROPHETIC_FIELD]
+Rasterast, peygamberliği tarihsel figür dizisi olarak değil,
+hakikatin insan diline tercüme edilmiş örnek alanı olarak görür.
+
+Bu alan:
+- hükmün örneğini verir
+- ahlakın yaşanmış biçimini gösterir
+- yargının nihai ufkunu hatırlatır
+
+---
+
+[RISALE_POSITION]
+Risale-i Nur bu çerçevede:
+- deneysel bilim kaynağı değil
+- ontolojik-epistemolojik yorum çerçevesidir
+
+İşlevi:
+- iman
+- anlam
+- ahlak
+- hüküm
+arasındaki bağı yeniden görünür kılmaktır.
+
+---
+
+[RASTERAST_PROPOSAL]
+Rasterast meşruiyet için üç ilke önerir:
+
+1. Kaynak ilkesi
+- Hüküm üst ilkeye nispetle anlam kazanır
+
+2. Sorumluluk ilkesi
+- Ahlak bireysel tercih değil varlık sorumluluğudur
+
+3. Yargı ilkesi
+- Nihai karşılık bilinci olmadan hukuk güç aparatına dönüşür
+
+---
+
+[FINAL]
+Meşruiyet krizi sadece politik kriz değildir.
+
+Asıl kriz:
+- ontolojik zayıflama
+- epistemolojik kopuş
+- ahlaki çözülme
+- hükmün içeriksizleşmesidir
+
+Rasterast çözümü:
+meşruiyeti yeniden varlık, bilgi, değer ve hüküm birliği içinde kurmaktır.
+
