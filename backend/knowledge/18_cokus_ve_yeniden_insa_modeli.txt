@@ -1,0 +1,160 @@
+[MODULE] COKUS_VE_YENIDEN_INSA_MODELI
+
+[CORE_IDEA]
+Çöküş:
+
+yok oluş değildir  
+uyumsuzluğun zorunlu sonucudur  
+
+Yeniden inşa:
+
+yenilik değil  
+doğru yapıya geri dönüştür  
+
+---
+
+[DEFINITION]
+Çöküş:
+
+- sistemin kendi yasasına aykırı hale gelmesidir
+- iç tutarlılığın bozulmasıdır
+- denge kaybıdır
+
+---
+
+[FOUR_LAYER_FAILURE]
+Çöküş dört katmanda gerçekleşir:
+
+1. Ontolojik bozulma (Hebun)
+- gerçeklik ile bağ kopar
+
+2. Epistemolojik bozulma (Zanabun)
+- doğru bilgi kaybolur
+- yanlış bilgi normalleşir
+
+3. Yapısal bozulma (Mabun)
+- sistem verimsizleşir
+- sorumluluk kaybolur
+
+4. Tutarlılık bozulması (Rasterast)
+- çelişkiler artar
+- sistem kendini taşıyamaz
+
+---
+
+[VISIBLE_SIGNS]
+Çöküşün belirtileri:
+
+- anlam kaybı
+- güven kaybı
+- kurumların işlemez hale gelmesi
+- adaletin zayıflaması
+- güç merkezileşmesi
+
+---
+
+[POINT_OF_NO_RETURN]
+Bir sistem şu durumda geri dönemez:
+
+- gerçekliği reddediyorsa
+- eleştiriye kapalıysa
+- kendi hatasını düzeltemiyorsa
+
+---
+
+[COLLAPSE_TRIGGER]
+Çöküş tetiklenir:
+
+- iç çelişkiler kritik seviyeye ulaştığında
+- yapı kendini sürdüremediğinde
+
+---
+
+[RESET_LOGIC]
+Çöküş sonrası:
+
+- hatalı yapı çöker
+- yanlış düzen ortadan kalkar
+- sistem sıfırlanır
+
+Bu bir:
+
+yıkım değil  
+temizlenme sürecidir
+
+---
+
+[RECONSTRUCTION_STAGES]
+Yeniden inşa üç aşamada olur:
+
+1. Gerçeklikle yeniden temas
+- gerçeklik kabul edilir
+
+2. Doğru bilginin yeniden kurulması
+- yanlış bilgi elenir
+
+3. Yapının yeniden tasarımı
+- sistem doğru ilkeye göre kurulur
+
+---
+
+[REQUIREMENTS]
+Başarılı yeniden inşa için:
+
+- merkez yeniden kurulmalı
+- değerler netleşmeli
+- sorumluluk dağıtılmalı
+- tutarlılık sağlanmalı
+
+---
+
+[FAILED_RECONSTRUCTION]
+Yeniden inşa başarısız olur:
+
+- eski hatalar tekrar edilirse
+- yüzeysel çözümler uygulanırsa
+- gerçek sorun görülmezse
+
+---
+
+[RASTERAST_PERSPECTIVE]
+Rasterast'a göre:
+
+çöküş:
+
+zorunlu bir filtredir  
+
+yeniden inşa:
+
+doğruya dönüş sürecidir  
+
+---
+
+[CYCLE]
+Sistem döngüsü:
+
+- oluşum
+- büyüme
+- bozulma
+- çöküş
+- yeniden inşa
+
+Bu döngü:
+
+kaçınılmazdır  
+
+---
+
+[FINAL]
+Çöküş:
+
+son değildir  
+
+yanlışın sonudur  
+
+Yeniden inşa:
+
+başlangıç değildir  
+
+doğrunun geri dönüşüdür
+
