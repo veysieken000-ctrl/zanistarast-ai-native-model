@@ -71,22 +71,21 @@ function clearAI() {
 function buildFollowups(question, answer) {
   const q = question.toLowerCase();
   const isTR = detectTurkish(question) || detectTurkish(answer);
-
-  const make = (tr, en) => isTR ? tr : en;
+  const make = (tr, en) => (isTR ? tr : en);
 
   if (q.includes("hebun") || q.includes("hebûn")) {
     return [
       make("Hebûn'u daha derin ontolojik olarak açıkla.", "Explain Hebûn in deeper ontological terms."),
       make("Hebûn'u klasik ontolojiyle karşılaştır.", "Compare Hebûn with classical ontology."),
-      make("Hebûn'un insan anlayışına etkisini açıkla.", "Explain the impact of Hebûn on the concept of the human.")
+      make("Hebûn'un insan anlayışına etkisini açıkla.", "Explain the effect of Hebûn on the human model.")
     ];
   }
 
   if (q.includes("zanabun") || q.includes("zanabûn")) {
     return [
-      make("Zanabûn'u pozitivist bilim anlayışıyla karşılaştır.", "Compare Zanabûn with positivist science."),
       make("Zanabûn'da doğrulama nasıl çalışır?", "How does validation work in Zanabûn?"),
-      make("Zanabûn'un bilgi teorisini derinleştir.", "Deepen the theory of knowledge in Zanabûn.")
+      make("Zanabûn'u pozitivist bilim anlayışıyla karşılaştır.", "Compare Zanabûn with positivist science."),
+      make("Zanabûn'un bilgi teorisini derinleştir.", "Deepen the knowledge theory of Zanabûn.")
     ];
   }
 
@@ -102,7 +101,7 @@ function buildFollowups(question, answer) {
     return [
       make("Rasterast'ta tutarlılık filtresini açıkla.", "Explain the consistency filter in Rasterast."),
       make("Rasterast'ı klasik bilimsel yöntemle karşılaştır.", "Compare Rasterast with the classical scientific method."),
-      make("Rasterast'ın hata eleme mantığını açıkla.", "Explain the error-elimination logic of Rasterast.")
+      make("Rasterast'ın hata eleme mantığını açıkla.", "Explain Rasterast's error-elimination logic.")
     ];
   }
 
@@ -118,7 +117,7 @@ function buildFollowups(question, answer) {
     return [
       make("Newroza Kawa uygarlığının temel ilkelerini açıkla.", "Explain the core principles of Newroza Kawa Civilization."),
       make("Medeniyetin çöküş ve yeniden inşa mantığını açıkla.", "Explain the collapse and reconstruction logic of civilization."),
-      make("Bu konuyu Zanistarast sentezi içinde derinleştir.", "Deepen this in the context of Zanistarast synthesis.")
+      make("Bu konuyu Zanistarast sentezi içinde derinleştir.", "Deepen this within the Zanistarast synthesis.")
     ];
   }
 
@@ -156,7 +155,6 @@ function buildFollowups(question, answer) {
 function renderFollowupButtons(question, answer) {
   const wrap = document.getElementById("ai-followups");
   const container = document.getElementById("ai-followup-buttons");
-
   const followups = buildFollowups(question, answer);
 
   if (!followups.length) {
@@ -168,24 +166,20 @@ function renderFollowupButtons(question, answer) {
 
   saveLastFollowup(followups[0]);
 
-  container.innerHTML = followups
-    .map((item) => {
-      const safe = escapeHtml(item);
-      return `<button type="button" class="followup-chip" data-followup="${safe}">${safe}</button>`;
-    })
-    .join("");
+  container.innerHTML = "";
+  followups.forEach((item) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "followup-chip";
+    btn.textContent = item;
+    btn.onclick = () => {
+      saveLastFollowup(item);
+      askAI(item);
+    };
+    container.appendChild(btn);
+  });
 
   wrap.style.display = "block";
-
-  document.querySelectorAll(".followup-chip").forEach((btn) => {
-    btn.onclick = () => {
-      const text = btn.getAttribute("data-followup");
-      if (text) {
-        saveLastFollowup(text);
-        askAI(text);
-      }
-    };
-  });
 }
 
 function normalizeContinuation(input) {
@@ -193,7 +187,7 @@ function normalizeContinuation(input) {
   const last = getLastFollowup();
 
   const continuationWords = [
-    "evet", "başla", "devam et", "tamam", "olur", "aç", "karşılaştır",
+    "evet", "başla", "basla", "devam", "devam et", "tamam", "olur", "aç", "ac",
     "yes", "continue", "ok", "start", "go on", "compare"
   ];
 
@@ -217,7 +211,7 @@ async function askAI(customInput = null) {
     return;
   }
 
-  loading.style.display = "flex";
+  loading.style.display = "inline-flex";
   output.innerHTML = "Thinking...";
 
   const history = getHistory();
@@ -264,3 +258,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
