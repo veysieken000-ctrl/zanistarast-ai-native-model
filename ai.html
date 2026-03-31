@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zanistarast AI</title>
+  <title>AI — Zanistarast</title>
   <meta
     name="description"
-    content="Interactive Zanistarast interface for querying a structured, testable framework for natural, computational, and human systems."
+    content="Ask the Zanistarast AI about ontology, epistemology, civilization, governance, history, and structural knowledge."
   />
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -21,58 +21,68 @@
       });
   </script>
 
-  <main class="container ai-wrap">
+  <main class="container">
     <section class="hero">
       <div class="hero-card">
         <h1>Zanistarast AI</h1>
         <p>
-          Use this interface to ask about the Zanistarast framework and receive
-          a structured response from the current live system.
+          Ask about ontology, epistemology, economy, governance, civilization,
+          fitrah, ethics, time, history, geology, philosophy, and mathematical
+          structure through the Zanistarast scientific synthesis.
         </p>
       </div>
     </section>
 
-    <section>
-      <div class="ai-card">
-        <h2>Ask the Framework</h2>
-        <p class="small">
-          The system detects the user language and responds in the same language.
-        </p>
+    <section class="section-card">
+      <h2>Quick Topics</h2>
+      <div class="topic-chip-wrap">
+        <button type="button" class="topic-chip" onclick="fillPrompt('What is Zanistarast Scientific Synthesis?')">Zanistarast Scientific Synthesis</button>
+        <button type="button" class="topic-chip" onclick="fillPrompt('What is Hebûn ontology?')">Hebûn Ontology</button>
+        <button type="button" class="topic-chip" onclick="fillPrompt('What is Zanabûn epistemology?')">Zanabûn Epistemology</button>
+        <button type="button" class="topic-chip" onclick="fillPrompt('What is Mabûn economic model?')">Mabûn Economic Model</button>
+        <button type="button" class="topic-chip" onclick="fillPrompt('What is Rasterast reading method?')">Rasterast Reading Method</button>
+        <button type="button" class="topic-chip" onclick="fillPrompt('What is Rabûn governance model?')">Rabûn Governance Model</button>
+        <button type="button" class="topic-chip" onclick="fillPrompt('What is Newroza Kawa Civilization?')">Newroza Kawa Civilization</button>
+        <button type="button" class="topic-chip" onclick="fillPrompt('What is the Age of Fitrah and Ethics?')">Age of Fitrah and Ethics</button>
+        <button type="button" class="topic-chip" onclick="fillPrompt('What is the history of existence?')">History of Existence</button>
+        <button type="button" class="topic-chip" onclick="fillPrompt('What is human history?')">Human History</button>
+        <button type="button" class="topic-chip" onclick="fillPrompt('What is geology?')">Geology</button>
+        <button type="button" class="topic-chip" onclick="fillPrompt('What is philosophy?')">Philosophy</button>
+        <button type="button" class="topic-chip" onclick="fillPrompt('What are the mathematical formulas in Zanistarast?')">Mathematical Formulas</button>
+        <button type="button" class="topic-chip" onclick="fillPrompt('What is time?')">Time</button>
+      </div>
+    </section>
 
-        <div class="example-prompts">
-          <button type="button" onclick="setPrompt('truth')">truth</button>
-          <button type="button" onclick="setPrompt('civilization')">civilization</button>
-          <button type="button" onclick="setPrompt('hebun')">hebun</button>
-          <button type="button" onclick="setPrompt('zanistarast')">zanistarast</button>
-        </div>
+    <section class="section-card">
+      <h2>Ask a Question</h2>
+      <textarea
+        id="ai-input"
+        rows="6"
+        placeholder="Ask in Turkish, English, or Kurmancî..."
+      ></textarea>
 
-        <div class="section-card" style="margin-top: 18px;">
-          <h2>How to use</h2>
-          <p>1. Choose an example prompt or type your own concept.</p>
-          <p>2. Click <strong>Ask</strong>.</p>
-          <p>3. Read the structured response from the current Zanistarast system.</p>
-        </div>
+      <div class="ai-main-actions">
+        <button type="button" onclick="askAI()">Ask</button>
+        <button type="button" class="secondary-btn" onclick="clearAI()">Clear</button>
+      </div>
 
-        <div style="margin-top: 18px;">
-          <input
-            id="ai-input"
-            type="text"
-            placeholder="Try: truth, civilization, hebun, zanistarast"
-          />
-        </div>
+      <div id="ai-loading" class="ai-loading" style="display:none;">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span style="margin-left:10px;">Thinking...</span>
+      </div>
+    </section>
 
-        <div class="ai-actions">
-          <button type="button" onclick="askAI()">Ask</button>
-          <div id="ai-loading" class="ai-loading" style="display:none;">
-  <span class="dot"></span>
-  <span class="dot"></span>
-  <span class="dot"></span>
-  <span style="margin-left:10px;">Thinking...</span>
-        </div>
+    <section class="section-card">
+      <h2>Answer</h2>
+      <div id="ai-output" class="ai-output-box">
+        Ask a question to begin.
+      </div>
 
-        <div id="ai-output" class="answer-card">
-          <strong>Answer:</strong> Your response will appear here.
-        </div>
+      <div id="ai-followups" class="followup-wrap" style="display:none;">
+        <h3>Suggested Next Step</h3>
+        <div id="ai-followup-buttons" class="followup-chip-wrap"></div>
       </div>
     </section>
   </main>
@@ -84,23 +94,5 @@
   </footer>
 
   <script src="ai.js"></script>
-  <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const params = new URLSearchParams(window.location.search);
-    const prompt = params.get("prompt");
-    const input = document.getElementById("ai-input");
-
-    if (prompt && input) {
-      input.value = prompt;
-    }
-  });
-</script>
-  <script>
-    function setPrompt(value) {
-      document.getElementById("ai-input").value = value;
-      askAI();
-    }
-  </script>
 </body>
 </html>
-
