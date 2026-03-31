@@ -1,0 +1,179 @@
+[MODULE] SUREKLILIK_VE_DEVIR_YASASI
+
+[CORE_IDEA]
+Süreklilik:
+kesintisizlik değildir  
+
+Devam:
+kopuşlara rağmen korunabilmektir  
+
+Devir:
+aynının tekrarı değil  
+aynı yasanın yeni koşullarda yeniden kurulmasıdır
+
+---
+
+[PRINCIPLE]
+Rasterast yaklaşımında:
+
+- varlık korunur
+- formlar değişir
+- yasa sabit kalır
+
+---
+
+[FALSE_ASSUMPTION]
+Yanlış anlayış:
+
+süreklilik = hiç bozulmama
+
+Gerçek:
+
+her yapı bozulur  
+ama doğru yasa varsa yeniden kurulur
+
+---
+
+[COSMIC_LAYER]
+Kozmik düzey:
+
+- yıldızlar doğar
+- yıldızlar ölür
+- galaksiler dönüşür
+
+Ama:
+
+fizik yasaları değişmez
+
+---
+
+[BIOLOGICAL_LAYER]
+Biyolojik düzey:
+
+- hücreler ölür
+- organizma değişir
+
+Ama:
+
+hayat ilkesi devam eder
+
+---
+
+[MENTAL_LAYER]
+Zihinsel düzey:
+
+- düşünceler değişir
+- inançlar kırılır
+
+Ama:
+
+anlam arayışı devam eder
+
+---
+
+[SOCIAL_LAYER]
+Toplumsal düzey:
+
+- devletler yıkılır
+- sistemler çöker
+
+Ama:
+
+düzen ihtiyacı devam eder
+
+---
+
+[DESTRUCTION_LOGIC]
+Çöküş:
+
+yok oluş değildir  
+
+denge kaybıdır  
+
+Sebep:
+
+- merkez kaybı
+- yasa ihlali
+- bağ kopması
+
+---
+
+[DEVIR_LOGIC]
+Devir:
+
+yıkımdan sonra gelen yeniden hizalanmadır
+
+Bu süreç:
+
+1. çözülme
+2. fark edilme
+3. yeniden kurulum
+
+---
+
+[RESET_MECHANISM]
+Sistem kendini şöyle düzeltir:
+
+- hatalı yapı çöker
+- sürdürülemez sistem elenir
+- uyumlu yapı yeniden kurulur
+
+Bu bir:
+
+doğal filtreleme mekanizmasıdır
+
+---
+
+[ERROR_PATTERNS]
+Süreklilik bozulur:
+
+- değerler unutulursa
+- merkez yok olursa
+- yasa ihlal edilirse
+
+---
+
+[TIME_PERSPECTIVE]
+Zaman:
+
+doğrusal değil  
+katmanlıdır  
+
+- fiziksel zaman
+- biyolojik zaman
+- zihinsel zaman
+- toplumsal zaman
+
+Bu katmanlar birlikte akar
+
+---
+
+[RASTERAST_PERSPECTIVE]
+Rasterast'a göre:
+
+çöküş = ceza değildir  
+
+çöküş = düzeltme mekanizmasıdır  
+
+---
+
+[RECONSTRUCTION]
+Yeniden inşa:
+
+yeni bir şey icat etmek değildir  
+
+doğru yasaya geri dönmektir  
+
+---
+
+[FINAL]
+Süreklilik:
+
+kesintisizlik değil  
+doğruya dönüş kapasitesidir  
+
+Devir:
+
+aynının tekrarı değil  
+hakikatin yeniden kurulmasıdır
+
