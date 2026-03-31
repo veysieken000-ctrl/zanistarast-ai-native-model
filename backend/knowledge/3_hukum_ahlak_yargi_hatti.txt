@@ -1,0 +1,76 @@
+[MODULE] HUKUM_AHLAK_YARGI_HATTI
+
+[CORE_DEFINITION]
+Toplumsal düzen üç katmandan oluşur:
+1. Hüküm (bağlayıcı ilke)
+2. Ahlak (yaşayan uygulama)
+3. Yargı (nihai değerlendirme)
+
+Bu üçü birlikte çalışmazsa sistem çöker.
+
+---
+
+[HUKUM]
+Hüküm:
+- Bağlayıcıdır
+- Sınır koyar
+- Düzen kurar
+- Keyfi değildir
+
+Hüküm üst ilkeye (birlik / ehad) bağlıdır.
+
+---
+
+[AHLAK]
+Ahlak:
+- Hükmün hayattaki formudur
+- Davranış değil, yapı üretir
+- Bireysel değil ontolojiktir
+
+Ahlak yoksa:
+- İç denetim kaybolur
+- Dış baskı artar
+- Sistem zorlaşır
+
+---
+
+[YARGI]
+Yargı:
+- Nihai değerlendirmedir
+- Eylemin değerini belirler
+- Sadece mahkeme değildir
+- Ontolojik sonuçtur
+
+---
+
+[SYSTEM_FAILURE]
+Hat koparsa:
+
+- Hüküm koparsa → güç keyfileşir
+- Ahlak koparsa → toplum dağılır
+- Yargı koparsa → adalet propaganda olur
+
+Sonuç:
+- Meşruiyet krizi
+- Hukukun araçsallaşması
+- Güç merkezileşmesi
+
+---
+
+[RASTERAST_SOLUTION]
+Rasterast çözümü:
+
+- Hüküm → üst ilkeye bağlanır
+- Ahlak → merkezde tutulur
+- Yargı → gerçek ölçü olur
+
+---
+
+[FINAL]
+Bu hat:
+
+- Teori değil
+- Varlık düzenidir
+
+Korunursa → düzen oluşur  
+Koparsa → sistem çöker
