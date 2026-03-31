@@ -1,0 +1,165 @@
+[MODULE] RABUN_YONETIM_MODELI_DERIN
+
+[CORE_IDEA]
+Rabûn yönetim modeli:
+
+insanın doğadan ayrı olmadığını kabul eder  
+
+ve yönetimi:
+
+doğanın işleyiş yasalarına göre kurar  
+
+---
+
+[DEFINITION]
+Rabûn:
+
+- doğanın yönetim sistemidir
+- varlığın kendi kendini düzenleme biçimidir
+
+Rabûn modeli:
+
+→ bu sistemi insan toplumuna uygular
+
+---
+
+[FOUNDATION]
+Temel ilke:
+
+insan doğanın parçasıdır  
+doğa ile çelişen sistem sürdürülemez  
+
+---
+
+[NATURAL_SYSTEM]
+Doğada:
+
+- aşırı merkezleşme yoktur
+- mutlak güç yoktur
+- denge vardır
+- dağıtılmış sorumluluk vardır
+
+---
+
+[HUMAN_ERROR]
+İnsan sistemi bozar çünkü:
+
+- doğadan kopar
+- gücü merkezileştirir
+- dengeyi yok sayar
+
+---
+
+[RABUN_STRUCTURE]
+Rabûn modelinde yapı:
+
+- merkez vardır ama baskın değildir
+- çevre aktiftir
+- denge korunur
+
+---
+
+[POWER_MODEL]
+Güç:
+
+- toplanmaz
+- dağıtılır
+
+Sebep:
+
+toplanan güç → bozulur  
+dağıtılan güç → dengelenir  
+
+---
+
+[RESPONSIBILITY]
+Sorumluluk:
+
+- merkezi değil
+- katmanlıdır
+
+Her birey:
+
+→ sistemin parçasıdır  
+→ sorumluluk taşır  
+
+---
+
+[DECISION_SYSTEM]
+Karar sistemi:
+
+- tek merkezli değildir
+- çok katmanlıdır
+
+Yerel yapı:
+→ hızlı karar  
+
+Üst yapı:
+→ denge kontrolü  
+
+---
+
+[JUSTICE]
+Adalet:
+
+- yasa ile değil
+- denge ile sağlanır
+
+Rabûn’da:
+
+adalet = denge  
+
+---
+
+[ECONOMIC_RELATION]
+Ekonomi:
+
+- büyüme odaklı değil
+- denge odaklıdır
+
+Aşırı büyüme:
+→ çöküş getirir  
+
+Denge:
+→ sürdürülebilirlik sağlar  
+
+---
+
+[SYSTEM_FAILURE]
+Rabûn terk edilirse:
+
+- güç merkezileşir
+- sistem baskıcı olur
+- toplum zayıflar
+- çöküş hızlanır
+
+---
+
+[RASTERAST_PERSPECTIVE]
+Rasterast'a göre:
+
+doğaya aykırı sistem:
+
+→ yanlış sistemdir  
+
+---
+
+[APPLICATION]
+Rabûn modeli uygulanırsa:
+
+- yönetim dengelenir
+- toplum güçlenir
+- sistem sürdürülebilir olur
+
+---
+
+[FINAL]
+En iyi yönetim:
+
+insanın kurduğu değil  
+doğanın öğrettiğidir  
+
+Rabûn:
+
+bu öğretinin sistem halidir
+
