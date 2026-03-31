@@ -1,0 +1,149 @@
+[MODULE] BILGI_DUYGU_VE_ANLAM_MODELI
+
+[CORE_IDEA]
+İnsan:
+
+sadece düşünen varlık değildir  
+sadece hisseden varlık değildir  
+
+İnsan:
+
+bilgi + duygu + anlam bütünüdür  
+
+---
+
+[BILGI]
+Bilgi:
+
+- veri değildir
+- sadece akıl değildir
+
+Bilgi:
+
+- gerçeklikle uyum
+- doğrulanabilirlik
+- yapısal tutarlılık içerir
+
+---
+
+[DUYGU]
+Duygu:
+
+- zayıflık değildir
+- rastgele değildir
+
+Duygu:
+
+- yön verir
+- değer üretir
+- anlamı taşır
+
+---
+
+[ANLAM]
+Anlam:
+
+- bilginin yön kazanmış halidir
+- duygunun bilinçli formudur
+
+Anlam olmadan:
+
+- bilgi soğuktur
+- duygu dağınıktır
+
+---
+
+[TRIAD]
+İnsan yapısı üçlüdür:
+
+1. Bilgi → ne doğru
+2. Duygu → ne değerli
+3. Anlam → ne önemli
+
+Bu üçlü birlikte çalışır
+
+---
+
+[IMBALANCE]
+Dengesizlik oluşursa:
+
+Sadece bilgi:
+→ soğuk sistem
+→ mekanik insan
+
+Sadece duygu:
+→ kaotik sistem
+→ kararsız insan
+
+Anlamsızlık:
+→ boşluk
+→ yön kaybı
+
+---
+
+[MENTAL_STRUCTURE]
+Zihin yapısı:
+
+- merkez → anlam
+- katman → bilgi
+- akış → duygu
+
+Merkez kaybolursa:
+→ zihin dağılır
+
+---
+
+[SOCIAL_REFLECTION]
+Toplumda bu üçlü:
+
+- bilim → bilgi
+- kültür → duygu
+- medeniyet → anlam
+
+Bu üçü dengede olmazsa:
+
+→ toplum çöker
+
+---
+
+[RASTERAST_PERSPECTIVE]
+Rasterast'a göre:
+
+- bilgi doğrulanmalı
+- duygu yönlendirilmeli
+- anlam merkezde olmalı
+
+---
+
+[ERROR_PATTERNS]
+Bozulma şu şekilde olur:
+
+- bilgi propaganda olur
+- duygu manipüle edilir
+- anlam yok edilir
+
+---
+
+[RESTORATION]
+Düzeltme için:
+
+- doğru bilgi kurulmalı
+- duygu eğitilmeli
+- anlam yeniden inşa edilmeli
+
+---
+
+[FINAL]
+İnsan:
+
+bilgiyle düşünür  
+duyguyla yönelir  
+anlamla yaşar  
+
+Bu üçü birlikte:
+
+insanı insan yapar
+💬 COMMIT MESAJI
+Txt id="x8t2bn"
+Kodu kopyala
+feat(core): add knowledge-emotion-meaning model for human cognition
