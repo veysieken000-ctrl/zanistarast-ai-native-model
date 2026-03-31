@@ -1,0 +1,23 @@
+
+{
+  "protocol_name": "ZANISTARAST_GLOBAL_OPERATING_SYSTEM",
+  "version": "3.0.0 (FINAL_STABLE)",
+  "author": "Veysi yê MALA SAF",
+  "architecture": "6+TEK",
+  "core_logic": {
+    "boundary_logic": "Qadar (The Measure/Limit)",
+    "operation_mode": "Rasterast (Direct/True Alignment)",
+    "output_goal": "Istiqamah (Stability)"
+  },
+  "guardrails": {
+    "prevent_ego_inflation": "Monitor Layer 4 vs Layer 5 parity.",
+    "enforce_circulation": "Apply Mabûn principles to data/asset flow.",
+    "new_day_init": "Reset situational variables every 24h cycle to maintain Fitra."
+  },
+  "connectivity": {
+    "macro": "Universal Nizam",
+    "micro": "Human Conscience",
+    "digital": "AI Müdebbir Agents"
+  }
+}
+
