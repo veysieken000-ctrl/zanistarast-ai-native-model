@@ -97,7 +97,4 @@ Bir varlık düzenidir.
 
 Bu hat korunursa toplum ayakta kalır.  
 Bu hat koparsa sistem çöker.
-💬 COMMIT MESAJI
-Kodu kopyala
 
-feat: hüküm-ahlak-yargı hattı modülü eklendi (rasterast siyaset çekirdeği)
