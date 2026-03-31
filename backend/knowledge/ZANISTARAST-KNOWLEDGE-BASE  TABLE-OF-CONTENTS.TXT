@@ -1,0 +1,41 @@
+Author: Veysi yê MALA SAF (Müdebbir)
+
+[SECTION 1: CORE PHILOSOPHY & ONTOLOGY]
+01_introduction_to_zanistarast.txt
+02_hebûn_ontology.txt
+03_mabûn_circulation_model.txt
+04_rasterast_the_true_path.txt
+05_zanabûn_wisdom_science.txt
+
+[SECTION 2: HEKSA-NIZAM (6+TEK)]
+26_heksa_nizam_architecture.txt
+27_heksa_nizam_mathematical_logic.txt
+28_heksa_nizam_social_application.txt
+29_heksa_nizam_ai_integration.txt
+30_natural_asset_management_and_mabun.txt
+
+[SECTION 3: COLLAPSE & RESET THEORY]
+23_collapse_mechanism.txt
+24_collapse_to_ethics_transition.txt
+25_spirit_and_metaphysical_threshold.txt
+33_angelic_order_and_pure_system.txt
+34_the_first_dimensional_fracture_iblis.txt
+35_spirit_to_human_transition.txt
+
+[SECTION 4: SYSTEMIC DYNAMICS]
+36_macro_micro_correlation.txt
+37_autonomous_order_and_fitra.txt
+38_the_final_stabilization_model.txt
+39_destiny_and_systemic_probability.txt
+41_the_time_event_continuum.txt
+42_the_management_of_existence.txt
+43_the_unified_civilization_blueprint.txt
+
+[SECTION 5: MANIFESTOS]
+31_the_human_manifesto.txt
+32_zanabûn_science_protocol.txt
+İnsanlık_Manifestosu (Saved as 31)
+
+[SECTION 6: SYSTEM PROTOCOLS]
+ZANISTARAST_SYSTEM_COMPLETE.json
+
