@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI — Zanistarast</title>
+  <title>Zanistarast AI</title>
   <meta
     name="description"
-    content="Ask the Zanistarast AI about ontology, epistemology, civilization, governance, history, and structural knowledge."
+    content="Interactive Zanistarast AI for ontology, epistemology, civilization, governance, fitrah, history, and structural analysis."
   />
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -21,14 +21,14 @@
       });
   </script>
 
-  <main class="container">
+  <main class="container ai-wrap">
     <section class="hero">
       <div class="hero-card">
         <h1>Zanistarast AI</h1>
-        <p>
-          Ask about ontology, epistemology, economy, governance, civilization,
-          fitrah, ethics, time, history, geology, philosophy, and mathematical
-          structure through the Zanistarast scientific synthesis.
+        <p class="lead">
+          Ask through the Zanistarast scientific synthesis: Hebûn, Zanabûn,
+          Mabûn, Rasterast, Rabûn, Newroza Kawa Civilization, the Age of Fitrah
+          and Ethics, history, geology, philosophy, time, and structural knowledge.
         </p>
       </div>
     </section>
@@ -36,7 +36,7 @@
     <section class="section-card">
       <h2>Quick Topics</h2>
       <div class="topic-chip-wrap">
-        <button type="button" class="topic-chip" onclick="fillPrompt('What is Zanistarast Scientific Synthesis?')">Zanistarast Scientific Synthesis</button>
+        <button type="button" class="topic-chip" onclick="fillPrompt('What is Zanistarast scientific synthesis?')">Zanistarast Scientific Synthesis</button>
         <button type="button" class="topic-chip" onclick="fillPrompt('What is Hebûn ontology?')">Hebûn Ontology</button>
         <button type="button" class="topic-chip" onclick="fillPrompt('What is Zanabûn epistemology?')">Zanabûn Epistemology</button>
         <button type="button" class="topic-chip" onclick="fillPrompt('What is Mabûn economic model?')">Mabûn Economic Model</button>
@@ -53,8 +53,8 @@
       </div>
     </section>
 
-    <section class="section-card">
-      <h2>Ask a Question</h2>
+    <section class="section-card ai-card">
+      <h2>Ask the Framework</h2>
       <textarea
         id="ai-input"
         rows="6"
@@ -74,7 +74,7 @@
       </div>
     </section>
 
-    <section class="section-card">
+    <section class="section-card answer-card">
       <h2>Answer</h2>
       <div id="ai-output" class="ai-output-box">
         Ask a question to begin.
