@@ -19,8 +19,7 @@ app.use(express.json());
 const KNOWLEDGE_DIR = path.join(__dirname, "knowledge");
 
 function readTextFile(filename) {
-  const filePath = path.join(KNOWLEDGE_DIR, filename);
-  return fs.readFileSync(filePath, "utf-8");
+  return fs.readFileSync(path.join(KNOWLEDGE_DIR, filename), "utf-8");
 }
 
 function loadKnowledge() {
@@ -36,10 +35,14 @@ function loadKnowledge() {
 
 const knowledge = loadKnowledge();
 
-const coreSystem = knowledge.find((item) => item.name === "00_core_system")?.text || "";
+const coreSystem =
+  knowledge.find((item) => item.name === "00_core_system")?.text || "";
+
+const articleSystem =
+  knowledge.find((item) => item.name === "_article_system")?.text || "";
 
 function normalizeText(text) {
-  return String(text)
+  return String(text || "")
     .toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
@@ -49,42 +52,44 @@ function normalizeText(text) {
 }
 
 function tokenize(text) {
-  return normalizeText(text)
-    .split(" ")
-    .filter(Boolean);
+  return normalizeText(text).split(" ").filter(Boolean);
 }
 
 function scoreMatch(question, docName, docText) {
+  const q = normalizeText(question);
   const qTokens = tokenize(question);
   const nameTokens = tokenize(docName);
-  const textTokens = tokenize(docText).slice(0, 1200);
+  const textTokens = tokenize(docText).slice(0, 1500);
 
   let score = 0;
 
   for (const token of qTokens) {
-    if (nameTokens.includes(token)) score += 8;
+    if (nameTokens.includes(token)) score += 10;
     if (textTokens.includes(token)) score += 2;
   }
 
-  const q = normalizeText(question);
-
-  if (q.includes("hebun") && docName.includes("hebun")) score += 20;
-  if (q.includes("zanabun") && docName.includes("zanabun")) score += 20;
-  if (q.includes("mabun") && docName.includes("mabun")) score += 20;
-  if (q.includes("rasterast") && docName.includes("rasterast")) score += 20;
-  if (q.includes("rabun") && docName.includes("rabun")) score += 20;
-  if (q.includes("newroza") && docName.includes("newroza")) score += 20;
-  if ((q.includes("fitrat") || q.includes("ahlak")) && docName.includes("fitrat")) score += 20;
-  if ((q.includes("varlik") || q.includes("existence")) && docName.includes("varlik")) score += 12;
-  if ((q.includes("tarih") || q.includes("history")) && docName.includes("tarih")) score += 12;
-  if ((q.includes("gerceklik") || q.includes("reality")) && docName.includes("gerceklik")) score += 12;
-  if ((q.includes("medeniyet") || q.includes("civilization")) && docName.includes("medeniyet")) score += 12;
-  if ((q.includes("zanistarast") || q.includes("scientific synthesis")) && docName.includes("zanistarast")) score += 20;
+  if (q.includes("hebun") && docName.includes("hebun")) score += 30;
+  if (q.includes("zanabun") && docName.includes("zanabun")) score += 30;
+  if (q.includes("mabun") && docName.includes("mabun")) score += 30;
+  if (q.includes("rasterast") && docName.includes("rasterast")) score += 30;
+  if (q.includes("rabun") && docName.includes("rabun")) score += 30;
+  if (q.includes("newroza") && docName.includes("newroza")) score += 30;
+  if (q.includes("zanistarast") && docName.includes("zanistarast")) score += 30;
+  if ((q.includes("fitrat") || q.includes("ahlak") || q.includes("ethics")) && docName.includes("fitrat")) score += 24;
+  if ((q.includes("varlik") || q.includes("existence")) && docName.includes("varlik")) score += 24;
+  if ((q.includes("tarih") || q.includes("history")) && docName.includes("tarih")) score += 18;
+  if ((q.includes("medeniyet") || q.includes("civilization")) && docName.includes("medeniyet")) score += 20;
+  if ((q.includes("gerceklik") || q.includes("reality")) && docName.includes("gerceklik")) score += 20;
+  if ((q.includes("su") || q.includes("water")) && docName === "su") score += 18;
+  if ((q.includes("felsefe") || q.includes("philosophy")) && docName.includes("felsefe")) score += 18;
+  if ((q.includes("zaman") || q.includes("time")) && docName.includes("zaman")) score += 18;
+  if ((q.includes("matematik") || q.includes("formula")) && docName.includes("matematik")) score += 18;
+  if ((q.includes("jeoloji") || q.includes("geology")) && docName.includes("jeoloji")) score += 18;
 
   return score;
 }
 
-function getTopKnowledge(question, limit = 4) {
+function getTopKnowledge(question, limit = 5) {
   return knowledge
     .filter((item) => item.name !== "00_core_system" && item.name !== "_article_system")
     .map((item) => ({
@@ -96,19 +101,16 @@ function getTopKnowledge(question, limit = 4) {
 }
 
 function buildContext(question) {
-  const topDocs = getTopKnowledge(question, 4);
-
+  const topDocs = getTopKnowledge(question, 5);
   const relevantDocs = topDocs.filter((doc) => doc.score > 0);
 
-  const combined = relevantDocs
-    .map(
-      (doc) => `### SOURCE: ${doc.name}\n${doc.text}`
-    )
+  const context = relevantDocs
+    .map((doc) => `### SOURCE: ${doc.name}\n${doc.text}`)
     .join("\n\n");
 
   return {
     topDocs,
-    context: combined
+    context
   };
 }
 
@@ -141,14 +143,16 @@ function normalizeContinuation(input, history) {
     return input;
   }
 
-  const lines = lastAssistant.content.split("\n").map((l) => l.trim()).filter(Boolean);
-  const possibleFollowup =
-    lines.find((line) => line.toLowerCase().includes("explain")) ||
-    lines.find((line) => line.toLowerCase().includes("compare")) ||
-    lines.find((line) => line.toLowerCase().includes("deep")) ||
+  const lines = lastAssistant.content
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
+
+  const candidate =
+    lines.find((line) => /explain|compare|deepen|clarify/i.test(line)) ||
     lines[lines.length - 1];
 
-  return possibleFollowup || input;
+  return candidate || input;
 }
 
 app.get("/", (_req, res) => {
@@ -189,46 +193,6 @@ app.post("/api/ask", async (req, res) => {
 
     const finalContext = context || fallbackContext;
 
-    const articleSystem =
-      knowledge.find((item) => item.name === "_article_system")?.text || "";
-
-    const messages = [
-      {
-        role: "system",
-        content: `
-You are Zanistarast AI.
-
-Always think and answer through this mandatory framework first:
-
-${coreSystem}
-
-Use the following article generation rules when the user asks for deep explanation, comparison, or analysis:
-
-${articleSystem}
-
-Now use the following retrieved knowledge as the primary content base:
-
-${finalContext}
-
-MANDATORY RULES:
-1. Always answer through Hebun, Zanabun, Mabun, and Rasterast if relevant.
-2. Prefer the closest matching knowledge files.
-3. If the exact concept is not found, answer from the nearest relevant Zanistarast concept instead of saying it is undefined.
-4. Only say "This concept is not yet sufficiently defined in the current Zanistarast knowledge base." if there is truly no relevant match.
-5. Be structurally clear, not shallow.
-6. If the user asks in Turkish, answer in Turkish. If English, answer in English.
-7. If the user asks a simple question, give a concise structured answer.
-8. If the user asks for detail, comparison, or theory, give a deeper article-style answer.
-9. End with 2–3 natural follow-up suggestions written as plain lines, not bullets, only when relevant.
-        `.trim()
-      },
-      ...history.slice(-6),
-      {
-        role: "user",
-        content: question
-      }
-    ];
-
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -237,8 +201,43 @@ MANDATORY RULES:
       },
       body: JSON.stringify({
         model: "gpt-4o-mini",
-        messages,
-        temperature: 0.7
+        temperature: 0.7,
+        messages: [
+          {
+            role: "system",
+            content: `
+You are Zanistarast AI.
+
+Always use this mandatory core framework first:
+
+${coreSystem}
+
+Use these article rules when the user asks for deep explanation, theory, analysis, or comparison:
+
+${articleSystem}
+
+Use the retrieved knowledge below as your main knowledge base:
+
+${finalContext}
+
+MANDATORY RULES:
+1. Always think structurally, not narratively.
+2. Use Hebun, Zanabun, Mabun, and Rasterast whenever relevant.
+3. Prefer the closest matching knowledge files.
+4. If the exact concept is not found, answer from the nearest relevant Zanistarast concept instead of saying it is undefined.
+5. Only say "This concept is not yet sufficiently defined in the current Zanistarast knowledge base." if there is truly no relevant match.
+6. If the user asks in Turkish, answer in Turkish. If the user asks in English, answer in English.
+7. For simple questions, give a concise but structured answer.
+8. For deep questions, comparisons, or theoretical prompts, give a fuller article-style answer.
+9. When relevant, end with 2 or 3 short natural follow-up suggestions as plain lines, not bullets.
+            `.trim()
+          },
+          ...history.slice(-6),
+          {
+            role: "user",
+            content: question
+          }
+        ]
       })
     });
 
@@ -256,7 +255,7 @@ MANDATORY RULES:
       "No answer returned from API.";
 
     return res.json({ answer });
-  } catch (error) {
+  } catch (_error) {
     return res.status(500).json({
       answer: "Server error. Please try again later."
     });
