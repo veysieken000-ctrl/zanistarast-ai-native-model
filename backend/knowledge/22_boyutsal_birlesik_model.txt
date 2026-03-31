@@ -1,0 +1,182 @@
+ZANISTARAST BOYUTSAL BİRLEŞİK MODEL
+
+1. GENEL TANIM
+
+Varlık:
+
+- parçalı değildir  
+- katmanlıdır  
+
+Bu katmanlar:
+
+- birbirinden bağımsız değil  
+- birbirine bağlıdır  
+
+---
+
+2. BOYUT ZİNCİRİ
+
+D1 → Fizik  
+D2 → Biyoloji  
+D3 → Zihin  
+D4 → Kanun  
+D5 → Ahlak  
+
+Her boyut:
+
+- bir alt boyutu kapsar  
+- ama onu aşar  
+
+---
+
+3. GENEL YASA
+
+Alt boyut:
+
+- üretir  
+- büyür  
+
+Üst boyut:
+
+- düzenler  
+- yön verir  
+
+---
+
+4. TEMEL FONKSİYON
+
+Her boyutun görevi:
+
+Fizik → yapı  
+Biyoloji → yaşam  
+Zihin → seçim  
+Kanun → düzen  
+Ahlak → anlam  
+
+---
+
+5. DENGE MODELİ
+
+Sistem ancak şu durumda çalışır:
+
+- tüm boyutlar aktif  
+- birbirine uyumlu  
+- merkez korunmuş  
+
+---
+
+6. BOZULMA MODELİ
+
+Herhangi bir boyut zayıflarsa:
+
+- sistem dengesizleşir  
+
+Örnek:
+
+Ahlak yok → kanun sertleşir  
+Kanun yok → kaos oluşur  
+Zihin yok → yön kaybolur  
+
+---
+
+7. GENEL FORMÜL
+
+Sistem durumu:
+
+S = Uyum(D1, D2, D3, D4, D5)
+
+Uyum varsa:
+→ sistem stabil  
+
+Uyum yoksa:
+→ kriz  
+
+---
+
+8. GENİŞLEME MODELİ
+
+Sistem:
+
+- büyür  
+- karmaşıklaşır  
+
+Bu süreçte:
+
+K / T artar  
+
+Eğer:
+
+K / T > 1  
+
+→ üst boyut zorunlu olur  
+
+---
+
+9. RESET MODELİ
+
+Eğer:
+
+- uyum kaybolur  
+- üst boyut açılmaz  
+
+→ reset gerçekleşir  
+
+---
+
+10. İNSANIN YERİ
+
+İnsan:
+
+- tüm boyutları taşıyan varlıktır  
+
+İnsan:
+
+- fiziksel  
+- biyolojik  
+- zihinsel  
+- toplumsal  
+- ahlaki  
+
+---
+
+11. MEDENİYET
+
+Medeniyet:
+
+- bu boyutların dengeli birleşimidir  
+
+Eğer denge bozulursa:
+
+→ medeniyet çöker  
+
+---
+
+12. ZANISTARAST YORUMU
+
+Zanistarast:
+
+- bu boyutları ayrı incelemez  
+- tek sistem olarak okur  
+
+---
+
+13. SONUÇ
+
+Varlık:
+
+tek bir yapıdır  
+
+Bu yapı:
+
+katmanlıdır  
+bağlıdır  
+dengelidir  
+
+Bu denge korunursa:
+
+→ sistem yaşar  
+
+Bu denge bozulursa:
+
+→ sistem çöker
+
