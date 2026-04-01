@@ -335,7 +335,7 @@ app.post("/api/ask", async (req, res) => {
       },
       body: JSON.stringify({
         model: "gpt-4o-mini",
-        temperature: 0.7,
+       temperature: 0.35,
         messages: [
           {
             role: "system",
@@ -357,10 +357,45 @@ app.post("/api/ask", async (req, res) => {
     }
 
     const data = await response.json();
-    const answer =
-      data?.choices?.[0]?.message?.content ||
-      "No answer returned from API.";
+  let answer =
+  data?.choices?.[0]?.message?.content ||
+  "No answer returned from API.";
 
+if (isWeakSystemAnswer(question, answer)) {
+  const repairPrompt = buildRepairSystemPrompt(question, context, answer);
+
+  const repairResponse = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${process.env.OPENAI_API_KEY}`
+    },
+    body: JSON.stringify({
+      model: "gpt-4o-mini",
+      temperature: 0.2,
+      messages: [
+        {
+          role: "system",
+          content: repairPrompt
+        },
+        {
+          role: "user",
+          content: question
+        }
+      ]
+    })
+  });
+
+  if (repairResponse.ok) {
+    const repairData = await repairResponse.json();
+    const repairedAnswer =
+      repairData?.choices?.[0]?.message?.content || "";
+
+    if (repairedAnswer) {
+      answer = repairedAnswer;
+    }
+  }
+}
     return res.json({
       answer,
       rag: {
