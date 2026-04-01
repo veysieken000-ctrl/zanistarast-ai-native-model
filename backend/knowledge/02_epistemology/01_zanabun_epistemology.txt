@@ -1,0 +1,145 @@
+TITLE:
+Zanabun Epistemology
+
+SECTION:
+Epistemology
+
+DOMAIN:
+epistemology
+
+LAYER:
+D1-D5
+
+TOPICS:
+knowledge, validation, epistemology, truth, verification, coherence
+
+SUMMARY:
+Zanabun defines knowledge as structured and validated information grounded in reality. It establishes that knowledge must pass multi-layer verification to be considered valid.
+
+KEYWORDS:
+zanabun, epistemology, knowledge, truth, validation, coherence, verification, system
+
+CONTENT:
+
+1. Definition
+
+Zanabun is the epistemological layer of the Zanistarast system.
+
+It defines knowledge not as raw information,
+but as validated, structured understanding.
+
+---
+
+2. Core Principle
+
+Knowledge must correspond to reality.
+
+If knowledge does not align with existence:
+→ it is invalid
+
+---
+
+3. Validation Model
+
+Knowledge is validated through three components:
+
+1. Observation  
+2. Structural consistency  
+3. Cross-layer coherence  
+
+All three must be present.
+
+---
+
+4. Two-Knower Principle
+
+Valid knowledge requires:
+
+- the knower  
+- the known  
+
+Knowledge is not isolated.
+
+It is a relationship.
+
+---
+
+5. Structural Rule
+
+Valid knowledge must be:
+
+- consistent internally  
+- consistent with reality  
+- consistent across layers  
+
+---
+
+6. Error Model
+
+Invalid knowledge occurs when:
+
+- observation is false  
+- structure is inconsistent  
+- layers contradict each other  
+
+---
+
+7. Information vs Knowledge
+
+Information:
+- raw  
+- unverified  
+
+Knowledge:
+- processed  
+- validated  
+- structured  
+
+---
+
+8. Relation to Hebun
+
+Hebun defines:
+
+what exists  
+
+Zanabun defines:
+
+how we know what exists  
+
+---
+
+9. Relation to Mabun
+
+Zanabun produces knowledge  
+Mabun organizes its application  
+
+---
+
+10. Relation to Rasterast
+
+Rasterast tests knowledge:
+
+Is it coherent?
+
+---
+
+11. Failure Condition
+
+If validation fails:
+
+- knowledge becomes ideology  
+- perception replaces reality  
+- system becomes unstable  
+
+---
+
+12. Final Conclusion
+
+Zanabun is not about collecting data.
+
+It is about validating reality.
+
+Only validated knowledge
+can support a stable system.
+
