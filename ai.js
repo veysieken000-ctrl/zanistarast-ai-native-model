@@ -35,9 +35,9 @@ function clearLastFollowup() {
 }
 
 function detectTurkish(text) {
-  const lower = text.toLowerCase();
+  const lower = String(text || "").toLowerCase();
   return /[çğıöşü]/.test(lower) ||
-    /\b(nedir|neden|nasıl|ve|ile|göre|insan|medeniyet|ahlak|varlık|zaman)\b/.test(lower);
+    /\b(nedir|neden|nasıl|ve|ile|göre|insan|medeniyet|ahlak|varlık|zaman|uygarlık|bilgi)\b/.test(lower);
 }
 
 function escapeHtml(str) {
@@ -68,88 +68,111 @@ function clearAI() {
   clearLastFollowup();
 }
 
+function getTopicType(question) {
+  const q = String(question || "").toLowerCase();
+
+  if (q.includes("hebun") || q.includes("hebûn")) return "hebun";
+  if (q.includes("zanabun") || q.includes("zanabûn")) return "zanabun";
+  if (q.includes("mabun") || q.includes("mabûn")) return "mabun";
+  if (q.includes("rasterast")) return "rasterast";
+  if (q.includes("rabun") || q.includes("rabûn")) return "rabun";
+  if (q.includes("newroza") || q.includes("medeniyet") || q.includes("uygarlık") || q.includes("civilization")) return "civilization";
+  if (q.includes("fitrat") || q.includes("fıtrat") || q.includes("ahlak") || q.includes("ethics")) return "fitrah_ethics";
+  if (q.includes("zanistarast")) return "zanistarast";
+  if (q.includes("zaman") || q.includes("time")) return "time";
+  if (q.includes("jeoloji") || q.includes("geology")) return "geology";
+  if (q.includes("felsefe") || q.includes("philosophy")) return "philosophy";
+  if (q.includes("matematik") || q.includes("formula") || q.includes("formül")) return "math";
+  if (q.includes("insanlık tarihi") || q.includes("human history")) return "human_history";
+  if (q.includes("varlık tarihi") || q.includes("history of existence")) return "existence_history";
+
+  return "general";
+}
+
 function buildFollowups(question, answer) {
-  const q = question.toLowerCase();
+  const type = getTopicType(question);
   const isTR = detectTurkish(question) || detectTurkish(answer);
   const make = (tr, en) => (isTR ? tr : en);
 
-  if (q.includes("hebun") || q.includes("hebûn")) {
-    return [
+  const followupMap = {
+    hebun: [
       make("Hebûn'u daha derin ontolojik olarak açıkla.", "Explain Hebûn in deeper ontological terms."),
       make("Hebûn'u klasik ontolojiyle karşılaştır.", "Compare Hebûn with classical ontology."),
       make("Hebûn'un insan anlayışına etkisini açıkla.", "Explain the effect of Hebûn on the human model.")
-    ];
-  }
-
-  if (q.includes("zanabun") || q.includes("zanabûn")) {
-    return [
+    ],
+    zanabun: [
       make("Zanabûn'da doğrulama nasıl çalışır?", "How does validation work in Zanabûn?"),
       make("Zanabûn'u pozitivist bilim anlayışıyla karşılaştır.", "Compare Zanabûn with positivist science."),
       make("Zanabûn'un bilgi teorisini derinleştir.", "Deepen the knowledge theory of Zanabûn.")
-    ];
-  }
-
-  if (q.includes("mabun") || q.includes("mabûn")) {
-    return [
+    ],
+    mabun: [
       make("Mabûn'u kapitalizmle karşılaştır.", "Compare Mabûn with capitalism."),
       make("Mabûn'da ekonomi ve sorumluluk ilişkisini açıkla.", "Explain the relation between economy and responsibility in Mabûn."),
       make("Mabûn'un medeniyet üzerindeki etkisini açıkla.", "Explain Mabûn's impact on civilization.")
-    ];
-  }
-
-  if (q.includes("rasterast")) {
-    return [
+    ],
+    rasterast: [
       make("Rasterast'ta tutarlılık filtresini açıkla.", "Explain the consistency filter in Rasterast."),
       make("Rasterast'ı klasik bilimsel yöntemle karşılaştır.", "Compare Rasterast with the classical scientific method."),
       make("Rasterast'ın hata eleme mantığını açıkla.", "Explain Rasterast's error-elimination logic.")
-    ];
-  }
-
-  if (q.includes("rabun") || q.includes("rabûn")) {
-    return [
+    ],
+    rabun: [
       make("Rabûn yönetim modelini doğa düzeniyle ilişkilendir.", "Relate the Rabûn governance model to the order of nature."),
       make("Rabûn'u modern devlet yapılarıyla karşılaştır.", "Compare Rabûn with modern state structures."),
       make("Rabûn modelinde adaletin yerini açıkla.", "Explain the place of justice in the Rabûn model.")
-    ];
-  }
-
-  if (q.includes("newroza") || q.includes("medeniyet") || q.includes("civilization")) {
-    return [
+    ],
+    civilization: [
       make("Newroza Kawa uygarlığının temel ilkelerini açıkla.", "Explain the core principles of Newroza Kawa Civilization."),
       make("Medeniyetin çöküş ve yeniden inşa mantığını açıkla.", "Explain the collapse and reconstruction logic of civilization."),
       make("Bu konuyu Zanistarast sentezi içinde derinleştir.", "Deepen this within the Zanistarast synthesis.")
-    ];
-  }
-
-  if (q.includes("fitrah") || q.includes("fıtrat") || q.includes("ahlak") || q.includes("ethics")) {
-    return [
+    ],
+    fitrah_ethics: [
       make("Fıtrat ve ahlak çağını sistematik olarak açıkla.", "Explain the Age of Fitrah and Ethics systematically."),
       make("Fıtrat ile insan doğası ilişkisini açıkla.", "Explain the relation between fitrah and human nature."),
       make("Ahlakın neden yapısal zorunluluk olduğunu açıkla.", "Explain why ethics is a structural necessity.")
-    ];
-  }
-
-  if (q.includes("zaman") || q.includes("time")) {
-    return [
+    ],
+    zanistarast: [
+      make("Zanistarast bilimsel sentezini katmanlı olarak açıkla.", "Explain the Zanistarast scientific synthesis in layered form."),
+      make("Zanistarast'ı modern bilim anlayışıyla karşılaştır.", "Compare Zanistarast with modern scientific thought."),
+      make("Zanistarast'ın medeniyet hedefini açıkla.", "Explain the civilizational aim of Zanistarast.")
+    ],
+    time: [
       make("Zamanı Zanistarast bilimsel sentezine göre açıkla.", "Explain time through the Zanistarast scientific synthesis."),
       make("Zaman ile varlık ilişkisini açıkla.", "Explain the relation between time and existence."),
       make("Zamanın medeniyet üzerindeki etkisini açıkla.", "Explain the impact of time on civilization.")
-    ];
-  }
-
-  if (q.includes("jeoloji") || q.includes("geology")) {
-    return [
+    ],
+    geology: [
       make("Jeolojiyi katmanlı gerçeklik modeline göre açıkla.", "Explain geology according to the layered model of reality."),
       make("Jeoloji ile varlık tarihi ilişkisini açıkla.", "Explain the relation between geology and the history of existence."),
       make("Jeolojinin insanlık tarihine etkisini açıkla.", "Explain geology’s effect on human history.")
-    ];
-  }
+    ],
+    philosophy: [
+      make("Felsefeyi Zanistarast çerçevesinde yeniden açıkla.", "Re-explain philosophy within the Zanistarast framework."),
+      make("Bu konuyu klasik felsefeyle karşılaştır.", "Compare this with classical philosophy."),
+      make("Felsefenin ontoloji ve epistemolojiyle bağını açıkla.", "Explain philosophy's relation to ontology and epistemology.")
+    ],
+    math: [
+      make("Matematik formüllerini sistematik olarak açıkla.", "Explain the mathematical formulas systematically."),
+      make("K/T oranını ayrıntılı açıkla.", "Explain the K/T ratio in detail."),
+      make("Bu formüllerin boyutsal açılımdaki rolünü açıkla.", "Explain the role of these formulas in dimensional expansion.")
+    ],
+    human_history: [
+      make("İnsanlık tarihini boyutsal modele göre açıkla.", "Explain human history according to the dimensional model."),
+      make("İnsanlık tarihini medeniyet açısından derinleştir.", "Deepen human history in civilizational terms."),
+      make("İnsanlık tarihindeki kırılma noktalarını açıkla.", "Explain the breakpoints in human history.")
+    ],
+    existence_history: [
+      make("Varlık tarihini boyutsal sistemle açıkla.", "Explain the history of existence through the dimensional system."),
+      make("Varlık tarihini jeoloji ve biyolojiyle ilişkilendir.", "Relate the history of existence to geology and biology."),
+      make("Varlık tarihinin insan ortaya çıkışına nasıl bağlandığını açıkla.", "Explain how the history of existence leads to the emergence of the human.")
+    ],
+    general: [
+      make("Bunu daha derin açıkla.", "Explain this more deeply."),
+      make("Bunu Zanistarast bilimsel sentezine göre genişlet.", "Expand this according to the Zanistarast scientific synthesis."),
+      make("Bunun medeniyet boyutunu açıkla.", "Explain the civilizational dimension of this.")
+    ]
+  };
 
-  return [
-    make("Bunu daha derin açıkla.", "Explain this more deeply."),
-    make("Bunu Zanistarast bilimsel sentezine göre genişlet.", "Expand this according to the Zanistarast scientific synthesis."),
-    make("Bunun medeniyet boyutunu açıkla.", "Explain the civilizational dimension of this.")
-  ];
+  return followupMap[type] || followupMap.general;
 }
 
 function renderFollowupButtons(question, answer) {
@@ -183,7 +206,7 @@ function renderFollowupButtons(question, answer) {
 }
 
 function normalizeContinuation(input) {
-  const lower = input.trim().toLowerCase();
+  const lower = String(input || "").trim().toLowerCase();
   const last = getLastFollowup();
 
   const continuationWords = [
@@ -241,7 +264,7 @@ async function askAI(customInput = null) {
     if (customInput === null) {
       inputEl.value = "";
     }
-  } catch (error) {
+  } catch (_error) {
     output.innerHTML = "<p>Arka sunucuya ulaşamıyorum.</p>";
   } finally {
     loading.style.display = "none";
