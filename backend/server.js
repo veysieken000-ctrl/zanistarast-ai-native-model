@@ -189,6 +189,115 @@ RETRIEVED KNOWLEDGE:
 ${ragContext || "No retrieved context found."}
 `.trim();
 }
+function normalizeText(value) {
+  return String(value || "").toLowerCase();
+}
+
+function isWeakSystemAnswer(question, answer) {
+  const q = normalizeText(question);
+  const a = normalizeText(answer);
+
+  if (!a || a.length < 220) return true;
+
+  const mustHaveGeneral = [
+    "katman",
+    "mekanizma",
+    "ilişki",
+    "sonuç"
+  ];
+
+  const missingGeneral = mustHaveGeneral.filter((x) => !a.includes(x));
+  if (missingGeneral.length >= 2) return true;
+
+  if (q.includes("rabûn") || q.includes("rabun") || q.includes("yönetim") || q.includes("governance")) {
+    const mustHave = ["hüküm", "ahlak", "ekonomi"];
+    if (mustHave.some((x) => !a.includes(x))) return true;
+  }
+
+  if (q.includes("hebûn") || q.includes("hebun")) {
+    const mustHave = ["katman", "varlık", "fizik"];
+    if (mustHave.some((x) => !a.includes(x))) return true;
+  }
+
+  if (q.includes("zanabûn") || q.includes("zanabun")) {
+    const mustHave = ["doğrulama", "bilgi", "gerçek"];
+    if (mustHave.some((x) => !a.includes(x))) return true;
+  }
+
+  if (
+    q.includes("fizik") ||
+    q.includes("biyoloji") ||
+    q.includes("zihin") ||
+    q.includes("science") ||
+    q.includes("bilim")
+  ) {
+    const mustHaveAny = [
+      "proton",
+      "nötron",
+      "neutron",
+      "elektron",
+      "electron",
+      "hücre",
+      "cell",
+      "zihin",
+      "mind"
+    ];
+    const foundCount = mustHaveAny.filter((x) => a.includes(x)).length;
+    if (foundCount < 3) return true;
+  }
+
+  return false;
+}
+
+function buildRepairSystemPrompt(question, ragContext, firstAnswer) {
+  const wantsTurkish = detectTurkish(question);
+
+  return `
+You are Zanistarast AI.
+
+Your first answer was too weak, too generic, or structurally incomplete.
+
+You must now REWRITE it as a stronger SYSTEMIC answer.
+
+MANDATORY REWRITE RULES:
+1. Keep the answer grounded in the retrieved knowledge.
+2. Remove generic phrasing.
+3. Explicitly show system structure.
+4. Use these sections clearly:
+   - Katman / Boyut
+   - Mekanizma
+   - İlişki
+   - Yapısal Sonuç
+5. If the question is about Rabun/Rabûn, explicitly include:
+   - Hüküm Meclisi
+   - Ahlak Meclisi
+   - Ekonomi Meclisi
+6. If the question is about Hebun/Hebûn, explicitly include:
+   - layered being
+   - physical law is not violated
+   - upper layer includes lower layer
+7. If the question is about science / physics / biology / mind, explicitly include:
+   - proton / neutron / electron / energy
+   - cell / organism / biological order
+   - perception / memory / judgment / meaning
+   - transition logic between layers
+8. Do not be vague.
+9. Do not repeat empty slogans.
+10. Make the answer feel like a real structural explanation.
+
+LANGUAGE:
+${wantsTurkish ? "Write fully in Turkish." : "Write fully in English."}
+
+QUESTION:
+${question}
+
+RETRIEVED KNOWLEDGE:
+${ragContext || "No retrieved context found."}
+
+WEAK FIRST ANSWER:
+${firstAnswer || ""}
+`.trim();
+}
 
 
 app.get("/", (_req, res) => {
