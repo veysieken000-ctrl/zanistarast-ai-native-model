@@ -290,6 +290,42 @@ ${wantsTurkish ? "Write fully in Turkish." : "Write fully in English."}
 
 QUESTION:
 ${question}
+STRUCTURAL ENFORCEMENT (MANDATORY):
+
+The answer MUST include the following structural layers when relevant:
+
+1. PHYSICAL LAYER:
+- Must mention matter structure (atoms, proton, neutron, electron, energy)
+- Must explain physical foundation if the topic relates to existence
+
+2. BIOLOGICAL LAYER:
+- Must explain cellular systems, organism structure, or biological emergence
+- Must connect physical → biological transition
+
+3. MENTAL LAYER:
+- Must explain perception, cognition, or neural systems
+- Must connect biological → mental transition
+
+4. CIVILIZATION / RABUN LAYER:
+- Must explain governance, ethics, economy if question is societal
+- MUST include:
+  - Hüküm Meclisi
+  - Ahlak Meclisi
+  - Ekonomi Meclisi
+
+5. ONTOLOGICAL RULE:
+- Higher layers must NOT violate physical laws
+- Must explicitly respect layer dependency
+
+FAIL CONDITIONS (IMPORTANT):
+- If answer skips layers → answer is incomplete
+- If answer is shallow → regenerate deeper explanation
+- If structure is missing → rebuild answer
+
+OUTPUT STYLE:
+- Use structured explanation
+- Prefer depth over short answers
+- Show layer-to-layer transitions clearly
 
 RETRIEVED KNOWLEDGE:
 ${ragContext || "No retrieved context found."}
