@@ -7,6 +7,7 @@ import { fileURLToPath } from "url";
 import buildChunksRoute from "./routes/build_chunks.js";
 import exportJsonlRoute from "./routes/export_jsonl.js";
 import ragInfoRoute from "./routes/rag_info.js";
+import ragSearchRoute from "./routes/rag_search.js";
 
 dotenv.config();
 
@@ -165,11 +166,12 @@ function normalizeContinuation(input, history) {
   });
 });
   
-app.use("/api", buildChunksRoute);
-app.post("/api/ask", async (req, res) => {
-app.get("/", (_req, res) => {
-app.use("/api", exportJsonlRoute);
-app.use("/api", ragInfoRoute);
+    app.use("/api", buildChunksRoute);
+    app.post("/api/ask", async (req, res) => {
+    app.get("/", (_req, res) => {
+    app.use("/api", exportJsonlRoute);
+    app.use("/api", ragInfoRoute);
+    app.use("/api", ragSearchRoute);   
     try {
     const incomingQuestion = req.body?.question || "";
     const history = Array.isArray(req.body?.history) ? req.body.history : [];
