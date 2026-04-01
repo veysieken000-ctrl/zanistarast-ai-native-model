@@ -1,0 +1,125 @@
+ZANISTARAST KNOWLEDGE STRUCTURE RULES
+
+PURPOSE:
+This file defines how all knowledge files must be organized for proper RAG processing.
+
+---
+
+FOLDER_STRUCTURE:
+
+All knowledge must be stored inside:
+
+backend/knowledge/
+
+Subfolders must follow this structure:
+
+00_core/
+01_ontology/
+02_epistemology/
+03_method/
+
+10_physics/
+11_geology/
+12_biology/
+13_mind/
+14_ethics/
+
+20_history/
+21_civilization/
+
+99_meta/
+
+---
+
+FILE_NAMING_RULES:
+
+Each file must follow:
+
+[number]_[name].txt
+
+Examples:
+00_core_system.txt
+01_hebun_ontology.txt
+02_zanabun_epistemology.txt
+11_geological_system.txt
+12_biological_system.txt
+
+Rules:
+- lowercase only
+- no spaces
+- use underscore "_"
+- numeric ordering required
+
+---
+
+CONTENT_STRUCTURE (MANDATORY):
+
+Each file must include:
+
+TITLE:
+SECTION:
+DOMAIN:
+LAYER:
+TOPICS:
+SUMMARY:
+KEYWORDS:
+CONTENT:
+
+---
+
+EXAMPLE:
+
+TITLE: Hebun Ontology
+SECTION: Ontology
+DOMAIN: ontology
+LAYER: D1-D5
+TOPICS: being, layered existence, structural reality
+SUMMARY: Defines existence as layered and structured.
+KEYWORDS: hebun, ontology, existence, structure, reality
+
+CONTENT:
+Hebun defines existence as a layered structure...
+
+---
+
+CHUNKING_PREPARATION:
+
+Files must be written in structured paragraphs.
+
+Avoid:
+- extremely long blocks
+- unstructured text
+- mixed topics in same section
+
+Preferred:
+- short sections
+- clear transitions
+- single concept per block
+
+---
+
+METADATA_REQUIREMENTS:
+
+Each file must clearly indicate:
+
+- which layer it belongs to (D1–D5)
+- which domain it belongs to
+- related concepts
+
+---
+
+STRICT_RULE:
+
+If a file does not follow this structure:
+→ it should NOT be included in RAG processing
+
+---
+
+FINAL_NOTE:
+
+This structure ensures:
+
+- efficient chunking
+- accurate retrieval
+- consistent AI reasoning
+
