@@ -1,0 +1,86 @@
+ZANISTARAST KNOWLEDGE FILE TEMPLATE
+
+PURPOSE:
+This file defines the mandatory template for every AI-readable knowledge document.
+
+==================================================
+MANDATORY TEMPLATE
+==================================================
+
+TITLE:
+[Write the exact title of the concept]
+
+SECTION:
+[Write the main section, e.g. Ontology / Biology / History / Civilization]
+
+DOMAIN:
+[Write the domain, e.g. ontology, epistemology, geology, biology, mind, ethics, history]
+
+LAYER:
+[Write the main dimensional layer, e.g. D1 / D2 / D3 / D4 / D5 / D1-D5]
+
+TOPICS:
+[Write comma-separated key topics]
+
+SUMMARY:
+[Write a 1–3 sentence summary of the concept]
+
+KEYWORDS:
+[Write comma-separated keywords for retrieval]
+
+CONTENT:
+[Write the full structured content below this line]
+
+==================================================
+WRITING RULES
+==================================================
+
+1. Every file must use clear structure.
+2. Every file must focus on one main concept only.
+3. The content must be written for AI retrieval, not for literary reading.
+4. Avoid unnecessary repetition.
+5. Prefer short structured sections over long mixed paragraphs.
+6. Use explicit concept relations where possible.
+7. Define formulas clearly if present.
+8. Keep terminology consistent across files.
+
+==================================================
+RECOMMENDED INTERNAL CONTENT ORDER
+==================================================
+
+1. Definition
+2. Core principle
+3. Structural role
+4. Layer relation
+5. Transition logic
+6. Failure condition
+7. Final conclusion
+
+==================================================
+EXAMPLE TEMPLATE
+==================================================
+
+TITLE:
+Hebun Ontology
+
+SECTION:
+Ontology
+
+DOMAIN:
+ontology
+
+LAYER:
+D1-D5
+
+TOPICS:
+being, structure, layered existence, reality
+
+SUMMARY:
+Hebun defines existence as a layered and structured reality. It explains how higher levels emerge without violating lower-level laws.
+
+KEYWORDS:
+hebun, ontology, being, existence, layered structure, reality
+
+CONTENT:
+Hebun is the ontological foundation of the Zanistarast system...
+
