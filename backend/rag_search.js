@@ -76,21 +76,16 @@ export function searchKnowledge(query, limit = 5) {
 export function buildRagContext(query, limit = 5) {
   const results = searchKnowledge(query, limit);
 
-  const context = results
-    .map(
-      (item) =>
-        `### CHUNK: ${item.id}
-TITLE: ${item.title}
-SECTION: ${item.section}
-DOMAIN: ${item.domain}
-LAYER: ${item.layer}
-SUMMARY: ${item.summary}
-
+const context = results.map((r, i) => {
+  return `
+[CHUNK ${i + 1}]
+TITLE: ${r.title}
+DOMAIN: ${r.domain}
 CONTENT:
-${item.content}`
-    )
-    .join("\n\n");
-
+${r.content}
+`;
+}).join("\n\n");
+  
   return {
     results,
     context
