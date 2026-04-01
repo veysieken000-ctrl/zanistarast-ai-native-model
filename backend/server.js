@@ -5,6 +5,7 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import buildChunksRoute from "./routes/build_chunks.js";
+import exportJsonlRoute from "./routes/export_jsonl.js";
 
 dotenv.config();
 
@@ -156,15 +157,17 @@ function normalizeContinuation(input, history) {
   return candidate || input;
 }
 
-app.get("/", (_req, res) => {
+
   res.json({
     status: "ok",
     message: "zanistarast backend is running"
   });
 });
-app.use("/api", buildChunksRoute);
+  app.use("/api", buildChunksRoute);
 
-app.post("/api/ask", async (req, res) => {
+  app.post("/api/ask", async (req, res) => {
+  app.get("/", (_req, res) => {
+  app.use("/api", exportJsonlRoute);
   try {
     const incomingQuestion = req.body?.question || "";
     const history = Array.isArray(req.body?.history) ? req.body.history : [];
