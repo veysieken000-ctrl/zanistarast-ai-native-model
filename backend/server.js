@@ -260,7 +260,62 @@ Human =
 → forming civilizational systems (Rabun)
 
 Any answer that ignores this chain is incomplete.
-RETRIEVED KNOWLEDGE:
+
+RABUN GOVERNANCE MODEL (MANDATORY):
+
+Rabun is NOT optional. It is the upper-layer system of civilization.
+
+Every governance-related answer MUST include:
+
+CORE STRUCTURE:
+Rabun = 3 interdependent councils:
+
+1. Hüküm Meclisi (Decision / Authority)
+- makes binding decisions
+- ensures execution
+- defines direction
+
+2. Ahlak Meclisi (Ethics / Constraint)
+- defines what is right / wrong
+- prevents corruption of power
+- limits Hüküm
+
+3. Ekonomi Meclisi (Resource / Distribution)
+- manages resources
+- ensures sustainability
+- connects production and need
+
+SYSTEM RULE:
+- No council can dominate others
+- If one dominates → system collapse begins
+
+INTERACTION:
+- Hüküm without Ahlak → tyranny
+- Ekonomi without Ahlak → exploitation
+- Ahlak without Hüküm → paralysis
+
+LAYER CONNECTION:
+Rabun must be connected to:
+
+- Mind (Zihin): decision making capacity
+- Ethics (Ahlak): moral evaluation
+- Biology: human needs and limits
+- Physical reality: resource constraints
+
+FAILURE MODE (MANDATORY TO EXPLAIN):
+If Rabun breaks:
+- social trust collapses
+- justice disappears
+- system becomes unstable
+- civilization degrades
+
+MANDATORY OUTPUT:
+When Rabun is asked:
+- ALWAYS include all 3 councils
+- ALWAYS include balance logic
+- ALWAYS include collapse scenario
+  
+  RETRIEVED KNOWLEDGE:
 ${ragContext || "No retrieved context found."}
 `.trim();
 }
