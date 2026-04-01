@@ -4,6 +4,7 @@ import cors from "cors";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import buildChunksRoute from "./routes/build_chunks.js";
 
 dotenv.config();
 
@@ -161,6 +162,7 @@ app.get("/", (_req, res) => {
     message: "zanistarast backend is running"
   });
 });
+app.use("/api", buildChunksRoute);
 
 app.post("/api/ask", async (req, res) => {
   try {
