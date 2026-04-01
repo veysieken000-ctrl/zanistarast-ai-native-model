@@ -1,0 +1,153 @@
+TITLE:
+Mabun Economic-Responsibility Model
+
+SECTION:
+Method
+
+DOMAIN:
+method
+
+LAYER:
+D1-D5
+
+TOPICS:
+economy, responsibility, resource flow, structure, balance, system sustainability
+
+SUMMARY:
+Mabun defines economy as the structured flow of resources under responsibility. It establishes that sustainable systems require balanced distribution, accountability, and coherence between knowledge and action.
+
+KEYWORDS:
+mabun, economy, responsibility, resource flow, balance, system, sustainability, distribution
+
+CONTENT:
+
+1. Definition
+
+Mabun is the structural-economic layer of the Zanistarast system.
+
+It defines economy not as money,
+but as the flow of resources governed by responsibility.
+
+---
+
+2. Core Principle
+
+Economy = f(Knowledge, Responsibility)
+
+Without knowledge:
+→ resources are misused
+
+Without responsibility:
+→ system collapses
+
+---
+
+3. Structural Role
+
+Mabun:
+
+- distributes resources  
+- balances production and consumption  
+- connects knowledge to action  
+
+---
+
+4. Resource Flow Model
+
+All systems depend on flow:
+
+- energy  
+- material  
+- information  
+
+If flow is blocked:
+→ system weakens  
+
+If flow is unbalanced:
+→ system destabilizes  
+
+---
+
+5. Responsibility Principle
+
+Every actor in the system:
+
+- consumes resources  
+- affects structure  
+
+Therefore:
+
+→ every actor must carry responsibility  
+
+---
+
+6. Balance Rule
+
+Healthy system requires:
+
+- no extreme accumulation  
+- no extreme scarcity  
+
+Imbalance leads to:
+
+- inequality  
+- instability  
+- collapse  
+
+---
+
+7. Economic Failure Model
+
+System fails when:
+
+- resources concentrate excessively  
+- responsibility disappears  
+- consumption exceeds regeneration  
+
+---
+
+8. Relation to Hebun
+
+Hebun provides structure  
+
+Mabun operates within that structure  
+
+---
+
+9. Relation to Zanabun
+
+Zanabun provides knowledge  
+
+Mabun applies knowledge in real systems  
+
+---
+
+10. Relation to Rasterast
+
+Rasterast evaluates:
+
+Is the system balanced?
+
+---
+
+11. Sustainability Condition
+
+For system survival:
+
+Flow must remain:
+
+- continuous  
+- balanced  
+- accountable  
+
+---
+
+12. Final Conclusion
+
+Mabun is not about wealth.
+
+It is about balance.
+
+Only responsible flow
+creates sustainable systems.
+
