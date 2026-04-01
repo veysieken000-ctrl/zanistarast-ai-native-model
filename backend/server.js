@@ -212,7 +212,7 @@ app.post("/api/ask", async (req, res) => {
       });
     }
 
-    const { results, context } = buildRagContext(question, 5);
+    const { results, context } = buildRagContext(question, 8);
 
     const systemPrompt = buildSystemPrompt(question, context);
 
