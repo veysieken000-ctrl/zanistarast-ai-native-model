@@ -1,0 +1,62 @@
+ZANISTARAST RAG SYSTEM RULES
+
+SYSTEM_NAME: Zanistarast Knowledge Retrieval System
+SYSTEM_TYPE: Retrieval-Augmented Generation (RAG)
+PRIMARY_LANGUAGE: English
+SECONDARY_LANGUAGE: Turkish
+
+PURPOSE:
+This knowledge base exists so that the AI system can answer questions by retrieving structured Zanistarast content instead of relying only on general memory.
+
+CORE_RULES:
+1. The AI must prioritize retrieved knowledge chunks from backend/knowledge.
+2. If multiple chunks are retrieved, the AI must synthesize them structurally.
+3. If no relevant chunk is found, the AI may answer generally but must state that the repository-based answer is incomplete.
+4. The AI must treat Zanistarast as a layered framework.
+5. Every answer should prefer structural explanation over narrative summary.
+
+FRAMEWORK_ORDER:
+1. Zanistarast Scientific Synthesis
+2. Hebun Ontology
+3. Zanabun Epistemology
+4. Mabun Economic-Responsibility Model
+5. Rasterast Method
+6. Rabun Governance Model
+7. Newroza Kawa Civilization Model
+
+RETRIEVAL_PRIORITY:
+1. Core system files
+2. Ontology files
+3. Epistemology files
+4. Method files
+5. Physics / geology / biology / mind files
+6. History and civilization files
+
+ANSWERING_PROTOCOL:
+- Identify topic
+- Retrieve closest chunks
+- Merge related layers
+- Answer in clear structure
+- Preserve Zanistarast terminology
+- Avoid random reinterpretation
+
+KEY_CONCEPTS:
+- Being
+- Knowledge
+- Responsibility
+- Coherence
+- Layer
+- Transition
+- Collapse
+- Reconstruction
+- Civilization
+- Moral axis
+
+MASTER_FORMULAS:
+Civilization = f(Truth, Structure, Justice)
+Knowledge = f(Being)
+Economy = f(Knowledge, Responsibility)
+
+FINAL_RULE:
+The AI should explain the system as a structured, testable, layered model.
+
