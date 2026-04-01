@@ -1,0 +1,152 @@
+TITLE:
+Rasterast Method
+
+SECTION:
+Method
+
+DOMAIN:
+method
+
+LAYER:
+D1-D5
+
+TOPICS:
+coherence, validation, method, consistency, error detection, system stability
+
+SUMMARY:
+Rasterast is the coherence-based validation method of the Zanistarast system. It evaluates whether a concept, model, or system is consistent across ontology, epistemology, structure, and outcomes.
+
+KEYWORDS:
+rasterast, method, coherence, consistency, validation, system, error detection
+
+CONTENT:
+
+1. Definition
+
+Rasterast is the methodological layer of the Zanistarast system.
+
+It defines how systems are evaluated
+in terms of coherence and consistency.
+
+---
+
+2. Core Principle
+
+Validity = Coherence
+
+If a system is not coherent:
+→ it is invalid
+
+---
+
+3. Evaluation Model
+
+Rasterast evaluates four layers:
+
+1. Ontology (Hebun)  
+2. Epistemology (Zanabun)  
+3. Structure (Mabun)  
+4. Outcome (Result)
+
+---
+
+4. Core Formula
+
+Validity(X) = Coherence(Ontology, Epistemology, Structure, Outcome)
+
+---
+
+5. Coherence Rules
+
+A system is valid only if:
+
+- it matches reality (ontology)  
+- it is correctly known (epistemology)  
+- it is structurally balanced (Mabun)  
+- it produces stable results  
+
+---
+
+6. Error Detection
+
+A system is invalid if:
+
+- it contradicts reality  
+- it contains internal inconsistencies  
+- it produces unstable outcomes  
+
+---
+
+7. Critical Heuristics
+
+Rasterast defines:
+
+If narrative > structure  
+→ reject  
+
+If structure > reality  
+→ collapse  
+
+Only coherence survives  
+
+---
+
+8. Structural Filtering
+
+Rasterast filters:
+
+- false theories  
+- inconsistent systems  
+- unstable models  
+
+---
+
+9. Relation to Hebun
+
+Hebun defines existence  
+
+Rasterast checks:
+
+Is the model aligned with existence?
+
+---
+
+10. Relation to Zanabun
+
+Zanabun defines knowledge  
+
+Rasterast checks:
+
+Is the knowledge valid?
+
+---
+
+11. Relation to Mabun
+
+Mabun defines structure  
+
+Rasterast checks:
+
+Is the structure balanced?
+
+---
+
+12. Failure Condition
+
+If coherence is lost:
+
+- system becomes unstable  
+- contradictions increase  
+- collapse becomes inevitable  
+
+---
+
+13. Final Conclusion
+
+Rasterast is not a theory.
+
+It is a filter.
+
+Only coherent systems
+can survive and remain valid.
+
