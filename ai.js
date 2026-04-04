@@ -456,7 +456,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
-
+window.fillPrompt = fillPrompt;
 
 
 
