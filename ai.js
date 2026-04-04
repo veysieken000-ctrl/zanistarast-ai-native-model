@@ -91,10 +91,9 @@ function setAnswerText(text) {
   if (output) output.textContent = text;
 }
 
-function showThinking() {
-  const el = getThinkingEl();
-  if (el) el.classList.remove("hidden");
-}
+showThinking();
+output.innerHTML = "<p>Yanıt hazırlanıyor...</p>";
+await new Promise((resolve) => setTimeout(resolve, 900));
 
 function hideThinking() {
   const el = getThinkingEl();
