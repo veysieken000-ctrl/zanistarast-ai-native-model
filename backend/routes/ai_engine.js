@@ -9,7 +9,15 @@ function detectTurkish(text) {
     /\b(nedir|neden|nasıl|ve|ile|göre|insan|medeniyet|ahlak|varlık|zaman)\b/.test(lower);
 }
 
-function buildInterpretPrompt(question, context) {
+function safeLimit(value, fallback = 8) {
+  const n = Number(value);
+  if (!Number.isFinite(n)) return fallback;
+  if (n < 1) return 1;
+  if (n > 12) return 12;
+  return n;
+}
+
+function buildInterpretPrompt(question, ragContext) {
   const wantsTurkish = detectTurkish(question);
 
   return `
@@ -40,11 +48,11 @@ QUESTION:
 ${question}
 
 RETRIEVED KNOWLEDGE:
-${context || "No retrieved context found."}
+${ragContext || "No retrieved context found."}
 `.trim();
 }
 
-function buildEvaluatePrompt(question, context) {
+function buildEvaluatePrompt(question, ragContext) {
   const wantsTurkish = detectTurkish(question);
 
   return `
@@ -84,11 +92,11 @@ QUESTION:
 ${question}
 
 RETRIEVED KNOWLEDGE:
-${context || "No retrieved context found."}
+${ragContext || "No retrieved context found."}
 `.trim();
 }
 
-async function callOpenAI(systemPrompt, userPrompt) {
+async function callOpenAI(systemPrompt, userPrompt, temperature = 0.3) {
   if (!process.env.OPENAI_API_KEY) {
     return {
       ok: false,
@@ -104,7 +112,7 @@ async function callOpenAI(systemPrompt, userPrompt) {
     },
     body: JSON.stringify({
       model: "gpt-4o-mini",
-      temperature: 0.3,
+      temperature,
       messages: [
         {
           role: "system",
@@ -140,7 +148,7 @@ async function callOpenAI(systemPrompt, userPrompt) {
 router.post("/query", (req, res) => {
   try {
     const question = String(req.body?.question || "").trim();
-    const limit = Number(req.body?.limit || 8);
+    const limit = safeLimit(req.body?.limit, 8);
 
     if (!question) {
       return res.status(400).json({
@@ -175,7 +183,7 @@ router.post("/query", (req, res) => {
 router.post("/interpret", async (req, res) => {
   try {
     const question = String(req.body?.question || "").trim();
-    const limit = Number(req.body?.limit || 8);
+    const limit = safeLimit(req.body?.limit, 8);
 
     if (!question) {
       return res.status(400).json({
@@ -184,8 +192,22 @@ router.post("/interpret", async (req, res) => {
     }
 
     const { results, context } = buildRagContext(question, limit);
+
+    if (!results.length) {
+      return res.json({
+        mode: "interpret",
+        answer: detectTurkish(question)
+          ? "İlgili knowledge bulunamadı. Önce knowledge tabanına bu konuya ait içerik eklenmeli."
+          : "No relevant knowledge was found. Add this topic into the knowledge base first.",
+        rag: {
+          total: 0,
+          chunks: []
+        }
+      });
+    }
+
     const systemPrompt = buildInterpretPrompt(question, context);
-    const ai = await callOpenAI(systemPrompt, question);
+    const ai = await callOpenAI(systemPrompt, question, 0.3);
 
     if (!ai.ok) {
       return res.status(500).json({
@@ -217,7 +239,7 @@ router.post("/interpret", async (req, res) => {
 router.post("/evaluate", async (req, res) => {
   try {
     const question = String(req.body?.question || "").trim();
-    const limit = Number(req.body?.limit || 8);
+    const limit = safeLimit(req.body?.limit, 8);
 
     if (!question) {
       return res.status(400).json({
@@ -226,8 +248,22 @@ router.post("/evaluate", async (req, res) => {
     }
 
     const { results, context } = buildRagContext(question, limit);
+
+    if (!results.length) {
+      return res.json({
+        mode: "evaluate",
+        answer: detectTurkish(question)
+          ? "Değerlendirme için yeterli knowledge bulunamadı. Bu konu önce knowledge tabanında tanımlanmalı."
+          : "There is not enough knowledge to evaluate this topic. Define it in the knowledge base first.",
+        rag: {
+          total: 0,
+          chunks: []
+        }
+      });
+    }
+
     const systemPrompt = buildEvaluatePrompt(question, context);
-    const ai = await callOpenAI(systemPrompt, question);
+    const ai = await callOpenAI(systemPrompt, question, 0.25);
 
     if (!ai.ok) {
       return res.status(500).json({
@@ -257,3 +293,4 @@ router.post("/evaluate", async (req, res) => {
 });
 
 export default router;
+
