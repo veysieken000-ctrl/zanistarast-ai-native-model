@@ -329,10 +329,37 @@ async function askAI(customInput = null) {
   const output = document.getElementById("ai-output");
   const loading = document.getElementById("ai-loading");
 
-  if (!inputEl || !output || !loading) return;
-
   const rawInput = customInput !== null ? customInput : inputEl.value.trim();
-  const question = normalizeContinuation(rawInput);
+  const question = rawInput;
+
+  if (!question) {
+    output.innerHTML = "Lütfen bir soru yaz.";
+    return;
+  }
+
+  loading.style.display = "inline-flex";
+  output.innerHTML = "Düşünüyor...";
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/ask`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ question })
+    });
+
+    const data = await response.json();
+    const answer = data.answer || "Yanıt alınamadı.";
+
+    output.innerHTML = `<p>${answer}</p>`;
+
+  } catch (error) {
+    output.innerHTML = "Sunucuya ulaşılamıyor.";
+  } finally {
+    loading.style.display = "none";
+  }
+}
 
   if (!question) {
     output.innerHTML = "<p>Please enter a question.</p>";
