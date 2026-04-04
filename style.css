@@ -689,3 +689,27 @@ ai-followups
 ai-followup-buttons id’lerini bozmadım
 mevcut askAI() ve clearAI() çağrılarını da korudum
 
+.start-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.full-link {
+  display: block;
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #f5f7ff;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.2s ease;
+}
+
+.full-link:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.14);
+  transform: translateY(-1px);
+}
+
