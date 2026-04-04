@@ -518,3 +518,174 @@ footer .container {
   font-size: 13px;
   color: var(--muted);
 }
+
+.ai-hero-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.ai-kicker {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  background: rgba(143, 179, 255, 0.14);
+  border: 1px solid rgba(143, 179, 255, 0.28);
+}
+
+.ai-hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.ai-link-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.14);
+  color: #ffffff;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.ai-link-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+}
+
+.ai-link-ai {
+  background: linear-gradient(135deg, rgba(88, 166, 255, 0.28), rgba(88, 166, 255, 0.14));
+}
+
+.ai-link-paper {
+  background: linear-gradient(135deg, rgba(255, 196, 87, 0.28), rgba(255, 196, 87, 0.12));
+}
+
+.ai-link-speech {
+  background: linear-gradient(135deg, rgba(255, 134, 134, 0.28), rgba(255, 134, 134, 0.12));
+}
+
+.ai-link-about {
+  background: linear-gradient(135deg, rgba(122, 231, 191, 0.28), rgba(122, 231, 191, 0.12));
+}
+
+.ai-link-repos {
+  background: linear-gradient(135deg, rgba(186, 140, 255, 0.28), rgba(186, 140, 255, 0.12));
+}
+
+.ai-link-news {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.08));
+}
+
+.ai-section-head {
+  margin-bottom: 14px;
+}
+
+.ask-btn {
+  appearance: none;
+  border: 1px solid rgba(143, 179, 255, 0.35);
+  background: linear-gradient(135deg, rgba(88, 166, 255, 0.36), rgba(88, 166, 255, 0.16));
+  color: #ffffff;
+  border-radius: 999px;
+  padding: 12px 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.ask-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(88, 166, 255, 0.18);
+}
+
+.topic-chip-wrap a.topic-chip {
+  text-decoration: none;
+}
+
+.chip-main {
+  background: rgba(88, 166, 255, 0.14);
+  border-color: rgba(88, 166, 255, 0.30);
+}
+
+.chip-paper {
+  background: rgba(255, 196, 87, 0.14);
+  border-color: rgba(255, 196, 87, 0.30);
+}
+
+.chip-history {
+  background: rgba(122, 231, 191, 0.14);
+  border-color: rgba(122, 231, 191, 0.30);
+}
+
+.chip-compare {
+  background: rgba(186, 140, 255, 0.14);
+  border-color: rgba(186, 140, 255, 0.30);
+}
+
+.chip-ai-link {
+  background: rgba(88, 166, 255, 0.14);
+  border-color: rgba(88, 166, 255, 0.30);
+}
+
+.chip-paper-link {
+  background: rgba(255, 196, 87, 0.14);
+  border-color: rgba(255, 196, 87, 0.30);
+}
+
+.chip-speech-link {
+  background: rgba(255, 134, 134, 0.14);
+  border-color: rgba(255, 134, 134, 0.30);
+}
+
+.chip-about-link {
+  background: rgba(122, 231, 191, 0.14);
+  border-color: rgba(122, 231, 191, 0.30);
+}
+
+.chip-news-link {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.chip-repo-link {
+  background: rgba(186, 140, 255, 0.14);
+  border-color: rgba(186, 140, 255, 0.30);
+}
+
+.ai-thinking-text {
+  margin-left: 10px;
+  font-weight: 600;
+  color: #d7e3ff;
+}
+
+#ai-output p {
+  margin: 0 0 12px;
+}
+
+#ai-output p:last-child {
+  margin-bottom: 0;
+}
+3) Bu neyi düzeltiyor?
+Bu sürüm:
+AI sayfasını daha dolu gösterir
+üstte renkli geçiş butonları ekler
+hızlı konu chip’lerini ayırır
+cevap alanını daha düzenli tutar
+mevcut ai.js ile uyumlu kalır çünkü:
+ai-input
+ai-output
+ai-loading
+ai-followups
+ai-followup-buttons id’lerini bozmadım
+mevcut askAI() ve clearAI() çağrılarını da korudum
+
