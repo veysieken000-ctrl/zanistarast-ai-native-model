@@ -36,15 +36,19 @@ function clearLastFollowup() {
 
 function detectTurkish(text) {
   const lower = String(text || "").toLowerCase();
-  return /[çğıöşü]/.test(lower) ||
-    /\b(nedir|neden|nasıl|ve|ile|göre|insan|medeniyet|ahlak|varlık|zaman|uygarlık|bilgi)\b/.test(lower);
+  return (
+    /[çğıöşü]/.test(lower) ||
+    /\b(nedir|neden|nasıl|ve|ile|göre|insan|medeniyet|ahlak|varlık|zaman|uygarlık|bilgi)\b/.test(lower)
+  );
 }
 
-function escapeHtml(str) {
-  return String(str)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
+function escapeHtml(text) {
+  return String(text || "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
 }
 
 function formatAnswer(text) {
@@ -55,15 +59,22 @@ function formatAnswer(text) {
 
 function fillPrompt(text) {
   const input = document.getElementById("ai-input");
+  if (!input) return;
   input.value = text;
   input.focus();
 }
 
 function clearAI() {
-  document.getElementById("ai-input").value = "";
-  document.getElementById("ai-output").innerHTML = "Ask a question to begin.";
-  document.getElementById("ai-followups").style.display = "none";
-  document.getElementById("ai-followup-buttons").innerHTML = "";
+  const input = document.getElementById("ai-input");
+  const output = document.getElementById("ai-output");
+  const followups = document.getElementById("ai-followups");
+  const followupButtons = document.getElementById("ai-followup-buttons");
+
+  if (input) input.value = "";
+  if (output) output.innerHTML = "Ask a question to begin.";
+  if (followups) followups.style.display = "none";
+  if (followupButtons) followupButtons.innerHTML = "";
+
   localStorage.removeItem(CHAT_HISTORY_KEY);
   clearLastFollowup();
 }
@@ -76,29 +87,52 @@ function getTopicType(question) {
   if (q.includes("mabun") || q.includes("mabûn")) return "mabun";
   if (q.includes("rasterast")) return "rasterast";
   if (q.includes("rabun") || q.includes("rabûn")) return "rabun";
-  if (q.includes("newroza") || q.includes("medeniyet") || q.includes("uygarlık") || q.includes("civilization")) return "civilization";
-  if (q.includes("fitrat") || q.includes("fıtrat") || q.includes("ahlak") || q.includes("ethics")) return "fitrah_ethics";
+  if (
+    q.includes("newroza") ||
+    q.includes("medeniyet") ||
+    q.includes("uygarlık") ||
+    q.includes("civilization")
+  ) return "civilization";
+  if (
+    q.includes("fıtrat") ||
+    q.includes("fitrat") ||
+    q.includes("ahlak") ||
+    q.includes("ethics")
+  ) return "fitrah_ethics";
   if (q.includes("zanistarast")) return "zanistarast";
   if (q.includes("zaman") || q.includes("time")) return "time";
   if (q.includes("jeoloji") || q.includes("geology")) return "geology";
   if (q.includes("felsefe") || q.includes("philosophy")) return "philosophy";
-  if (q.includes("matematik") || q.includes("formula") || q.includes("formül")) return "math";
+  if (q.includes("matematik") || q.includes("formül") || q.includes("formula")) return "math";
   if (q.includes("insanlık tarihi") || q.includes("human history")) return "human_history";
   if (q.includes("varlık tarihi") || q.includes("history of existence")) return "existence_history";
-
+  if (
+    q.includes("bilim") ||
+    q.includes("science") ||
+    q.includes("fizik") ||
+    q.includes("physics") ||
+    q.includes("biyoloji") ||
+    q.includes("biology") ||
+    q.includes("zihin") ||
+    q.includes("mind")
+  ) return "science";
   return "general";
+}
+
+function makeLabel(tr, en, isTR) {
+  return isTR ? tr : en;
 }
 
 function buildFollowups(question, answer) {
   const type = getTopicType(question);
   const isTR = detectTurkish(question) || detectTurkish(answer);
-  const make = (tr, en) => (isTR ? tr : en);
+  const make = (tr, en) => makeLabel(tr, en, isTR);
 
   const followupMap = {
     hebun: [
-      make("Hebûn'u daha derin ontolojik olarak açıkla.", "Explain Hebûn in deeper ontological terms."),
-      make("Hebûn'u klasik ontolojiyle karşılaştır.", "Compare Hebûn with classical ontology."),
-      make("Hebûn'un insan anlayışına etkisini açıkla.", "Explain the effect of Hebûn on the human model.")
+      make("Hebûn'ü daha derin ontolojik olarak açıkla.", "Explain Hebûn in deeper ontological terms."),
+      make("Hebûn'ü klasik ontolojiyle karşılaştır.", "Compare Hebûn with classical ontology."),
+      make("Hebûn'ün insan anlayışına etkisini açıkla.", "Explain the effect of Hebûn on the human model.")
     ],
     zanabun: [
       make("Zanabûn'da doğrulama nasıl çalışır?", "How does validation work in Zanabûn?"),
@@ -143,7 +177,7 @@ function buildFollowups(question, answer) {
     geology: [
       make("Jeolojiyi katmanlı gerçeklik modeline göre açıkla.", "Explain geology according to the layered model of reality."),
       make("Jeoloji ile varlık tarihi ilişkisini açıkla.", "Explain the relation between geology and the history of existence."),
-      make("Jeolojinin insanlık tarihine etkisini açıkla.", "Explain geology’s effect on human history.")
+      make("Jeolojinin insanlık tarihine etkisini açıkla.", "Explain geology's effect on human history.")
     ],
     philosophy: [
       make("Felsefeyi Zanistarast çerçevesinde yeniden açıkla.", "Re-explain philosophy within the Zanistarast framework."),
@@ -165,6 +199,11 @@ function buildFollowups(question, answer) {
       make("Varlık tarihini jeoloji ve biyolojiyle ilişkilendir.", "Relate the history of existence to geology and biology."),
       make("Varlık tarihinin insan ortaya çıkışına nasıl bağlandığını açıkla.", "Explain how the history of existence leads to the emergence of the human.")
     ],
+    science: [
+      make("Bu konuyu fizik-biyoloji-zihin zinciriyle açıkla.", "Explain this through the physics-biology-mind chain."),
+      make("Modern bilimi Zanistarast açısından değerlendir.", "Evaluate modern science from the Zanistarast perspective."),
+      make("Bu açıklamanın Rasterast filtresinden geçip geçmediğini incele.", "Examine whether this explanation passes the Rasterast filter.")
+    ],
     general: [
       make("Bunu daha derin açıkla.", "Explain this more deeply."),
       make("Bunu Zanistarast bilimsel sentezine göre genişlet.", "Expand this according to the Zanistarast scientific synthesis."),
@@ -178,6 +217,8 @@ function buildFollowups(question, answer) {
 function renderFollowupButtons(question, answer) {
   const wrap = document.getElementById("ai-followups");
   const container = document.getElementById("ai-followup-buttons");
+  if (!wrap || !container) return;
+
   const followups = buildFollowups(question, answer);
 
   if (!followups.length) {
@@ -187,9 +228,8 @@ function renderFollowupButtons(question, answer) {
     return;
   }
 
-  saveLastFollowup(followups[0]);
-
   container.innerHTML = "";
+
   followups.forEach((item) => {
     const btn = document.createElement("button");
     btn.type = "button";
@@ -210,8 +250,8 @@ function normalizeContinuation(input) {
   const last = getLastFollowup();
 
   const continuationWords = [
-    "evet", "başla", "basla", "devam", "devam et", "tamam", "olur", "aç", "ac",
-    "yes", "continue", "ok", "start", "go on", "compare"
+    "evet", "başla", "bazı", "devam", "devam et", "tamam", "olur",
+    "aç", "açs", "yes", "continue", "ok", "start", "go on", "compare"
   ];
 
   if (continuationWords.includes(lower) && last) {
@@ -221,40 +261,108 @@ function normalizeContinuation(input) {
   return input;
 }
 
+function chooseEndpoint(question) {
+  const q = String(question || "").toLowerCase();
+
+  if (
+    q.includes("değerlendir") ||
+    q.includes("evaluate") ||
+    q.includes("geçerli mi") ||
+    q.includes("invalid") ||
+    q.includes("valid") ||
+    q.includes("çöküş") ||
+    q.includes("hüküm ver") ||
+    q.includes("rasterast filtresi") ||
+    q.includes("structural evaluation")
+  ) {
+    return "/api/evaluate";
+  }
+
+  if (
+    q.includes("yorumla") ||
+    q.includes("interpret") ||
+    q.includes("açıkla") ||
+    q.includes("anlat") ||
+    q.includes("ilişkilendir") ||
+    q.includes("karşılaştır")
+  ) {
+    return "/api/interpret";
+  }
+
+  return "/api/query";
+}
+
+function extractAnswer(data) {
+  return (
+    data?.answer ||
+    data?.result ||
+    data?.message ||
+    "No response returned."
+  );
+}
+
+function renderRagMeta(data) {
+  if (!data || !data.rag || !Array.isArray(data.rag.chunks)) return "";
+
+  const chunks = data.rag.chunks;
+  if (!chunks.length) return "";
+
+  const items = chunks
+    .map((item, index) => {
+      const title = escapeHtml(item.title || `Chunk ${index + 1}`);
+      const domain = escapeHtml(item.domain || "unknown");
+      const score = typeof item.score === "number" ? item.score.toFixed(2) : "-";
+      return `<div class="rag-chip">#${index + 1} ${title} • ${domain} • ${score}</div>`;
+    })
+    .join("");
+
+  return `
+    <div class="rag-box">
+      <div class="rag-title">RAG Context</div>
+      <div class="rag-chip-wrap">${items}</div>
+    </div>
+  `;
+}
+
 async function askAI(customInput = null) {
   const inputEl = document.getElementById("ai-input");
   const output = document.getElementById("ai-output");
   const loading = document.getElementById("ai-loading");
 
+  if (!inputEl || !output || !loading) return;
+
   const rawInput = customInput !== null ? customInput : inputEl.value.trim();
   const question = normalizeContinuation(rawInput);
 
   if (!question) {
-    output.innerHTML = "Please enter a question.";
+    output.innerHTML = "<p>Please enter a question.</p>";
     return;
   }
 
-  loading.style.display = "inline-flex";
-  output.innerHTML = "Thinking...";
-
-  const history = getHistory();
+  loading.style.display = "block";
+  output.innerHTML = "<p>Thinking...</p>";
 
   try {
-    const response = await fetch(`${API_BASE_URL}/api/ask`, {
+    const endpoint = chooseEndpoint(question);
+    const history = getHistory();
+
+    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
         question,
+        limit: 8,
         history
       })
     });
 
     const data = await response.json();
-    const answer = data.answer || "No response returned.";
+    const answer = extractAnswer(data);
 
-    output.innerHTML = `<p>${formatAnswer(answer)}</p>`;
+    const ragHtml = renderRagMeta(data);
+    output.innerHTML = `<p>${formatAnswer(answer)}</p>${ragHtml}`;
 
     pushHistory("user", question);
     pushHistory("assistant", answer);
@@ -265,7 +373,8 @@ async function askAI(customInput = null) {
       inputEl.value = "";
     }
   } catch (_error) {
-    output.innerHTML = "<p>Arka sunucuya ulaşamıyorum.</p>";
+    output.innerHTML =
+      "<p>Arka sunucuya ulaşılamadı. Render servis URL’si veya endpoint yapısı kontrol edilmeli.</p>";
   } finally {
     loading.style.display = "none";
   }
@@ -273,6 +382,7 @@ async function askAI(customInput = null) {
 
 document.addEventListener("DOMContentLoaded", () => {
   const input = document.getElementById("ai-input");
+  if (!input) return;
 
   input.addEventListener("keydown", (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
