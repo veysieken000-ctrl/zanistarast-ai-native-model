@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 import { buildRagContext } from "./rag_search.js";
+import aiEngineRoutes from "./routes/ai_engine.js";
 
 dotenv.config();
 
@@ -10,6 +11,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
+app.use("/api", aiEngineRoutes);
 
 function detectTurkish(text) {
   const lower = String(text || "").toLowerCase();
