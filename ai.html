@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,71 +18,127 @@
       .then((res) => res.text())
       .then((data) => {
         document.getElementById("navbar").innerHTML = data;
+      })
+      .catch(() => {
+        document.getElementById("navbar").innerHTML = "";
       });
   </script>
 
   <main class="container ai-wrap">
     <section class="hero">
-      <div class="hero-card">
-        <h1>Zanistarast AI</h1>
+      <div class="hero-card ai-hero-card">
+        <span class="ai-kicker">ZANISTARAST INTERFACE</span>
+        <h1>Çerçeveye sorun</h1>
         <p class="lead">
-          Ask through the Zanistarast scientific synthesis: Hebûn, Zanabûn,
-          Mabûn, Rasterast, Rabûn, Newroza Kawa Civilization, the Age of Fitrah
-          and Ethics, history, geology, philosophy, time, and structural knowledge.
+          Türkçe, İngilizce veya Kurmancî dilinde sorun. Sistem; Hebûn, Zanabûn,
+          Mabûn, Rasterast, Rabûn, Newroza Kawa Medeniyeti, tarih, jeoloji,
+          felsefe, zaman ve yapısal bilgi alanlarında cevap üretir.
         </p>
+
+        <div class="ai-hero-links">
+          <a class="ai-link-btn ai-link-ai" href="ai.html">AI</a>
+          <a class="ai-link-btn ai-link-paper" href="paper.html">Paper</a>
+          <a class="ai-link-btn ai-link-speech" href="speech.html">Speech</a>
+          <a class="ai-link-btn ai-link-about" href="about.html">About</a>
+          <a class="ai-link-btn ai-link-repos" href="depolar.html">Depolar</a>
+          <a class="ai-link-btn ai-link-news" href="duyurular.html">Duyurular</a>
+        </div>
       </div>
     </section>
 
     <section class="section-card">
-      <h2>Quick Topics</h2>
+      <div class="ai-section-head">
+        <h2>Hızlı Konular</h2>
+        <p class="subtitle">
+          Tek tıkla konu yerleştir. Sonra doğrudan sorabilir veya düzenleyebilirsin.
+        </p>
+      </div>
+
       <div class="topic-chip-wrap">
-        <button type="button" class="topic-chip" onclick="fillPrompt('What is Zanistarast scientific synthesis?')">Zanistarast Scientific Synthesis</button>
-        <button type="button" class="topic-chip" onclick="fillPrompt('What is Hebûn ontology?')">Hebûn Ontology</button>
-        <button type="button" class="topic-chip" onclick="fillPrompt('What is Zanabûn epistemology?')">Zanabûn Epistemology</button>
-        <button type="button" class="topic-chip" onclick="fillPrompt('What is Mabûn economic model?')">Mabûn Economic Model</button>
-        <button type="button" class="topic-chip" onclick="fillPrompt('What is Rasterast reading method?')">Rasterast Reading Method</button>
-        <button type="button" class="topic-chip" onclick="fillPrompt('What is Rabûn governance model?')">Rabûn Governance Model</button>
-        <button type="button" class="topic-chip" onclick="fillPrompt('What is Newroza Kawa Civilization?')">Newroza Kawa Civilization</button>
-        <button type="button" class="topic-chip" onclick="fillPrompt('What is the Age of Fitrah and Ethics?')">Age of Fitrah and Ethics</button>
-        <button type="button" class="topic-chip" onclick="fillPrompt('What is the history of existence?')">History of Existence</button>
-        <button type="button" class="topic-chip" onclick="fillPrompt('What is human history?')">Human History</button>
-        <button type="button" class="topic-chip" onclick="fillPrompt('What is geology?')">Geology</button>
-        <button type="button" class="topic-chip" onclick="fillPrompt('What is philosophy?')">Philosophy</button>
-        <button type="button" class="topic-chip" onclick="fillPrompt('What are the mathematical formulas in Zanistarast?')">Mathematical Formulas</button>
-        <button type="button" class="topic-chip" onclick="fillPrompt('What is time?')">Time</button>
+        <button type="button" class="topic-chip chip-main" onclick="fillPrompt('Hebûn nedir?')">Hebûn</button>
+        <button type="button" class="topic-chip chip-main" onclick="fillPrompt('Zanabûn nedir?')">Zanabûn</button>
+        <button type="button" class="topic-chip chip-main" onclick="fillPrompt('Mabûn nedir?')">Mabûn</button>
+        <button type="button" class="topic-chip chip-main" onclick="fillPrompt('Rasterast nedir?')">Rasterast</button>
+        <button type="button" class="topic-chip chip-main" onclick="fillPrompt('Rabûn yönetim modeli nedir?')">Rabûn</button>
+        <button type="button" class="topic-chip chip-main" onclick="fillPrompt('Newroza Kawa Medeniyeti nedir?')">Newroza Kawa</button>
+
+        <button type="button" class="topic-chip chip-paper" onclick="fillPrompt('Zanistarast bilimsel sentezini açıkla.')">Bilimsel Sentez</button>
+        <button type="button" class="topic-chip chip-paper" onclick="fillPrompt('Hebûn ontolojisini açıkla.')">Ontoloji</button>
+        <button type="button" class="topic-chip chip-paper" onclick="fillPrompt('Zanabûn epistemolojisini açıkla.')">Epistemoloji</button>
+        <button type="button" class="topic-chip chip-paper" onclick="fillPrompt('Mabûn ekonomi modelini açıkla.')">Ekonomi Modeli</button>
+
+        <button type="button" class="topic-chip chip-history" onclick="fillPrompt('Varlık tarihini açıkla.')">Varlık Tarihi</button>
+        <button type="button" class="topic-chip chip-history" onclick="fillPrompt('İnsanlık tarihini açıkla.')">İnsanlık Tarihi</button>
+        <button type="button" class="topic-chip chip-history" onclick="fillPrompt('Jeolojik sistemi açıkla.')">Jeoloji</button>
+        <button type="button" class="topic-chip chip-history" onclick="fillPrompt('Zamanı Zanistarast açısından açıkla.')">Zaman</button>
+
+        <button type="button" class="topic-chip chip-compare" onclick="fillPrompt('Zanistarast ile modern bilimi karşılaştır.')">Modern Bilim</button>
+        <button type="button" class="topic-chip chip-compare" onclick="fillPrompt('Zanistarast ile klasik ontolojiyi karşılaştır.')">Klasik Ontoloji</button>
+        <button type="button" class="topic-chip chip-compare" onclick="fillPrompt('Zanistarast ile felsefeyi karşılaştır.')">Felsefe</button>
+        <button type="button" class="topic-chip chip-compare" onclick="fillPrompt('Matematiksel modeli açıkla.')">Matematik</button>
       </div>
     </section>
 
     <section class="section-card ai-card">
-      <h2>Ask the Framework</h2>
+      <div class="ai-section-head">
+        <h2>Çerçeveye Sor</h2>
+        <p class="subtitle">
+          Sorunu doğrudan yaz. Kısa veya uzun olabilir.
+        </p>
+      </div>
+
       <textarea
         id="ai-input"
         rows="6"
-        placeholder="Ask in Turkish, English, or Kurmancî..."
+        placeholder="Türkçe, English veya Kurmancî olarak sorun..."
       ></textarea>
 
       <div class="ai-main-actions">
-        <button type="button" onclick="askAI()">Ask</button>
-        <button type="button" class="secondary-btn" onclick="clearAI()">Clear</button>
+        <button type="button" class="ask-btn" onclick="askAI()">Sormak</button>
+        <button type="button" class="secondary-btn" onclick="clearAI()">Temizlemek</button>
       </div>
 
       <div id="ai-loading" class="ai-loading" style="display:none;">
         <span class="dot"></span>
         <span class="dot"></span>
         <span class="dot"></span>
-        <span style="margin-left:10px;">Thinking...</span>
+        <span class="ai-thinking-text">Düşünüyor...</span>
       </div>
     </section>
 
     <section class="section-card answer-card">
-      <h2>Answer</h2>
+      <div class="ai-section-head">
+        <h2>Cevap</h2>
+        <p class="subtitle">
+          Sistem cevabı burada gösterilir.
+        </p>
+      </div>
+
       <div id="ai-output" class="ai-output-box">
-        Ask a question to begin.
+        Bir soru sorarak başlayın.
       </div>
 
       <div id="ai-followups" class="followup-wrap" style="display:none;">
-        <h3>Suggested Next Step</h3>
+        <h3>Önerilen Sonraki Adım</h3>
         <div id="ai-followup-buttons" class="followup-chip-wrap"></div>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <div class="ai-section-head">
+        <h2>Hızlı Geçiş</h2>
+        <p class="subtitle">
+          Sistem sayfaları arasında doğrudan geçiş.
+        </p>
+      </div>
+
+      <div class="topic-chip-wrap">
+        <a class="topic-chip chip-ai-link" href="ai.html">AI arayüzüne git</a>
+        <a class="topic-chip chip-paper-link" href="paper.html">Paper sayfasına git</a>
+        <a class="topic-chip chip-speech-link" href="speech.html">Speech sayfasına git</a>
+        <a class="topic-chip chip-about-link" href="about.html">About sayfasına git</a>
+        <a class="topic-chip chip-news-link" href="duyurular.html">Duyurular sayfasına git</a>
+        <a class="topic-chip chip-repo-link" href="depolar.html">Depolar sayfasına git</a>
       </div>
     </section>
   </main>
