@@ -1000,4 +1000,7 @@ mevcut askAI() ve clearAI() çağrılarını da korudum
     opacity: 1;
   }
 }
+.quick-topics {
+  display: none !important;
+}
 
