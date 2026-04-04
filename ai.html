@@ -6,7 +6,7 @@
   <title>Zanistarast AI</title>
   <meta
     name="description"
-    content="Interactive Zanistarast AI for ontology, epistemology, civilization, governance, fitrah, history, and structural analysis."
+    content="Interactive Zanistarast AI for ontology, epistemology, civilization, economics, fitrat, history, and structural analysis."
   />
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -30,9 +30,9 @@
         <span class="ai-kicker">ZANISTARAST INTERFACE</span>
         <h1>Çerçeveye sorun</h1>
         <p class="lead">
-          Türkçe, İngilizce veya Kurmancî dilinde sorun. Sistem; Hebûn, Zanabûn,
-          Mabûn, Rasterast, Rabûn, Newroza Kawa Medeniyeti, tarih, jeoloji,
-          felsefe, zaman ve yapısal bilgi alanlarında cevap üretir.
+          Türkçe, İngilizce veya Kurmanci dilinde sorun. Sistem; Hebûn, Zanabûn,
+          Mabûn, Rasterast, Rêbûn, Newroza Kawa medeniyeti, tarih, jeoloji,
+          felsefe, zihin ve yapısal bilgi alanlarında cevap üretir.
         </p>
 
         <div class="ai-hero-links">
@@ -59,10 +59,10 @@
         <button type="button" class="topic-chip chip-main" onclick="fillPrompt('Zanabûn nedir?')">Zanabûn</button>
         <button type="button" class="topic-chip chip-main" onclick="fillPrompt('Mabûn nedir?')">Mabûn</button>
         <button type="button" class="topic-chip chip-main" onclick="fillPrompt('Rasterast nedir?')">Rasterast</button>
-        <button type="button" class="topic-chip chip-main" onclick="fillPrompt('Rabûn yönetim modeli nedir?')">Rabûn</button>
-        <button type="button" class="topic-chip chip-main" onclick="fillPrompt('Newroza Kawa Medeniyeti nedir?')">Newroza Kawa</button>
+        <button type="button" class="topic-chip chip-main" onclick="fillPrompt('Rêbûn yönetim modeli nedir?')">Rêbûn</button>
+        <button type="button" class="topic-chip chip-main" onclick="fillPrompt('Newroza Kawa medeniyeti nedir?')">Newroza Kawa</button>
 
-        <button type="button" class="topic-chip chip-paper" onclick="fillPrompt('Zanistarast bilimsel sentezini açıkla.')">Bilimsel Sentez</button>
+        <button type="button" class="topic-chip chip-paper" onclick="fillPrompt('Zanistarast bilimsel çerçevesini açıkla.')">Bilimsel Sentez</button>
         <button type="button" class="topic-chip chip-paper" onclick="fillPrompt('Hebûn ontolojisini açıkla.')">Ontoloji</button>
         <button type="button" class="topic-chip chip-paper" onclick="fillPrompt('Zanabûn epistemolojisini açıkla.')">Epistemoloji</button>
         <button type="button" class="topic-chip chip-paper" onclick="fillPrompt('Mabûn ekonomi modelini açıkla.')">Ekonomi Modeli</button>
@@ -70,12 +70,12 @@
         <button type="button" class="topic-chip chip-history" onclick="fillPrompt('Varlık tarihini açıkla.')">Varlık Tarihi</button>
         <button type="button" class="topic-chip chip-history" onclick="fillPrompt('İnsanlık tarihini açıkla.')">İnsanlık Tarihi</button>
         <button type="button" class="topic-chip chip-history" onclick="fillPrompt('Jeolojik sistemi açıkla.')">Jeoloji</button>
-        <button type="button" class="topic-chip chip-history" onclick="fillPrompt('Zamanı Zanistarast açısından açıkla.')">Zaman</button>
+        <button type="button" class="topic-chip chip-history" onclick="fillPrompt('Zihni Zanistarast açısından açıkla.')">Zihin</button>
 
         <button type="button" class="topic-chip chip-compare" onclick="fillPrompt('Zanistarast ile modern bilimi karşılaştır.')">Modern Bilim</button>
         <button type="button" class="topic-chip chip-compare" onclick="fillPrompt('Zanistarast ile klasik ontolojiyi karşılaştır.')">Klasik Ontoloji</button>
         <button type="button" class="topic-chip chip-compare" onclick="fillPrompt('Zanistarast ile felsefeyi karşılaştır.')">Felsefe</button>
-        <button type="button" class="topic-chip chip-compare" onclick="fillPrompt('Matematiksel modeli açıkla.')">Matematik</button>
+        <button type="button" class="topic-chip chip-compare" onclick="fillPrompt('Semantik modeli açıkla.')">Semantik</button>
       </div>
     </section>
 
@@ -87,40 +87,22 @@
         </p>
       </div>
 
-      <textarea
-        id="ai-input"
-        rows="6"
-        placeholder="Türkçe, English veya Kurmancî olarak sorun..."
-      ></textarea>
+      <div class="ai-box">
+        <div class="ask-row">
+          <input id="questionInput" type="text" placeholder="Sorunu yaz..." />
+          <button id="askBtn" type="button">Sor</button>
+        </div>
 
-      <div class="ai-main-actions">
-        <button type="button" class="ask-btn" onclick="askAI()">Sormak</button>
-        <button type="button" class="secondary-btn" onclick="clearAI()">Temizlemek</button>
-      </div>
+        <div id="thinkingBox" class="thinking hidden">
+          Düşünüyorum
+          <span class="dots">
+            <span>.</span><span>.</span><span>.</span>
+          </span>
+        </div>
 
-      <div id="ai-loading" class="ai-loading" style="display:none;">
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="ai-thinking-text">Düşünüyor...</span>
-      </div>
-    </section>
-
-    <section class="section-card answer-card">
-      <div class="ai-section-head">
-        <h2>Cevap</h2>
-        <p class="subtitle">
-          Sistem cevabı burada gösterilir.
-        </p>
-      </div>
-
-      <div id="ai-output" class="ai-output-box">
-        Bir soru sorarak başlayın.
-      </div>
-
-      <div id="ai-followups" class="followup-wrap" style="display:none;">
-        <h3>Önerilen Sonraki Adım</h3>
-        <div id="ai-followup-buttons" class="followup-chip-wrap"></div>
+        <div id="answerBox" class="answer-box">
+          Cevap burada görünecek.
+        </div>
       </div>
     </section>
 
@@ -133,7 +115,7 @@
       </div>
 
       <div class="topic-chip-wrap">
-        <a class="topic-chip chip-ai-link" href="ai.html">AI arayüzüne git</a>
+        <a class="topic-chip chip-ai-link" href="ai.html">AI sayfasına git</a>
         <a class="topic-chip chip-paper-link" href="paper.html">Paper sayfasına git</a>
         <a class="topic-chip chip-speech-link" href="speech.html">Speech sayfasına git</a>
         <a class="topic-chip chip-about-link" href="about.html">About sayfasına git</a>
@@ -152,3 +134,4 @@
   <script src="ai.js"></script>
 </body>
 </html>
+
