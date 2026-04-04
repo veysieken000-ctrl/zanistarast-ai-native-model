@@ -14,16 +14,21 @@
 </head>
 <body>
 
-  <!-- NAVBAR -->
-  <div id="navbar"></div>
+ <nav class="navbar">
+  <div class="container navbar-inner">
+    <div class="logo">Zanistarast</div>
 
-  <script>
-    fetch("components/navbar.html")
-      .then((res) => res.text())
-      .then((data) => {
-        document.getElementById("navbar").innerHTML = data;
-      });
-  </script>
+    <div class="nav-right">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="ai.html">AI</a>
+      <a href="paper.html">Paper</a>
+      <a href="speech.html">Speech</a>
+      <a href="about.html">About</a>
+      <a href="duyurular.html">Duyurular</a>
+      <a href="depolar.html">Depolar</a>
+    </div>
+  </div>
+</nav>
 
   <!-- CONTENT -->
   <main class="container">
