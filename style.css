@@ -712,4 +712,14 @@ mevcut askAI() ve clearAI() çağrılarını da korudum
   border-color: rgba(255, 255, 255, 0.14);
   transform: translateY(-1px);
 }
+.start-links {
+  display: flex;
+  flex-direction: column !important;
+  align-items: stretch;
+}
+
+.start-links a {
+  display: block !important;
+  width: 100%;
+}
 
