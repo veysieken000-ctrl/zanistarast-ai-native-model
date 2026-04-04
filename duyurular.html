@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zanistarast Duyurular</title>
+  <meta
+    name="description"
+    content="Zanistarast AI, framework, knowledge base, backend, site and publication updates."
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <script>
+    fetch("components/navbar.html")
+      .then((res) => res.text())
+      .then((data) => {
+        document.getElementById("navbar").innerHTML = data;
+      });
+  </script>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-card">
+        <h1>Duyurular</h1>
+        <p class="lead page-intro">
+          Bu sayfa Zanistarast AI, bilgi tabanı, backend motoru, yayın yapısı ve
+          genel sistem güncellemelerini paylaşmak için kullanılır.
+        </p>
+
+        <div class="page-actions">
+          <a class="topic-chip" href="ai.html">AI sayfasına git</a>
+          <a class="topic-chip" href="index.html">Ana sayfaya dön</a>
+        </div>
+
+        <p class="inline-note">
+          Not: Yeni duyuruları en üste ekle. Bu sayfa sade tutulmalı.
+        </p>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2>Son Güncellemeler</h2>
+
+      <div class="announcement-list">
+
+        <article class="announcement-item">
+          <span class="announcement-date">2026-04-04</span>
+          <h3>Zanistarast AI engine düzenlendi</h3>
+          <p>
+            AI arayüzü, backend engine mantığıyla daha uyumlu hale getirildi.
+            Soru akışı, follow-up mantığı ve endpoint yapısı sadeleştirildi.
+          </p>
+          <div class="announcement-tag-wrap">
+            <span class="announcement-tag">AI</span>
+            <span class="announcement-tag">Engine</span>
+            <span class="announcement-tag">Frontend</span>
+          </div>
+        </article>
+
+        <article class="announcement-item">
+          <span class="announcement-date">2026-04-04</span>
+          <h3>Bilgi tabanı yapısı yeniden düzenlendi</h3>
+          <p>
+            Ontology, epistemology, method, governance, mabun, theory,
+            transition ve domain klasörleri daha düzenli hale getirildi.
+          </p>
+          <div class="announcement-tag-wrap">
+            <span class="announcement-tag">Knowledge Base</span>
+            <span class="announcement-tag">Structure</span>
+            <span class="announcement-tag">RAG</span>
+          </div>
+        </article>
+
+        <article class="announcement-item">
+          <span class="announcement-date">2026-04-04</span>
+          <h3>Yeni duyurular burada paylaşılacak</h3>
+          <p>
+            Bundan sonra sistem, yayın, AI, makale, backend ve repo güncellemeleri
+            bu sayfa üzerinden düzenli olarak paylaşılabilir.
+          </p>
+          <div class="announcement-tag-wrap">
+            <span class="announcement-tag">Site</span>
+            <span class="announcement-tag">Update</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      Zanistarast Announcement Page
+    </div>
+  </footer>
+</body>
+</html>
+
