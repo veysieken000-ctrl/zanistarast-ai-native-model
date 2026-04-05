@@ -1009,3 +1009,26 @@ mevcut askAI() ve clearAI() çağrılarını da korudum
 .header-links {
   display: none !important;
 }
+.top-colored-nav {
+  width: min(1100px, calc(100% - 32px));
+  margin: 18px auto 12px auto;
+}
+
+.top-colored-nav .ai-hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.ai-hero-links {
+  position: static !important;
+  left: auto !important;
+  top: auto !important;
+}
+
+.ai-layout {
+  width: min(1100px, calc(100% - 32px));
+  margin: 0 auto;
+}
