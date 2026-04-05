@@ -642,11 +642,6 @@ footer .container {
   border-color: rgba(255, 196, 87, 0.30);
 }
 
-.chip-speech-link {
-  background: rgba(255, 134, 134, 0.14);
-  border-color: rgba(255, 134, 134, 0.30);
-}
-
 .chip-about-link {
   background: rgba(122, 231, 191, 0.14);
   border-color: rgba(122, 231, 191, 0.30);
@@ -675,20 +670,6 @@ footer .container {
 #ai-output p:last-child {
   margin-bottom: 0;
 }
-3) Bu neyi düzeltiyor?
-Bu sürüm:
-AI sayfasını daha dolu gösterir
-üstte renkli geçiş butonları ekler
-hızlı konu chip’lerini ayırır
-cevap alanını daha düzenli tutar
-mevcut ai.js ile uyumlu kalır çünkü:
-ai-input
-ai-output
-ai-loading
-ai-followups
-ai-followup-buttons id’lerini bozmadım
-mevcut askAI() ve clearAI() çağrılarını da korudum
-
 .start-links {
   display: flex;
   flex-direction: column;
@@ -1398,5 +1379,32 @@ footer .container {
   }
 }
 .hidden {
+  display: none !important;
+}
+/* Çerçeveye Sor ve diğer section'ları geri aç */
+.ai-layout section,
+.section-card,
+.ai-card {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* cevap alanı görünür olsun */
+.ai-box,
+.ask-row,
+.answer-box,
+#answerBox,
+#thinkingBox {
+  display: block;
+}
+
+.ask-row {
+  display: flex !important;
+  gap: 12px;
+  align-items: center;
+}
+
+#thinkingBox.hidden {
   display: none !important;
 }
