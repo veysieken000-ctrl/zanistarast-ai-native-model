@@ -24,18 +24,6 @@
       });
   </script>
 
-  <!-- Üste taşınan renkli menü -->
-  <div class="top-colored-nav">
-    <div class="ai-hero-links">
-      <a class="ai-link btn ai-link-ai" href="ai.html">AI</a>
-      <a class="ai-link btn ai-link-paper" href="paper.html">Paper</a>
-      <a class="ai-link btn ai-link-speech" href="speech.html">Speech</a>
-      <a class="ai-link btn ai-link-about" href="about.html">About</a>
-      <a class="ai-link btn ai-link-repos" href="repositories.html">Depolar</a>
-      <a class="ai-link btn ai-link-news" href="duyurular.html">Duyurular</a>
-    </div>
-  </div>
-
   <main class="ai-layout">
     <section class="section-card ai-card">
       <div class="ai-section-head">
@@ -50,23 +38,23 @@
         <button type="button" class="topic-chip chip-main" onclick="fillPrompt('Zanabûn nedir?')">Zanabûn</button>
         <button type="button" class="topic-chip chip-main" onclick="fillPrompt('Mabûn nedir?')">Mabûn</button>
         <button type="button" class="topic-chip chip-main" onclick="fillPrompt('Rasterast nedir?')">Rasterast</button>
-        <button type="button" class="topic-chip chip-main" onclick="fillPrompt('Rêbûn yönetim modeli nedir?')">Rêbûn</button>
-        <button type="button" class="topic-chip chip-main" onclick="fillPrompt('Newroza Kawa medeniyeti nedir?')">Newroza Kawa</button>
+        <button type="button" class="topic-chip chip-main" onclick="fillPrompt('Rêbûn nedir?')">Rêbûn</button>
+        <button type="button" class="topic-chip chip-main" onclick="fillPrompt('Newroza Kawa nedir?')">Newroza Kawa</button>
 
-        <button type="button" class="topic-chip chip-paper" onclick="fillPrompt('Zanistarast bilimsel çerçevesini açıkla.')">Bilimsel Sentez</button>
-        <button type="button" class="topic-chip chip-paper" onclick="fillPrompt('Hebûn ontolojisini açıkla.')">Ontoloji</button>
-        <button type="button" class="topic-chip chip-paper" onclick="fillPrompt('Zanabûn epistemolojisini açıkla.')">Epistemoloji</button>
-        <button type="button" class="topic-chip chip-paper" onclick="fillPrompt('Mabûn ekonomi modelini açıkla.')">Ekonomi Modeli</button>
+        <button type="button" class="topic-chip chip-paper" onclick="fillPrompt('Bilimsel sentez nedir?')">Bilimsel Sentez</button>
+        <button type="button" class="topic-chip chip-paper" onclick="fillPrompt('Ontoloji nedir?')">Ontoloji</button>
+        <button type="button" class="topic-chip chip-paper" onclick="fillPrompt('Epistemoloji nedir?')">Epistemoloji</button>
+        <button type="button" class="topic-chip chip-paper" onclick="fillPrompt('Ekonomi modeli nedir?')">Ekonomi Modeli</button>
 
-        <button type="button" class="topic-chip chip-history" onclick="fillPrompt('Varlık tarihini açıkla.')">Varlık Tarihi</button>
-        <button type="button" class="topic-chip chip-history" onclick="fillPrompt('İnsanlık tarihini açıkla.')">İnsanlık Tarihi</button>
-        <button type="button" class="topic-chip chip-history" onclick="fillPrompt('Jeolojik sistemi açıkla.')">Jeoloji</button>
-        <button type="button" class="topic-chip chip-history" onclick="fillPrompt('Zihni Zanistarast açısından açıkla.')">Zihnin</button>
+        <button type="button" class="topic-chip chip-history" onclick="fillPrompt('Varlık tarihi nedir?')">Varlık Tarihi</button>
+        <button type="button" class="topic-chip chip-history" onclick="fillPrompt('İnsanlık tarihi nedir?')">İnsanlık Tarihi</button>
+        <button type="button" class="topic-chip chip-history" onclick="fillPrompt('Jeoloji nedir?')">Jeoloji</button>
+        <button type="button" class="topic-chip chip-history" onclick="fillPrompt('Zihin nedir?')">Zihnin</button>
 
-        <button type="button" class="topic-chip chip-compare" onclick="fillPrompt('Zanistarast ile modern bilimi karşılaştır.')">Modern Bilim</button>
-        <button type="button" class="topic-chip chip-compare" onclick="fillPrompt('Zanistarast ile klasik ontolojiyi karşılaştır.')">Klasik Ontoloji</button>
-        <button type="button" class="topic-chip chip-compare" onclick="fillPrompt('Zanistarast ile felsefeyi karşılaştır.')">Felsefe</button>
-        <button type="button" class="topic-chip chip-compare" onclick="fillPrompt('Semantik modeli açıkla.')">Semantik</button>
+        <button type="button" class="topic-chip chip-compare" onclick="fillPrompt('Modern bilim ile karşılaştır.')">Modern Bilim</button>
+        <button type="button" class="topic-chip chip-compare" onclick="fillPrompt('Klasik ontoloji ile karşılaştır.')">Klasik Ontoloji</button>
+        <button type="button" class="topic-chip chip-compare" onclick="fillPrompt('Felsefe ile karşılaştır.')">Felsefe</button>
+        <button type="button" class="topic-chip chip-compare" onclick="fillPrompt('Semantik nedir?')">Semantik</button>
       </div>
     </section>
 
@@ -86,9 +74,6 @@
 
         <div id="thinkingBox" class="thinking hidden">
           Düşünüyorum...
-          <span class="loading-dots">
-            <span></span><span></span><span></span>
-          </span>
         </div>
 
         <div id="answerBox" class="answer-box">
@@ -96,20 +81,12 @@
         </div>
       </div>
     </section>
-
-    <div id="ai-followups" class="followup-wrap" style="display:none;">
-      <h3>Önerilen Sonraki Adımlar</h3>
-      <div id="ai-followup-buttons" class="followup-chip-wrap"></div>
-    </div>
+  </main>
 
   <footer>
-    <div class="container">
-      Zanistarast AI Interface
-    </div>
+    <div class="container">Zanistarast AI Interface</div>
   </footer>
 
   <script src="ai.js"></script>
-<script src="ai.js"></script>
-
 </body>
 </html>
