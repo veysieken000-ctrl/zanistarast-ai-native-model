@@ -1434,3 +1434,43 @@ footer .container {
 #answerBox {
   margin-top: 12px;
 }
+/* === FINAL FIX: AI sistemi görünür olsun === */
+
+.ai-card,
+.ai-box,
+.ask-row,
+.answer-box,
+#answerBox,
+#thinkingBox,
+.ai-section-head {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* input satırı düzgün */
+.ask-row {
+  display: flex !important;
+  gap: 12px;
+  align-items: center;
+}
+
+/* input genişlesin */
+#questionInput {
+  flex: 1;
+}
+
+/* gizli class override */
+.hidden {
+  display: none !important;
+}
+
+/* thinking sadece gerektiğinde gizli */
+#thinkingBox.hidden {
+  display: none !important;
+}
+
+/* layout garanti */
+.ai-layout section {
+  display: block !important;
+}
