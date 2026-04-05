@@ -457,6 +457,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 window.fillPrompt = fillPrompt;
+<script>
+  const links = document.querySelectorAll(".nav-btn");
+  const current = window.location.pathname.split("/").pop();
 
+  links.forEach(link => {
+    if (link.getAttribute("href") === current) {
+      link.classList.add("active");
+    }
+  });
+</script>
 
 
