@@ -8,9 +8,31 @@ const followupButtons = document.getElementById("ai-followup-buttons");
 /* konu butonları için global fonksiyon */
 function fillPrompt(text) {
   if (!questionInput) return;
+
+  // eğer KNOWLEDGE varsa akıllı öneri seç
+  if (window.KNOWLEDGE) {
+    let topicKey = "";
+
+if (text.includes("Hebûn")) topicKey = "zanistarast";
+if (text.includes("Zanabûn")) topicKey = "zanistarast";
+if (text.includes("Mabûn")) topicKey = "zanistarast";
+if (text.includes("Rasterast")) topicKey = "rasterast";
+if (text.includes("Rêbûn")) topicKey = "rebun";
+if (text.includes("Newroza")) topicKey = "civilization";
+
+    const suggestions = getSmartSuggestions(topicKey);
+
+    if (suggestions.length > 0) {
+      text = suggestions[Math.floor(Math.random() * suggestions.length)];
+    }
+  }
+
   questionInput.value = text;
   questionInput.focus();
-  questionInput.setSelectionRange(questionInput.value.length, questionInput.value.length);
+  questionInput.setSelectionRange(
+    questionInput.value.length,
+    questionInput.value.length
+  );
 
   if (answerBox) {
     answerBox.innerHTML = "Hazır. Sor butonuna basarak devam edebilirsin.";
@@ -20,8 +42,8 @@ function fillPrompt(text) {
     followupsWrap.style.display = "none";
   }
 }
-
 window.fillPrompt = fillPrompt;
+
 function getSmartSuggestions(topic) {
   if (!window.KNOWLEDGE) return [];
 
