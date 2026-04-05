@@ -149,12 +149,4 @@ if (questionInput) {
     }
   });
 }
-Bir de ai.html içinde altta bu id’ler gerçekten böyle olmalı:
-HTML
-<input id="questionInput" type="text" placeholder="Sorunu yaz..." />
-<button id="askBtn" type="button">Sor</button>
-<div id="thinkingBox" class="thinking hidden">Düşünüyorum...</div>
-<div id="answerBox" class="answer-box">Cevap burada görünecek.</div>
-      
-  }
-  
+
