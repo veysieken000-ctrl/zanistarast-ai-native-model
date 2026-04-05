@@ -1035,3 +1035,38 @@ mevcut askAI() ve clearAI() çağrılarını da korudum
 .section-card {
   margin-top: 16px;
 }
+/* NAVBAR LAYOUT */
+.navbar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* NAV BUTTONS */
+.nav-links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.nav-btn {
+  padding: 8px 14px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 14px;
+  color: white;
+  background: linear-gradient(135deg, #4da3ff, #6dd5fa);
+  transition: all 0.2s ease;
+}
+
+/* HOVER */
+.nav-btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* ACTIVE PAGE */
+.nav-btn.active {
+  background: linear-gradient(135deg, #ffd700, #ffb347);
+  color: #111;
+}
