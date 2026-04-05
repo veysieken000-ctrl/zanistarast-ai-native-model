@@ -90,7 +90,11 @@ function buildAnswer(question) {
       <p>Ontoloji, bilgi, etik ve güç uyumu medeniyet istikrarını oluşturur.</p>
     `;
   }
-
+if (
+  cleanQ.includes("mabun") ||
+  cleanQ.includes("ekonomi") ||
+  cleanQ.includes("ekonom")
+) {
   // DEFAULT
   return `
     <h3>Zanistarast AI</h3>
