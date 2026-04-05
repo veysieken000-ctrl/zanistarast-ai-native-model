@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Speech</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <script>
+    fetch("components/navbar.html")
+      .then((res) => res.text())
+      .then((data) => {
+        document.getElementById("navbar").innerHTML = data;
+      })
+      .catch(() => {
+        document.getElementById("navbar").innerHTML = "";
+      });
+  </script>
+
+  <main class="ai-layout">
+    <section class="section-card ai-card">
+      <div class="ai-section-head">
+        <h2>Speech</h2>
+        <p class="subtitle">Bu sayfa hazırlanıyor.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">Zanistarast Speech Interface</div>
+  </footer>
+</body>
+</html>
