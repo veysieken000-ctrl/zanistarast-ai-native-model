@@ -1408,3 +1408,29 @@ footer .container {
 #thinkingBox.hidden {
   display: none !important;
 }
+.hidden {
+  display: none !important;
+}
+
+.ai-layout {
+  width: min(1100px, calc(100% - 32px));
+  margin: 24px auto;
+}
+
+.ask-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+#questionInput {
+  flex: 1;
+}
+
+#thinkingBox {
+  margin-top: 12px;
+}
+
+#answerBox {
+  margin-top: 12px;
+}
