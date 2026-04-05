@@ -22,6 +22,11 @@ function fillPrompt(text) {
 }
 
 window.fillPrompt = fillPrompt;
+function getSmartSuggestions(topic) {
+  if (!window.KNOWLEDGE) return [];
+
+  return KNOWLEDGE[topic] || [];
+}
 
 /* yardımcılar */
 function showThinking() {
