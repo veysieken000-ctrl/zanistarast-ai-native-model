@@ -24,20 +24,20 @@
       });
   </script>
 
-  <div class="ai-layout">
+  <!-- Üste taşınan renkli menü -->
+  <div class="top-colored-nav">
+    <div class="ai-hero-links">
+      <a class="ai-link btn ai-link-ai" href="ai.html">AI</a>
+      <a class="ai-link btn ai-link-paper" href="paper.html">Paper</a>
+      <a class="ai-link btn ai-link-speech" href="speech.html">Speech</a>
+      <a class="ai-link btn ai-link-about" href="about.html">About</a>
+      <a class="ai-link btn ai-link-repos" href="repositories.html">Depolar</a>
+      <a class="ai-link btn ai-link-news" href="duyurular.html">Duyurular</a>
+    </div>
+  </div>
 
-          <div class="ai-hero-links">
-          <a class="ai-link-btn ai-link-ai" href="ai.html">AI</a>
-          <a class="ai-link-btn ai-link-paper" href="paper.html">Paper</a>
-          <a class="ai-link-btn ai-link-speech" href="speech.html">Speech</a>
-          <a class="ai-link-btn ai-link-about" href="about.html">About</a>
-          <a class="ai-link btn ai-link-repos" href="repositories.html">Depolar</a>
-          <a class="ai-link-btn ai-link-news" href="duyurular.html">Duyurular</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-card">
+  <main class="ai-layout">
+    <section class="section-card ai-card">
       <div class="ai-section-head">
         <h2>Hızlı Konular</h2>
         <p class="subtitle">
@@ -61,7 +61,7 @@
         <button type="button" class="topic-chip chip-history" onclick="fillPrompt('Varlık tarihini açıkla.')">Varlık Tarihi</button>
         <button type="button" class="topic-chip chip-history" onclick="fillPrompt('İnsanlık tarihini açıkla.')">İnsanlık Tarihi</button>
         <button type="button" class="topic-chip chip-history" onclick="fillPrompt('Jeolojik sistemi açıkla.')">Jeoloji</button>
-        <button type="button" class="topic-chip chip-history" onclick="fillPrompt('Zihni Zanistarast açısından açıkla.')">Zihin</button>
+        <button type="button" class="topic-chip chip-history" onclick="fillPrompt('Zihni Zanistarast açısından açıkla.')">Zihnin</button>
 
         <button type="button" class="topic-chip chip-compare" onclick="fillPrompt('Zanistarast ile modern bilimi karşılaştır.')">Modern Bilim</button>
         <button type="button" class="topic-chip chip-compare" onclick="fillPrompt('Zanistarast ile klasik ontolojiyi karşılaştır.')">Klasik Ontoloji</button>
@@ -84,22 +84,24 @@
           <button id="askBtn" type="button">Sor</button>
         </div>
 
-       <div id="thinkingBox" class="thinking hidden">
-  Düşünüyorum
-  <span class="loading-dots">
-    <span></span><span></span><span></span>
-  </span>
-</div>
+        <div id="thinkingBox" class="thinking hidden">
+          Düşünüyorum...
+          <span class="loading-dots">
+            <span></span><span></span><span></span>
+          </span>
+        </div>
 
         <div id="answerBox" class="answer-box">
           Cevap burada görünecek.
         </div>
       </div>
     </section>
+
     <div id="ai-followups" class="followup-wrap" style="display:none;">
-  <h3>Önerilen Sonraki Adımlar</h3>
-  <div id="ai-followup-buttons" class="followup-chip-wrap"></div>
-</div>
+      <h3>Önerilen Sonraki Adımlar</h3>
+      <div id="ai-followup-buttons" class="followup-chip-wrap"></div>
+    </div>
+
     <section class="section-card">
       <div class="ai-section-head">
         <h2>Hızlı Geçiş</h2>
@@ -128,4 +130,3 @@
   <script src="ai.js"></script>
 </body>
 </html>
-
