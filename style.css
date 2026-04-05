@@ -1003,4 +1003,9 @@ mevcut askAI() ve clearAI() çağrılarını da korudum
 .quick-topics {
   display: none !important;
 }
-
+/* Zanistarast altındaki eski menüyü kaldır */
+.top-menu,
+.nav-buttons,
+.header-links {
+  display: none !important;
+}
