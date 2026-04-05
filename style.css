@@ -1110,12 +1110,290 @@ mevcut askAI() ve clearAI() çağrılarını da korudum
   flex: 0 0 auto;
 }
 
-/* === FIX: Hızlı Geçiş tamamen kapalı === */
-.section-card:has(h2:contains("Hızlı Geçiş")) {
-  display: none !important;
-}
-
 /* fallback (tarayıcı desteklemezse) */
 .ai-layout section:last-of-type {
   display: none !important;
+}
+/* === PREMIUM AI PAGE POLISH === */
+
+/* üst menü */
+.navbar {
+  background: rgba(7, 11, 17, 0.72) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.logo {
+  font-size: 22px !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em;
+}
+
+/* üstteki linkler renkli chip olsun */
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.nav-btn,
+.nav-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #f5fbff !important;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: linear-gradient(135deg, rgba(143,179,255,0.14), rgba(255,255,255,0.05));
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03);
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+
+.nav-btn:hover,
+.nav-links a:hover {
+  transform: translateY(-1px);
+  border-color: rgba(143, 179, 255, 0.42);
+  background: linear-gradient(135deg, rgba(143,179,255,0.24), rgba(255,255,255,0.09));
+}
+
+/* ana içerik genişliği */
+.ai-layout,
+.container {
+  width: min(1120px, calc(100% - 32px));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* AI sayfa iç blokları */
+.ai-layout {
+  display: block !important;
+}
+
+/* kart görünümü */
+.section-card,
+.ai-card,
+.hero-card,
+.answer-card,
+.ai-output-box {
+  border-radius: 22px !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  background:
+    linear-gradient(180deg, rgba(16, 26, 38, 0.92), rgba(11, 19, 29, 0.95)) !important;
+  box-shadow:
+    0 18px 40px rgba(0,0,0,0.24),
+    inset 0 1px 0 rgba(255,255,255,0.03) !important;
+}
+
+/* section spacing */
+.section-card {
+  margin-top: 18px !important;
+  padding: 26px !important;
+}
+
+/* başlıklar */
+.ai-section-head h2,
+.section-card h2 {
+  font-size: 24px !important;
+  line-height: 1.15;
+  margin-bottom: 8px !important;
+}
+
+.subtitle,
+.ai-section-head .subtitle {
+  color: rgba(230, 240, 255, 0.78) !important;
+  font-size: 15px !important;
+  line-height: 1.65 !important;
+}
+
+/* hızlı konu buton alanı */
+.topic-chip-wrap,
+.followup-chip-wrap {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 12px !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+}
+
+/* tüm chipler */
+.topic-chip,
+.followup-chip,
+button.topic-chip,
+a.topic-chip {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 42px;
+  padding: 10px 16px !important;
+  border-radius: 999px !important;
+  white-space: nowrap !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #f7fbff !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+  background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04)) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.02),
+    0 8px 18px rgba(0,0,0,0.14) !important;
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease !important;
+}
+
+.topic-chip:hover,
+.followup-chip:hover,
+button.topic-chip:hover,
+a.topic-chip:hover {
+  transform: translateY(-2px) !important;
+  border-color: rgba(143,179,255,0.44) !important;
+  box-shadow:
+    0 10px 22px rgba(0,0,0,0.18),
+    0 0 0 3px rgba(143,179,255,0.08) !important;
+}
+
+/* grup renkleri */
+.chip-main {
+  background: linear-gradient(135deg, rgba(64,156,255,0.24), rgba(93,193,255,0.14)) !important;
+}
+
+.chip-paper {
+  background: linear-gradient(135deg, rgba(214,186,90,0.26), rgba(214,186,90,0.10)) !important;
+}
+
+.chip-history {
+  background: linear-gradient(135deg, rgba(92,218,215,0.24), rgba(92,218,215,0.10)) !important;
+}
+
+.chip-compare {
+  background: linear-gradient(135deg, rgba(166,158,255,0.24), rgba(166,158,255,0.10)) !important;
+}
+
+/* soru kutusu */
+.ask-row {
+  display: flex !important;
+  gap: 12px !important;
+  align-items: stretch !important;
+  margin-top: 14px !important;
+}
+
+.ask-row input,
+#questionInput {
+  flex: 1 1 auto !important;
+  min-height: 52px !important;
+  padding: 14px 16px !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(255,255,255,0.10) !important;
+  background: rgba(8, 14, 22, 0.92) !important;
+  color: #ffffff !important;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02) !important;
+}
+
+.ask-row input:focus,
+#questionInput:focus {
+  border-color: rgba(143,179,255,0.54) !important;
+  box-shadow:
+    0 0 0 4px rgba(143,179,255,0.10),
+    inset 0 0 0 1px rgba(255,255,255,0.02) !important;
+}
+
+/* sor butonu */
+#askBtn,
+.ask-row button {
+  min-width: 110px;
+  min-height: 52px;
+  border-radius: 16px !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+  background: linear-gradient(135deg, rgba(92,160,255,0.95), rgba(83,203,255,0.92)) !important;
+  color: #06111d !important;
+  font-weight: 800 !important;
+  box-shadow: 0 12px 22px rgba(51, 143, 255, 0.18) !important;
+}
+
+#askBtn:hover,
+.ask-row button:hover {
+  transform: translateY(-1px) !important;
+}
+
+/* cevap alanı */
+.answer-box,
+#answerBox {
+  margin-top: 14px !important;
+  min-height: 220px;
+  padding: 18px !important;
+  border-radius: 20px !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  background: linear-gradient(180deg, rgba(15,22,31,0.98), rgba(18,31,45,0.92)) !important;
+  color: #eaf4ff !important;
+  line-height: 1.75 !important;
+}
+
+/* düşünüyor alanı */
+.thinking,
+#thinkingBox {
+  margin-top: 12px !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px !important;
+  border-radius: 999px !important;
+  background: rgba(255,255,255,0.06) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  color: rgba(232, 240, 250, 0.84) !important;
+}
+
+/* footer */
+footer {
+  margin-top: 28px !important;
+  background: rgba(7, 11, 17, 0.55) !important;
+  border-top: 1px solid rgba(255,255,255,0.06) !important;
+}
+
+footer .container {
+  text-align: center !important;
+  color: rgba(226, 236, 248, 0.72) !important;
+}
+
+/* hızlı geçiş bölümü kaldıysa gizle */
+.ai-layout section:last-of-type {
+  display: none !important;
+}
+
+/* mobil */
+@media (max-width: 768px) {
+  .navbar-inner {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .nav-links {
+    width: 100%;
+  }
+
+  .section-card {
+    padding: 18px !important;
+  }
+
+  .ask-row {
+    flex-direction: column;
+  }
+
+  #askBtn,
+  .ask-row button {
+    width: 100%;
+  }
+
+  .topic-chip,
+  .followup-chip {
+    width: auto;
+    max-width: 100%;
+  }
 }
