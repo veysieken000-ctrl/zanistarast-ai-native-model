@@ -1070,3 +1070,52 @@ mevcut askAI() ve clearAI() çağrılarını da korudum
   background: linear-gradient(135deg, #ffd700, #ffb347);
   color: #111;
 }
+/* === FIX: Hızlı Konular düzen === */
+
+.topic-chip-wrap {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 10px !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+}
+
+/* tüm chipleri yatay akışa zorla */
+.topic-chip {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+/* renkli olanları üste taşı */
+.topic-chip.chip-main {
+  order: 1;
+}
+
+.topic-chip.chip-paper {
+  order: 2;
+}
+
+.topic-chip.chip-history {
+  order: 3;
+}
+
+.topic-chip.chip-compare {
+  order: 4;
+}
+
+/* dikey kırılmayı engelle */
+.topic-chip-wrap button {
+  flex: 0 0 auto;
+}
+
+/* === FIX: Hızlı Geçiş tamamen kapalı === */
+.section-card:has(h2:contains("Hızlı Geçiş")) {
+  display: none !important;
+}
+
+/* fallback (tarayıcı desteklemezse) */
+.ai-layout section:last-of-type {
+  display: none !important;
+}
