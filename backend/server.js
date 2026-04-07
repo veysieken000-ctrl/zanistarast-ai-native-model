@@ -195,9 +195,24 @@ function isWeakSystemAnswer(question, answer) {
 
   if (!a || a.length < 230) return true;
 
-  const mustHaveGeneral = ["katman", "mekanizma", "ilişki", "sonuç"];
-  const missingGeneral = mustHaveGeneral.filter((x) => !a.includes(x));
-  if (missingGeneral.length >= 2) return true;
+ const mustHaveTruth = [
+  "ontological",
+  "epistemic",
+  "structural",
+  "ethical",
+  "classification"
+];
+
+const missingTruth = mustHaveTruth.filter((x) => !a.includes(x));
+
+if (missingTruth.length >= 2) return true;
+if (
+  !a.includes("closer to truth") &&
+  !a.includes("mixed") &&
+  !a.includes("falsehood")
+) {
+  return true;
+}
 
   if (
     q.includes("rabun") ||
