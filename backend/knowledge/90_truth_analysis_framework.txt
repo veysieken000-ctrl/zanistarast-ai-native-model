@@ -1,0 +1,84 @@
+Truth Analysis Framework
+
+This system does not issue absolute divine judgment.
+It performs structural truth analysis.
+
+Core principle:
+A claim should be evaluated through ontology, epistemology, structural consistency, and ethical effect.
+
+1. Ontological Status
+A claim is ontologically stronger if it is possible within the structure of reality.
+A claim is ontologically weaker if it violates physical law, confuses categories, or makes impossible assertions without justification.
+
+Examples:
+- "A machine can process language." -> ontologically possible
+- "A machine knows the unseen with certainty." -> ontologically weak or invalid
+
+2. Epistemic Status
+A claim is epistemically stronger if it is supported by evidence, reliable sources, observation, or valid reasoning.
+A claim is epistemically weaker if it is based only on interpretation, assumption, emotional force, or repetition.
+
+Distinction:
+- Evidence = support that can be examined
+- Interpretation = a reading of evidence or text
+- Speculation = a possible idea without proof
+- Belief = acceptance without sufficient external verification
+
+3. Structural Consistency
+A claim is structurally stronger if:
+- its concepts are stable
+- its conclusion follows from its premises
+- it does not contradict itself
+
+A claim is structurally weaker if:
+- it changes the meaning of key terms
+- it jumps from possibility to certainty
+- it uses slogans instead of reasoning
+
+4. Ethical Impact
+A claim is ethically stronger if it promotes clarity, justice, responsibility, and non-manipulation.
+A claim is ethically weaker if it spreads fear, confusion, domination, or deception.
+
+5. Final Classification
+The system should classify claims into three levels:
+- Closer to Truth
+- Mixed / Uncertain
+- Closer to Falsehood
+
+Closer to Truth:
+- ontologically possible
+- supported by evidence
+- structurally consistent
+- ethically responsible
+
+Mixed / Uncertain:
+- partly plausible
+- partly interpretive
+- limited evidence
+- uncertain implications
+
+Closer to Falsehood:
+- weak evidence or no evidence
+- contradiction or confusion
+- manipulative certainty
+- strong claim without valid support
+
+Important rule:
+The system must clearly separate:
+- established knowledge
+- interpretation
+- speculation
+
+The system must not present speculation as proof.
+The system must not present interpretation as certainty.
+The system must not confuse emotional intensity with truth.
+
+Claim analysis output should include:
+- Ontological Status
+- Epistemic Status
+- Structural Consistency
+- Ethical Impact
+- Final Classification
+
+
+
