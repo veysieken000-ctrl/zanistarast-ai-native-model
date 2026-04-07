@@ -98,6 +98,7 @@ function scoreChunk(question, chunk) {
 
 export function buildRagContext(question, k = 8) {
   const knowledgeChunks = loadKnowledgeChunks();
+  console.log("RAG_VERSION_2_ACTIVE");
   const cleanQuestion = String(question || "").trim();
 
   if (!cleanQuestion || !knowledgeChunks.length) {
