@@ -16,6 +16,13 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api", aiEngineRoutes);
+app.get("/api/debug/version", (_req, res) => {
+  res.json({
+    ok: true,
+    serverVersion: "server-v2",
+    ragVersion: "rag-v2"
+  });
+});
 app.get("/api/debug/knowledge-files", (_req, res) => {
   try {
     const knowledgeDir = path.join(__dirname, "knowledge");
