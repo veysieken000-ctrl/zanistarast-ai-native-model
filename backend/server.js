@@ -3,9 +3,12 @@ import express from "express";
 import cors from "cors";
 import { buildRagContext } from "./rag_search.js";
 import aiEngineRoutes from "./routes/ai_engine.js";
-
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 dotenv.config();
-
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -13,6 +16,61 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api", aiEngineRoutes);
+app.get("/api/debug/knowledge-files", (_req, res) => {
+  try {
+    const knowledgeDir = path.join(__dirname, "knowledge");
+
+    if (!fs.existsSync(knowledgeDir)) {
+      return res.json({
+        ok: false,
+        message: "knowledge klasörü bulunamadı",
+        knowledgeDir
+      });
+    }
+
+    const files = fs.readdirSync(knowledgeDir);
+
+    return res.json({
+      ok: true,
+      knowledgeDir,
+      total: files.length,
+      files
+    });
+  } catch (error) {
+    return res.status(500).json({
+      ok: false,
+      error: error.message
+    });
+  }
+});
+
+app.get("/api/debug/search", (req, res) => {
+  try {
+    const question = String(req.query.q || "").trim();
+
+    if (!question) {
+      return res.status(400).json({
+        ok: false,
+        error: "q parametresi gerekli"
+      });
+    }
+
+    const { results, context } = buildRagContext(question, 8);
+
+    return res.json({
+      ok: true,
+      question,
+      total: results.length,
+      results,
+      context
+    });
+  } catch (error) {
+    return res.status(500).json({
+      ok: false,
+      error: error.message
+    });
+  }
+});
 
 function detectTurkish(text) {
   const lower = String(text || "").toLowerCase();
