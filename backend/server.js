@@ -20,6 +20,36 @@ function detectTurkish(text) {
     /\b(nedir|neden|nasıl|ve|ile|göre|insan|medeniyet|ahlak|varlık|zaman)\b/.test(lower);
 }
 
+function buildTruthAnalysisPrompt() {
+  return `
+Analyze the user's claim using the following framework:
+
+1. Ontological status
+- Is the claim possible?
+- Does it contradict the basic structure of reality or existence?
+
+2. Epistemic status
+- Is there evidence for it?
+- Or is it only interpretation, speculation, or belief?
+
+3. Structural consistency
+- Is the claim internally consistent?
+- Do the conclusions follow logically from the premises?
+
+4. Ethical outcome
+- Could it cause harm?
+- Does it contain manipulation, deception, or abuse of power?
+
+5. Final classification
+- close to truth
+- mixed / uncertain
+- close to falsehood
+
+Keep the response short, clear, and direct.
+`;
+}
+
+
 function buildAskSystemPrompt(question, ragContext) {
   const wantsTurkish = detectTurkish(question);
 
