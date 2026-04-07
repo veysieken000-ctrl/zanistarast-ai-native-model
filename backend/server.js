@@ -118,8 +118,6 @@ function buildAskSystemPrompt(question, ragContext) {
   const wantsTurkish = detectTurkish(question);
   const truthAnalysisPrompt = buildTruthAnalysisPrompt();
 
- const truthAnalysisPrompt = buildTruthAnalysisPrompt();
-
 return `
 You are Zanistarast AI — a structural truth analysis system.
 
