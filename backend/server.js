@@ -17,7 +17,7 @@ app.use("/api", aiEngineRoutes);
 function detectTurkish(text) {
   const lower = String(text || "").toLowerCase();
   return /[çğıöşü]/.test(lower) ||
-    /\b(nedir|neden|nasıl|ve|ile|göre|insan|medeniyet|ahlak|varlık|zaman)\b/.test(lower);
+    /\b(nedir|neden|nasıl|ve|ile|göre|insan|medeniyet|ahlak|varlık|zaman|hak|batıl|doğru|yanlış)\b/.test(lower);
 }
 
 function buildTruthAnalysisPrompt() {
@@ -61,10 +61,6 @@ You must answer primarily from the retrieved knowledge.
 ${truthAnalysisPrompt}
 
 RULES:
-`;
-}
-
-RULES:
 1. Use retrieved knowledge first.
 2. Do not replace repository knowledge with generic explanations.
 3. Keep answers structural and layered.
@@ -74,11 +70,11 @@ RULES:
    - Hukum Meclisi
    - Ahlak Meclisi
    - Ekonomi Meclisi
-6. If the question is about Hebun, include:
+6. If the question is about Hebun / Hebûn, include:
    - layered being
    - lower / upper layer relation
    - higher layer does not violate physical law
-7. If the question is about Zanabun, include:
+7. If the question is about Zanabun / Zanabûn, include:
    - validation
    - knowledge / reality relation
    - cross-layer consistency
@@ -86,6 +82,15 @@ RULES:
    - consistency filter
    - elimination logic
 9. Do not answer in a shallow or generic way.
+10. If the question is claim-based, explicitly analyze:
+   - Ontological status
+   - Epistemic status
+   - Structural consistency
+   - Ethical outcome
+   - Final classification
+11. If certainty is low, say so clearly.
+12. Do not pretend interpretation is proof.
+13. Separate repository knowledge from your inference when needed.
 
 OUTPUT STRUCTURE:
 - Katman / Boyut
@@ -93,8 +98,18 @@ OUTPUT STRUCTURE:
 - İlişki
 - Yapısal Sonuç
 
+If the question is claim-based, also append:
+- Ontolojik Durum
+- Epistemik Durum
+- Yapısal Tutarlılık
+- Etik Sonuç
+- Nihai Sınıflandırma
+
 LANGUAGE:
 ${wantsTurkish ? "Write fully in Turkish." : "Write fully in English."}
+
+QUESTION:
+${question}
 
 RETRIEVED KNOWLEDGE:
 ${ragContext || "No retrieved context found."}
@@ -109,19 +124,34 @@ function isWeakSystemAnswer(question, answer) {
   const q = normalizeText(question);
   const a = normalizeText(answer);
 
-  if (!a || a.length < 220) return true;
+  if (!a || a.length < 230) return true;
 
   const mustHaveGeneral = ["katman", "mekanizma", "ilişki", "sonuç"];
   const missingGeneral = mustHaveGeneral.filter((x) => !a.includes(x));
   if (missingGeneral.length >= 2) return true;
 
-  if (q.includes("rabun") || q.includes("rabûn") || q.includes("yönetim") || q.includes("governance")) {
+  if (
+    q.includes("rabun") ||
+    q.includes("rabûn") ||
+    q.includes("yönetim") ||
+    q.includes("governance")
+  ) {
     const mustHave = ["hüküm", "ahlak", "ekonomi"];
     if (mustHave.some((x) => !a.includes(x))) return true;
   }
 
   if (q.includes("hebun") || q.includes("hebûn")) {
     const mustHave = ["katman", "varlık", "fizik"];
+    if (mustHave.some((x) => !a.includes(x))) return true;
+  }
+
+  if (q.includes("zanabun") || q.includes("zanabûn")) {
+    const mustHave = ["doğrul", "bilgi", "gerçek"];
+    if (mustHave.some((x) => !a.includes(x))) return true;
+  }
+
+  if (q.includes("rasterast")) {
+    const mustHave = ["tutarl", "eleme"];
     if (mustHave.some((x) => !a.includes(x))) return true;
   }
 
@@ -144,6 +174,26 @@ function isWeakSystemAnswer(question, answer) {
       "mind"
     ];
     const foundCount = mustHaveAny.filter((x) => a.includes(x)).length;
+    if (foundCount < 3) return true;
+  }
+
+  if (
+    q.includes("iddia") ||
+    q.includes("claim") ||
+    q.includes("hak") ||
+    q.includes("batıl") ||
+    q.includes("truth") ||
+    q.includes("falsehood") ||
+    q.includes("doğru") ||
+    q.includes("yanlış")
+  ) {
+    const mustHave = [
+      "ontolojik",
+      "epistemik",
+      "tutarl",
+      "etik"
+    ];
+    const foundCount = mustHave.filter((x) => a.includes(x)).length;
     if (foundCount < 3) return true;
   }
 
@@ -182,9 +232,17 @@ MANDATORY REWRITE RULES:
    - cell / organism / biological order
    - perception / memory / judgement / meaning
    - transition logic between layers
-8. Do not be vague.
-9. Do not repeat empty slogans.
-10. Make the answer feel like a real structural explanation.
+8. If the question is claim-based, explicitly include:
+   - Ontolojik Durum
+   - Epistemik Durum
+   - Yapısal Tutarlılık
+   - Etik Sonuç
+   - Nihai Sınıflandırma
+9. Do not be vague.
+10. Do not repeat empty slogans.
+11. Make the answer feel like a real structural explanation.
+12. If certainty is limited, state the limitation clearly.
+13. Distinguish evidence, interpretation, and inference.
 
 LANGUAGE:
 ${wantsTurkish ? "Write fully in Turkish." : "Write fully in English."}
@@ -195,7 +253,7 @@ ${question}
 RETRIEVED KNOWLEDGE:
 ${ragContext || "No retrieved context found."}
 
-WEAK FIRST ANSWER:
+FIRST ANSWER TO IMPROVE:
 ${firstAnswer || ""}
 `.trim();
 }
@@ -208,45 +266,52 @@ async function callOpenAI(systemPrompt, userPrompt, temperature = 0.35) {
     };
   }
 
-  const response = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.OPENAI_API_KEY}`
-    },
-    body: JSON.stringify({
-      model: "gpt-4o-mini",
-      temperature,
-      messages: [
-        {
-          role: "system",
-          content: systemPrompt
-        },
-        {
-          role: "user",
-          content: userPrompt
-        }
-      ]
-    })
-  });
+  try {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: "gpt-4o-mini",
+        temperature,
+        messages: [
+          {
+            role: "system",
+            content: systemPrompt
+          },
+          {
+            role: "user",
+            content: userPrompt
+          }
+        ]
+      })
+    });
 
-  if (!response.ok) {
-    const errorText = await response.text();
+    if (!response.ok) {
+      const errorText = await response.text();
+      return {
+        ok: false,
+        error: `API error: ${errorText}`
+      };
+    }
+
+    const data = await response.json();
+    const answer =
+      data?.choices?.[0]?.message?.content ||
+      "No answer returned from API.";
+
+    return {
+      ok: true,
+      answer
+    };
+  } catch (error) {
     return {
       ok: false,
-      error: `API error: ${errorText}`
+      error: `Request failed: ${error.message}`
     };
   }
-
-  const data = await response.json();
-  const answer =
-    data?.choices?.[0]?.message?.content ||
-    "No answer returned from API.";
-
-  return {
-    ok: true,
-    answer
-  };
 }
 
 app.get("/", (_req, res) => {
@@ -273,7 +338,7 @@ app.post("/api/ask", async (req, res) => {
         answer: detectTurkish(question)
           ? "İlgili knowledge bulunamadı. Önce bu konu knowledge tabanına eklenmeli."
           : "No relevant knowledge was found. Add this topic into the knowledge base first.",
-        rag: {
+        meta: {
           total: 0,
           chunks: []
         }
@@ -302,7 +367,7 @@ app.post("/api/ask", async (req, res) => {
 
     return res.json({
       answer,
-      rag: {
+      meta: {
         total: results.length,
         chunks: results.map((item) => ({
           id: item.id,
