@@ -3,26 +3,27 @@ const askBtn = document.getElementById("askBtn");
 const answerBox = document.getElementById("answerBox");
 const thinkingBox = document.getElementById("thinkingBox");
 
-fonksiyon fillPrompt(metin) {
-Eğer soru girilmemişse, geri dön;
-soruGirişi.değeri = metin;
-soruGirişi.odak();
+function fillPrompt(text) {
+  if (!questionInput) return;
+  questionInput.value = text;
+  questionInput.focus();
 }
-pencere.doldurma istemi = doldurma istemi;
+window.fillPrompt = fillPrompt;
 
-fonksiyon showThinking() {
-if (thinkingBox) thinkingBox.style.display = "block";
-}
-
-düşünmeyi gizle fonksiyonu {
-if (thinkingBox) thinkingBox.style.display = "none";
+function showThinking() {
+  if (thinkingBox) thinkingBox.style.display = "block";
 }
 
-fonksiyon escapeHtml(metin) {
-const div = document.createElement("div");
-div.textContent = text;
-div.innerHTML'i döndür;
+function hideThinking() {
+  if (thinkingBox) thinkingBox.style.display = "none";
 }
+
+function escapeHtml(text) {
+  const div = document.createElement("div");
+  div.textContent = text;
+  return div.innerHTML;
+}
+
 function buildAnswer(question) {
   const q = question.toLowerCase();
   const cleanQ = q
@@ -64,7 +65,10 @@ function buildAnswer(question) {
       <h3>Rasterast</h3>
       <p>Rasterast, tutarlılık filtreleme yöntemidir.</p>
       <p>Bir yapının geçerliliği ontoloji, epistemoloji, yapı ve sonuç uyumuyla değerlendirilir.</p>
-    `;if (cleanQ.includes("rebun")) {
+    `;
+  }
+
+  if (cleanQ.includes("rebun")) {
     return `
       <h3>Rêbûn</h3>
       <p>Rêbûn, yönetim, adalet ve düzen ilişkisini açıklayan yapısal modeldir.</p>
@@ -149,4 +153,3 @@ if (questionInput) {
     }
   });
 }
-
