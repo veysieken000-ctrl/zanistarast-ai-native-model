@@ -49,14 +49,20 @@ Keep the response short, clear, and direct.
 `;
 }
 
-
 function buildAskSystemPrompt(question, ragContext) {
   const wantsTurkish = detectTurkish(question);
+  const truthAnalysisPrompt = buildTruthAnalysisPrompt();
 
   return `
 You are Zanistarast AI.
 
 You must answer primarily from the retrieved knowledge.
+
+${truthAnalysisPrompt}
+
+RULES:
+`;
+}
 
 RULES:
 1. Use retrieved knowledge first.
