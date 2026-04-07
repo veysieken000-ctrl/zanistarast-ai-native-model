@@ -448,20 +448,46 @@ app.post("/api/ask", async (req, res) => {
         answer = repairPass.answer;
       }
     }
+function enforceTruthFormat(answer) {
+  const lower = answer.toLowerCase();
 
-    return res.json({
-      answer,
-      meta: {
-        total: results.length,
-        chunks: results.map((item) => ({
-          id: item.id,
-          title: item.title,
-          domain: item.domain,
-          layer: item.layer,
-          score: item.score
-        }))
-      }
-    });
+  const required = [
+    "ontological",
+    "epistemic",
+    "structural",
+    "ethical",
+    "classification"
+  ];
+
+  const missing = required.filter((k) => !lower.includes(k));
+
+  if (missing.length >= 2) {
+    return `
+Ontological Status:
+Unknown
+
+Epistemic Status:
+Insufficient evidence
+
+Structural Consistency:
+Weak
+
+Ethical Impact:
+Unclear
+
+Final Classification:
+Mixed / Uncertain
+`;
+  }
+
+  return answer;
+}
+const finalAnswer = enforceTruthFormat(answer);
+
+res.json({
+  answer: finalAnswer,
+  meta: ...
+}); 
   } catch (_error) {
     return res.status(500).json({
       answer: "Server error. Please try again later."
