@@ -318,19 +318,50 @@ async function callOpenAI(systemPrompt, userPrompt, temperature = 0.35) {
 function enforceTruthFormat(answer) {
   const lower = String(answer || "").toLowerCase();
 
- const required = [
-  "ontological",
-  "epistemic",
-  "structural",
-  "ethical",
-  "classification",
-  "truth",
-  "false"
-];
+  const required = [
+    "ontological",
+    "epistemic",
+    "structural",
+    "ethical",
+    "classification"
+  ];
 
   const missing = required.filter((k) => !lower.includes(k));
 
-  if (missing.length >= 2 || (!lower.includes("truth") && !lower.includes("false"))) {
+  const hasTruthDecision =
+    lower.includes("final classification") &&
+    (lower.includes("truth") || lower.includes("false"));
+
+  if (missing.length >= 2 || !hasTruthDecision) {
+    return `
+Ontological Status:
+Weak
+
+Epistemic Status:
+Insufficient evidence
+
+Structural Consistency:
+Weak
+
+Ethical Impact:
+Risk of confusion
+
+Final Classification:
+FALSE
+`.trim();
+  }
+
+  return answer;
+}
+
+  const missing = required.filter((k) => !lower.includes(k));
+
+  const hasTruthDecision =
+  lower.includes("final classification") &&
+  (lower.includes("truth") || lower.includes("false"));
+
+if (missing.length >= 2 || !hasTruthDecision) {
+
     return `
 Ontological Status:
 Weak
