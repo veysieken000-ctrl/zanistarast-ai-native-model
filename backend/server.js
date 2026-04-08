@@ -259,6 +259,61 @@ FIRST ANSWER TO IMPROVE:
 ${firstAnswer || ""}
 `.trim();
 }
+async function callOpenAI(systemPrompt, userPrompt, temperature = 0.35) {
+  if (!process.env.OPENAI_API_KEY) {
+    return {
+      ok: false,
+      error: "Backend is ready, but no live API key is configured yet."
+    };
+  }
+
+  try {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: "gpt-4o-mini",
+        temperature,
+        messages: [
+          {
+            role: "system",
+            content: systemPrompt
+          },
+          {
+            role: "user",
+            content: userPrompt
+          }
+        ]
+      })
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      return {
+        ok: false,
+        error: `API error: ${errorText}`
+      };
+    }
+
+    const data = await response.json();
+    const answer =
+      data?.choices?.[0]?.message?.content ||
+      "No answer returned from API.";
+
+    return {
+      ok: true,
+      answer
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      error: `Request failed: ${error.message}`
+    };
+  }
+}
 
 function enforceTruthFormat(answer) {
   const lower = String(answer || "").toLowerCase();
