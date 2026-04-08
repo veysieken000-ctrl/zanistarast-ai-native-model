@@ -110,7 +110,7 @@ Analyze the user's claim using the following framework:
 - FALSE
 
 STRICT DECISION RULES:
-- You are NOT allowed to answer "mixed", "uncertain", "unknown", or "both".
+- You are NOT allowed to answer "mixed", "uncertain", "unknown", "both", or similar middle positions.
 - You MUST choose either TRUTH or FALSE.
 - If evidence is weak, classify as FALSE.
 - If the claim is mostly interpretation or speculation, classify as FALSE.
@@ -122,40 +122,20 @@ Truth = Ontological coherence + Epistemic support + Structural consistency
 If one of these fails strongly, the result is FALSE.
 
 Keep the response short, clear, direct, and decisive.
-`;
+`.trim();
 }
 
+function buildAskSystemPrompt(question, ragContext) {
+  const wantsTurkish = detectTurkish(question);
+  const truthAnalysisPrompt = buildTruthAnalysisPrompt();
+
+  return `
+You are Zanistarast AI — a structural truth analysis system.
+
+Your role is NOT to give generic explanations.
+Your role is to ANALYZE the user's claim and determine its relation to truth.
+
 ${truthAnalysisPrompt}
-
-CORE ANALYSIS FRAME:
-
-1. Ontological Status
-- Is the claim possible within the structure of reality?
-- Does it violate physical or existential constraints?
-
-2. Epistemic Status
-- Is the claim supported by evidence?
-- Or is it interpretation, belief, or speculation?
-
-3. Structural Consistency
-- Is the claim internally consistent?
-- Do conclusions follow from premises?
-
-4. Ethical Impact
-- Does the claim produce clarity or confusion?
-- Could it mislead or manipulate?
-
-FINAL CLASSIFICATION (MANDATORY):
-- "Closer to Truth"
-- "Mixed / Uncertain"
-- "Closer to Falsehood"
-
-RULES:
-1. Never give shallow answers.
-2. Do not write long essays.
-3. Do not repeat generic knowledge.
-4. Always follow the structure strictly.
-5. Be decisive in classification.
 
 OUTPUT FORMAT (STRICT):
 
@@ -172,7 +152,14 @@ Ethical Impact:
 ...
 
 Final Classification:
-...
+TRUTH or FALSE only
+
+IMPORTANT:
+- Do not output "mixed", "uncertain", "unknown", or any middle category.
+- If the evidence is insufficient, choose FALSE.
+- If the claim is speculative, choose FALSE.
+- If the claim is unclear, choose FALSE.
+- Only strong evidence + structural consistency can justify TRUTH.
 
 LANGUAGE:
 ${wantsTurkish ? "Write fully in Turkish." : "Write fully in English."}
@@ -182,7 +169,6 @@ ${ragContext || "No retrieved context found."}
 `.trim();
 }
 
-
 function normalizeText(value) {
   return String(value || "").toLowerCase();
 }
@@ -191,72 +177,21 @@ function isWeakSystemAnswer(question, answer) {
   const q = normalizeText(question);
   const a = normalizeText(answer);
 
-  if (!a || a.length < 230) return true;
+  if (!a || a.length < 180) return true;
 
- const mustHaveTruth = [
-  "ontological",
-  "epistemic",
-  "structural",
-  "ethical",
-  "classification"
-];
+  const mustHaveTruth = [
+    "ontological",
+    "epistemic",
+    "structural",
+    "ethical",
+    "classification"
+  ];
 
-const missingTruth = mustHaveTruth.filter((x) => !a.includes(x));
+  const missingTruth = mustHaveTruth.filter((x) => !a.includes(x));
+  if (missingTruth.length >= 2) return true;
 
-if (missingTruth.length >= 2) return true;
-if (
-  !a.includes("closer to truth") &&
-  !a.includes("mixed") &&
-  !a.includes("falsehood")
-) {
-  return true;
-}
-
-  if (
-    q.includes("rabun") ||
-    q.includes("rabûn") ||
-    q.includes("yönetim") ||
-    q.includes("governance")
-  ) {
-    const mustHave = ["hüküm", "ahlak", "ekonomi"];
-    if (mustHave.some((x) => !a.includes(x))) return true;
-  }
-
-  if (q.includes("hebun") || q.includes("hebûn")) {
-    const mustHave = ["katman", "varlık", "fizik"];
-    if (mustHave.some((x) => !a.includes(x))) return true;
-  }
-
-  if (q.includes("zanabun") || q.includes("zanabûn")) {
-    const mustHave = ["doğrul", "bilgi", "gerçek"];
-    if (mustHave.some((x) => !a.includes(x))) return true;
-  }
-
-  if (q.includes("rasterast")) {
-    const mustHave = ["tutarl", "eleme"];
-    if (mustHave.some((x) => !a.includes(x))) return true;
-  }
-
-  if (
-    q.includes("fizik") ||
-    q.includes("biyoloji") ||
-    q.includes("zihin") ||
-    q.includes("science") ||
-    q.includes("bilim")
-  ) {
-    const mustHaveAny = [
-      "proton",
-      "nötron",
-      "neutron",
-      "elektron",
-      "electron",
-      "hücre",
-      "cell",
-      "zihin",
-      "mind"
-    ];
-    const foundCount = mustHaveAny.filter((x) => a.includes(x)).length;
-    if (foundCount < 3) return true;
+  if (!a.includes("truth") && !a.includes("false")) {
+    return true;
   }
 
   if (
@@ -264,19 +199,18 @@ if (
     q.includes("claim") ||
     q.includes("hak") ||
     q.includes("batıl") ||
+    q.includes("batil") ||
     q.includes("truth") ||
     q.includes("falsehood") ||
     q.includes("doğru") ||
-    q.includes("yanlış")
+    q.includes("dogru") ||
+    q.includes("yanlış") ||
+    q.includes("yanlis")
   ) {
-    const mustHave = [
-      "ontolojik",
-      "epistemik",
-      "tutarl",
-      "etik"
-    ];
+    const mustHave = ["ontolojik", "epistemik", "tutarl", "etik"];
     const foundCount = mustHave.filter((x) => a.includes(x)).length;
-    if (foundCount < 3) return true;
+
+    if (detectTurkish(question) && foundCount < 3) return true;
   }
 
   return false;
@@ -288,43 +222,29 @@ function buildRepairSystemPrompt(question, ragContext, firstAnswer) {
   return `
 You are Zanistarast AI.
 
-Your first answer was too weak, too generic, or structurally incomplete.
+The first answer was too weak, too generic, or structurally incomplete.
 
-Rewrite it as a stronger SYSTEMIC answer.
+Rewrite it as a stronger TRUTH-ANALYSIS answer.
 
 MANDATORY REWRITE RULES:
 1. Keep the answer grounded in the retrieved knowledge.
 2. Remove generic phrasing.
-3. Explicitly show system structure.
-4. Use these sections clearly:
-   - Katman / Boyut
-   - Mekanizma
-   - İlişki
-   - Yapısal Sonuç
-5. If the question is about Rabun / Rabûn, explicitly include:
-   - Hüküm Meclisi
-   - Ahlak Meclisi
-   - Ekonomi Meclisi
-6. If the question is about Hebun / Hebûn, explicitly include:
-   - layered being
-   - physical law is not violated
-   - upper layer includes lower layer
-7. If the question is about science / physics / biology / mind, explicitly include:
-   - proton / neutron / electron / energy
-   - cell / organism / biological order
-   - perception / memory / judgement / meaning
-   - transition logic between layers
-8. If the question is claim-based, explicitly include:
-   - Ontolojik Durum
-   - Epistemik Durum
-   - Yapısal Tutarlılık
-   - Etik Sonuç
-   - Nihai Sınıflandırma
-9. Do not be vague.
-10. Do not repeat empty slogans.
-11. Make the answer feel like a real structural explanation.
-12. If certainty is limited, state the limitation clearly.
-13. Distinguish evidence, interpretation, and inference.
+3. Use exactly these sections:
+- Ontological Status
+- Epistemic Status
+- Structural Consistency
+- Ethical Impact
+- Final Classification
+4. Final Classification MUST be either:
+- TRUTH
+- FALSE
+5. Do NOT use:
+- mixed
+- uncertain
+- unknown
+- maybe
+- both
+6. If evidence is weak or speculative, choose FALSE.
 
 LANGUAGE:
 ${wantsTurkish ? "Write fully in Turkish." : "Write fully in English."}
@@ -340,68 +260,40 @@ ${firstAnswer || ""}
 `.trim();
 }
 
-async function callOpenAI(systemPrompt, userPrompt, temperature = 0.35) {
-  if (!process.env.OPENAI_API_KEY) {
-    return {
-      ok: false,
-      error: "Backend is ready, but no live API key is configured yet."
-    };
+function enforceTruthFormat(answer) {
+  const lower = String(answer || "").toLowerCase();
+
+  const required = [
+    "ontological",
+    "epistemic",
+    "structural",
+    "ethical",
+    "classification"
+  ];
+
+  const missing = required.filter((k) => !lower.includes(k));
+
+  if (missing.length >= 2 || (!lower.includes("truth") && !lower.includes("false"))) {
+    return `
+Ontological Status:
+Weak
+
+Epistemic Status:
+Insufficient evidence
+
+Structural Consistency:
+Weak
+
+Ethical Impact:
+Risk of confusion
+
+Final Classification:
+FALSE
+`.trim();
   }
 
-  try {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: "gpt-4o-mini",
-        temperature,
-        messages: [
-          {
-            role: "system",
-            content: systemPrompt
-          },
-          {
-            role: "user",
-            content: userPrompt
-          }
-        ]
-      })
-    });
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      return {
-        ok: false,
-        error: `API error: ${errorText}`
-      };
-    }
-
-    const data = await response.json();
-    const answer =
-      data?.choices?.[0]?.message?.content ||
-      "No answer returned from API.";
-
-    return {
-      ok: true,
-      answer
-    };
-  } catch (error) {
-    return {
-      ok: false,
-      error: `Request failed: ${error.message}`
-    };
-  }
+  return answer;
 }
-
-app.get("/", (_req, res) => {
-  res.json({
-    status: "ok",
-    message: "zanistarast backend is running"
-  });
-});
 
 app.post("/api/ask", async (req, res) => {
   try {
@@ -446,51 +338,25 @@ app.post("/api/ask", async (req, res) => {
         answer = repairPass.answer;
       }
     }
-function enforceTruthFormat(answer) {
-  const lower = answer.toLowerCase();
 
-  const required = [
-  "ontological",
-  "epistemic",
-  "structural",
-  "ethical",
-  "classification",
-  "truth",
-  "false"
-];
+    const finalAnswer = enforceTruthFormat(answer);
 
-  const missing = required.filter((k) => !lower.includes(k));
-
-  if (missing.length >= 2) {
-    return `
-return `
-Ontological Status:
-Weak
-
-Epistemic Status:
-Insufficient evidence
-
-Structural Consistency:
-Weak
-
-Ethical Impact:
-Risk of confusion
-
-Final Classification:
-FALSE
-`;
-
-  return answer;
-}
-const finalAnswer = enforceTruthFormat(answer);
-
-res.json({
-  answer: finalAnswer,
-  meta: ...
-}); 
-  } catch (_error) {
+    return res.json({
+      answer: finalAnswer,
+      meta: {
+        total: results.length,
+        chunks: results.map((item) => ({
+          id: item.id,
+          title: item.title,
+          domain: item.domain,
+          layer: item.layer,
+          score: item.score
+        }))
+      }
+    });
+  } catch (error) {
     return res.status(500).json({
-      answer: "Server error. Please try again later."
+      answer: `Server error: ${error.message}`
     });
   }
 });
