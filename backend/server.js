@@ -89,40 +89,41 @@ function buildTruthAnalysisPrompt() {
   return `
 Analyze the user's claim using the following framework:
 
-1. Ontological status
+1. Ontological Status
 - Is the claim possible?
 - Does it contradict the basic structure of reality or existence?
 
-2. Epistemic status
+2. Epistemic Status
 - Is there evidence for it?
 - Or is it only interpretation, speculation, or belief?
 
-3. Structural consistency
+3. Structural Consistency
 - Is the claim internally consistent?
 - Do the conclusions follow logically from the premises?
 
-4. Ethical outcome
-- Could it cause harm?
+4. Ethical Impact
+- Does it create clarity or confusion?
 - Does it contain manipulation, deception, or abuse of power?
 
-5. Final classification
-- close to truth
-- mixed / uncertain
-- close to falsehood
+5. Final Classification (MANDATORY DECISION)
+- TRUTH
+- FALSE
 
-Keep the response short, clear, and direct.
+STRICT DECISION RULES:
+- You are NOT allowed to answer "mixed", "uncertain", "unknown", or "both".
+- You MUST choose either TRUTH or FALSE.
+- If evidence is weak, classify as FALSE.
+- If the claim is mostly interpretation or speculation, classify as FALSE.
+- If the claim contradicts reality, classify as FALSE.
+- Only classify as TRUTH if it is strongly supported by evidence, structurally consistent, and ethically sound.
+
+Decision formula:
+Truth = Ontological coherence + Epistemic support + Structural consistency
+If one of these fails strongly, the result is FALSE.
+
+Keep the response short, clear, direct, and decisive.
 `;
 }
-
-function buildAskSystemPrompt(question, ragContext) {
-  const wantsTurkish = detectTurkish(question);
-  const truthAnalysisPrompt = buildTruthAnalysisPrompt();
-
-  return `
-You are Zanistarast AI — a structural truth analysis system.
-
-Your role is NOT to give generic explanations.
-Your role is to ANALYZE the user's claim and determine its relation to truth.
 
 ${truthAnalysisPrompt}
 
@@ -449,19 +450,22 @@ function enforceTruthFormat(answer) {
   const lower = answer.toLowerCase();
 
   const required = [
-    "ontological",
-    "epistemic",
-    "structural",
-    "ethical",
-    "classification"
-  ];
+  "ontological",
+  "epistemic",
+  "structural",
+  "ethical",
+  "classification",
+  "truth",
+  "false"
+];
 
   const missing = required.filter((k) => !lower.includes(k));
 
   if (missing.length >= 2) {
     return `
+return `
 Ontological Status:
-Unknown
+Weak
 
 Epistemic Status:
 Insufficient evidence
@@ -470,12 +474,11 @@ Structural Consistency:
 Weak
 
 Ethical Impact:
-Unclear
+Risk of confusion
 
 Final Classification:
-Mixed / Uncertain
+FALSE
 `;
-  }
 
   return answer;
 }
