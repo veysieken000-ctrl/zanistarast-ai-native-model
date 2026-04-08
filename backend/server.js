@@ -427,7 +427,7 @@ app.post("/api/ask", async (req, res) => {
       }
     }
 
-    const finalAnswer = enforceTruthFormat(answer);
+    const finalAnswer = answer;
 
     return res.json({
       answer: finalAnswer,
