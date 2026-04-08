@@ -1,182 +1,786 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Zanistarast Speech Interface</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zanistarast Speech Interface</title>
+  <style>
+    :root {
+      --bg-1: #07111f;
+      --bg-2: #0a1628;
+      --card: rgba(17, 29, 49, 0.92);
+      --card-2: rgba(13, 24, 42, 0.95);
+      --border: rgba(122, 162, 255, 0.14);
+      --text: #f6f9ff;
+      --muted: #b9c7de;
+      --shadow: 0 18px 44px rgba(0, 0, 0, 0.35);
 
-<style>
-body {
-  margin:0;
-  font-family: Arial, sans-serif;
-  background:#0b1320;
-  color:#fff;
-  padding:20px;
-}
+      --blue: #7dd3fc;
+      --cyan: #48e5d2;
+      --violet: #a78bfa;
+      --pink: #ff8bb8;
+      --gold: #ffd36a;
+      --green: #3fe39a;
+      --red: #ff7f96;
+      --panel-glow: rgba(73, 144, 255, 0.12);
+    }
 
-.container {
-  max-width:900px;
-  margin:auto;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-h1 {
-  font-size:32px;
-  margin-bottom:10px;
-}
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(77, 124, 255, 0.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(72, 229, 210, 0.10), transparent 22%),
+        linear-gradient(180deg, var(--bg-1), var(--bg-2));
+      min-height: 100vh;
+      padding: 24px 14px 56px;
+    }
 
-.controls button {
-  padding:12px 16px;
-  margin:5px;
-  border:none;
-  border-radius:10px;
-  font-weight:bold;
-  cursor:pointer;
-}
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
 
-#startBtn { background:#4cc9f0; color:#000; }
-#stopBtn { background:#444; }
-#sendBtn { background:#7b61ff; }
-#speakBtn { background:#00c2a8; }
-#clearBtn { background:#ff4d6d; }
+    .hero,
+    .panel {
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(11, 21, 37, 0.98), rgba(8, 15, 28, 0.98));
+      box-shadow: var(--shadow);
+    }
 
-textarea {
-  width:100%;
-  height:150px;
-  margin-top:10px;
-  padding:10px;
-  border-radius:10px;
-  border:none;
-  font-size:16px;
-}
+    .hero {
+      padding: 28px 24px;
+      margin-bottom: 18px;
+    }
 
-.answer {
-  margin-top:15px;
-  padding:10px;
-  background:#111c30;
-  border-radius:10px;
-  min-height:120px;
-  white-space:pre-wrap;
-}
+    h1 {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      font-weight: 900;
+    }
 
-.status {
-  margin-top:10px;
-  font-weight:bold;
-}
-</style>
+    .subtitle {
+      margin: 14px 0 0;
+      color: var(--muted);
+      max-width: 920px;
+      line-height: 1.7;
+      font-size: 17px;
+    }
+
+    .panel {
+      padding: 18px;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .toolbar button,
+    .toolbar select {
+      border: 0;
+      border-radius: 16px;
+      font-size: 15px;
+      font-weight: 800;
+      min-height: 50px;
+      padding: 0 16px;
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.22);
+    }
+
+    .toolbar button {
+      cursor: pointer;
+      color: white;
+      transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+    }
+
+    .toolbar button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.26);
+    }
+
+    .toolbar button:active {
+      transform: translateY(0);
+    }
+
+    #startBtn {
+      background: linear-gradient(135deg, #95e6ff, #57baff);
+      color: #07111f;
+    }
+
+    #stopBtn {
+      background: linear-gradient(135deg, #46546d, #28364b);
+    }
+
+    #sendBtn {
+      background: linear-gradient(135deg, #9b8dff, #6f62ff);
+    }
+
+    #speakBtn {
+      background: linear-gradient(135deg, #32dcc7, #1ca6df);
+    }
+
+    #clearBtn {
+      background: linear-gradient(135deg, #ff96a3, #ea596f);
+    }
+
+    #languageSelect {
+      background: linear-gradient(180deg, rgba(18, 30, 50, 1), rgba(13, 22, 38, 1));
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      min-width: 180px;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .status-card {
+      border-radius: 18px;
+      padding: 14px 16px;
+      background: linear-gradient(180deg, rgba(15, 27, 47, 1), rgba(10, 19, 34, 1));
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      box-shadow: inset 0 0 0 1px rgba(73, 144, 255, 0.04);
+    }
+
+    .status-label {
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .status-value {
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .mic-on {
+      color: var(--green);
+    }
+
+    .mic-off {
+      color: var(--red);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .box {
+      border-radius: 22px;
+      padding: 18px;
+      background:
+        linear-gradient(180deg, rgba(17, 31, 54, 0.98), rgba(11, 23, 42, 0.98));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.02),
+        0 0 0 1px var(--panel-glow);
+      min-height: 480px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .box h2 {
+      margin: 0 0 12px;
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 280px;
+      resize: vertical;
+      border-radius: 18px;
+      border: 1px solid rgba(122, 211, 252, 0.18);
+      outline: none;
+      background: rgba(8, 17, 31, 0.92);
+      color: var(--text);
+      padding: 18px;
+      font-size: 20px;
+      line-height: 1.65;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
+    }
+
+    textarea:focus {
+      border-color: rgba(122, 211, 252, 0.42);
+      box-shadow: 0 0 0 4px rgba(122, 211, 252, 0.08);
+    }
+
+    .hint {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .answer {
+      flex: 1;
+      min-height: 280px;
+      border-radius: 18px;
+      border: 1px solid rgba(122, 211, 252, 0.16);
+      background: rgba(7, 16, 29, 0.94);
+      padding: 18px;
+      font-size: 17px;
+      line-height: 1.75;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .answer-section-title {
+      display: block;
+      margin: 16px 0 6px;
+      font-size: 18px;
+      font-weight: 900;
+      line-height: 1.4;
+    }
+
+    .title-ontological { color: var(--blue); }
+    .title-epistemic { color: var(--cyan); }
+    .title-structural { color: var(--violet); }
+    .title-ethical { color: var(--pink); }
+    .title-final { color: var(--gold); }
+
+    .classification {
+      margin-top: 12px;
+      display: inline-flex;
+      align-self: flex-start;
+      padding: 10px 15px;
+      border-radius: 999px;
+      font-weight: 900;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .classification.truth {
+      background: rgba(63, 227, 154, 0.14);
+      color: #8bffcb;
+    }
+
+    .classification.false {
+      background: rgba(255, 127, 150, 0.14);
+      color: #ff9caf;
+    }
+
+    .classification.unknown {
+      background: rgba(255, 211, 106, 0.14);
+      color: #ffe095;
+    }
+
+    .meta {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.10);
+      color: #d5e1f4;
+      font-size: 14px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+
+    .footer-note {
+      margin-top: 14px;
+      text-align: center;
+      color: #9db0cc;
+      font-size: 13px;
+    }
+
+    @media (max-width: 980px) {
+      .status-grid,
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .toolbar button,
+      .toolbar select {
+        width: 100%;
+      }
+
+      textarea,
+      .answer {
+        font-size: 17px;
+      }
+    }
+  </style>
 </head>
-
 <body>
-<div class="container">
+  <div class="wrap">
+    <section class="hero">
+      <h1>Zanistarast Speech Interface</h1>
+      <p class="subtitle">
+        Speak or type your question, send it to the backend, view the answer in a structured way,
+        and read it aloud if needed. This version is built to be clean, stable, and practical.
+      </p>
+    </section>
 
-<h1>Speech Interface</h1>
+    <section class="panel">
+      <div class="toolbar">
+        <button id="startBtn" type="button" onclick="startListening()">🎙️ Start</button>
+        <button id="stopBtn" type="button" onclick="stopListening()">⏹ Stop</button>
+        <button id="sendBtn" type="button" onclick="sendQuestion()">📤 Send</button>
+        <button id="speakBtn" type="button" onclick="speakAnswer()">🔊 Speak</button>
+        <button id="clearBtn" type="button" onclick="clearAll()">🧹 Clear</button>
 
-<div class="controls">
-  <button onclick="startListening()">🎙 Start</button>
-  <button onclick="stopListening()">⏹ Stop</button>
-  <button onclick="sendQuestion()">📤 Send</button>
-  <button onclick="speakAnswer()">🔊 Speak</button>
-  <button onclick="clearAll()">🧹 Clear</button>
-</div>
+        <select id="languageSelect" aria-label="Speech language">
+          <option value="en-US">English</option>
+          <option value="tr-TR">Turkish</option>
+          <option value="ar-SA">Arabic</option>
+          <option value="tr-TR">Kurmanji</option>
+          <option value="fa-IR">Persian</option>
+          <option value="fr-FR">French</option>
+          <option value="zh-CN">Chinese</option>
+          <option value="ru-RU">Russian</option>
+        </select>
+      </div>
+   <div class="status-grid">
+        <div class="status-card">
+          <div class="status-label">Microphone</div>
+          <div id="micStatus" class="status-value mic-off">Off</div>
+        </div>
 
-<textarea id="questionInput" placeholder="Speak or type your question..."></textarea>
+        <div class="status-card">
+          <div class="status-label">System</div>
+          <div id="systemStatus" class="status-value">Ready</div>
+        </div>
 
-<div class="answer" id="answerOutput">No answer yet.</div>
+        <div class="status-card">
+          <div class="status-label">Listening Language</div>
+          <div id="langStatus" class="status-value">en-US</div>
+        </div>
 
-<div class="status" id="status">Ready</div>
+        <div class="status-card">
+          <div class="status-label">Mode</div>
+          <div id="modeStatus" class="status-value">Manual</div>
+        </div>
+      </div>
 
-</div>
+      <div class="grid">
+        <div class="box">
+          <h2>Question</h2>
+          <textarea id="questionInput" placeholder="Speak or type your question here..."></textarea>
+          <div class="hint">
+            Choose the listening language first, then press Start. Browser speech recognition does not reliably detect all languages at once.
+          </div>
+        </div>
 
-<script>
-const API_URL = "https://zanistarast-ai-server.onrender.com/api/ask";
+        <div class="box">
+          <h2>Answer</h2>
+          <div id="answerOutput" class="answer">No answer yet.</div>
+          <div id="classificationBox" class="classification unknown">Classification: None</div>
+          <div id="metaOutput" class="meta">No source metadata yet.</div>
+        </div>
+      </div>
 
-let recognition;
-let isListening = false;
+      <div class="footer-note">Tip: press Ctrl + Enter to send quickly.</div>
+    </section>
+  </div>
 
-function setStatus(text){
-  document.getElementById("status").innerText = text;
-}
+  <script>
+    const API_URL = "https://zanistarast-ai-server.onrender.com/api/ask";
 
-function startListening(){
-  if(!('webkitSpeechRecognition' in window)){
-    setStatus("Speech not supported");
-    return;
-  }
+    const questionInput = document.getElementById("questionInput");
+    const answerOutput = document.getElementById("answerOutput");
+    const classificationBox = document.getElementById("classificationBox");
+    const metaOutput = document.getElementById("metaOutput");
 
-  recognition = new webkitSpeechRecognition();
-  recognition.lang = "en-US";
-  recognition.continuous = false;
+    const micStatus = document.getElementById("micStatus");
+    const systemStatus = document.getElementById("systemStatus");
+    const langStatus = document.getElementById("langStatus");
+    const modeStatus = document.getElementById("modeStatus");
+    const languageSelect = document.getElementById("languageSelect");
 
-  recognition.onstart = () => {
-    isListening = true;
-    setStatus("Listening...");
-  };
+    const SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
 
-  recognition.onresult = (e) => {
-    const text = e.results[0][0].transcript;
-    document.getElementById("questionInput").value = text;
-  };
+    let recognition = null;
+    let isListening = false;
+    let finalTranscript = "";
+    let loadingTimer = null;
+    let loadingStep = 0;
 
-  recognition.onend = () => {
-    isListening = false;
-    setStatus("Stopped");
-  };
+    function setMicState(active) {
+      isListening = active;
+      micStatus.textContent = active ? "On" : "Off";
+      micStatus.className = "status-value " + (active ? "mic-on" : "mic-off");
+    }
 
-  recognition.start();
-}
+    function setSystemStatus(text) {
+      systemStatus.textContent = text;
+    }
 
-function stopListening(){
-  if(recognition && isListening){
-    recognition.stop();
-  }
-}
+    function setModeStatus(text) {
+      modeStatus.textContent = text;
+    }
 
-async function sendQuestion(){
-  const q = document.getElementById("questionInput").value.trim();
-  if(!q){
-    setStatus("Write something first");
-    return;
-  }
+    function startLoadingStatus(baseText = "Sending") {
+      stopLoadingStatusSilently();
+      loadingStep = 0;
+      loadingTimer = setInterval(() => {
+        const dots = ".".repeat((loadingStep % 3) + 1);
+        setSystemStatus(baseText + dots);
+        loadingStep += 1;
+      }, 420);
+    }
 
-  setStatus("Sending...");
-  document.getElementById("answerOutput").innerText = "...";
+    function stopLoadingStatusSilently() {
+      if (loadingTimer) {
+        clearInterval(loadingTimer);
+        loadingTimer = null;
+      }
+    }
 
-  try{
-    const res = await fetch(API_URL,{
-      method:"POST",
-      headers:{ "Content-Type":"application/json" },
-      body:JSON.stringify({ question:q })
+    function stopLoadingStatus(text = "Ready") {
+      stopLoadingStatusSilently();
+      setSystemStatus(text);
+    }
+
+    function escapeHtml(text) {
+      return String(text || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+    }
+
+    function detectTextLanguage(text) {
+      const value = String(text || "");
+
+      if (/[ء-ي]/.test(value)) return "ar-SA";
+      if (/[一-龯]/.test(value)) return "zh-CN";
+      if (/[а-яА-ЯЁё]/.test(value)) return "ru-RU";
+      if (/[کگپچژ]/.test(value)) return "fa-IR";
+      if (/[ğüşöçıİĞÜŞÖÇ]/.test(value)) return "tr-TR";
+      if (/[éèêàùâîôûçëïü]/i.test(value)) return "fr-FR";
+
+      return languageSelect.value || "en-US";
+    }
+
+    function setClassification(type) {
+      classificationBox.className = "classification";
+
+      if (type === "TRUTH") {
+        classificationBox.classList.add("truth");
+        classificationBox.textContent = "Classification: TRUTH";
+        return;
+      }
+
+      if (type === "FALSE") {
+        classificationBox.classList.add("false");
+        classificationBox.textContent = "Classification: FALSE";
+        return;
+      }
+
+      classificationBox.classList.add("unknown");
+      classificationBox.textContent = "Classification: None";
+    }
+
+    function extractClassification(text) {
+      const raw = String(text || "");
+      const upper = raw.toUpperCase();
+      const lines = raw.split("\n").map((line) => line.trim()).filter(Boolean);
+
+      for (let i = 0; i < lines.length; i += 1) {
+        const line = lines[i].toLowerCase();
+
+        if (
+          line === "final classification:" ||
+          line === "son sınıflandırma:" ||
+          line === "son siniflandirma:" ||
+          line === "nihai sınıflandırma:" ||
+          line === "nihai siniflandirma:"
+        ) {
+          const nextLine = (lines[i + 1] || "").trim().toUpperCase();
+          if (nextLine.includes("TRUTH")) return "TRUTH";
+          if (nextLine.includes("FALSE")) return "FALSE";
+        }
+      }
+
+      if (upper.match(/\bTRUTH\b/) && !upper.match(/\bFALSE\b/)) return "TRUTH";
+      if (upper.match(/\bFALSE\b/) && !upper.match(/\bTRUTH\b/)) return "FALSE";
+
+      return "";
+    }
+
+    function buildMetaText(meta) {
+      if (!meta || !Array.isArray(meta.chunks) || meta.chunks.length === 0) {
+        return "No source metadata yet.";
+      }
+
+      return meta.chunks
+        .map((item, index) => {
+          const title = item?.title || "untitled_source";
+          const layer = item?.layer || "-";
+          const score = item?.score ?? "-";
+          return `${index + 1}. ${title} | layer: ${layer} | score: ${score}`;
+        })
+        .join("\n");
+    }
+
+    function formatAnswer(text) {
+      const safe = escapeHtml(text);
+      const lines = safe.split("\n");
+      const output = [];
+
+      for (const rawLine of lines) {
+        const line = rawLine.trim();
+
+        if (!line) {
+          output.push("");
+          continue;
+        }
+
+        const lower = line.toLowerCase();
+
+        if (lower.startsWith("ontological status:") || lower.startsWith("ontolojik durum:")) {
+          output.push(`<span class="answer-section-title title-ontological">${line}</span>`);
+          continue;
+        }
+
+        if (lower.startsWith("epistemic status:") || lower.startsWith("epistemik durum:")) {
+          output.push(`<span class="answer-section-title title-epistemic">${line}</span>`);
+          continue;
+        }
+
+        if (lower.startsWith("structural consistency:") || lower.startsWith("yapısal tutarlılık:")) {
+          output.push(`<span class="answer-section-title title-structural">${line}</span>`);
+          continue;
+        }
+
+        if (
+          lower.startsWith("ethical impact:") ||
+          lower.startsWith("ethical outcome:") ||
+          lower.startsWith("etik etki:") ||
+          lower.startsWith("etik sonuç:")
+        ) {
+          output.push(`<span class="answer-section-title title-ethical">${line}</span>`);
+          continue;
+        }
+
+        if (
+          lower.startsWith("final classification:") ||
+          lower.startsWith("son sınıflandırma:") ||
+          lower.startsWith("son siniflandirma:") ||
+          lower.startsWith("nihai sınıflandırma:") ||
+          lower.startsWith("nihai siniflandirma:")
+        ) {
+          output.push(`<span class="answer-section-title title-final">${line}</span>`);
+          continue;
+        }
+
+        output.push(line);
+      }
+
+      return output.join("<br>");
+    }
+
+    function setupSpeechRecognition() {
+      if (!SpeechRecognition) {
+        setSystemStatus("Speech not supported");
+        return false;
+      }
+     recognition = new SpeechRecognition();
+      recognition.lang = languageSelect.value;
+      recognition.continuous = true;
+      recognition.interimResults = true;
+
+      langStatus.textContent = recognition.lang;
+      setModeStatus("Speech");
+
+      recognition.onstart = () => {
+        setMicState(true);
+        setSystemStatus("Listening...");
+      };
+
+      recognition.onend = () => {
+        setMicState(false);
+        setSystemStatus("Stopped");
+      };
+
+      recognition.onerror = (event) => {
+        setMicState(false);
+        setSystemStatus(`Mic error: ${event.error}`);
+      };
+
+      recognition.onresult = (event) => {
+        let interimTranscript = "";
+
+        for (let i = event.resultIndex; i < event.results.length; i += 1) {
+          const transcript = event.results[i][0].transcript;
+
+          if (event.results[i].isFinal) {
+            finalTranscript += transcript + " ";
+          } else {
+            interimTranscript += transcript;
+          }
+        }
+
+        questionInput.value = (finalTranscript + interimTranscript).trim();
+      };
+
+      return true;
+    }
+
+    function startListening() {
+      const ready = setupSpeechRecognition();
+      if (!ready || !recognition) return;
+
+      finalTranscript = questionInput.value.trim()
+        ? questionInput.value.trim() + " "
+        : "";
+
+      try {
+        recognition.start();
+      } catch (_) {
+        setSystemStatus("Could not start microphone");
+      }
+    }
+
+    function stopListening() {
+      if (!recognition) {
+        setSystemStatus("Speech not started");
+        return;
+      }
+
+      try {
+        recognition.stop();
+      } catch (_) {
+        setSystemStatus("Could not stop microphone");
+      }
+    }
+
+    async function sendQuestion() {
+      const question = questionInput.value.trim();
+
+      if (!question) {
+        answerOutput.textContent = "Write or speak a question first.";
+        metaOutput.textContent = "No source metadata yet.";
+        setClassification("");
+        setSystemStatus("Waiting for question");
+        setModeStatus("Manual");
+        return;
+      }
+
+      answerOutput.textContent = "Waiting for answer...";
+      metaOutput.textContent = "Preparing sources...";
+      setClassification("");
+      setModeStatus("Request");
+      startLoadingStatus("Sending");
+
+      try {
+        const response = await fetch(API_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ question })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data?.answer || data?.error || "Request failed.");
+        }
+
+        const answer = data?.answer || "No answer.";
+        answerOutput.innerHTML = formatAnswer(answer);
+        metaOutput.textContent = buildMetaText(data?.meta);
+        setClassification(extractClassification(answer));
+        stopLoadingStatus("Answer ready");
+        setModeStatus("Answer");
+      } catch (error) {
+        answerOutput.textContent = "Connection error: " + (error?.message || "Unknown error");
+        metaOutput.textContent = "No source metadata yet.";
+        setClassification("");
+        stopLoadingStatus("Connection error");
+        setModeStatus("Error");
+      }
+    }
+
+    function speakAnswer() {
+      const text = answerOutput.textContent.trim();
+
+      if (!text || text === "No answer yet." || text === "Waiting for answer...") {
+        setSystemStatus("No answer to read");
+        return;
+      }
+
+      if (!("speechSynthesis" in window)) {
+        setSystemStatus("Speech output not supported");
+        return;
+      }
+
+      const lang = detectTextLanguage(text);
+      langStatus.textContent = lang;
+      setModeStatus("Speech output");
+
+      window.speechSynthesis.cancel();
+
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = lang;
+      utterance.rate = 1;
+      utterance.pitch = 1;
+
+      utterance.onstart = () => setSystemStatus("Reading...");
+      utterance.onend = () => setSystemStatus("Read complete");
+      utterance.onerror = () => setSystemStatus("Read error");
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function clearAll() {
+      questionInput.value = "";
+      answerOutput.textContent = "No answer yet.";
+      metaOutput.textContent = "No source metadata yet.";
+      setClassification("");
+      finalTranscript = "";
+
+      if (recognition && isListening) {
+        try {
+          recognition.stop();
+        } catch (_) {}
+      }
+
+      if ("speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+      }
+
+      setMicState(false);
+      setSystemStatus("Cleared");
+      setModeStatus("Manual");
+    }
+
+    languageSelect.addEventListener("change", () => {
+      langStatus.textContent = languageSelect.value;
     });
 
-    const data = await res.json();
+    questionInput.addEventListener("keydown", (event) => {
+      if ((event.ctrlKey || event.metaKey) && event.key === "Enter") {
+        sendQuestion();
+      }
+    });
 
-    document.getElementById("answerOutput").innerText = data.answer || "No answer";
-    setStatus("Done");
-
-  }catch(err){
-    setStatus("Error");
-    document.getElementById("answerOutput").innerText = err.message;
-  }
-}
-
-function speakAnswer(){
-  const text = document.getElementById("answerOutput").innerText;
-  if(!text) return;
-
-  const utter = new SpeechSynthesisUtterance(text);
-  utter.lang = "en-US";
-  speechSynthesis.speak(utter);
-}
-
-function clearAll(){
-  document.getElementById("questionInput").value="";
-  document.getElementById("answerOutput").innerText="No answer yet.";
-  setStatus("Cleared");
-}
-</script>
-
+    setMicState(false);
+    setSystemStatus("Ready");
+    setModeStatus("Manual");
+    setClassification("");
+    langStatus.textContent = languageSelect.value;
+  </script>
 </body>
 </html>
-
-
-
 
