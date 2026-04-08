@@ -2,54 +2,552 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Speech</title>
-  <link rel="stylesheet" href="style.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zanistarast Speech Interface</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121a2f;
+      --panel-2: #18233f;
+      --text: #e8eefc;
+      --muted: #9fb0d1;
+      --line: rgba(255,255,255,0.08);
+      --accent: #6ea8fe;
+      --good: #22c55e;
+      --bad: #ef4444;
+      --warn: #f59e0b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(110,168,254,0.12), transparent 30%),
+        linear-gradient(180deg, #090d18 0%, #0b1020 100%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    .container {
+      width: min(980px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 48px;
+    }
+
+    .topbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 28px;
+    }
+
+    .nav-btn {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      padding: 10px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: 0.2s ease;
+      font-size: 14px;
+    }
+
+    .nav-btn:hover {
+      background: rgba(255,255,255,0.08);
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      margin-bottom: 18px;
+    }
+
+    h1, h2, h3, p {
+      margin-top: 0;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 14px;
+      padding: 12px 16px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .primary {
+      background: var(--accent);
+      color: #08111f;
+      font-weight: 700;
+    }
+
+    .primary:hover {
+      filter: brightness(1.05);
+    }
+
+    .secondary {
+      background: rgba(255,255,255,0.08);
+      color: var(--text);
+      border: 1px solid var(--line);
+    }
+
+    .secondary:hover {
+      background: rgba(255,255,255,0.12);
+    }
+
+    .danger {
+      background: rgba(239,68,68,0.18);
+      color: #ffd9d9;
+      border: 1px solid rgba(239,68,68,0.25);
+    }
+
+    .danger:hover {
+      background: rgba(239,68,68,0.25);
+    }
+
+    .status-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .status-box {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .status-label {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .status-value {
+      font-size: 15px;
+      font-weight: 700;
+      word-break: break-word;
+    }
+
+    .mic-on {
+      color: var(--good);
+    }
+
+    .mic-off {
+      color: var(--bad);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    textarea, .output-box {
+      width: 100%;
+      min-height: 220px;
+      background: var(--panel);
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+      font-size: 15px;
+      line-height: 1.6;
+      resize: vertical;
+    }
+
+    textarea:focus {
+      outline: 1px solid var(--accent);
+    }
+
+    .output-box {
+      white-space: pre-wrap;
+      overflow-wrap: break-word;
+    }
+
+    .meta {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .classification {
+      margin-top: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.05);
+    }
+
+    .classification.truth {
+      background: rgba(34,197,94,0.12);
+      color: #c8ffd9;
+      border-color: rgba(34,197,94,0.25);
+    }
+
+    .classification.false {
+      background: rgba(239,68,68,0.12);
+      color: #ffd5d5;
+      border-color: rgba(239,68,68,0.25);
+    }
+
+    .classification.unknown {
+      background: rgba(245,158,11,0.12);
+      color: #ffe7b0;
+      border-color: rgba(245,158,11,0.25);
+    }
+
+    .footer-note {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 860px) {
+      .grid,
+      .status-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <div class="topbar">
+      <a class="nav-btn" href="./index.html">AI</a>
+      <a class="nav-btn" href="./paper.html">Paper</a>
+      <a class="nav-btn" href="./speech.html">Speech</a>
+      <a class="nav-btn" href="./about.html">About</a>
+      <a class="nav-btn" href="./depolar.html">Depolar</a>
+      <a class="nav-btn" href="./duyurular.html">Duyurular</a>
+    </div>
 
-  <div id="navbar"></div>
+    <div class="card">
+      <h1>Zanistarast Speech Interface</h1>
+      <p class="subtitle">
+        Konuş, metne çevrilsin, backend’e gönderilsin ve cevap istersen sesli okunsun.
+      </p>
+
+      <div class="controls">
+        <button id="startBtn" class="primary">🎤 Konuşmayı Başlat</button>
+        <button id="stopBtn" class="secondary">⏹ Dinlemeyi Durdur</button>
+        <button id="sendBtn" class="secondary">📤 Soruyu Gönder</button>
+        <button id="speakBtn" class="secondary">🔊 Cevabı Oku</button>
+        <button id="clearBtn" class="danger">🗑 Temizle</button>
+      </div>
+
+      <div class="status-row">
+        <div class="status-box">
+          <div class="status-label">Mikrofon</div>
+          <div id="micStatus" class="status-value mic-off">Kapalı</div>
+        </div>
+        <div class="status-box">
+          <div class="status-label">Sistem</div>
+          <div id="systemStatus" class="status-value">Hazır</div>
+        </div>
+        <div class="status-box">
+          <div class="status-label">Dil</div>
+          <div id="langStatus" class="status-value">tr-TR</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h2>Soru</h2>
+        <textarea id="questionInput" placeholder="Buraya konuşma sonucu gelecek veya sorunu elle yazabilirsin..."></textarea>
+        <div class="footer-note">
+          Tarayıcı ses tanıma desteği yoksa soru alanına metni elle yazıp yine gönderebilirsin.
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Cevap</h2>
+        <div id="answerOutput" class="output-box">Henüz cevap yok.</div>
+        <div id="classificationBox" class="classification unknown">Sınıflandırma: Yok</div>
+        <div id="metaOutput" class="meta">Kaynak meta bilgisi henüz yok.</div>
+      </div>
+    </div>
+  </div>
 
   <script>
-    fetch("components/navbar.html")
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById("navbar").innerHTML = data;
-      })
-      .catch(() => {
-        document.getElementById("navbar").innerHTML = "";
-      });
+    const API_URL = "https://zanistarast-ai-server.onrender.com/api/ask";
+
+    const startBtn = document.getElementById("startBtn");
+    const stopBtn = document.getElementById("stopBtn");
+    const sendBtn = document.getElementById("sendBtn");
+    const speakBtn = document.getElementById("speakBtn");
+    const clearBtn = document.getElementById("clearBtn");
+
+    const questionInput = document.getElementById("questionInput");
+    const answerOutput = document.getElementById("answerOutput");
+    const classificationBox = document.getElementById("classificationBox");
+    const metaOutput = document.getElementById("metaOutput");
+
+    const micStatus = document.getElementById("micStatus");
+    const systemStatus = document.getElementById("systemStatus");
+    const langStatus = document.getElementById("langStatus");
+
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    let recognition = null;
+    let isListening = false;
+    let finalTranscript = "";
+
+    function setMicState(active) {
+      isListening = active;
+      micStatus.textContent = active ? "Açık" : "Kapalı";
+      micStatus.className = "status-value " + (active ? "mic-on" : "mic-off");
+    }
+
+    function setSystemStatus(text) {
+      systemStatus.textContent = text;
+    }
+
+    function setClassification(text) {
+      const lower = String(text || "").toLowerCase();
+
+      classificationBox.className = "classification";
+
+      if (lower.includes("truth")) {
+        classificationBox.classList.add("truth");
+        classificationBox.textContent = "Sınıflandırma: TRUTH";
+        return;
+      }
+
+      if (lower.includes("false")) {
+        classificationBox.classList.add("false");
+        classificationBox.textContent = "Sınıflandırma: FALSE";
+        return;
+      }
+
+      classificationBox.classList.add("unknown");
+      classificationBox.textContent = "Sınıflandırma: Yok";
+    }
+
+    function extractClassification(answer) {
+      const text = String(answer || "");
+      const upper = text.toUpperCase();
+
+      if (upper.includes("FINAL CLASSIFICATION:") && upper.includes("TRUTH")) {
+        return "TRUTH";
+      }
+
+      if (upper.includes("FINAL CLASSIFICATION:") && upper.includes("FALSE")) {
+        return "FALSE";
+      }
+
+      if (upper.includes("TRUTH")) {
+        return "TRUTH";
+      }
+
+      if (upper.includes("FALSE")) {
+        return "FALSE";
+      }
+
+      return "";
+    }
+
+    function buildMetaText(meta) {
+      if (!meta || !Array.isArray(meta.chunks)) {
+        return "Kaynak meta bilgisi yok.";
+      }
+
+      const firstThree = meta.chunks.slice(0, 3);
+      if (!firstThree.length) {
+        return "İlgili chunk bulunmadı.";
+      }
+
+      return firstThree
+        .map((item, index) => {
+          return `${index + 1}. ${item.title} | layer: ${item.layer} | score: ${item.score}`;
+        })
+        .join("\n");
+    }
+
+    async function askQuestion() {
+      const question = questionInput.value.trim();
+
+      if (!question) {
+        setSystemStatus("Soru bekleniyor");
+        answerOutput.textContent = "Lütfen önce bir soru gir veya konuş.";
+        setClassification("");
+        return;
+      }
+
+      setSystemStatus("Backend'e gönderiliyor...");
+
+      try {
+        const response = await fetch(API_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ question })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          answerOutput.textContent = data.answer || "İstek başarısız oldu.";
+          metaOutput.textContent = "Hata oluştu.";
+          setClassification("");
+          setSystemStatus("Hata");
+          return;
+        }
+
+        const answer = data.answer || "Cevap alınamadı.";
+        answerOutput.textContent = answer;
+        metaOutput.textContent = buildMetaText(data.meta);
+        setClassification(extractClassification(answer));
+        setSystemStatus("Cevap hazır");
+      } catch (error) {
+        answerOutput.textContent = `Bağlantı hatası: ${error.message}`;
+        metaOutput.textContent = "API bağlantısı başarısız.";
+        setClassification("");
+        setSystemStatus("Bağlantı hatası");
+      }
+    }
+
+    function speakAnswer() {
+      const text = answerOutput.textContent.trim();
+
+      if (!text || text === "Henüz cevap yok.") {
+        setSystemStatus("Okunacak cevap yok");
+        return;
+      }
+
+      if (!("speechSynthesis" in window)) {
+        setSystemStatus("Tarayıcı sesli okuma desteklemiyor");
+        return;
+      }
+
+      window.speechSynthesis.cancel();
+
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "tr-TR";
+      utterance.rate = 1;
+      utterance.pitch = 1;
+
+      utterance.onstart = () => setSystemStatus("Cevap okunuyor...");
+      utterance.onend = () => setSystemStatus("Sesli okuma tamamlandı");
+      utterance.onerror = () => setSystemStatus("Sesli okuma hatası");
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function clearAll() {
+      questionInput.value = "";
+      answerOutput.textContent = "Henüz cevap yok.";
+      metaOutput.textContent = "Kaynak meta bilgisi henüz yok.";
+      setClassification("");
+      finalTranscript = "";
+      window.speechSynthesis?.cancel();
+      setSystemStatus("Temizlendi");
+    }
+
+    function setupSpeechRecognition() {
+      if (!SpeechRecognition) {
+        setSystemStatus("Tarayıcı speech recognition desteklemiyor");
+        return;
+      }
+
+      recognition = new SpeechRecognition();
+      recognition.lang = "tr-TR";
+      recognition.continuous = true;
+      recognition.interimResults = true;
+
+      langStatus.textContent = recognition.lang;
+
+      recognition.onstart = () => {
+        setMicState(true);
+        setSystemStatus("Dinleniyor...");
+      };
+
+      recognition.onend = () => {
+        setMicState(false);
+        setSystemStatus("Dinleme durdu");
+      };
+
+      recognition.onerror = (event) => {
+        setMicState(false);
+        setSystemStatus(`Mikrofon hatası: ${event.error}`);
+      };
+
+      recognition.onresult = (event) => {
+        let interimTranscript = "";
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+          const transcript = event.results[i][0].transcript;
+          if (event.results[i].isFinal) {
+            finalTranscript += transcript + " ";
+          } else {
+            interimTranscript += transcript;
+          }
+        }
+        questionInput.value = (finalTranscript + interimTranscript).trim();
+      };
+    }
+
+    startBtn.addEventListener("click", () => {
+      if (!recognition) {
+        setupSpeechRecognition();
+      }
+
+      if (!recognition) {
+        return;
+      }
+
+      finalTranscript = questionInput.value.trim() ? questionInput.value.trim() + " " : "";
+
+      try {
+        recognition.start();
+      } catch (_error) {
+        setSystemStatus("Dinleme zaten açık olabilir");
+      }
+    });
+
+    stopBtn.addEventListener("click", () => {
+      if (recognition && isListening) {
+        recognition.stop();
+      } else {
+        setSystemStatus("Dinleme açık değil");
+      }
+    });
+
+    sendBtn.addEventListener("click", askQuestion);
+    speakBtn.addEventListener("click", speakAnswer);
+    clearBtn.addEventListener("click", clearAll);
+
+    setupSpeechRecognition();
   </script>
-
-  <main class="ai-layout">
-    <section class="section-card ai-card">
-
-      <div class="ai-section-head">
-        <h2>Speech</h2>
-        <p class="subtitle">Metni sesli okut</p>
-      </div>
-
-      <div class="ai-box">
-
-        <textarea id="speechText" placeholder="Metni yaz..."></textarea>
-
-        <div class="ask-row">
-          <button id="speakBtn">Oku</button>
-          <button id="pauseBtn">Duraklat</button>
-          <button id="resumeBtn">Devam</button>
-          <button id="stopBtn">Durdur</button>
-        </div>
-
-      </div>
-
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">Zanistarast Speech Interface</div>
-  </footer>
-
-  <script src="speech.js"></script>
-
 </body>
 </html>
+
