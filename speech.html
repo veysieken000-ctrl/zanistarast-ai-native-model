@@ -7,206 +7,151 @@
   <style>
     :root {
       --bg: #07111f;
-      --bg-soft: #0d1b2e;
-      --card: rgba(18, 31, 53, 0.88);
-      --card-2: rgba(24, 39, 66, 0.92);
+      --card: rgba(18, 31, 53, 0.9);
+      --card-2: rgba(24, 39, 66, 0.94);
       --border: rgba(122, 162, 255, 0.16);
       --text: #f4f7fb;
       --muted: #b7c4da;
-      --blue: #6ecbff;
-      --blue-2: #4ba8ff;
-      --violet: #8e7dff;
-      --cyan: #2dd4bf;
-      --red: #ff6b81;
-      --gold: #f5c96a;
-      --green: #29d391;
       --shadow: 0 18px 44px rgba(0, 0, 0, 0.34);
-      --radius: 20px;
+
+      --blue: #78c8ff;
+      --blue-soft: #9cdcff;
+      --cyan: #49e0d1;
+      --violet: #9d8cff;
+      --pink: #ff8db2;
+      --gold: #ffd36f;
+      --green: #29d391;
+      --red: #ff8f9f;
     }
 
     * {
       box-sizing: border-box;
     }
 
-    html, body {
+    body {
       margin: 0;
-      padding: 0;
+      padding: 24px 14px 50px;
+      font-family: Inter, Arial, sans-serif;
+      color: var(--text);
       background:
         radial-gradient(circle at top left, rgba(78, 126, 255, 0.16), transparent 28%),
         radial-gradient(circle at top right, rgba(45, 212, 191, 0.12), transparent 24%),
         linear-gradient(180deg, #050c18 0%, #091221 100%);
-      color: var(--text);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      min-height: 100%;
     }
 
-    body {
-      padding: 28px 16px 56px;
-    }
-
-    .container {
-      width: min(1180px, 100%);
+    .wrap {
+      max-width: 1180px;
       margin: 0 auto;
     }
 
-    .hero {
-      position: relative;
-      overflow: hidden;
+    .hero,
+    .panel {
       border: 1px solid var(--border);
-      background:
-        linear-gradient(135deg, rgba(26, 44, 74, 0.95), rgba(10, 19, 34, 0.96)),
-        linear-gradient(135deg, rgba(110, 203, 255, 0.08), rgba(142, 125, 255, 0.06));
-      border-radius: 28px;
-      padding: 28px 24px 24px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(13, 24, 42, 0.96), rgba(8, 16, 30, 0.96));
       box-shadow: var(--shadow);
-      margin-bottom: 22px;
     }
 
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: auto -80px -120px auto;
-      width: 320px;
-      height: 320px;
-      background: radial-gradient(circle, rgba(110, 203, 255, 0.12), transparent 68%);
-      pointer-events: none;
+    .hero {
+      padding: 26px 24px;
+      margin-bottom: 18px;
     }
 
-    .title {
+    h1 {
       margin: 0;
-      font-size: clamp(34px, 4vw, 54px);
-      line-height: 1.02;
+      font-size: clamp(28px, 4vw, 48px);
       font-weight: 900;
-      letter-spacing: -0.03em;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
     }
 
     .subtitle {
-      margin: 14px 0 0;
+      margin: 12px 0 0;
       color: var(--muted);
-      font-size: 18px;
-      line-height: 1.7;
-      max-width: 880px;
-    }
-
-    .suggestions {
-      margin-top: 18px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .chip {
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background: rgba(255, 255, 255, 0.04);
-      color: #dbe7f9;
-      padding: 10px 14px;
-      border-radius: 999px;
-      font-size: 14px;
-      cursor: pointer;
-      transition: 0.18s ease;
-      user-select: none;
-    }
-
-    .chip:hover {
-      transform: translateY(-1px);
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(110, 203, 255, 0.3);
+      line-height: 1.65;
+      font-size: 17px;
+      max-width: 900px;
     }
 
     .panel {
-      border: 1px solid var(--border);
-      background: linear-gradient(180deg, rgba(13, 24, 42, 0.96), rgba(8, 16, 30, 0.96));
-      border-radius: 24px;
-      padding: 20px;
-      box-shadow: var(--shadow);
+      padding: 18px;
     }
 
     .controls {
       display: flex;
       flex-wrap: wrap;
-      gap: 14px;
-      margin-bottom: 18px;
+      gap: 12px;
+      margin-bottom: 16px;
     }
 
     .controls button {
-      appearance: none;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 0;
       border-radius: 16px;
-      padding: 15px 20px;
-      min-width: 170px;
+      padding: 14px 18px;
+      min-width: 165px;
       font-size: 15px;
       font-weight: 800;
-      letter-spacing: 0.15px;
-      color: #fff;
       cursor: pointer;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, opacity 0.18s ease;
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.22);
+      color: #fff;
+      box-shadow: 0 12px 26px rgba(0,0,0,0.22);
+      transition: transform .15s ease, opacity .15s ease, box-shadow .15s ease;
     }
 
     .controls button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.28);
+      transform: translateY(-1px);
+      box-shadow: 0 16px 30px rgba(0,0,0,0.26);
     }
 
     .controls button:active {
       transform: translateY(0);
     }
 
-    .controls button:disabled {
-      opacity: 0.58;
-      cursor: not-allowed;
-      transform: none;
-      box-shadow: none;
-    }
-
     #startBtn {
-      background: linear-gradient(135deg, #8ee5ff, #56b3ff);
+      background: linear-gradient(135deg, #9be7ff, #58b7ff);
       color: #07111f;
     }
 
     #stopBtn {
-      background: linear-gradient(135deg, #384860, #1c2b42);
+      background: linear-gradient(135deg, #40516d, #223047);
     }
 
     #sendBtn {
-      background: linear-gradient(135deg, #8d7dff, #645bff);
+      background: linear-gradient(135deg, #9486ff, #6258ff);
     }
 
     #speakBtn {
-      background: linear-gradient(135deg, #20d6c2, #149bd7);
+      background: linear-gradient(135deg, #27dbc7, #179fd9);
     }
 
     #clearBtn {
-      background: linear-gradient(135deg, #ff7f90, #ea4f67);
+      background: linear-gradient(135deg, #ff8c9b, #e34f66);
     }
 
     .status-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      margin-bottom: 18px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
     }
 
     .status-card {
-      border: 1px solid rgba(110, 203, 255, 0.15);
       background: var(--card);
+      border: 1px solid rgba(110, 203, 255, 0.15);
       border-radius: 18px;
       padding: 14px 16px;
-      min-height: 92px;
     }
 
     .status-label {
       color: var(--muted);
-      font-size: 13px;
-      margin-bottom: 8px;
-      letter-spacing: 0.04em;
+      font-size: 12px;
       text-transform: uppercase;
+      margin-bottom: 8px;
+      letter-spacing: .05em;
     }
 
     .status-value {
       font-size: 22px;
       font-weight: 900;
-      line-height: 1.2;
     }
 
     .mic-on {
@@ -214,114 +159,137 @@
     }
 
     .mic-off {
-      color: #ff8f9f;
+      color: var(--red);
     }
 
-    .main-grid {
+    .grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 18px;
+      gap: 16px;
     }
 
     .box {
-      border: 1px solid rgba(255, 255, 255, 0.08);
       background: var(--card-2);
+      border: 1px solid rgba(255,255,255,0.08);
       border-radius: 20px;
       padding: 18px;
-      min-height: 420px;
+      min-height: 440px;
       display: flex;
       flex-direction: column;
     }
 
     .box h2 {
-      margin: 0 0 14px;
-      font-size: 30px;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
+      margin: 0 0 12px;
+      font-size: 26px;
+      font-weight: 900;
+      color: #ffffff;
     }
 
     textarea {
       width: 100%;
-      min-height: 260px;
+      min-height: 270px;
       resize: vertical;
       border-radius: 18px;
-      border: 1px solid rgba(110, 203, 255, 0.18);
-      background: rgba(12, 23, 40, 0.95);
+      border: 1px solid rgba(110,203,255,0.18);
+      background: rgba(12,23,40,0.95);
       color: #f8fbff;
       padding: 18px;
       font-size: 20px;
-      line-height: 1.7;
+      line-height: 1.6;
       outline: none;
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
     }
 
     textarea:focus {
-      border-color: rgba(110, 203, 255, 0.42);
-      box-shadow: 0 0 0 4px rgba(110, 203, 255, 0.08);
+      border-color: rgba(110,203,255,0.42);
+      box-shadow: 0 0 0 4px rgba(110,203,255,0.08);
     }
 
     .answer {
-      flex: 1;
-      border-radius: 18px;
-      border: 1px solid rgba(110, 203, 255, 0.16);
-      background: rgba(10, 21, 38, 0.95);
-      padding: 18px;
-      font-size: 17px;
-      line-height: 1.75;
+      min-height: 270px;
       white-space: pre-wrap;
       overflow-wrap: anywhere;
-      min-height: 260px;
+      border-radius: 18px;
+      border: 1px solid rgba(110,203,255,0.16);
+      background: rgba(10,21,38,0.95);
+      padding: 18px;
+      font-size: 17px;
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .answer-section-title {
+      display: block;
+      margin: 16px 0 6px;
+      font-weight: 900;
+      font-size: 18px;
+      line-height: 1.4;
+      letter-spacing: 0.01em;
+    }
+
+    .title-ontological {
+      color: var(--blue-soft);
+    }
+
+    .title-epistemic {
+      color: var(--cyan);
+    }
+
+    .title-structural {
+      color: var(--violet);
+    }
+
+    .title-ethical {
+      color: var(--pink);
+    }
+
+    .title-final {
+      color: var(--gold);
     }
 
     .classification {
-      margin-top: 14px;
+      margin-top: 12px;
       display: inline-flex;
       align-self: flex-start;
-      padding: 11px 16px;
+      padding: 10px 15px;
       border-radius: 999px;
       font-weight: 900;
-      letter-spacing: 0.02em;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255,255,255,0.05);
     }
 
     .classification.truth {
       background: rgba(41, 211, 145, 0.14);
       color: #7ff5bc;
-      border-color: rgba(41, 211, 145, 0.25);
     }
 
     .classification.false {
       background: rgba(255, 107, 129, 0.14);
       color: #ff96a6;
-      border-color: rgba(255, 107, 129, 0.25);
     }
 
     .classification.unknown {
       background: rgba(245, 201, 106, 0.14);
       color: #f7d98f;
-      border-color: rgba(245, 201, 106, 0.24);
     }
 
     .meta {
-      margin-top: 14px;
-      padding-top: 14px;
-      border-top: 1px dashed rgba(255, 255, 255, 0.1);
-      color: #d4e0f2;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px dashed rgba(255,255,255,0.1);
       white-space: pre-wrap;
-      line-height: 1.65;
+      color: #d4e0f2;
       font-size: 14px;
+      line-height: 1.6;
     }
 
     .hint {
       margin-top: 12px;
       color: var(--muted);
       font-size: 14px;
-      line-height: 1.6;
+      line-height: 1.5;
     }
 
     .footer-note {
-      margin-top: 18px;
+      margin-top: 14px;
       color: #9fb1cb;
       font-size: 13px;
       text-align: center;
@@ -329,7 +297,7 @@
 
     @media (max-width: 980px) {
       .status-grid,
-      .main-grid {
+      .grid {
         grid-template-columns: 1fr;
       }
 
@@ -345,29 +313,22 @@
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="wrap">
     <section class="hero">
-      <h1 class="title">Zanistarast Speech Interface</h1>
+      <h1>Zanistarast Speech Interface</h1>
       <p class="subtitle">
         Konuş, metne çevrilsin, backend’e gönderilsin, cevap sistemli biçimde görünsün ve istersen sesli okunsun.
-        Hızlı, temiz, kullanışlı ve daha sanatsal bir akış için tek parça optimize edildi.
+        Sade, ciddi, kullanışlı ve temiz sürüm.
       </p>
-
-      <div class="suggestions">
-        <div class="chip" data-question="Hebûn nedir?">Hebûn nedir?</div>
-        <div class="chip" data-question="Zanabûn nedir?">Zanabûn nedir?</div>
-        <div class="chip" data-question="Araba uçabilir mi?">Araba uçabilir mi?</div>
-        <div class="chip" data-question="AI dabbetül arz olabilir mi?">AI dabbetül arz olabilir mi?</div>
-      </div>
     </section>
 
     <section class="panel">
       <div class="controls">
-        <button id="startBtn">🎙️ Konuşmayı Başlat</button>
-        <button id="stopBtn">⏹ Dinlemeyi Durdur</button>
-        <button id="sendBtn">📤 Soruyu Gönder</button>
-        <button id="speakBtn">🔊 Cevabı Oku</button>
-        <button id="clearBtn">🧹 Temizle</button>
+        <button id="startBtn" type="button">🎙️ Konuşmayı Başlat</button>
+        <button id="stopBtn" type="button">⏹ Dinlemeyi Durdur</button>
+        <button id="sendBtn" type="button">📤 Soruyu Gönder</button>
+        <button id="speakBtn" type="button">🔊 Cevabı Oku</button>
+        <button id="clearBtn" type="button">🧹 Temizle</button>
       </div>
 
       <div class="status-grid">
@@ -387,13 +348,11 @@
         </div>
       </div>
 
-      <div class="main-grid">
+      <div class="grid">
         <div class="box">
           <h2>Soru</h2>
-          <textarea id="questionInput" placeholder="Buraya konuşma sonucu gelecek veya sorunu elle yazabilirsin..."></textarea>
-          <div class="hint">
-            Tarayıcı ses tanıma desteği yoksa soru alanına metni elle yazıp yine gönderebilirsin.
-          </div>
+          <textarea id="questionInput" placeholder="Buraya soru yazabilir veya konuşma sonucu gelmesini bekleyebilirsin..."></textarea>
+          <div class="hint">Tarayıcı speech desteği yoksa soruyu buraya elle yazıp gönderebilirsin.</div>
         </div>
 
         <div class="box">
@@ -404,344 +363,378 @@
         </div>
       </div>
 
-      <div class="footer-note">
-        Ctrl + Enter ile hızlı gönderim yapabilirsin.
-      </div>
+      <div class="footer-note">Ctrl + Enter ile hızlı gönderim yapabilirsin.</div>
     </section>
   </div>
 
   <script>
-    const API_URL = "https://zanistarast-ai-server.onrender.com/api/ask";
+    document.addEventListener("DOMContentLoaded", () => {
+      const API_URL = "https://zanistarast-ai-server.onrender.com/api/ask";
 
-    const startBtn = document.getElementById("startBtn");
-    const stopBtn = document.getElementById("stopBtn");
-    const sendBtn = document.getElementById("sendBtn");
-    const speakBtn = document.getElementById("speakBtn");
-    const clearBtn = document.getElementById("clearBtn");
+      const startBtn = document.getElementById("startBtn");
+      const stopBtn = document.getElementById("stopBtn");
+      const sendBtn = document.getElementById("sendBtn");
+      const speakBtn = document.getElementById("speakBtn");
+      const clearBtn = document.getElementById("clearBtn");
 
-    const questionInput = document.getElementById("questionInput");
-    const answerOutput = document.getElementById("answerOutput");
-    const classificationBox = document.getElementById("classificationBox");
-    const metaOutput = document.getElementById("metaOutput");
+      const questionInput = document.getElementById("questionInput");
+      const answerOutput = document.getElementById("answerOutput");
+      const classificationBox = document.getElementById("classificationBox");
+      const metaOutput = document.getElementById("metaOutput");
 
-    const micStatus = document.getElementById("micStatus");
-    const systemStatus = document.getElementById("systemStatus");
-    const langStatus = document.getElementById("langStatus");
+      const micStatus = document.getElementById("micStatus");
+      const systemStatus = document.getElementById("systemStatus");
+      const langStatus = document.getElementById("langStatus");
 
-    const chips = document.querySelectorAll(".chip");
+      const SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
 
-    const SpeechRecognition =
-      window.SpeechRecognition || window.webkitSpeechRecognition;
+      let recognition = null;
+      let isListening = false;
+      let finalTranscript = "";
+      let loadingTimer = null;
+      let loadingStep = 0;
 
-    let recognition = null;
-    let isListening = false;
-    let finalTranscript = "";
-    let loadingTimer = null;
-    let loadingStep = 0;
-
-    function setMicState(active) {
-      isListening = active;
-      micStatus.textContent = active ? "Açık" : "Kapalı";
-      micStatus.className = "status-value " + (active ? "mic-on" : "mic-off");
-    }
-
-    function setSystemStatus(text) {
-      systemStatus.textContent = text;
-    }
-
-    function startLoadingStatus(baseText = "Gönderiliyor") {
-      stopLoadingStatusSilently();
-      loadingStep = 0;
-
-      loadingTimer = setInterval(() => {
-        const dots = ".".repeat((loadingStep % 3) + 1);
-        setSystemStatus(baseText + dots);
-        loadingStep += 1;
-      }, 420);
-    }
-
-    function stopLoadingStatusSilently() {
-      if (loadingTimer) {
-        clearInterval(loadingTimer);
-        loadingTimer = null;
-      }
-    }
-
-    function stopLoadingStatus(finalText = "Hazır") {
-      stopLoadingStatusSilently();
-      setSystemStatus(finalText);
-    }
-
-    function setClassification(type) {
-      classificationBox.className = "classification";
-
-      if (type === "TRUTH") {
-        classificationBox.classList.add("truth");
-        classificationBox.textContent = "Sınıflandırma: TRUTH";
-        return;
+      function escapeHtml(text) {
+        return String(text || "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;");
       }
 
-      if (type === "FALSE") {
-        classificationBox.classList.add("false");
-        classificationBox.textContent = "Sınıflandırma: FALSE";
-        return;
+      function setMicState(active) {
+        isListening = active;
+        micStatus.textContent = active ? "Açık" : "Kapalı";
+        micStatus.className = "status-value " + (active ? "mic-on" : "mic-off");
       }
 
-      classificationBox.classList.add("unknown");
-      classificationBox.textContent = "Sınıflandırma: Yok";
-    }
-
-    function buildMetaText(meta) {
-      if (!meta || !Array.isArray(meta.chunks) || meta.chunks.length === 0) {
-        return "Kaynak meta bilgisi henüz yok.";
+      function setSystemStatus(text) {
+        systemStatus.textContent = text;
       }
 
-      return meta.chunks
-        .map((item, index) => {
-          const title = item?.title || "isimsiz_kaynak";
-          const layer = item?.layer || "-";
-          const score = item?.score ?? "-";
-          return `${index + 1}. ${title} | layer: ${layer} | score: ${score}`;
-        })
-        .join("\n");
-    }
+      function startLoadingStatus(baseText = "Gönderiliyor") {
+        stopLoadingStatusSilently();
+        loadingStep = 0;
 
-    function extractClassification(text) {
-      const raw = String(text || "");
-      const upper = raw.toUpperCase();
+        loadingTimer = setInterval(() => {
+          const dots = ".".repeat((loadingStep % 3) + 1);
+          setSystemStatus(baseText + dots);
+          loadingStep += 1;
+        }, 420);
+      }
 
-      const lines = raw
-        .split("\n")
-        .map((line) => line.trim())
-        .filter(Boolean);
-
-      for (let i = 0; i < lines.length; i += 1) {
-        const line = lines[i].toLowerCase();
-
-        if (
-          line === "final classification:" ||
-          line === "son sınıflandırma:" ||
-          line === "nihai sınıflandırma:"
-        ) {
-          const nextLine = (lines[i + 1] || "").trim().toUpperCase();
-
-          if (nextLine.includes("TRUTH")) return "TRUTH";
-          if (nextLine.includes("FALSE")) return "FALSE";
+      function stopLoadingStatusSilently() {
+        if (loadingTimer) {
+          clearInterval(loadingTimer);
+          loadingTimer = null;
         }
       }
 
-      if (
-        upper.includes("FINAL CLASSIFICATION:\nTRUTH") ||
-        upper.includes("SON SINIFLANDIRMA:\nTRUTH") ||
-        upper.includes("NİHAİ SINIFLANDIRMA:\nTRUTH") ||
-        upper.includes("NIHAI SINIFLANDIRMA:\nTRUTH")
-      ) {
-        return "TRUTH";
+      function stopLoadingStatus(finalText = "Hazır") {
+        stopLoadingStatusSilently();
+        setSystemStatus(finalText);
       }
 
-      if (
-        upper.includes("FINAL CLASSIFICATION:\nFALSE") ||
-        upper.includes("SON SINIFLANDIRMA:\nFALSE") ||
-        upper.includes("NİHAİ SINIFLANDIRMA:\nFALSE") ||
-        upper.includes("NIHAI SINIFLANDIRMA:\nFALSE")
-      ) {
-        return "FALSE";
-      }
+      function setClassification(type) {
+        classificationBox.className = "classification";
 
-      const truthMatch = upper.match(/\bTRUTH\b/);
-      const falseMatch = upper.match(/\bFALSE\b/);
-
-      if (truthMatch && !falseMatch) return "TRUTH";
-      if (falseMatch && !truthMatch) return "FALSE";
-
-      return "";
-    }
-
-    async function sendQuestion() {
-      const question = questionInput.value.trim();
-
-      if (!question) {
-        answerOutput.textContent = "Lütfen bir soru yaz veya konuş.";
-        metaOutput.textContent = "Kaynak meta bilgisi henüz yok.";
-        setClassification("");
-        setSystemStatus("Soru bekleniyor");
-        return;
-      }
-
-      answerOutput.textContent = "Cevap bekleniyor...";
-      metaOutput.textContent = "Kaynaklar hazırlanıyor...";
-      setClassification("");
-      startLoadingStatus("Gönderiliyor");
-
-      try {
-        const response = await fetch(API_URL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({ question })
-        });
-
-        const data = await response.json();
-
-        if (!response.ok) {
-          throw new Error(data?.answer || data?.error || "İstek başarısız oldu.");
+        if (type === "TRUTH") {
+          classificationBox.classList.add("truth");
+          classificationBox.textContent = "Sınıflandırma: TRUTH";
+          return;
         }
 
-        const answer = data?.answer || "Cevap yok.";
+        if (type === "FALSE") {
+          classificationBox.classList.add("false");
+          classificationBox.textContent = "Sınıflandırma: FALSE";
+          return;
+        }
 
-        answerOutput.textContent = answer;
-        metaOutput.textContent = buildMetaText(data?.meta);
-
-        const classification = extractClassification(answer);
-        setClassification(classification);
-
-        stopLoadingStatus("Cevap hazır");
-      } catch (err) {
-        answerOutput.textContent =
-          "Bağlantı hatası: " + (err?.message || "Bilinmeyen hata");
-        metaOutput.textContent = "Kaynak meta bilgisi henüz yok.";
-        setClassification("");
-        stopLoadingStatus("Bağlantı hatası");
-      }
-    }
-
-    function setupSpeechRecognition() {
-      if (!SpeechRecognition) {
-        setSystemStatus("Speech API desteklenmiyor");
-        return;
+        classificationBox.classList.add("unknown");
+        classificationBox.textContent = "Sınıflandırma: Yok";
       }
 
-      recognition = new SpeechRecognition();
-      recognition.lang = "tr-TR";
-      recognition.continuous = true;
-      recognition.interimResults = true;
+      function buildMetaText(meta) {
+        if (!meta || !Array.isArray(meta.chunks) || meta.chunks.length === 0) {
+          return "Kaynak meta bilgisi henüz yok.";
+        }
 
-      langStatus.textContent = recognition.lang;
+        return meta.chunks
+          .map((item, index) => {
+            const title = item?.title || "isimsiz_kaynak";
+            const layer = item?.layer || "-";
+            const score = item?.score ?? "-";
+            return `${index + 1}. ${title} | layer: ${layer} | score: ${score}`;
+          })
+          .join("\n");
+      }
 
-      recognition.onstart = () => {
-        setMicState(true);
-        setSystemStatus("Dinleniyor...");
-      };
+      function extractClassification(text) {
+        const raw = String(text || "");
+        const upper = raw.toUpperCase();
 
-      recognition.onend = () => {
-        setMicState(false);
-        setSystemStatus("Dinleme durdu");
-      };
+        const lines = raw
+          .split("\n")
+          .map((line) => line.trim())
+          .filter(Boolean);
 
-      recognition.onerror = (event) => {
-        setMicState(false);
-        setSystemStatus(`Mikrofon hatası: ${event.error}`);
-      };
+        for (let i = 0; i < lines.length; i += 1) {
+          const line = lines[i].toLowerCase();
 
-      recognition.onresult = (event) => {
-        let interimTranscript = "";
+          if (
+            line === "final classification:" ||
+            line === "son sınıflandırma:" ||
+            line === "nihai sınıflandırma:" ||
+            line === "son siniflandirma:" ||
+            line === "nihai siniflandirma:"
+          ) {
+            const nextLine = (lines[i + 1] || "").trim().toUpperCase();
 
-        for (let i = event.resultIndex; i < event.results.length; i += 1) {
-          const transcript = event.results[i][0].transcript;
-
-          if (event.results[i].isFinal) {
-            finalTranscript += transcript + " ";
-          } else {
-            interimTranscript += transcript;
+            if (nextLine.includes("TRUTH")) return "TRUTH";
+            if (nextLine.includes("FALSE")) return "FALSE";
           }
         }
 
-        questionInput.value = (finalTranscript + interimTranscript).trim();
-      };
-    }
+        if (upper.match(/\bTRUTH\b/) && !upper.match(/\bFALSE\b/)) return "TRUTH";
+        if (upper.match(/\bFALSE\b/) && !upper.match(/\bTRUTH\b/)) return "FALSE";
 
-    function speakAnswer() {
-      const text = answerOutput.textContent.trim();
-
-      if (!text || text === "Henüz cevap yok." || text === "Cevap bekleniyor...") {
-        setSystemStatus("Okunacak cevap yok");
-        return;
+        return "";
       }
 
-      if (!("speechSynthesis" in window)) {
-        setSystemStatus("Tarayıcı sesli okumayı desteklemiyor");
-        return;
+      function formatAnswer(text) {
+        const safe = escapeHtml(text);
+        const lines = safe.split("\n");
+        const result = [];
+
+        for (const rawLine of lines) {
+          const line = rawLine.trim();
+
+          if (!line) {
+            result.push("");
+            continue;
+          }
+
+          const lower = line.toLowerCase();
+
+          if (lower.startsWith("ontological status:") || lower.startsWith("ontolojik durum:")) {
+            result.push(`<span class="answer-section-title title-ontological">${line}</span>`);
+            continue;
+          }
+
+          if (lower.startsWith("epistemic status:") || lower.startsWith("epistemik durum:")) {
+            result.push(`<span class="answer-section-title title-epistemic">${line}</span>`);
+            continue;
+          }
+
+          if (lower.startsWith("structural consistency:") || lower.startsWith("yapısal tutarlılık:")) {
+            result.push(`<span class="answer-section-title title-structural">${line}</span>`);
+            continue;
+          }
+
+          if (lower.startsWith("ethical impact:") || lower.startsWith("etik etki:") || lower.startsWith("ethical outcome:") || lower.startsWith("etik sonuç:")) {
+            result.push(`<span class="answer-section-title title-ethical">${line}</span>`);
+            continue;
+          }
+
+          if (
+            lower.startsWith("final classification:") ||
+            lower.startsWith("son sınıflandırma:") ||
+            lower.startsWith("nihai sınıflandırma:") ||
+            lower.startsWith("son siniflandirma:") ||
+            lower.startsWith("nihai siniflandirma:")
+          ) {
+            result.push(`<span class="answer-section-title title-final">${line}</span>`);
+            continue;
+          }
+
+          result.push(line);
+        }
+
+        return result.join("<br>");
       }
 
-      window.speechSynthesis.cancel();
+      async function sendQuestion() {
+        const question = questionInput.value.trim();
 
-      const utter = new SpeechSynthesisUtterance(text);
-      utter.lang = "tr-TR";
-      utter.rate = 1;
-      utter.pitch = 1;
+        if (!question) {
+          answerOutput.textContent = "Lütfen bir soru yaz veya konuş.";
+          metaOutput.textContent = "Kaynak meta bilgisi henüz yok.";
+          setClassification("");
+          setSystemStatus("Soru bekleniyor");
+          return;
+        }
 
-      utter.onstart = () => setSystemStatus("Okuyor...");
-      utter.onend = () => setSystemStatus("Okuma bitti");
-      utter.onerror = () => setSystemStatus("Sesli okuma hatası");
+        answerOutput.textContent = "Cevap bekleniyor...";
+        metaOutput.textContent = "Kaynaklar hazırlanıyor...";
+        setClassification("");
+        startLoadingStatus("Gönderiliyor");
 
-      window.speechSynthesis.speak(utter);
-    }
-
-    function clearAll() {
-      questionInput.value = "";
-      answerOutput.textContent = "Henüz cevap yok.";
-      metaOutput.textContent = "Kaynak meta bilgisi henüz yok.";
-      setClassification("");
-      finalTranscript = "";
-
-      if (recognition && isListening) {
         try {
-          recognition.stop();
-        } catch (error) {
-          console.error("Recognition stop error:", error);
+          const response = await fetch(API_URL, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ question })
+          });
+
+          const data = await response.json();
+
+          if (!response.ok) {
+            throw new Error(data?.answer || data?.error || "İstek başarısız oldu.");
+          }
+
+          const answer = data?.answer || "Cevap yok.";
+
+          answerOutput.innerHTML = formatAnswer(answer);
+          metaOutput.textContent = buildMetaText(data?.meta);
+          setClassification(extractClassification(answer));
+          stopLoadingStatus("Cevap hazır");
+        } catch (err) {
+          answerOutput.textContent =
+            "Bağlantı hatası: " + (err?.message || "Bilinmeyen hata");
+          metaOutput.textContent = "Kaynak meta bilgisi henüz yok.";
+          setClassification("");
+          stopLoadingStatus("Bağlantı hatası");
         }
       }
 
-      if ("speechSynthesis" in window) {
+      function setupSpeechRecognition() {
+        if (!SpeechRecognition) {
+          setSystemStatus("Speech API desteklenmiyor");
+          return;
+        }
+
+        recognition = new SpeechRecognition();
+        recognition.lang = "tr-TR";
+        recognition.continuous = true;
+        recognition.interimResults = true;
+        langStatus.textContent = recognition.lang;
+
+        recognition.onstart = () => {
+          setMicState(true);
+          setSystemStatus("Dinleniyor...");
+        };
+
+        recognition.onend = () => {
+          setMicState(false);
+          setSystemStatus("Dinleme durdu");
+        };
+
+        recognition.onerror = (event) => {
+          setMicState(false);
+          setSystemStatus(`Mikrofon hatası: ${event.error}`);
+        };
+
+        recognition.onresult = (event) => {
+          let interimTranscript = "";
+
+          for (let i = event.resultIndex; i < event.results.length; i += 1) {
+            const transcript = event.results[i][0].transcript;
+
+            if (event.results[i].isFinal) {
+              finalTranscript += transcript + " ";
+            } else {
+              interimTranscript += transcript;
+            }
+          }
+
+          questionInput.value = (finalTranscript + interimTranscript).trim();
+        };
+      }
+
+      function speakAnswer() {
+        const text = answerOutput.textContent.trim();
+
+        if (!text || text === "Henüz cevap yok." || text === "Cevap bekleniyor...") {
+          setSystemStatus("Okunacak cevap yok");
+          return;
+        }
+
+        if (!("speechSynthesis" in window)) {
+          setSystemStatus("Tarayıcı sesli okumayı desteklemiyor");
+          return;
+        }
+
         window.speechSynthesis.cancel();
+
+        const utter = new SpeechSynthesisUtterance(text);
+        utter.lang = "tr-TR";
+        utter.rate = 1;
+        utter.pitch = 1;
+
+        utter.onstart = () => setSystemStatus("Okuyor...");
+        utter.onend = () => setSystemStatus("Okuma bitti");
+        utter.onerror = () => setSystemStatus("Sesli okuma hatası");
+
+        window.speechSynthesis.speak(utter);
       }
 
-      stopLoadingStatus("Temizlendi");
+      function clearAll() {
+        questionInput.value = "";
+        answerOutput.textContent = "Henüz cevap yok.";
+        metaOutput.textContent = "Kaynak meta bilgisi henüz yok.";
+        setClassification("");
+        finalTranscript = "";
+
+        if (recognition && isListening) {
+          try {
+            recognition.stop();
+          } catch (_) {}
+        }
+
+        if ("speechSynthesis" in window) {
+          window.speechSynthesis.cancel();
+        }
+
+        stopLoadingStatus("Temizlendi");
+        setMicState(false);
+      }
+
+      startBtn.addEventListener("click", () => {
+        if (!recognition) setupSpeechRecognition();
+        if (!recognition) return;
+
+        finalTranscript = questionInput.value.trim()
+          ? questionInput.value.trim() + " "
+          : "";
+
+        try {
+          recognition.start();
+        } catch (_) {
+          setSystemStatus("Mikrofon başlatılamadı");
+        }
+      });
+
+      stopBtn.addEventListener("click", () => {
+        if (!recognition) {
+          setSystemStatus("Dinleme başlatılmadı");
+          return;
+        }
+
+        try {
+          recognition.stop();
+        } catch (_) {
+          setSystemStatus("Dinleme durdurulamadı");
+        }
+      });
+
+      sendBtn.addEventListener("click", sendQuestion);
+      speakBtn.addEventListener("click", speakAnswer);
+      clearBtn.addEventListener("click", clearAll);
+
+      questionInput.addEventListener("keydown", (event) => {
+        if ((event.ctrlKey || event.metaKey) && event.key === "Enter") {
+          sendQuestion();
+        }
+      });
+
       setMicState(false);
-    }
+      setSystemStatus("Hazır");
+      setClassification("");
+      langStatus.textC
 
-    startBtn.addEventListener("click", () => {
-      if (!recognition) {
-        setupSpeechRecognition();
-      }
 
-      if (!recognition) {
-        return;
-      }
-
-      finalTranscript = questionInput.value.trim()
-        ? questionInput.value.trim() + " "
-        : "";
-
-      try {
-        recognition.start();
-      } catch (error) {
-        console.error("Recognition start error:", error);
-        setSystemStatus("Mikrofon başlatılamadı");
-      }
-    });
-
-    stopBtn.addEventListener("click", () => {
-      if (!recognition) {
-        setSystemStatus("Dinleme başlatılmadı");
-        return;
-      }
-
-      try {
-        recognition.stop();
-      } catch (error) {
-        console.error("Recognition stop error:", error);
-        setSystemStatus("Dinleme durdurulamadı");
-      }
-    });
-
-    sendBtn.addEventListener("click", sendQuestion);
-    speakBtn.addEventListener("click", speakAnswer);
-    clearBtn.addEventListener("click", clearAll);
-
-    questionInput.addEventListener("keydown", (event) => {
-      if ((event.ctrlKey || event.metaK
 
 
 
