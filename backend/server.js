@@ -318,13 +318,15 @@ async function callOpenAI(systemPrompt, userPrompt, temperature = 0.35) {
 function enforceTruthFormat(answer) {
   const lower = String(answer || "").toLowerCase();
 
-  const required = [
-    "ontological",
-    "epistemic",
-    "structural",
-    "ethical",
-    "classification"
-  ];
+ const required = [
+  "ontological",
+  "epistemic",
+  "structural",
+  "ethical",
+  "classification",
+  "truth",
+  "false"
+];
 
   const missing = required.filter((k) => !lower.includes(k));
 
