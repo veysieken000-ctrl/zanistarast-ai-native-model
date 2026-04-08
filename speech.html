@@ -352,18 +352,18 @@
         <button id="speakBtn" type="button" onclick="speakAnswer()">🔊 Speak</button>
         <button id="clearBtn" type="button" onclick="clearAll()">🧹 Clear</button>
 
-       <select id="languageSelect" aria-label="Speech language">
+      <select id="languageSelect">
   <option value="en-US">English</option>
   <option value="tr-TR">Turkish</option>
   <option value="ar-SA">Arabic</option>
-  <option value="tr-TR">Kurmanji</option>
+  <option value="ku-TR">Kurmanji</option>
   <option value="fa-IR">Persian</option>
   <option value="fr-FR">French</option>
   <option value="zh-CN">Chinese</option>
   <option value="ru-RU">Russian</option>
   <option value="es-ES">Spanish</option>
   <option value="sv-SE">Swedish</option>
-  <option value="nb-NO">Norwegian</option>
+  <option value="no-NO">Norwegian</option>
   <option value="de-DE">German</option>
   <option value="it-IT">Italian</option>
   <option value="ja-JP">Japanese</option>
@@ -420,6 +420,7 @@
     const classificationBox = document.getElementById("classificationBox");
     const metaOutput = document.getElementById("metaOutput");
 
+    const languageSelect = document.getElementById("languageSelect");
     const micStatus = document.getElementById("micStatus");
     const systemStatus = document.getElementById("systemStatus");
     const langStatus = document.getElementById("langStatus");
@@ -615,33 +616,33 @@
     }
 
     function setupSpeechRecognition() {
-      if (!SpeechRecognition) {
-        setSystemStatus("Speech not supported");
-        return false;
-      }
-     recognition = new SpeechRecognition();
-      recognition.lang = languageSelect.value;
-      recognition.continuous = true;
-      recognition.interimResults = true;
+  if (!speechRecognition) {
+    setSystemStatus("Speech API not supported");
+    return;
+  }
 
-      langStatus.textContent = recognition.lang;
-      setModeStatus("Speech");
+  recognition = new speechRecognition();
 
-      recognition.onstart = () => {
-        setMicState(true);
-        setSystemStatus("Listening...");
-      };
+  // 🔥 BURASI ÖNEMLİ
+  recognition.lang = languageSelect.value;
 
-      recognition.onend = () => {
-        setMicState(false);
-        setSystemStatus("Stopped");
-      };
+  recognition.interimResults = false;
 
-      recognition.onerror = (event) => {
-        setMicState(false);
-        setSystemStatus(`Mic error: ${event.error}`);
-      };
+  recognition.onstart = () => {
+    setMicState(true);
+    setSystemStatus("Listening...");
+  };
 
+  recognition.onresult = (event) => {
+    const text = event.results[0][0].transcript;
+    questionInput.value = text;
+  };
+
+  recognition.onend = () => {
+    setMicState(false);
+    setSystemStatus("Ready");
+  };
+}
       recognition.onresult = (event) => {
         let interimTranscript = "";
 
