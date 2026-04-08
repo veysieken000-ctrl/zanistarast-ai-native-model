@@ -28,7 +28,57 @@
     * {
       box-sizing: border-box;
     }
+    #languageSelect {
+  background: linear-gradient(180deg, #17263d, #0f1b2d);
+  color: #ffffff;
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 16px;
+  min-width: 190px;
+  height: 50px;
+  padding: 0 16px;
+  font-size: 15px;
+  font-weight: 800;
+  outline: none;
+  cursor: pointer;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.22);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
 
+#languageSelect:hover {
+  filter: brightness(1.06);
+}
+
+#languageSelect:focus {
+  border-color: rgba(125, 249, 255, 0.45);
+  box-shadow: 0 0 0 4px rgba(125, 249, 255, 0.10);
+}
+
+#languageSelect option {
+  background: #101a2b;
+  color: #ffffff;
+}
+    .toolbar {
+  position: relative;
+}
+
+.language-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.language-wrap::after {
+  content: "▾";
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ffffff;
+  pointer-events: none;
+  font-size: 14px;
+  opacity: 0.85;
+}
     body {
       margin: 0;
       font-family: Inter, Arial, sans-serif;
@@ -352,22 +402,23 @@
         <button id="speakBtn" type="button" onclick="speakAnswer()">🔊 Speak</button>
         <button id="clearBtn" type="button" onclick="clearAll()">🧹 Clear</button>
 
-      <select id="languageSelect">
-  <option value="en-US">English</option>
-  <option value="tr-TR">Turkish</option>
-  <option value="ar-SA">Arabic</option>
-  <option value="ku-TR">Kurmanji</option>
-  <option value="fa-IR">Persian</option>
-  <option value="fr-FR">French</option>
-  <option value="zh-CN">Chinese</option>
-  <option value="ru-RU">Russian</option>
-  <option value="es-ES">Spanish</option>
-  <option value="sv-SE">Swedish</option>
-  <option value="no-NO">Norwegian</option>
-  <option value="de-DE">German</option>
-  <option value="it-IT">Italian</option>
-  <option value="ja-JP">Japanese</option>
-</select>
+      <div class="language-wrap">
+  <select id="languageSelect">
+    <option value="en-US">English</option>
+    <option value="tr-TR">Turkish</option>
+    <option value="ar-SA">Arabic</option>
+    <option value="ku-TR">Kurmanji</option>
+    <option value="fa-IR">Persian</option>
+    <option value="fr-FR">French</option>
+    <option value="zh-CN">Chinese</option>
+    <option value="ru-RU">Russian</option>
+    <option value="es-ES">Spanish</option>
+    <option value="sv-SE">Swedish</option>
+    <option value="no-NO">Norwegian</option>
+    <option value="de-DE">German</option>
+    <option value="it-IT">Italian</option>
+    <option value="ja-JP">Japanese</option>
+  </select>
       </div>
    <div class="status-grid">
         <div class="status-card">
@@ -425,11 +476,10 @@
     const systemStatus = document.getElementById("systemStatus");
     const langStatus = document.getElementById("langStatus");
     const modeStatus = document.getElementById("modeStatus");
-    const languageSelect = document.getElementById("languageSelect");
 
     const SpeechRecognition =
       window.SpeechRecognition || window.webkitSpeechRecognition;
-
+   
     let recognition = null;
     let isListening = false;
     let finalTranscript = "";
@@ -438,8 +488,8 @@
 
     function setMicState(active) {
       isListening = active;
-      micStatus.textContent = active ? "On" : "Off";
-      micStatus.className = "status-value " + (active ? "mic-on" : "mic-off");
+      micstatus.textContent = active ? "On" : "Off";
+      micstatus.className = "status-value " + (active ? "mic-on" : "mic-off");
     }
 
     function setSystemStatus(text) {
