@@ -316,14 +316,15 @@ async function callOpenAI(systemPrompt, userPrompt, temperature = 0.35) {
 }
 
 function enforceTruthFormat(answer) {
-  const lower = String(answer || "").toLowerCase();
+  const text = String(answer || "").trim();
+  const lower = text.toLowerCase();
 
   const required = [
-    "ontological",
-    "epistemic",
-    "structural",
-    "ethical",
-    "classification"
+    "ontological status",
+    "epistemic status",
+    "structural consistency",
+    "ethical impact",
+    "final classification"
   ];
 
   const missing = required.filter((k) => !lower.includes(k));
@@ -332,10 +333,8 @@ function enforceTruthFormat(answer) {
     lower.includes("final classification") &&
     (lower.includes("truth") || lower.includes("false"));
 
- if (missing.length >= 2 || !hasTruthDecision) {
-  return answer; // ⚠️ ARTIK CEVABI BOZMA
-} 
-Ontological Status:
+  if (missing.length >= 2 || !hasTruthDecision) {
+    return `Ontological Status:
 Weak
 
 Epistemic Status:
@@ -348,42 +347,12 @@ Ethical Impact:
 Risk of confusion
 
 Final Classification:
-FALSE
-`.trim();
+FALSE`;
   }
 
-  return answer;
+  return text;
 }
-
-  const missing = required.filter((k) => !lower.includes(k));
-
-  const hasTruthDecision =
-  lower.includes("final classification") &&
-  (lower.includes("truth") || lower.includes("false"));
-
-if (missing.length >= 2 || !hasTruthDecision) {
-
-    return `
-Ontological Status:
-Weak
-
-Epistemic Status:
-Insufficient evidence
-
-Structural Consistency:
-Weak
-
-Ethical Impact:
-Risk of confusion
-
-Final Classification:
-FALSE
-`.trim();
-  }
-
-  return answer;
-}
-
+ 
 app.post("/api/ask", async (req, res) => {
   try {
     const question = String(req.body?.question || "").trim();
