@@ -332,8 +332,9 @@ function enforceTruthFormat(answer) {
     lower.includes("final classification") &&
     (lower.includes("truth") || lower.includes("false"));
 
-  if (missing.length >= 2 || !hasTruthDecision) {
-    return `
+ if (missing.length >= 2 || !hasTruthDecision) {
+  return answer; // ⚠️ ARTIK CEVABI BOZMA
+} 
 Ontological Status:
 Weak
 
