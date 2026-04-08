@@ -113,27 +113,41 @@
       transform: translateY(0);
     }
 
-    #startBtn {
-      background: linear-gradient(135deg, #95e6ff, #57baff);
-      color: #07111f;
-    }
+   #startBtn {
+  background: linear-gradient(135deg, #7df9ff, #38bdf8);
+  color: #07111f;
+}
 
-    #stopBtn {
-      background: linear-gradient(135deg, #46546d, #28364b);
-    }
+#stopBtn {
+  background: linear-gradient(135deg, #64748b, #334155);
+  color: #ffffff;
+}
 
-    #sendBtn {
-      background: linear-gradient(135deg, #9b8dff, #6f62ff);
-    }
+#sendBtn {
+  background: linear-gradient(135deg, #c084fc, #8b5cf6);
+  color: #ffffff;
+}
 
-    #speakBtn {
-      background: linear-gradient(135deg, #32dcc7, #1ca6df);
-    }
+#speakBtn {
+  background: linear-gradient(135deg, #34d399, #06b6d4);
+  color: #07111f;
+}
 
-    #clearBtn {
-      background: linear-gradient(135deg, #ff96a3, #ea596f);
-    }
+#clearBtn {
+  background: linear-gradient(135deg, #fb7185, #ef4444);
+  color: #ffffff;
+}
 
+.toolbar button {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.toolbar button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
     #languageSelect {
       background: linear-gradient(180deg, rgba(18, 30, 50, 1), rgba(13, 22, 38, 1));
       color: var(--text);
@@ -338,16 +352,22 @@
         <button id="speakBtn" type="button" onclick="speakAnswer()">🔊 Speak</button>
         <button id="clearBtn" type="button" onclick="clearAll()">🧹 Clear</button>
 
-        <select id="languageSelect" aria-label="Speech language">
-          <option value="en-US">English</option>
-          <option value="tr-TR">Turkish</option>
-          <option value="ar-SA">Arabic</option>
-          <option value="tr-TR">Kurmanji</option>
-          <option value="fa-IR">Persian</option>
-          <option value="fr-FR">French</option>
-          <option value="zh-CN">Chinese</option>
-          <option value="ru-RU">Russian</option>
-        </select>
+       <select id="languageSelect" aria-label="Speech language">
+  <option value="en-US">English</option>
+  <option value="tr-TR">Turkish</option>
+  <option value="ar-SA">Arabic</option>
+  <option value="tr-TR">Kurmanji</option>
+  <option value="fa-IR">Persian</option>
+  <option value="fr-FR">French</option>
+  <option value="zh-CN">Chinese</option>
+  <option value="ru-RU">Russian</option>
+  <option value="es-ES">Spanish</option>
+  <option value="sv-SE">Swedish</option>
+  <option value="nb-NO">Norwegian</option>
+  <option value="de-DE">German</option>
+  <option value="it-IT">Italian</option>
+  <option value="ja-JP">Japanese</option>
+</select>
       </div>
    <div class="status-grid">
         <div class="status-card">
@@ -459,18 +479,23 @@
     }
 
     function detectTextLanguage(text) {
-      const value = String(text || "");
+  const value = String(text || "");
 
-      if (/[ء-ي]/.test(value)) return "ar-SA";
-      if (/[一-龯]/.test(value)) return "zh-CN";
-      if (/[а-яА-ЯЁё]/.test(value)) return "ru-RU";
-      if (/[کگپچژ]/.test(value)) return "fa-IR";
-      if (/[ğüşöçıİĞÜŞÖÇ]/.test(value)) return "tr-TR";
-      if (/[éèêàùâîôûçëïü]/i.test(value)) return "fr-FR";
+  if (/[ء-ي]/.test(value)) return "ar-SA"; // Arabic
+  if (/[一-龯ぁ-んァ-ン]/.test(value)) return "ja-JP"; // Japanese
+  if (/[中文汉字漢字]/.test(value)) return "zh-CN"; // Chinese
+  if (/[а-яА-ЯЁё]/.test(value)) return "ru-RU"; // Russian
+  if (/[کگپچژ]/.test(value)) return "fa-IR"; // Persian
+  if (/[ğüşöçıİĞÜŞÖÇ]/.test(value)) return "tr-TR"; // Turkish
+  if (/[ñ¿¡áéíóúü]/i.test(value)) return "es-ES"; // Spanish
+  if (/[äöå]/i.test(value)) return "sv-SE"; // Swedish
+  if (/[æøå]/i.test(value)) return "nb-NO"; // Norwegian
+  if (/[äöüß]/i.test(value)) return "de-DE"; // German
+  if (/[àèéìíîòóù]/i.test(value)) return "it-IT"; // Italian
+  if (/[éèêàùâîôûçëïü]/i.test(value)) return "fr-FR"; // French
 
-      return languageSelect.value || "en-US";
-    }
-
+  return languageSelect.value || "en-US";
+}
     function setClassification(type) {
       classificationBox.className = "classification";
 
