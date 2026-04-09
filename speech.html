@@ -351,28 +351,24 @@
 
     <main class="main">
       <div class="left-column">
-        <section class="input-card">
-          <textarea id="questionInput" class="prompt-input" placeholder="Ask something..."></textarea>
+        <section class="panel">
 
-          <div class="prompt-toolbar">
-            <button id="startBtn" type="button" class="btn btn-soft">🎤 Start</button>
-            <button id="stopBtn" type="button" class="btn btn-soft">■ Stop</button>
-            <button id="sendBtn" type="button" class="btn btn-primary">➜ Send</button>
-            <button id="speakBtn" type="button" class="btn btn-soft">🔊 Speak</button>
-            <button id="clearBtn" type="button" class="btn btn-danger">✕ Clear</button>
-          </div>
-        </section>
+  <div class="chat-thread" id="chatThread"></div>
 
-        <section class="answer-card">
-          <div class="answer-head">Answer</div>
-          <div id="answerOutput" class="answer-output">No answer yet.</div>
+  <div class="composer">
+    <textarea id="questionInput" placeholder="Bir şey yaz veya konuş..."></textarea>
 
-          <div class="answer-meta">
-            <div id="classificationBox" class="pill">Classification: None</div>
-            <div id="metaOutput" class="meta-line">No source metadata yet.</div>
-          </div>
-        </section>
-      </div>
+    <div class="prompt-toolbar">
+      <button id="startBtn">🎤 Başla</button>
+      <button id="stopBtn">■ Durdur</button>
+      <button id="sendBtn">➤ Gönder</button>
+      <button id="speakBtn">🔊 Oku</button>
+      <button id="clearBtn">✖ Temizle</button>
+    </div>
+  </div>
+
+</section>
+</div>
 
       <aside class="status-panel">
         <div class="status-card">
