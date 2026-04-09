@@ -4,13 +4,18 @@
     return languageSelect ? languageSelect.value : "en-US";
   }
 
+  function getLatestAssistantMessage() {
+    const messages = document.querySelectorAll("#chatThread .msg.assistant .msg-bubble");
+    if (!messages.length) return "";
+
+    const lastMessage = messages[messages.length - 1];
+    return lastMessage ? lastMessage.textContent.trim() : "";
+  }
+
   function speakAnswer() {
-    if (!window.UIRenderer) return;
+    const text = getLatestAssistantMessage();
 
-    const answerEl = document.getElementById("answerOutput");
-    const text = answerEl ? answerEl.textContent.trim() : "";
-
-    if (!text || text === "No answer yet." || text === "Server error.") {
+    if (!text) {
       if (window.UIStatus && typeof window.UIStatus.setSystemStatus === "function") {
         window.UIStatus.setSystemStatus("No answer to read");
       }
