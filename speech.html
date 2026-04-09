@@ -280,6 +280,41 @@
         font-size: 25px;
       }
     }
+  .status-value.thinking {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.thinking-dots {
+  display: inline-flex;
+  min-width: 20px;
+}
+
+.thinking-dots span {
+  display: inline-block;
+  animation: thinkingBlink 1.4s infinite;
+  opacity: 0.25;
+}
+
+.thinking-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.thinking-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes thinkingBlink {
+  0%, 80%, 100% {
+    opacity: 0.25;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-1px);
+  }
+}
   </style>
 </head>
 
