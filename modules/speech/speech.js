@@ -1,12 +1,14 @@
 const startBtn = document.getElementById("startBtn");
 const stopBtn = document.getElementById("stopBtn");
 const clearBtn = document.getElementById("clearBtn");
+
 const questionInput = document.getElementById("questionInput");
 const languageSelect = document.getElementById("languageSelect");
-document.getElementById("micStatus")
-document.getElementById("systemStatus")
-document.getElementById("langStatus")
-document.getElementById("modeStatus")
+
+const micStatus = document.getElementById("micStatus");
+const systemStatus = document.getElementById("systemStatus");
+const langStatus = document.getElementById("langStatus");
+const modeStatus = document.getElementById("modeStatus");
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
