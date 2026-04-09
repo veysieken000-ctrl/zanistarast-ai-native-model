@@ -10,6 +10,10 @@ const systemStatus = document.getElementById("systemStatus");
 const langStatus = document.getElementById("langStatus");
 const modeStatus = document.getElementById("modeStatus");
 
+const answerOutput = document.getElementById("answerOutput");
+const classificationBox = document.getElementById("classificationBox");
+const metaOutput = document.getElementById("metaOutput");
+
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
 
@@ -62,15 +66,17 @@ function setupRecognition() {
     console.log("Listening stopped");
   };
 
-  r.onerror = (e) => {
-    console.error("Speech error:", e.error);
-    setSystemStatus("Speech error: " + e.error);
+  r.onerror = (event) => {
+    console.error("Speech error:", event.error);
+    setSystemStatus("Speech error: " + event.error);
   };
 
   r.onresult = (event) => {
     let interimTranscript = "";
+
     for (let i = event.resultIndex; i < event.results.length; i++) {
       const text = event.results[i][0].transcript;
+
       if (event.results[i].isFinal) {
         finalTranscript += text + " ";
       } else {
@@ -99,8 +105,8 @@ function startListening() {
     recognition.lang = languageSelect ? languageSelect.value : "en-US";
     setLangStatus(recognition.lang);
     recognition.start();
-  } catch (err) {
-    console.error("Start error:", err);
+  } catch (error) {
+    console.error("Start error:", error);
   }
 }
 
@@ -109,8 +115,8 @@ function stopListening() {
 
   try {
     recognition.stop();
-  } catch (err) {
-    console.error("Stop error:", err);
+  } catch (error) {
+    console.error("Stop error:", error);
   }
 }
 
@@ -118,17 +124,12 @@ function clearAll() {
   if (recognition && isListening) {
     try {
       recognition.stop();
-    } catch (err) {}
+    } catch (error) {}
   }
 
   finalTranscript = "";
 
   if (questionInput) questionInput.value = "";
-
-  const answerOutput = document.getElementById("answerOutput");
-  const classificationBox = document.getElementById("classificationBox");
-  const metaOutput = document.getElementById("metaOutput");
-
   if (answerOutput) answerOutput.textContent = "No answer yet.";
   if (classificationBox) classificationBox.textContent = "Classification: None";
   if (metaOutput) metaOutput.textContent = "No source metadata yet.";
@@ -147,6 +148,7 @@ if (languageSelect) {
   setLangStatus(languageSelect.value);
   languageSelect.addEventListener("change", () => {
     setLangStatus(languageSelect.value);
+
     if (recognition && !isListening) {
       recognition.lang = languageSelect.value;
     }
@@ -156,8 +158,6 @@ if (languageSelect) {
 setMicState(false);
 setSystemStatus("Ready");
 setModeStatus("Manual");
-
-
-
+setLangStatus(languageSelect ? languageSelect.value : "en-US");
 
 
