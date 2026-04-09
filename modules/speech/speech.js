@@ -136,7 +136,43 @@ function clearAll() {
   setModeStatus("Manual");
   setLangStatus(languageSelect ? languageSelect.value : "en-US");
 }
+const API_URL = "https://zanistarast-ai-server.onrender.com/api/ask";
 
+async function sendQuestion() {
+  if (!questionInput || !questionInput.value.trim()) {
+    alert("Soru boş");
+    return;
+  }
+
+  const question = questionInput.value.trim();
+
+  const answerOutput = document.getElementById("answerOutput");
+  const classificationBox = document.getElementById("classificationBox");
+  const metaOutput = document.getElementById("metaOutput");
+
+  setSystemstatus("Thinking...");
+
+  try {
+    const res = await fetch(API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ question }),
+    });
+
+    const data = await res.json();
+
+    if (answerOutput) answerOutput.textContent = data.answer || "No answer";
+    if (classificationBox) classificationBox.textContent = "Classification: " + (data.classification || "None");
+    if (metaOutput) metaOutput.textContent = data.meta || "No metadata";
+
+    setSystemstatus("Done");
+  } catch (err) {
+    console.error(err);
+    setSystemstatus("Error");
+  }
+}
 if (startBtn) startBtn.addEventListener("click", startListening);
 if (stopBtn) stopBtn.addEventListener("click", stopListening);
 if (clearBtn) clearBtn.addEventListener("click", clearAll);
@@ -157,4 +193,12 @@ setSystemStatus("Ready");
 setModeStatus("Manual");
 setLangStatus(languageSelect ? languageSelect.value : "en-US");
 
-
+const sendBtn = document.getElementById("sendBtn");
+if (sendBtn) sendBtn.addEventListener("click", sendQuestion);
+if (questionInput) {
+  questionInput.addEventListener("keydown", (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+      sendQuestion();
+    }
+  });
+}
