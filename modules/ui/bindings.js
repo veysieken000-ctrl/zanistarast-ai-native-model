@@ -13,25 +13,38 @@
     }
   }
 
-  async function handleSend() {
-    if (!window.UIRenderer || !window.AIRequest || !window.AIResponse) return;
+ async function handleSend() {
+  if (!window.UIRenderer || !window.AIRequest || !window.AIResponse) return;
 
-    const question = window.UIRenderer.getQuestion();
+  const question = window.UIRenderer.getQuestion();
 
-    if (!question) {
-      safeSetSystemStatus("Question is empty");
-      return;
-    }
-
-    safeSetSystemStatus("Thinking...");
-
-    try {
-      const data = await window.AIRequest.askQuestion(question);
-      window.AIResponse.applyResponse(data);
-    } catch (error) {
-      window.AIResponse.applyError(error);
-    }
+  if (!question) {
+    safeSetSystemStatus("Question is empty");
+    return;
   }
+
+  // 👤 kullanıcı mesajını chat'e ekle
+  if (typeof window.UIRenderer.appendUserMessage === "function") {
+    window.UIRenderer.appendUserMessage(question);
+  }
+
+  // input temizle
+  window.UIRenderer.setQuestion("");
+
+  // durum yaz
+  safeSetSystemStatus("Düşünülüyor...");
+
+  try {
+    // 🔥 EN KRİTİK SATIR
+    const data = await window.AIRequest.askQuestion(question);
+
+    // 🤖 cevabı chat'e basar (renderer üzerinden)
+    window.AIResponse.applyResponse(data);
+
+  } catch (error) {
+    window.AIResponse.applyError(error);
+  }
+}
 
   function handleStart() {
     if (window.SpeechInput && typeof window.SpeechInput.startListening === "function") {
