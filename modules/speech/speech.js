@@ -82,10 +82,18 @@ function setupRecognition() {
     }
 
     if (questionInput) {
-      questionInput.value = (finalTranscript + interimTranscript).trim();
-    }
-  };
+  const speechText = (finalTranscript + interimTranscript).trim();
 
+  if (speechText) {
+    const currentText = questionInput.value.trim();
+
+    if (!currentText) {
+      questionInput.value = speechText;
+    } else if (!currentText.includes(speechText)) {
+      questionInput.value = (currentText + " " + speechText).trim();
+    }
+  }
+}
   return r;
 }
 
@@ -96,7 +104,7 @@ function startListening() {
 
   if (!recognition || isListening) return;
 
-  finalTranscript = questionInput ? questionInput.value.trim() + " " : "";
+ finalTranscript = "";
 
   try {
     recognition.lang = languageSelect ? languageSelect.value : "en-US";
