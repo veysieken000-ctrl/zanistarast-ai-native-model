@@ -4,423 +4,346 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Zanistarast Speech Interface</title>
-  <style>
-    :root {
-      --bg-1: #07111f;
-      --bg-2: #0a1628;
-      --card: rgba(17, 29, 49, 0.92);
-      --card-2: rgba(13, 24, 42, 0.95);
-      --border: rgba(122, 162, 255, 0.14);
-      --text: #f6f9ff;
-      --muted: #b9c7de;
-      --shadow: 0 18px 44px rgba(0, 0, 0, 0.35);
+ style>
+  :root {
+    --bg: #0b0f19;
+    --bg-soft: #131a2a;
+    --panel: rgba(20, 27, 45, 0.88);
+    --panel-2: rgba(16, 22, 37, 0.96);
+    --border: rgba(255, 255, 255, 0.08);
+    --text: #f7f9fc;
+    --muted: #a8b2c7;
+    --accent: #8ab4ff;
+    --accent-2: #b18cff;
+    --success: #5be49b;
+    --danger: #ff7e8a;
+    --shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+    --radius: 24px;
+  }
 
-      --blue: #7dd3fc;
-      --cyan: #48e5d2;
-      --violet: #a78bfa;
-      --pink: #ff8bb8;
-      --gold: #ffd36a;
-      --green: #3fe39a;
-      --red: #ff7f96;
-      --panel-glow: rgba(73, 144, 255, 0.12);
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: Inter, Arial, sans-serif;
+    color: var(--text);
+    background:
+      radial-gradient(circle at top left, rgba(125, 170, 255, 0.16), transparent 26%),
+      radial-gradient(circle at top right, rgba(177, 140, 255, 0.14), transparent 24%),
+      linear-gradient(180deg, #090d16 0%, #0d1220 100%);
+    min-height: 100vh;
+  }
+
+  .app-shell {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 28px 18px 40px;
+  }
+
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 22px;
+    padding: 18px 20px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: rgba(14, 19, 32, 0.76);
+    backdrop-filter: blur(16px);
+    box-shadow: var(--shadow);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .brand-mark {
+    width: 52px;
+    height: 52px;
+    border-radius: 18px;
+    display: grid;
+    place-items: center;
+    font-size: 22px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: white;
+    box-shadow: 0 8px 24px rgba(138, 180, 255, 0.25);
+  }
+
+  .brand h1 {
+    margin: 0 0 4px;
+    font-size: 30px;
+    line-height: 1.1;
+  }
+
+  .brand p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  .lang-select {
+    min-width: 180px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--panel-2);
+    color: var(--text);
+    padding: 12px 14px;
+    font-size: 14px;
+    outline: none;
+  }
+
+  .main-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.8fr) minmax(280px, 0.9fr);
+    gap: 20px;
+  }
+
+  .chat-panel,
+  .status-panel {
+    display: grid;
+    gap: 18px;
+  }
+
+  .prompt-wrap,
+  .answer-card,
+  .status-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--panel);
+    backdrop-filter: blur(16px);
+    box-shadow: var(--shadow);
+  }
+
+  .prompt-wrap {
+    padding: 18px;
+  }
+
+  .prompt-input {
+    width: 100%;
+    min-height: 220px;
+    resize: vertical;
+    border: 1px solid rgba(138, 180, 255, 0.18);
+    border-radius: 20px;
+    background: #0d1424;
+    color: var(--text);
+    padding: 18px;
+    font-size: 18px;
+    line-height: 1.55;
+    outline: none;
+  }
+
+  .prompt-input::placeholder {
+    color: #7f8aa3;
+  }
+
+  .prompt-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .btn {
+    border: 0;
+    border-radius: 999px;
+    padding: 12px 18px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .btn:hover {
+    transform: translateY(-1px);
+    opacity: 0.96;
+  }
+
+  .btn-soft {
+    background: #1a2238;
+    color: var(--text);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: white;
+    box-shadow: 0 8px 24px rgba(138, 180, 255, 0.2);
+  }
+
+  .btn-danger {
+    background: rgba(255, 126, 138, 0.14);
+    color: #ffd7dc;
+    border: 1px solid rgba(255, 126, 138, 0.22);
+  }
+
+  .answer-card {
+    padding: 18px;
+  }
+
+  .answer-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--muted);
+  }
+
+  .answer-output {
+    min-height: 240px;
+    border: 1px solid rgba(138, 180, 255, 0.18);
+    border-radius: 20px;
+    background: #0d1424;
+    padding: 18px;
+    font-size: 17px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+  }
+
+  .answer-meta {
+    margin-top: 14px;
+    display: grid;
+    gap: 10px;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    color: #e9eefc;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .meta-line {
+    color: var(--muted);
+    font-size: 13px;
+    white-space: pre-wrap;
+  }
+
+  .status-panel {
+    align-content: start;
+  }
+
+  .status-card {
+    padding: 18px;
+  }
+
+  .status-label {
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+
+  .status-value {
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.1;
+  }
+
+  .mic-on {
+    color: var(--success);
+  }
+
+  .mic-off {
+    color: #ffb4be;
+  }
+
+  @media (max-width: 980px) {
+    .main-layout {
+      grid-template-columns: 1fr;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-    #languageSelect {
-  background: linear-gradient(180deg, #17263d, #0f1b2d);
-  color: #ffffff;
-  border: 1px solid rgba(255,255,255,0.10);
-  border-radius: 16px;
-  min-width: 190px;
-  height: 50px;
-  padding: 0 16px;
-  font-size: 15px;
-  font-weight: 800;
-  outline: none;
-  cursor: pointer;
-  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.22);
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-}
-
-#languageSelect:hover {
-  filter: brightness(1.06);
-}
-
-#languageSelect:focus {
-  border-color: rgba(125, 249, 255, 0.45);
-  box-shadow: 0 0 0 4px rgba(125, 249, 255, 0.10);
-}
-
-#languageSelect option {
-  background: #101a2b;
-  color: #ffffff;
-}
-    .toolbar {
-  position: relative;
-}
-
-.language-wrap {
-  position: relative;
-  display: inline-block;
-}
-
-.language-wrap::after {
-  content: "▾";
-  position: absolute;
-  right: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #ffffff;
-  pointer-events: none;
-  font-size: 14px;
-  opacity: 0.85;
-}
-    body {
-      margin: 0;
-      font-family: Inter, Arial, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(77, 124, 255, 0.18), transparent 28%),
-        radial-gradient(circle at top right, rgba(72, 229, 210, 0.10), transparent 22%),
-        linear-gradient(180deg, var(--bg-1), var(--bg-2));
-      min-height: 100vh;
-      padding: 24px 14px 56px;
-    }
-
-    .wrap {
-      max-width: 1180px;
-      margin: 0 auto;
-    }
-
-    .hero,
-    .panel {
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      background: linear-gradient(180deg, rgba(11, 21, 37, 0.98), rgba(8, 15, 28, 0.98));
-      box-shadow: var(--shadow);
-    }
-
-    .hero {
-      padding: 28px 24px;
-      margin-bottom: 18px;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(30px, 4vw, 48px);
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      font-weight: 900;
-    }
-
-    .subtitle {
-      margin: 14px 0 0;
-      color: var(--muted);
-      max-width: 920px;
-      line-height: 1.7;
-      font-size: 17px;
-    }
-
-    .panel {
-      padding: 18px;
-    }
-
-    .toolbar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      align-items: center;
-      margin-bottom: 16px;
-    }
-
-    .toolbar button,
-    .toolbar select {
-      border: 0;
-      border-radius: 16px;
-      font-size: 15px;
-      font-weight: 800;
-      min-height: 50px;
-      padding: 0 16px;
-      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.22);
-    }
-
-    .toolbar button {
-      cursor: pointer;
-      color: white;
-      transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease;
-    }
-
-    .toolbar button:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.26);
-    }
-
-    .toolbar button:active {
-      transform: translateY(0);
-    }
-
-   #startBtn {
-  background: linear-gradient(135deg, #7df9ff, #38bdf8);
-  color: #07111f;
-}
-
-#stopBtn {
-  background: linear-gradient(135deg, #64748b, #334155);
-  color: #ffffff;
-}
-
-#sendBtn {
-  background: linear-gradient(135deg, #c084fc, #8b5cf6);
-  color: #ffffff;
-}
-
-#speakBtn {
-  background: linear-gradient(135deg, #34d399, #06b6d4);
-  color: #07111f;
-}
-
-#clearBtn {
-  background: linear-gradient(135deg, #fb7185, #ef4444);
-  color: #ffffff;
-}
-
-.toolbar button {
-  cursor: pointer;
-  transition: all 0.2s ease;
-  border: 1px solid rgba(255,255,255,0.1);
-}
-
-.toolbar button:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.1);
-}
-    #languageSelect {
-      background: linear-gradient(180deg, rgba(18, 30, 50, 1), rgba(13, 22, 38, 1));
-      color: var(--text);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      min-width: 180px;
-      cursor: pointer;
-      outline: none;
-    }
-
-    .status-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-
-    .status-card {
-      border-radius: 18px;
-      padding: 14px 16px;
-      background: linear-gradient(180deg, rgba(15, 27, 47, 1), rgba(10, 19, 34, 1));
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      box-shadow: inset 0 0 0 1px rgba(73, 144, 255, 0.04);
-    }
-
-    .status-label {
-      font-size: 12px;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 8px;
-    }
-
-    .status-value {
-      font-size: 22px;
-      font-weight: 900;
-    }
-
-    .mic-on {
-      color: var(--green);
-    }
-
-    .mic-off {
-      color: var(--red);
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-
-    .box {
-      border-radius: 22px;
-      padding: 18px;
-      background:
-        linear-gradient(180deg, rgba(17, 31, 54, 0.98), rgba(11, 23, 42, 0.98));
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow:
-        inset 0 0 0 1px rgba(255,255,255,0.02),
-        0 0 0 1px var(--panel-glow);
-      min-height: 480px;
-      display: flex;
+    .topbar {
       flex-direction: column;
+      align-items: stretch;
     }
 
-    .box h2 {
-      margin: 0 0 12px;
-      font-size: 28px;
-      font-weight: 900;
-      letter-spacing: -0.02em;
-    }
-
-    textarea {
+    .lang-select {
       width: 100%;
-      min-height: 280px;
-      resize: vertical;
-      border-radius: 18px;
-      border: 1px solid rgba(122, 211, 252, 0.18);
-      outline: none;
-      background: rgba(8, 17, 31, 0.92);
-      color: var(--text);
-      padding: 18px;
-      font-size: 20px;
-      line-height: 1.65;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
     }
 
-    textarea:focus {
-      border-color: rgba(122, 211, 252, 0.42);
-      box-shadow: 0 0 0 4px rgba(122, 211, 252, 0.08);
+    .brand h1 {
+      font-size: 24px;
     }
-
-    .hint {
-      margin-top: 12px;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.55;
-    }
-
-    .answer {
-      flex: 1;
-      min-height: 280px;
-      border-radius: 18px;
-      border: 1px solid rgba(122, 211, 252, 0.16);
-      background: rgba(7, 16, 29, 0.94);
-      padding: 18px;
-      font-size: 17px;
-      line-height: 1.75;
-      white-space: pre-wrap;
-      overflow-wrap: anywhere;
-    }
-
-    .answer-section-title {
-      display: block;
-      margin: 16px 0 6px;
-      font-size: 18px;
-      font-weight: 900;
-      line-height: 1.4;
-    }
-
-    .title-ontological { color: var(--blue); }
-    .title-epistemic { color: var(--cyan); }
-    .title-structural { color: var(--violet); }
-    .title-ethical { color: var(--pink); }
-    .title-final { color: var(--gold); }
-
-    .classification {
-      margin-top: 12px;
-      display: inline-flex;
-      align-self: flex-start;
-      padding: 10px 15px;
-      border-radius: 999px;
-      font-weight: 900;
-      background: rgba(255, 255, 255, 0.05);
-    }
-
-    .classification.truth {
-      background: rgba(63, 227, 154, 0.14);
-      color: #8bffcb;
-    }
-
-    .classification.false {
-      background: rgba(255, 127, 150, 0.14);
-      color: #ff9caf;
-    }
-
-    .classification.unknown {
-      background: rgba(255, 211, 106, 0.14);
-      color: #ffe095;
-    }
-
-    .meta {
-      margin-top: 12px;
-      padding-top: 12px;
-      border-top: 1px dashed rgba(255, 255, 255, 0.10);
-      color: #d5e1f4;
-      font-size: 14px;
-      line-height: 1.6;
-      white-space: pre-wrap;
-    }
-
-    .footer-note {
-      margin-top: 14px;
-      text-align: center;
-      color: #9db0cc;
-      font-size: 13px;
-    }
-
-    @media (max-width: 980px) {
-      .status-grid,
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .toolbar button,
-      .toolbar select {
-        width: 100%;
-      }
-
-      textarea,
-      .answer {
-        font-size: 17px;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
-  <div class="wrap">
-    <section class="hero">
-      <h1>Zanistarast Speech Interface</h1>
-      <p class="subtitle">
-        Speak or type your question, send it to the backend, view the answer in a structured way,
-        and read it aloud if needed. This version is built to be clean, stable, and practical.
-      </p>
-    </section>
-
-    <section class="panel">
-      <div class="toolbar">
-        <button id="startBtn" type="button" 🎙️ Start</button>
-        <button id="stopBtn" type="button" ⏹ Stop</button>
-        <button id="sendBtn" type="button" 📤 Send</button>
-        <button id="speakBtn" type="button" 🔊 Speak</button>
-        <button id="clearBtn" type="button" 🧹 Clear</button>
-
-      <div class="language-wrap">
-  <select id="languageSelect">
-    <option value="en-US">English</option>
-    <option value="tr-TR">Turkish</option>
-    <option value="ar-SA">Arabic</option>
-    <option value="ku-TR">Kurmanji</option>
-    <option value="fa-IR">Persian</option>
-    <option value="fr-FR">French</option>
-    <option value="zh-CN">Chinese</option>
-    <option value="ru-RU">Russian</option>
-    <option value="es-ES">Spanish</option>
-    <option value="sv-SE">Swedish</option>
-    <option value="no-NO">Norwegian</option>
-    <option value="de-DE">German</option>
-    <option value="it-IT">Italian</option>
-    <option value="ja-JP">Japanese</option>
-  </select>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">✦</div>
+        <div>
+          <h1>Zanistarast Voice</h1>
+          <p>Ask by voice or text. Clean, calm, fast.</p>
+        </div>
       </div>
-   <div class="status-grid">
+
+      <div class="topbar-actions">
+        <select id="languageSelect" class="lang-select">
+          <option value="en-US">English</option>
+          <option value="tr-TR">Turkish</option>
+          <option value="ar-SA">Arabic</option>
+          <option value="ku-TR">Kurmanji</option>
+          <option value="fa-IR">Persian</option>
+          <option value="fr-FR">French</option>
+          <option value="zh-CN">Chinese</option>
+          <option value="ru-RU">Russian</option>
+          <option value="es-ES">Spanish</option>
+          <option value="sv-SE">Swedish</option>
+          <option value="no-NO">Norwegian</option>
+          <option value="de-DE">German</option>
+          <option value="it-IT">Italian</option>
+          <option value="ja-JP">Japanese</option>
+        </select>
+      </div>
+    </header>
+
+    <main class="main-layout">
+      <section class="chat-panel">
+        <div class="prompt-wrap">
+          <textarea
+            id="questionInput"
+            class="prompt-input"
+            placeholder="Ask something..."
+          ></textarea>
+
+          <div class="prompt-toolbar">
+            <button id="startBtn" type="button" class="btn btn-soft">🎤 Start</button>
+            <button id="stopBtn" type="button" class="btn btn-soft">■ Stop</button>
+            <button id="sendBtn" type="button" class="btn btn-primary">➜ Send</button>
+            <button id="speakBtn" type="button" class="btn btn-soft">🔊 Speak</button>
+            <button id="clearBtn" type="button" class="btn btn-danger">✕ Clear</button>
+          </div>
+        </div>
+
+        <div class="answer-card">
+          <div class="answer-head">
+            <span>Answer</span>
+          </div>
+          <div id="answerOutput" class="answer-output">No answer yet.</div>
+
+          <div class="answer-meta">
+            <div id="classificationBox" class="pill">Classification: None</div>
+            <div id="metaOutput" class="meta-line">No source metadata yet.</div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="status-panel">
         <div class="status-card">
           <div class="status-label">Microphone</div>
           <div id="micStatus" class="status-value mic-off">Off</div>
@@ -432,47 +355,28 @@
         </div>
 
         <div class="status-card">
-          <div class="status-label">Listening Language</div>
+          <div class="status-label">Listening language</div>
           <div id="langStatus" class="status-value">en-US</div>
         </div>
 
         <div class="status-card">
           <div class="status-label">Mode</div>
-          <div id="modeStatus" class="status-value">Manual</div>
+          <div id="modeStatus" class="status-value">manual</div>
         </div>
-      </div>
-
-      <div class="grid">
-        <div class="box">
-          <h2>Question</h2>
-          <textarea id="questionInput" placeholder="Speak or type your question here..."></textarea>
-          <div class="hint">
-            Choose the listening language first, then press Start. Browser speech recognition does not reliably detect all languages at once.
-          </div>
-        </div>
-
-        <div class="box">
-          <h2>Answer</h2>
-          <div id="answerOutput" class="answer">No answer yet.</div>
-          <div id="classificationBox" class="classification unknown">Classification: None</div>
-          <div id="metaOutput" class="meta">No source metadata yet.</div>
-        </div>
-      </div>
-
-      <div class="footer-note">Tip: press Ctrl + Enter to send quickly.</div>
-    </section>
+      </aside>
+    </main>
   </div>
 
-<script src="modules/ui/status.js"></script>
-<script src="modules/ui/renderer.js"></script>
+  <script src="modules/ui/status.js"></script>
+  <script src="modules/ui/renderer.js"></script>
 
-<script src="modules/speech/state.js"></script>
-<script src="modules/speech/input.js"></script>
-<script src="modules/speech/output.js"></script>
+  <script src="modules/speech/state.js"></script>
+  <script src="modules/speech/input.js"></script>
+  <script src="modules/speech/output.js"></script>
 
-<script src="modules/ai/request.js"></script>
-<script src="modules/ai/response.js"></script>
+  <script src="modules/ai/request.js"></script>
+  <script src="modules/ai/response.js"></script>
 
-<script src="modules/ui/bindings.js"></script>
+  <script src="modules/ui/bindings.js"></script>
 </body>
 </html>
