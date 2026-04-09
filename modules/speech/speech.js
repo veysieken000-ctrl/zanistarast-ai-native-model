@@ -11,10 +11,6 @@ const systemStatus = document.getElementById("systemStatus");
 const langStatus = document.getElementById("langStatus");
 const modeStatus = document.getElementById("modeStatus");
 
-const answerOutput = document.getElementById("answerOutput");
-const classificationBox = document.getElementById("classificationBox");
-const metaOutput = document.getElementById("metaOutput");
-
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
 
