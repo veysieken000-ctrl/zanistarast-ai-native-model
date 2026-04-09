@@ -366,7 +366,92 @@
       </aside>
     </main>
   </div>
+<div class="app-shell">
 
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">●</div>
+      <div>
+        <h1>Zanistarast Voice</h1>
+        <p>Speak or type. Clean. Fast. Stable.</p>
+      </div>
+    </div>
+
+    <div class="topbar-actions">
+      <select id="languageSelect" class="lang-select">
+        <option value="en-US">English</option>
+        <option value="tr-TR">Turkish</option>
+        <option value="ku-TR">Kurmanci</option>
+        <option value="ar-SA">Arabic</option>
+      </select>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- INPUT -->
+    <section class="input-card">
+      <textarea 
+        id="questionInput" 
+        class="prompt-input" 
+        placeholder="Ask something..."
+      ></textarea>
+
+      <div class="prompt-toolbar">
+        <button id="startBtn" class="btn">🎤 Start</button>
+        <button id="stopBtn" class="btn">■ Stop</button>
+        <button id="sendBtn" class="btn primary">➤ Send</button>
+        <button id="speakBtn" class="btn">🔊 Speak</button>
+        <button id="clearBtn" class="btn danger">✕ Clear</button>
+      </div>
+    </section>
+
+    <!-- ANSWER -->
+    <section class="answer-card">
+      <div class="answer-head">Answer</div>
+
+      <div id="answerOutput" class="answer-output">
+        No answer yet.
+      </div>
+
+      <div class="answer-meta">
+        <div id="classificationBox" class="pill">
+          Classification: None
+        </div>
+        <div id="metaOutput" class="meta-line">
+          No source metadata yet.
+        </div>
+      </div>
+    </section>
+
+    <!-- STATUS -->
+    <aside class="status-panel">
+      <div class="status-card">
+        <div class="status-label">Microphone</div>
+        <div id="micStatus">Off</div>
+      </div>
+
+      <div class="status-card">
+        <div class="status-label">System</div>
+        <div id="systemStatus">Ready</div>
+      </div>
+
+      <div class="status-card">
+        <div class="status-label">Mode</div>
+        <div id="modeStatus">Manual</div>
+      </div>
+
+      <div class="status-card">
+        <div class="status-label">Language</div>
+        <div id="langStatus">en-US</div>
+      </div>
+    </aside>
+
+  </main>
+
+</div>
   <script src="modules/ui/status.js"></script>
   <script src="modules/ui/renderer.js"></script>
 
