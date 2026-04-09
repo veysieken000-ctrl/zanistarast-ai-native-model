@@ -21,7 +21,8 @@
 
   let recognition = null;
   let mode = "manual"; // 🔥 kritik
-
+  let manualBaseText = "";
+  
   function setMode(m) {
     mode = m;
     if (modeStatus) modeStatus.textContent = m;
@@ -62,31 +63,35 @@
       setSystem("Error: " + e.error);
     };
 
-    r.onresult = (event) => {
-      if (mode !== "voice") return;
+   r.onresult = (event) => {
+  if (mode !== "voice") return;
 
-      let text = "";
+  let text = "";
 
-      for (let i = event.resultIndex; i < event.results.length; i++) {
-        text += event.results[i][0].transcript + " ";
-      }
+  for (let i = event.resultIndex; i < event.results.length; i++) {
+    text += event.results[i][0].transcript + " ";
+  }
 
-      if (input) input.value = text.trim();
-    };
+  const speechText = text.trim();
 
+  if (input) {
+    input.value = [manualBaseText, speechText].filter(Boolean).join(" ").trim();
+  }
+};
     return r;
   }
 
   function start() {
-    if (!recognition) recognition = buildRec();
-    if (!recognition) return;
+  if (!recognition) recognition = buildRec();
+  if (!recognition) return;
 
-    try {
-      recognition.lang = langSelect ? langSelect.value : "en-US";
-      recognition.start();
-    } catch {}
-  }
+  manualBaseText = input ? input.value.trim() : "";
 
+  try {
+    recognition.lang = langSelect ? langSelect.value : "en-US";
+    recognition.start();
+  } catch {}
+}
   function stop() {
     if (recognition) {
       try {
