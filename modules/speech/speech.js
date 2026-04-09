@@ -17,6 +17,8 @@ const SpeechRecognition =
 let recognition = null;
 let isListening = false;
 let finalTranscript = "";
+let isApplyingSpeech = false;
+let typedBaseText = "";
 
 function setMicState(active) {
   isListening = active;
@@ -84,9 +86,23 @@ function setupRecognition() {
     if (questionInput) {
   const speechText = (finalTranscript + interimTranscript).trim();
 
-  if (speechText) {
-    const currentText = questionInput.value.trim();
+  isApplyingSpeech = true;
 
+  if (speechText) {
+    questionInput.value = [typedBaseText, speechText].filter(Boolean).join(" ").trim();
+  } else {
+    questionInput.value = typedBaseText;
+  }
+
+  isApplyingSpeech = false;
+}
+
+    if (questionInput) {
+  questionInput.addEventListener("input", () => {
+    if (!isApplyingSpeech) {
+      typedBaseText = questionInput.value.trim();
+    }
+  });
     if (!currentText) {
       questionInput.value = speechText;
     } else if (!currentText.includes(speechText)) {
@@ -133,6 +149,8 @@ function clearAll() {
   }
 
   finalTranscript = "";
+baseText = questionInput ? questionInput.value.trim() : "";
+typedBaseText = baseText;
 
   if (questionInput) questionInput.value = "";
   if (answerOutput) answerOutput.textContent = "No answer yet.";
@@ -203,10 +221,11 @@ setLangStatus(languageSelect ? languageSelect.value : "en-US");
 
 const sendBtn = document.getElementById("sendBtn");
 if (sendBtn) sendBtn.addEventListener("click", sendQuestion);
+
 if (questionInput) {
-  questionInput.addEventListener("keydown", (e) => {
-    if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
-      sendQuestion();
+  questionInput.addEventListener("input", () => {
+    if (!isApplyingSpeech) {
+      typedBaseText = questionInput.value.trim();
     }
   });
 }
