@@ -3,10 +3,10 @@ const stopBtn = document.getElementById("stopBtn");
 const clearBtn = document.getElementById("clearBtn");
 const questionInput = document.getElementById("questionInput");
 const languageSelect = document.getElementById("languageSelect");
-const micStatus = document.getElementById("micStatus");
-const systemStatus = document.getElementById("systemStatus");
-const langStatus = document.getElementById("langStatus");
-const modeStatus = document.getElementById("modeStatus");
+const micStatus = document.getElementById("micstatus");
+const systemStatus = document.getElementById("systemstatus");
+const langStatus = document.getElementById("langstatus");
+const modeStatus = document.getElementById("modestatus");
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
