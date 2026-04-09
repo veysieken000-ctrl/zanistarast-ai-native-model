@@ -3,284 +3,286 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zanistarast Speech Interface</title>
- style>
-  :root {
-    --bg: #0b0f19;
-    --bg-soft: #131a2a;
-    --panel: rgba(20, 27, 45, 0.88);
-    --panel-2: rgba(16, 22, 37, 0.96);
-    --border: rgba(255, 255, 255, 0.08);
-    --text: #f7f9fc;
-    --muted: #a8b2c7;
-    --accent: #8ab4ff;
-    --accent-2: #b18cff;
-    --success: #5be49b;
-    --danger: #ff7e8a;
-    --shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
-    --radius: 24px;
-  }
+  <title>Zanistarast Voice</title>
 
-  * {
-    box-sizing: border-box;
-  }
+  <style>
+    :root {
+      --bg-1: #0a0f1c;
+      --bg-2: #11182a;
+      --panel: rgba(17, 24, 39, 0.82);
+      --panel-2: rgba(11, 17, 30, 0.92);
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #f8fbff;
+      --muted: #a8b3c7;
+      --primary: #8ab4ff;
+      --primary-2: #b388ff;
+      --success: #57e389;
+      --danger: #ff7b8a;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+    }
 
-  body {
-    margin: 0;
-    font-family: Inter, Arial, sans-serif;
-    color: var(--text);
-    background:
-      radial-gradient(circle at top left, rgba(125, 170, 255, 0.16), transparent 26%),
-      radial-gradient(circle at top right, rgba(177, 140, 255, 0.14), transparent 24%),
-      linear-gradient(180deg, #090d16 0%, #0d1220 100%);
-    min-height: 100vh;
-  }
+    * {
+      box-sizing: border-box;
+    }
 
-  .app-shell {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 28px 18px 40px;
-  }
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(138, 180, 255, 0.18), transparent 24%),
+        radial-gradient(circle at top right, rgba(179, 136, 255, 0.14), transparent 22%),
+        linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+    }
 
-  .topbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 18px;
-    margin-bottom: 22px;
-    padding: 18px 20px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    background: rgba(14, 19, 32, 0.76);
-    backdrop-filter: blur(16px);
-    box-shadow: var(--shadow);
-  }
-
-  .brand {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-
-  .brand-mark {
-    width: 52px;
-    height: 52px;
-    border-radius: 18px;
-    display: grid;
-    place-items: center;
-    font-size: 22px;
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    color: white;
-    box-shadow: 0 8px 24px rgba(138, 180, 255, 0.25);
-  }
-
-  .brand h1 {
-    margin: 0 0 4px;
-    font-size: 30px;
-    line-height: 1.1;
-  }
-
-  .brand p {
-    margin: 0;
-    color: var(--muted);
-    font-size: 14px;
-  }
-
-  .lang-select {
-    min-width: 180px;
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    background: var(--panel-2);
-    color: var(--text);
-    padding: 12px 14px;
-    font-size: 14px;
-    outline: none;
-  }
-
-  .main-layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1.8fr) minmax(280px, 0.9fr);
-    gap: 20px;
-  }
-
-  .chat-panel,
-  .status-panel {
-    display: grid;
-    gap: 18px;
-  }
-
-  .prompt-wrap,
-  .answer-card,
-  .status-card {
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    background: var(--panel);
-    backdrop-filter: blur(16px);
-    box-shadow: var(--shadow);
-  }
-
-  .prompt-wrap {
-    padding: 18px;
-  }
-
-  .prompt-input {
-    width: 100%;
-    min-height: 220px;
-    resize: vertical;
-    border: 1px solid rgba(138, 180, 255, 0.18);
-    border-radius: 20px;
-    background: #0d1424;
-    color: var(--text);
-    padding: 18px;
-    font-size: 18px;
-    line-height: 1.55;
-    outline: none;
-  }
-
-  .prompt-input::placeholder {
-    color: #7f8aa3;
-  }
-
-  .prompt-toolbar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 16px;
-  }
-
-  .btn {
-    border: 0;
-    border-radius: 999px;
-    padding: 12px 18px;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: transform 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease;
-  }
-
-  .btn:hover {
-    transform: translateY(-1px);
-    opacity: 0.96;
-  }
-
-  .btn-soft {
-    background: #1a2238;
-    color: var(--text);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-  }
-
-  .btn-primary {
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    color: white;
-    box-shadow: 0 8px 24px rgba(138, 180, 255, 0.2);
-  }
-
-  .btn-danger {
-    background: rgba(255, 126, 138, 0.14);
-    color: #ffd7dc;
-    border: 1px solid rgba(255, 126, 138, 0.22);
-  }
-
-  .answer-card {
-    padding: 18px;
-  }
-
-  .answer-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 14px;
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--muted);
-  }
-
-  .answer-output {
-    min-height: 240px;
-    border: 1px solid rgba(138, 180, 255, 0.18);
-    border-radius: 20px;
-    background: #0d1424;
-    padding: 18px;
-    font-size: 17px;
-    line-height: 1.6;
-    white-space: pre-wrap;
-  }
-
-  .answer-meta {
-    margin-top: 14px;
-    display: grid;
-    gap: 10px;
-  }
-
-  .pill {
-    display: inline-flex;
-    align-items: center;
-    width: fit-content;
-    padding: 10px 14px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.06);
-    color: #e9eefc;
-    font-size: 13px;
-    font-weight: 700;
-  }
-
-  .meta-line {
-    color: var(--muted);
-    font-size: 13px;
-    white-space: pre-wrap;
-  }
-
-  .status-panel {
-    align-content: start;
-  }
-
-  .status-card {
-    padding: 18px;
-  }
-
-  .status-label {
-    color: var(--muted);
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-    font-weight: 700;
-  }
-
-  .status-value {
-    font-size: 28px;
-    font-weight: 800;
-    line-height: 1.1;
-  }
-
-  .mic-on {
-    color: var(--success);
-  }
-
-  .mic-off {
-    color: #ffb4be;
-  }
-
-  @media (max-width: 980px) {
-    .main-layout {
-      grid-template-columns: 1fr;
+    .app-shell {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 28px 18px 40px;
     }
 
     .topbar {
-      flex-direction: column;
-      align-items: stretch;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 18px 22px;
+      border-radius: var(--radius-xl);
+      background: rgba(10, 15, 28, 0.62);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow);
+      margin-bottom: 22px;
     }
 
-    .lang-select {
-      width: 100%;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-mark {
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      font-weight: 900;
+      color: white;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      box-shadow: 0 10px 25px rgba(138, 180, 255, 0.28);
     }
 
     .brand h1 {
-      font-size: 24px;
+      margin: 0 0 4px;
+      font-size: 31px;
+      line-height: 1.1;
+      font-weight: 800;
+      letter-spacing: -0.02em;
     }
-  }
-</style>
+
+    .brand p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .lang-select {
+      min-width: 180px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 12px 16px;
+      background: var(--panel-2);
+      color: var(--text);
+      font-size: 14px;
+      outline: none;
+    }
+
+    .main {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(280px, 0.9fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .left-column {
+      display: grid;
+      gap: 18px;
+    }
+
+    .input-card,
+    .answer-card,
+    .status-card {
+      border-radius: var(--radius-xl);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow);
+    }
+
+    .input-card,
+    .answer-card {
+      padding: 18px;
+    }
+
+    .prompt-input {
+      width: 100%;
+      min-height: 240px;
+      resize: vertical;
+      border: 1px solid rgba(138, 180, 255, 0.16);
+      border-radius: var(--radius-lg);
+      background: #0b1324;
+      color: var(--text);
+      padding: 18px;
+      font-size: 17px;
+      line-height: 1.6;
+      outline: none;
+    }
+
+    .prompt-input::placeholder {
+      color: #7f8aa0;
+    }
+
+    .prompt-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      opacity: 0.95;
+    }
+
+    .btn-soft {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+    }
+
+    .btn-primary {
+      color: white;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      box-shadow: 0 10px 25px rgba(138, 180, 255, 0.22);
+    }
+
+    .btn-danger {
+      color: #ffd7dd;
+      background: rgba(255, 123, 138, 0.14);
+      border: 1px solid rgba(255, 123, 138, 0.22);
+    }
+
+    .answer-head {
+      margin-bottom: 14px;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .answer-output {
+      min-height: 240px;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(138, 180, 255, 0.16);
+      background: #0b1324;
+      padding: 18px;
+      font-size: 16px;
+      line-height: 1.65;
+      white-space: pre-wrap;
+    }
+
+    .answer-meta {
+      margin-top: 14px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .pill {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.07);
+      color: #eef3ff;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .meta-line {
+      color: var(--muted);
+      font-size: 13px;
+      white-space: pre-wrap;
+    }
+
+    .status-panel {
+      display: grid;
+      gap: 16px;
+    }
+
+    .status-card {
+      padding: 18px;
+    }
+
+    .status-label {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .status-value {
+      font-size: 28px;
+      line-height: 1.1;
+      font-weight: 800;
+    }
+
+    .mic-on {
+      color: var(--success);
+    }
+
+    .mic-off {
+      color: #ffb8c0;
+    }
+
+    @media (max-width: 980px) {
+      .main {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .lang-select {
+        width: 100%;
+      }
+
+      .brand h1 {
+        font-size: 25px;
+      }
+    }
+  </style>
 </head>
+
 <body>
   <div class="app-shell">
     <header class="topbar">
@@ -288,7 +290,7 @@
         <div class="brand-mark">✦</div>
         <div>
           <h1>Zanistarast Voice</h1>
-          <p>Ask by voice or text. Clean, calm, fast.</p>
+          <p>Speak or type. Clean. Fast. Stable.</p>
         </div>
       </div>
 
@@ -312,14 +314,10 @@
       </div>
     </header>
 
-    <main class="main-layout">
-      <section class="chat-panel">
-        <div class="prompt-wrap">
-          <textarea
-            id="questionInput"
-            class="prompt-input"
-            placeholder="Ask something..."
-          ></textarea>
+    <main class="main">
+      <div class="left-column">
+        <section class="input-card">
+          <textarea id="questionInput" class="prompt-input" placeholder="Ask something..."></textarea>
 
           <div class="prompt-toolbar">
             <button id="startBtn" type="button" class="btn btn-soft">🎤 Start</button>
@@ -328,20 +326,18 @@
             <button id="speakBtn" type="button" class="btn btn-soft">🔊 Speak</button>
             <button id="clearBtn" type="button" class="btn btn-danger">✕ Clear</button>
           </div>
-        </div>
+        </section>
 
-        <div class="answer-card">
-          <div class="answer-head">
-            <span>Answer</span>
-          </div>
+        <section class="answer-card">
+          <div class="answer-head">Answer</div>
           <div id="answerOutput" class="answer-output">No answer yet.</div>
 
           <div class="answer-meta">
             <div id="classificationBox" class="pill">Classification: None</div>
             <div id="metaOutput" class="meta-line">No source metadata yet.</div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       <aside class="status-panel">
         <div class="status-card">
@@ -366,92 +362,7 @@
       </aside>
     </main>
   </div>
-<div class="app-shell">
 
-  <!-- TOP BAR -->
-  <header class="topbar">
-    <div class="brand">
-      <div class="brand-mark">●</div>
-      <div>
-        <h1>Zanistarast Voice</h1>
-        <p>Speak or type. Clean. Fast. Stable.</p>
-      </div>
-    </div>
-
-    <div class="topbar-actions">
-      <select id="languageSelect" class="lang-select">
-        <option value="en-US">English</option>
-        <option value="tr-TR">Turkish</option>
-        <option value="ku-TR">Kurmanci</option>
-        <option value="ar-SA">Arabic</option>
-      </select>
-    </div>
-  </header>
-
-  <!-- MAIN -->
-  <main class="main">
-
-    <!-- INPUT -->
-    <section class="input-card">
-      <textarea 
-        id="questionInput" 
-        class="prompt-input" 
-        placeholder="Ask something..."
-      ></textarea>
-
-      <div class="prompt-toolbar">
-        <button id="startBtn" class="btn">🎤 Start</button>
-        <button id="stopBtn" class="btn">■ Stop</button>
-        <button id="sendBtn" class="btn primary">➤ Send</button>
-        <button id="speakBtn" class="btn">🔊 Speak</button>
-        <button id="clearBtn" class="btn danger">✕ Clear</button>
-      </div>
-    </section>
-
-    <!-- ANSWER -->
-    <section class="answer-card">
-      <div class="answer-head">Answer</div>
-
-      <div id="answerOutput" class="answer-output">
-        No answer yet.
-      </div>
-
-      <div class="answer-meta">
-        <div id="classificationBox" class="pill">
-          Classification: None
-        </div>
-        <div id="metaOutput" class="meta-line">
-          No source metadata yet.
-        </div>
-      </div>
-    </section>
-
-    <!-- STATUS -->
-    <aside class="status-panel">
-      <div class="status-card">
-        <div class="status-label">Microphone</div>
-        <div id="micStatus">Off</div>
-      </div>
-
-      <div class="status-card">
-        <div class="status-label">System</div>
-        <div id="systemStatus">Ready</div>
-      </div>
-
-      <div class="status-card">
-        <div class="status-label">Mode</div>
-        <div id="modeStatus">Manual</div>
-      </div>
-
-      <div class="status-card">
-        <div class="status-label">Language</div>
-        <div id="langStatus">en-US</div>
-      </div>
-    </aside>
-
-  </main>
-
-</div>
   <script src="modules/ui/status.js"></script>
   <script src="modules/ui/renderer.js"></script>
 
@@ -465,3 +376,4 @@
   <script src="modules/ui/bindings.js"></script>
 </body>
 </html>
+
