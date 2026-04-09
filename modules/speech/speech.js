@@ -1,1 +1,5 @@
-// speech module placeholder
+console.log("speech module loaded");
+
+
+
+
