@@ -12,9 +12,19 @@
   }
 
   function setSystemStatus(text) {
-    if (!systemStatusEl) return;
-    systemStatusEl.textContent = text;
+  if (!systemStatusEl) return;
+
+  const value = String(text || "");
+
+  if (value.toLowerCase().includes("düşünülüyor") || value.toLowerCase().includes("thinking")) {
+    systemStatusEl.innerHTML = 'Düşünülüyor<span class="thinking-dots"><span>.</span><span>.</span><span>.</span></span>';
+    systemStatusEl.classList.add("thinking");
+    return;
   }
+
+  systemStatusEl.textContent = text;
+  systemStatusEl.classList.remove("thinking");
+}
 
   function setLangStatus(text) {
     if (!langStatusEl) return;
