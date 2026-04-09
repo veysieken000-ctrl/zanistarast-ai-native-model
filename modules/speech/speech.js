@@ -1,4 +1,3 @@
-alert("speech.js loaded");
 const startBtn = document.getElementById("startBtn");
 const stopBtn = document.getElementById("stopBtn");
 const clearBtn = document.getElementById("clearBtn");
@@ -70,18 +69,30 @@ function setupRecognition() {
     setSystemStatus("Speech error: " + event.error);
   };
 
-  r.onresult = (event) => {
-    let interimTranscript = "";
+ r.onresult = (event) => {
+  isApplyingSpeech = true;
 
-    for (let i = event.resultIndex; i < event.results.length; i++) {
-      const text = event.results[i][0].transcript;
+  let interimTranscript = "";
 
-      if (event.results[i].isFinal) {
-        finalTranscript += text + " ";
-      } else {
-        interimTranscript += text;
-      }
+  for (let i = event.resultIndex; i < event.results.length; i++) {
+    const text = event.results[i][0].transcript;
+
+    if (event.results[i].isFinal) {
+      finalTranscript += text + " ";
+    } else {
+      interimTranscript += text;
     }
+  }
+
+  if (questionInput) {
+    const speechText = (finalTranscript + interimTranscript).trim();
+    const base = typedBaseText.trim();
+
+    questionInput.value = (base + " " + speechText).trim();
+  }
+
+  isApplyingSpeech = false;
+};
 
     if (questionInput) {
   const speechText = (finalTranscript + interimTranscript).trim();
