@@ -5,9 +5,24 @@
   const modeStatusEl = document.getElementById("modeStatus");
   const listeningLabelEl = document.getElementById("listeningLabel");
 
+  let currentPack = {
+    ready: "Ready",
+    thinking: "Thinking",
+    speaking: "Speaking",
+    done: "Done",
+    off: "Off",
+    on: "On",
+    manual: "manual",
+    listeningLabel: "Listening Language"
+  };
+
+  function setTranslations(pack) {
+    currentPack = { ...currentPack, ...(pack || {}) };
+  }
+
   function setMicStatus(active) {
     if (!micStatusEl) return;
-    micStatusEl.textContent = active ? "On" : "Off";
+    micStatusEl.textContent = active ? currentPack.on : currentPack.off;
     micStatusEl.className = "status-chip-value " + (active ? "mic-on" : "mic-off");
   }
 
@@ -17,12 +32,25 @@
     const value = String(text || "");
     const lower = value.toLowerCase();
 
-    if (
-      lower.includes("thinking") ||
-      lower.includes("düşünüyor") ||
-      lower.includes("speaking")
-    ) {
-      const label = lower.includes("speaking") ? "Speaking" : "Thinking";
+    const thinkingWords = [
+      "thinking",
+      "düşünüyor",
+      "difizire",
+      "يفكر"
+    ];
+
+    const speakingWords = [
+      "speaking",
+      "konuşuyor",
+      "diaxive",
+      "يتحدث"
+    ];
+
+    const isThinking = thinkingWords.some((x) => lower.includes(x));
+    const isSpeaking = speakingWords.some((x) => lower.includes(x));
+
+    if (isThinking || isSpeaking) {
+      const label = isSpeaking ? currentPack.speaking : currentPack.thinking;
 
       systemStatusEl.innerHTML =
         label +
@@ -32,7 +60,14 @@
       return;
     }
 
-    systemStatusEl.textContent = value;
+    if (lower === "ready") {
+      systemStatusEl.textContent = currentPack.ready;
+    } else if (lower === "done") {
+      systemStatusEl.textContent = currentPack.done;
+    } else {
+      systemStatusEl.textContent = value;
+    }
+
     systemStatusEl.classList.remove("thinking");
   }
 
@@ -43,12 +78,19 @@
 
   function setModeStatus(text) {
     if (!modeStatusEl) return;
-    modeStatusEl.textContent = text || "manual";
+
+    const value = String(text || "").toLowerCase();
+    if (value === "manual") {
+      modeStatusEl.textContent = currentPack.manual;
+      return;
+    }
+
+    modeStatusEl.textContent = text || currentPack.manual;
   }
 
   function setListeningLabel(text) {
     if (!listeningLabelEl) return;
-    listeningLabelEl.textContent = text || "Listening Language";
+    listeningLabelEl.textContent = text || currentPack.listeningLabel;
   }
 
   window.UIStatus = {
@@ -56,6 +98,7 @@
     setSystemStatus,
     setLangStatus,
     setModeStatus,
-    setListeningLabel
+    setListeningLabel,
+    setTranslations
   };
 })();
