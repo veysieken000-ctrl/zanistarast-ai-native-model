@@ -6,7 +6,17 @@
   const clearBtn = document.getElementById("clearBtn");
   const questionInput = document.getElementById("questionInput");
   const languageSelect = document.getElementById("languageSelect");
+  
+  function getThinkingText() {
+  const lang = document.getElementById("languageSelect")?.value;
 
+  if (lang === "tr-TR") return "Düşünüyorum...";
+  if (lang === "en-US") return "Thinking...";
+  if (lang === "ar-SA") return "جاري التفكير...";
+  if (lang === "ku-TR") return "Ez difikirim...";
+
+  return "Thinking...";
+}
   function safeSetSystemStatus(text) {
     if (window.UIStatus && typeof window.UIStatus.setSystemStatus === "function") {
       window.UIStatus.setSystemStatus(text);
@@ -127,9 +137,34 @@
     });
   }
 
-  if (languageSelect && window.UIStatus && typeof window.UIStatus.setLangStatus === "function") {
+  if (languageSelect) {
+  if (window.UIStatus && typeof window.UIStatus.setLangStatus === "function") {
     window.UIStatus.setLangStatus(languageSelect.value);
   }
+
+  languageSelect.addEventListener("change", () => {
+    if (window.UIStatus && typeof window.UIStatus.setLangStatus === "function") {
+      window.UIStatus.setLangStatus(languageSelect.value);
+    }
+
+    updateListeningLabel();
+  });
+}
+
+updateListeningLabel(); 
+  }
+  function updateListeningLabel() {
+  const el = document.getElementById("listeningLabel");
+  const lang = document.getElementById("languageSelect")?.value;
+
+  if (!el) return;
+
+  if (lang === "tr-TR") el.textContent = "Dinleme Dili";
+  else if (lang === "en-US") el.textContent = "Listening Language";
+  else if (lang === "ar-SA") el.textContent = "لغة الاستماع";
+  else if (lang === "ku-TR") el.textContent = "Zimanê Guhdarî";
+  else el.textContent = "Listening Language";
+}
 
   window.UIBindings = {
     handleStart,
