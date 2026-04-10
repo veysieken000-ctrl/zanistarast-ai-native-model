@@ -1,92 +1,61 @@
-const LANG_TEXT = {
-  "tr-TR": {
-    thinking: "Düşünüyorum...",
-    speaking: "Konuşuyor",
-    ready: "Hazır",
-    done: "Tamamlandı",
-    error: "Hata",
-    listening: "Dinleme Dili"
-  },
-  "en-US": {
-    thinking: "Thinking...",
-    speaking: "Speaking",
-    ready: "Ready",
-    done: "Done",
-    error: "Error",
-    listening: "Listening Language"
-  }
-};
-function getThinkingText() {
-  const lang = document.getElementById("languageSelect")?.value;
-
-  if (lang === "tr-TR") return "Düşünüyorum...";
-  if (lang === "en-US") return "Thinking...";
-  if (lang === "ar-SA") return "جاري التفكير...";
-  if (lang === "ku-TR") return "Ez difikirim...";
-
-  return "Thinking...";
-}
-function getLang() {
-  const el = document.getElementById("languageSelect");
-  return el ? el.value : "en-US";
-}
-
-function t(key) {
-  const lang = getLang();
-  return (LANG_TEXT[lang] && LANG_TEXT[lang][key]) || LANG_TEXT["en-US"][key];
-}
-
 (() => {
   const micStatusEl = document.getElementById("micStatus");
   const systemStatusEl = document.getElementById("systemStatus");
   const langStatusEl = document.getElementById("langStatus");
   const modeStatusEl = document.getElementById("modeStatus");
+  const listeningLabelEl = document.getElementById("listeningLabel");
 
   function setMicStatus(active) {
     if (!micStatusEl) return;
-
     micStatusEl.textContent = active ? "On" : "Off";
-    micStatusEl.className = "status-value " + (active ? "mic-on" : "mic-off");
-  }
- function setSystemStatus(text) {
-  if (!systemStatusEl) return;
-
-  const value = String(text || "");
-  const lower = value.toLowerCase();
-
-  systemStatusEl.classList.remove(
-    "thinking",
-    "is-ready",
-    "is-done",
-    "is-thinking",
-    "is-speaking",
-    "is-error"
-  );
-
-  if (
-    lower.includes("düşünüyorum") ||
-    lower.includes("düşünülüyor") ||
-    lower.includes("thinking") ||
-    lower.includes("speaking")
-  ) {
-    const isSpeaking = lower.includes("speaking");
-    const label = isSpeaking ? "Speaking" : "Düşünüyorum";
-
-    systemStatusEl.innerHTML =
-      label + ' <span class="thinking-dots"><span>.</span><span>.</span><span>.</span></span>';
-
-    systemStatusEl.classList.add("thinking");
-    systemStatusEl.classList.add(isSpeaking ? "is-speaking" : "is-thinking");
-    return;
+    micStatusEl.className = "status-chip-value " + (active ? "mic-on" : "mic-off");
   }
 
-  systemStatusEl.textContent = value;
+  function setSystemStatus(text) {
+    if (!systemStatusEl) return;
 
-  if (lower.includes("ready")) {
-    systemStatusEl.classList.add("is-ready");
-  } else if (lower.includes("done")) {
-    systemStatusEl.classList.add("is-done");
-  } else if (lower.includes("error")) {
-    systemStatusEl.classList.add("is-error");
+    const value = String(text || "");
+    const lower = value.toLowerCase();
+
+    if (
+      lower.includes("thinking") ||
+      lower.includes("düşünüyor") ||
+      lower.includes("speaking")
+    ) {
+      const label = lower.includes("speaking") ? "Speaking" : "Thinking";
+
+      systemStatusEl.innerHTML =
+        label +
+        '<span class="thinking-dots"><span>.</span><span>.</span><span>.</span></span>';
+
+      systemStatusEl.classList.add("thinking");
+      return;
+    }
+
+    systemStatusEl.textContent = value;
+    systemStatusEl.classList.remove("thinking");
   }
-}
+
+  function setLangStatus(text) {
+    if (!langStatusEl) return;
+    langStatusEl.textContent = text || "en-US";
+  }
+
+  function setModeStatus(text) {
+    if (!modeStatusEl) return;
+    modeStatusEl.textContent = text || "manual";
+  }
+
+  function setListeningLabel(text) {
+    if (!listeningLabelEl) return;
+    listeningLabelEl.textContent = text || "Listening Language";
+  }
+
+  window.UIStatus = {
+    setMicStatus,
+    setSystemStatus,
+    setLangStatus,
+    setModeStatus,
+    setListeningLabel
+  };
+})();
