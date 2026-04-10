@@ -524,41 +524,55 @@
 }
   </style>
 </head>
-
 <body>
   <div class="app-shell">
-    <header class="topbar">
-      <div class="brand">
-        <div class="brand-mark">✦</div>
-        <div>
-          <h1>Zanistarast Voice</h1>
-          <p>Speak or type. Clean. Fast. Stable.</p>
-        </div>
-      </div>
-
-      <div class="topbar-actions">
-        <select id="languageSelect" class="lang-select">
-          <option value="en-US">English</option>
-          <option value="tr-TR">Turkish</option>
-          <option value="ar-SA">Arabic</option>
-          <option value="ku-TR">Kurmanji</option>
-          <option value="fa-IR">Persian</option>
-          <option value="fr-FR">French</option>
-          <option value="zh-CN">Chinese</option>
-          <option value="ru-RU">Russian</option>
-          <option value="es-ES">Spanish</option>
-          <option value="sv-SE">Swedish</option>
-          <option value="no-NO">Norwegian</option>
-          <option value="de-DE">German</option>
-          <option value="it-IT">Italian</option>
-          <option value="ja-JP">Japanese</option>
-        </select>
-      </div>
-    </header>
-
     <main class="main">
       <div class="left-column">
-        <section class="panel">
+
+<section class="panel">
+
+  <div class="panel-topbar">
+    <div class="panel-top-left">
+      <div class="panel-brand-title">Zanistarast Voice</div>
+      <div class="panel-brand-sub">Speak or type. Clean. Fast. Stable.</div>
+    </div>
+
+    <div class="panel-top-right">
+      <select id="languageSelect" class="lang-select">
+        <option value="en-US">English</option>
+        <option value="tr-TR">Turkish</option>
+        <option value="ar-SA">Arabic</option>
+        <option value="ku-TR">Kurmanji</option>
+        <option value="fa-IR">Persian</option>
+        <option value="fr-FR">French</option>
+        <option value="zh-CN">Chinese</option>
+        <option value="ru-RU">Russian</option>
+        <option value="es-ES">Spanish</option>
+        <option value="sv-SE">Swedish</option>
+        <option value="no-NO">Norwegian</option>
+        <option value="de-DE">German</option>
+        <option value="it-IT">Italian</option>
+        <option value="ja-JP">Japanese</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="panel-status-top">
+    <div class="status-chip status-chip-left">
+      <span class="status-chip-label">Microphone</span>
+      <span id="micStatus" class="status-chip-value mic-off">Off</span>
+    </div>
+
+    <div class="status-chip status-chip-center">
+      <span class="status-chip-label">System</span>
+      <span id="systemStatus" class="status-chip-value">Ready</span>
+    </div>
+
+    <div class="status-chip status-chip-right">
+      <span class="status-chip-label">Listening Language</span>
+      <span id="langStatus" class="status-chip-value">en-US</span>
+    </div>
+  </div>
 
   <div class="chat-thread" id="chatThread"></div>
 
@@ -574,30 +588,18 @@
     </div>
   </div>
 
-</section>
-</div>
-
-      <aside class="status-panel">
-  <div class="status-overlay">
-    <div class="status-top-right" id="langStatus">en-US</div>
-
-    <div class="status-center">
-      <div class="status-center-label">System</div>
-      <div id="systemStatus" class="status-center-value">Ready</div>
-    </div>
-
-    <div class="status-bottom-left">
-      <div class="status-mini-label">Microphone</div>
-      <div id="micStatus" class="status-mini-value mic-off">Off</div>
-    </div>
-
-    <div class="status-bottom-right">
-      <div class="status-mini-label">Mode</div>
-      <div id="modeStatus" class="status-mini-value">manual</div>
+  <div class="panel-status-bottom">
+    <div class="status-chip status-chip-bottom">
+      <span class="status-chip-label">Mode</span>
+      <span id="modeStatus" class="status-chip-value">manual</span>
     </div>
   </div>
-</aside>
+
+</section>
+
+</div>
 </main>
+</div> 
   
   <script src="modules/ui/status.js"></script>
   <script src="modules/ui/renderer.js"></script>
