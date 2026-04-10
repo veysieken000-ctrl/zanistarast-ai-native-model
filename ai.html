@@ -70,6 +70,38 @@
     }
   </style>
 </head>
+.thinking {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.05);
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.thinking::after {
+  content: "";
+  width: 24px;
+  display: inline-block;
+  text-align: left;
+  animation: thinkingDots 1.2s infinite steps(4);
+}
+
+@keyframes thinkingDots {
+  0% { content: ""; }
+  25% { content: "."; }
+  50% { content: ".."; }
+  75% { content: "..."; }
+  100% { content: ""; }
+}
+
+.answer-box {
+  margin-top: 14px;
+  white-space: pre-wrap;
+  line-height: 1.65;
+}
 
 <body>
   <div id="navbar"></div>
@@ -250,7 +282,114 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+<script>
+(() => {
+  const input = document.getElementById("questionInput");
+  const askBtn = document.getElementById("askBtn");
+  const answerBox = document.getElementById("answerBox");
+  const thinkingBox = document.getElementById("thinkingBox");
+  const topicButtons = document.querySelectorAll(".quick-topic-btn");
 
-  </script>
+  let typingTimer = null;
+
+  function buildPrompt(topic) {
+    return `"${topic}" Write a clear, structured, deep article. Use a strong title, short introduction, sectioned explanation, and a conclusion. Keep it readable, polished, and serious.`;
+  }
+
+  function stopTyping() {
+    if (typingTimer) {
+      clearTimeout(typingTimer);
+      typingTimer = null;
+    }
+  }
+
+  function typeText(text, element, speed = 12) {
+    return new Promise((resolve) => {
+      stopTyping();
+      element.textContent = "";
+
+      const fullText = String(text || "");
+      let index = 0;
+
+      function writeNext() {
+        if (index < fullText.length) {
+          element.textContent += fullText.charAt(index);
+          index += 1;
+          typingTimer = setTimeout(writeNext, speed);
+        } else {
+          typingTimer = null;
+          resolve();
+        }
+      }
+
+      writeNext();
+    });
+  }
+
+  async function ask(question) {
+    const cleanQuestion = String(question || "").trim();
+    if (!cleanQuestion) return;
+
+    thinkingBox.classList.remove("hidden");
+    answerBox.textContent = "";
+
+    try {
+      const res = await fetch("/api/ask", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ question: cleanQuestion })
+      });
+
+      if (!res.ok) {
+        throw new Error("Request failed");
+      }
+
+      const data = await res.json();
+
+      const text =
+        data.answer ||
+        data.response ||
+        data.output ||
+        data.message ||
+        "No response received.";
+
+      thinkingBox.classList.add("hidden");
+      await typeText(text, answerBox, 10);
+
+    } catch (error) {
+      console.error(error);
+      thinkingBox.classList.add("hidden");
+      await typeText("Request failed.", answerBox, 10);
+    }
+  }
+
+  topicButtons.forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const topic = btn.dataset.topic;
+      const prompt = buildPrompt(topic);
+
+      input.value = prompt;
+      await ask(prompt);
+    });
+  });
+
+  if (askBtn) {
+    askBtn.addEventListener("click", async () => {
+      await ask(input.value);
+    });
+  }
+
+  if (input) {
+    input.addEventListener("keydown", async (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        await ask(input.value);
+      }
+    });
+  }
+})();
+</script>
 </body>
 </html>
