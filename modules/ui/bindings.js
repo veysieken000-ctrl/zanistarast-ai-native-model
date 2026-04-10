@@ -13,38 +13,50 @@
     }
   }
 
- async function handleSend() {
-  if (!window.UIRenderer || !window.AIRequest || !window.AIResponse) return;
+  async function handleSend() {
+    if (!window.UIRenderer || !window.AIRequest || !window.AIResponse) return;
 
-  const question = window.UIRenderer.getQuestion();
+    const question = window.UIRenderer.getQuestion();
 
-  if (!question) {
-    safeSetSystemStatus("Question is empty");
-    return;
+    if (!question) {
+      safeSetSystemStatus("Question is empty");
+      return;
+    }
+
+    if (typeof window.UIRenderer.appendUserMessage === "function") {
+      window.UIRenderer.appendUserMessage(question);
+    }
+
+    window.UIRenderer.setQuestion("");
+
+    safeSetSystemStatus("Düşünüyorum...");
+
+    if (window.UIStatus && typeof window.UIStatus.setModeStatus === "function") {
+      window.UIStatus.setModeStatus("manual");
+    }
+
+    try {
+      const data = await window.AIRequest.askQuestion(question);
+
+      if (window.AIResponse && typeof window.AIResponse.applyResponse === "function") {
+        window.AIResponse.applyResponse(data);
+      } else if (typeof window.UIRenderer.appendAssistantMessage === "function") {
+        const answer = data && data.answer ? data.answer : "No answer";
+        window.UIRenderer.appendAssistantMessage(answer);
+        safeSetSystemStatus("Done");
+      }
+    } catch (error) {
+      console.error(error);
+
+      if (window.AIResponse && typeof window.AIResponse.applyError === "function") {
+        window.AIResponse.applyError(error);
+      } else if (typeof window.UIRenderer.appendAssistantMessage === "function") {
+        window.UIRenderer.appendAssistantMessage("Error");
+      }
+
+      safeSetSystemStatus("Error");
+    }
   }
-
-  // 👤 kullanıcı mesajını chat'e ekle
-  if (typeof window.UIRenderer.appendUserMessage === "function") {
-    window.UIRenderer.appendUserMessage(question);
-  }
-
-  // input temizle
-  window.UIRenderer.setQuestion("");
-
-  // durum yaz
-  safeSetSystemStatus("Düşünülüyor...");
-
-  try {
-    // 🔥 EN KRİTİK SATIR
-    const data = await window.AIRequest.askQuestion(question);
-
-    // 🤖 cevabı chat'e basar (renderer üzerinden)
-    window.AIResponse.applyResponse(data);
-
-  } catch (error) {
-    window.AIResponse.applyError(error);
-  }
-}
 
   function handleStart() {
     if (window.SpeechInput && typeof window.SpeechInput.startListening === "function") {
