@@ -1,15 +1,76 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Zanistarast AI</title>
-  <meta
-    name="description"
-    content="Interactive Zanistarast AI for ontology, epistemology, civilization, economics, fitrat, history, and structural analysis."
-  />
+
   <link rel="stylesheet" href="style.css" />
+
+  <style>
+    .quick-topics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .quick-topic-btn {
+      cursor: pointer;
+      padding: 8px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+    }
+
+    .quick-topic-btn:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .ask-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    #questionInput {
+      flex: 1;
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+    }
+
+    #askBtn {
+      padding: 12px 18px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .thinking {
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.05);
+      color: #ffffff;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .answer-box {
+      margin-top: 14px;
+      white-space: pre-wrap;
+      padding: 14px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.04);
+      color: #fff;
+    }
+  </style>
 </head>
+
 <body>
   <div id="navbar"></div>
 
@@ -25,66 +86,142 @@
   </script>
 
   <main class="ai-layout">
+
+    <!-- QUICK TOPICS -->
     <section class="section-card ai-card">
       <div class="ai-section-head">
-        <h2>Hızlı Konular</h2>
+        <h2>Quick Topics</h2>
         <p class="subtitle">
-          Tek tıkla konu yerleştir. Sonra doğrudan sorabilir veya düzenleyebilirsin.
+          Click once to insert a topic. Then ask directly or edit.
         </p>
       </div>
 
       <div class="topic-chip-wrap">
-        <button type="button" class="topic-chip chip-main" onclick="fillPrompt('Hebûn nedir?')">Hebûn</button>
-        <button type="button" class="topic-chip chip-main" onclick="fillPrompt('Zanabûn nedir?')">Zanabûn</button>
-        <button type="button" class="topic-chip chip-main" onclick="fillPrompt('Mabûn nedir?')">Mabûn</button>
-        <button type="button" class="topic-chip chip-main" onclick="fillPrompt('Rasterast nedir?')">Rasterast</button>
-        <button type="button" class="topic-chip chip-main" onclick="fillPrompt('Rêbûn nedir?')">Rêbûn</button>
-        <button type="button" class="topic-chip chip-main" onclick="fillPrompt('Newroza Kawa nedir?')">Newroza Kawa</button>
+        <div class="quick-topics">
 
-        <button type="button" class="topic-chip chip-paper" onclick="fillPrompt('Bilimsel sentez nedir?')">Bilimsel Sentez</button>
-        <button type="button" class="topic-chip chip-paper" onclick="fillPrompt('Ontoloji nedir?')">Ontoloji</button>
-        <button type="button" class="topic-chip chip-paper" onclick="fillPrompt('Epistemoloji nedir?')">Epistemoloji</button>
-        <button type="button" class="topic-chip chip-paper" onclick="fillPrompt('Ekonomi modeli nedir?')">Ekonomi Modeli</button>
+          <button class="quick-topic-btn" data-topic="Hebûn">Hebûn</button>
+          <button class="quick-topic-btn" data-topic="Zanabûn">Zanabûn</button>
+          <button class="quick-topic-btn" data-topic="Mabûn">Mabûn</button>
+          <button class="quick-topic-btn" data-topic="Rasterast">Rasterast</button>
+          <button class="quick-topic-btn" data-topic="Rêbûn">Rêbûn</button>
+          <button class="quick-topic-btn" data-topic="Newroza Kawa">Newroza Kawa</button>
 
-        <button type="button" class="topic-chip chip-history" onclick="fillPrompt('Varlık tarihi nedir?')">Varlık Tarihi</button>
-        <button type="button" class="topic-chip chip-history" onclick="fillPrompt('İnsanlık tarihi nedir?')">İnsanlık Tarihi</button>
-        <button type="button" class="topic-chip chip-history" onclick="fillPrompt('Jeoloji nedir?')">Jeoloji</button>
-        <button type="button" class="topic-chip chip-history" onclick="fillPrompt('Zihin nedir?')">Zihnin</button>
+          <button class="quick-topic-btn" data-topic="Scientific Synthesis">Scientific Synthesis</button>
+          <button class="quick-topic-btn" data-topic="Ontology">Ontology</button>
+          <button class="quick-topic-btn" data-topic="Epistemology">Epistemology</button>
+          <button class="quick-topic-btn" data-topic="Economic Model">Economic Model</button>
 
-        <button type="button" class="topic-chip chip-compare" onclick="fillPrompt('Modern bilim ile karşılaştır.')">Modern Bilim</button>
-        <button type="button" class="topic-chip chip-compare" onclick="fillPrompt('Klasik ontoloji ile karşılaştır.')">Klasik Ontoloji</button>
-        <button type="button" class="topic-chip chip-compare" onclick="fillPrompt('Felsefe ile karşılaştır.')">Felsefe</button>
-        <button type="button" class="topic-chip chip-compare" onclick="fillPrompt('Semantik nedir?')">Semantik</button>
+          <button class="quick-topic-btn" data-topic="Definition of Being">Definition of Being</button>
+          <button class="quick-topic-btn" data-topic="Humanity Theory">Humanity Theory</button>
+          <button class="quick-topic-btn" data-topic="Geology">Geology</button>
+          <button class="quick-topic-btn" data-topic="Mind">Mind</button>
+
+          <button class="quick-topic-btn" data-topic="Modern Science">Modern Science</button>
+          <button class="quick-topic-btn" data-topic="Classical Ontology">Classical Ontology</button>
+          <button class="quick-topic-btn" data-topic="Philosophy">Philosophy</button>
+          <button class="quick-topic-btn" data-topic="Semantics">Semantics</button>
+
+        </div>
       </div>
     </section>
 
-   <section class="section-card ai-card" style="display:block !important; visibility:visible !important; opacity:1 !important; margin-top:18px !important;">
-  <div class="ai-section-head" style="display:block !important; visibility:visible !important; opacity:1 !important;">
-    <h2>Çerçeveye Sor</h2>
-    <p class="subtitle">Sorunu doğrudan yaz. Kısa veya uzun olabilir.</p>
-  </div>
+    <!-- ASK SECTION -->
+    <section class="section-card ai-card">
+      <div class="ai-section-head">
+        <h2>Ask the Framework</h2>
+        <p class="subtitle">Write your question directly. Short or long.</p>
+      </div>
 
-  <div class="ai-box" style="display:block !important; visibility:visible !important; opacity:1 !important;">
-    <div class="ask-row" style="display:flex !important; gap:12px !important; align-items:center !important;">
-      <input id="questionInput" type="text" placeholder="Sorunu yaz..." style="flex:1 !important; display:block !important;" />
-      <button id="askBtn" type="button" style="display:inline-flex !important;">Sor</button>
-    </div>
+      <div class="ai-box">
 
-    <div id="thinkingBox" class="thinking hidden" style="margin-top:12px !important; display:none;">
-      Düşünüyorum...
-    </div>
+        <div class="ask-row">
+          <input
+            id="questionInput"
+            type="text"
+            placeholder="Write your question..."
+            autocomplete="off"
+          />
+          <button id="askBtn">Ask</button>
+        </div>
 
-    <div id="answerBox" class="answer-box" style="display:block !important; visibility:visible !important; opacity:1 !important; margin-top:12px !important; min-height:160px !important;">
-      Cevap burada görünecek.
-    </div>
-  </div>
-</section>
-</section>
-</main>
+        <div id="thinkingBox" class="thinking hidden">
+          Thinking...
+        </div>
 
-<footer style="position:static !important; display:block !important; margin-top:24px !important;">
-  <div class="container">Zanistarast AI Interface</div>
-</footer>
-<script src="ai.js"></script>
+        <div id="answerBox" class="answer-box">
+          Answer will appear here.
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer style="position:static; display:block; margin-top:24px;">
+    <div class="container">Zanistarast AI Interface</div>
+  </footer>
+
+  <script>
+    (() => {
+      const input = document.getElementById("questionInput");
+      const askBtn = document.getElementById("askBtn");
+      const answerBox = document.getElementById("answerBox");
+      const thinkingBox = document.getElementById("thinkingBox");
+      const topicButtons = document.querySelectorAll(".quick-topic-btn");
+
+      function buildPrompt(topic) {
+        return `"${topic}" Write a clear, structured, deep article. Use title, sections and conclusion. Keep it strong and readable.`;
+      }
+
+      async function ask(question) {
+        if (!question) return;
+
+        thinkingBox.classList.remove("hidden");
+        answerBox.textContent = "Waiting for response...";
+
+        try {
+          const res = await fetch("/api/ask", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ question })
+          });
+
+          const data = await res.json();
+
+          answerBox.textContent =
+            data.answer ||
+            data.response ||
+            data.output ||
+            "No response received";
+
+        } catch (e) {
+          answerBox.textContent = "Request failed";
+        } finally {
+          thinkingBox.classList.add("hidden");
+        }
+      }
+
+      topicButtons.forEach(btn => {
+        btn.addEventListener("click", async () => {
+          const topic = btn.dataset.topic;
+          const prompt = buildPrompt(topic);
+
+          input.value = prompt;
+          await ask(prompt);
+        });
+      });
+
+      askBtn.addEventListener("click", () => {
+        ask(input.value);
+      });
+
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          ask(input.value);
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
