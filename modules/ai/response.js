@@ -1,45 +1,74 @@
 (() => {
-  function applyResponse(data) {
-    if (!window.UIRenderer) return;
+fonksiyon normalize(ham) {
+eğer (!raw) ise {
+geri dönmek {
+Cevap: "Cevap yok",
+sınıflandırma: "Yok",
+meta: "Henüz kaynak meta verisi yok."
+};
+}
 
-    const answer = data && data.answer ? data.answer : "No answer";
-    const classification = data && data.classification ? data.classification : null;
-    const meta = data && data.meta ? data.meta : null;
+sabit cevap =
+ham.cevap ||
+ham.yanıt ||
+ham çıktı ||
+"Cevap yok";
 
-    window.UIRenderer.setAnswer(answer);
-    window.UIRenderer.setClassification(classification);
-    window.UIRenderer.setMeta(meta);
+sabit sınıflandırma =
+ham.sınıflandırma ||
+ham etiket ||
+"Hiçbiri";
 
-    if (window.UIStatus && typeof window.UIStatus.setSystemStatus === "function") {
-      window.UIStatus.setSystemStatus("Done");
-    }
+sabit meta =
+ham.meta ||
+ham.meta veriler ||
+ham kaynak ||
+"Henüz kaynak meta verisi yok.";
 
-    if (window.UIStatus && typeof window.UIStatus.setModeStatus === "function") {
-      window.UIStatus.setModeStatus("manual");
-    }
-  }
+geri dönmek {
+cevap: Dize(cevap),
+sınıflandırma: Dize(sınıflandırma),
+meta: Dize(meta)
+};
+}
 
-  function applyError(error) {
-    if (window.UIRenderer) {
-      window.UIRenderer.setAnswer("Server error.");
-      window.UIRenderer.setClassification(null);
-      window.UIRenderer.setMeta(null);
-    }
+fonksiyon applyResponse(raw) {
+sabit ayrıştırılmış = normalize(ham);
 
-    if (window.UIStatus && typeof window.UIStatus.setSystemStatus === "function") {
-      const message =
-        error && error.message ? error.message : "Unknown error";
-      window.UIStatus.setSystemStatus("Error: " + message);
-    }
+if (window.UIRenderer) {
+if (typeof window.UIRenderer.typeAssistantMessage === "function") {
+window.UIRenderer.typeAssistantMessage(parsed.answer, 10);
+} aksi takdirde (typeof window.UIRenderer.appendAssistantMessage === "function") {
+pencere.UIRenderer.appendAssistantMessage(parsed.answer);
+}
+}
 
-    if (window.UIStatus && typeof window.UIStatus.setModeStatus === "function") {
-      window.UIStatus.setModeStatus("manual");
-    }
-  }
+if (window.UIStatus) {
+if (typeof window.UIStatus.setSystemStatus === "function") {
+pencere.UIStatus.setSystemStatus("Bitti");
+}
+}
+}
 
-  window.AIResponse = {
-    applyResponse,
-    applyError
-  };
+işlev applyError(error) {
+konsol.hata(hata);
+
+if (window.UIRenderer) {
+if (typeof window.UIRenderer.typeAssistantMessage === "function") {
+window.UIRenderer.typeAssistantMessage("Hata", 10);
+} aksi takdirde (typeof window.UIRenderer.appendAssistantMessage === "function") {
+window.UIRenderer.appendAssistantMessage("Hata");
+}
+}
+
+if (window.UIStatus && typeof window.UIStatus.setSystemStatus === "function") {
+window.UIStatus.setSystemStatus("Hata");
+}
+}
+
+pencere.AIResponse = {
+normalleştirmek,
+Yanıtı uygula,
+Hata uygula
+};
 })();
-
