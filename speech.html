@@ -863,7 +863,18 @@
     transform: translateY(-1px);
   }
 }
+.dots span {
+  animation: blink 1.4s infinite;
+}
 
+.dots span:nth-child(2) { animation-delay: .2s; }
+.dots span:nth-child(3) { animation-delay: .4s; }
+
+@keyframes blink {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
   </style>
 </head>
 <body>
@@ -963,6 +974,302 @@
   <script src="modules/ai/response.js"></script>
 
   <script src="modules/ui/bindings.js"></script>
+<script>
+/* =========================
+   GLOBAL LANGUAGE + UI + AI + SPEECH SYSTEM
+   ========================= */
+
+const LANG_PACKS = {
+  "en-US": {
+    title: "Zanistarast AI & Speech",
+    subtitle: "Speak or type. Clean. Fast. Stable.",
+    mic: "Microphone",
+    system: "System",
+    listening: "Listening Language",
+    mode: "Mode",
+    start: "🎤 Start",
+    stop: "■ Stop",
+    send: "➤ Send",
+    speak: "🔊 Read",
+    clear: "✕ Clear",
+    placeholder: "Type or speak...",
+    ready: "Ready",
+    thinking: "Thinking",
+    speaking: "Speaking",
+    done: "Done",
+    off: "Off",
+    on: "On",
+    manual: "manual",
+    empty: "Question is empty",
+    aiRule: "Answer fully in English."
+  },
+
+  "tr-TR": {
+    title: "Zanistarast AI & Speech",
+    subtitle: "Konuş veya yaz. Temiz. Hızlı. Kararlı.",
+    mic: "Mikrofon",
+    system: "Sistem",
+    listening: "Dinleme Dili",
+    mode: "Mod",
+    start: "🎤 Başla",
+    stop: "■ Durdur",
+    send: "➤ Gönder",
+    speak: "🔊 Oku",
+    clear: "✕ Temizle",
+    placeholder: "Bir şey yaz veya konuş...",
+    ready: "Hazır",
+    thinking: "Düşünüyor",
+    speaking: "Konuşuyor",
+    done: "Tamam",
+    off: "Kapalı",
+    on: "Açık",
+    manual: "manuel",
+    empty: "Soru boş",
+    aiRule: "Cevabı tamamen Türkçe ver."
+  },
+
+  "ku-TR": {
+    title: "Zanistarast AI & Speech",
+    subtitle: "Axaftin bike an binivîse. Paqij. Bilez. Ewle.",
+    mic: "Mîkrofon",
+    system: "Pergal",
+    listening: "Zimanê Guhdanê",
+    mode: "Mod",
+    start: "🎤 Destpêke",
+    stop: "■ Bisekinîne",
+    send: "➤ Bişîne",
+    speak: "🔊 Bixwîne",
+    clear: "✕ Paqij bike",
+    placeholder: "Tiştek binivîse an biaxive...",
+    ready: "Amade",
+    thinking: "Difizire",
+    speaking: "Diaxive",
+    done: "Qediya",
+    off: "Girtî",
+    on: "Vekirî",
+    manual: "destî",
+    empty: "Pirs vala ye",
+    aiRule: "Bersivê bi tevahî bi Kurmancî bide."
+  },
+
+  "ar-SA": {
+    title: "Zanistarast AI & Speech",
+    subtitle: "تحدث أو اكتب. سريع. مستقر.",
+    mic: "الميكروفون",
+    system: "النظام",
+    listening: "لغة الاستماع",
+    mode: "الوضع",
+    start: "🎤 ابدأ",
+    stop: "■ إيقاف",
+    send: "➤ إرسال",
+    speak: "🔊 اقرأ",
+    clear: "✕ مسح",
+    placeholder: "اكتب أو تحدث...",
+    ready: "جاهز",
+    thinking: "يفكر",
+    speaking: "يتحدث",
+    done: "تم",
+    off: "إيقاف",
+    on: "تشغيل",
+    manual: "يدوي",
+    empty: "السؤال فارغ",
+    aiRule: "أجب بالكامل باللغة العربية."
+  }
+};
+
+/* =========================
+   ELEMENTS
+   ========================= */
+
+const el = {
+  title: document.getElementById("titleText"),
+  subtitle: document.getElementById("subtitleText"),
+  micLabel: document.getElementById("micLabel"),
+  systemLabel: document.getElementById("systemLabel"),
+  listeningLabel: document.getElementById("listeningLabel"),
+  modeLabel: document.getElementById("modeLabel"),
+  micStatus: document.getElementById("micStatus"),
+  systemStatus: document.getElementById("systemStatus"),
+  langStatus: document.getElementById("langStatus"),
+  modeStatus: document.getElementById("modeStatus"),
+  input: document.getElementById("questionInput"),
+  start: document.getElementById("startBtn"),
+  stop: document.getElementById("stopBtn"),
+  send: document.getElementById("sendBtn"),
+  speak: document.getElementById("speakBtn"),
+  clear: document.getElementById("clearBtn"),
+  langSelect: document.getElementById("languageSelect")
+};
+
+let currentLang = el.langSelect?.value || "en-US";
+let recognition = null;
+let isListening = false;
+let lastAnswer = "";
+
+/* =========================
+   LANGUAGE APPLY
+   ========================= */
+
+function applyLang(lang) {
+  currentLang = lang;
+  const t = LANG_PACKS[lang] || LANG_PACKS["en-US"];
+
+  if (el.title) el.title.textContent = t.title;
+  if (el.subtitle) el.subtitle.textContent = t.subtitle;
+  if (el.micLabel) el.micLabel.textContent = t.mic;
+  if (el.systemLabel) el.systemLabel.textContent = t.system;
+  if (el.listeningLabel) el.listeningLabel.textContent = t.listening;
+  if (el.modeLabel) el.modeLabel.textContent = t.mode;
+
+  if (el.start) el.start.textContent = t.start;
+  if (el.stop) el.stop.textContent = t.stop;
+  if (el.send) el.send.textContent = t.send;
+  if (el.speak) el.speak.textContent = t.speak;
+  if (el.clear) el.clear.textContent = t.clear;
+
+  if (el.input) el.input.placeholder = t.placeholder;
+
+  setSystem(t.ready);
+}
+
+/* =========================
+   STATUS
+   ========================= */
+
+function setSystem(text) {
+  if (!el.systemStatus) return;
+
+  if (text.toLowerCase().includes("thinking") || text.includes("Düşünüyor")) {
+    el.systemStatus.innerHTML =
+      text + '<span class="dots"><span>.</span><span>.</span><span>.</span></span>';
+    return;
+  }
+
+  el.systemStatus.textContent = text;
+}
+
+/* =========================
+   AI REQUEST
+   ========================= */
+
+async function askAI(q) {
+  const t = LANG_PACKS[currentLang];
+
+  setSystem(t.thinking);
+
+  const final = `${t.aiRule}\n\n${q}`;
+
+  const res = await fetch("/api/ask", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({ question: final })
+  });
+
+  const data = await res.json();
+  const answer = data.answer || data.response || data.output || "...";
+
+  lastAnswer = answer;
+  typeText(answer);
+}
+
+/* =========================
+   TYPE EFFECT
+   ========================= */
+
+let typingTimer;
+
+function typeText(text) {
+  clearTimeout(typingTimer);
+
+  el.input.value = "";
+  let i = 0;
+
+  function write() {
+    if (i < text.length) {
+      el.input.value += text[i++];
+      typingTimer = setTimeout(write, 10);
+    } else {
+      setSystem(LANG_PACKS[currentLang].done);
+    }
+  }
+
+  write();
+}
+
+/* =========================
+   SPEECH INPUT
+   ========================= */
+
+function startMic() {
+  if (!("webkitSpeechRecognition" in window)) return;
+
+  recognition = new webkitSpeechRecognition();
+  recognition.lang = currentLang;
+  recognition.continuous = true;
+
+  recognition.onresult = (e) => {
+    let text = "";
+    for (let i = e.resultIndex; i < e.results.length; i++) {
+      text += e.results[i][0].transcript;
+    }
+    el.input.value = text;
+  };
+
+  recognition.start();
+  isListening = true;
+  el.micStatus.textContent = LANG_PACKS[currentLang].on;
+}
+
+function stopMic() {
+  if (recognition) recognition.stop();
+  isListening = false;
+  el.micStatus.textContent = LANG_PACKS[currentLang].off;
+}
+
+/* =========================
+   SPEECH OUTPUT
+   ========================= */
+
+function speakText() {
+  if (!lastAnswer) return;
+
+  const utter = new SpeechSynthesisUtterance(lastAnswer);
+  utter.lang = currentLang;
+  speechSynthesis.speak(utter);
+}
+
+/* =========================
+   EVENTS
+   ========================= */
+
+el.start?.addEventListener("click", startMic);
+el.stop?.addEventListener("click", stopMic);
+
+el.send?.addEventListener("click", () => {
+  const q = el.input.value.trim();
+  if (!q) return;
+  askAI(q);
+});
+
+el.speak?.addEventListener("click", speakText);
+
+el.clear?.addEventListener("click", () => {
+  el.input.value = "";
+  lastAnswer = "";
+  setSystem(LANG_PACKS[currentLang].ready);
+});
+
+el.langSelect?.addEventListener("change", () => {
+  applyLang(el.langSelect.value);
+});
+
+/* =========================
+   INIT
+   ========================= */
+
+applyLang(currentLang);
+</script>
+
 </body>
 </html>
 
