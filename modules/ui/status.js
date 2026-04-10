@@ -1,3 +1,32 @@
+const LANG_TEXT = {
+  "tr-TR": {
+    thinking: "Düşünüyorum...",
+    speaking: "Konuşuyor",
+    ready: "Hazır",
+    done: "Tamamlandı",
+    error: "Hata",
+    listening: "Dinleme Dili"
+  },
+  "en-US": {
+    thinking: "Thinking...",
+    speaking: "Speaking",
+    ready: "Ready",
+    done: "Done",
+    error: "Error",
+    listening: "Listening Language"
+  }
+};
+
+function getLang() {
+  const el = document.getElementById("languageSelect");
+  return el ? el.value : "en-US";
+}
+
+function t(key) {
+  const lang = getLang();
+  return (LANG_TEXT[lang] && LANG_TEXT[lang][key]) || LANG_TEXT["en-US"][key];
+}
+
 (() => {
   const micStatusEl = document.getElementById("micStatus");
   const systemStatusEl = document.getElementById("systemStatus");
