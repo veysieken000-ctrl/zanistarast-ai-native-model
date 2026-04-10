@@ -3,164 +3,68 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zanistarast AI</title>
-
+  <title>Zanistarast Redirect</title>
+  <meta http-equiv="refresh" content="0; url=speech.html" />
   <link rel="stylesheet" href="style.css" />
-
   <style>
-    .quick-topics {
+    .redirect-shell {
+      min-height: 100vh;
       display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .quick-topic-btn {
-      cursor: pointer;
-      padding: 8px 14px;
-      border-radius: 20px;
-      border: 1px solid rgba(255,255,255,0.15);
-      background: rgba(255,255,255,0.05);
-      color: #fff;
-    }
-
-    .quick-topic-btn:hover {
-      background: rgba(255,255,255,0.1);
-    }
-
-    .ask-row {
-      display: flex;
-      gap: 12px;
       align-items: center;
+      justify-content: center;
+      padding: 24px;
     }
 
-    #questionInput {
-      flex: 1;
-      padding: 12px;
-      border-radius: 10px;
-      border: none;
-      outline: none;
+    .redirect-card {
+      width: 100%;
+      max-width: 720px;
+      border-radius: 24px;
+      padding: 28px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+      text-align: center;
     }
 
-    #askBtn {
-      padding: 12px 18px;
-      border-radius: 10px;
-      border: none;
-      cursor: pointer;
-    }
-
-    .thinking {
-      margin-top: 12px;
-      padding: 10px 12px;
-      border-radius: 12px;
-      background: rgba(255,255,255,0.05);
+    .redirect-title {
+      margin: 0 0 10px;
+      font-size: 32px;
+      line-height: 1.1;
       color: #ffffff;
     }
 
-    .hidden {
-      display: none;
+    .redirect-text {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.82);
+    }
+.redirect-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 20px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      transition: transform 0.2s ease, background 0.2s ease;
     }
 
-    .answer-box {
+    .redirect-link:hover {
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    .redirect-note {
       margin-top: 14px;
-      white-space: pre-wrap;
-      padding: 14px;
-      border-radius: 12px;
-      background: rgba(255,255,255,0.04);
-      color: #fff;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.56);
     }
-  .ai-layout {
-  width: 100%;
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 24px 20px 48px;
-}
-
-.ai-card {
-  margin-bottom: 24px;
-}
-
-.quick-topics {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.quick-topic-btn {
-  cursor: pointer;
-  padding: 8px 14px;
-  border-radius: 20px;
-  border: 1px solid rgba(255,255,255,0.15);
-  background: rgba(255,255,255,0.05);
-  color: #fff;
-}
-
-.quick-topic-btn:hover {
-  background: rgba(255,255,255,0.10);
-}
-
-.ask-row {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
-
-#questionInput {
-  flex: 1;
-}
-
-.thinking {
-  margin-top: 12px;
-  padding: 10px 12px;
-  border-radius: 12px;
-  background: rgba(255,255,255,0.05);
-  color: #ffffff;
-}
-
-.hidden {
-  display: none;
-}
-
-.answer-box {
-  margin-top: 14px;
-  white-space: pre-wrap;
-  line-height: 1.65;
-}
-
   </style>
 </head>
-.thinking {
-  margin-top: 12px;
-  padding: 10px 12px;
-  border-radius: 12px;
-  background: rgba(255,255,255,0.05);
-  color: #ffffff;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.thinking::after {
-  content: "";
-  width: 24px;
-  display: inline-block;
-  text-align: left;
-  animation: thinkingDots 1.2s infinite steps(4);
-}
-
-@keyframes thinkingDots {
-  0% { content: ""; }
-  25% { content: "."; }
-  50% { content: ".."; }
-  75% { content: "..."; }
-  100% { content: ""; }
-}
-
-.answer-box {
-  margin-top: 14px;
-  white-space: pre-wrap;
-  line-height: 1.65;
-}
-
 <body>
   <div id="navbar"></div>
 
@@ -174,280 +78,27 @@
         document.getElementById("navbar").innerHTML = "";
       });
   </script>
+  <main class="redirect-shell">
+    <section class="redirect-card">
+      <h1 class="redirect-title">Zanistarast AI moved</h1>
+      <p class="redirect-text">
+        This page is no longer used as a separate AI interface.
+        The unified experience now lives in the AI &amp; Speech page.
+      </p>
 
-  <main class="ai-layout">
+      <a class="redirect-link" href="speech.html">Open AI &amp; Speech</a>
 
-    <!-- QUICK TOPICS -->
-    <section class="section-card ai-card">
-      <div class="ai-section-head">
-        <h2>Quick Topics</h2>
-        <p class="subtitle">
-          Click once to insert a topic. Then ask directly or edit.
-        </p>
-      </div>
-
-      <div class="topic-chip-wrap">
-        <div class="quick-topics">
-
-          <button class="quick-topic-btn" data-topic="Hebûn">Hebûn</button>
-          <button class="quick-topic-btn" data-topic="Zanabûn">Zanabûn</button>
-          <button class="quick-topic-btn" data-topic="Mabûn">Mabûn</button>
-          <button class="quick-topic-btn" data-topic="Rasterast">Rasterast</button>
-          <button class="quick-topic-btn" data-topic="Rêbûn">Rêbûn</button>
-          <button class="quick-topic-btn" data-topic="Newroza Kawa">Newroza Kawa</button>
-
-          <button class="quick-topic-btn" data-topic="Scientific Synthesis">Scientific Synthesis</button>
-          <button class="quick-topic-btn" data-topic="Ontology">Ontology</button>
-          <button class="quick-topic-btn" data-topic="Epistemology">Epistemology</button>
-          <button class="quick-topic-btn" data-topic="Economic Model">Economic Model</button>
-
-          <button class="quick-topic-btn" data-topic="Definition of Being">Definition of Being</button>
-          <button class="quick-topic-btn" data-topic="Humanity Theory">Humanity Theory</button>
-          <button class="quick-topic-btn" data-topic="Geology">Geology</button>
-          <button class="quick-topic-btn" data-topic="Mind">Mind</button>
-
-          <button class="quick-topic-btn" data-topic="Modern Science">Modern Science</button>
-          <button class="quick-topic-btn" data-topic="Classical Ontology">Classical Ontology</button>
-          <button class="quick-topic-btn" data-topic="Philosophy">Philosophy</button>
-          <button class="quick-topic-btn" data-topic="Semantics">Semantics</button>
-
-        </div>
+      <div class="redirect-note">
+        Redirecting automatically...
       </div>
     </section>
-
-    <!-- ASK SECTION -->
-    <section class="section-card ai-card">
-      <div class="ai-section-head">
-        <h2>Ask the Framework</h2>
-        <p class="subtitle">Write your question directly. Short or long.</p>
-      </div>
-
-      <div class="ai-box">
-
-        <div class="ask-row">
-          <input
-            id="questionInput"
-            type="text"
-            placeholder="Write your question..."
-            autocomplete="off"
-          />
-          <button id="askBtn">Ask</button>
-        </div>
-
-        <div id="thinkingBox" class="thinking hidden">
-          Thinking...
-        </div>
-
-        <div id="answerBox" class="answer-box">
-          Answer will appear here.
-        </div>
-
-      </div>
-    </section>
-
   </main>
 
-  <footer style="position:static; display:block; margin-top:24px;">
-    <div class="container">Zanistarast AI Interface</div>
-  </footer>
-
   <script>
-    (() => {
-      const input = document.getElementById("questionInput");
-      const askBtn = document.getElementById("askBtn");
-      const answerBox = document.getElementById("answerBox");
-      const thinkingBox = document.getElementById("thinkingBox");
-      const topicButtons = document.querySelectorAll(".quick-topic-btn");
-
-      function buildPrompt(topic) {
-        return `"${topic}" Write a clear, structured, deep article. Use title, sections and conclusion. Keep it strong and readable.`;
-      }
-
-      async function ask(question) {
-        if (!question) return;
-
-        thinkingBox.classList.remove("hidden");
-        answerBox.textContent = "Waiting for response...";
-
-        try {
-          const res = await fetch("/api/ask", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ question })
-          });
-
-          const data = await res.json();
-
-          answerBox.textContent =
-            data.answer ||
-            data.response ||
-            data.output ||
-            "No response received";
-
-        } catch (e) {
-          answerBox.textContent = "Request failed";
-        } finally {
-          thinkingBox.classList.add("hidden");
-        }
-      }
-
-      topicButtons.forEach(btn => {
-        btn.addEventListener("click", async () => {
-          const topic = btn.dataset.topic;
-          const prompt = buildPrompt(topic);
-
-          input.value = prompt;
-          await ask(prompt);
-        });
-      });
-
-      askBtn.addEventListener("click", () => {
-        ask(input.value);
-      });
-
-      input.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") {
-          e.preventDefault();
-          ask(input.value);
-        }
-      });
-    })();
- 
-  <script>
-document.addEventListener("DOMContentLoaded", () => {
-
-  const buttons = document.querySelectorAll(".quick-topic-btn");
-  const input = document.getElementById("questionInput");
-
-  buttons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      const topic = btn.getAttribute("data-topic");
-
-      if (!topic) return;
-
-      // input içine yaz
-      if (input) {
-        input.value = topic;
-      }
-
-      // otomatik gönder
-      if (window.UIBindings && typeof window.UIBindings.handleSend === "function") {
-        window.UIBindings.handleSend();
-      } else {
-        console.warn("handleSend not found");
-      }
-    });
-  });
-
-});
-<script>
-(() => {
-  const input = document.getElementById("questionInput");
-  const askBtn = document.getElementById("askBtn");
-  const answerBox = document.getElementById("answerBox");
-  const thinkingBox = document.getElementById("thinkingBox");
-  const topicButtons = document.querySelectorAll(".quick-topic-btn");
-
-  let typingTimer = null;
-
-  function buildPrompt(topic) {
-    return `"${topic}" Write a clear, structured, deep article. Use a strong title, short introduction, sectioned explanation, and a conclusion. Keep it readable, polished, and serious.`;
-  }
-
-  function stopTyping() {
-    if (typingTimer) {
-      clearTimeout(typingTimer);
-      typingTimer = null;
-    }
-  }
-
-  function typeText(text, element, speed = 12) {
-    return new Promise((resolve) => {
-      stopTyping();
-      element.textContent = "";
-
-      const fullText = String(text || "");
-      let index = 0;
-
-      function writeNext() {
-        if (index < fullText.length) {
-          element.textContent += fullText.charAt(index);
-          index += 1;
-          typingTimer = setTimeout(writeNext, speed);
-        } else {
-          typingTimer = null;
-          resolve();
-        }
-      }
-
-      writeNext();
-    });
-  }
-
-  async function ask(question) {
-    const cleanQuestion = String(question || "").trim();
-    if (!cleanQuestion) return;
-
-    thinkingBox.classList.remove("hidden");
-    answerBox.textContent = "";
-
-    try {
-      const res = await fetch("/api/ask", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ question: cleanQuestion })
-      });
-
-      if (!res.ok) {
-        throw new Error("Request failed");
-      }
-
-      const data = await res.json();
-
-      const text =
-        data.answer ||
-        data.response ||
-        data.output ||
-        data.message ||
-        "No response received.";
-
-      thinkingBox.classList.add("hidden");
-      await typeText(text, answerBox, 10);
-
-    } catch (error) {
-      console.error(error);
-      thinkingBox.classList.add("hidden");
-      await typeText("Request failed.", answerBox, 10);
-    }
-  }
-
-  topicButtons.forEach((btn) => {
-    btn.addEventListener("click", async () => {
-      const topic = btn.dataset.topic;
-      const prompt = buildPrompt(topic);
-
-      input.value = prompt;
-      await ask(prompt);
-    });
-  });
-
-  if (askBtn) {
-    askBtn.addEventListener("click", async () => {
-      await ask(input.value);
-    });
-  }
-
-  if (input) {
-    input.addEventListener("keydown", async (e) => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        await ask(input.value);
-      }
-    });
-  }
-})();
-</script>
+    window.location.replace("speech.html");
+  </script>
+4. parça
+HTML
 </body>
 </html>
+
