@@ -222,6 +222,35 @@
         }
       });
     })();
+ 
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const buttons = document.querySelectorAll(".quick-topic-btn");
+  const input = document.getElementById("questionInput");
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const topic = btn.getAttribute("data-topic");
+
+      if (!topic) return;
+
+      // input içine yaz
+      if (input) {
+        input.value = topic;
+      }
+
+      // otomatik gönder
+      if (window.UIBindings && typeof window.UIBindings.handleSend === "function") {
+        window.UIBindings.handleSend();
+      } else {
+        console.warn("handleSend not found");
+      }
+    });
+  });
+
+});
+
   </script>
 </body>
 </html>
