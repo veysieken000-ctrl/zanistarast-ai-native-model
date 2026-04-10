@@ -72,7 +72,13 @@
     if (window.UIStatus && typeof window.UIStatus.setLangStatus === "function") {
       window.UIStatus.setLangStatus(utterance.lang);
     }
+  if (window.UIStatus && typeof window.UIStatus.setSystemStatus === "function") {
+  window.UIStatus.setSystemStatus("Speaking...");
+}
 
+if (window.UIStatus && typeof window.UIStatus.setModeStatus === "function") {
+  window.UIStatus.setModeStatus("voice-output");
+}
     window.speechSynthesis.speak(utterance);
   }
 
