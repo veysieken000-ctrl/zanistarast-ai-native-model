@@ -1,28 +1,33 @@
 import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
-import { buildRagContext } from "./rag_search.js";
-import aiEngineRoutes from "./routes/ai_engine.js";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { buildRagContext } from "./rag_search.js";
+import miEngineRoutes from "./routes/mi_engine.js";
+
 dotenv.config();
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
 
-app.use("/api", aiEngineRoutes);
+app.use("/api", miEngineRoutes);
+
 app.get("/api/debug/version", (_req, res) => {
   res.json({
     ok: true,
-    serverVersion: "server-v2",
-    ragVersion: "rag-v2"
+    serverVersion: "server-v3",
+    ragVersion: "rag-v2",
   });
 });
+
 app.get("/api/debug/knowledge-files", (_req, res) => {
   try {
     const knowledgeDir = path.join(__dirname, "knowledge");
@@ -30,8 +35,8 @@ app.get("/api/debug/knowledge-files", (_req, res) => {
     if (!fs.existsSync(knowledgeDir)) {
       return res.json({
         ok: false,
-        message: "knowledge klasörü bulunamadı",
-        knowledgeDir
+        message: "knowledge directory not found",
+        knowledgeDir,
       });
     }
 
@@ -41,12 +46,12 @@ app.get("/api/debug/knowledge-files", (_req, res) => {
       ok: true,
       knowledgeDir,
       total: files.length,
-      files
+      files,
     });
   } catch (error) {
     return res.status(500).json({
       ok: false,
-      error: error.message
+      error: error.message,
     });
   }
 });
@@ -58,7 +63,7 @@ app.get("/api/debug/search", (req, res) => {
     if (!question) {
       return res.status(400).json({
         ok: false,
-        error: "q parametresi gerekli"
+        error: "q parameter is required",
       });
     }
 
@@ -69,25 +74,62 @@ app.get("/api/debug/search", (req, res) => {
       question,
       total: results.length,
       results,
-      context
+      context,
     });
   } catch (error) {
     return res.status(500).json({
       ok: false,
-      error: error.message
+      error: error.message,
     });
   }
 });
 
-function detectTurkish(text) {
-  const lower = String(text || "").toLowerCase();
-  return /[çğıöşü]/.test(lower) ||
-    /\b(nedir|neden|nasıl|ve|ile|göre|insan|medeniyet|ahlak|varlık|zaman|hak|batıl|doğru|yanlış)\b/.test(lower);
+function normalizeText(value) {
+  return String(value || "").trim();
 }
 
-function buildTruthAnalysisPrompt() {
+function detectTurkish(text) {
+  const lower = normalizeText(text).toLowerCase();
+  return (
+    /[çğıöşü]/.test(lower) ||
+    /\b(nedir|neden|nasıl|ne|ile|bir|insan|medeniyet|ahlak|varlık|zihin|gerçek|doğru|yanlış)\b/.test(lower)
+  );
+}
+
+function getLanguageRule(language, question) {
+  const map = {
+    "en-US": "Write fully in English.",
+    "tr-TR": "Write fully in Turkish.",
+    "ku-TR": "Write fully in Kurmanji Kurdish.",
+    "ar-SA": "Write fully in Arabic.",
+    "fa-IR": "Write fully in Persian.",
+    "fr-FR": "Write fully in French.",
+    "zh-CN": "Write fully in Chinese.",
+    "ru-RU": "Write fully in Russian.",
+    "es-ES": "Write fully in Spanish.",
+    "sv-SE": "Write fully in Swedish.",
+    "no-NO": "Write fully in Norwegian.",
+    "de-DE": "Write fully in German.",
+    "it-IT": "Write fully in Italian.",
+    "ja-JP": "Write fully in Japanese.",
+  };
+
+  if (map[language]) return map[language];
+  return detectTurkish(question) ? "Write fully in Turkish." : "Write fully in English.";
+}
+
+function getLanguageCode(language, question) {
+  if (language) return language;
+  return detectTurkish(question) ? "tr-TR" : "en-US";
+}
+function buildTruthAnalysisPrompt(languageRule) {
   return `
-Analyze the user's claim using the following framework:
+You are Zanistarast AI - a structural truth analysis system.
+
+Your role is NOT to give generic explanations.
+Your role is to analyze the user's claim and determine its relation to truth.
+
+MANDATORY ANALYSIS FRAMEWORK:
 
 1. Ontological Status
 - Is the claim possible?
@@ -99,13 +141,13 @@ Analyze the user's claim using the following framework:
 
 3. Structural Consistency
 - Is the claim internally consistent?
-- Do the conclusions follow logically from the premises?
+- Do the concepts follow logically from the premises?
 
 4. Ethical Impact
 - Does it create clarity or confusion?
 - Does it contain manipulation, deception, or abuse of power?
 
-5. Final Classification (MANDATORY DECISION)
+5. Final Classification
 - TRUTH
 - FALSE
 
@@ -116,26 +158,6 @@ STRICT DECISION RULES:
 - If the claim is mostly interpretation or speculation, classify as FALSE.
 - If the claim contradicts reality, classify as FALSE.
 - Only classify as TRUTH if it is strongly supported by evidence, structurally consistent, and ethically sound.
-
-Decision formula:
-Truth = Ontological coherence + Epistemic support + Structural consistency
-If one of these fails strongly, the result is FALSE.
-
-Keep the response short, clear, direct, and decisive.
-`.trim();
-}
-
-function buildAskSystemPrompt(question, ragContext) {
-  const wantsTurkish = detectTurkish(question);
-  const truthAnalysisPrompt = buildTruthAnalysisPrompt();
-
-  return `
-You are Zanistarast AI — a structural truth analysis system.
-
-Your role is NOT to give generic explanations.
-Your role is to ANALYZE the user's claim and determine its relation to truth.
-
-${truthAnalysisPrompt}
 
 OUTPUT FORMAT (STRICT):
 
@@ -162,68 +184,86 @@ IMPORTANT:
 - Only strong evidence + structural consistency can justify TRUTH.
 
 LANGUAGE:
-${wantsTurkish ? "Write fully in Turkish." : "Write fully in English."}
-
-RETRIEVED KNOWLEDGE:
-${ragContext || "No retrieved context found."}
+${languageRule}
 `.trim();
 }
 
-function normalizeText(value) {
-  return String(value || "").toLowerCase();
+function buildAskSystemPrompt(question, ragContext, languageRule) {
+  const truthAnalysisPrompt = buildTruthAnalysisPrompt(languageRule);
+
+  return `
+${truthAnalysisPrompt}
+
+QUESTION:
+${question}
+
+RETRIEVED KNOWLEDGE:
+${ragContext || "No retrieved context found."}
+
+RULES:
+- Ground the answer in the retrieved knowledge when possible.
+- Stay concise but complete.
+- Avoid generic filler.
+- Keep the final answer structurally clean.
+`.trim();
 }
 
-function isWeakSystemAnswer(question, answer) {
-  const q = normalizeText(question);
-  const a = normalizeText(answer);
+function isBadSystemAnswer(question, answer, language) {
+  const q = normalizeText(question).toLowerCase();
+  const a = normalizeText(answer).toLowerCase();
 
-  if (!a || a.length < 180) return true;
+  if (!a || a.length < 120) return true;
 
-  const mustHaveTruth = [
-    "ontological",
-    "epistemic",
-    "structural",
-    "ethical",
-    "classification"
+  const mustHaveEnglish = [
+    "ontological status",
+    "epistemic status",
+    "structural consistency",
+    "ethical impact",
+    "final classification",
   ];
 
-  const missingTruth = mustHaveTruth.filter((x) => !a.includes(x));
-  if (missingTruth.length >= 2) return true;
+  const mustHaveTurkish = [
+    "ontolojik",
+    "epistemik",
+    "tutarl",
+    "etik",
+    "sınıflandır",
+  ];
 
-  if (!a.includes("truth") && !a.includes("false")) {
-    return true;
+  const isTurkish = language === "tr-TR" || (!language && detectTurkish(question));
+
+  if (isTurkish) {
+    const foundCount = mustHaveTurkish.filter((x) => a.includes(x)).length;
+    if (foundCount < 3) return true;
+    if (!a.includes("truth") && !a.includes("false") && !a.includes("doğru") && !a.includes("yanlış")) {
+      return true;
+    }
+  } else {
+    const missing = mustHaveEnglish.filter((x) => !a.includes(x));
+    if (missing.length >= 2) return true;
+    if (!a.includes("truth") && !a.includes("false")) return true;
   }
 
   if (
     q.includes("iddia") ||
     q.includes("claim") ||
     q.includes("hak") ||
-    q.includes("batıl") ||
-    q.includes("batil") ||
     q.includes("truth") ||
     q.includes("falsehood") ||
     q.includes("doğru") ||
-    q.includes("dogru") ||
-    q.includes("yanlış") ||
-    q.includes("yanlis")
+    q.includes("yanlış")
   ) {
-    const mustHave = ["ontolojik", "epistemik", "tutarl", "etik"];
-    const foundCount = mustHave.filter((x) => a.includes(x)).length;
-
-    if (detectTurkish(question) && foundCount < 3) return true;
+    return false;
   }
 
   return false;
 }
 
-function buildRepairSystemPrompt(question, ragContext, firstAnswer) {
-  const wantsTurkish = detectTurkish(question);
-
+function buildRepairSystemPrompt(question, ragContext, firstAnswer, languageRule) {
   return `
 You are Zanistarast AI.
 
 The first answer was too weak, too generic, or structurally incomplete.
-
 Rewrite it as a stronger TRUTH-ANALYSIS answer.
 
 MANDATORY REWRITE RULES:
@@ -235,7 +275,7 @@ MANDATORY REWRITE RULES:
 - Structural Consistency
 - Ethical Impact
 - Final Classification
-4. Final Classification MUST be either:
+4. Final classification MUST be either:
 - TRUTH
 - FALSE
 5. Do NOT use:
@@ -247,7 +287,7 @@ MANDATORY REWRITE RULES:
 6. If evidence is weak or speculative, choose FALSE.
 
 LANGUAGE:
-${wantsTurkish ? "Write fully in Turkish." : "Write fully in English."}
+${languageRule}
 
 QUESTION:
 ${question}
@@ -259,11 +299,12 @@ FIRST ANSWER TO IMPROVE:
 ${firstAnswer || ""}
 `.trim();
 }
+
 async function callOpenAI(systemPrompt, userPrompt, temperature = 0.35) {
   if (!process.env.OPENAI_API_KEY) {
     return {
       ok: false,
-      error: "Backend is ready, but no live API key is configured yet."
+      error: "OPENAI_API_KEY is missing",
     };
   }
 
@@ -272,7 +313,7 @@ async function callOpenAI(systemPrompt, userPrompt, temperature = 0.35) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`
+        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
       },
       body: JSON.stringify({
         model: "gpt-4o-mini",
@@ -280,21 +321,21 @@ async function callOpenAI(systemPrompt, userPrompt, temperature = 0.35) {
         messages: [
           {
             role: "system",
-            content: systemPrompt
+            content: systemPrompt,
           },
           {
             role: "user",
-            content: userPrompt
-          }
-        ]
-      })
+            content: userPrompt,
+          },
+        ],
+      }),
     });
 
     if (!response.ok) {
       const errorText = await response.text();
       return {
         ok: false,
-        error: `API error: ${errorText}`
+        error: `API error: ${errorText}`,
       };
     }
 
@@ -305,18 +346,17 @@ async function callOpenAI(systemPrompt, userPrompt, temperature = 0.35) {
 
     return {
       ok: true,
-      answer
+      answer,
     };
   } catch (error) {
     return {
       ok: false,
-      error: `Request failed: ${error.message}`
+      error: `Request failed: ${error.message}`,
     };
   }
 }
-
-function enforceTruthFormat(answer) {
-  const text = String(answer || "").trim();
+function enforceTruthFormat(answer, language) {
+  const text = normalizeText(answer);
   const lower = text.toLowerCase();
 
   const required = [
@@ -324,16 +364,33 @@ function enforceTruthFormat(answer) {
     "epistemic status",
     "structural consistency",
     "ethical impact",
-    "final classification"
+    "final classification",
   ];
-
-  const missing = required.filter((k) => !lower.includes(k));
 
   const hasTruthDecision =
     lower.includes("final classification") &&
     (lower.includes("truth") || lower.includes("false"));
 
+  const missing = required.filter((x) => !lower.includes(x));
+
   if (missing.length >= 2 || !hasTruthDecision) {
+    if (language === "tr-TR") {
+      return `Ontological Status:
+Weak
+
+Epistemic Status:
+Insufficient evidence
+
+Structural Consistency:
+Weak
+
+Ethical Impact:
+Risk of confusion
+
+Final Classification:
+FALSE`;
+    }
+
     return `Ontological Status:
 Weak
 
@@ -352,14 +409,15 @@ FALSE`;
 
   return text;
 }
- 
+
 app.post("/api/ask", async (req, res) => {
   try {
-    const question = String(req.body?.question || "").trim();
+    const question = normalizeText(req.body?.question);
+    const language = getLanguageCode(req.body?.language, question);
 
     if (!question) {
       return res.status(400).json({
-        answer: "Please enter a question."
+        answer: language === "tr-TR" ? "Lütfen bir soru gir." : "Please enter a question.",
       });
     }
 
@@ -367,29 +425,31 @@ app.post("/api/ask", async (req, res) => {
 
     if (!results.length) {
       return res.json({
-        answer: detectTurkish(question)
-          ? "İlgili knowledge bulunamadı. Önce bu konu knowledge tabanına eklenmeli."
-          : "No relevant knowledge was found. Add this topic into the knowledge base first.",
+        answer:
+          language === "tr-TR"
+            ? "İlgili knowledge bulunamadı. Önce bu konuyu knowledge tabanına eklemelisin."
+            : "No relevant knowledge was found. Add this topic into the knowledge base first.",
         meta: {
           total: 0,
-          chunks: []
-        }
+          chunks: [],
+        },
       });
     }
 
-    const systemPrompt = buildAskSystemPrompt(question, context);
+    const languageRule = getLanguageRule(language, question);
+    const systemPrompt = buildAskSystemPrompt(question, context, languageRule);
     const firstPass = await callOpenAI(systemPrompt, question, 0.35);
 
     if (!firstPass.ok) {
       return res.status(500).json({
-        answer: firstPass.error
+        answer: firstPass.error,
       });
     }
 
     let answer = firstPass.answer;
 
-    if (isWeakSystemAnswer(question, answer)) {
-      const repairPrompt = buildRepairSystemPrompt(question, context, answer);
+    if (isBadSystemAnswer(question, answer, language)) {
+      const repairPrompt = buildRepairSystemPrompt(question, context, answer, languageRule);
       const repairPass = await callOpenAI(repairPrompt, question, 0.2);
 
       if (repairPass.ok && repairPass.answer) {
@@ -397,7 +457,7 @@ app.post("/api/ask", async (req, res) => {
       }
     }
 
-    const finalAnswer = answer;
+    const finalAnswer = enforceTruthFormat(answer, language);
 
     return res.json({
       answer: finalAnswer,
@@ -408,13 +468,13 @@ app.post("/api/ask", async (req, res) => {
           title: item.title,
           domain: item.domain,
           layer: item.layer,
-          score: item.score
-        }))
-      }
+          score: item.score,
+        })),
+      },
     });
   } catch (error) {
     return res.status(500).json({
-      answer: `Server error: ${error.message}`
+      answer: `Server error: ${error.message}`,
     });
   }
 });
