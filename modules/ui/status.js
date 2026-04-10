@@ -16,7 +16,16 @@ const LANG_TEXT = {
     listening: "Listening Language"
   }
 };
+function getThinkingText() {
+  const lang = document.getElementById("languageSelect")?.value;
 
+  if (lang === "tr-TR") return "Düşünüyorum...";
+  if (lang === "en-US") return "Thinking...";
+  if (lang === "ar-SA") return "جاري التفكير...";
+  if (lang === "ku-TR") return "Ez difikirim...";
+
+  return "Thinking...";
+}
 function getLang() {
   const el = document.getElementById("languageSelect");
   return el ? el.value : "en-US";
