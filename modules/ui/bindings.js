@@ -139,4 +139,21 @@
     handleClear
   };
 })();
+function updateListeningLabel() {
+  const el = document.getElementById("listeningLabel");
+  const lang = document.getElementById("languageSelect")?.value;
+
+  if (!el) return;
+
+  if (lang === "tr-TR") el.textContent = "Dinleme Dili";
+  else if (lang === "en-US") el.textContent = "Listening Language";
+  else if (lang === "ar-SA") el.textContent = "لغة الاستماع";
+  else el.textContent = "Listening Language";
+}
+
+if (languageSelect) {
+  languageSelect.addEventListener("change", updateListeningLabel);
+}
+
+updateListeningLabel();
 
