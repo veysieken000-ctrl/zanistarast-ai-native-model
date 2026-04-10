@@ -1,4 +1,4 @@
-        (() => {
+(() => {
   const startBtn = document.getElementById("startBtn");
   const stopBtn = document.getElementById("stopBtn");
   const sendBtn = document.getElementById("sendBtn");
@@ -6,6 +6,17 @@
   const clearBtn = document.getElementById("clearBtn");
   const questionInput = document.getElementById("questionInput");
   const languageSelect = document.getElementById("languageSelect");
+
+  function getPack() {
+    if (window.UII18n && typeof window.UII18n.getPack === "function") {
+      const lang = languageSelect ? languageSelect.value : "en-US";
+      return window.UII18n.getPack(lang);
+    }
+
+    return {
+      empty: "Question is empty"
+    };
+  }
 
   function safeSetSystemStatus(text) {
     if (window.UIStatus && typeof window.UIStatus.setSystemStatus === "function") {
@@ -17,9 +28,10 @@
     if (!window.UIRenderer || !window.AIRequest || !window.AIResponse) return;
 
     const question = window.UIRenderer.getQuestion();
+    const pack = getPack();
 
     if (!question || !question.trim()) {
-      safeSetSystemStatus("Question is empty");
+      safeSetSystemStatus(pack.empty);
       return;
     }
 
@@ -28,7 +40,7 @@
     }
 
     window.UIRenderer.setQuestion("");
-    safeSetSystemStatus("Thinking...");
+    safeSetSystemStatus(pack.thinking || "Thinking");
 
     try {
       const data = await window.AIRequest.askQuestion(question);
@@ -53,7 +65,8 @@
       window.SpeechOutput.stopSpeaking();
     }
 
-    safeSetSystemStatus("Done");
+    const pack = getPack();
+    safeSetSystemStatus(pack.done || "Done");
   }
 
   function handleSpeak() {
@@ -79,9 +92,11 @@
       window.SpeechInput.resetInputSpeech();
     }
 
+    const pack = getPack();
+
     if (window.UIStatus) {
       if (typeof window.UIStatus.setSystemStatus === "function") {
-        window.UIStatus.setSystemStatus("Ready");
+        window.UIStatus.setSystemStatus(pack.ready || "Ready");
       }
 
       if (typeof window.UIStatus.setModeStatus === "function") {
@@ -95,6 +110,10 @@
       if (typeof window.UIStatus.setLangStatus === "function") {
         const selected = languageSelect ? languageSelect.value : "en-US";
         window.UIStatus.setLangStatus(selected);
+      }
+
+      if (typeof window.UIStatus.setListeningLabel === "function") {
+        window.UIStatus.setListeningLabel(pack.listeningLabel || "Listening Language");
       }
     }
   }
@@ -114,11 +133,25 @@
     });
   }
 
-  if (languageSelect && window.UIStatus && typeof window.UIStatus.setLangStatus === "function") {
-    window.UIStatus.setLangStatus(languageSelect.value);
+  if (languageSelect) {
+    if (window.UII18n && typeof window.UII18n.applyLanguage === "function") {
+      window.UII18n.applyLanguage(languageSelect.value);
+    }
+
+    if (window.UIStatus && typeof window.UIStatus.setLangStatus === "function") {
+      window.UIStatus.setLangStatus(languageSelect.value);
+    }
 
     languageSelect.addEventListener("change", () => {
-      window.UIStatus.setLangStatus(languageSelect.value);
+      const selected = languageSelect.value;
+
+      if (window.UII18n && typeof window.UII18n.applyLanguage === "function") {
+        window.UII18n.applyLanguage(selected);
+      }
+
+      if (window.UIStatus && typeof window.UIStatus.setLangStatus === "function") {
+        window.UIStatus.setLangStatus(selected);
+      }
     });
   }
 
@@ -130,3 +163,4 @@
     handleClear
   };
 })();
+ 
