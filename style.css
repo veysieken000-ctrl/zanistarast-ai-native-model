@@ -1495,3 +1495,23 @@ textarea:focus {
   border-color: rgba(143,179,255,0.54);
   box-shadow: 0 0 0 4px rgba(143,179,255,0.10);
 }
+.quick-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.quick-topic-btn {
+  padding: 8px 14px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #fff;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.quick-topic-btn:hover {
+  background: rgba(255,255,255,0.12);
+}
