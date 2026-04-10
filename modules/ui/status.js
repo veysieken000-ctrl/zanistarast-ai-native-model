@@ -38,7 +38,7 @@
       label +
       ' <span class="thinking-dots"><span>.</span><span>.</span><span>.</span></span>';
 
-    systemStatusEl.classList.add("thinking");
+    systemStatusEl.classList.add("thinking", "status-value");
     systemStatusEl.classList.add(isSpeaking ? "is-speaking" : "is-thinking");
     return;
   }
