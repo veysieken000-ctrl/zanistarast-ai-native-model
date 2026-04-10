@@ -1,117 +1,98 @@
 (() => {
-  const questionEl = document.getElementById("questionInput");
-  const answerEl = document.getElementById("answerOutput");
-  const classificationEl = document.getElementById("classificationBox");
-  const metaEl = document.getElementById("metaOutput");
-  const chatThreadEl = document.getElementById("chatThread");
+  const chatThread = document.getElementById("chatThread");
+  const questionInput = document.getElementById("questionInput");
 
-  function getQuestion() {
-    if (!questionEl) return "";
-    return questionEl.value.trim();
+  let typingTimer = null;
+
+  function scrollToBottom() {
+    if (!chatThread) return;
+    chatThread.scrollTop = chatThread.scrollHeight;
   }
 
-  function setQuestion(text) {
-    if (!questionEl) return;
-    questionEl.value = text || "";
+  function stopTyping() {
+    if (typingTimer) {
+      clearInterval(typingTimer);
+      typingTimer = null;
+    }
   }
 
-  function ensureChatThread() {
-    return chatThreadEl || null;
-  }
+  function createMessage(role, text = "") {
+    if (!chatThread) return null;
 
-  function scrollChatToBottom() {
-    const chat = ensureChatThread();
-    if (!chat) return;
-    chat.scrollTop = chat.scrollHeight;
-  }
-
-  function createMessage(role, text) {
-    const div = document.createElement("div");
-    div.className = `msg ${role}`;
+    const msg = document.createElement("div");
+    msg.className = `msg ${role}`;
 
     const bubble = document.createElement("div");
     bubble.className = "msg-bubble";
-    bubble.textContent = text || "";
+    bubble.textContent = text;
 
-    div.appendChild(bubble);
-    return div;
+    msg.appendChild(bubble);
+    chatThread.appendChild(msg);
+    scrollToBottom();
+
+    return bubble;
   }
 
   function appendUserMessage(text) {
-    const chat = ensureChatThread();
-    if (!chat || !text) return;
-
-    chat.appendChild(createMessage("user", text));
-    scrollChatToBottom();
+    return createMessage("user", text || "");
   }
 
   function appendAssistantMessage(text) {
-    const chat = ensureChatThread();
-    if (!chat) return;
-
-    chat.appendChild(createMessage("assistant", text || "No answer yet."));
-    scrollChatToBottom();
+    return createMessage("assistant", text || "");
   }
 
-  function clearChatThread() {
-    const chat = ensureChatThread();
-    if (!chat) return;
-    chat.innerHTML = "";
-  }
+  function typeAssistantMessage(text, speed = 12) {
+    stopTyping();
 
-  function setAnswer(text) {
-    const finalText = text || "No answer yet.";
+    const bubble = createMessage("assistant", "");
+    if (!bubble) return;
 
-    if (answerEl) {
-      answerEl.textContent = finalText;
-    }
+    const fullText = String(text || "");
+    let index = 0;
 
-    appendAssistantMessage(finalText);
-  }
+    bubble.classList.add("is-typing");
 
-  function setClassification(text) {
-    if (!classificationEl) return;
-    classificationEl.textContent = "Classification: " + (text || "None");
-  }
+    typingTimer = setInterval(() => {
+      bubble.textContent = fullText.slice(0, index + 1);
+      index += 1;
+      scrollToBottom();
 
-  function setMeta(value) {
-    if (!metaEl) return;
-
-    if (!value) {
-      metaEl.textContent = "No source metadata yet.";
-      return;
-    }
-
-    if (typeof value === "string") {
-      metaEl.textContent = value;
-      return;
-    }
-
-    try {
-      metaEl.textContent = JSON.stringify(value, null, 2);
-    } catch {
-      metaEl.textContent = "Metadata available.";
-    }
+      if (index >= fullText.length) {
+        stopTyping();
+        bubble.classList.remove("is-typing");
+      }
+    }, speed);
   }
 
   function clearAllOutputs() {
-    setQuestion("");
-    if (answerEl) answerEl.textContent = "No answer yet.";
-    setClassification(null);
-    setMeta(null);
-    clearChatThread();
+    stopTyping();
+
+    if (chatThread) {
+      chatThread.innerHTML = "";
+    }
+
+    if (questionInput) {
+      questionInput.value = "";
+    }
+  }
+
+  function getQuestion() {
+    return questionInput ? questionInput.value.trim() : "";
+  }
+
+  function setQuestion(text) {
+    if (questionInput) {
+      questionInput.value = text || "";
+    }
   }
 
   window.UIRenderer = {
-    getQuestion,
-    setQuestion,
-    setAnswer,
-    setClassification,
-    setMeta,
-    clearAllOutputs,
     appendUserMessage,
     appendAssistantMessage,
-    clearChatThread
+    typeAssistantMessage,
+    clearAllOutputs,
+    getQuestion,
+    setQuestion,
+    stopTyping
   };
 })();
-
