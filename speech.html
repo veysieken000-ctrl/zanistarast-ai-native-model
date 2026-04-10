@@ -776,7 +776,59 @@
     min-width: 100%;
   }
 } 
-  
+  .msg {
+  display: flex;
+  margin-bottom: 12px;
+}
+
+.msg.user {
+  justify-content: flex-end;
+}
+
+.msg.assistant {
+  justify-content: flex-start;
+}
+
+.msg-bubble {
+  max-width: 88%;
+  padding: 14px 16px;
+  border-radius: 18px;
+  line-height: 1.6;
+  font-size: 16px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.msg.user .msg-bubble {
+  background: linear-gradient(180deg, rgba(90,150,255,0.20), rgba(90,150,255,0.10));
+  border-color: rgba(90,150,255,0.24);
+  color: #f5f9ff;
+}
+
+.msg.assistant .msg-bubble {
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+  border-color: rgba(255,255,255,0.08);
+  color: #ffffff;
+}
+
+.msg-bubble.is-typing::after {
+  content: "▋";
+  display: inline-block;
+  margin-left: 3px;
+  opacity: 0.8;
+  animation: caretBlink 0.8s infinite;
+}
+
+@keyframes caretBlink {
+  0%, 49% {
+    opacity: 0.85;
+  }
+  50%, 100% {
+    opacity: 0.15;
+  }
+}
+
   </style>
 </head>
 <body>
