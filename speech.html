@@ -827,6 +827,42 @@
     opacity: 0.15;
   }
 }
+.status-chip-value.thinking {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.thinking-dots {
+  display: inline-flex;
+  min-width: 22px;
+}
+
+.thinking-dots span {
+  display: inline-block;
+  opacity: 0.25;
+  animation: thinkingBlink 1.2s infinite;
+}
+
+.thinking-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.thinking-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes thinkingBlink {
+  0%, 80%, 100% {
+    opacity: 0.25;
+    transform: translateY(0);
+  }
+
+  40% {
+    opacity: 1;
+    transform: translateY(-1px);
+  }
+}
 
   </style>
 </head>
@@ -839,9 +875,8 @@
 
   <div class="panel-topbar">
     <div class="panel-top-left">
-     <div class="voice-title">Zanistarast AI & Speech</div>
-      <div class="panel-brand-sub">Speak or type. Clean. Fast. Stable.</div>
-    </div>
+    <div id="titleText" class="voice-title">Zanistarast AI & Speech</div>
+<div id="subtitleText" class="voice-sub">Speak or type. Clean. Fast. Stable.</div>
 
     <div class="panel-top-right">
       <select id="languageSelect" class="lang-select">
@@ -866,24 +901,24 @@
   <div class="panel-status-top">
   <div class="status-chip status-chip-mic">
     <div class="status-chip-icon">🎤</div>
-    <div class="status-chip-content">
-      <span class="status-chip-label">Microphone</span>
-      <span id="micStatus" class="status-chip-value mic-off">Off</span>
-    </div>
-  </div>
+   <div class="status-chip-content">
+  <span id="micLabel" class="status-chip-label">Microphone</span>
+  <span id="micStatus" class="status-chip-value mic-off">Off</span>
+</div>
+ </div>
 
   <div class="status-chip status-chip-system">
     <div class="status-chip-icon">⚡</div>
     <div class="status-chip-content">
-      <span class="status-chip-label">System</span>
-      <span id="systemStatus" class="status-value">Ready</span>
-    </div>
+  <span id="systemLabel" class="status-chip-label">System</span>
+  <span id="systemStatus" class="status-chip-value">Ready</span>
+</div>
   </div>
 
   <div class="status-chip status-chip-lang">
     <div class="status-chip-icon">🌐</div>
     <div class="status-chip-content">
-    <span id="listeningLabel" class="status-chip-label">Listening Language</span>
+   <span id="listeningLabel" class="status-chip-label">Listening Language</span>
       <span id="langStatus" class="status-chip-value">en-US</span>
     </div>
   </div>
@@ -892,14 +927,13 @@
   <div class="chat-thread" id="chatThread"></div>
 
   <div class="composer">
-    <textarea id="questionInput" placeholder="Bir şey yaz veya konuş..."></textarea>
-
+   <textarea id="questionInput" placeholder="Type or speak..."></textarea>
     <div class="prompt-toolbar">
-      <button id="startBtn">🎤 Başla</button>
-      <button id="stopBtn">■ Durdur</button>
-      <button id="sendBtn">➤ Gönder</button>
-      <button id="speakBtn">🔊 Oku</button>
-      <button id="clearBtn">✖ Temizle</button>
+     <button id="startBtn">🎤 Start</button>
+     <button id="stopBtn">■ Stop</button>
+     <button id="sendBtn">➤ Send</button>
+     <button id="speakBtn">🔊 Read</button>
+     <button id="clearBtn">✕ Clear</button> 
     </div>
   </div>
 
@@ -907,9 +941,9 @@
   <div class="status-chip status-chip-mode status-chip-bottom">
     <div class="status-chip-icon">⚙️</div>
     <div class="status-chip-content">
-      <span class="status-chip-label">Mode</span>
-      <span id="modeStatus" class="status-chip-value">manual</span>
-    </div>
+  <span id="modeLabel" class="status-chip-label">Mode</span>
+  <span id="modeStatus" class="status-chip-value">manual</span>
+</div>
   </div>
 </div>
 </section>
