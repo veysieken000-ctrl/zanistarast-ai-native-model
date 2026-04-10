@@ -10,14 +10,14 @@
     micStatusEl.textContent = active ? "On" : "Off";
     micStatusEl.className = "status-value " + (active ? "mic-on" : "mic-off");
   }
-
-function setSystemStatus(text) {
+ function setSystemStatus(text) {
   if (!systemStatusEl) return;
 
   const value = String(text || "");
   const lower = value.toLowerCase();
 
   systemStatusEl.classList.remove(
+    "thinking",
     "is-ready",
     "is-done",
     "is-thinking",
@@ -26,16 +26,17 @@ function setSystemStatus(text) {
   );
 
   if (
+    lower.includes("düşünüyorum") ||
     lower.includes("düşünülüyor") ||
     lower.includes("thinking") ||
     lower.includes("speaking")
   ) {
     const isSpeaking = lower.includes("speaking");
-    const label = isSpeaking ? "Speaking" : "Düşünülüyor";
+    const label = isSpeaking ? "Speaking" : "Düşünüyorum";
 
     systemStatusEl.innerHTML =
       label +
-      '<span class="thinking-dots"><span>.</span><span>.</span><span>.</span></span>';
+      ' <span class="thinking-dots"><span>.</span><span>.</span><span>.</span></span>';
 
     systemStatusEl.classList.add("thinking");
     systemStatusEl.classList.add(isSpeaking ? "is-speaking" : "is-thinking");
@@ -43,7 +44,6 @@ function setSystemStatus(text) {
   }
 
   systemStatusEl.textContent = value;
-  systemStatusEl.classList.remove("thinking");
 
   if (lower.includes("ready")) {
     systemStatusEl.classList.add("is-ready");
@@ -52,4 +52,5 @@ function setSystemStatus(text) {
   } else if (lower.includes("error")) {
     systemStatusEl.classList.add("is-error");
   }
-} 
+}
+
