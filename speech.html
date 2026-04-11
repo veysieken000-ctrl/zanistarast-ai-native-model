@@ -332,11 +332,11 @@
   gap: 10px;
   margin-bottom: 8px;
 }
-
 .panel-top-right {
-  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
-
 .lang-select {
   width: 120px;
   min-width: 120px;
@@ -850,27 +850,18 @@
   </div>
 </div>
 
-<div class="chat-thread" id="chatThread"></div>
-
-<div class="control-inline">
-  <div class="panel-top-right">
-    <select id="languageSelect" class="lang-select">
-      <option value="en-US">English</option>
-      <option value="tr-TR">Turkish</option>
-      <option value="ar-SA">Arabic</option>
-      <option value="ku-TR">Kurmanji</option>
-      <option value="fa-IR">Persian</option>
-      <option value="fr-FR">French</option>
-      <option value="zh-CN">Chinese</option>
-      <option value="ru-RU">Russian</option>
-      <option value="es-ES">Spanish</option>
-      <option value="sv-SE">Swedish</option>
-      <option value="no-NO">Norwegian</option>
-      <option value="de-DE">German</option>
-      <option value="it-IT">Italian</option>
-      <option value="ja-JP">Japanese</option>
-    </select>
-  </div>
+<div class="panel-top-right">
+  <select id="languageSelect" class="lang-select">
+    <option value="en-US">English</option>
+    <option value="tr-TR">Turkish</option>
+    <option value="ar-SA">Arabic</option>
+    <option value="ku-TR">Kurmanji</option>
+    <option value="fa-IR">Persian</option>
+    <option value="fr-FR">French</option>
+    <option value="zh-CN">Chinese</option>
+    <option value="ru-RU">Russian</option>
+    <option value="es-ES">Spanish</option>
+  </select>
 
   <div class="status-inline">
     <span id="micStatus">Off</span>
@@ -879,11 +870,8 @@
     <span id="modeStatus">manual</span>
   </div>
 </div>
-
-  
- <div class="chat-thread" id="chatThread"></div>
-
-  <div class="composer">
+ 
+   <div class="composer">
    <textarea id="questionInput" placeholder="Type or speak..."></textarea>
     <div class="prompt-toolbar">
      <button id="startBtn">🎤 Start</button>
