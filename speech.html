@@ -310,6 +310,73 @@
   outline: none;
   margin-bottom: 14px;
 }
+.panel-topbar {
+  margin-bottom: 10px;
+}
+
+.chat-thread {
+  min-height: 110px;
+  margin-bottom: 8px;
+  padding: 12px 14px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  white-space: pre-wrap;
+  line-height: 1.55;
+}
+
+.control-inline {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.panel-top-right {
+  margin: 0;
+}
+
+.lang-select {
+  width: 120px;
+  min-width: 120px;
+  height: 34px;
+  padding: 0 10px;
+  border-radius: 10px;
+}
+
+.status-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 10px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.status-inline span {
+  white-space: nowrap;
+  opacity: 0.95;
+}
+
+.composer {
+  margin-top: 0;
+}
+
+#questionInput {
+  min-height: 120px;
+}
+
+@media (max-width: 900px) {
+  .control-inline {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+}
 
 .panel-brand-title {
   font-size: 26px;
@@ -322,200 +389,7 @@
   font-size: 13px;
   color: var(--muted);
 }
- 
-.panel-status-top {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-  margin-bottom: 18px;
-}
-
-.panel-status-bottom {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 16px;
-}
-
-.status-chip {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 16px;
-  border-radius: 20px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
-  border: 1px solid rgba(255,255,255,0.08);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 12px 32px rgba(0,0,0,0.22);
-  overflow: hidden;
-}
-
-.status-chip::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at top left, rgba(255,255,255,0.08), transparent 38%);
-  pointer-events: none;
-}
-
-.status-chip-icon {
-  width: 42px;
-  height: 42px;
-  min-width: 42px;
-  border-radius: 14px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 19px;
-  font-weight: 900;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
-}
-
-.status-chip-content {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  min-width: 0;
-}
-
-.status-chip-label {
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #9fb0c8;
-  font-weight: 800;
-  line-height: 1;
-}
-
-.status-chip-value {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  min-height: 28px;
-  font-size: 20px;
-  font-weight: 900;
-  line-height: 1.1;
-  color: #ffffff;
-  word-break: break-word;
-}
-
-.status-chip-mic .status-chip-icon {
-  background: rgba(255, 120, 140, 0.14);
-  border: 1px solid rgba(255, 120, 140, 0.24);
-  color: #ffb3bf;
-}
-
-.status-chip-system .status-chip-icon {
-  background: rgba(255, 208, 90, 0.14);
-  border: 1px solid rgba(255, 208, 90, 0.24);
-  color: #ffd76e;
-}
-
-.status-chip-lang .status-chip-icon {
-  background: rgba(90, 150, 255, 0.16);
-  border: 1px solid rgba(90, 150, 255, 0.28);
-  color: #9ec5ff;
-}
-
-.status-chip-mode .status-chip-icon {
-  background: rgba(178, 136, 255, 0.16);
-  border: 1px solid rgba(178, 136, 255, 0.28);
-  color: #ceb2ff;
-}
-
-#micStatus.mic-on {
-  color: #5df2af;
-}
-
-#micStatus.mic-off {
-  color: #ffb3bf;
-}
-
-#systemStatus.is-ready,
-#systemStatus.is-done {
-  color: #5df2af;
-}
-
-#systemStatus.is-thinking,
-#systemStatus.is-speaking {
-  color: #ffd76e;
-}
-
-#systemStatus.is-error {
-  color: #ff9dad;
-}
-
-.status-chip-bottom {
-  min-width: 220px;
-}
-
-.status-chip-value.thinking {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.thinking-dots {
-  display: inline-flex;
-  min-width: 22px;
-}
-
-.thinking-dots span {
-  display: inline-block;
-  animation: thinkingBlink 1.4s infinite ease-in-out;
-  opacity: 0.25;
-}
-
-.thinking-dots span:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.thinking-dots span:nth-child(3) {
-  animation-delay: 0.4s;
-}
-
-@keyframes thinkingBlink {
-  0%, 80%, 100% {
-    opacity: 0.25;
-    transform: translateY(0);
-  }
-  40% {
-    opacity: 1;
-    transform: translateY(-2px);
-  }
-}
-#systemStatus.is-thinking,
-#systemStatus.is-speaking {
-  color: #ffd76e;
-  text-shadow: 0 0 10px rgba(255, 215, 110, 0.22);
-}
-
-.status-chip-system {
-  transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
-}
-
-.status-chip-system:has(#systemStatus.is-thinking),
-.status-chip-system:has(#systemStatus.is-speaking) {
-  box-shadow: 0 0 18px rgba(255, 215, 110, 0.18);
-  border-color: rgba(255, 215, 110, 0.28);
-}
-
-@media (max-width: 980px) {
-  .panel-status-top {
-    grid-template-columns: 1fr;
-  }
-
-  .panel-status-bottom {
-    justify-content: stretch;
-  }
-
-  .status-chip-bottom {
-    width: 100%;
-  }
-}
-
-
-.mic-on {
+ .mic-on {
   color: var(--success);
 }
 
@@ -558,44 +432,7 @@
     transform: translateY(-2px);
   }
 }
-
-@media (max-width: 980px) {
-  .status-overlay {
-    min-height: 220px;
-    margin-top: 8px;
-  }
-
-  .status-center {
-    position: relative;
-    top: auto;
-    right: auto;
-    transform: none;
-    width: 100%;
-    max-width: 100%;
-    margin-top: 18px;
-  }
-
-  .status-top-right {
-    top: 0;
-    right: 0;
-  }
-
-  .status-bottom-left,
-  .status-bottom-right {
-    position: relative;
-    left: auto;
-    right: auto;
-    bottom: auto;
-    display: inline-block;
-    margin-top: 14px;
-  }
-
-  .status-bottom-right {
-    margin-left: 10px;
-  }
-}
-    
-    @media (max-width: 980px) {
+  @media (max-width: 980px) {
   .main {
     grid-template-columns: 1fr;
     margin-top: 20px;
@@ -859,33 +696,6 @@
   .panel-status-top {
     grid-template-columns: 1fr;
   }
-
-  .status-chip-bottom {
-    min-width: 100%;
-  }
-} 
-  .msg {
-  display: flex;
-  margin-bottom: 12px;
-}
-
-.msg.user {
-  justify-content: flex-end;
-}
-
-.msg.assistant {
-  justify-content: flex-start;
-}
-
-.msg-bubble {
-  max-width: 88%;
-  padding: 14px 16px;
-  border-radius: 18px;
-  line-height: 1.6;
-  font-size: 16px;
-  white-space: pre-wrap;
-  word-break: break-word;
-  border: 1px solid rgba(255,255,255,0.08);
 }
 
 .msg.user .msg-bubble {
@@ -1034,34 +844,42 @@
 <section class="panel">
 
   <div class="panel-topbar">
-    <div class="panel-top-left">
+  <div class="panel-top-left">
     <div id="titleText" class="voice-title">Zanistarast AI & Speech</div>
-<div id="subtitleText" class="voice-sub">Speak or type. Clean. Fast. Stable.</div>
-<div class="status-inline">
-  <span id="micStatus">Off</span>
-  <span id="systemStatus">Ready</span>
-  <span id="langStatus">en-US</span>
-  <span id="modeStatus">manual</span>
-</div>
-    <div class="panel-top-right">
-      <select id="languageSelect" class="lang-select">
-        <option value="en-US">English</option>
-        <option value="tr-TR">Turkish</option>
-        <option value="ar-SA">Arabic</option>
-        <option value="ku-TR">Kurmanji</option>
-        <option value="fa-IR">Persian</option>
-        <option value="fr-FR">French</option>
-        <option value="zh-CN">Chinese</option>
-        <option value="ru-RU">Russian</option>
-        <option value="es-ES">Spanish</option>
-        <option value="sv-SE">Swedish</option>
-        <option value="no-NO">Norwegian</option>
-        <option value="de-DE">German</option>
-        <option value="it-IT">Italian</option>
-        <option value="ja-JP">Japanese</option>
-      </select>
-    </div>
+    <div id="subtitleText" class="voice-sub">Speak or type. Clean. Fast. Stable.</div>
   </div>
+</div>
+
+<div class="chat-thread" id="chatThread"></div>
+
+<div class="control-inline">
+  <div class="panel-top-right">
+    <select id="languageSelect" class="lang-select">
+      <option value="en-US">English</option>
+      <option value="tr-TR">Turkish</option>
+      <option value="ar-SA">Arabic</option>
+      <option value="ku-TR">Kurmanji</option>
+      <option value="fa-IR">Persian</option>
+      <option value="fr-FR">French</option>
+      <option value="zh-CN">Chinese</option>
+      <option value="ru-RU">Russian</option>
+      <option value="es-ES">Spanish</option>
+      <option value="sv-SE">Swedish</option>
+      <option value="no-NO">Norwegian</option>
+      <option value="de-DE">German</option>
+      <option value="it-IT">Italian</option>
+      <option value="ja-JP">Japanese</option>
+    </select>
+  </div>
+
+  <div class="status-inline">
+    <span id="micStatus">Off</span>
+    <span id="systemStatus">Ready</span>
+    <span id="langStatus">en-US</span>
+    <span id="modeStatus">manual</span>
+  </div>
+</div>
+
   
  <div class="chat-thread" id="chatThread"></div>
 
