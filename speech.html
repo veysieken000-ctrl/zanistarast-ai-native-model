@@ -654,56 +654,144 @@
   }
 }
 
- .panel-status-top {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-  margin-bottom: 18px;
+ .panel-status-top
+.panel-status-bottom
+.status-chip
+.status-chip-icon
+.status-chip-content
+.status-chip-label
+.status-chip-value
+Yerine bunu ekle:
+CSS
+.panel-status-top {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: rgba(12, 18, 32, 0.78);
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.22);
+  z-index: 5;
 }
 
 .panel-status-bottom {
-  display: flex;
-  justify-content: flex-start;
-  margin-top: 16px;
+  display: none;
 }
 
 .status-chip {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 18px;
-  padding: 12px 14px;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.status-chip-icon {
+  width: 20px;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  background: rgba(255,255,255,0.08);
+}
+
+.status-chip-content {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .status-chip-label {
-  display: block;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #9fb0c8;
-  margin-bottom: 8px;
-  font-weight: 800;
+  display: none;
 }
 
 .status-chip-value {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 34px;
-  padding: 8px 14px;
-  border-radius: 999px;
-  font-size: 18px;
-  font-weight: 900;
+  font-size: 12px;
   line-height: 1;
-  border: 1px solid transparent;
+  font-weight: 800;
+  color: #ffffff;
+  white-space: nowrap;
 }
 
-/* dil */
-#langStatus.status-chip-value {
-  background: rgba(90, 150, 255, 0.16);
-  color: #9ec5ff;
-  border-color: rgba(90, 150, 255, 0.28);
+#micStatus.mic-on {
+  color: #5df2af;
+}
+
+#micStatus.mic-off {
+  color: #ffb3bf;
+}
+
+#systemStatus.is-ready,
+#systemStatus.is-done {
+  color: #5df2af;
+}
+
+#systemStatus.is-thinking,
+#systemStatus.is-speaking {
+  color: #ffd76e;
+}
+
+#systemStatus.is-error {
+  color: #ff9dad;
+}
+
+.status-chip-value.thinking {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 3px !important;
+}
+
+.thinking-dots {
+  display: inline-flex !important;
+  min-width: 18px !important;
+}
+
+.thinking-dots span {
+  display: inline-block !important;
+  opacity: 0.25;
+  animation: thinkingBlink 1.2s infinite ease-in-out !important;
+}
+
+.thinking-dots span:nth-child(2) {
+  animation-delay: 0.2s !important;
+}
+
+.thinking-dots span:nth-child(3) {
+  animation-delay: 0.4s !important;
+}
+
+.panel {
+  position: relative;
+  padding-bottom: 80px;
+}
+
+@media (max-width: 900px) {
+  .panel-status-top {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    border-radius: 18px;
+  }
+
+  .status-chip {
+    min-width: 0;
+  }
+
+  .status-chip-value {
+    font-size: 11px;
+  }
 }
 
 /* mikrofon */
@@ -909,29 +997,35 @@
     </div>
   </div>
 
-  <div class="panel-status-top">
+ <div class="panel-status-top">
   <div class="status-chip status-chip-mic">
     <div class="status-chip-icon">🎤</div>
-   <div class="status-chip-content">
-  <span id="micLabel" class="status-chip-label">Microphone</span>
-  <span id="micStatus" class="status-chip-value mic-off">Off</span>
-</div>
- </div>
+    <div class="status-chip-content">
+      <span id="micStatus" class="status-chip-value mic-off">Off</span>
+    </div>
+  </div>
 
   <div class="status-chip status-chip-system">
     <div class="status-chip-icon">⚡</div>
     <div class="status-chip-content">
-  <span id="systemLabel" class="status-chip-label">System</span>
-  <span id="systemStatus" class="status-chip-value">Ready</span>
-</div>
+      <span id="systemStatus" class="status-chip-value">Ready</span>
+    </div>
   </div>
 
   <div class="status-chip status-chip-lang">
     <div class="status-chip-icon">🌐</div>
     <div class="status-chip-content">
-   <span id="listeningLabel" class="status-chip-label">Listening Language</span>
       <span id="langStatus" class="status-chip-value">en-US</span>
     </div>
+  </div>
+
+  <div class="status-chip status-chip-mode">
+    <div class="status-chip-icon">⚙️</div>
+    <div class="status-chip-content">
+      <span id="modeStatus" class="status-chip-value">manual</span>
+    </div>
+  </div>
+</div>
   </div>
 </div>
   
@@ -948,15 +1042,6 @@
     </div>
   </div>
 
- <div class="panel-status-bottom">
-  <div class="status-chip status-chip-mode status-chip-bottom">
-    <div class="status-chip-icon">⚙️</div>
-    <div class="status-chip-content">
-  <span id="modeLabel" class="status-chip-label">Mode</span>
-  <span id="modeStatus" class="status-chip-value">manual</span>
-</div>
-  </div>
-</div>
 </section>
 
 </div>
