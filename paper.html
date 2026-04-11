@@ -9,6 +9,37 @@
     content="Structured paper page for the Zanistarast Scientific Synthesis."
   />
   <link rel="stylesheet" href="style.css" />
+.quick-links {
+  margin: 18px 0;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.quick-links a {
+  padding: 8px 16px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #1f2a44, #2c3e66);
+  text-decoration: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: all 0.25s ease;
+}
+
+/* Hover efekti */
+.quick-links a:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #2c3e66, #3d5a99);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+}
+
+/* Tıklama efekti */
+.quick-links a:active {
+  transform: scale(0.96);
+}
+
 </head>
 <body>
   <div id="navbar"></div>
