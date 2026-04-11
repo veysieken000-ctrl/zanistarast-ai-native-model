@@ -955,6 +955,30 @@
 .dots span {
   animation: blink 1.4s infinite;
 }
+.status-inline {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  padding: 6px 10px;
+
+  border-radius: 10px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+
+  font-size: 12px;
+  font-weight: 600;
+
+  width: fit-content;
+  margin-left: auto; /* 🔥 sağa yaslar */
+}
+
+.status-inline span {
+  opacity: 0.9;
+}
 
 .dots span:nth-child(2) { animation-delay: .2s; }
 .dots span:nth-child(3) { animation-delay: .4s; }
@@ -977,7 +1001,12 @@
     <div class="panel-top-left">
     <div id="titleText" class="voice-title">Zanistarast AI & Speech</div>
 <div id="subtitleText" class="voice-sub">Speak or type. Clean. Fast. Stable.</div>
-
+<div class="status-inline">
+  <span id="micStatus">Off</span>
+  <span id="systemStatus">Ready</span>
+  <span id="langStatus">en-US</span>
+  <span id="modeStatus">manual</span>
+</div>
     <div class="panel-top-right">
       <select id="languageSelect" class="lang-select">
         <option value="en-US">English</option>
@@ -997,38 +1026,6 @@
       </select>
     </div>
   </div>
-
- <div class="panel-status-top">
-  <div class="status-chip status-chip-mic">
-    <div class="status-chip-icon">🎤</div>
-    <div class="status-chip-content">
-      <span id="micStatus" class="status-chip-value mic-off">Off</span>
-    </div>
-  </div>
-
-  <div class="status-chip status-chip-system">
-    <div class="status-chip-icon">⚡</div>
-    <div class="status-chip-content">
-      <span id="systemStatus" class="status-chip-value">Ready</span>
-    </div>
-  </div>
-
-  <div class="status-chip status-chip-lang">
-    <div class="status-chip-icon">🌐</div>
-    <div class="status-chip-content">
-      <span id="langStatus" class="status-chip-value">en-US</span>
-    </div>
-  </div>
-
-  <div class="status-chip status-chip-mode">
-    <div class="status-chip-icon">⚙️</div>
-    <div class="status-chip-content">
-      <span id="modeStatus" class="status-chip-value">manual</span>
-    </div>
-  </div>
-</div>
-  </div>
-</div>
   
   <div class="chat-thread" id="chatThread"></div>
 
