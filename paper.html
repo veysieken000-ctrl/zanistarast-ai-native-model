@@ -17,25 +17,33 @@
 }
 
 .quick-links a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
   padding: 8px 16px;
   border-radius: 12px;
+
   background: linear-gradient(135deg, #1f2a44, #2c3e66);
   text-decoration: none;
   color: #fff;
+
   font-size: 14px;
   font-weight: 500;
+
   border: 1px solid rgba(255,255,255,0.08);
+
   transition: all 0.25s ease;
 }
 
-/* Hover efekti */
+/* Hover */
 .quick-links a:hover {
   transform: translateY(-2px);
   background: linear-gradient(135deg, #2c3e66, #3d5a99);
   box-shadow: 0 6px 18px rgba(0,0,0,0.4);
 }
 
-/* Tıklama efekti */
+/* Click */
 .quick-links a:active {
   transform: scale(0.96);
 }
@@ -57,10 +65,10 @@
       <div class="hero-card">
         <h1>Zanistarast Scientific Synthesis</h1>
         <div class="quick-links">
-  <a href="/theory.html">Theory</a>
-  <a href="/theses.html">Theses</a>
-  <a href="/makaleler.html">Makaleler</a>
-  <a href="/ontology.html">Ontology</a>
+  <a href="/theory.html">🧠 Theory</a>
+  <a href="/theses.html">📜 Theses</a>
+  <a href="/makaleler.html">📚 Makaleler</a>
+  <a href="/ontology.html">⚙️ Ontology</a>
 </div>
         <p>
           A structured natural science framework for ontology, epistemology,
