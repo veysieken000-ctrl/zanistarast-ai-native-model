@@ -1,19 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <title>Ontology</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ontology - Zanistarast</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    body {
+      background: #0b0f1a;
+      color: white;
+      font-family: Arial, sans-serif;
+      padding: 40px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 700px;
+    }
+
+    .item {
+      display: block;
+      padding: 12px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.08);
+      text-decoration: none;
+      color: white;
+      transition: 0.2s;
+    }
+
+    .item:hover {
+      background: rgba(255,255,255,0.2);
+    }
+  </style>
 </head>
+
 <body>
 
-<h1>Ontology System</h1>
+  <h1>Ontology</h1>
 
-<ul>
-  <li>Core</li>
-  <li>Models</li>
-  <li>Simulation</li>
-  <li>Theory</li>
-</ul>
+  <div class="list">
+
+    <a href="ontology-standard.html" class="item">STANDARD</a>
+    <a href="ontology-core-law.html" class="item">Core Law</a>
+    <a href="ontology-hebun.html" class="item">Hebun</a>
+    <a href="ontology-index.html" class="item">Index</a>
+    <a href="ontology-mabun.html" class="item">Mabun</a>
+    <a href="ontology-rasterast.html" class="item">Rasterast</a>
+    <a href="ontology-simulation.html" class="item">Simulation</a>
+    <a href="ontology-unified.html" class="item">Unified</a>
+    <a href="ontology-zanabun.html" class="item">Zanabun</a>
+
+  </div>
 
 </body>
 </html>
+
