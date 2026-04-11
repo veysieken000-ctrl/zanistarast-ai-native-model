@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="tr">
-<head>
+ <style>
+#navbar {
+  margin-bottom: 20px;
+}
+</style>
+  <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Ontology - Zanistarast</title>
@@ -9,6 +14,15 @@
 
   <style>
     body {
+     <div id="navbar"></div>
+
+<script>
+fetch("components/navbar.html")
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("navbar").innerHTML = data;
+  });
+</script>
       background: #0b0f1a;
       color: white;
       font-family: Arial, sans-serif;
