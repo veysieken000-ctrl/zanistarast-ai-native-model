@@ -1,63 +1,163 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Theory – Zanistarast</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Theory - Zanistarast</title>
   <link rel="stylesheet" href="style.css" />
-
   <style>
-    body {
-      background: #0b0f1a;
-      color: white;
-      font-family: Arial, sans-serif;
-      padding: 40px;
+    .theory-page {
+      padding-top: 48px;
+      padding-bottom: 80px;
     }
 
-    h1 {
-      margin-bottom: 20px;
+    .theory-hero {
+      margin-bottom: 24px;
     }
 
-    .list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      max-width: 500px;
+    .theory-hero .section-card h1 {
+      margin: 0 0 12px;
+      font-size: 42px;
+      line-height: 1.08;
     }
 
-    .item {
+    .theory-hero .section-card p {
+      margin: 0;
+      color: rgba(255,255,255,0.82);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .theory-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .theory-link-card {
       display: block;
-      padding: 12px;
-      border-radius: 10px;
-      background: rgba(255,255,255,0.08);
       text-decoration: none;
-      color: white;
-      transition: 0.2s;
+      color: inherit;
+      border-radius: 24px;
+      padding: 22px;
+      background: linear-gradient(180deg, rgba(40,58,92,0.88), rgba(23,33,54,0.94));
+      border: 1px solid rgba(140,170,255,0.18);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.22);
+      transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
     }
 
-    .item:hover {
-      background: rgba(255,255,255,0.2);
+    .theory-link-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(160,190,255,0.34);
+      box-shadow: 0 24px 50px rgba(0,0,0,0.28);
+    }
+
+    .theory-index {
+      display: inline-block;
+      margin-bottom: 10px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.58);
+    }
+
+    .theory-link-card h2 {
+      margin: 0 0 10px;
+      font-size: 24px;
+      line-height: 1.25;
+    }
+
+    .theory-link-card p {
+      margin: 0;
+      color: rgba(255,255,255,0.76);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    @media (max-width: 900px) {
+      .theory-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .theory-hero .section-card h1 {
+        font-size: 32px;
+      }
     }
   </style>
 </head>
-
 <body>
+  <div id="navbar"></div>
 
-  <h1>Theory</h1>
+  <script>
+    fetch("components/navbar.html")
+      .then((res) => res.text())
+      .then((data) => {
+        document.getElementById("navbar").innerHTML = data;
+      });
+  </script>
 
-  <div class="list">
+  <main class="container theory-page">
+    <section class="theory-hero">
+      <div class="section-card">
+        <h1>Theory</h1>
+        <p>
+          Zanistarast teorik yapısının ana başlıkları burada sistematik biçimde sunulur.
+          Her başlık kendi alt sayfasına açılır.
+        </p>
+      </div>
+    </section>
 
-    <a href="#" class="item">01 - Dimensional Expansion Theory</a>
-    <a href="#" class="item">02 - Geological Evolution Theory</a>
-    <a href="#" class="item">03 - Biological Phase Theory</a>
-    <a href="#" class="item">04 - Mind Dimension Theory</a>
-    <a href="#" class="item">05 - Collapse Reset Theory</a>
-    <a href="#" class="item">06 - Moral Dimension Human Theory</a>
-    <a href="#" class="item">07 - Newroza Kawa Civilization Theory</a>
-    <a href="#" class="item">08 - Time Theory</a>
+    <section class="theory-grid">
+      <a class="theory-link-card" href="theory-01-boyutsal-acilim.html">
+        <span class="theory-index">01</span>
+        <h2>Boyutsal Açılım Teorisi</h2>
+        <p>Varlığın katmanlı açılımı, fiziksel temel, geçiş yapıları ve üst boyut zorunluluğu.</p>
+      </a>
 
-  </div>
+      <a class="theory-link-card" href="theory-02-geological-evolution.html">
+        <span class="theory-index">02</span>
+        <h2>Geological Evolution</h2>
+        <p>Jeolojik çağlar, zihnin eşiği ve biyolojik faza geçişin yapısal zemini.</p>
+      </a>
 
+      <a class="theory-link-card" href="theory-03-biological-phase.html">
+        <span class="theory-index">03</span>
+        <h2>Biological Phase Theory</h2>
+        <p>Biyolojik açılım, çok hücrelilik, sinirsel ortaya çıkış ve zihne tetikleyen sınır.</p>
+      </a>
+
+      <a class="theory-link-card" href="theory-04-mind-dimension.html">
+        <span class="theory-index">04</span>
+        <h2>Mind Dimension Theory</h2>
+        <p>Zihin boyutu, genişleme, eşik, ahlaka geçiş ve sınır mekanizmaları.</p>
+      </a>
+
+      <a class="theory-link-card" href="theory-05-collapse-reset.html">
+        <span class="theory-index">05</span>
+        <h2>Collapse Reset Theory</h2>
+        <p>Daralma, çöküş, reset, ahlaki geçiş ve ruhsal fazdan insan fazına yönelim.</p>
+      </a>
+
+      <a class="theory-link-card" href="theory-06-moral-dimension-human.html">
+        <span class="theory-index">06</span>
+        <h2>Moral Dimension Human Theory</h2>
+        <p>Ahlaki boyutun açılması, tarihsel evreler ve ahlaki eksenin tamamlanması.</p>
+      </a>
+
+      <a class="theory-link-card" href="theory-07-newroza-kawa-civilization.html">
+        <span class="theory-index">07</span>
+        <h2>Newroza Kawa Civilization Theory</h2>
+        <p>Medeniyet çekirdeği, denge, yasa, gösterge sistemi ve birleşik sentez mimarisi.</p>
+      </a>
+
+      <a class="theory-link-card" href="theory-08-zaman.html">
+        <span class="theory-index">08</span>
+        <h2>Zaman Theory</h2>
+        <p>Zaman, entropi, birleşik zihin sentezi ve stabilizasyon çerçevesi.</p>
+      </a>
+    </section>
+  </main>
 </body>
 </html>
+
