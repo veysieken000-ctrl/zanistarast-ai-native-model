@@ -1,19 +1,69 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <title>Makaleler</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Makaleler - Zanistarast</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    body {
+      background: #0b0f1a;
+      color: white;
+      font-family: Arial, sans-serif;
+      padding: 40px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 700px;
+    }
+
+    .item {
+      display: block;
+      padding: 12px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.08);
+      text-decoration: none;
+      color: white;
+      transition: 0.2s;
+    }
+
+    .item:hover {
+      background: rgba(255,255,255,0.2);
+    }
+  </style>
 </head>
+
 <body>
 
-<h1>Makaleler</h1>
+  <h1>Makaleler</h1>
 
-<ul>
-  <li>Ontoloji</li>
-  <li>Epistemoloji</li>
-  <li>Aksiyoloji</li>
-  <li>Tarih</li>
-</ul>
+  <div class="list">
+
+    <a href="makale-00-katmanli.html" class="item">00 - Katmanlı Varlık Okuması</a>
+    <a href="makale-01-ontoloji.html" class="item">01 - Ontoloji</a>
+    <a href="makale-02-epistemoloji.html" class="item">02 - Epistemoloji</a>
+    <a href="makale-03-aksiyoloji.html" class="item">03 - Aksiyoloji</a>
+    <a href="makale-04-tarih.html" class="item">04 - Tarih</a>
+    <a href="makale-05-siyaset.html" class="item">05 - Siyaset ve Toplum</a>
+    <a href="makale-06-bilim.html" class="item">06 - Bilim ve Bilgi Düzeni</a>
+    <a href="makale-07-medeniyet.html" class="item">07 - Medeniyet ve Gelecek</a>
+    <a href="makale-08-cografya.html" class="item">08 - Coğrafya</a>
+    <a href="makale-09-hukum.html" class="item">09 - Hüküm ve Ahlak</a>
+    <a href="makale-10-paradokslar.html" class="item">10 - Paradokslar</a>
+    <a href="makale-11-varlik-tarihi.html" class="item">11 - Varlık Tarihi</a>
+    <a href="makale-12-core.html" class="item">12 - Core</a>
+
+  </div>
 
 </body>
 </html>
+
