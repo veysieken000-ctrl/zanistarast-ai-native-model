@@ -1,73 +1,196 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Zaman Teorisi</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zaman Teorisi</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    background: #0f172a;
+    color: #e2e8f0;
+}
 
-  <link rel="stylesheet" href="style.css" />
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px;
+}
 
-  <style>
-    body {
-      background: #0b0f1a;
-      color: white;
-      font-family: Arial, sans-serif;
-      padding: 40px;
-    }
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #93c5fd;
+    text-decoration: none;
+    font-weight: 600;
+}
 
-    .back {
-      margin-bottom: 20px;
-      display: inline-block;
-      color: #8cb3ff;
-      text-decoration: none;
-    }
+.back-link:hover {
+    text-decoration: underline;
+}
 
-    .card {
-      background: rgba(255,255,255,0.05);
-      padding: 20px;
-      border-radius: 12px;
-      max-width: 800px;
-    }
+.hero {
+    margin-bottom: 28px;
+}
 
-    h1 {
-      margin-bottom: 10px;
-    }
+.hero-card {
+    background: linear-gradient(135deg, #111827 0%, #1e293b 100%);
+    border: 1px solid #334155;
+    border-radius: 18px;
+    padding: 28px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
 
-    p {
-      line-height: 1.7;
-      color: rgba(255,255,255,0.8);
-    }
-  </style>
+.hero-card h1 {
+    margin: 0 0 12px 0;
+    color: #38bdf8;
+    font-size: 2rem;
+}
+
+.hero-card p {
+    margin: 0;
+    color: #cbd5e1;
+}
+
+.theory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+}
+
+.theory-link-card {
+    display: block;
+    text-decoration: none;
+    background: #111827;
+    border: 1px solid #334155;
+    border-radius: 16px;
+    padding: 18px;
+    color: #e2e8f0;
+    transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.theory-link-card:hover {
+    transform: translateY(-3px);
+    border-color: #38bdf8;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.22);
+}
+
+.theory-index {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #facc15;
+    margin-bottom: 10px;
+}
+
+.theory-link-card h2 {
+    margin: 0 0 8px 0;
+    font-size: 1.05rem;
+    color: #e2e8f0;
+}
+
+.theory-link-card p {
+    margin: 0;
+    color: #94a3b8;
+    font-size: 0.95rem;
+}
+</style>
 </head>
-
 <body>
 
-  <a href="theory.html" class="back">← Back to Theory</a>
+<main class="container">
 
-  <div class="card">
-    <h1>08 - Zaman Teorisi</h1>
+    <a class="back-link" href="../../theory.html">← Back to Theory</a>
 
-    <p>
-      Zaman, tüm katmanların birbirine bağlandığı
-      ve değişimin ölçüldüğü temel eksendir.
-    </p>
+    <section class="hero">
+        <div class="hero-card">
+            <h1>08 - Zaman Teorisi</h1>
+            <p>
+                Zamanın etkileşim, anlam, yön, sorumluluk ve boyutsal geçiş üzerinden
+                açıklandığı birleşik Zanistarast çerçevesi.
+            </p>
+        </div>
+    </section>
 
-    <p>
-      Bu modelde zaman, sadece bir akış değil,
-      sistemlerin dönüşümünü yöneten yapısal bir parametredir.
-    </p>
+    <section class="theory-grid">
 
-    <p>
-      Entropi, düzen ve düzensizlik arasındaki geçişi ifade eder
-      ve zamanın yönünü belirler.
-    </p>
+        <a class="theory-link-card" href="00_TIME_THEORY_UNIFIED_MIND.html">
+            <span class="theory-index">00</span>
+            <h2>Zaman Teorisi – Unified Mind</h2>
+            <p>Zamanın zihinle birlikte nasıl anlam kazandığını açıklayan giriş modeli.</p>
+        </a>
 
-    <p>
-      Zaman olmadan, hiçbir sistemin gelişimi
-      ya da evrimi tanımlanamaz.
-    </p>
+        <a class="theory-link-card" href="01_TIME_THEORY_RASTERAST_ZANISTARAST.html">
+            <span class="theory-index">01</span>
+            <h2>Rasterast & Zanistarast</h2>
+            <p>Zamanın ontolojik tanımı, etkileşim yapısı ve entropi ilişkisi.</p>
+        </a>
 
-  </div>
+        <a class="theory-link-card" href="02_UNIFIED_MIND_THEORY_ZANISTARAST.html">
+            <span class="theory-index">02</span>
+            <h2>Birleşik Zihin Teorisi</h2>
+            <p>Zeka, akıl ve ahlak zincirinin zaman içindeki boyutsal yapısı.</p>
+        </a>
+
+        <a class="theory-link-card" href="03_TIME_MIND_SYNTHESIS_ZANISTARAST.html">
+            <span class="theory-index">03</span>
+            <h2>Zaman-Zihin Sentezi</h2>
+            <p>Zaman ile zihnin karşılıklı oluşumunu açıklayan sentez modeli.</p>
+        </a>
+
+        <a class="theory-link-card" href="04_TIME_ENTROPY_AND_DIMENSIONAL_TRANSITION.html">
+            <span class="theory-index">04</span>
+            <h2>Entropi ve Boyutsal Geçiş</h2>
+            <p>Azalma, kapanış ve üst boyuta geçiş mekanizması.</p>
+        </a>
+
+        <a class="theory-link-card" href="05_TIME_THEORY_UNIFIED_FIELD_SYNTHESIS.html">
+            <span class="theory-index">05</span>
+            <h2>Birleşik Alan Sentezi</h2>
+            <p>Fizik, biyoloji, zihin ve ahlakın zaman içinde birleşik dengesi.</p>
+        </a>
+
+        <a class="theory-link-card" href="06_TIME_THEORY_HUMAN_POSITION.html">
+            <span class="theory-index">06</span>
+            <h2>İnsan Konumu</h2>
+            <p>İnsanın zamanı taşıyan, anlamlandıran ve yönlendiren konumu.</p>
+        </a>
+
+        <a class="theory-link-card" href="07_TIME_THEORY_CLOSURE_AND_RESET.html">
+            <span class="theory-index">07</span>
+            <h2>Kapanış ve Reset</h2>
+            <p>Her sürecin daralma, reset ve yeni başlangıç üretme mantığı.</p>
+        </a>
+
+        <a class="theory-link-card" href="08_TIME_THEORY_DIMENSIONAL_FLOW.html">
+            <span class="theory-index">08</span>
+            <h2>Boyutsal Akış</h2>
+            <p>Zamanın boyutlar arası geçiş ve dönüşüm akışı olarak okunması.</p>
+        </a>
+
+        <a class="theory-link-card" href="09_TIME_THEORY_DIRECTION_AND_MEANING.html">
+            <span class="theory-index">09</span>
+            <h2>Yön ve Anlam</h2>
+            <p>Zamanın yalnızca akış değil, yön ve anlam taşıyan süreç oluşu.</p>
+        </a>
+
+        <a class="theory-link-card" href="10_TIME_THEORY_RESPONSIBILITY_AND_JUDGMENT.html">
+            <span class="theory-index">10</span>
+            <h2>Sorumluluk ve Hüküm</h2>
+            <p>Zamanın kayıt, sonuç ve hüküm üretme özelliği.</p>
+        </a>
+
+        <a class="theory-link-card" href="11_TIME_THEORY_FINAL_SYNTHESIS.html">
+            <span class="theory-index">11</span>
+            <h2>Nihai Sentez</h2>
+            <p>Zaman teorisinin birleşik, son ve bütüncül açıklaması.</p>
+        </a>
+
+    </section>
+
+</main>
 
 </body>
 </html>
