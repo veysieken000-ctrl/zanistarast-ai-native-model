@@ -1,79 +1,93 @@
 <!DOCTYPE html>
 <html lang="tr">
-<style>
-#navbar {
-  margin-bottom: 20px;
-}
-</style>
-  <head>
+<head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Theses - Zanistarast</title>
-
   <link rel="stylesheet" href="style.css" />
-
-  <style>
-    body {
-      <div id="navbar"></div>
-
-<script>
-fetch("components/navbar.html")
-  .then(res => res.text())
-  .then(data => {
-    document.getElementById("navbar").innerHTML = data;
-  });
-</script>
-      background: #0b0f1a;
-      color: white;
-      font-family: Arial, sans-serif;
-      padding: 40px;
-    }
-
-    h1 {
-      margin-bottom: 20px;
-    }
-
-    .list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      max-width: 700px;
-    }
-
-    .item {
-      display: block;
-      padding: 12px;
-      border-radius: 10px;
-      background: rgba(255,255,255,0.08);
-      text-decoration: none;
-      color: white;
-      transition: 0.2s;
-    }
-
-    .item:hover {
-      background: rgba(255,255,255,0.2);
-    }
-  </style>
 </head>
-
 <body>
+  <div id="navbar"></div>
 
-  <h1>Theses</h1>
+  <script>
+    fetch("components/navbar.html")
+      .then((res) => res.text())
+      .then((data) => {
+        document.getElementById("navbar").innerHTML = data;
+      })
+      .catch(() => {
+        document.getElementById("navbar").innerHTML = "";
+      });
+  </script>
 
-  <div class="list">
+  <main class="container">
+    <section class="hero">
+      <div class="hero-card">
+        <h1>Theses</h1>
+        <p>
+          Zanistarast tez mimarisinin ana giriş sayfası. Buradan ana tez ailelerine
+          ve alt yapı sayfalarına geçilir.
+        </p>
+      </div>
+    </section>
 
-    <a href="thesis-civilization.html" class="item">Civilization Framework</a>
-    <a href="thesis-mabun.html" class="item">Mabun (Economic Layer)</a>
-    <a href="thesis-zanabun.html" class="item">Zanabun (Epistemology)</a>
-    <a href="thesis-hebun.html" class="item">Hebun Ontology</a>
-    <a href="thesis-zanistarast.html" class="item">Zanistarast Meta Science</a>
-    <a href="thesis-ontology-core.html" class="item">Ontology Core Thesis</a>
-    <a href="thesis-transitions.html" class="item">Transitions</a>
-    <a href="thesis-history.html" class="item">Research History</a>
-    <a href="thesis-final-layer.html" class="item">Final Layer</a>
+    <section class="theory-grid">
+      <a class="theory-link-card" href="thesis-civilization.html">
+        <span class="theory-index">00</span>
+        <h2>Civilization Framework</h2>
+        <p>Newroza Kawa medeniyet çerçevesinin ana tez dizisi ve alt başlık giriş sayfası.</p>
+      </a>
 
-  </div>
+      <a class="theory-link-card" href="thesis-hebun.html">
+        <span class="theory-index">01</span>
+        <h2>Hebun Ontology</h2>
+        <p>Katmanlı varlık yapısı, yer–gök düzeni ve ontolojik temel çerçeve.</p>
+      </a>
 
+      <a class="theory-link-card" href="thesis-zanabun.html">
+        <span class="theory-index">02</span>
+        <h2>Zanabun (Epistemology)</h2>
+        <p>Bilginin tanıklık, doğrulama ve yapısal tutarlılık üzerinden okunması.</p>
+      </a>
+
+      <a class="theory-link-card" href="thesis-zanistarast.html">
+        <span class="theory-index">03</span>
+        <h2>Zanistarast Meta Science</h2>
+        <p>Bilimin kendi yasasını, sınırını ve üst okuma çerçevesini kuran meta-bilim katmanı.</p>
+      </a>
+
+      <a class="theory-link-card" href="thesis-ontology-core.html">
+        <span class="theory-index">04</span>
+        <h2>Ontology Core Thesis</h2>
+        <p>Ontolojik çekirdek ilkeler, temel yapı taşları ve ana kurucu kavramlar.</p>
+      </a>
+
+      <a class="theory-link-card" href="thesis-transitions.html">
+        <span class="theory-index">05</span>
+        <h2>Transitions</h2>
+        <p>Katmanlar, alanlar ve düzenler arası geçiş mantığı ve yapısal dönüşüm ilkeleri.</p>
+      </a>
+
+      <a class="theory-link-card" href="thesis-history.html">
+        <span class="theory-index">06</span>
+        <h2>Research History</h2>
+        <p>Araştırma süreci, tarihsel gelişim ve kavramsal inşa çizgisi.</p>
+      </a>
+
+      <a class="theory-link-card" href="thesis-mabun.html">
+        <span class="theory-index">07</span>
+        <h2>Mabun (Economic Layer)</h2>
+        <p>Ekonomi, dolaşım, emanet ve toplumsal düzenin sorumluluk temelli modeli.</p>
+      </a>
+
+      <a class="theory-link-card" href="thesis-final-layer.html">
+        <span class="theory-index">08</span>
+        <h2>Final Layer</h2>
+        <p>Tüm tez zincirinin sonuç katmanı, üst sentezi ve nihai yapısal bağlamı.</p>
+      </a>
+    </section>
+  </main>
 </body>
 </html>
+
 
