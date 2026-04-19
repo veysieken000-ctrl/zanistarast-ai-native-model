@@ -1,83 +1,113 @@
 <!DOCTYPE html>
 <html lang="tr">
-<style>
-#navbar {
-  margin-bottom: 20px;
-}
-</style>
-  <head>
+<head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Makaleler - Zanistarast</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Makaleler</title>
   <link rel="stylesheet" href="style.css" />
-
-  <style>
-    body {
-      <div id="navbar"></div>
-
-<script>
-fetch("components/navbar.html")
-  .then(res => res.text())
-  .then(data => {
-    document.getElementById("navbar").innerHTML = data;
-  });
-</script>
-      background: #0b0f1a;
-      color: white;
-      font-family: Arial, sans-serif;
-      padding: 40px;
-    }
-
-    h1 {
-      margin-bottom: 20px;
-    }
-
-    .list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      max-width: 700px;
-    }
-
-    .item {
-      display: block;
-      padding: 12px;
-      border-radius: 10px;
-      background: rgba(255,255,255,0.08);
-      text-decoration: none;
-      color: white;
-      transition: 0.2s;
-    }
-
-    .item:hover {
-      background: rgba(255,255,255,0.2);
-    }
-  </style>
 </head>
-
 <body>
+  <main class="container">
+    <a class="back-link" href="./paper.html">← Back to Papers</a>
 
-  <h1>Makaleler</h1>
+    <section class="hero">
+      <div class="hero-card">
+        <h1>Makaleler</h1>
+        <p>
+          Zanistarast çerçevesi içinde geliştirilen makale dizileri.
+          Bu bölüm, kuramsal çerçeveyi daha doğrudan okuma, yöntem,
+          toplum, tarih, ahlak ve medeniyet meseleleri üzerinden açar.
+        </p>
+        <p>
+          Theory ve Theses bölümlerindeki büyük yapılar burada daha
+          yoğun, uygulamalı ve tartışmalı başlıklar halinde işlenir.
+        </p>
+      </div>
+    </section>
 
-  <div class="list">
+    <section class="theory-grid">
 
-    <a href="makale-00-katmanli.html" class="item">00 - Katmanlı Varlık Okuması</a>
-    <a href="makale-01-ontoloji.html" class="item">01 - Ontoloji</a>
-    <a href="makale-02-epistemoloji.html" class="item">02 - Epistemoloji</a>
-    <a href="makale-03-aksiyoloji.html" class="item">03 - Aksiyoloji</a>
-    <a href="makale-04-tarih.html" class="item">04 - Tarih</a>
-    <a href="makale-05-siyaset.html" class="item">05 - Siyaset ve Toplum</a>
-    <a href="makale-06-bilim.html" class="item">06 - Bilim ve Bilgi Düzeni</a>
-    <a href="makale-07-medeniyet.html" class="item">07 - Medeniyet ve Gelecek</a>
-    <a href="makale-08-cografya.html" class="item">08 - Coğrafya</a>
-    <a href="makale-09-hukum.html" class="item">09 - Hüküm ve Ahlak</a>
-    <a href="makale-10-paradokslar.html" class="item">10 - Paradokslar</a>
-    <a href="makale-11-varlik-tarihi.html" class="item">11 - Varlık Tarihi</a>
-    <a href="makale-12-core.html" class="item">12 - Core</a>
+      <a class="theory-link-card" href="makale-00-katmanli-varlik-okumasi.html">
+        <span class="theory-index">00</span>
+        <h2>Katmanlı Varlık Okuması</h2>
+        <p>Varlığı tek çizgili değil; katman, taşıyıcılık, yöntem ve süreklilik içinde okuyan ana makale dizisi.</p>
+      </a>
 
-  </div>
+      <a class="theory-link-card" href="makale-01-ontoloji.html">
+        <span class="theory-index">01</span>
+        <h2>Ontoloji</h2>
+        <p>Varlığın yapısı, katmanları, sınırları ve düzen taşıyan ontolojik çekirdeği üzerine makaleler.</p>
+      </a>
 
+      <a class="theory-link-card" href="makale-02-epistemoloji.html">
+        <span class="theory-index">02</span>
+        <h2>Epistemoloji</h2>
+        <p>Bilginin kaynağı, taşınması, sınanması ve hakikatle ilişkisinin yöntemsel incelemesi.</p>
+      </a>
+
+      <a class="theory-link-card" href="makale-03-aksiyoloji.html">
+        <span class="theory-index">03</span>
+        <h2>Aksiyoloji</h2>
+        <p>Değer, tercih, yön, ölçü ve ahlaki ağırlığın düşünce sistemindeki kurucu rolü.</p>
+      </a>
+
+      <a class="theory-link-card" href="makale-04-tarih.html">
+        <span class="theory-index">04</span>
+        <h2>Tarih</h2>
+        <p>Tarihi olaylar toplamı değil; tanıklık, eşik, taşıyıcılık ve yön değişimi olarak okuyan makale dizisi.</p>
+      </a>
+
+      <a class="theory-link-card" href="makale-05-siyaset-ve-toplum.html">
+        <span class="theory-index">05</span>
+        <h2>Siyaset ve Toplum</h2>
+        <p>Toplumsal düzen, yönetim, meclis, irade, sınır ve ortak yaşama ait kurucu ilkeler.</p>
+      </a>
+
+      <a class="theory-link-card" href="makale-06-bilim-ve-bilgi-duzeni.html">
+        <span class="theory-index">06</span>
+        <h2>Bilim ve Bilgi Düzeni</h2>
+        <p>Bilginin nasıl kurulduğu, nasıl bozulduğu ve bilimsel düzenin hangi ilkelerle korunduğu.</p>
+      </a>
+
+      <a class="theory-link-card" href="makale-07-medeniyet-ve-gelecek.html">
+        <span class="theory-index">07</span>
+        <h2>Medeniyet ve Gelecek</h2>
+        <p>Medeniyetin taşıyıcı yapısı, çözülme riskleri ve gelecek tasavvurunun kurucu ekseni.</p>
+      </a>
+
+      <a class="theory-link-card" href="makale-08-cografya.html">
+        <span class="theory-index">08</span>
+        <h2>Coğrafya</h2>
+        <p>Mekânın pasif zemin değil; düzen, yön, tarih ve toplumsal oluşumla ilişkili kurucu alan oluşu.</p>
+      </a>
+
+      <a class="theory-link-card" href="makale-09-hukum-ve-ahlak.html">
+        <span class="theory-index">09</span>
+        <h2>Hüküm ve Ahlak</h2>
+        <p>Ahlakın hükme, hükmün düzene ve düzenin sorumluluğa dönüşümünü izleyen yazılar.</p>
+      </a>
+
+      <a class="theory-link-card" href="makale-10-paradokslar.html">
+        <span class="theory-index">10</span>
+        <h2>Paradokslar</h2>
+        <p>Modern düşüncenin açmazları, ikilikleri ve çözülmeyen gerilimlerini yapısal olarak ele alan makaleler.</p>
+      </a>
+
+      <a class="theory-link-card" href="makale-11-varlik-tarihi.html">
+        <span class="theory-index">11</span>
+        <h2>Varlık Tarihi</h2>
+        <p>Varlığın yalnız durumu değil; evreleri, taşınması, genişlemesi ve tarihsel açılımı üzerine okumalar.</p>
+      </a>
+
+      <a class="theory-link-card" href="makale-12-core.html">
+        <span class="theory-index">12</span>
+        <h2>Core</h2>
+        <p>Diğer makale dizilerine çekirdek oluşturan temel yoğunlaşmalar, merkez fikirler ve kısa kurucu metinler.</p>
+      </a>
+
+    </section>
+  </main>
 </body>
 </html>
+
 
