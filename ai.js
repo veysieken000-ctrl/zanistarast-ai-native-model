@@ -1,164 +1,166 @@
-function normalizeText(text) {
-  return String(text || "")
-    .toLowerCase()
-    .replaceAll("ı", "i")
-    .replaceAll("ğ", "g")
-    .replaceAll("ü", "u")
-    .replaceAll("û", "u")
-    .replaceAll("ş", "s")
-    .replaceAll("ö", "o")
-    .replaceAll("ç", "c");
-}
+/* =====================================================
+   ZANISTARAST AI ENGINE — STRONG VERSION
+   Works with:
+   1) paper.html answerBox
+   2) speech.html getZanistarastAnswer()
+===================================================== */
 
-function askAI(question) {
-  const answerBox = document.getElementById("answerBox");
-
-  if (!question || !window.KNOWLEDGE) {
-    answerBox.innerHTML = "Soru yok veya bilgi sistemi yüklenmedi.";
-    return;
+(function () {
+  function normalizeText(text) {
+    return String(text || "")
+      .toLowerCase()
+      .replaceAll("ı", "i")
+      .replaceAll("î", "i")
+      .replaceAll("ê", "e")
+      .replaceAll("û", "u")
+      .replaceAll("ü", "u")
+      .replaceAll("ö", "o")
+      .replaceAll("ş", "s")
+      .replaceAll("ğ", "g")
+      .replaceAll("ç", "c")
+      .trim();
   }
 
-  const q = normalizeText(question);
-  let matchedItems = [];
+  const CORE = {
+    hebun: {
+      title: "Hebûn Ontolojik Düzeni",
+      answer: `Hebûn, Zanistarast bilimsel sentezinde varlığın ontolojik düzenidir.
 
-  if (window.PAPER_PAGES && Array.isArray(window.PAPER_PAGES)) {
-    matchedItems = window.PAPER_PAGES.filter(page => {
-      const text = normalizeText(
-        page.title + " " + page.url + " " + page.groupTitle
-      );
+Hebûn; varlığı tek tek parçalar olarak değil, katmanlı ve ilişkisel bir bütün olarak yorumlar. Fiziksel, biyolojik, zihinsel, ruhsal ve daha üst varlık katmanları birbirinden kopuk değildir.
 
-      return q
-        .split(/\s+/)
-        .some(word => word.length > 2 && text.includes(word));
-    });
+Zanistarast’a göre Hebûn:
+1. Varlığın temel düzenidir.
+2. Merkez–çevre ilişkisiyle işler.
+3. Alt katman üst katmanın taşıyıcısıdır.
+4. İnsan, toplum ve medeniyet bu düzen içinde anlaşılır.
+5. Bilgi ancak varlık düzenine bağlandığında doğru yorumlanır.`
+    },
+
+    rabun: {
+      title: "Rabûn Yönetim Modeli",
+      answer: `Rabûn, Hebûn ontolojik düzeninin yönetim modelidir.
+
+Bir varlığın, toplumun veya sistemin doğru çalışması için merkez, çevre, bağ, ölçü ve amaç ilişkisi kurulmalıdır.
+
+Rabûn’a göre yönetim:
+1. Merkezsiz olamaz.
+2. Çevresiz tamamlanamaz.
+3. Bağ olmadan dağılır.
+4. Ölçü olmadan bozulur.
+5. Amaç olmadan anlamını kaybeder.`
+    },
+
+    zanabun: {
+      title: "Zanabûn Bilgi Düzeni",
+      answer: `Zanabûn, Zanistarast sisteminde bilginin oluşum ve doğrulama düzenidir.
+
+Bilgi sadece veri değildir. Bilgi; varlık, tanıklık, ahlak, hüküm ve gerçeklik ilişkisi içinde anlam kazanır.
+
+Zanabûn’a göre:
+1. Bilgi varlıktan kopamaz.
+2. Tanıklık bilgiyi güçlendirir.
+3. Ahlak bilgiyi yönlendirir.
+4. Hüküm bilgiyi sonuçlandırır.
+5. Hakikat bilgiyi tamamlar.`
+    },
+
+    medeniyet: {
+      title: "Medeniyet Modeli",
+      answer: `Zanistarast bilimsel sentezinde medeniyet; insan, toplum, ekonomi, hukuk, ahlak ve varlık düzeninin birleşmiş üst sistemidir.
+
+Medeniyet yalnızca şehir, teknoloji veya devlet değildir. Medeniyet; insanın Hebûn düzenine göre kendini, ailesini, toplumunu ve dünyayı düzenlemesidir.
+
+Sağlam medeniyet için:
+1. Ontolojik temel gerekir.
+2. Bilgi düzeni gerekir.
+3. Ahlaki merkez gerekir.
+4. Ekonomik denge gerekir.
+5. Yönetim modeli gerekir.`
+    },
+
+    mabun: {
+      title: "Mabûn / Yaşam Temelli Ekonomi",
+      answer: `Mabûn, Zanistarast bilimsel sentezinde yaşam temelli ekonomi anlayışıdır.
+
+Ekonomi yalnızca para, pazar ve üretim değildir. Ekonomi; rızık, ihtiyaç, emek, paylaşım, denge ve medeniyet sürekliliğiyle ilgilidir.
+
+Mabûn’a göre ekonomi:
+1. Yaşamı merkeze alır.
+2. İhtiyacı israftan ayırır.
+3. Üretimi ahlakla bağlar.
+4. Paylaşımı dengeye oturtur.
+5. Toplumu sömürüden korur.`
+    }
+  };
+
+  function detectTopic(q) {
+    if (q.includes("hebun") || q.includes("hebûn") || q.includes("varlik")) return "hebun";
+    if (q.includes("rabun") || q.includes("rabûn") || q.includes("yonetim")) return "rabun";
+    if (q.includes("zanabun") || q.includes("zanabûn") || q.includes("bilgi")) return "zanabun";
+    if (q.includes("medeniyet") || q.includes("uygarlik")) return "medeniyet";
+    if (q.includes("mabun") || q.includes("mabûn") || q.includes("ekonomi")) return "mabun";
+    return null;
   }
 
-  let explanation = "";
+  function buildFrameworkAnswer(question) {
+    const q = normalizeText(question);
+    const topic = detectTopic(q);
 
-  if (q.includes("hebun")) {
-    explanation = `
-      <p>
-        <strong>Hebûn</strong>, Zanistarast sisteminde varlığın ontolojik temelidir.
-        Katmanlar; yer, gök, merkez-çevre, nefs, ruh, insan yapısı, zaman ve ekonomik denge
-        üzerinden varlığın düzenini açıklar.
-      </p>
-    `;
-  } else if (q.includes("zanabun")) {
-    explanation = `
-      <p>
-        <strong>Zanabûn</strong>, bilginin oluşumu, tanıklık, hakikat, ahlak ve hükümle
-        ilişkisini açıklayan epistemolojik bilgi sistemidir.
-      </p>
-    `;
-  } else if (q.includes("mabun") || q.includes("ekonomi")) {
-    explanation = `
-      <p>
-        <strong>Mabûn / Yaşam Temelli Ekonomi</strong>, rızık, ihtiyaç, üretim, paylaşım
-        ve medeniyet düzeni arasındaki ilişkiyi açıklar.
-      </p>
-    `;
-  } else if (q.includes("medeniyet")) {
-    explanation = `
-      <p>
-        <strong>Medeniyet modeli</strong>, insan, toplum ve kâinat arasında ahlak, hüküm
-        ve ekonomi dengesi kuran üst sistemdir.
-      </p>
-    `;
-  } else if (matchedItems.length > 0) {
-    explanation = `
-      <p>
-        <strong>${question}</strong> Zanistarast bilgi ağı içinde aşağıdaki sayfalarla ilişkilidir.
-      </p>
-    `;
-  } else {
-    explanation = `
-      <p>Bu konu Zanistarast bilgi sisteminde henüz açık tanımlı değil.</p>
-    `;
-  }
+    if (topic && CORE[topic]) {
+      return `${CORE[topic].title}
 
-  let list = "<ul>";
+${CORE[topic].answer}
 
-  matchedItems.slice(0, 8).forEach(item => {
-    const title = item.title || "Başlıksız";
-    const group = item.groupTitle || item.category || "Zanistarast";
-    const url = item.url || "#";
-
-    list += `
-      <li>
-        <a href="${url}"><strong>${title}</strong></a><br>
-        <small>${group}</small>
-      </li>
-    `;
-  });
-
-  list += "</ul>";
-
-  answerBox.innerHTML = `
-    ${explanation}
-    <h3>İlgili sayfalar:</h3>
-    ${list}
-  `;
-}
-  const q = normalizeText(question);
-
-  let matchedItems = [];
-
-  Object.keys(window.KNOWLEDGE).forEach(key => {
-    const group = window.KNOWLEDGE[key];
-
-    if (key === "paperSystem" && window.PAPER_PAGES) {
-      matchedItems = matchedItems.concat(
-        window.PAPER_PAGES.filter(page => {
-          const text = normalizeText(
-            page.title + " " + page.url + " " + page.groupTitle
-          );
-          return q.split(/\s+/).some(word => word.length > 2 && text.includes(word));
-        })
-      );
-      return;
+Zanistarast yorumu:
+Bu konu önce Hebûn ontolojik düzeninde konumlandırılır. Sonra merkez–çevre bağı kurulur. Ardından Rabûn yönetim modeliyle işleyişi açıklanır.`;
     }
 
-    const keyMatch = q.includes(normalizeText(key));
-    const titleMatch = group && group.title && q.includes(normalizeText(group.title));
+    return `Zanistarast bilimsel sentezine göre bu soru şöyle yorumlanır:
 
-    if (keyMatch || titleMatch) {
-      if (Array.isArray(group)) {
-        matchedItems = matchedItems.concat(group);
-      } else if (group && Array.isArray(group.pages)) {
-        matchedItems = matchedItems.concat(group.pages);
-      }
-    }
-  });
+Soru: ${question}
 
-  let explanation = "";
+1. Önce konu Hebûn ontolojik düzeninde konumlandırılır.
+2. Hangi katmana ait olduğu belirlenir: fiziksel, biyolojik, zihinsel, toplumsal veya ruhsal.
+3. Merkez–çevre ilişkisi kurulur.
+4. Rabûn yönetim modeliyle işleyişi açıklanır.
+5. Zanabûn bilgi düzeniyle doğruluk ve anlam kontrol edilir.
 
-  if (matchedItems.length > 0) {
-    explanation += `<p><strong>${question}</strong> Zanistarast sisteminde şu yapılarla ilişkilidir:</p>`;
-  } else {
-    explanation = `<p>Bu konu Zanistarast bilgi sisteminde henüz tanımlı değil.</p>`;
+Sonuç:
+Bu konu Zanistarast sisteminde yalnız başına değil, varlık, bilgi, ahlak, yönetim ve medeniyet bütünlüğü içinde değerlendirilmelidir.`;
   }
 
-  let list = "<ul>";
+  window.getZanistarastAnswer = function (question) {
+    return buildFrameworkAnswer(question);
+  };
 
-  matchedItems.slice(0, 8).forEach(item => {
-    const title = item.title || "Başlıksız";
-    const group = item.groupTitle || item.category || "Zanistarast";
-    const url = item.url || "#";
+  window.askAI = function (question) {
+    const answerBox = document.getElementById("answerBox");
+    const answer = buildFrameworkAnswer(question);
 
-    list += `
-      <li>
-        <a href="${url}"><strong>${title}</strong></a><br>
-        <small>${group}</small>
-      </li>
-    `;
-  });
+    if (answerBox) {
+      answerBox.innerHTML = answer
+        .replaceAll("\n\n", "<br><br>")
+        .replaceAll("\n", "<br>");
+    }
 
-  list += "</ul>";
+    return answer;
+  };
 
-  answerBox.innerHTML = `
-    ${explanation}
-    <h3>İlgili sayfalar:</h3>
-    ${list}
-  `;
-}
+  window.ZanistarastAI = {
+    ask: buildFrameworkAnswer,
+    normalize: normalizeText,
+    core: CORE
+  };
+
+  console.log("✅ Zanistarast AI Engine loaded");
+})();
+📍 Nerede olmalı?
+Repo kökünde:
+Plain text
+zanistarast-ai-native-model / ai.js
+📄 speech.html script sırası
+En altta böyle kalsın:
+HTML
+<script src="knowledge.js"></script>
+<script src="ai.js"></script>
 
