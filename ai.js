@@ -10,65 +10,54 @@ function normalizeText(text) {
 }
 
 function askAI(question) {
-  const q = normalizeText(question);
-
   const answerBox = document.getElementById("answerBox");
-  if (!answerBox) return;
 
-  if (!q.trim()) {
-    answerBox.innerHTML = "Lütfen bir soru veya kavram yaz.";
+  if (!question || !window.KNOWLEDGE) {
+    answerBox.innerHTML = "Soru yok veya bilgi sistemi yüklenmedi.";
     return;
   }
 
-  if (!window.PAPER_PAGES || !Array.isArray(window.PAPER_PAGES)) {
-    answerBox.innerHTML = "Paper bilgi ağı yüklenmedi. knowledge.js bağlantısını kontrol et.";
-    return;
-  }
+  const q = question.toLowerCase();
 
-  const results = window.PAPER_PAGES
-    .map(page => {
-      const haystack = normalizeText(
-        page.title + " " + page.url + " " + page.groupTitle
-      );
+  // 🔍 ilgili başlıkları bul
+  const results = Object.keys(KNOWLEDGE).filter(key =>
+    q.includes(key.toLowerCase())
+  );
 
-      let score = 0;
+  // 🧠 AI yorum üret
+  let explanation = "";
 
-      q.split(/\s+/).forEach(word => {
-        if (word.length > 2 && haystack.includes(word)) score += 1;
-      });
-
-      if (haystack.includes(q)) score += 5;
-
-      return { ...page, score };
-    })
-    .filter(page => page.score > 0)
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 8);
-
-  if (!results.length) {
-    answerBox.innerHTML = `
-      <div class="ai-answer">
-        <strong>Sonuç bulunamadı.</strong>
-        <p>Başka bir kavramla dene: ontoloji, ahlak, ekonomi, zanabun, hebun, tarih, medeniyet.</p>
-      </div>
+  if (q.includes("hebun")) {
+    explanation = `
+    <p><strong>Hebûn</strong>, Zanistarast sisteminde varlığın ontolojik temelidir.</p>
+    <p>Bu kavram, varlığı katmanlı bir yapı olarak ele alır:
+    fiziksel, biyolojik ve zihinsel düzeylerin ötesinde,
+    merkez-çevre ilişkisiyle düzenlenen bir varlık sistemidir.</p>
     `;
-    return;
+  } else if (q.includes("zanabun")) {
+    explanation = `
+    <p><strong>Zanabûn</strong>, bilginin oluşumu ve katmanlı yapısını ifade eder.</p>
+    `;
+  } else {
+    explanation = `<p>Bu konu Zanistarast içinde araştırılıyor...</p>`;
   }
 
+  // 📚 listeyi oluştur
+  let list = "<ul>";
+
+  results.forEach(key => {
+    KNOWLEDGE[key].forEach(item => {
+      list += `<li><strong>${item.title}</strong><br>${item.category}</li>`;
+    });
+  });
+
+  list += "</ul>";
+
+  // 🎯 final çıktı
   answerBox.innerHTML = `
-    <div class="ai-answer">
-      <strong>Bulunan ilgili sayfalar:</strong>
-      <ul>
-        ${results.map(page => `
-          <li>
-            <a href="${page.url}">${page.title}</a>
-            <br>
-            <small>${page.groupTitle}</small>
-          </li>
-        `).join("")}
-      </ul>
-    </div>
+    ${explanation}
+    <h3>İlgili sayfalar:</h3>
+    ${list}
   `;
 }
-
 
