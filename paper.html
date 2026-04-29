@@ -91,7 +91,23 @@
 </p>     
       </div>
     </section>
+<section class="ai-box">
+  <h2>Zanistarast AI Soru Paneli</h2>
 
+  <div class="ask-row">
+    <input
+      id="questionInput"
+      type="text"
+      placeholder="Ontoloji, ahlak, ekonomi, Zanabûn, Hebûn, medeniyet..."
+    />
+
+    <button onclick="askAI(document.getElementById('questionInput').value)">
+      Sor
+    </button>
+  </div>
+
+  <div id="answerBox" class="answer-box"></div>
+</section>
     <section>
       <div class="section-card">
         <h2>Abstract</h2>
