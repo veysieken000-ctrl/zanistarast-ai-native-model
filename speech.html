@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- <title>Zanistarast AI & Speech</title>
+  <title>Zanistarast AI & Speech</title>
+
   <style>
     :root {
       --bg-1: #0a0f1c;
@@ -14,7 +16,7 @@
       --text: #f8fbff;
       --muted: #a8b3c7;
       --primary: #8ab4ff;
-      --primary-2: #b388ff;
+      --primary-2: #b38fff;
       --success: #57e389;
       --danger: #ff7b8a;
       --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
@@ -23,30 +25,40 @@
       --radius-md: 16px;
     }
 
-/* FORCE language select */
-#languageSelect {
-  position: relative !important;
+    * {
+      box-sizing: border-box;
+    }
 
-  font-size: 20px !important;
-  padding: 16px 24px !important;
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(138,180,255,0.18), transparent 40%),
+        radial-gradient(circle at top right, rgba(179,136,255,0.14), transparent 40%),
+        linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+    }
 
-  min-width: 200px !important;
-  height: 50px !important;
+    /* 🔥 DİL KUTUSU - FINAL */
+    #languageSelect {
+      font-size: 18px !important;
+      padding: 12px 18px !important;
+      min-width: 180px !important;
+      height: 48px !important;
 
-  border-radius: 14px !important;
+      border-radius: 12px !important;
+      background: rgba(20,30,40,0.95) !important;
+      color: #ffffff !important;
 
-  background: rgba(20,30,40,0.98) !important;
-  color: #ffffff !important;
+      border: 2px solid rgba(138,180,255,0.5) !important;
+      transform: scale(1.1);
+    }
 
-  border: 2px solid rgba(120,200,255,0.6) !important;
-
-  transform: scale(1.2); /* 🔥 kesin büyütür */
-}
-#languageSelect {
-  border: 5px solid red !important;
-}    
   </style>
- <head> 
+
+</head>
+
     * {
       box-sizing: border-box;
     }
