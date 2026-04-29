@@ -36,7 +36,15 @@
   function appendUserMessage(text) {
     return createMessage("user", text || "");
   }
+function processZanistarastAI(text) {
 
+  if (!window.getZanistarastAnswer) {
+    return "AI motor bulunamadı";
+  }
+
+  return window.getZanistarastAnswer(text);
+}
+ 
   function appendAssistantMessage(text) {
     return createMessage("assistant", text || "");
   }
@@ -85,7 +93,21 @@
       questionInput.value = text || "";
     }
   }
+document.getElementById("sendBtn")?.addEventListener("click", () => {
+  const text = getQuestion();
+  if (!text) return;
 
+  appendUserMessage(text);
+
+  try {
+    const answer = processZanistarastAI(text);
+    typeAssistantMessage(answer || "Cevap üretilemedi");
+  } catch (e) {
+    console.error(e);
+    typeAssistantMessage("Sistem hatası oluştu");
+  }
+});
+  
   window.UIRenderer = {
     appendUserMessage,
     appendAssistantMessage,
