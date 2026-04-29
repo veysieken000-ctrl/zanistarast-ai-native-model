@@ -1564,3 +1564,24 @@ select:focus,
 #langSelect:focus {
   box-shadow: 0 0 0 2px rgba(120,200,255,0.3);
 }
+/* LANGUAGE SELECT – FINAL */
+#languageSelect,
+.lang-select {
+  margin-top: 10px !important;
+  padding: 14px 22px !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  border-radius: 14px !important;
+  min-width: 180px !important;
+
+  background: rgba(20,30,40,0.95) !important;
+  color: #eaf6ff !important;
+  border: 1px solid rgba(255,255,255,0.18) !important;
+  outline: none !important;
+  cursor: pointer !important;
+}
+
+#languageSelect:hover,
+.lang-select:hover {
+  border-color: rgba(120,200,255,0.65) !important;
+}
