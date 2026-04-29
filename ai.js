@@ -4,6 +4,7 @@ function normalizeText(text) {
     .replaceAll("ı", "i")
     .replaceAll("ğ", "g")
     .replaceAll("ü", "u")
+    .replaceAll("û", "u")
     .replaceAll("ş", "s")
     .replaceAll("ö", "o")
     .replaceAll("ç", "c");
@@ -17,38 +18,58 @@ function askAI(question) {
     return;
   }
 
-  const q = question.toLowerCase();
+  const q = normalizeText(question);
 
   let matchedItems = [];
 
-  // 🔍 tüm knowledge içinde arama
-  Object.keys(KNOWLEDGE).forEach(key => {
-    if (q.includes(key.toLowerCase())) {
-      matchedItems = matchedItems.concat(KNOWLEDGE[key]);
+  Object.keys(window.KNOWLEDGE).forEach(key => {
+    const group = window.KNOWLEDGE[key];
+
+    if (key === "paperSystem" && window.PAPER_PAGES) {
+      matchedItems = matchedItems.concat(
+        window.PAPER_PAGES.filter(page => {
+          const text = normalizeText(
+            page.title + " " + page.url + " " + page.groupTitle
+          );
+          return q.split(/\s+/).some(word => word.length > 2 && text.includes(word));
+        })
+      );
+      return;
+    }
+
+    const keyMatch = q.includes(normalizeText(key));
+    const titleMatch = group && group.title && q.includes(normalizeText(group.title));
+
+    if (keyMatch || titleMatch) {
+      if (Array.isArray(group)) {
+        matchedItems = matchedItems.concat(group);
+      } else if (group && Array.isArray(group.pages)) {
+        matchedItems = matchedItems.concat(group.pages);
+      }
     }
   });
 
-  // 🧠 dinamik açıklama üret
   let explanation = "";
 
   if (matchedItems.length > 0) {
-    explanation += `<p><strong>${question}</strong> Zanistarast sisteminde aşağıdaki yapılarla ilişkilidir:</p>`;
-
-    explanation += `<ul>`;
-    matchedItems.slice(0, 3).forEach(item => {
-      explanation += `<li>${item.title} → ${item.category}</li>`;
-    });
-    explanation += `</ul>`;
-
+    explanation += `<p><strong>${question}</strong> Zanistarast sisteminde şu yapılarla ilişkilidir:</p>`;
   } else {
     explanation = `<p>Bu konu Zanistarast bilgi sisteminde henüz tanımlı değil.</p>`;
   }
 
-  // 📚 liste
   let list = "<ul>";
 
-  matchedItems.forEach(item => {
-    list += `<li><strong>${item.title}</strong><br>${item.category}</li>`;
+  matchedItems.slice(0, 8).forEach(item => {
+    const title = item.title || "Başlıksız";
+    const group = item.groupTitle || item.category || "Zanistarast";
+    const url = item.url || "#";
+
+    list += `
+      <li>
+        <a href="${url}"><strong>${title}</strong></a><br>
+        <small>${group}</small>
+      </li>
+    `;
   });
 
   list += "</ul>";
