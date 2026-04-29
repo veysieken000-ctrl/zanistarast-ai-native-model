@@ -955,8 +955,8 @@ footer .container {
 }
 
 .loading-dots span {
-  width: 10px;
-  height: 10px;
+  width: 14px; /* 10px idi */
+  height: 14px;
   border-radius: 50%;
   background: #ffffff;
   opacity: 0.35;
@@ -1317,18 +1317,28 @@ a.topic-chip:hover {
   line-height: 1.75 !important;
 }
 
-/* düşünüyor alanı */
+/* düşünüyor alanı FINAL */
 .thinking,
 #thinkingBox {
-  margin-top: 12px !important;
+  margin-top: 16px !important;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 14px !important;
-  border-radius: 999px !important;
-  background: rgba(255,255,255,0.06) !important;
-  border: 1px solid rgba(255,255,255,0.08) !important;
-  color: rgba(232, 240, 250, 0.84) !important;
+  gap: 14px;
+
+  padding: 16px 24px !important; /* büyüttük */
+  border-radius: 16px !important;
+
+  font-size: 20px !important; /* yazı büyüdü */
+  font-weight: 600;
+
+  min-width: 320px; /* genişlik */
+  justify-content: center;
+
+  background: rgba(255,255,255,0.08) !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+  color: rgba(232,240,250,0.95) !important;
+
+  box-shadow: 0 0 20px rgba(0,150,255,0.2);
 }
 
 /* footer */
