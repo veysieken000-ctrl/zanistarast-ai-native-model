@@ -19,41 +19,40 @@ function askAI(question) {
 
   const q = question.toLowerCase();
 
-  // 🔍 ilgili başlıkları bul
-  const results = Object.keys(KNOWLEDGE).filter(key =>
-    q.includes(key.toLowerCase())
-  );
+  let matchedItems = [];
 
-  // 🧠 AI yorum üret
+  // 🔍 tüm knowledge içinde arama
+  Object.keys(KNOWLEDGE).forEach(key => {
+    if (q.includes(key.toLowerCase())) {
+      matchedItems = matchedItems.concat(KNOWLEDGE[key]);
+    }
+  });
+
+  // 🧠 dinamik açıklama üret
   let explanation = "";
 
-  if (q.includes("hebun")) {
-    explanation = `
-    <p><strong>Hebûn</strong>, Zanistarast sisteminde varlığın ontolojik temelidir.</p>
-    <p>Bu kavram, varlığı katmanlı bir yapı olarak ele alır:
-    fiziksel, biyolojik ve zihinsel düzeylerin ötesinde,
-    merkez-çevre ilişkisiyle düzenlenen bir varlık sistemidir.</p>
-    `;
-  } else if (q.includes("zanabun")) {
-    explanation = `
-    <p><strong>Zanabûn</strong>, bilginin oluşumu ve katmanlı yapısını ifade eder.</p>
-    `;
+  if (matchedItems.length > 0) {
+    explanation += `<p><strong>${question}</strong> Zanistarast sisteminde aşağıdaki yapılarla ilişkilidir:</p>`;
+
+    explanation += `<ul>`;
+    matchedItems.slice(0, 3).forEach(item => {
+      explanation += `<li>${item.title} → ${item.category}</li>`;
+    });
+    explanation += `</ul>`;
+
   } else {
-    explanation = `<p>Bu konu Zanistarast içinde araştırılıyor...</p>`;
+    explanation = `<p>Bu konu Zanistarast bilgi sisteminde henüz tanımlı değil.</p>`;
   }
 
-  // 📚 listeyi oluştur
+  // 📚 liste
   let list = "<ul>";
 
-  results.forEach(key => {
-    KNOWLEDGE[key].forEach(item => {
-      list += `<li><strong>${item.title}</strong><br>${item.category}</li>`;
-    });
+  matchedItems.forEach(item => {
+    list += `<li><strong>${item.title}</strong><br>${item.category}</li>`;
   });
 
   list += "</ul>";
 
-  // 🎯 final çıktı
   answerBox.innerHTML = `
     ${explanation}
     <h3>İlgili sayfalar:</h3>
