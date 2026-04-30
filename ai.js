@@ -1,9 +1,9 @@
-/* =====================================================
-   ZANISTARAST AI ENGINE — STRONG VERSION
-   Works with:
-   1) paper.html answerBox
-   2) speech.html getZanistarastAnswer()
-===================================================== */
+/*
+  ZANISTARAST AI ENGINE — FINAL CLEAN VERSION
+  Works with:
+  1) paper.html answerBox
+  2) speech.html getZanistarastAnswer()
+*/
 
 (function () {
   function normalizeText(text) {
@@ -21,154 +21,200 @@
       .trim();
   }
 
-  const CORE = {
-    hebun: {
+  const TOPICS = [
+    {
+      id: "hebul",
+      keys: ["hebun", "hebin", "varlik", "ontoloji", "katman", "boyut"],
       title: "Hebûn Ontolojik Düzeni",
-      answer: `Hebûn, Zanistarast bilimsel sentezinde varlığın ontolojik düzenidir.
+      links: [
+        ["core-01.html", "Core 01 — Varlık Sistemleri ve Boyutları"],
+        ["core-02.html", "Core 02 — Varlık Yönetim Düzeni"],
+        ["ontology.html", "Ontology"]
+      ],
+      questions: [
+        "Hebûn nedir?",
+        "Varlık kaç katmandan oluşur?",
+        "Merkez-çevre ilişkisi varlıkta nasıl işler?"
+      ],
+      answer: `
+Hebûn, Zanistarast bilimsel sentezinde varlığın temel ontolojik düzenidir. Varlık yalnızca “var olan şeyler” toplamı değildir; fiziksel, biyolojik, zihinsel, toplumsal, ruhsal ve üst katmanların birbirine bağlandığı düzenli bir bütündür.
 
-Hebûn; varlığı tek tek parçalar olarak değil, katmanlı ve ilişkisel bir bütün olarak yorumlar. Fiziksel, biyolojik, zihinsel, ruhsal ve daha üst varlık katmanları birbirinden kopuk değildir.
+Bu bakışta varlık tek başına, kopuk veya rastgele ele alınmaz. Her varlık bir merkez, çevre, bağ, ölçü ve amaç ilişkisi içinde anlaşılır. Bu yüzden Hebûn düzeni, yalnızca ontoloji değil, aynı zamanda bilginin, ahlakın, yönetimin ve medeniyetin temel zeminidir.
 
-Zanistarast’a göre Hebûn:
-1. Varlığın temel düzenidir.
-2. Merkez–çevre ilişkisiyle işler.
-3. Alt katman üst katmanın taşıyıcısıdır.
-4. İnsan, toplum ve medeniyet bu düzen içinde anlaşılır.
-5. Bilgi ancak varlık düzenine bağlandığında doğru yorumlanır.`
+Zanistarast’a göre bir konu doğru anlaşılacaksa önce hangi varlık katmanına ait olduğu belirlenmelidir. Fiziksel düzeyde işleyen bir olay, biyolojik düzeyde aynı anlama gelmez; zihinsel veya toplumsal düzeye geçtiğinde yeni anlam katmanları kazanır. Bu yüzden Hebûn, bütün sistemi taşıyan ana iskelettir.
+`
     },
-
-    rabun: {
+    {
+      id: "rabun",
+      keys: ["rabun", "rabûn", "yonetim", "duzen", "merkez", "cevre", "bag"],
       title: "Rabûn Yönetim Modeli",
-      answer: `Rabûn, Hebûn ontolojik düzeninin yönetim modelidir.
+      links: [
+        ["core-02.html", "Core 02 — Varlık Yönetim Düzeni"],
+        ["core-07-hukuk.html", "Core 07 — Hukuk Felsefesi"],
+        ["core-13-zanistarast-medeniyet-modeli.html", "Core 13 — Medeniyet Modeli"]
+      ],
+      questions: [
+        "Rabûn yönetim modeli nedir?",
+        "Merkez, çevre ve bağ nasıl kurulur?",
+        "Yönetim neden sadece iktidar değildir?"
+      ],
+      answer: `
+Rabûn, Hebûn ontolojik düzeninin yönetim modelidir. Bir varlığın, toplumun veya sistemin doğru işlemesi için merkez, çevre, bağ, ölçü ve amaç ilişkisi kurulmalıdır.
 
-Bir varlığın, toplumun veya sistemin doğru çalışması için merkez, çevre, bağ, ölçü ve amaç ilişkisi kurulmalıdır.
+Bu modele göre yönetim yalnızca emir vermek, kontrol etmek veya iktidar kullanmak değildir. Yönetim; varlığı koruyan, çevreyle ilişki kuran, ölçüyü bozmayan ve amacı kaybettirmeyen düzen kurma faaliyetidir.
 
-Rabûn’a göre yönetim:
-1. Merkezsiz olamaz.
-2. Çevresiz tamamlanamaz.
-3. Bağ olmadan dağılır.
-4. Ölçü olmadan bozulur.
-5. Amaç olmadan anlamını kaybeder.`
+Merkez olmazsa sistem dağılır. Çevre olmazsa merkez kapanır. Bağ olmazsa ilişki kopar. Ölçü olmazsa düzen bozulur. Amaç olmazsa sistem anlamını kaybeder. Bu yüzden Rabûn yönetim modeli, Zanistarast sisteminde hukuk, siyaset, toplum, ekonomi ve medeniyet açıklamalarının temel omurgasıdır.
+`
     },
+    {
+      id: "zanabun",
+      keys: ["zanabun", "zanabûn", "bilgi", "bilim", "hakikat", "dogruluk", "epistemoloji"],
+      title: "Zanabûn Bilgi Sistemi",
+      links: [
+        ["core-03.html", "Core 03 — Akıl ve Bilginin Varlığı"],
+        ["core-06-bilim.html", "Core 06 — Bilim"],
+        ["paper.html", "Paper"]
+      ],
+      questions: [
+        "Bilgi nasıl doğrulanır?",
+        "Bilim neden bozulur?",
+        "Hakikat ile veri arasındaki fark nedir?"
+      ],
+      answer: `
+Zanabûn, Zanistarast sisteminde bilginin oluşum ve doğrulama düzenidir. Bilgi yalnızca veri değildir; varlıkla, tanıklıkla, ahlakla, hükümle ve gerçeklikle ilişkisi içinde anlam kazanır.
 
-    zanabun: {
-      title: "Zanabûn Bilgi Düzeni",
-      answer: `Zanabûn, Zanistarast sisteminde bilginin oluşum ve doğrulama düzenidir.
+Bu nedenle doğru bilgi, sadece zihinsel bir kabul değil; varlık düzenine uygun, sınanabilir, tutarlı ve anlamlı bir yapıdır. Bilgi varlıktan koparsa soyut iddiaya dönüşür. Ahlaktan koparsa araçsallaşır. Hükümden koparsa etkisiz kalır. Hakikatten koparsa yanıltıcı olur.
 
-Bilgi sadece veri değildir. Bilgi; varlık, tanıklık, ahlak, hüküm ve gerçeklik ilişkisi içinde anlam kazanır.
-
-Zanabûn’a göre:
-1. Bilgi varlıktan kopamaz.
-2. Tanıklık bilgiyi güçlendirir.
-3. Ahlak bilgiyi yönlendirir.
-4. Hüküm bilgiyi sonuçlandırır.
-5. Hakikat bilgiyi tamamlar.`
+Zanistarast bilimsel sentezi içinde bilgi, Hebûn düzeninde konumlandırılır, Zanabûn içinde doğrulanır ve Rabûn modeliyle işlevsel hale getirilir.
+`
     },
+    {
+      id: "tarih",
+      keys: ["tarih", "varlik tarihi", "kurdistan", "ortadogu", "medeniyet tarihi", "gecmis"],
+      title: "Varlık Tarihi",
+      links: [
+        ["makale-11-varlik-tarihi.html", "Makale 11 — Varlık Tarihi"],
+        ["core-09-kurdistan-ortadogu-varlik-tarihi.html", "Core 09 — Kürdistan, Ortadoğu ve Varlık Tarihi"],
+        ["core-07-hukuk.html", "Core 07 — Hukuk Felsefesi"]
+      ],
+      questions: [
+        "Tarih neden sadece olay değildir?",
+        "Ahlak ile hüküm tarihi nasıl kurar?",
+        "Varlık tarihi insanı nasıl açıklar?"
+      ],
+      answer: `
+Zanistarast yaklaşımında tarih, yalnızca olayların zaman içindeki dizilişi değildir. Tarih; varlığın, bilginin, ahlakın ve hükmün insan toplulukları üzerinde görünür hale gelme sürecidir.
 
-    medeniyet: {
-      title: "Medeniyet Modeli",
-      answer: `Zanistarast bilimsel sentezinde medeniyet; insan, toplum, ekonomi, hukuk, ahlak ve varlık düzeninin birleşmiş üst sistemidir.
+Bu yüzden Varlık Tarihi, “ne oldu?” sorusundan önce “hangi düzen kuruldu, hangi denge bozuldu, hangi özne ortaya çıktı?” sorusunu sorar. Tarihin merkezinde bilen özne, ahlaki sorumluluk, hüküm düzeni ve medeniyetin kurulma/çözülme ilişkisi vardır.
 
-Medeniyet yalnızca şehir, teknoloji veya devlet değildir. Medeniyet; insanın Hebûn düzenine göre kendini, ailesini, toplumunu ve dünyayı düzenlemesidir.
-
-Sağlam medeniyet için:
-1. Ontolojik temel gerekir.
-2. Bilgi düzeni gerekir.
-3. Ahlaki merkez gerekir.
-4. Ekonomik denge gerekir.
-5. Yönetim modeli gerekir.`
+Bir toplumun yükselişi yalnızca güçle açıklanamaz; bilgi, ahlak, yönetim, ekonomi ve anlam düzeni birlikte çalıştığında medeniyet oluşur. Çöküş de yalnızca askeri yenilgi değildir; ahlak-hüküm-bilgi-ekonomi bağının kopmasıdır.
+`
     },
+    {
+      id: "medeniyet",
+      keys: ["medeniyet", "uygarlik", "newroz", "kawa", "toplum", "insan"],
+      title: "Zanistarast Medeniyet Modeli",
+      links: [
+        ["core-13-zanistarast-medeniyet-modeli.html", "Core 13 — Zanistarast Medeniyet Modeli"],
+        ["core-08-insan-ve-toplum.html", "Core 08 — İnsan ve Toplum"],
+        ["paper.html", "Paper"]
+      ],
+      questions: [
+        "Medeniyet nedir?",
+        "Toplum nasıl kurulur?",
+        "Newroza Kawa uygarlığı hangi temele dayanır?"
+      ],
+      answer: `
+Medeniyet, Zanistarast bilimsel sentezinde yalnızca şehir, teknoloji, devlet veya kültür değildir. Medeniyet; insanın Hebûn düzenine göre kendini, ailesini, toplumunu, bilgisini, ahlakını, hukukunu ve ekonomisini bir bütün içinde kurmasıdır.
 
-    mabun: {
-      title: "Mabûn / Yaşam Temelli Ekonomi",
-      answer: `Mabûn, Zanistarast bilimsel sentezinde yaşam temelli ekonomi anlayışıdır.
+Sağlam medeniyet için ontolojik temel, doğru bilgi düzeni, ahlaki merkez, ekonomik denge ve yönetim modeli gerekir. Bunlardan biri koparsa medeniyet dışarıdan güçlü görünse bile içeriden çözülür.
 
-Ekonomi yalnızca para, pazar ve üretim değildir. Ekonomi; rızık, ihtiyaç, emek, paylaşım, denge ve medeniyet sürekliliğiyle ilgilidir.
-
-Mabûn’a göre ekonomi:
-1. Yaşamı merkeze alır.
-2. İhtiyacı israftan ayırır.
-3. Üretimi ahlakla bağlar.
-4. Paylaşımı dengeye oturtur.
-5. Toplumu sömürüden korur.`
+Bu nedenle Zanistarast medeniyet modeli, varlık düzeni ile toplumsal düzen arasında bağ kurar. İnsan yalnızca birey değil; aile, toplum, tarih ve gelecek taşıyan bir varlık olarak ele alınır.
+`
     }
-  };
+  ];
 
-  function detectTopic(q) {
-    if (q.includes("hebun") || q.includes("hebûn") || q.includes("varlik")) return "hebun";
-    if (q.includes("rabun") || q.includes("rabûn") || q.includes("yonetim")) return "rabun";
-    if (q.includes("zanabun") || q.includes("zanabûn") || q.includes("bilgi")) return "zanabun";
-    if (q.includes("medeniyet") || q.includes("uygarlik")) return "medeniyet";
-    if (q.includes("mabun") || q.includes("mabûn") || q.includes("ekonomi")) return "mabun";
-    return null;
+  function detectTopic(question) {
+    const q = normalizeText(question);
+    return TOPICS.find(topic => topic.keys.some(key => q.includes(key))) || null;
+  }
+
+  function buildLinks(topic) {
+    if (!topic || !topic.links) return "";
+    return `
+<h3>İlgili Okuma Bağlantıları</h3>
+<ul>
+${topic.links.map(([url, label]) => `<li><a href="${url}">${label}</a></li>`).join("")}
+</ul>`;
+  }
+
+  function buildQuestions(topic) {
+    const list = topic && topic.questions ? topic.questions : [
+      "Bu konu hangi varlık katmanına girer?",
+      "Bu konuda bilgi nasıl doğrulanır?",
+      "Bu mesele Rabûn yönetim modeliyle nasıl açıklanır?"
+    ];
+
+    return `
+<h3>Önerilen Sorular</h3>
+<ul>
+${list.map(q => `<li>${q}</li>`).join("")}
+</ul>`;
   }
 
   function buildFrameworkAnswer(question) {
-    const q = normalizeText(question);
-    const topic = detectTopic(q);
-     
-  // === ANA ANALİZ ===
-  let analysis = `
-    <h3>Zanistarast Bilimsel Analizi</h3>
+    const topic = detectTopic(question);
 
-    <p><strong>${question}</strong> konusu Zanistarast bilimsel sentezinde parçalı değil; varlık, bilgi ve düzen bütünlüğü içinde ele alınır.</p>
+    const title = topic ? topic.title : "Zanistarast Bilimsel Analizi";
+    const coreAnswer = topic ? topic.answer : `
+Bu konu Zanistarast bilimsel sentezinde tek başına ve parçalı biçimde ele alınmaz. Önce Hebûn ontolojik düzeninde konumlandırılır; sonra Zanabûn bilgi sistemiyle anlamı ve doğruluğu değerlendirilir; ardından Rabûn yönetim modeliyle işleyişi açıklanır.
 
-    <h4>1. Hebûn Ontolojik Düzeni</h4>
-    <p>Bu konu önce Hebûn ontolojik düzeninde konumlandırılır. Varlık; fiziksel, biyolojik, zihinsel ve toplumsal katmanların merkez–çevre ilişkisiyle kurduğu bir bütündür.</p>
+Bu yaklaşımda her soru, varlık, bilgi, ahlak, yönetim, ekonomi ve medeniyet ilişkisi içinde okunur. Bir kavramın değeri yalnızca tanımında değil; hangi katmana ait olduğu, hangi bağları kurduğu ve hangi düzeni güçlendirdiği üzerinden anlaşılır.
+`;
 
-    <h4>2. Zanabûn Bilgi Sistemi</h4>
-    <p>Bilgi bu konu içinde sadece veri değil; doğrulanabilir, anlamlı ve varlıkla uyumlu bir yapı olarak değerlendirilir.</p>
+    return `
+<h2>${title}</h2>
 
-    <h4>3. Rabûn Yönetim Modeli</h4>
-    <p>Her yapı merkez, çevre ve bağ üzerinden işler. Bu konu da bu üçlü sistem içinde analiz edilir.</p>
+<p><strong>Soru:</strong> ${question}</p>
 
-    <h4>4. Medeniyet Sonucu</h4>
-    <p>Bu konu insan, toplum ve medeniyet düzenine nasıl yansıdığı üzerinden tamamlanır.</p>
-  `;
-    if (topic && CORE[topic]) {
-      return `${CORE[topic].title}
+${coreAnswer}
 
-${CORE[topic].answer}
+<h3>Zanistarast Bilimsel Sentezine Göre Yorum</h3>
 
-Zanistarast yorumu:
-Bu konu önce Hebûn ontolojik düzeninde konumlandırılır. Sonra merkez-çevre bağı kurulur. Ardından Rabûn yönetim modeliyle işleyişi açıklanır.`;
+<p>Bu mesele önce <strong>Hebûn ontolojik düzeni</strong> içinde konumlandırılır. Çünkü hiçbir konu yalnız başına, kopuk ve rastgele değildir. Her konu bir varlık katmanına, bir bilgi düzenine, bir yönetim ilişkisine ve bir medeniyet sonucuna bağlıdır.</p>
+
+<p>İkinci aşamada konu <strong>Zanabûn bilgi sistemi</strong> açısından değerlendirilir. Burada amaç yalnızca bilgi vermek değil; bilginin doğru, tutarlı, anlamlı ve varlıkla uyumlu olup olmadığını göstermektir.</p>
+
+<p>Üçüncü aşamada konu <strong>Rabûn yönetim modeli</strong> ile açıklanır. Merkez, çevre, bağ, ölçü ve amaç kurulmadan hiçbir sistem tamamlanmış sayılmaz. Bu nedenle yönetim yalnızca siyaset değil; varlığı koruyan düzen kurma biçimidir.</p>
+
+<p>Sonuç olarak bu konu; varlık, bilgi, ahlak, hüküm, ekonomi, toplum ve medeniyet bütünlüğü içinde değerlendirilmelidir. Zanistarast sistemi, parçaları ayrı ayrı değil, birbirine bağlı bir düzen halinde okur.</p>
+
+${buildLinks(topic)}
+${buildQuestions(topic)}
+`;
   }
 
-  return `Zanistarast bilimsel sentezine göre bu soru şöyle yorumlanır:
+  window.getZanistarastAnswer = function (question) {
+    return buildFrameworkAnswer(question);
+  };
 
-Soru: ${question}
+  window.askAI = function (question) {
+    const answerBox = document.getElementById("answerBox");
+    const answer = buildFrameworkAnswer(question || "");
 
-1. Önce konu Hebûn ontolojik düzeninde konumlandırılır.
-2. Hangi katmana ait olduğu belirlenir: fiziksel, biyolojik, zihinsel, toplumsal veya ruhsal.
-3. Merkez-çevre ilişkisi kurulur.
-4. Rabûn yönetim modeliyle işleyişi açıklanır.
-5. Zanabûn bilgi düzeniyle doğruluk ve anlam kontrol edilir.
+    if (answerBox) {
+      answerBox.innerHTML = answer;
+    }
 
-Sonuç:
-Bu konu Zanistarast sisteminde yalnız başına değil; varlık, bilgi, ahlak, yönetim ve medeniyet bütünlüğü içinde değerlendirilmelidir.`;
-}
+    return answer;
+  };
 
-window.getZanistarastAnswer = function (question) {
-  return buildFrameworkAnswer(question);
-};
+  window.ZanistarastAI = {
+    ask: buildFrameworkAnswer,
+    normalize: normalizeText,
+    topics: TOPICS
+  };
 
-window.askAI = function (question) {
-  const answerBox = document.getElementById("answerBox");
-  const answer = buildFrameworkAnswer(question);
-
-  if (answerBox) {
-    answerBox.innerHTML = answer
-      .replaceAll("\n\n", "<br><br>")
-      .replaceAll("\n", "<br>");
-  }
-
-  return answer;
-};
-
-window.ZanistarastAI = {
-  ask: buildFrameworkAnswer,
-  normalize: normalizeText,
-  core: CORE
-};
-
-console.log("✅ Zanistarast AI Engine loaded");
+  console.log("✅ Zanistarast AI Engine loaded");
 })();
+
