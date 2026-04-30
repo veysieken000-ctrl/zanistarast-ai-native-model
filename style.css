@@ -1585,3 +1585,33 @@ select:focus,
 .lang-select:hover {
   border-color: rgba(120,200,255,0.65) !important;
 }
+.core-list {
+  display: grid;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.core-item {
+  display: block;
+  padding: 20px 22px;
+  border-radius: 18px;
+  text-decoration: none;
+  color: inherit;
+  background: rgba(15, 23, 42, 0.78);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.core-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(138,180,255,0.45);
+}
+
+.core-item h3 {
+  margin: 0;
+}
+
+.core-item p {
+  margin: 8px 0 0;
+  color: rgba(226,236,248,0.72);
+}
+
