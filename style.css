@@ -1631,4 +1631,61 @@ select:focus,
   background: rgba(120, 200, 255, 0.22);
   transform: translateY(-1px);
 }
+/* AI cevap kart UI */
+#answerBox {
+  padding: 28px !important;
+  border-radius: 28px !important;
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.92),
+    rgba(17, 24, 39, 0.86)
+  ) !important;
+  border: 1px solid rgba(120, 200, 255, 0.18) !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28) !important;
+  line-height: 1.75 !important;
+}
+
+#answerBox h2 {
+  margin: 0 0 18px !important;
+  font-size: 30px !important;
+  color: #ffffff !important;
+}
+
+#answerBox h3 {
+  margin: 30px 0 12px !important;
+  padding: 10px 14px !important;
+  border-left: 4px solid rgba(120, 200, 255, 0.85) !important;
+  border-radius: 12px !important;
+  background: rgba(120, 200, 255, 0.10) !important;
+  color: #ffffff !important;
+}
+
+#answerBox p {
+  margin: 0 0 16px !important;
+  color: rgba(248, 251, 255, 0.92) !important;
+}
+
+#answerBox ul {
+  margin: 12px 0 22px 22px !important;
+  padding: 0 !important;
+}
+
+#answerBox li {
+  margin: 8px 0 !important;
+}
+
+#answerBox a {
+  color: #9bdcff !important;
+  text-decoration: none !important;
+  font-weight: 700 !important;
+}
+
+#answerBox a:hover {
+  text-decoration: underline !important;
+}
+
+#answerBox strong {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+}
 
