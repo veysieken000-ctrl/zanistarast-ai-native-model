@@ -158,8 +158,6 @@ Bu konu Zanistarast sisteminde yalnız başına değil, varlık, bilgi, ahlak, y
 window.askAI = function(question) {
   const answerBox = document.getElementById("answerBox");
 
-  if (!answerBox) return;
-
   if (!question || !question.trim()) {
     answerBox.innerHTML = "Lütfen bir soru yaz.";
     return;
@@ -167,13 +165,120 @@ window.askAI = function(question) {
 
   const q = question.toLowerCase();
 
-  if (q.includes("hebun") || q.includes("hebûn")) {
-    answerBox.innerHTML = `
-      <h3>Hebûn</h3>
-      <p>Hebûn, Zanistarast bilimsel sentezinde varlığın ontolojik düzenidir.</p>
-      <p>Varlık; fiziksel, biyolojik, zihinsel, toplumsal ve üst katmanların merkez–çevre ilişkisiyle kurduğu bütünlüktür.</p>
+  // === ANA ANALİZ ===
+  let analysis = `
+    <h3>Zanistarast Bilimsel Analizi</h3>
+
+    <p><strong>${question}</strong> konusu Zanistarast bilimsel sentezinde parçalı değil; varlık, bilgi ve düzen bütünlüğü içinde ele alınır.</p>
+
+    <h4>1. Hebûn Ontolojik Düzeni</h4>
+    <p>Bu konu önce Hebûn ontolojik düzeninde konumlandırılır. Varlık; fiziksel, biyolojik, zihinsel ve toplumsal katmanların merkez–çevre ilişkisiyle kurduğu bir bütündür.</p>
+
+    <h4>2. Zanabûn Bilgi Sistemi</h4>
+    <p>Bilgi bu konu içinde sadece veri değil; doğrulanabilir, anlamlı ve varlıkla uyumlu bir yapı olarak değerlendirilir.</p>
+
+    <h4>3. Rabûn Yönetim Modeli</h4>
+    <p>Her yapı merkez, çevre ve bağ üzerinden işler. Bu konu da bu üçlü sistem içinde analiz edilir.</p>
+
+    <h4>4. Medeniyet Sonucu</h4>
+    <p>Bu konu insan, toplum ve medeniyet düzenine nasıl yansıdığı üzerinden tamamlanır.</p>
+  `;
+
+  // === DİNAMİK KONU TESPİTİ ===
+  let links = "";
+  let suggestions = "";
+
+  // === TARİH ===
+  if (q.includes("tarih")) {
+    analysis += `
+      <h4>Derin Yorum</h4>
+      <p>Zanistarast yaklaşımında tarih, olaylar dizisi değil; varlığın, bilginin ve ahlakın insan üzerinden görünür hale gelmesidir.</p>
     `;
-    return;
+
+    links = `
+      <h4>İlgili Makaleler</h4>
+      <ul>
+        <li><a href="core-09-kurdistan-ortadogu-varlik-tarihi.html">Varlık Tarihi</a></li>
+        <li><a href="core-07-hukuk.html">Hüküm ve Ahlak</a></li>
+        <li><a href="core-08-insan-ve-toplum.html">İnsan ve Toplum</a></li>
+      </ul>
+    `;
+
+    suggestions = `
+      <h4>Önerilen Sorular</h4>
+      <ul>
+        <li>Tarih neden sadece olay değildir?</li>
+        <li>Ahlak ve tarih ilişkisi nedir?</li>
+        <li>Medeniyetler neden çöker?</li>
+      </ul>
+    `;
+  }
+
+  // === BİLİM ===
+  else if (q.includes("bilim")) {
+    analysis += `
+      <h4>Derin Yorum</h4>
+      <p>Bilim, Zanistarast'a göre doğayı anlamak değil; doğaya uygun sistem kurma sürecidir.</p>
+    `;
+
+    links = `
+      <h4>İlgili Makaleler</h4>
+      <ul>
+        <li><a href="core-06-bilim.html">Bilim</a></li>
+        <li><a href="core-03.html">Bilgi ve Akıl</a></li>
+      </ul>
+    `;
+
+    suggestions = `
+      <h4>Önerilen Sorular</h4>
+      <ul>
+        <li>Bilim neden bozulur?</li>
+        <li>Doğru bilgi nasıl doğrulanır?</li>
+      </ul>
+    `;
+  }
+
+  // === VARLIK ===
+  else if (q.includes("varlık") || q.includes("hebun")) {
+    analysis += `
+      <h4>Derin Yorum</h4>
+      <p>Varlık, Zanistarast'ta parçalı değil; katmanlı ve bütünsel bir sistemdir.</p>
+    `;
+
+    links = `
+      <h4>İlgili Makaleler</h4>
+      <ul>
+        <li><a href="core-01.html">Varlık Sistemleri</a></li>
+        <li><a href="core-02.html">Varlık Yönetimi</a></li>
+      </ul>
+    `;
+
+    suggestions = `
+      <h4>Önerilen Sorular</h4>
+      <ul>
+        <li>Hebûn nedir?</li>
+        <li>Varlık kaç katmandır?</li>
+      </ul>
+    `;
+  }
+
+  // === DEFAULT ===
+  else {
+    links = `
+      <h4>İlgili Makaleler</h4>
+      <ul>
+        <li><a href="core.html">Core Makaleler</a></li>
+        <li><a href="paper.html">Paper</a></li>
+      </ul>
+    `;
+
+    suggestions = `
+      <h4>Önerilen Sorular</h4>
+      <ul>
+        <li>Bu konu hangi varlık katmanına girer?</li>
+        <li>Bilgi bu konuda nasıl doğrulanır?</li>
+      </ul>
+    `;
   }
 
   answerBox.innerHTML = `
