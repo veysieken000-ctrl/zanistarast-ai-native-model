@@ -49,10 +49,84 @@ let recognition = null;
 
 function answer(q){
   const s = q.toLowerCase();
+
+  // ====== HEBUN ======
   if(s.includes("hebun") || s.includes("hebûn")){
-    return "Hebûn, Zanistarast bilimsel sentezinde varlığın ontolojik düzenidir. Varlık; fiziksel, biyolojik, zihinsel ve üst katmanların merkez-çevre ilişkisiyle kurduğu bütündür.";
+    return `
+<h3>HEBÛN ONTOLOJİK DÜZENİ</h3>
+
+<p><b>Hebûn</b>, Zanistarast bilimsel sentezinde varlığın temel ontolojik düzenini ifade eder. 
+Bu kavram, varlığın sadece mevcut olmasını değil, aynı zamanda katmanlı bir yapı içerisinde 
+düzenli ve anlamlı bir sistem olarak var olmasını açıklar.</p>
+
+<h4>1. Katmanlı Varlık Yapısı</h4>
+<p>Hebûn, varlığı tek boyutlu değil, çok katmanlı bir yapı olarak ele alır. Bu yapı:</p>
+<ul>
+<li>Fiziksel katman</li>
+<li>Biyolojik katman</li>
+<li>Zihinsel katman</li>
+<li>Ruhsal/derin bilinç katmanı</li>
+<li>İnsani/ahlaki katman</li>
+<li>Ahiret/üst varlık katmanı</li>
+</ul>
+
+<p>Bu sistem <b>6+Ehad</b> yapısı ile tamamlanır. Ehad, tüm katmanların birliğini temsil eder.</p>
+
+<h4>2. Merkez-Çevre İlişkisi</h4>
+<p>Hebûn düzeninde her varlık bir merkez ve o merkeze bağlı bir çevre ile tanımlanır. 
+Merkez anlam üretir, çevre ise bu anlamın yayılımını sağlar.</p>
+
+<h4>3. Dinamik Varlık</h4>
+<p>Hebûn statik bir varlık anlayışı değildir. Sürekli oluş, dönüşüm ve yeniden yapılanma içerir.</p>
+
+<h4>4. Zanistarast İçindeki Yeri</h4>
+<p>Hebûn, sistemin ontolojik temelidir. Üzerine şu yapılar kurulur:</p>
+<ul>
+<li>Zanabûn → Bilgi (epistemoloji)</li>
+<li>Mabûn → Ekonomi / sürdürülebilirlik</li>
+<li>Rabûn → Yönetim modeli</li>
+</ul>
+
+<p><b>Sonuç:</b> Hebûn, varlığın sadece “olduğu” değil, “nasıl ve neden düzen içinde var olduğu” sorusunun cevabıdır.</p>
+`;
   }
-  return "Zanistarast yorumuna göre bu konu önce Hebûn düzeninde konumlandırılır, sonra merkez-çevre bağı ve Rabûn yönetim modeliyle açıklanır.";
+
+  // ====== ZANİSTARAST ======
+  if(s.includes("zanistarast")){
+    return `
+<h3>ZANİSTARAST BİLİMSEL SENTEZİ</h3>
+
+<p>Zanistarast, ontoloji, epistemoloji ve yönetim sistemlerini tek bir çatı altında birleştiren 
+yapısal bir bilim modelidir.</p>
+
+<h4>1. Temel Yapı</h4>
+<ul>
+<li>Hebûn → Ontolojik düzen</li>
+<li>Zanabûn → Bilgi üretimi</li>
+<li>Mabûn → Ekonomik yapı</li>
+<li>Rabûn → Yönetim modeli</li>
+</ul>
+
+<h4>2. Amaç</h4>
+<p>Doğa ile uyumlu, sürdürülebilir ve doğrulanabilir bir sistem kurmak.</p>
+
+<h4>3. Yöntem</h4>
+<p>Her bilgi önce varlık düzleminde konumlandırılır, sonra merkez-çevre ilişkisi ile analiz edilir.</p>
+
+<h4>4. Sonuç</h4>
+<p>Zanistarast, ideoloji değil; test edilebilir yapısal bir modeldir.</p>
+`;
+  }
+
+  // ====== DEFAULT ======
+  return `
+<h3>ZANİSTARAST ANALİZİ</h3>
+
+<p>Bu konu Zanistarast sisteminde doğrudan cevaplanmaz. Önce varlık düzlemine (Hebûn) yerleştirilir, 
+ardından bilgi (Zanabûn) ve yönetim (Rabûn) ilişkileri ile analiz edilir.</p>
+
+<p>Daha spesifik bir kavram sorarsan, sana makale düzeyinde detaylı açıklama verebilirim.</p>
+`;
 }
 
 function ask(){
