@@ -134,10 +134,43 @@ Bu nedenle Zanistarast medeniyet modeli, varlık düzeni ile toplumsal düzen ar
     }
   ];
 
-  function detectTopic(question) {
+ function detectTopic(question) {
     const q = normalizeText(question);
-    return TOPICS.find(topic => topic.keys.some(key => q.includes(key))) || null;
-  }
+
+    // ÖNCE en spesifikleri yakala
+    if (
+        q.includes("merkez") ||
+        q.includes("cevre") ||
+        q.includes("bağ") ||
+        q.includes("yonetim") ||
+        q.includes("rabun")
+    ) return TOPICS.find(t => t.id === "rabun");
+
+    if (
+        q.includes("bilim") ||
+        q.includes("dogru") ||
+        q.includes("bilgi") ||
+        q.includes("zanabun")
+    ) return TOPICS.find(t => t.id === "zanabun");
+
+    if (
+        q.includes("ekonomi") ||
+        q.includes("mabun")
+    ) return TOPICS.find(t => t.id === "mabun");
+
+    if (
+        q.includes("toplum") ||
+        q.includes("medeniyet")
+    ) return TOPICS.find(t => t.id === "medeniyet");
+
+    if (
+        q.includes("varlik") ||
+        q.includes("hebun")
+    ) return TOPICS.find(t => t.id === "hebun");
+
+    return null;
+}
+
 
   function buildLinks(topic) {
     if (!topic || !topic.links) return "";
