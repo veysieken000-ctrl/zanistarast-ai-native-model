@@ -164,17 +164,47 @@ ${list.map(q => `<li><button type="button" class="ai-suggestion">${q}</button></
   }
 
   function buildSmartSuggestions(question) {
-  const q = normalizeText(question);
+  const q = normalizeText(question || "");
 
   let suggestions = [];
 
-  if (q.includes("merkez") || q.includes("cevre") || q.includes("bag")) {
+  if (q.includes("merkez") || q.includes("cevre") || q.includes("bag") || q.includes("yonetim") || q.includes("rabun")) {
     suggestions = [
       ["core-02.html", "Core 02 — Varlık Yönetim Düzeni"],
       ["core-07-hukuk.html", "Core 07 — Hukuk"],
       ["core-08-insan-ve-toplum.html", "Core 08 — İnsan ve Toplum"]
     ];
+  } else if (q.includes("bilim") || q.includes("bilgi") || q.includes("zanabun") || q.includes("dogrulama")) {
+    suggestions = [
+      ["core-06-bilim.html", "Core 06 — Bilim"],
+      ["core-03.html", "Core 03 — Akıl ve Bilginin Varlığı"],
+      ["ontology.html", "Ontology"]
+    ];
+  } else if (q.includes("ekonomi") || q.includes("mabun") || q.includes("emek") || q.includes("uretim")) {
+    suggestions = [
+      ["core-12-yasam-temelli-ekonomi.html", "Core 12 — Yaşam Temelli Ekonomi"],
+      ["core-13-zanistarast-medeniyet-modeli.html", "Core 13 — Zanistarast Medeniyet Modeli"]
+    ];
+  } else if (q.includes("toplum") || q.includes("medeniyet") || q.includes("uygarlik")) {
+    suggestions = [
+      ["core-08-insan-ve-toplum.html", "Core 08 — İnsan ve Toplum"],
+      ["core-13-zanistarast-medeniyet-modeli.html", "Core 13 — Zanistarast Medeniyet Modeli"]
+    ];
+  } else {
+    suggestions = [
+      ["core.html", "Core Makaleler"],
+      ["paper.html", "Paper"]
+    ];
   }
+
+  return `
+<h3>Akıllı Makale Önerisi</h3>
+<ul>
+${suggestions.map(([url, label]) => `<li><a href="${url}">${label}</a></li>`).join("")}
+</ul>
+`;
+}
+
 function buildExpansion(question, topic) {
   if (!question) return "";
 
@@ -183,57 +213,8 @@ function buildExpansion(question, topic) {
   return `
 <h3>Akıllı Genişleme</h3>
 <p>Bu soru doğrudan <strong>${title}</strong> alanına bağlanır. Ancak Zanistarast bilimsel sentezinde hiçbir konu tek başına kapanmaz; her mesele Hebûn ontolojik düzeni, Zanabûn bilgi sistemi ve Rabûn yönetim modeli üzerinden birlikte okunur.</p>
-
-<p>Bu yüzden cevap yalnızca tanım düzeyinde kalmaz. Önce konunun hangi varlık katmanında durduğu belirlenir; sonra bu bilginin nasıl doğrulanacağı, hangi bağları kurduğu ve insan-toplum-medeniyet düzenine nasıl yansıdığı açıklanır.</p>
-
-<p>Bu genişleme, soruyu daha ileri okumak için bir geçiş noktası yapar: ilgili makalelerden biri okunmalı, ardından önerilen sorularla aynı konu derinleştirilmelidir.</p>
-`;
-}
-  return `
-  <h3>Akıllı Makale Önerisi</h3>
-  <ul>
-    ${suggestions.map(q => `
-      <li>
-        <button type="button" class="ai-suggestion">${q}</button>
-      </li>
-    `).join("")}
-  </ul>
-  `;
-}
-  else if (q.includes("bilim") || q.includes("bilgi")) {
-    suggestions = [
-      ["core-06-bilim.html", "Core 06 — Bilim"],
-      ["core-03.html", "Core 03 — Bilgi ve Akıl"],
-      ["ontology.html", "Ontology"]
-    ];
-  }
-
-  else if (q.includes("ekonomi") || q.includes("mabun")) {
-    suggestions = [
-      ["core-12-yasam-temelli-ekonomi.html", "Core 12 — Yaşam Temelli Ekonomi"],
-      ["core-13-zanistarast-medeniyet-modeli.html", "Medeniyet Modeli"]
-    ];
-  }
-
-  else if (q.includes("toplum") || q.includes("medeniyet")) {
-    suggestions = [
-      ["core-08-insan-ve-toplum.html", "İnsan ve Toplum"],
-      ["core-13-zanistarast-medeniyet-modeli.html", "Medeniyet Modeli"]
-    ];
-  }
-
-  else {
-    suggestions = [
-      ["core.html", "Core Makaleler"],
-      ["paper.html", "Paper"]
-    ];
-  }
-
-  return `
-<h3>🔎 Akıllı Makale Önerisi</h3>
-<ul>
-${suggestions.map(([url, label]) => `<li><a href="${url}">${label}</a></li>`).join("")}
-</ul>
+<p>Bu yüzden cevap yalnızca tanım düzeyinde kalmaz. Önce konunun hangi varlık katmanında durduğu belirlenir; sonra bilginin nasıl doğrulanacağı, hangi bağları kurduğu ve insan-toplum-medeniyet düzenine nasıl yansıdığı açıklanır.</p>
+<p>Bu genişleme, soruyu daha ileri okumak için bir geçiş noktası yapar. İlgili makaleler okunmalı, ardından önerilen sorularla aynı konu derinleştirilmelidir.</p>
 `;
 }
 
