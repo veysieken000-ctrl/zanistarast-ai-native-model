@@ -175,17 +175,20 @@ ${list.map(q => `<li><button type="button" class="ai-suggestion">${q}</button></
       ["core-08-insan-ve-toplum.html", "Core 08 — İnsan ve Toplum"]
     ];
   }
-function buildSmartSuggestions(question) {
+function buildExpansion(question, topic) {
   if (!question) return "";
 
-  const suggestions = [
-    question + " detaylı açıkla",
-    question + " örnek ver",
-    question + " hangi katmanda işler",
-    question + " Rabûn ile ilişkisi nedir",
-    question + " Zanabûn ile nasıl doğrulanır"
-  ];
+  const title = topic ? topic.title : "Genel Zanistarast Analizi";
 
+  return `
+<h3>Akıllı Genişleme</h3>
+<p>Bu soru doğrudan <strong>${title}</strong> alanına bağlanır. Ancak Zanistarast bilimsel sentezinde hiçbir konu tek başına kapanmaz; her mesele Hebûn ontolojik düzeni, Zanabûn bilgi sistemi ve Rabûn yönetim modeli üzerinden birlikte okunur.</p>
+
+<p>Bu yüzden cevap yalnızca tanım düzeyinde kalmaz. Önce konunun hangi varlık katmanında durduğu belirlenir; sonra bu bilginin nasıl doğrulanacağı, hangi bağları kurduğu ve insan-toplum-medeniyet düzenine nasıl yansıdığı açıklanır.</p>
+
+<p>Bu genişleme, soruyu daha ileri okumak için bir geçiş noktası yapar: ilgili makalelerden biri okunmalı, ardından önerilen sorularla aynı konu derinleştirilmelidir.</p>
+`;
+}
   return `
   <h3>Akıllı Makale Önerisi</h3>
   <ul>
@@ -244,7 +247,7 @@ ${suggestions.map(([url, label]) => `<li><a href="${url}">${label}</a></li>`).jo
 <p><strong>Soru:</strong> ${q}</p>
 
 ${topic.answer}
-
+${buildExpansion(q, topic)}
 <h3>Zanistarast Bilimsel Sentezine Göre Yorum</h3>
 <p>Bu mesele önce Hebûn ontolojik düzeni içinde konumlandırılır. Çünkü hiçbir konu yalnız başına, kopuk veya rastgele değildir. Her konu bir varlık katmanına, bir bilgi düzenine, bir yönetim ilişkisine ve bir medeniyet sonucuna bağlıdır.</p>
 
