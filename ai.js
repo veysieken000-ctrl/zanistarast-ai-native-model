@@ -158,7 +158,7 @@ ${topic.links.map(([url, label]) => `<li><a href="${url}">${label}</a></li>`).jo
     return `
 <h3>Önerilen Sorular</h3>
 <ul>
-${list.map(q => `<li>${q}</li>`).join("")}
+${list.map(q => `<li><button type="button" class="ai-suggestion">${q}</button></li>`).join("")}
 </ul>`;
   }
 
@@ -199,6 +199,7 @@ window.getZanistarastAnswer = function (question) {
 
 window.askAI = function (question) {
   const answerBox = document.getElementById("answerBox");
+  const input = document.getElementById("questionInput");
   const answer = buildFrameworkAnswer(question || "");
 
   if (answerBox) {
@@ -209,8 +210,23 @@ window.askAI = function (question) {
     answerBox.innerHTML = "<p>" + formatted + "</p>";
   }
 
+  if (input) input.value = question || "";
+
   return answer;
 };
+
+document.addEventListener("click", function (e) {
+  const suggestion = e.target.closest(".ai-suggestion");
+
+  if (!suggestion) return;
+
+  const question = suggestion.textContent.trim();
+  const input = document.getElementById("questionInput");
+
+  if (input) input.value = question;
+
+  window.askAI(question);
+});
 
 window.ZanistarastAI = {
   ask: buildFrameworkAnswer,
@@ -220,5 +236,3 @@ window.ZanistarastAI = {
 
 console.log("✅ Zanistarast AI Engine loaded");
 })();
-
- 
