@@ -162,6 +162,55 @@ ${topic.links.map(([url, label]) => `<li><a href="${url}">${label}</a></li>`).jo
 ${list.map(q => `<li><button type="button" class="ai-suggestion">${q}</button></li>`).join("")}
 </ul>`;
   }
+function buildSmartSuggestions(question) {
+  const q = normalizeText(question);
+
+  let suggestions = [];
+
+  if (q.includes("merkez") || q.includes("cevre") || q.includes("bag")) {
+    suggestions = [
+      ["core-02.html", "Core 02 — Varlık Yönetim Düzeni"],
+      ["core-07-hukuk.html", "Core 07 — Hukuk"],
+      ["core-08-insan-ve-toplum.html", "Core 08 — İnsan ve Toplum"]
+    ];
+  }
+
+  else if (q.includes("bilim") || q.includes("bilgi")) {
+    suggestions = [
+      ["core-06-bilim.html", "Core 06 — Bilim"],
+      ["core-03.html", "Core 03 — Bilgi ve Akıl"],
+      ["ontology.html", "Ontology"]
+    ];
+  }
+
+  else if (q.includes("ekonomi") || q.includes("mabun")) {
+    suggestions = [
+      ["core-12-yasam-temelli-ekonomi.html", "Core 12 — Yaşam Temelli Ekonomi"],
+      ["core-13-zanistarast-medeniyet-modeli.html", "Medeniyet Modeli"]
+    ];
+  }
+
+  else if (q.includes("toplum") || q.includes("medeniyet")) {
+    suggestions = [
+      ["core-08-insan-ve-toplum.html", "İnsan ve Toplum"],
+      ["core-13-zanistarast-medeniyet-modeli.html", "Medeniyet Modeli"]
+    ];
+  }
+
+  else {
+    suggestions = [
+      ["core.html", "Core Makaleler"],
+      ["paper.html", "Paper"]
+    ];
+  }
+
+  return `
+<h3>🔎 Akıllı Makale Önerisi</h3>
+<ul>
+${suggestions.map(([url, label]) => `<li><a href="${url}">${label}</a></li>`).join("")}
+</ul>
+`;
+}
 
   function buildFrameworkAnswer(question) {
     const q = question || "";
@@ -183,6 +232,7 @@ ${topic.answer}
 
 ${buildLinks(topic)}
 ${buildQuestions(topic)}
+${buildSmartSuggestions(q)}
 `;
     }
 
