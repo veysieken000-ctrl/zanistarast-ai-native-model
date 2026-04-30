@@ -193,28 +193,32 @@ ${buildLinks(topic)}
 ${buildQuestions(topic)}
 `;
   }
+window.getZanistarastAnswer = function (question) {
+  return buildFrameworkAnswer(question);
+};
 
-  window.getZanistarastAnswer = function (question) {
-    return buildFrameworkAnswer(question);
-  };
+window.askAI = function (question) {
+  const answerBox = document.getElementById("answerBox");
+  const answer = buildFrameworkAnswer(question || "");
 
-  window.askAI = function (question) {
-    const answerBox = document.getElementById("answerBox");
-    const answer = buildFrameworkAnswer(question || "");
+  if (answerBox) {
+    const formatted = answer
+      .replaceAll("\n\n", "</p><p>")
+      .replaceAll("\n", "<br>");
 
-    if (answerBox) {
-      answerBox.innerHTML = answer;
-    }
+    answerBox.innerHTML = "<p>" + formatted + "</p>";
+  }
 
-    return answer;
-  };
+  return answer;
+};
 
-  window.ZanistarastAI = {
-    ask: buildFrameworkAnswer,
-    normalize: normalizeText,
-    topics: TOPICS
-  };
+window.ZanistarastAI = {
+  ask: buildFrameworkAnswer,
+  normalize: normalizeText,
+  topics: TOPICS
+};
 
-  console.log("✅ Zanistarast AI Engine loaded");
+console.log("✅ Zanistarast AI Engine loaded");
 })();
 
+ 
