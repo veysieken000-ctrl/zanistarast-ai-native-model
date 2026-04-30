@@ -1614,4 +1614,21 @@ select:focus,
   margin: 8px 0 0;
   color: rgba(226,236,248,0.72);
 }
+.ai-suggestion {
+  display: inline-block;
+  margin: 6px 0;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(120, 200, 255, 0.10);
+  color: #f8fbff;
+  font: inherit;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.ai-suggestion:hover {
+  background: rgba(120, 200, 255, 0.22);
+  transform: translateY(-1px);
+}
 
