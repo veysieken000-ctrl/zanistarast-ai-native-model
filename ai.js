@@ -154,13 +154,32 @@ Bu konu Zanistarast sisteminde yalnız başına değil, varlık, bilgi, ahlak, y
 
   console.log("✅ Zanistarast AI Engine loaded");
 })();
-📍 Nerede olmalı?
-Repo kökünde:
-Plain text
-zanistarast-ai-native-model / ai.js
-📄 speech.html script sırası
-En altta böyle kalsın:
-HTML
-<script src="knowledge.js"></script>
-<script src="ai.js"></script>
+
+window.askAI = function(question) {
+  const answerBox = document.getElementById("answerBox");
+
+  if (!answerBox) return;
+
+  if (!question || !question.trim()) {
+    answerBox.innerHTML = "Lütfen bir soru yaz.";
+    return;
+  }
+
+  const q = question.toLowerCase();
+
+  if (q.includes("hebun") || q.includes("hebûn")) {
+    answerBox.innerHTML = `
+      <h3>Hebûn</h3>
+      <p>Hebûn, Zanistarast bilimsel sentezinde varlığın ontolojik düzenidir.</p>
+      <p>Varlık; fiziksel, biyolojik, zihinsel, toplumsal ve üst katmanların merkez–çevre ilişkisiyle kurduğu bütünlüktür.</p>
+    `;
+    return;
+  }
+
+  answerBox.innerHTML = `
+    <h3>Zanistarast Analizi</h3>
+    <p>Bu konu önce Hebûn ontolojik düzeninde konumlandırılır, sonra Zanabûn bilgi sistemi ve Rabûn yönetim modeliyle yorumlanır.</p>
+  `;
+};
+
 
