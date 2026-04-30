@@ -105,66 +105,7 @@ Mabûn’a göre ekonomi:
   function buildFrameworkAnswer(question) {
     const q = normalizeText(question);
     const topic = detectTopic(q);
-
-    if (topic && CORE[topic]) {
-      return `${CORE[topic].title}
-
-${CORE[topic].answer}
-
-Zanistarast yorumu:
-Bu konu önce Hebûn ontolojik düzeninde konumlandırılır. Sonra merkez–çevre bağı kurulur. Ardından Rabûn yönetim modeliyle işleyişi açıklanır.`;
-    }
-
-    return `Zanistarast bilimsel sentezine göre bu soru şöyle yorumlanır:
-
-Soru: ${question}
-
-1. Önce konu Hebûn ontolojik düzeninde konumlandırılır.
-2. Hangi katmana ait olduğu belirlenir: fiziksel, biyolojik, zihinsel, toplumsal veya ruhsal.
-3. Merkez–çevre ilişkisi kurulur.
-4. Rabûn yönetim modeliyle işleyişi açıklanır.
-5. Zanabûn bilgi düzeniyle doğruluk ve anlam kontrol edilir.
-
-Sonuç:
-Bu konu Zanistarast sisteminde yalnız başına değil, varlık, bilgi, ahlak, yönetim ve medeniyet bütünlüğü içinde değerlendirilmelidir.`;
-  }
-
-  window.getZanistarastAnswer = function (question) {
-    return buildFrameworkAnswer(question);
-  };
-
-  window.askAI = function (question) {
-    const answerBox = document.getElementById("answerBox");
-    const answer = buildFrameworkAnswer(question);
-
-    if (answerBox) {
-      answerBox.innerHTML = answer
-        .replaceAll("\n\n", "<br><br>")
-        .replaceAll("\n", "<br>");
-    }
-
-    return answer;
-  };
-
-  window.ZanistarastAI = {
-    ask: buildFrameworkAnswer,
-    normalize: normalizeText,
-    core: CORE
-  };
-
-  console.log("✅ Zanistarast AI Engine loaded");
-})();
-
-window.askAI = function(question) {
-  const answerBox = document.getElementById("answerBox");
-
-  if (!question || !question.trim()) {
-    answerBox.innerHTML = "Lütfen bir soru yaz.";
-    return;
-  }
-
-  const q = question.toLowerCase();
-
+     
   // === ANA ANALİZ ===
   let analysis = `
     <h3>Zanistarast Bilimsel Analizi</h3>
@@ -183,108 +124,51 @@ window.askAI = function(question) {
     <h4>4. Medeniyet Sonucu</h4>
     <p>Bu konu insan, toplum ve medeniyet düzenine nasıl yansıdığı üzerinden tamamlanır.</p>
   `;
+    if (topic && CORE[topic]) {
+      return `${CORE[topic].title}
 
-  // === DİNAMİK KONU TESPİTİ ===
-  let links = "";
-  let suggestions = "";
+${CORE[topic].answer}
 
-  // === TARİH ===
-  if (q.includes("tarih")) {
-    analysis += `
-      <h4>Derin Yorum</h4>
-      <p>Zanistarast yaklaşımında tarih, olaylar dizisi değil; varlığın, bilginin ve ahlakın insan üzerinden görünür hale gelmesidir.</p>
-    `;
-
-    links = `
-      <h4>İlgili Makaleler</h4>
-      <ul>
-        <li><a href="core-09-kurdistan-ortadogu-varlik-tarihi.html">Varlık Tarihi</a></li>
-        <li><a href="core-07-hukuk.html">Hüküm ve Ahlak</a></li>
-        <li><a href="core-08-insan-ve-toplum.html">İnsan ve Toplum</a></li>
-      </ul>
-    `;
-
-    suggestions = `
-      <h4>Önerilen Sorular</h4>
-      <ul>
-        <li>Tarih neden sadece olay değildir?</li>
-        <li>Ahlak ve tarih ilişkisi nedir?</li>
-        <li>Medeniyetler neden çöker?</li>
-      </ul>
-    `;
+Zanistarast yorumu:
+Bu konu önce Hebûn ontolojik düzeninde konumlandırılır. Sonra merkez-çevre bağı kurulur. Ardından Rabûn yönetim modeliyle işleyişi açıklanır.`;
   }
 
-  // === BİLİM ===
-  else if (q.includes("bilim")) {
-    analysis += `
-      <h4>Derin Yorum</h4>
-      <p>Bilim, Zanistarast'a göre doğayı anlamak değil; doğaya uygun sistem kurma sürecidir.</p>
-    `;
+  return `Zanistarast bilimsel sentezine göre bu soru şöyle yorumlanır:
 
-    links = `
-      <h4>İlgili Makaleler</h4>
-      <ul>
-        <li><a href="core-06-bilim.html">Bilim</a></li>
-        <li><a href="core-03.html">Bilgi ve Akıl</a></li>
-      </ul>
-    `;
+Soru: ${question}
 
-    suggestions = `
-      <h4>Önerilen Sorular</h4>
-      <ul>
-        <li>Bilim neden bozulur?</li>
-        <li>Doğru bilgi nasıl doğrulanır?</li>
-      </ul>
-    `;
-  }
+1. Önce konu Hebûn ontolojik düzeninde konumlandırılır.
+2. Hangi katmana ait olduğu belirlenir: fiziksel, biyolojik, zihinsel, toplumsal veya ruhsal.
+3. Merkez-çevre ilişkisi kurulur.
+4. Rabûn yönetim modeliyle işleyişi açıklanır.
+5. Zanabûn bilgi düzeniyle doğruluk ve anlam kontrol edilir.
 
-  // === VARLIK ===
-  else if (q.includes("varlık") || q.includes("hebun")) {
-    analysis += `
-      <h4>Derin Yorum</h4>
-      <p>Varlık, Zanistarast'ta parçalı değil; katmanlı ve bütünsel bir sistemdir.</p>
-    `;
+Sonuç:
+Bu konu Zanistarast sisteminde yalnız başına değil; varlık, bilgi, ahlak, yönetim ve medeniyet bütünlüğü içinde değerlendirilmelidir.`;
+}
 
-    links = `
-      <h4>İlgili Makaleler</h4>
-      <ul>
-        <li><a href="core-01.html">Varlık Sistemleri</a></li>
-        <li><a href="core-02.html">Varlık Yönetimi</a></li>
-      </ul>
-    `;
-
-    suggestions = `
-      <h4>Önerilen Sorular</h4>
-      <ul>
-        <li>Hebûn nedir?</li>
-        <li>Varlık kaç katmandır?</li>
-      </ul>
-    `;
-  }
-
-  // === DEFAULT ===
-  else {
-    links = `
-      <h4>İlgili Makaleler</h4>
-      <ul>
-        <li><a href="core.html">Core Makaleler</a></li>
-        <li><a href="paper.html">Paper</a></li>
-      </ul>
-    `;
-
-    suggestions = `
-      <h4>Önerilen Sorular</h4>
-      <ul>
-        <li>Bu konu hangi varlık katmanına girer?</li>
-        <li>Bilgi bu konuda nasıl doğrulanır?</li>
-      </ul>
-    `;
-  }
-
-  answerBox.innerHTML = `
-    <h3>Zanistarast Analizi</h3>
-    <p>Bu konu önce Hebûn ontolojik düzeninde konumlandırılır, sonra Zanabûn bilgi sistemi ve Rabûn yönetim modeliyle yorumlanır.</p>
-  `;
+window.getZanistarastAnswer = function (question) {
+  return buildFrameworkAnswer(question);
 };
 
+window.askAI = function (question) {
+  const answerBox = document.getElementById("answerBox");
+  const answer = buildFrameworkAnswer(question);
 
+  if (answerBox) {
+    answerBox.innerHTML = answer
+      .replaceAll("\n\n", "<br><br>")
+      .replaceAll("\n", "<br>");
+  }
+
+  return answer;
+};
+
+window.ZanistarastAI = {
+  ask: buildFrameworkAnswer,
+  normalize: normalizeText,
+  core: CORE
+};
+
+console.log("✅ Zanistarast AI Engine loaded");
+})();
