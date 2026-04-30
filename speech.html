@@ -6,106 +6,101 @@
 <title>Zanistarast AI & Speech</title>
 
 <style>
-body {
-  margin:0;
-  font-family: Inter, Arial;
-  background:#0a0f1c;
-  color:white;
-}
-
-/* PANEL */
-.panel {
-  max-width:900px;
-  margin:60px auto;
-  padding:30px;
-  background:rgba(20,30,40,0.9);
-  border-radius:20px;
-}
-
-/* LANGUAGE */
-#languageSelect {
-  font-size:18px;
-  padding:12px 18px;
-  border-radius:10px;
-  background:#111;
-  color:white;
-  border:2px solid #4ea1ff;
-  margin-bottom:20px;
-}
-
-/* INPUT */
-textarea {
-  width:100%;
-  height:120px;
-  border-radius:12px;
-  padding:15px;
-  background:#0b1324;
-  color:white;
-  border:1px solid #333;
-}
-
-/* BUTTONS */
-.buttons {
-  margin-top:15px;
-}
-
-button {
-  padding:10px 16px;
-  border:none;
-  border-radius:10px;
-  margin-right:10px;
-  cursor:pointer;
-}
-
-.send {background:#ffd43b;}
-.clear {background:#ffa94d;}
+body{margin:0;font-family:Inter,Arial;background:#0a0f1c;color:white}
+.panel{max-width:900px;margin:60px auto;padding:30px;background:rgba(20,30,40,.9);border-radius:20px}
+#languageSelect{font-size:18px;padding:12px 18px;border-radius:10px;background:#111;color:white;border:2px solid #4ea1ff;margin-bottom:20px}
+textarea{width:100%;height:140px;border-radius:14px;padding:16px;background:#0b1324;color:white;border:1px solid #333;font-size:18px}
+button{padding:12px 18px;border:0;border-radius:12px;margin:10px 8px 0 0;cursor:pointer;font-weight:700}
+.start{background:#32d583}.stop{background:#ff8a8a}.send{background:#ffd43b}.read{background:#dff3ff}.clear{background:#ffa94d}
+#thinking{display:none;margin-top:18px;padding:18px 24px;border-radius:16px;background:#101d33;border:1px solid #4ea1ff;font-size:20px;font-weight:700}
+#thinking.show{display:block}
+.dots::after{content:"";animation:dots 1.2s infinite}
+@keyframes dots{0%{content:""}33%{content:"."}66%{content:".."}100%{content:"..."}}
+#output{margin-top:20px;font-size:18px;line-height:1.6}
 </style>
 </head>
 
 <body>
-
 <div class="panel">
+  <h1>Zanistarast AI & Speech</h1>
 
-<h2>Zanistarast AI & Speech</h2>
+  <select id="languageSelect">
+    <option value="tr-TR">Türkçe</option>
+    <option value="en-US">English</option>
+  </select>
 
-<select id="languageSelect">
-  <option value="tr">Türkçe</option>
-  <option value="en">English</option>
-</select>
+  <textarea id="input" placeholder="Bir şey yaz veya konuş..."></textarea>
 
-<textarea id="input" placeholder="Bir şey yaz..."></textarea>
+  <div>
+    <button class="start" onclick="startListen()">🎙 Başla</button>
+    <button class="stop" onclick="stopListen()">■ Durdur</button>
+    <button class="send" onclick="ask()">➤ Gönder</button>
+    <button class="read" onclick="readAnswer()">🔊 Oku</button>
+    <button class="clear" onclick="clearBox()">× Temizle</button>
+  </div>
 
-<div class="buttons">
-  <button class="send" onclick="ask()">Gönder</button>
-  <button class="clear" onclick="clearBox()">Temizle</button>
-</div>
-
-<div id="output" style="margin-top:20px;"></div>
-
+  <div id="thinking">Düşünüyor<span class="dots"></span></div>
+  <div id="output"></div>
 </div>
 
 <script>
+let lastAnswer = "";
+let recognition = null;
+
+function answer(q){
+  const s = q.toLowerCase();
+  if(s.includes("hebun") || s.includes("hebûn")){
+    return "Hebûn, Zanistarast bilimsel sentezinde varlığın ontolojik düzenidir. Varlık; fiziksel, biyolojik, zihinsel ve üst katmanların merkez-çevre ilişkisiyle kurduğu bütündür.";
+  }
+  return "Zanistarast yorumuna göre bu konu önce Hebûn düzeninde konumlandırılır, sonra merkez-çevre bağı ve Rabûn yönetim modeliyle açıklanır.";
+}
+
 function ask(){
-  const q = document.getElementById("input").value;
-  const out = document.getElementById("output");
+  const q = input.value.trim();
+  if(!q) return;
+  thinking.classList.add("show");
+  output.innerHTML = "";
+  setTimeout(()=>{
+    lastAnswer = answer(q);
+    output.innerHTML = lastAnswer;
+    thinking.classList.remove("show");
+  },700);
+}
 
-  if(!q){
-    out.innerHTML = "Boş soru";
-    return;
-  }
-
-  if(q.toLowerCase().includes("hebun")){
-    out.innerHTML = "<b>Hebûn</b>: varlığın ontolojik temelidir.";
-  } else {
-    out.innerHTML = "AI cevap üretti: " + q;
-  }
+function readAnswer(){
+  if(!lastAnswer) lastAnswer = output.innerText;
+  if(!lastAnswer) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(lastAnswer);
+  u.lang = languageSelect.value;
+  speechSynthesis.speak(u);
 }
 
 function clearBox(){
-  document.getElementById("input").value = "";
-  document.getElementById("output").innerHTML = "";
+  input.value="";
+  output.innerHTML="";
+  lastAnswer="";
+  thinking.classList.remove("show");
+}
+
+function startListen(){
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if(!SR){ output.innerHTML="Bu tarayıcı konuşma algılamayı desteklemiyor."; return; }
+  recognition = new SR();
+  recognition.lang = languageSelect.value;
+  recognition.interimResults = true;
+  recognition.onresult = e=>{
+    let text="";
+    for(let i=0;i<e.results.length;i++){ text += e.results[i][0].transcript; }
+    input.value = text;
+  };
+  recognition.start();
+}
+
+function stopListen(){
+  if(recognition) recognition.stop();
 }
 </script>
-
 </body>
 </html>
+
