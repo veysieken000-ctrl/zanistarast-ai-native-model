@@ -162,7 +162,8 @@ ${topic.links.map(([url, label]) => `<li><a href="${url}">${label}</a></li>`).jo
 ${list.map(q => `<li><button type="button" class="ai-suggestion">${q}</button></li>`).join("")}
 </ul>`;
   }
-function buildSmartSuggestions(question) {
+
+  function buildSmartSuggestions(question) {
   const q = normalizeText(question);
 
   let suggestions = [];
@@ -174,7 +175,28 @@ function buildSmartSuggestions(question) {
       ["core-08-insan-ve-toplum.html", "Core 08 — İnsan ve Toplum"]
     ];
   }
+function buildSmartSuggestions(question) {
+  if (!question) return "";
 
+  const suggestions = [
+    question + " detaylı açıkla",
+    question + " örnek ver",
+    question + " hangi katmanda işler",
+    question + " Rabûn ile ilişkisi nedir",
+    question + " Zanabûn ile nasıl doğrulanır"
+  ];
+
+  return `
+  <h3>Akıllı Makale Önerisi</h3>
+  <ul>
+    ${suggestions.map(q => `
+      <li>
+        <button type="button" class="ai-suggestion">${q}</button>
+      </li>
+    `).join("")}
+  </ul>
+  `;
+}
   else if (q.includes("bilim") || q.includes("bilgi")) {
     suggestions = [
       ["core-06-bilim.html", "Core 06 — Bilim"],
@@ -281,4 +303,16 @@ ${buildQuestions(null)}
 
   console.log("✅ Zanistarast AI Engine loaded");
 })();
+document.addEventListener("click", function(e) {
+  if (e.target.classList.contains("ai-suggestion")) {
+    const text = e.target.innerText;
+
+    const input = document.querySelector("input, textarea");
+    if (input) input.value = text;
+
+    if (window.askAI) {
+      window.askAI(text);
+    }
+  }
+});
 
