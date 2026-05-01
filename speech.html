@@ -175,8 +175,29 @@ button{padding:12px 18px;border:0;border-radius:12px;margin:10px 8px 0 0;cursor:
 
 <script>
 let lastAnswer = "";
+// 🔥 Chat hafıza
+let chatHistory = [];
+
+// Kaydet
+function saveChat(){
+  localStorage.setItem("zanistarast_chat", JSON.stringify(chatHistory));
+}
+
+// Yükle
+function loadChat(){
+  const data = localStorage.getItem("zanistarast_chat");
+  if(data){
+    chatHistory = JSON.parse(data);
+    chatHistory.forEach(msg => {
+      addMessage(msg.type, msg.content);
+    });
+  }
+}
 const chatBox = document.getElementById("chatBox");
 
+function addMessage(type, content){
+İÇİNİ ŞUNUNLA DEĞİŞTİR:
+JavaScript
 function addMessage(type, content){
   const div = document.createElement("div");
   div.className = type === "user" ? "message user-message" : "message ai-message";
@@ -195,6 +216,11 @@ function addMessage(type, content){
   `;
 
   chatBox.appendChild(div);
+
+  // 🔥 Hafızaya ekle
+  chatHistory.push({ type, content });
+  saveChat();
+
   div.scrollIntoView({ behavior:"smooth", block:"end" });
 }
 
@@ -387,11 +413,16 @@ function readAnswer(){
 }
 
 function clearBox(){
+İçini şöyle yap:
+JavaScript
+function clearBox(){
   input.value="";
   output.innerHTML="";
   suggestions.innerHTML="";
   chatBox.innerHTML="";
   lastAnswer="";
+  chatHistory = [];
+  localStorage.removeItem("zanistarast_chat");
   thinking.classList.remove("show");
 }
 function startListen(){
@@ -411,6 +442,10 @@ function startListen(){
 function stopListen(){
   if(recognition) recognition.stop();
 }
+// 🔥 Sayfa açılınca geçmişi getir
+window.onload = function(){
+  loadChat();
+};
 </script>
 </body>
 </html>
