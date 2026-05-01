@@ -29,20 +29,51 @@ button{padding:12px 18px;border:0;border-radius:12px;margin:10px 8px 0 0;cursor:
     <option value="en-US">English</option>
   </select>
 
-  <textarea id="input" placeholder="Bir şey yaz veya konuş..."></textarea>
+  <div id="output" class="answer-top"></div>
 
-  <div>
-    <button class="start" onclick="startListen()">🎙 Başla</button>
-    <button class="stop" onclick="stopListen()">■ Durdur</button>
-    <button class="send" onclick="ask()">➤ Gönder</button>
-    <button class="read" onclick="readAnswer()">🔊 Oku</button>
-    <button class="clear" onclick="clearBox()">× Temizle</button>
-  </div>
+<div id="suggestions" class="suggestions"></div>
 
-  <div id="thinking">Düşünüyor<span class="dots"></span></div>
-  <div id="output"></div>
+<textarea id="input" placeholder="Bir şey yaz veya konuş..."></textarea>
+
+<div>
+  <button class="start" onclick="startListen()"> Başla</button>
+  <button class="stop" onclick="stopListen()">■ Durdur</button>
+  <button class="send" onclick="ask()">➤ Gönder</button>
+  <button class="read" onclick="readAnswer()"> Oku</button>
+  <button class="clear" onclick="clearBox()">× Temizle</button>
 </div>
 
+<div id="thinking">Düşünüyor<span class="dots"></span></div>
+2. CSS içine ekle
+<style> içinde #output satırının altına ekle:
+CSS
+.answer-top{
+  margin:22px 0;
+  padding:22px;
+  background:#0b1324;
+  border:1px solid #4ea1ff;
+  border-radius:18px;
+}
+
+.suggestions{
+  margin:16px 0 22px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.suggestions button{
+  background:#17243a;
+  color:white;
+  border:1px solid #4ea1ff;
+  border-radius:999px;
+  padding:10px 14px;
+  font-size:15px;
+}
+
+.suggestions button:hover{
+  background:#23456f;
+}
 <script>
 let lastAnswer = "";
 let recognition = null;
