@@ -16,8 +16,37 @@ button{padding:12px 18px;border:0;border-radius:12px;margin:10px 8px 0 0;cursor:
 #thinking.show{display:block}
 .dots::after{content:"";animation:dots 1.2s infinite}
 @keyframes dots{0%{content:""}33%{content:"."}66%{content:".."}100%{content:"..."}}
-#output{margin-top:20px;font-size:18px;line-height:1.6}
+#output{margin-top:20px;font-size:18px;line-height:1.6;}
+
+.answer-top{
+  margin:22px 0;
+  padding:22px;
+  background:#0b1324;
+  border:1px solid #4ea1ff;
+  border-radius:18px;
+}
+
+.suggestions{
+  margin:16px 0 22px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.suggestions button{
+  background:#17243a;
+  color:white;
+  border:1px solid #4ea1ff;
+  border-radius:999px;
+  padding:10px 14px;
+  font-size:15px;
+}
+
+.suggestions button:hover{
+  background:#23456f;
+}
 </style>
+
 </head>
 
 <body>
@@ -88,37 +117,6 @@ button{padding:12px 18px;border:0;border-radius:12px;margin:10px 8px 0 0;cursor:
 </div>
 
 <div id="thinking">Düşünüyor<span class="dots"></span></div>
-
-#output{margin-top:20px;font-size:18px;line-height:1.6;}
-
-.answer-top{
-  margin:22px 0;
-  padding:22px;
-  background:#0b1324;
-  border:1px solid #4ea1ff;
-  border-radius:18px;
-}
-
-.suggestions{
-  margin:16px 0 22px;
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-}
-
-.suggestions button{
-  background:#17243a;
-  color:white;
-  border:1px solid #4ea1ff;
-  border-radius:999px;
-  padding:10px 14px;
-  font-size:15px;
-}
-
-.suggestions button:hover{
-  background:#23456f;
-}
-</style>
 
 <script>
 let lastAnswer = "";
