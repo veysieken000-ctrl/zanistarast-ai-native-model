@@ -45,6 +45,37 @@ button{padding:12px 18px;border:0;border-radius:12px;margin:10px 8px 0 0;cursor:
 .suggestions button:hover{
   background:#23456f;
 }
+.chat-box{
+  margin:22px 0;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.message{
+  padding:16px 18px;
+  border-radius:18px;
+  line-height:1.6;
+  font-size:16px;
+  max-width:85%;
+}
+
+.user-message{
+  align-self:flex-end;
+  background:#1d4ed8;
+  color:white;
+}
+
+.ai-message{
+  align-self:flex-start;
+  background:#0b1324;
+  border:1px solid #4ea1ff;
+  color:white;
+}
+
+.ai-message h3{
+  margin-top:0;
+}
 </style>
 
 </head>
@@ -102,7 +133,8 @@ button{padding:12px 18px;border:0;border-radius:12px;margin:10px 8px 0 0;cursor:
   <option value="mr-IN">मराठी</option>
   <option value="gu-IN">ગુજરાતી</option>
 </select>
-  <div id="output" class="answer-top"></div>
+ <div id="chatBox" class="chat-box"></div>
+<div id="output" class="answer-top"></div>
 
 <div id="suggestions" class="suggestions"></div>
 
@@ -120,6 +152,15 @@ button{padding:12px 18px;border:0;border-radius:12px;margin:10px 8px 0 0;cursor:
 
 <script>
 let lastAnswer = "";
+const chatBox = document.getElementById("chatBox");
+
+function addMessage(type, content){
+  const div = document.createElement("div");
+  div.className = type === "user" ? "message user-message" : "message ai-message";
+  div.innerHTML = content;
+  chatBox.appendChild(div);
+  div.scrollIntoView({ behavior:"smooth", block:"end" });
+}
 let recognition = null;
 
 function answer(q){
@@ -267,16 +308,22 @@ function askSuggestion(text){
 }
 function ask(){
   const q = input.value.trim();
-  if(!q) return;
-  thinking.classList.add("show");
+if(!q) return;
+
+addMessage("user", q);
+
+thinking.classList.add("show");
+input.value = "";
+
+setTimeout(()=>{
+  lastAnswer = answer(q);
+
+  addMessage("ai", lastAnswer);
+
   output.innerHTML = "";
-  setTimeout(()=>{
-    lastAnswer = answer(q);
-    output.innerHTML = lastAnswer;
-renderSuggestions(q);
-thinking.classList.remove("show");
-output.scrollIntoView({ behavior:"smooth", block:"start" });
-  },700);
+  renderSuggestions(q);
+  thinking.classList.remove("show");
+},700);
 }
 
 function readAnswer(){
@@ -300,10 +347,10 @@ function clearBox(){
   input.value="";
   output.innerHTML="";
   suggestions.innerHTML="";
+  chatBox.innerHTML="";
   lastAnswer="";
   thinking.classList.remove("show");
 }
-
 function startListen(){
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
   if(!SR){ output.innerHTML="Bu tarayıcı konuşma algılamayı desteklemiyor."; return; }
