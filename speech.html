@@ -24,11 +24,55 @@ button{padding:12px 18px;border:0;border-radius:12px;margin:10px 8px 0 0;cursor:
 <div class="panel">
   <h1>Zanistarast AI & Speech</h1>
 
-  <select id="languageSelect">
-    <option value="tr-TR">Türkçe</option>
-    <option value="en-US">English</option>
-  </select>
-
+ <select id="languageSelect">
+  <option value="tr-TR">Türkçe</option>
+  <option value="en-US">English</option>
+  <option value="ku-TR">Kurdî</option>
+  <option value="ar-SA">العربية</option>
+  <option value="fa-IR">فارسی</option>
+  <option value="ur-PK">اردو</option>
+  <option value="hi-IN">हिन्दी</option>
+  <option value="bn-BD">বাংলা</option>
+  <option value="pa-IN">ਪੰਜਾਬੀ</option>
+  <option value="zh-CN">中文 (简体)</option>
+  <option value="zh-TW">中文 (繁體)</option>
+  <option value="ja-JP">日本語</option>
+  <option value="ko-KR">한국어</option>
+  <option value="th-TH">ไทย</option>
+  <option value="vi-VN">Tiếng Việt</option>
+  <option value="id-ID">Bahasa Indonesia</option>
+  <option value="ms-MY">Bahasa Melayu</option>
+  <option value="de-DE">Deutsch</option>
+  <option value="fr-FR">Français</option>
+  <option value="es-ES">Español</option>
+  <option value="pt-PT">Português</option>
+  <option value="it-IT">Italiano</option>
+  <option value="nl-NL">Nederlands</option>
+  <option value="sv-SE">Svenska</option>
+  <option value="no-NO">Norsk</option>
+  <option value="da-DK">Dansk</option>
+  <option value="fi-FI">Suomi</option>
+  <option value="pl-PL">Polski</option>
+  <option value="cs-CZ">Čeština</option>
+  <option value="sk-SK">Slovenčina</option>
+  <option value="hu-HU">Magyar</option>
+  <option value="ro-RO">Română</option>
+  <option value="bg-BG">Български</option>
+  <option value="el-GR">Ελληνικά</option>
+  <option value="ru-RU">Русский</option>
+  <option value="uk-UA">Українська</option>
+  <option value="he-IL">עברית</option>
+  <option value="sw-KE">Swahili</option>
+  <option value="am-ET">አማርኛ</option>
+  <option value="zu-ZA">Zulu</option>
+  <option value="af-ZA">Afrikaans</option>
+  <option value="ta-IN">தமிழ்</option>
+  <option value="te-IN">తెలుగు</option>
+  <option value="ml-IN">മലയാളം</option>
+  <option value="kn-IN">ಕನ್ನಡ</option>
+  <option value="mr-IN">मराठी</option>
+  <option value="gu-IN">ગુજરાતી</option>
+</select>
   <div id="output" class="answer-top"></div>
 
 <div id="suggestions" class="suggestions"></div>
@@ -44,9 +88,7 @@ button{padding:12px 18px;border:0;border-radius:12px;margin:10px 8px 0 0;cursor:
 </div>
 
 <div id="thinking">Düşünüyor<span class="dots"></span></div>
-2. CSS içine ekle
-<style> içinde #output satırının altına ekle:
-CSS
+
 .answer-top{
   margin:22px 0;
   padding:22px;
@@ -80,6 +122,27 @@ let recognition = null;
 
 function answer(q){
   const s = q.toLowerCase();
+  const lang = languageSelect.value;
+
+  function autoTranslate(text){
+    if(lang === "tr-TR") return text;
+    if(lang === "en-US") return text;
+    return text + " (" + lang + ")";
+  }
+
+  if(lang === "en-US"){
+    return autoTranslate(`
+      <h3>ZANISTARAST ANALYSIS</h3>
+      <p>This topic is not directly answered. It is analyzed through existence (Hebûn), knowledge (Zanabûn), and management (Rabûn).</p>
+    `);
+  }
+
+  if(lang === "ku-TR"){
+    return autoTranslate(`
+      <h3>ANALÎZA ZANISTARAST</h3>
+      <p>Ev mijar rasterast nayê bersivandin. Ew bi Hebûn, Zanabûn û Rabûn tê analîz kirin.</p>
+    `);
+  }
 
   // ====== HEBUN ======
   if(s.includes("hebun") || s.includes("hebûn")){
@@ -217,14 +280,23 @@ output.scrollIntoView({ behavior:"smooth", block:"start" });
 function readAnswer(){
   if(!lastAnswer) lastAnswer = output.innerText;
   if(!lastAnswer) return;
+
   speechSynthesis.cancel();
+
   const u = new SpeechSynthesisUtterance(lastAnswer);
+
   u.lang = languageSelect.value;
+ 
+  if(!speechSynthesis.getVoices().find(v => v.lang === u.lang)){
+    u.lang = "en-US";
+  }
+
   speechSynthesis.speak(u);
 }
 
 function clearBox(){
   input.value="";
+  output.innerHTML="";
   suggestions.innerHTML="";
   lastAnswer="";
   thinking.classList.remove("show");
