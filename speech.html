@@ -186,19 +186,18 @@ function saveChat(){
 // Yükle
 function loadChat(){
   const data = localStorage.getItem("zanistarast_chat");
+
   if(data){
     chatHistory = JSON.parse(data);
+
     chatHistory.forEach(msg => {
-      addMessage(msg.type, msg.content);
+      addMessage(msg.type, msg.content, false);
     });
   }
 }
 const chatBox = document.getElementById("chatBox");
 
-function addMessage(type, content){
-İÇİNİ ŞUNUNLA DEĞİŞTİR:
-JavaScript
-function addMessage(type, content){
+function addMessage(type, content, save = true){
   const div = document.createElement("div");
   div.className = type === "user" ? "message user-message" : "message ai-message";
 
@@ -217,13 +216,13 @@ function addMessage(type, content){
 
   chatBox.appendChild(div);
 
-  // 🔥 Hafızaya ekle
-  chatHistory.push({ type, content });
-  saveChat();
+  if(save){
+    chatHistory.push({ type, content });
+    saveChat();
+  }
 
   div.scrollIntoView({ behavior:"smooth", block:"end" });
 }
-
 function copyMessage(btn){
   const message = btn.closest(".message").querySelector(".message-content").innerText;
   navigator.clipboard.writeText(message);
@@ -412,9 +411,6 @@ function readAnswer(){
   speechSynthesis.speak(u);
 }
 
-function clearBox(){
-İçini şöyle yap:
-JavaScript
 function clearBox(){
   input.value="";
   output.innerHTML="";
