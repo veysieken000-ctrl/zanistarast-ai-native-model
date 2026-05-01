@@ -208,13 +208,27 @@ function addMessage(type, content, save = true){
     minute: "2-digit"
   });
 
+  const index = chatHistory.length;
+
   div.innerHTML = `
     <div class="message-content">${content}</div>
     <div class="message-meta">
       <span>${time}</span>
       <button onclick="copyMessage(this)">Kopyala</button>
+      <button onclick="deleteMessage(this)">Sil</button>
     </div>
   `;
+
+  div.dataset.index = index;
+  chatBox.appendChild(div);
+
+  if(save){
+    chatHistory.push({ type, content });
+    saveChat();
+  }
+
+  div.scrollIntoView({ behavior:"smooth", block:"end" });
+}
 
   chatBox.appendChild(div);
 
@@ -230,6 +244,18 @@ function copyMessage(btn){
   navigator.clipboard.writeText(message);
   btn.innerText = "Kopyalandı";
   setTimeout(()=> btn.innerText = "Kopyala", 1200);
+}
+function deleteMessage(btn){
+  const messageDiv = btn.closest(".message");
+  const index = Number(messageDiv.dataset.index);
+
+  chatHistory.splice(index, 1);
+  saveChat();
+
+  chatBox.innerHTML = "";
+  chatHistory.forEach(msg => {
+    addMessage(msg.type, msg.content, false);
+  });
 }
 function downloadChat(){
   if(!chatHistory.length){
