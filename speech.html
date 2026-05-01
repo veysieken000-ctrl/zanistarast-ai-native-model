@@ -169,6 +169,7 @@ button{padding:12px 18px;border:0;border-radius:12px;margin:10px 8px 0 0;cursor:
   <button class="send" onclick="ask()">➤ Gönder</button>
   <button class="read" onclick="readAnswer()"> Oku</button>
   <button class="clear" onclick="clearBox()">× Temizle</button>
+  <button class="read" onclick="downloadChat()">Geçmişi İndir</button>
 </div>
 
 <div id="thinking">Düşünüyor<span class="dots"></span></div>
@@ -228,6 +229,27 @@ function copyMessage(btn){
   navigator.clipboard.writeText(message);
   btn.innerText = "Kopyalandı";
   setTimeout(()=> btn.innerText = "Kopyala", 1200);
+}
+function downloadChat(){
+  if(!chatHistory.length){
+    alert("İndirilecek geçmiş yok.");
+    return;
+  }
+
+  const text = chatHistory.map(msg => {
+    const who = msg.type === "user" ? "Kullanıcı" : "Zanistarast AI";
+    return `${who}: ${msg.content.replace(/<[^>]*>/g, "")}`;
+  }).join("\n\n");
+
+  const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "zanistarast-chat-gecmisi.txt";
+  a.click();
+
+  URL.revokeObjectURL(url);
 }
 let recognition = null;
 
