@@ -202,6 +202,7 @@ button{padding:12px 18px;border:0;border-radius:12px;margin:10px 8px 0 0;cursor:
   <button class="clear" onclick="clearBox()">× Temizle</button>
   <button class="read" onclick="downloadChat()">Geçmişi İndir</button>
   <button class="read" onclick="copyAllChat()">Tüm Sohbeti Kopyala</button>
+  <button onclick="deleteSelectedSession()">Seçili Sohbeti Sil</button>
 </div>
 
 <div id="thinking">Düşünüyor<span class="dots"></span></div>
@@ -266,7 +267,30 @@ function loadSelectedSession(){
 
   localStorage.setItem("zanistarast_chat", JSON.stringify(chatHistory));
 }
+function deleteSelectedSession(){
+  const sessionList = document.getElementById("sessionList");
+  const name = sessionList.value;
 
+  if(!name){
+    alert("Silmek için önce kayıtlı bir sohbet seç.");
+    return;
+  }
+
+  const ok = confirm("Bu sohbet silinsin mi: " + name + "?");
+  if(!ok) return;
+
+  const sessions = getAllSessions();
+  delete sessions[name];
+
+  saveAllSessions(sessions);
+  refreshSessionList();
+
+  if(currentSessionName === name){
+    newChatSession();
+  }
+
+  alert("Sohbet silindi: " + name);
+}
 function newChatSession(){
   chatHistory = [];
   currentSessionName = "sohbet-" + new Date().toLocaleString("tr-TR");
