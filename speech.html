@@ -159,7 +159,47 @@ ardından bilgi (Zanabûn) ve yönetim (Rabûn) ilişkileri ile analiz edilir.</
 <p>Daha spesifik bir kavram sorarsan, sana makale düzeyinde detaylı açıklama verebilirim.</p>
 `;
 }
+function getSuggestions(q){
+  const s = q.toLowerCase();
 
+  if(s.includes("hebun") || s.includes("hebûn")){
+    return [
+      "Hebûn ile Zanabûn arasındaki fark nedir?",
+      "Hebûn ontolojik düzeni kaç katmandan oluşur?",
+      "6+Ehad yapısı ne anlama gelir?"
+    ];
+  }
+
+  if(s.includes("zanistarast")){
+    return [
+      "Zanistarast bilimsel sentezi nedir?",
+      "Rasterast doğrulama filtresi nasıl çalışır?",
+      "Zanistarast ideolojiden nasıl ayrılır?"
+    ];
+  }
+
+  return [
+    "Bu konuyu Hebûn açısından açıklar mısın?",
+    "Bu konunun Zanabûn bilgi yönü nedir?",
+    "Bu konu Rabûn yönetim modeliyle nasıl ilişkilidir?"
+  ];
+}
+
+function renderSuggestions(q){
+  const list = getSuggestions(q);
+
+  suggestions.innerHTML = `
+    <h4>Konuyla ilgili şunları da sorabilirsin:</h4>
+    ${list.map(item => `
+      <button onclick="askSuggestion('${item.replace(/'/g, "\\'")}')">${item}</button>
+    `).join("")}
+  `;
+}
+
+function askSuggestion(text){
+  input.value = text;
+  ask();
+}
 function ask(){
   const q = input.value.trim();
   if(!q) return;
@@ -168,7 +208,9 @@ function ask(){
   setTimeout(()=>{
     lastAnswer = answer(q);
     output.innerHTML = lastAnswer;
-    thinking.classList.remove("show");
+renderSuggestions(q);
+thinking.classList.remove("show");
+output.scrollIntoView({ behavior:"smooth", block:"start" });
   },700);
 }
 
@@ -183,7 +225,7 @@ function readAnswer(){
 
 function clearBox(){
   input.value="";
-  output.innerHTML="";
+  suggestions.innerHTML="";
   lastAnswer="";
   thinking.classList.remove("show");
 }
