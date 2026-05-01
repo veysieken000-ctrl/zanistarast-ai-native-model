@@ -4,7 +4,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Zanistarast AI & Speech</title>
+.session-tools{
+  margin:18px 0;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
 
+.session-tools input,
+.session-tools select{
+  padding:12px 14px;
+  border-radius:12px;
+  border:1px solid #4ea1ff;
+  background:#0b1324;
+  color:white;
+}
+
+.session-tools button{
+  padding:12px 14px;
+  border-radius:12px;
+  border:0;
+  cursor:pointer;
+  font-weight:700;
+}
 <style>
 body{margin:0;font-family:Inter,Arial;background:#0a0f1c;color:white}
 .panel{max-width:900px;margin:60px auto;padding:30px;background:rgba(20,30,40,.9);border-radius:20px}
@@ -156,7 +178,16 @@ button{padding:12px 18px;border:0;border-radius:12px;margin:10px 8px 0 0;cursor:
   <option value="mr-IN">मराठी</option>
   <option value="gu-IN">ગુજરાતી</option>
 </select>
- <div id="chatBox" class="chat-box"></div>
+ <div class="session-tools">
+  <input id="sessionName" placeholder="Sohbet adı yaz..." />
+  <button onclick="newChatSession()">Yeni Sohbet</button>
+  <button onclick="saveChatSession()">Sohbeti Kaydet</button>
+  <select id="sessionList" onchange="loadSelectedSession()">
+    <option value="">Kayıtlı sohbet seç</option>
+  </select>
+</div>
+  
+<div id="chatBox" class="chat-box"></div>
 <div id="output" class="answer-top"></div>
 
 <div id="suggestions" class="suggestions"></div>
@@ -179,7 +210,76 @@ button{padding:12px 18px;border:0;border-radius:12px;margin:10px 8px 0 0;cursor:
 let lastAnswer = "";
 // 🔥 Chat hafıza
 let chatHistory = [];
+let currentSessionName = "varsayilan";
 
+function getAllSessions(){
+  return JSON.parse(localStorage.getItem("zanistarast_sessions") || "{}");
+}
+
+function saveAllSessions(sessions){
+  localStorage.setItem("zanistarast_sessions", JSON.stringify(sessions));
+}
+
+function saveChatSession(){
+  const nameInput = document.getElementById("sessionName");
+  const name = nameInput.value.trim() || currentSessionName || "varsayilan";
+
+  const sessions = getAllSessions();
+  sessions[name] = chatHistory;
+
+  saveAllSessions(sessions);
+  currentSessionName = name;
+
+  refreshSessionList();
+  alert("Sohbet kaydedildi: " + name);
+}
+
+function refreshSessionList(){
+  const sessionList = document.getElementById("sessionList");
+  const sessions = getAllSessions();
+
+  sessionList.innerHTML = `<option value="">Kayıtlı sohbet seç</option>`;
+
+  Object.keys(sessions).forEach(name => {
+    const option = document.createElement("option");
+    option.value = name;
+    option.textContent = name;
+    sessionList.appendChild(option);
+  });
+}
+
+function loadSelectedSession(){
+  const sessionList = document.getElementById("sessionList");
+  const name = sessionList.value;
+  if(!name) return;
+
+  const sessions = getAllSessions();
+  chatHistory = sessions[name] || [];
+  currentSessionName = name;
+
+  document.getElementById("sessionName").value = name;
+
+  chatBox.innerHTML = "";
+  chatHistory.forEach(msg => {
+    addMessage(msg.type, msg.content, false);
+  });
+
+  localStorage.setItem("zanistarast_chat", JSON.stringify(chatHistory));
+}
+
+function newChatSession(){
+  chatHistory = [];
+  currentSessionName = "sohbet-" + new Date().toLocaleString("tr-TR");
+
+  chatBox.innerHTML = "";
+  input.value = "";
+  output.innerHTML = "";
+  suggestions.innerHTML = "";
+  lastAnswer = "";
+
+  document.getElementById("sessionName").value = currentSessionName;
+  localStorage.removeItem("zanistarast_chat");
+}
 // Kaydet
 function saveChat(){
   localStorage.setItem("zanistarast_chat", JSON.stringify(chatHistory));
@@ -500,9 +600,9 @@ function startListen(){
 function stopListen(){
   if(recognition) recognition.stop();
 }
-// 🔥 Sayfa açılınca geçmişi getir
 window.onload = function(){
   loadChat();
+  refreshSessionList();
 };
 </script>
 </body>
