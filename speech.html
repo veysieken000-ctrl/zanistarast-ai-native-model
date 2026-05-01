@@ -170,6 +170,7 @@ button{padding:12px 18px;border:0;border-radius:12px;margin:10px 8px 0 0;cursor:
   <button class="read" onclick="readAnswer()"> Oku</button>
   <button class="clear" onclick="clearBox()">× Temizle</button>
   <button class="read" onclick="downloadChat()">Geçmişi İndir</button>
+  <button class="read" onclick="copyAllChat()">Tüm Sohbeti Kopyala</button>
 </div>
 
 <div id="thinking">Düşünüyor<span class="dots"></span></div>
@@ -235,7 +236,20 @@ function downloadChat(){
     alert("İndirilecek geçmiş yok.");
     return;
   }
+function copyAllChat(){
+  if(!chatHistory.length){
+    alert("Kopyalanacak sohbet yok.");
+    return;
+  }
 
+  const text = chatHistory.map(msg => {
+    const who = msg.type === "user" ? "Kullanıcı" : "Zanistarast AI";
+    return `${who}: ${msg.content.replace(/<[^>]*>/g, "")}`;
+  }).join("\n\n");
+
+  navigator.clipboard.writeText(text);
+  alert("Tüm sohbet kopyalandı.");
+}
   const text = chatHistory.map(msg => {
     const who = msg.type === "user" ? "Kullanıcı" : "Zanistarast AI";
     return `${who}: ${msg.content.replace(/<[^>]*>/g, "")}`;
