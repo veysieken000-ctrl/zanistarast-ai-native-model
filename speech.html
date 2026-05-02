@@ -562,67 +562,76 @@ function askSuggestion(text){
   input.value = text;
   ask();
 }
+
 function ask(){
   const q = input.value.trim();
-if(!q) return;
+  if(!q) return;
 
-addMessage("user", q);
+  addMessage("user", q);
+  thinking.classList.add("show");
+  input.value = "";
 
-thinking.classList.add("show");
-input.value = "";
+  setTimeout(()=>{
+    lastAnswer = answer(q);
+    addMessage("ai", lastAnswer);
 
-setTimeout(()=>{
- getAIResponse(q).then(res => {
-  lastAnswer = res;
-
-  addMessage("ai", lastAnswer);
-
-  output.innerHTML = "";
-  renderSuggestions(q);
-  thinking.classList.remove("show");
-});
-
-  function generateAnswer(q){
-
-  q = q.toLowerCase();
-
-  if(q.includes("hebun")){
-    return "Hebûn, varlığın ontolojik temelidir. Tüm sistemlerin başlangıç noktasıdır.";
-  }
-
-  if(q.includes("zanabun")){
-    return "Zanabûn, bilginin oluşum sürecidir. Varlığın anlaşılmasıdır.";
-  }
-
-  if(q.includes("rabun")){
-    return "Rabûn, yönetim ve sistem kurma aşamasıdır.";
-  }
-
-  if(q.includes("merhaba")){
-    return "Merhaba, Zanistarast sistemine hoş geldin.";
-  }
-
-  // fallback
-  return "Bu konu Zanistarast analizine göre Hebûn, Zanabûn ve Rabûn çerçevesinde değerlendirilmelidir.";
+    output.innerHTML = "";
+    renderSuggestions(q);
+    thinking.classList.remove("show");
+  },500);
 }
-  addMessage("ai", lastAnswer);
 
-  output.innerHTML = "";
-  renderSuggestions(q);
-  thinking.classList.remove("show");
-},700);
+function answer(q){
+  const s = q.toLowerCase();
+
+  if(s.includes("hebun") || s.includes("hebûn")){
+    return `
+      <h3>Hebûn Nedir?</h3>
+      <p>Hebûn, varlığın ontolojik temelidir. Tüm sistemlerin başlangıç noktasıdır.</p>
+      <p>Zanistarast yaklaşımında Hebûn, varlığın kendisini ifade eder.</p>
+    `;
+  }
+
+  if(s.includes("zanabun") || s.includes("zanabûn")){
+    return `
+      <h3>Zanabûn Nedir?</h3>
+      <p>Zanabûn, bilginin oluşum sürecidir. Varlığın anlaşılmasıdır.</p>
+    `;
+  }
+
+  if(s.includes("rabun") || s.includes("rabûn")){
+    return `
+      <h3>Rabûn Nedir?</h3>
+      <p>Rabûn, yönetim ve düzen kurma sürecidir.</p>
+    `;
+  }
+
+  if(s.includes("zanistarast")){
+    return `
+      <h3>Zanistarast</h3>
+      <p>Zanistarast; Hebûn (varlık), Zanabûn (bilgi) ve Rabûn (yönetim) üçlüsünü birleştiren sistemdir.</p>
+    `;
+  }
+
+  if(s.includes("merhaba")){
+    return "Merhaba, Zanistarast AI sistemine hoş geldin.";
+  }
+
+  return `
+    <p>Bu konu Zanistarast analizine göre Hebûn, Zanabûn ve Rabûn çerçevesinde değerlendirilir.</p>
+  `;
 }
 
 function readAnswer(){
-  if(!lastAnswer) lastAnswer = output.innerText;
   if(!lastAnswer) return;
 
   speechSynthesis.cancel();
 
-  const u = new SpeechSynthesisUtterance(lastAnswer);
+  const cleanText = lastAnswer.replace(/<[^>]*>/g, "");
+  const u = new SpeechSynthesisUtterance(cleanText);
 
   u.lang = languageSelect.value;
- 
+
   if(!speechSynthesis.getVoices().find(v => v.lang === u.lang)){
     u.lang = "en-US";
   }
@@ -640,23 +649,34 @@ function clearBox(){
   localStorage.removeItem("zanistarast_chat");
   thinking.classList.remove("show");
 }
+
 function startListen(){
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if(!SR){ output.innerHTML="Bu tarayıcı konuşma algılamayı desteklemiyor."; return; }
+
+  if(!SR){
+    output.innerHTML="Bu tarayıcı konuşma algılamayı desteklemiyor.";
+    return;
+  }
+
   recognition = new SR();
   recognition.lang = languageSelect.value;
   recognition.interimResults = true;
+
   recognition.onresult = e=>{
     let text="";
-    for(let i=0;i<e.results.length;i++){ text += e.results[i][0].transcript; }
+    for(let i=0;i<e.results.length;i++){
+      text += e.results[i][0].transcript;
+    }
     input.value = text;
   };
+
   recognition.start();
 }
 
 function stopListen(){
   if(recognition) recognition.stop();
 }
+
 window.onload = function(){
   loadChat();
   refreshSessionList();
@@ -664,4 +684,9 @@ window.onload = function(){
 </script>
 </body>
 </html>
+
+
+
+
+
 
