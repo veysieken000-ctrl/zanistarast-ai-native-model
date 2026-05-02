@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>STANDARD - Zanistarast</title>
+
+<link rel="stylesheet" href="style.css" />
+
+<style>
+body {
+  background:#0b0f1a;
+  color:#fff;
+  font-family: Arial, sans-serif;
+  padding:40px;
+}
+
+#navbar {
+  margin-bottom:20px;
+}
+
+.back {
+  margin-bottom:20px;
+  display:inline-block;
+  color:#8cb3ff;
+  text-decoration:none;
+}
+
+.card {
+  background:rgba(255,255,255,0.05);
+  padding:20px;
+  border-radius:12px;
+  margin-bottom:20px;
+}
+
+h1 {
+  margin-bottom:10px;
+}
+
+h2 {
+  margin-bottom:10px;
+}
+
+p {
+  line-height:1.7;
+  color:rgba(255,255,255,0.85);
+}
+
+ul {
+  padding-left:20px;
+}
+
+blockquote {
+  margin-top:10px;
+  padding:10px 15px;
+  background:rgba(255,255,255,0.08);
+  border-left:4px solid #8cb3ff;
+  color:#ddd;
+}
+</style>
+
+</head>
+
+<body>
+
+<div id="navbar"></div>
+
+<script>
+fetch("components/navbar.html")
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("navbar").innerHTML = data;
+  });
+</script>
+
+<a href="Rêya fem û ferasetê.html" class="back">← Geri dön</a>
+
+<div class="card">
+  <h1>STANDARD</h1>
+  <p>
+    Rêya Fem û Ferasetê standardı, bilmenin, anlamanın ve kavramanın
+    sistematik yolunu tanımlar. Amaç yalnızca bilgi üretmek değil;
+    bilgiyi doğrulamak, düzenlemek ve bütüncül bir yapıya dönüştürmektir.
+  </p>
+</div>
+
+<div class="card">
+  <h2>1. Temel İlke</h2>
+  <p>
+    Bilgi tekil değildir. Bilgi, çoklu tanıklığın zaman içinde
+    tutarlılık kazanmasıyla oluşur.
+  </p>
+
+  <blockquote>
+    Bilmek = Tanıklık + Tutarlılık + Süreklilik
+  </blockquote>
+</div>
+
+<div class="card">
+  <h2>2. Zorunlu Yapı</h2>
+  <ul>
+    <li>Kavram açık tanımlanmalı</li>
+    <li>Model kurulmalı</li>
+    <li>Test edilebilir olmalı</li>
+    <li>Simülasyon mümkün olmalı</li>
+    <li>Yanlışlanabilir olmalı</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>3. Dört Katman</h2>
+  <ul>
+    <li><strong>Hebûn:</strong> varlık ve süreklilik</li>
+    <li><strong>Zanabûn:</strong> bilgi ve tanıklık</li>
+    <li><strong>Mabûn:</strong> dolaşım ve ekonomi</li>
+    <li><strong>Rasterast:</strong> hüküm ve ahlak dengesi</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>4. Bilimsel Yaklaşım</h2>
+  <p>
+    Bu yaklaşım bilimi reddetmez. Bilimi genişletir.
+    Fizik, biyoloji, zihin, toplum ve hukuk tek bir sistemde birleşir.
+  </p>
+</div>
+
+<div class="card">
+  <h2>5. Zorunlu Kural</h2>
+  <blockquote>
+    Model yoksa → teori eksiktir<br>
+    Test yoksa → bilgi eksiktir<br>
+    Tutarlılık yoksa → gerçek yoktur
+  </blockquote>
+</div>
+
+<div class="card">
+  <h2>6. Sonuç</h2>
+  <p>
+    Bu standart, Zanistarast bilimsel sentezine giriş kapısıdır.
+    Tüm metinler bu yapıya göre kurulmalıdır.
+  </p>
+</div>
+
+</body>
+</html>
+
