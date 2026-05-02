@@ -578,57 +578,112 @@ function ask(){
   if(!q) return;
 
   addMessage("user", q);
-  thinking.classList.add("show");
   input.value = "";
+  thinking.classList.add("show");
 
   setTimeout(()=>{
     lastAnswer = answer(q);
     addMessage("ai", lastAnswer);
-
-    output.innerHTML = "";
     renderSuggestions(q);
     thinking.classList.remove("show");
-  },500);
+  }, 500);
 }
 
 function answer(q){
   const s = q.toLowerCase();
 
+  if(s.includes("merhaba") || s.includes("selam")){
+    return `
+      <h3>Merhaba</h3>
+      <p>Zanistarast AI sistemine hoş geldin. Bana Hebûn, Zanabûn, Rabûn, Zanistarast, Rasterast veya varlık düzeni hakkında soru sorabilirsin.</p>
+    `;
+  }
+
   if(s.includes("hebun") || s.includes("hebûn")){
     return `
       <h3>Hebûn Nedir?</h3>
-      <p>Hebûn, varlığın ontolojik temelidir. Tüm sistemlerin başlangıç noktasıdır.</p>
-      <p>Zanistarast yaklaşımında Hebûn, varlığın kendisini ifade eder.</p>
+      <p><b>Hebûn</b>, varlığın temel ontolojik düzenidir. Bir şeyin sadece mevcut olması değil; kendi sınırı, ilişkisi, amacı ve katmanı içinde anlamlı biçimde var olmasıdır.</p>
+      <p>Zanistarast sisteminde Hebûn ilk basamaktır. Önce varlık anlaşılır, sonra bilgi yani Zanabûn doğar, ardından düzen ve yönetim yani Rabûn kurulur.</p>
+      <ul>
+        <li>Fiziksel katman</li>
+        <li>Biyolojik katman</li>
+        <li>Zihinsel katman</li>
+        <li>Ruhsal / derin bilinç katmanı</li>
+        <li>İnsani / ahlaki katman</li>
+        <li>Ahiret / üst varlık katmanı</li>
+      </ul>
+      <p>Bu yapı, 6+Ehad bütünlüğüyle tamamlanır.</p>
     `;
   }
 
   if(s.includes("zanabun") || s.includes("zanabûn")){
     return `
       <h3>Zanabûn Nedir?</h3>
-      <p>Zanabûn, bilginin oluşum sürecidir. Varlığın anlaşılmasıdır.</p>
+      <p><b>Zanabûn</b>, bilginin oluşması ve varlığın bilinç tarafından kavranmasıdır.</p>
+      <p>Hebûn varlığın kendisidir; Zanabûn ise o varlığın anlaşılmasıdır. Bu yüzden bilgi, varlıktan kopuk değildir. Bilgi, varlığın izini takip ederek oluşur.</p>
+      <p>Zanistarast sisteminde Zanabûn; gözlem, anlam, doğrulama ve açıklama süreçlerini kapsar.</p>
     `;
   }
 
   if(s.includes("rabun") || s.includes("rabûn")){
     return `
       <h3>Rabûn Nedir?</h3>
-      <p>Rabûn, yönetim ve düzen kurma sürecidir.</p>
+      <p><b>Rabûn</b>, varlık ve bilgi üzerine kurulan yönetim düzenidir.</p>
+      <p>Hebûn varlığı, Zanabûn bilgiyi, Rabûn ise düzen kurmayı temsil eder. Yani Rabûn; sistemin yönetilmesi, korunması ve sürdürülebilir hale getirilmesidir.</p>
+      <p>Bu nedenle Rabûn sadece siyasi yönetim değil; aile, toplum, hukuk, ekonomi ve medeniyet düzenidir.</p>
     `;
   }
 
   if(s.includes("zanistarast")){
     return `
-      <h3>Zanistarast</h3>
-      <p>Zanistarast; Hebûn (varlık), Zanabûn (bilgi) ve Rabûn (yönetim) üçlüsünü birleştiren sistemdir.</p>
+      <h3>Zanistarast Nedir?</h3>
+      <p><b>Zanistarast</b>, Hebûn, Zanabûn ve Rabûn arasındaki ilişkiyi birlikte ele alan bilimsel-sistemsel bir sentezdir.</p>
+      <p>Bu modelde konu önce varlık düzeyinde incelenir, sonra bilgi düzeyinde açıklanır, en sonunda yönetim ve düzen düzeyinde tamamlanır.</p>
+      <p>Zanistarast ideolojik bir slogan değil; varlık, bilgi ve düzen arasında doğrulanabilir ilişki kurma çabasıdır.</p>
     `;
   }
 
-  if(s.includes("merhaba")){
-    return "Merhaba, Zanistarast AI sistemine hoş geldin.";
+  if(s.includes("rasterast")){
+    return `
+      <h3>Rasterast Doğrulama Filtresi</h3>
+      <p><b>Rasterast</b>, bir düşüncenin doğaya, varlığa, bilgiye ve ahlaki düzene uygun olup olmadığını test eden doğrulama filtresidir.</p>
+      <p>Bir fikir yalnızca güzel söylendiği için doğru kabul edilmez. Hebûn ile uyumlu mu, Zanabûn ile açıklanabilir mi, Rabûn içinde düzen kurabiliyor mu diye kontrol edilir.</p>
+    `;
+  }
+
+  if(s.includes("6+ehad") || s.includes("ehad")){
+    return `
+      <h3>6+Ehad Yapısı</h3>
+      <p><b>6+Ehad</b>, varlık düzeninin altı katman ve onları birleştiren en üst birlik ilkesiyle düşünülmesidir.</p>
+      <p>Altı katman fiziksel, biyolojik, zihinsel, ruhsal, insani ve ahiret/üst varlık düzeylerini ifade eder. Ehad ise bu katmanların nihai birliğini temsil eder.</p>
+    `;
+  }
+
+  if(s.includes("hukuk") || s.includes("adalet")){
+    return `
+      <h3>Hukuk ve Adalet</h3>
+      <p>Zanistarast açısından hukuk, sadece ceza ve kural sistemi değildir. Hukuk, varlık düzenini koruyan adalet mekanizmasıdır.</p>
+      <p>Adalet; Hebûn düzeyinde varlığın hakkını, Zanabûn düzeyinde doğru bilgiyi, Rabûn düzeyinde ise düzenli yönetimi gerektirir.</p>
+    `;
+  }
+
+  if(s.includes("sanat") || s.includes("güzellik") || s.includes("estetik")){
+    return `
+      <h3>Sanat, Estetik ve Delal</h3>
+      <p>Zanistarast açısından sanat, varlığın güzellik üzerinden görünür hale gelmesidir.</p>
+      <p><b>Delal</b>, olgun, kendini bulmuş, ne yaptığını bilen güzellik anlamında kullanılabilir. Bu yönüyle estetik yalnızca süs değil; varlığın uyumlu ifadesidir.</p>
+    `;
   }
 
   return `
-    <p>Bu konu Zanistarast analizine göre Hebûn, Zanabûn ve Rabûn çerçevesinde değerlendirilir.</p>
+    <h3>Zanistarast Analizi</h3>
+    <p>Bu soru doğrudan tek cümleyle kapanmaz. Zanistarast sistemine göre konu üç aşamada ele alınır:</p>
+    <ul>
+      <li><b>Hebûn:</b> Bu şeyin varlık düzeyi nedir?</li>
+      <li><b>Zanabûn:</b> Bu şey nasıl bilinir ve açıklanır?</li>
+      <li><b>Rabûn:</b> Bu bilgi nasıl düzene, yönetime veya yaşama uygulanır?</li>
+    </ul>
+    <p>Daha özel bir kavram yazarsan sana daha net ve makale düzeyinde cevap verebilirim.</p>
   `;
 }
 
@@ -636,7 +691,6 @@ function readAnswer(){
   if(!lastAnswer) return;
 
   speechSynthesis.cancel();
-
   const cleanText = lastAnswer.replace(/<[^>]*>/g, "");
   const u = new SpeechSynthesisUtterance(cleanText);
 
@@ -650,11 +704,11 @@ function readAnswer(){
 }
 
 function clearBox(){
-  input.value="";
-  output.innerHTML="";
-  suggestions.innerHTML="";
-  chatBox.innerHTML="";
-  lastAnswer="";
+  input.value = "";
+  output.innerHTML = "";
+  suggestions.innerHTML = "";
+  chatBox.innerHTML = "";
+  lastAnswer = "";
   chatHistory = [];
   localStorage.removeItem("zanistarast_chat");
   thinking.classList.remove("show");
@@ -664,7 +718,7 @@ function startListen(){
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
 
   if(!SR){
-    output.innerHTML="Bu tarayıcı konuşma algılamayı desteklemiyor.";
+    output.innerHTML = "Bu tarayıcı konuşma algılamayı desteklemiyor.";
     return;
   }
 
@@ -673,8 +727,8 @@ function startListen(){
   recognition.interimResults = true;
 
   recognition.onresult = e=>{
-    let text="";
-    for(let i=0;i<e.results.length;i++){
+    let text = "";
+    for(let i=0; i<e.results.length; i++){
       text += e.results[i][0].transcript;
     }
     input.value = text;
@@ -694,8 +748,6 @@ window.onload = function(){
 </script>
 </body>
 </html>
-
-
 
 
 
