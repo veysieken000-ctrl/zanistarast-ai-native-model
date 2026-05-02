@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Simulation — Rêya Fem û Ferasetê</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    body{background:#0b0f1a;color:#fff;font-family:Arial,sans-serif;padding:40px}
+    .back{margin-bottom:20px;display:inline-block;color:#8cb3ff;text-decoration:none}
+    .card{background:rgba(255,255,255,.06);padding:22px;border-radius:14px;margin-bottom:18px;max-width:980px}
+    p{line-height:1.75;color:rgba(255,255,255,.86)}
+    ul{line-height:1.8}
+    blockquote{border-left:4px solid #8cb3ff;padding-left:16px;margin-left:0;color:rgba(255,255,255,.9)}
+  </style>
+</head>
+
+<body>
+
+<a href="Rêya fem û ferasetê.html" class="back">← Rêya Fem û Ferasetê’ye dön</a>
+
+<div class="card">
+  <h1>7. Simulation</h1>
+  <p>
+    Simulation, Rêya Fem û Ferasetê’nin test katmanıdır. Bu bölüm, Hebûn,
+    Zanabûn, Mabûn ve Rasterast katmanlarının yalnızca kavramsal olarak değil,
+    model içinde denenebilir hale gelmesini sağlar.
+  </p>
+</div>
+
+<div class="card">
+  <h2>7.1 Ajan Modeli</h2>
+  <p>
+    Ajan, sistem içinde gözlem yapan, bilgi alan, karar veren ve sonuç üreten
+    birimdir. Ajan; insan, kurum, toplum, yapay zekâ modeli veya tarihsel aktör
+    olabilir.
+  </p>
+
+  <ul>
+    <li>Gözlem yapar</li>
+    <li>Veri toplar</li>
+    <li>Kaynak kullanır</li>
+    <li>Karar üretir</li>
+    <li>Sonuçtan etkilenir</li>
+  </ul>
+
+  <blockquote>
+    Agent = Observation + Resource + Decision + Feedback
+  </blockquote>
+</div>
+
+<div class="card">
+  <h2>7.2 Durum Modeli</h2>
+  <p>
+    Durum, sistemin belirli bir andaki halidir. Bir sistemin bilgisi, kaynağı,
+    dengesi, kararı ve riski aynı anda durum modelinde temsil edilir.
+  </p>
+
+  <blockquote>
+    State(t) = Knowledge + Resource + Rule + Balance + Risk
+  </blockquote>
+</div>
+
+<div class="card">
+  <h2>7.3 Bilgi Modeli</h2>
+  <p>
+    Bilgi modeli, ajanlardan gelen gözlem ve ölçümlerin tutarlılığını sınar.
+    Çoklu gözlemci verileri karşılaştırılır; varyans düşüyorsa bilgi güçlenir.
+  </p>
+
+  <ul>
+    <li>Gözlem sayısı artar</li>
+    <li>Ölçümler karşılaştırılır</li>
+    <li>Varyans hesaplanır</li>
+    <li>Tutarlılık ölçülür</li>
+    <li>Model güncellenir</li>
+  </ul>
+
+  <blockquote>
+    Düşük varyans → güçlü bilgi<br>
+    Yüksek varyans → zayıf bilgi
+  </blockquote>
+</div>
+
+<div class="card">
+  <h2>7.4 Kaynak Modeli</h2>
+  <p>
+    Kaynak modeli, Mabûn katmanını test eder. Bilgi, emek, zaman, para, enerji
+    ve güvenin sistem içinde nasıl dolaştığı izlenir.
+  </p>
+
+  <blockquote>
+    Resource Flow = Kaynak + Dolaşım + Denge
+  </blockquote>
+
+  <ul>
+    <li>Kaynak tek merkezde birikiyor mu?</li>
+    <li>Dolaşım tıkanıyor mu?</li>
+    <li>Kaynak değer üretiyor mu?</li>
+    <li>Dağılım sistemi sürdürüyor mu?</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>7.5 Karar Modeli</h2>
+  <p>
+    Karar modeli, ajanların hangi bilgiye göre hangi eylemi seçtiğini gösterir.
+    Karar yalnızca tercih değildir; bilgi, kaynak, kural ve riskin birleşimidir.
+  </p>
+
+  <blockquote>
+    Decision = Knowledge + Resource + Rule + Risk
+  </blockquote>
+</div>
+
+<div class="card">
+  <h2>7.6 Hüküm Modeli</h2>
+  <p>
+    Hüküm, kararın sistemde sonuç üretmiş halidir. Simulation içinde hüküm,
+    yalnızca karar anı değil; kararın etkisi, yayılımı ve geri dönüşüyle ölçülür.
+  </p>
+
+  <ul>
+    <li>Karar ne üretti?</li>
+    <li>Sistem dengelendi mi?</li>
+    <li>Kaynak dolaşımı güçlendi mi?</li>
+    <li>Zarar azaldı mı?</li>
+    <li>Yeni ahlak düzeni oluştu mu?</li>
+  </ul>
+
+  <blockquote>
+    Hüküm = Karar + Sonuç + Sistem Etkisi
+  </blockquote>
+</div>
+
+<div class="card">
+  <h2>7.7 Geri Besleme</h2>
+  <p>
+    Geri besleme, sistemin kendi sonucundan öğrenmesidir. Bir sistem sonuçları
+    okuyamıyorsa öğrenemez; öğrenemiyorsa aynı hatayı tekrar eder.
+  </p>
+
+  <blockquote>
+    Outcome → Feedback → Updated State
+  </blockquote>
+
+  <ul>
+    <li>Başarılı sonuç → model güçlenir</li>
+    <li>Hatalı sonuç → model düzeltilir</li>
+    <li>Çelişkili sonuç → yeniden test edilir</li>
+    <li>Çöküş sonucu → sistem yeniden yapılandırılır</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>7.8 Denge Testi</h2>
+  <p>
+    Denge testi, sistemin karar sonrası stabil kalıp kalmadığını ölçer.
+    Denge yalnızca hareketsizlik değildir; sürdürülebilir akış ve düşük çelişki
+    durumudur.
+  </p>
+
+  <blockquote>
+    Denge = Düşük Varyans + Sürekli Dolaşım + Düşük Zarar
+  </blockquote>
+</div>
+
+<div class="card">
+  <h2>7.9 Çöküş Testi</h2>
+  <p>
+    Bir model yalnızca başarılı olduğu durumda değil, bozulduğu durumda da test
+    edilmelidir. Çöküş testi, sistemin hangi şartlarda dağıldığını gösterir.
+  </p>
+
+  <ul>
+    <li>Bilgi varyansı artıyorsa</li>
+    <li>Kaynak dolaşımı kesiliyorsa</li>
+    <li>Hüküm ve ahlak kopuyorsa</li>
+    <li>Kararlar zarar üretiyorsa</li>
+    <li>Geri besleme çalışmıyorsa</li>
+  </ul>
+
+  <blockquote>
+    Çöküş = Yüksek Varyans + Tıkanmış Dolaşım + Yanlış Hüküm
+  </blockquote>
+</div>
+
+<div class="card">
+  <h2>7.10 Sonuç Grafikleri</h2>
+  <p>
+    Simulation katmanı, yalnızca metinle değil grafik ve ölçümle gösterilmelidir.
+    Her test, sistemin nasıl değiştiğini görünür hale getirmelidir.
+  </p>
+
+  <ul>
+    <li>Bilgi güveni grafiği</li>
+    <li>Varyans grafiği</li>
+    <li>Kaynak dolaşımı grafiği</li>
+    <li>Denge / kriz grafiği</li>
+    <li>Karar etkisi grafiği</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>Genel Simülasyon Formu</h2>
+  <blockquote>
+    State(t+1) = f(State(t), Knowledge, Resource, Rule, Feedback)
+  </blockquote>
+
+  <p>
+    Bu form, Rêya Fem û Ferasetê’nin test edilebilir hale gelmiş çekirdeğidir.
+    Bilgi, kaynak, karar ve geri besleme birlikte çalıştığında sistem kendini
+    günceller.
+  </p>
+</div>
+
+<div class="card">
+  <h2>Sonuç</h2>
+  <p>
+    Simulation, Zanistarast bilimsel sentezinin deney alanıdır. Burada fikir,
+    model davranışına dönüşür. Eğer model denge üretiyorsa güçlenir; çöküş
+    üretiyorsa yeniden düzenlenir.
+  </p>
+
+  <blockquote>
+    Bilginin doğruluğu yalnızca söylenmez; sistem içinde denenir.
+  </blockquote>
+</div>
+
+</body>
+</html>
+
