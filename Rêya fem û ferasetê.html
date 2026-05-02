@@ -1,123 +1,265 @@
 <!DOCTYPE html>
 <html lang="tr">
- <style>
-#navbar {
-  margin-bottom: 20px;
-}
-</style>
-  <head>
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ontology - Zanistarast</title>
-
+  <title>Rêya Fem û Ferasetê</title>
   <link rel="stylesheet" href="style.css" />
 
   <style>
     body {
-     <div id="navbar"></div>
-
-<script>
-fetch("components/navbar.html")
-  .then(res => res.text())
-  .then(data => {
-    document.getElementById("navbar").innerHTML = data;
-  });
-</script>
-      background: #0b0f1a;
-      color: white;
-      font-family: Arial, sans-serif;
-      padding: 40px;
+      background:#0b0f1a;
+      color:#fff;
+      font-family:Arial, sans-serif;
+      padding:40px;
     }
 
-    h1 {
-      margin-bottom: 20px;
+    .back {
+      margin-bottom:20px;
+      display:inline-block;
+      color:#8cb3ff;
+      text-decoration:none;
     }
 
-    .list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      max-width: 700px;
+    .hero {
+      margin-bottom:24px;
+    }
+
+    .card {
+      background:rgba(255,255,255,0.06);
+      padding:22px;
+      border-radius:14px;
+      margin-bottom:18px;
+      max-width:1050px;
+    }
+
+    h1, h2, h3 {
+      margin-top:0;
+    }
+
+    p {
+      line-height:1.75;
+      color:rgba(255,255,255,0.86);
+    }
+
+    .grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+      gap:16px;
     }
 
     .item {
-  display: block;
-  padding: 14px 16px;
-  border-radius: 10px;
-  background: rgba(255,255,255,0.08);
-  text-decoration: none;
-  color: white;
-  transition: 0.2s;
-}
+      display:block;
+      padding:18px;
+      border-radius:14px;
+      background:rgba(255,255,255,0.06);
+      color:white;
+      text-decoration:none;
+      transition:.2s;
+    }
 
-.item strong {
-  display: block;
-  font-size: 18px;
-  margin-bottom: 6px;
-}
+    .item:hover {
+      background:rgba(255,255,255,0.12);
+      transform:translateY(-2px);
+    }
 
-.item span {
-  display: block;
-  font-size: 14px;
-  opacity: 0.82;
-  line-height: 1.5;
-}
+    .item strong {
+      display:block;
+      font-size:18px;
+      margin-bottom:8px;
+    }
+
+    .item span {
+      display:block;
+      font-size:14px;
+      opacity:.82;
+      line-height:1.5;
+    }
+
+    .branches {
+      margin-top:12px;
+      padding-left:20px;
+      line-height:1.7;
+      color:rgba(255,255,255,0.82);
+    }
+
+    blockquote {
+      border-left:4px solid #8cb3ff;
+      padding-left:16px;
+      margin-left:0;
+      color:rgba(255,255,255,0.9);
+    }
   </style>
 </head>
 
 <body>
 
-  <h1>Rêya Fem û Ferasetê</h1>
+<a href="paper.html" class="back">← Paper sayfasına dön</a>
 
-<p class="intro">
-  Rêya Fem û Ferasetê, bilmenin, anlamanın ve kavramanın yoludur.
-  Bu sayfa Zanistarast bilimsel sentezine giden temel yöntemi gösterir:
-  algıdan tanıklığa, tanıklıktan bilgiye, bilgiden düzene ve bütüncül senteze.
-</p>
+<section class="hero">
+  <div class="card">
+    <h1>Rêya Fem û Ferasetê</h1>
+    <p>
+      Rêya Fem û Ferasetê; bilmenin, bilebilmenin ve bilginin doğruluğunu
+      sınamanın yoludur. Bu sayfa, Zanistarast bilimsel sentezine giden
+      yöntem haritasını kurar.
+    </p>
 
-<div class="list">
+    <blockquote>
+      Amaç: algıdan ölçüme, ölçümden bilgiye, bilgiden doğruluğa,
+      doğruluktan hükme ve bütüncül senteze ulaşmak.
+    </blockquote>
+  </div>
+</section>
+
+<section class="card">
+  <h2>Ana Yol</h2>
+  <p>
+    Bu yapı sekiz ana bölümden oluşur. Her bölüm kendi içinde alt dallara ayrılır.
+    Böylece sistem yalnızca açıklama değil; ölçü, model, uygulama ve test düzeni kazanır.
+  </p>
+</section>
+
+<section class="grid">
 
   <a href="Rêya fem û ferasetê-standard.html" class="item">
-    <strong>STANDARD</strong>
-    <span>Bilimsel metinlerin ortak ölçüsü, düzeni ve doğrulama şartı.</span>
+    <strong>1. STANDARD</strong>
+    <span>Metinlerin bilimsel ölçüsü, yazım kuralı ve doğrulama standardı.</span>
+    <ul class="branches">
+      <li>Amaç</li>
+      <li>Kavram tanımı</li>
+      <li>Matematiksel model şartı</li>
+      <li>Alanlara uygulama</li>
+      <li>Rasterast doğrulama</li>
+      <li>Simulation / test şartı</li>
+      <li>Yanlışlanabilirlik</li>
+    </ul>
   </a>
 
   <a href="Rêya fem û ferasetê-core-law.html" class="item">
-    <strong>Core Law</strong>
-    <span>Varlık, bilgi, dolaşım ve düzeni bağlayan temel yasa.</span>
+    <strong>2. Core Law</strong>
+    <span>Bilmenin, bilebilmenin ve bilginin doğruluğunun temel yasası.</span>
+    <ul class="branches">
+      <li>Bilmek nedir?</li>
+      <li>Bilebilmek nedir?</li>
+      <li>Bilginin doğruluğu</li>
+      <li>Algı → ölçüm → veri → model</li>
+      <li>Bilgi formülü</li>
+      <li>Yanlış bilgi şartları</li>
+      <li>Bilginin hükme dönüşmesi</li>
+    </ul>
   </a>
 
   <a href="Rêya fem û ferasetê-hebun.html" class="item">
-    <strong>Hebûn</strong>
-    <span>Varlığın sabit nesne değil, süreklilik kazanan düzenli süreç olduğunu açıklar.</span>
+    <strong>3. Hebûn</strong>
+    <span>Bilginin varlık zemini; düzen, süreklilik ve form değişimi.</span>
+    <ul class="branches">
+      <li>Varlık nedir?</li>
+      <li>Varlık düzeni</li>
+      <li>Süreklilik</li>
+      <li>Form değişimi</li>
+      <li>Fizikte Hebûn</li>
+      <li>Biyolojide Hebûn</li>
+      <li>Zihinde Hebûn</li>
+      <li>Toplumda Hebûn</li>
+      <li>Hebûn olmadan bilgi olmaz</li>
+    </ul>
   </a>
 
   <a href="Rêya fem û ferasetê-zanabun.html" class="item">
-    <strong>Zanabûn</strong>
-    <span>Bilginin tekil kanaat değil, tutarlı ve çoklu tanıklık olduğunu kurar.</span>
+    <strong>4. Zanabûn</strong>
+    <span>Bilginin oluşumu; gözlem, ölçüm, veri, varyans ve tutarlılık.</span>
+    <ul class="branches">
+      <li>Gözlemci</li>
+      <li>Ölçüm</li>
+      <li>Veri</li>
+      <li>Karşılaştırma</li>
+      <li>Varyans</li>
+      <li>Tutarlılık</li>
+      <li>Model kurma</li>
+      <li>Öğrenme</li>
+      <li>Bilginin doğruluk derecesi</li>
+    </ul>
   </a>
 
   <a href="Rêya fem û ferasetê-mabun.html" class="item">
-    <strong>Mabûn</strong>
-    <span>Ekonomiyi birikim değil, varlığı sürdüren dolaşım ve kaynak akışı olarak tanımlar.</span>
+    <strong>5. Mabûn</strong>
+    <span>Bilginin ve kaynağın dolaşımı; ekonomi, değer ve sürdürülebilirlik.</span>
+    <ul class="branches">
+      <li>Kaynak nedir?</li>
+      <li>Dolaşım nedir?</li>
+      <li>Bilgi dolaşımı</li>
+      <li>Ekonomik dolaşım</li>
+      <li>Değer üretimi</li>
+      <li>Birikim ve tıkanma</li>
+      <li>Kriz modeli</li>
+      <li>Sürdürülebilirlik</li>
+      <li>Hukuk ve toplum bağlantısı</li>
+    </ul>
   </a>
 
   <a href="Rêya fem û ferasetê-rasterast.html" class="item">
-    <strong>Rasterast</strong>
-    <span>Hüküm ve ahlakı ayırmadan; hakkı, düzeni ve sistem istikrarını birlikte okur.</span>
+    <strong>6. Rasterast</strong>
+    <span>Doğruluk, hüküm, ahlak, hukuk ve sistem istikrarı filtresi.</span>
+    <ul class="branches">
+      <li>Doğruluk filtresi</li>
+      <li>Hüküm nedir?</li>
+      <li>Ahlak nedir?</li>
+      <li>Hüküm–ahlak iç içeliği</li>
+      <li>Hukukta Rasterast</li>
+      <li>Sosyolojide Rasterast</li>
+      <li>Psikolojide Rasterast</li>
+      <li>Tarihte Rasterast</li>
+      <li>Yönetimde Rasterast</li>
+      <li>Ekonomide Rasterast</li>
+      <li>Yapay zekâda Rasterast</li>
+      <li>Çökme şartları</li>
+    </ul>
   </a>
 
   <a href="Rêya fem û ferasetê-simulation.html" class="item">
-    <strong>Simulation</strong>
-    <span>Zanistarast modelinin ajan, bilgi, kaynak ve karar üzerinden test edilmesini sağlar.</span>
+    <strong>7. Simulation</strong>
+    <span>Teorinin ajan, veri, kaynak, karar ve geri besleme ile test edilmesi.</span>
+    <ul class="branches">
+      <li>Ajan modeli</li>
+      <li>Durum modeli</li>
+      <li>Bilgi modeli</li>
+      <li>Kaynak modeli</li>
+      <li>Karar modeli</li>
+      <li>Hüküm modeli</li>
+      <li>Geri besleme</li>
+      <li>Denge testi</li>
+      <li>Çöküş testi</li>
+      <li>Sonuç grafikleri</li>
+    </ul>
   </a>
 
   <a href="Rêya fem û ferasetê-unified.html" class="item">
-    <strong>Unified</strong>
-    <span>Hebûn, Zanabûn, Mabûn ve Rasterast katmanlarını tek bütüncül bilimsel sentezde birleştirir.</span>
+    <strong>8. Unified</strong>
+    <span>Tüm katmanların Zanistarast bilimsel sentezinde birleşmesi.</span>
+    <ul class="branches">
+      <li>Rêya Fem û Ferasetê nedir?</li>
+      <li>Zanistarast’a giden yol</li>
+      <li>Hebûn + Zanabûn + Mabûn + Rasterast</li>
+      <li>Bilimsel sentez</li>
+      <li>İnsan dünyasına uygulama</li>
+      <li>Newroza Kawa uygarlık temeli</li>
+      <li>6+tek ve 6+Ehad düzeni</li>
+      <li>Nihai sistem formu</li>
+    </ul>
   </a>
 
-</div>
+</section>
+
+<section class="card">
+  <h2>Genel Form</h2>
+  <blockquote>
+    Zanistarast = Hebûn + Zanabûn + Mabûn + Rasterast + Simulation
+  </blockquote>
+  <p>
+    Rêya Fem û Ferasetê, bu senteze ulaşan bilme yoludur.
+  </p>
+</section>
 
 </body>
 </html>
