@@ -211,9 +211,16 @@ button{padding:12px 18px;border:0;border-radius:12px;margin:10px 8px 0 0;cursor:
 
 <script>
 let lastAnswer = "";
-// 🔥 Chat hafıza
+let recognition = null;
 let chatHistory = [];
 let currentSessionName = "varsayilan";
+
+const input = document.getElementById("input");
+const output = document.getElementById("output");
+const suggestions = document.getElementById("suggestions");
+const thinking = document.getElementById("thinking");
+const languageSelect = document.getElementById("languageSelect");
+const chatBox = document.getElementById("chatBox");
 
 function getAllSessions(){
   return JSON.parse(localStorage.getItem("zanistarast_sessions") || "{}");
@@ -221,6 +228,77 @@ function getAllSessions(){
 
 function saveAllSessions(sessions){
   localStorage.setItem("zanistarast_sessions", JSON.stringify(sessions));
+}
+
+function saveChat(){
+  localStorage.setItem("zanistarast_chat", JSON.stringify(chatHistory));
+}
+
+function loadChat(){
+  const data = localStorage.getItem("zanistarast_chat");
+  if(!data) return;
+
+  chatHistory = JSON.parse(data);
+  chatBox.innerHTML = "";
+
+  chatHistory.forEach(msg=>{
+    addMessage(msg.type, msg.content, false);
+  });
+}
+
+function addMessage(type, content, save = true){
+  const div = document.createElement("div");
+  div.className = type === "user" ? "message user-message" : "message ai-message";
+
+  const time = new Date().toLocaleTimeString("tr-TR", {
+    hour:"2-digit",
+    minute:"2-digit"
+  });
+
+  div.innerHTML = `
+    <div class="message-content">${content}</div>
+    <div class="message-meta">
+      <span>${time}</span>
+      <button onclick="copyMessage(this)">Kopyala</button>
+      <button onclick="deleteMessage(this)">Sil</button>
+    </div>
+  `;
+
+  chatBox.appendChild(div);
+
+  if(save){
+    chatHistory.push({ type, content });
+    saveChat();
+  }
+
+  refreshMessageIndexes();
+  div.scrollIntoView({ behavior:"smooth", block:"end" });
+}
+
+function refreshMessageIndexes(){
+  document.querySelectorAll(".message").forEach((msg, index)=>{
+    msg.dataset.index = index;
+  });
+}
+
+function copyMessage(btn){
+  const message = btn.closest(".message").querySelector(".message-content").innerText;
+  navigator.clipboard.writeText(message);
+  btn.innerText = "Kopyalandı";
+  setTimeout(()=> btn.innerText = "Kopyala", 1200);
+}
+
+function deleteMessage(btn){
+  const messageDiv = btn.closest(".message");
+  const index = Number(messageDiv.dataset.index);
+
+  chatHistory.splice(index, 1);
+  saveChat();
+
+  chatBox.innerHTML = "";
+  chatHistory.forEach(msg=>{
+    addMessage(msg.type, msg.content, false);
+  });
 }
 
 function saveChatSession(){
@@ -232,8 +310,8 @@ function saveChatSession(){
 
   saveAllSessions(sessions);
   currentSessionName = name;
-
   refreshSessionList();
+
   alert("Sohbet kaydedildi: " + name);
 }
 
@@ -243,7 +321,7 @@ function refreshSessionList(){
 
   sessionList.innerHTML = `<option value="">Kayıtlı sohbet seç</option>`;
 
-  Object.keys(sessions).forEach(name => {
+  Object.keys(sessions).forEach(name=>{
     const option = document.createElement("option");
     option.value = name;
     option.textContent = name;
@@ -257,18 +335,20 @@ function loadSelectedSession(){
   if(!name) return;
 
   const sessions = getAllSessions();
+
   chatHistory = sessions[name] || [];
   currentSessionName = name;
 
   document.getElementById("sessionName").value = name;
 
   chatBox.innerHTML = "";
-  chatHistory.forEach(msg => {
+  chatHistory.forEach(msg=>{
     addMessage(msg.type, msg.content, false);
   });
 
-  localStorage.setItem("zanistarast_chat", JSON.stringify(chatHistory));
+  saveChat();
 }
+
 function deleteSelectedSession(){
   const sessionList = document.getElementById("sessionList");
   const name = sessionList.value;
@@ -293,6 +373,7 @@ function deleteSelectedSession(){
 
   alert("Sohbet silindi: " + name);
 }
+
 function newChatSession(){
   chatHistory = [];
   currentSessionName = "sohbet-" + new Date().toLocaleString("tr-TR");
@@ -306,108 +387,19 @@ function newChatSession(){
   document.getElementById("sessionName").value = currentSessionName;
   localStorage.removeItem("zanistarast_chat");
 }
-// Kaydet
-function saveChat(){
-  localStorage.setItem("zanistarast_chat", JSON.stringify(chatHistory));
-}
 
-// Yükle
-function loadChat(){
-  const data = localStorage.getItem("zanistarast_chat");
-
-  if(data){
-    chatHistory = JSON.parse(data);
-
-    chatHistory.forEach(msg => {
-      addMessage(msg.type, msg.content, false);
-    });
-  }
-}
-const chatBox = document.getElementById("chatBox");
-
-function addMessage(type, content, save = true){
-  const div = document.createElement("div");
-  div.className = type === "user" ? "message user-message" : "message ai-message";
-
-  const time = new Date().toLocaleTimeString("tr-TR", {
-    hour: "2-digit",
-    minute: "2-digit"
-  });
-
-  const index = chatHistory.length;
-
-  div.innerHTML = `
-    <div class="message-content">${content}</div>
-    <div class="message-meta">
-      <span>${time}</span>
-      <button onclick="copyMessage(this)">Kopyala</button>
-      <button onclick="deleteMessage(this)">Sil</button>
-    </div>
-  `;
-
-  div.dataset.index = index;
-  chatBox.appendChild(div);
-
-  if(save){
-    chatHistory.push({ type, content });
-    saveChat();
-  }
-
-  div.scrollIntoView({ behavior:"smooth", block:"end" });
-}
-
-  chatBox.appendChild(div);
-
-  if(save){
-    chatHistory.push({ type, content });
-    saveChat();
-  }
-
-  div.scrollIntoView({ behavior:"smooth", block:"end" });
-}
-function copyMessage(btn){
-  const message = btn.closest(".message").querySelector(".message-content").innerText;
-  navigator.clipboard.writeText(message);
-  btn.innerText = "Kopyalandı";
-  setTimeout(()=> btn.innerText = "Kopyala", 1200);
-}
-function deleteMessage(btn){
-  const messageDiv = btn.closest(".message");
-  const index = Number(messageDiv.dataset.index);
-
-  chatHistory.splice(index, 1);
-  saveChat();
-
-  chatBox.innerHTML = "";
-  chatHistory.forEach(msg => {
-    addMessage(msg.type, msg.content, false);
-  });
-}
 function downloadChat(){
   if(!chatHistory.length){
     alert("İndirilecek geçmiş yok.");
     return;
   }
-function copyAllChat(){
-  if(!chatHistory.length){
-    alert("Kopyalanacak sohbet yok.");
-    return;
-  }
 
-  const text = chatHistory.map(msg => {
+  const text = chatHistory.map(msg=>{
     const who = msg.type === "user" ? "Kullanıcı" : "Zanistarast AI";
     return `${who}: ${msg.content.replace(/<[^>]*>/g, "")}`;
   }).join("\n\n");
 
-  navigator.clipboard.writeText(text);
-  alert("Tüm sohbet kopyalandı.");
-}
-  const text = chatHistory.map(msg => {
-    const who = msg.type === "user" ? "Kullanıcı" : "Zanistarast AI";
-    return `${who}: ${msg.content.replace(/<[^>]*>/g, "")}`;
-  }).join("\n\n");
-
-  const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+  const blob = new Blob([text], { type:"text/plain;charset=utf-8" });
   const url = URL.createObjectURL(blob);
 
   const a = document.createElement("a");
@@ -417,31 +409,49 @@ function copyAllChat(){
 
   URL.revokeObjectURL(url);
 }
-let recognition = null;
 
-function answer(q){
-  const s = q.toLowerCase();
-  const lang = languageSelect.value;
-
-  function autoTranslate(text){
-    if(lang === "tr-TR") return text;
-    if(lang === "en-US") return text;
-    return text + " (" + lang + ")";
+function copyAllChat(){
+  if(!chatHistory.length){
+    alert("Kopyalanacak sohbet yok.");
+    return;
+  }
+function copyAllChat(){
+  if(!chatHistory.length){
+    alert("Kopyalanacak sohbet yok.");
+    return;
   }
 
-  if(lang === "en-US"){
-    return autoTranslate(`
-      <h3>ZANISTARAST ANALYSIS</h3>
-      <p>This topic is not directly answered. It is analyzed through existence (Hebûn), knowledge (Zanabûn), and management (Rabûn).</p>
-    `);
+  const text = chatHistory.map(msg=>{
+    const who = msg.type === "user" ? "Kullanıcı" : "Zanistarast AI";
+    return `${who}: ${msg.content.replace(/<[^>]*>/g, "")}`;
+  }).join("\n\n");
+
+  navigator.clipboard.writeText(text);
+  alert("Tüm sohbet kopyalandı.");
+}
+
+function downloadChat(){
+  if(!chatHistory.length){
+    alert("İndirilecek geçmiş yok.");
+    return;
   }
 
-  if(lang === "ku-TR"){
-    return autoTranslate(`
-      <h3>ANALÎZA ZANISTARAST</h3>
-      <p>Ev mijar rasterast nayê bersivandin. Ew bi Hebûn, Zanabûn û Rabûn tê analîz kirin.</p>
-    `);
-  }
+  const text = chatHistory.map(msg=>{
+    const who = msg.type === "user" ? "Kullanıcı" : "Zanistarast AI";
+    return `${who}: ${msg.content.replace(/<[^>]*>/g, "")}`;
+  }).join("\n\n");
+
+  const blob = new Blob([text], { type:"text/plain;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "zanistarast-chat-gecmisi.txt";
+  a.click();
+
+  URL.revokeObjectURL(url);
+}
+
 
   // ====== HEBUN ======
   if(s.includes("hebun") || s.includes("hebûn")){
