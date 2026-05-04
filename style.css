@@ -1733,4 +1733,29 @@ select:focus,
   color: #ffffff !important;
   font-weight: 800 !important;
 }
+.rabun-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(130, 160, 190, 0.28);
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.2px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(8px);
+  transition: all 0.25s ease;
+}
+
+.rabun-cta:hover {
+  background: rgba(160, 190, 220, 0.42);
+  border-color: rgba(255, 255, 255, 0.48);
+  transform: translateY(-2px);
+}
+
+style: make Rabun model link visible as CTA button
 
