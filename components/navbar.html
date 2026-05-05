@@ -1,15 +1,186 @@
-<nav class="navbar">
-  <div class="container navbar-inner">
+<nav class="site-navbar">
+  <a class="nav-logo" href="index.html">Zanistarast</a>
 
-    <a href="index.html" class="logo">Zanistarast</a>
+  <button class="nav-toggle" onclick="toggleNavbar()">☰</button>
 
-    <div class="nav-links">
-      <a href="paper.html" class="nav-btn">Paper</a>
-      <a href="speech.html">AI & Speech</a>
-      <a href="about.html" class="nav-btn">About</a>
-      <a href="repositories.html" class="nav-btn">Depolar</a>
-      <a href="duyurular.html" class="nav-btn">Duyurular</a>
+  <div class="nav-links" id="navLinks">
+
+    <a href="paper.html">Paper</a>
+
+    <div class="nav-dropdown">
+      <button class="nav-drop-btn">Sistem ▾</button>
+      <div class="nav-drop-menu">
+        <a href="theory.html">Theory</a>
+        <a href="theses.html">Theses</a>
+        <a href="makaleler.html">Makaleler</a>
+        <a href="core.html">Core</a>
+      </div>
     </div>
+
+    <div class="nav-dropdown">
+      <button class="nav-drop-btn">Modeller ▾</button>
+      <div class="nav-drop-menu">
+        <a href="zanistarast-rasterast.html">Rasterast</a>
+        <a href="rabun.html">Rabûn</a>
+        <a href="mabun.html">Mabûn</a>
+        <a href="Reya-fem-u-ferasete.html">Rêya fem û ferasetê</a>
+      </div>
+    </div>
+
+    <div class="nav-dropdown">
+      <button class="nav-drop-btn">Araçlar ▾</button>
+      <div class="nav-drop-menu">
+        <a href="graph.html">Graph</a>
+        <a href="ai-speech.html">AI & Speech</a>
+      </div>
+    </div>
+
+    <a href="about.html">About</a>
+    <a href="depolar.html">Depolar</a>
+    <a href="duyurular.html">Duyurular</a>
 
   </div>
 </nav>
+
+<style>
+.site-navbar {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  position: relative;
+  z-index: 50;
+}
+
+.nav-logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.nav-links a,
+.nav-drop-btn {
+  color: rgba(255,255,255,0.88);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-links a:hover,
+.nav-drop-btn:hover {
+  color: white;
+}
+
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-drop-menu {
+  display: none;
+  position: absolute;
+  top: 28px;
+  left: 0;
+  min-width: 210px;
+  padding: 10px;
+  border-radius: 16px;
+  background: rgba(10,16,28,0.96);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+}
+
+.nav-drop-menu a {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.nav-drop-menu a:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+.nav-dropdown:hover .nav-drop-menu {
+  display: block;
+}
+
+.nav-toggle {
+  display: none;
+  color: white;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  padding: 8px 12px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+@media (max-width: 850px) {
+  .site-navbar {
+    align-items: flex-start;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    top: 70px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 14px;
+    border-radius: 18px;
+    background: rgba(10,16,28,0.97);
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-dropdown {
+    width: 100%;
+  }
+
+  .nav-drop-btn {
+    width: 100%;
+    text-align: left;
+    padding: 10px 0;
+  }
+
+  .nav-drop-menu {
+    display: block;
+    position: static;
+    min-width: auto;
+    margin-top: 4px;
+    box-shadow: none;
+    background: rgba(255,255,255,0.04);
+  }
+}
+</style>
+
+<script>
+function toggleNavbar() {
+  const nav = document.getElementById("navLinks");
+  if (nav) nav.classList.toggle("open");
+}
+</script>
+
