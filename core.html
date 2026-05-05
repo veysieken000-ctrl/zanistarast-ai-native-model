@@ -7,6 +7,15 @@
 </head>
 
 <body>
+  <div id="navbar"></div>
+
+<script>
+fetch("components/navbar.html")
+.then(res => res.text())
+.then(data => {
+  document.getElementById("navbar").innerHTML = data;
+});
+</script>
   <div class="container">
 
     <a href="paper.html" class="back-link">← Paper’a dön</a>
@@ -18,62 +27,75 @@
       </div>
     </section>
 
-    <section class="core-list">
+    <section class="theory-grid">
 
-      <a class="core-item" href="core-01.html">
-        <h3>01 — Varlık Sistemleri ve Boyutları</h3>
-        <p>Temel ontolojik yapı</p>
-      </a>
+<a class="theory-link-card" href="core-01.html">
+<span class="theory-index">01</span>
+<h2>Varlık Sistemleri ve Boyutları</h2>
+<p>Temel ontolojik yapı</p>
+</a>
 
-      <a class="core-item" href="core-02.html">
-        <h3>02 — Varlık Yönetim Düzeni</h3>
-      </a>
+<a class="theory-link-card" href="core-02.html">
+<span class="theory-index">02</span>
+<h2>Varlık Yönetim Düzeni</h2>
+</a>
 
-      <a class="core-item" href="core-03.html">
-        <h3>03 — Akıl ve Bilginin Varlığı</h3>
-      </a>
+<a class="theory-link-card" href="core-03.html">
+<span class="theory-index">03</span>
+<h2>Akıl ve Bilginin Varlığı</h2>
+</a>
 
-      <a class="core-item" href="core-04.html">
-        <h3>04 — Etik ve Ahlak</h3>
-      </a>
+<a class="theory-link-card" href="core-04.html">
+<span class="theory-index">04</span>
+<h2>Etik ve Ahlak</h2>
+</a>
 
-      <a class="core-item" href="core-05.html">
-        <h3>05 — Duygu</h3>
-      </a>
+<a class="theory-link-card" href="core-05.html">
+<span class="theory-index">05</span>
+<h2>Duygu</h2>
+</a>
 
-      <a class="core-item" href="core-06-bilim.html">
-        <h3>06 — Bilim</h3>
-      </a>
+<a class="theory-link-card" href="core-06-bilim.html">
+<span class="theory-index">06</span>
+<h2>Bilim</h2>
+</a>
 
-      <a class="core-item" href="core-07-hukuk.html">
-        <h3>07 — Hukuk Felsefesi</h3>
-      </a>
+<a class="theory-link-card" href="core-07-hukuk.html">
+<span class="theory-index">07</span>
+<h2>Hukuk Felsefesi</h2>
+</a>
 
-      <a class="core-item" href="core-08-insan-ve-toplum.html">
-        <h3>08 — İnsan ve Toplum</h3>
-      </a>
+<a class="theory-link-card" href="core-08-insan-ve-toplum.html">
+<span class="theory-index">08</span>
+<h2>İnsan ve Toplum</h2>
+</a>
 
-      <a class="core-item" href="core-09-kurdistan-ortadogu-varlik-tarihi.html">
-        <h3>09 — Kürdistan, Ortadoğu ve Varlık Tarihi</h3>
-      </a>
+<a class="theory-link-card" href="core-09-kurdistan-ortadogu-varlik-tarihi.html">
+<span class="theory-index">09</span>
+<h2>Kürdistan ve Varlık Tarihi</h2>
+</a>
 
-      <a class="core-item" href="core-10-estetik-sanat-guzellik.html">
-        <h3>10 — Estetik, Sanat ve Güzellik</h3>
-      </a>
+<a class="theory-link-card" href="core-10-estetik-sanat-guzellik.html">
+<span class="theory-index">10</span>
+<h2>Estetik ve Sanat</h2>
+</a>
 
-      <a class="core-item" href="core-11-zanistarast-egitim-sistemi.html">
-        <h3>11 — Zanistarast Eğitim Sistemi</h3>
-      </a>
+<a class="theory-link-card" href="core-11-zanistarast-egitim-sistemi.html">
+<span class="theory-index">11</span>
+<h2>Eğitim Sistemi</h2>
+</a>
 
-      <a class="core-item" href="core-12-yasam-temelli-ekonomi.html">
-        <h3>12 — Yaşam Temelli Ekonomi</h3>
-      </a>
+<a class="theory-link-card" href="core-12-yasam-temelli-ekonomi.html">
+<span class="theory-index">12</span>
+<h2>Yaşam Temelli Ekonomi</h2>
+</a>
 
-      <a class="core-item" href="core-13-zanistarast-medeniyet-modeli.html">
-        <h3>13 — Zanistarast Medeniyet Modeli</h3>
-      </a>
+<a class="theory-link-card" href="core-13-zanistarast-medeniyet-modeli.html">
+<span class="theory-index">13</span>
+<h2>Zanistarast Medeniyet Modeli</h2>
+</a>
 
-    </section>
+</section>
 
   </div>
 
