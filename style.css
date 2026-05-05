@@ -1758,4 +1758,53 @@ select:focus,
 }
 
 style: make Rabun model link visible as CTA button
+.system-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 25px 0;
+}
 
+.flow-item {
+  background: rgba(255,255,255,0.06);
+  padding: 15px;
+  border-radius: 14px;
+  min-width: 140px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.flow-item span {
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.flow-item h3 {
+  margin: 5px 0;
+}
+
+.flow-item p {
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.flow-arrow {
+  font-size: 20px;
+  opacity: 0.4;
+}
+
+.main-cta {
+  display: inline-block;
+  margin: 20px 0;
+  padding: 12px 22px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #5f8cff, #3c5eff);
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.main-cta:hover {
+  opacity: 0.9;
+}
