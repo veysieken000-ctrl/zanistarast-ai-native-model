@@ -1,91 +1,177 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Theses</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Theses</title>
+<link rel="stylesheet" href="style.css" />
+
+<style>
+
+/* SAYFA YAPISI */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+/* HERO */
+.hero-card {
+  padding: 30px;
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(40,58,92,0.9), rgba(20,30,50,0.95));
+  border: 1px solid rgba(140,170,255,0.2);
+  margin-bottom: 30px;
+}
+
+.hero-card h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.hero-card p {
+  color: rgba(255,255,255,0.75);
+}
+
+/* GRID */
+.theory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+  gap: 18px;
+}
+
+/* KART */
+.theory-link-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 20px;
+  padding: 20px;
+  background: linear-gradient(180deg, rgba(40,58,92,0.85), rgba(20,30,50,0.95));
+  border: 1px solid rgba(140,170,255,0.18);
+  transition: all 0.2s ease;
+}
+
+.theory-link-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(160,190,255,0.4);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.theory-index {
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.theory-link-card h2 {
+  margin: 8px 0;
+  font-size: 20px;
+}
+
+.theory-link-card p {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* BACK BUTON */
+.back-btn {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 10px 18px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.08);
+  text-decoration: none;
+  color: white;
+  transition: 0.2s;
+}
+
+.back-btn:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+</style>
 </head>
+
 <body>
-  <main class="container">
 
-    <a class="back-link" href="./paper.html">← Back to Papers</a>
+<!-- NAVBAR -->
+<div id="navbar"></div>
 
-    <section class="hero">
-      <div class="hero-card">
-        <h1>Theses</h1>
-        <p>
-          Zanistarast çerçevesi içinde geliştirilen ana tez dizileri.
-          Her biri ayrı bir katmanı temsil eder.
-        </p>
-      </div>
-    </section>
+<script>
+fetch("components/navbar.html")
+.then(res => res.text())
+.then(data => {
+  document.getElementById("navbar").innerHTML = data;
+});
+</script>
 
-    <section class="theory-grid">
+<main class="container">
 
-      <!-- 00 -->
-      <a class="theory-link-card" href="thesis-civilization.html">
-        <span class="theory-index">00</span>
-        <h2>Civilization Framework</h2>
-        <p>Newroza Kawa medeniyet mimarisinin ana çerçevesi.</p>
-      </a>
+<a class="back-btn" href="paper.html">← Paper'a dön</a>
 
-      <!-- 01 -->
-      <a class="theory-link-card" href="thesis-hebun.html">
-        <span class="theory-index">01</span>
-        <h2>Hebun Ontology</h2>
-        <p>Katmanlı varlık yapısı ve ontolojik temel sistem.</p>
-      </a>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-card">
+    <h1>Theses</h1>
+    <p>Zanistarast çerçevesi içinde geliştirilen ana tez dizileri.
+    Her biri sistemin farklı katmanını temsil eder.</p>
+  </div>
+</section>
 
-      <!-- 02 -->
-      <a class="theory-link-card" href="thesis-zanabun.html">
-      <span class="theory-index">02</span>
-      <h2>Zanabun Epistemology</h2>
-      <p>
-      Bilgi, tanıklık, hakikat, ahlak ve hüküm ilişkisini kuran
-      katmanlı epistemolojik yapı.
-     </p>
-    </a>
+<!-- GRID -->
+<section class="theory-grid">
 
-      <!-- 03 -->
-      <a class="theory-link-card" href="thesis-meta-science.html">
-        <span class="theory-index">03</span>
-        <h2>Meta Science</h2>
-        <p>Bilimsel yöntemlerin üst yapısal analizi.</p>
-      </a>
+<a class="theory-link-card" href="thesis-civilization.html">
+<span class="theory-index">00</span>
+<h2>Civilization Framework</h2>
+<p>Newroza Kawa medeniyet mimarisinin ana çerçevesi.</p>
+</a>
 
-      <!-- 04 -->
-      <a class="theory-link-card" href="thesis-ontology-core.html">
-        <span class="theory-index">04</span>
-        <h2>Ontology Core</h2>
-        <p>Varlık sisteminin çekirdek ilkeleri.</p>
-      </a>
+<a class="theory-link-card" href="thesis-hebun.html">
+<span class="theory-index">01</span>
+<h2>Hebûn Ontology</h2>
+<p>Katmanlı varlık yapısı ve ontolojik temel sistem.</p>
+</a>
 
-      <!-- 05 -->
-      <a class="theory-link-card" href="thesis-transitions.html">
-        <span class="theory-index">05</span>
-        <h2>Transitions</h2>
-        <p>Katmanlar arası geçiş mekanizmaları.</p>
-      </a>
+<a class="theory-link-card" href="thesis-zanabun.html">
+<span class="theory-index">02</span>
+<h2>Zanabûn Epistemology</h2>
+<p>Bilgi, hakikat, ahlak ve hüküm ilişkisini kuran yapı.</p>
+</a>
 
-      <!-- 06 -->
-      <a class="theory-link-card" href="thesis-final-layer.html">
-        <span class="theory-index">06</span>
-        <h2>Final Layer</h2>
-        <p>Tüm katmanların birleştiği nihai yapı.</p>
-      </a>
+<a class="theory-link-card" href="thesis-meta-science.html">
+<span class="theory-index">03</span>
+<h2>Meta Science</h2>
+<p>Bilimsel yöntemlerin üst yapısal analizi.</p>
+</a>
 
-      <!-- 07 -->
-      <a class="theory-link-card" href="thesis-mabun.html">
-        <span class="theory-index">07</span>
-        <h2>Mabun Economy</h2>
-        <p>Ekonomik denge ve sorumluluk temelli sistem.</p>
-      </a>
+<a class="theory-link-card" href="thesis-ontology-core.html">
+<span class="theory-index">04</span>
+<h2>Ontology Core</h2>
+<p>Varlık sisteminin çekirdek ilkeleri.</p>
+</a>
 
-    </section>
+<a class="theory-link-card" href="thesis-transitions.html">
+<span class="theory-index">05</span>
+<h2>Transitions</h2>
+<p>Katmanlar arası geçiş mekanizmaları.</p>
+</a>
 
-  </main>
+<a class="theory-link-card" href="thesis-final-layer.html">
+<span class="theory-index">06</span>
+<h2>Final Layer</h2>
+<p>Tüm katmanların birleştiği nihai yapı.</p>
+</a>
+
+<a class="theory-link-card" href="thesis-mabun.html">
+<span class="theory-index">07</span>
+<h2>Mabûn Economy</h2>
+<p>Ekonomik denge ve sorumluluk temelli sistem.</p>
+</a>
+
+</section>
+
+</main>
+
 </body>
 </html>
-
-
