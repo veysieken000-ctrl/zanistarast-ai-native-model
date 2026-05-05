@@ -1,357 +1,462 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Graph — Zanistarast</title>
-  <meta
-    name="description"
-    content="Visual graph of the Zanistarast system and its core structural relations."
-  />
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Graph — Zanistarast</title>
+<link rel="stylesheet" href="style.css" />
 
-  <style>
-    .graph-shell {
-      display: grid;
-      gap: 20px;
-    }
+<style>
+.graph-page {
+  padding-bottom: 80px;
+}
 
-    .graph-board {
-      background: #ffffff;
-      border-radius: 24px;
-      padding: 20px;
-      overflow: auto;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-    }
+.graph-hero {
+  position: relative;
+  overflow: hidden;
+}
 
-    .graph-board svg {
-      min-width: 1100px;
-      height: 380px;
-      display: block;
-    }
+.cosmic-symbol {
+  position: absolute;
+  inset: 0;
+  opacity: 0.28;
+  pointer-events: none;
+}
 
-    .graph-node {
-      fill: #20252c;
-      stroke: #2b3139;
-      stroke-width: 1.2;
-      cursor: pointer;
-      transition: 0.2s ease;
-    }
+.flag-field {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(80,120,255,0.18), transparent 28%),
+    linear-gradient(180deg, rgba(0,0,0,0.2), rgba(0,0,0,0.85));
+}
 
-    .graph-node:hover {
-      fill: #2a3139;
-    }
+.mini-earth {
+  position: absolute;
+  left: 50%;
+  top: 34%;
+  width: 46px;
+  height: 46px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 30%, #9bd3ff, #2266aa 42%, #123d66 72%, #071a2d);
+  box-shadow: 0 0 22px rgba(120,190,255,0.8);
+}
 
-    .graph-node.active {
-      fill: #4c5cff !important;
-      stroke: #2f3bff;
-      stroke-width: 2;
-    }
+.white-pencil {
+  position: absolute;
+  left: calc(50% + 62px);
+  top: 22%;
+  width: 14px;
+  height: 150px;
+  background: linear-gradient(180deg, #fff, #dcecff);
+  border-radius: 999px;
+  transform: rotate(0deg);
+  box-shadow: 0 0 18px rgba(255,255,255,0.75);
+}
 
-    .graph-label {
-      fill: #ffffff;
-      font-size: 16px;
-      font-family: Inter, Arial, sans-serif;
-      pointer-events: none;
-    }
+.white-pencil::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -18px;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  border-top: 22px solid #ffffff;
+}
 
-    .graph-line {
-      stroke: #9aa4af;
-      stroke-width: 2;
-    }
+.light-flow {
+  position: absolute;
+  left: calc(50% + 62px);
+  top: calc(22% + 165px);
+  width: 6px;
+  height: 210px;
+  transform: translateX(4px);
+  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(120,190,255,0.08));
+  filter: blur(1px);
+  box-shadow: 0 0 28px rgba(255,255,255,0.9);
+}
 
-    .graph-detail-box {
-      background: #ffffff;
-      color: #111111;
-      border-radius: 24px;
-      padding: 28px;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      min-height: 220px;
-    }
+.system-flow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
 
-    .graph-detail-box h3 {
-      margin-top: 0;
-      margin-bottom: 14px;
-      color: #111111;
-      font-size: 1.4rem;
-    }
+.system-flow span {
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.14);
+  font-size: 14px;
+}
 
-    .graph-detail-box p {
-      color: #222222;
-      margin: 10px 0;
-      line-height: 1.7;
-    }
+.graph-map {
+  position: relative;
+  margin-top: 28px;
+  min-height: 720px;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at center, rgba(80,130,255,0.18), transparent 28%),
+    linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+  border: 1px solid rgba(255,255,255,0.13);
+  overflow: hidden;
+}
 
-    .graph-detail-box strong {
-      color: #000000;
-    }
+.ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
 
-    .graph-link-card {
-      margin-top: 8px;
-    }
+.ring-1 { width: 320px; height: 320px; }
+.ring-2 { width: 520px; height: 520px; }
+.ring-3 { width: 700px; height: 700px; }
 
-    .graph-link-card a {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 12px 18px;
-      border-radius: 999px;
-      background: #ffffff;
-      color: #0d1015;
-      font-weight: 700;
-      text-decoration: none;
-      transition: 0.2s ease;
-    }
+.graph-node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  padding: 14px 18px;
+  border-radius: 18px;
+  background: rgba(18,24,38,0.92);
+  border: 1px solid rgba(255,255,255,0.14);
+  color: white;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 14px 30px rgba(0,0,0,0.3);
+  transition: 0.25s ease;
+}
 
-    .graph-link-card a:hover {
-      transform: translateY(-2px);
-    }
+.graph-node:hover,
+.graph-node.active {
+  background: linear-gradient(180deg, #4c8cff, #225eea);
+  box-shadow: 0 0 26px rgba(100,160,255,0.9);
+}
 
-    @media (max-width: 900px) {
-      .graph-board svg {
-        min-width: 980px;
-      }
-    }
-  </style>
+.center-node {
+  left: 50%;
+  top: 50%;
+  font-size: 20px;
+  padding: 20px 26px;
+}
+
+.detail-box {
+  margin-top: 24px;
+  padding: 26px;
+  border-radius: 24px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.13);
+}
+
+.detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.detail-actions a {
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.1);
+  color: white;
+  text-decoration: none;
+}
+
+.quick-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.quick-links a {
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+@media (max-width: 850px) {
+  .graph-map {
+    min-height: 880px;
+  }
+
+  .ring-1, .ring-2, .ring-3 {
+    display: none;
+  }
+
+  .graph-node {
+    position: relative;
+    left: auto !important;
+    top: auto !important;
+    transform: none;
+    display: block;
+    width: calc(100% - 40px);
+    margin: 14px 20px;
+    text-align: center;
+  }
+
+  .center-node {
+    margin-top: 24px;
+  }
+}
+</style>
 </head>
+
 <body>
-  <div id="navbar"></div>
+<div id="navbar"></div>
 
-  <script>
-    fetch("components/navbar.html")
-      .then((res) => res.text())
-      .then((data) => {
-        document.getElementById("navbar").innerHTML = data;
-      });
-  </script>
+<script>
+fetch("components/navbar.html")
+.then(res => res.text())
+.then(data => {
+  document.getElementById("navbar").innerHTML = data;
+});
+</script>
 
-  <main class="container">
-    <section class="hero">
-      <div class="hero-card">
-        <h1>Graph</h1>
-        <p>
-          Explore the structural relations inside the Zanistarast framework.
-          Click a node to inspect its role in the system.
-        </p>
-      </div>
-    </section>
+<main class="container graph-page">
 
-    <section class="graph-shell">
-      <div class="graph-board">
-        <svg viewBox="0 0 1200 380" xmlns="http://www.w3.org/2000/svg">
-          <!-- Lines -->
-          <line class="graph-line" x1="600" y1="70" x2="220" y2="150" />
-          <line class="graph-line" x1="600" y1="70" x2="520" y2="150" />
-          <line class="graph-line" x1="600" y1="70" x2="820" y2="150" />
-          <line class="graph-line" x1="220" y1="190" x2="340" y2="260" />
-          <line class="graph-line" x1="520" y1="190" x2="600" y2="260" />
-          <line class="graph-line" x1="820" y1="190" x2="860" y2="260" />
+<section class="hero graph-hero">
+  <div class="cosmic-symbol">
+    <div class="flag-field"></div>
+    <div class="mini-earth"></div>
+    <div class="white-pencil"></div>
+    <div class="light-flow"></div>
+  </div>
 
-          <!-- Top node -->
-          <rect
-            class="graph-node"
-            x="500"
-            y="30"
-            rx="18"
-            ry="18"
-            width="200"
-            height="56"
-            onclick="showDetail('zanistarast', this)"
-          />
-          <text class="graph-label" x="600" y="65" text-anchor="middle">Zanistarast</text>
+  <div class="hero-card">
+    <h1>Zanistarast Sistem Haritası</h1>
+    <p>
+      Bu grafik; varlık, bilgi, doğrulama, yönetim, ekonomi ve uygarlık katmanlarını
+      tek canlı sistem içinde gösterir.
+    </p>
 
-          <!-- Row 2 -->
-          <rect
-            class="graph-node"
-            x="150"
-            y="120"
-            rx="18"
-            ry="18"
-            width="140"
-            height="56"
-            onclick="showDetail('truth', this)"
-          />
-          <text class="graph-label" x="220" y="155" text-anchor="middle">Truth</text>
-
-          <rect
-            class="graph-node"
-            x="450"
-            y="120"
-            rx="18"
-            ry="18"
-            width="140"
-            height="56"
-            onclick="showDetail('structure', this)"
-          />
-          <text class="graph-label" x="520" y="155" text-anchor="middle">Structure</text>
-
-          <rect
-            class="graph-node"
-            x="750"
-            y="120"
-            rx="18"
-            ry="18"
-            width="140"
-            height="56"
-            onclick="showDetail('consistency', this)"
-          />
-          <text class="graph-label" x="820" y="155" text-anchor="middle">Consistency</text>
-
-          <!-- Row 3 -->
-          <rect
-            class="graph-node"
-            x="260"
-            y="230"
-            rx="18"
-            ry="18"
-            width="160"
-            height="56"
-            onclick="showDetail('hebun', this)"
-          />
-          <text class="graph-label" x="340" y="265" text-anchor="middle">Hebûn</text>
-
-          <rect
-            class="graph-node"
-            x="520"
-            y="230"
-            rx="18"
-            ry="18"
-            width="160"
-            height="56"
-            onclick="showDetail('zanabun', this)"
-          />
-          <text class="graph-label" x="600" y="265" text-anchor="middle">Zanabûn</text>
-
-          <rect
-            class="graph-node"
-            x="780"
-            y="230"
-            rx="18"
-            ry="18"
-            width="160"
-            height="56"
-            onclick="showDetail('rasterast', this)"
-          />
-          <text class="graph-label" x="860" y="265" text-anchor="middle">Rasterast</text>
-        </svg>
-      </div>
-
-      <div id="graph-detail" class="graph-detail-box">
-        <h3>Select a node</h3>
-        <p>Click a concept above to view its structural description.</p>
-      </div>
-    </section>
-
-    <section>
-      <div class="section-card graph-link-card">
-        <h2>Ask the AI About the Graph</h2>
-        <p>
-          After exploring the system graph, continue in the AI interface to ask
-          about a concept, layer, or relation.
-        </p>
-        <p>Examples: truth, civilization, hebun, structure, consistency.</p>
-        <a id="graph-ai-link" href="ai.html">Open AI Interface</a>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      Zanistarast Graph Interface
+    <div class="system-flow">
+      <span>Hebûn</span>
+      <span>→ Zanabûn</span>
+      <span>→ Rasterast</span>
+      <span>→ Rabûn</span>
+      <span>→ Mabûn</span>
+      <span>→ Newroza Kawa</span>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <script>
-    const graphData = {
-      zanistarast: {
-        title: "Zanistarast",
-        html: `
-          <p><strong>Description:</strong> Integrative system layer of the framework.</p>
-          <p><strong>Role:</strong> Unifies ontology, knowledge, method, and structure into a coherent model.</p>
-          <p><strong>Function:</strong> Connects all layers into one testable civilizational architecture.</p>
-          <p><strong>Formula:</strong> Integration → Coherence → Stability</p>
-        `
-      },
-      truth: {
-        title: "Truth",
-        html: `
-          <p><strong>Description:</strong> Primary governing principle.</p>
-          <p><strong>Role:</strong> Anchors legitimacy.</p>
-          <p><strong>Function:</strong> Constrains system behavior.</p>
-          <p><strong>Formula:</strong> Truth → Constraint → Validity</p>
-        `
-      },
-      structure: {
-        title: "Structure",
-        html: `
-          <p><strong>Description:</strong> Organizational form of the system.</p>
-          <p><strong>Role:</strong> Holds components together.</p>
-          <p><strong>Function:</strong> Prevents fragmentation.</p>
-          <p><strong>Formula:</strong> Structure → Coherence → Continuity</p>
-        `
-      },
-      consistency: {
-        title: "Consistency",
-        html: `
-          <p><strong>Description:</strong> Coherence principle.</p>
-          <p><strong>Role:</strong> Ensures system continuity.</p>
-          <p><strong>Function:</strong> Eliminates contradictions.</p>
-          <p><strong>Formula:</strong> Consistency → Stability</p>
-        `
-      },
-      hebun: {
-        title: "Hebûn",
-        html: `
-          <p><strong>Description:</strong> Ontological layer of being.</p>
-          <p><strong>Role:</strong> Grounds the framework in reality.</p>
-          <p><strong>Function:</strong> Defines what exists and what can be structurally recognized.</p>
-          <p><strong>Formula:</strong> Being → Ground → Ontology</p>
-        `
-      },
-      zanabun: {
-        title: "Zanabûn",
-        html: `
-          <p><strong>Description:</strong> Epistemological layer of knowledge.</p>
-          <p><strong>Role:</strong> Organizes how reality becomes knowable.</p>
-          <p><strong>Function:</strong> Connects observation, validation, and interpretation.</p>
-          <p><strong>Formula:</strong> Being → Knowledge → Verification</p>
-        `
-      },
-      rasterast: {
-        title: "Rasterast",
-        html: `
-          <p><strong>Description:</strong> Method layer of correct interpretation.</p>
-          <p><strong>Role:</strong> Filters distortion.</p>
-          <p><strong>Function:</strong> Protects structure from narrative corruption.</p>
-          <p><strong>Formula:</strong> Correct Reading → Structural Validity</p>
-        `
-      }
-    };
+<section class="graph-map">
 
-    function showDetail(key, el) {
-      const box = document.getElementById("graph-detail");
-      const item = graphData[key];
-      const aiLink = document.getElementById("graph-ai-link");
+  <div class="ring ring-1"></div>
+  <div class="ring ring-2"></div>
+  <div class="ring ring-3"></div>
 
-      if (!item) return;
+  <button class="graph-node center-node active" style="left:50%;top:50%;" onclick="showDetail('zanistarast', this)">Zanistarast</button>
 
-      document.querySelectorAll(".graph-node").forEach((node) => {
-        node.classList.remove("active");
-      });
+  <button class="graph-node" style="left:50%;top:27%;" onclick="showDetail('hebun', this)">Hebûn</button>
+  <button class="graph-node" style="left:68%;top:39%;" onclick="showDetail('zanabun', this)">Zanabûn</button>
+  <button class="graph-node" style="left:66%;top:62%;" onclick="showDetail('rasterast', this)">Rasterast</button>
+  <button class="graph-node" style="left:34%;top:62%;" onclick="showDetail('rabun', this)">Rabûn</button>
+  <button class="graph-node" style="left:32%;top:39%;" onclick="showDetail('mabun', this)">Mabûn</button>
 
-      if (el) {
-        el.classList.add("active");
-      }
+  <button class="graph-node" style="left:50%;top:10%;" onclick="showDetail('theory', this)">Theory</button>
+  <button class="graph-node" style="left:82%;top:50%;" onclick="showDetail('theses', this)">Theses</button>
+  <button class="graph-node" style="left:50%;top:90%;" onclick="showDetail('core', this)">Core</button>
+  <button class="graph-node" style="left:18%;top:50%;" onclick="showDetail('reya', this)">Rêya fem û ferasetê</button>
 
-      box.innerHTML = `
-        <h3>${item.title}</h3>
-        ${item.html}
-      `;
+  <button class="graph-node" style="left:50%;top:4%;" onclick="showDetail('newroza', this)">Newroza Kawa</button>
+  <button class="graph-node" style="left:88%;top:22%;" onclick="showDetail('ai', this)">AI</button>
+  <button class="graph-node" style="left:88%;top:78%;" onclick="showDetail('toplum', this)">Toplum</button>
+  <button class="graph-node" style="left:12%;top:78%;" onclick="showDetail('ekonomi', this)">Ekonomi</button>
+  <button class="graph-node" style="left:12%;top:22%;" onclick="showDetail('yonetim', this)">Yönetim</button>
 
-      if (aiLink) {
-        aiLink.href = `ai.html?prompt=${encodeURIComponent(item.title)}`;
-      }
-    }
-  </script>
+</section>
+
+<section id="detailBox" class="detail-box"></section>
+
+<section class="quick-links">
+  <a href="theory.html">Theory</a>
+  <a href="rabun.html">Rabûn Yönetim Modeli</a>
+  <a href="mabun.html">Mabûn Ekonomi Modeli</a>
+  <a href="zanistarast-rasterast.html">Rasterast Doğrulama Filtresi</a>
+</section>
+
+</main>
+
+<script>
+const graphData = {
+  zanistarast: {
+    title: "Zanistarast",
+    tanim: "Varlık, bilgi, doğrulama, yönetim ve uygarlık katmanlarını birleştiren bilimsel sentez.",
+    rol: "Bütün sistemi tek çatı altında toplar.",
+    fonksiyon: "Hebûn, Zanabûn, Rasterast, Rabûn ve Mabûn katmanlarını uyumlu hale getirir.",
+    formul: "Hebûn + Zanabûn + Rasterast + Rabûn + Mabûn → Newroza Kawa",
+    page: "paper.html",
+    related: "Theory, Theses, Core, Graph"
+  },
+  hebun: {
+    title: "Hebûn",
+    tanim: "Varlığın ontolojik zemini.",
+    rol: "Neyin var olduğunu ve neyin yapısal olarak tanınabileceğini belirler.",
+    fonksiyon: "Sistemin gerçeklik tabanını kurar.",
+    formul: "Varlık → Zemin → Ontoloji",
+    page: "thesis-hebun.html",
+    related: "Core, Ontoloji, Varlık Tarihi"
+  },
+  zanabun: {
+    title: "Zanabûn",
+    tanim: "Bilginin oluşumu, sınanması ve anlam kazanması.",
+    rol: "Gerçekliği bilinebilir hale getirir.",
+    fonksiyon: "Gözlem, ölçüm, veri, model ve yorum arasında bağ kurar.",
+    formul: "Gözlem → Ölçüm → Bilgi → Yorum",
+    page: "thesis-zanabun.html",
+    related: "Epistemoloji, Rêya fem û ferasetê"
+  },
+  rasterast: {
+    title: "Rasterast",
+    tanim: "Doğru okuma ve doğrulama filtresi.",
+    rol: "Yanlış bilgi, çarpıtma ve yapısal bozulmayı eler.",
+    fonksiyon: "Bilgi, ahlak, hukuk, ekonomi ve yönetim kararlarını test eder.",
+    formul: "Girdi → Filtre → Doğru Çıktı",
+    page: "zanistarast-rasterast.html",
+    related: "Politika kontrolü, bilimsel doğrulama"
+  },
+  rabun: {
+    title: "Rabûn",
+    tanim: "Doğaya uyumlu, geri bildirimli ve meclis temelli yönetim modeli.",
+    rol: "Sistemin ayağa kalkma ve kendini düzeltme kapasitesini kurar.",
+    fonksiyon: "Hüküm, ahlak, ekonomi ve alt meclisleri dengeler.",
+    formul: "Özgürlük + Sorumluluk + Geri Bildirim → Yönetim",
+    page: "rabun.html",
+    related: "Meclisler, şûra, güvenlik, eğitim"
+  },
+  mabun: {
+    title: "Mabûn",
+    tanim: "Kaynak, değer, denge ve dolaşım ekonomisi.",
+    rol: "Sistemin ekonomik sürekliliğini sağlar.",
+    fonksiyon: "Kaynağı israf değil geri dönüşüm ve toplumsal fayda düzenine bağlar.",
+    formul: "Kaynak → Hizmet → Değer → Geri Dönüş",
+    page: "mabun.html",
+    related: "Ekonomi meclisi, dolaşım, sürdürülebilirlik"
+  },
+  theory: {
+    title: "Theory",
+    tanim: "Zanistarast’ın teorik ana omurgası.",
+    rol: "Sistemin bilimsel ve kavramsal katmanlarını düzenler.",
+    fonksiyon: "Alt teorileri sistemli biçimde sunar.",
+    formul: "Kavram → Teori → Model",
+    page: "theory.html",
+    related: "Boyutsal açılım, biyolojik evre, zaman"
+  },
+  theses: {
+    title: "Theses",
+    tanim: "Zanistarast ana tez dizileri.",
+    rol: "Kurucu iddiaları ve çekirdek tezleri taşır.",
+    fonksiyon: "Sistemin ana savlarını okunabilir hale getirir.",
+    formul: "Tez → Gerekçe → Sistem",
+    page: "theses.html",
+    related: "Hebûn, Zanabûn, Mabûn"
+  },
+  core: {
+    title: "Core",
+    tanim: "Orijinal ham veri ve çekirdek makaleler katmanı.",
+    rol: "Sistemin ilk düşünsel malzemesini korur.",
+    fonksiyon: "Temel kavramların kök metinlerini saklar.",
+    formul: "Ham fikir → Çekirdek → Gelişim",
+    page: "core.html",
+    related: "Varlık, ahlak, hukuk, bilim"
+  },
+  reya: {
+    title: "Rêya fem û ferasetê",
+    tanim: "Bilmenin, bilebilmenin ve doğru bilgiye ulaşmanın yolu.",
+    rol: "Zanistarast’a giden yöntem haritasını kurar.",
+    fonksiyon: "Algıdan ölçüme, ölçümden doğrulamaya ve doğrulamadan hükme geçişi düzenler.",
+    formul: "Algı → Ölçüm → Bilgi → Doğruluk → Hüküm",
+    page: "Reya-fem-u-ferasete.html",
+    related: "Standard, Core Law, Hebûn, Zanabûn"
+  },
+  newroza: {
+    title: "Newroza Kawa Uygarlığı",
+    tanim: "Zanistarast bilimsel sentezinin toplumsal, ahlaki, ekonomik ve yönetimsel uygulama alanı.",
+    rol: "Bilimsel sentezi medeniyet düzenine taşır.",
+    fonksiyon: "İnsan, toplum, ekonomi, hukuk, eğitim ve yönetimi ortak sistemde birleştirir.",
+    formul: "Bilgi + Ahlak + Yönetim + Ekonomi → Uygarlık",
+    page: "makale-07-uygarlik-ve-duzen.html",
+    related: "Rabûn, Mabûn, Rasterast"
+  },
+  ai: {
+    title: "AI",
+    tanim: "Veri, analiz, modelleme ve öneri üreten zekâ katmanı.",
+    rol: "Zekâyı sağlar; akıl meclisler ve ahlak ile tamamlanır.",
+    fonksiyon: "Senaryo üretir, riskleri gösterir, fakat nihai hüküm vermez.",
+    formul: "Veri → Model → Öneri",
+    page: "ai-speech.html",
+    related: "AI-native sistem, Graph"
+  },
+  toplum: {
+    title: "Toplum",
+    tanim: "İnsanın aile, eğitim, ahlak, hukuk ve kültür içinde düzen kazandığı alan.",
+    rol: "Bireysel ahlakı ortak yaşama taşır.",
+    fonksiyon: "Sevgi, merhamet, adalet ve sorumlulukla sosyal denge kurar.",
+    formul: "Birey → Aile → Toplum → Uygarlık",
+    page: "makale-05-siyaset-ve-toplum.html",
+    related: "Ahlak meclisi, eğitim, hukuk"
+  },
+  ekonomi: {
+    title: "Ekonomi",
+    tanim: "Kaynağın, emeğin, hizmetin ve değerin dolaşım düzeni.",
+    rol: "Toplumu ayakta tutan Mabûn katmanıdır.",
+    fonksiyon: "İsrafı azaltır, bağımlılığı kırar, kaynakları toplumsal faydaya döndürür.",
+    formul: "Kaynak → Üretim → Hizmet → Denge",
+    page: "mabun.html",
+    related: "Mabûn, ekonomi meclisi"
+  },
+  yonetim: {
+    title: "Yönetim",
+    tanim: "Rabûn yönetim modelinin meclis, şûra, geri bildirim ve denetim düzeni.",
+    rol: "Gücü tek elde toplamaz; işlevleri dengeye bağlar.",
+    fonksiyon: "Hüküm, ahlak, güvenlik, hukuk ve ekonomi katmanlarını koordine eder.",
+    formul: "Şûra + Meclis + Rasterast → Dengeli Yönetim",
+    page: "rabun.html",
+    related: "Rabûn, güvenlik, hukuk, şûra"
+  }
+};
+
+function showDetail(key, el) {
+  const item = graphData[key];
+  const box = document.getElementById("detailBox");
+
+  document.querySelectorAll(".graph-node").forEach(node => node.classList.remove("active"));
+  if (el) el.classList.add("active");
+
+  box.innerHTML = `
+    <h2>${item.title}</h2>
+    <p><strong>Tanım:</strong> ${item.tanim}</p>
+    <p><strong>Rol:</strong> ${item.rol}</p>
+    <p><strong>Fonksiyon:</strong> ${item.fonksiyon}</p>
+    <p><strong>Formül:</strong> ${item.formul}</p>
+    <p><strong>İlgili makaleler:</strong> ${item.related}</p>
+    <div class="detail-actions">
+      <a href="${item.page}">Sayfaya git</a>
+      <a href="ai-speech.html?prompt=${encodeURIComponent(item.title)}">AI’ye sor</a>
+    </div>
+  `;
+}
+
+showDetail("zanistarast", document.querySelector(".center-node"));
+</script>
+
 </body>
 </html>
+
+
 
