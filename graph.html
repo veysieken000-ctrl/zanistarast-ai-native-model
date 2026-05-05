@@ -3,214 +3,51 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Graph — Zanistarast</title>
+<title>Graph — Zanistarast Atom Sistemi</title>
 <link rel="stylesheet" href="style.css" />
 
 <style>
-.graph-page {
-  padding-bottom: 80px;
-}
+.graph-page{padding-bottom:90px}
+.graph-hero{position:relative;overflow:hidden}
+.atom-hero-bg{position:absolute;inset:0;opacity:.22;pointer-events:none}
+.atom-hero-bg::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,rgba(95,150,255,.38),transparent 28%),linear-gradient(180deg,#02040a,#000)}
+.mini-earth{position:absolute;left:50%;top:35%;width:42px;height:42px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle at 30% 30%,#bde8ff,#2d7fd3 45%,#0a2440 75%);box-shadow:0 0 28px rgba(150,210,255,.95)}
+.white-pencil{position:absolute;left:calc(50% + 62px);top:22%;width:13px;height:150px;border-radius:999px;background:linear-gradient(#fff,#dcecff);box-shadow:0 0 24px rgba(255,255,255,.9)}
+.white-pencil::after{content:"";position:absolute;left:50%;bottom:-18px;transform:translateX(-50%);border-left:9px solid transparent;border-right:9px solid transparent;border-top:22px solid #fff}
+.light-flow{position:absolute;left:calc(50% + 68px);top:calc(22% + 165px);width:7px;height:240px;background:linear-gradient(rgba(255,255,255,.95),rgba(120,190,255,.05));filter:blur(1px);box-shadow:0 0 30px rgba(255,255,255,.9)}
 
-.graph-hero {
-  position: relative;
-  overflow: hidden;
-}
+.flow-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.flow-row span{padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.13);font-size:14px}
 
-.cosmic-symbol {
-  position: absolute;
-  inset: 0;
-  opacity: 0.28;
-  pointer-events: none;
-}
+.atom-stage{position:relative;margin-top:30px;min-height:760px;border-radius:32px;background:radial-gradient(circle at center,rgba(77,139,255,.20),transparent 28%),linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.14);overflow:hidden}
 
-.flag-field {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 50% 40%, rgba(80,120,255,0.18), transparent 28%),
-    linear-gradient(180deg, rgba(0,0,0,0.2), rgba(0,0,0,0.85));
-}
+.orbit{position:absolute;left:50%;top:50%;border:1px solid rgba(255,255,255,.18);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none}
+.orbit-1{width:330px;height:330px}
+.orbit-2{width:520px;height:520px}
+.orbit-3{width:700px;height:700px}
 
-.mini-earth {
-  position: absolute;
-  left: 50%;
-  top: 34%;
-  width: 46px;
-  height: 46px;
-  transform: translateX(-50%);
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 30% 30%, #9bd3ff, #2266aa 42%, #123d66 72%, #071a2d);
-  box-shadow: 0 0 22px rgba(120,190,255,0.8);
-}
+.atom-core,.atom-node{position:absolute;transform:translate(-50%,-50%);border:1px solid rgba(255,255,255,.18);color:white;cursor:pointer;transition:.25s ease;text-align:center}
+.atom-core{left:50%;top:50%;width:170px;height:170px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle,#4c8cff,#10204a 68%);font-size:22px;font-weight:900;box-shadow:0 0 45px rgba(80,140,255,.85)}
+.atom-node{padding:13px 18px;border-radius:999px;background:rgba(14,20,35,.92);font-weight:800;box-shadow:0 14px 32px rgba(0,0,0,.35)}
+.atom-node:hover,.atom-node.active{background:linear-gradient(180deg,#58a0ff,#235eea);box-shadow:0 0 28px rgba(110,170,255,.95);border-color:rgba(255,255,255,.55)}
+.layer-label{position:absolute;left:50%;transform:translateX(-50%);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.layer-1{top:255px}.layer-2{top:160px}.layer-3{top:70px}
 
-.white-pencil {
-  position: absolute;
-  left: calc(50% + 62px);
-  top: 22%;
-  width: 14px;
-  height: 150px;
-  background: linear-gradient(180deg, #fff, #dcecff);
-  border-radius: 999px;
-  transform: rotate(0deg);
-  box-shadow: 0 0 18px rgba(255,255,255,0.75);
-}
+.atom-line{position:absolute;left:50%;top:50%;width:1px;height:340px;background:linear-gradient(rgba(255,255,255,.25),transparent);transform-origin:top center;pointer-events:none}
 
-.white-pencil::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -18px;
-  transform: translateX(-50%);
-  width: 0;
-  height: 0;
-  border-left: 9px solid transparent;
-  border-right: 9px solid transparent;
-  border-top: 22px solid #ffffff;
-}
+.detail-box{margin-top:24px;padding:28px;border-radius:26px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13)}
+.detail-box h2{margin-top:0}
+.detail-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+.detail-actions a{padding:11px 16px;border-radius:999px;background:rgba(255,255,255,.10);color:white;text-decoration:none;font-weight:700}
 
-.light-flow {
-  position: absolute;
-  left: calc(50% + 62px);
-  top: calc(22% + 165px);
-  width: 6px;
-  height: 210px;
-  transform: translateX(4px);
-  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(120,190,255,0.08));
-  filter: blur(1px);
-  box-shadow: 0 0 28px rgba(255,255,255,0.9);
-}
+.quick-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:24px}
+.quick-links a{padding:18px;border-radius:18px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:white;text-decoration:none;font-weight:800}
 
-.system-flow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 24px;
-}
-
-.system-flow span {
-  padding: 10px 14px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.14);
-  font-size: 14px;
-}
-
-.graph-map {
-  position: relative;
-  margin-top: 28px;
-  min-height: 720px;
-  border-radius: 28px;
-  background:
-    radial-gradient(circle at center, rgba(80,130,255,0.18), transparent 28%),
-    linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
-  border: 1px solid rgba(255,255,255,0.13);
-  overflow: hidden;
-}
-
-.ring {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  border: 1px solid rgba(255,255,255,0.16);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.ring-1 { width: 320px; height: 320px; }
-.ring-2 { width: 520px; height: 520px; }
-.ring-3 { width: 700px; height: 700px; }
-
-.graph-node {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  padding: 14px 18px;
-  border-radius: 18px;
-  background: rgba(18,24,38,0.92);
-  border: 1px solid rgba(255,255,255,0.14);
-  color: white;
-  font-weight: 800;
-  cursor: pointer;
-  box-shadow: 0 14px 30px rgba(0,0,0,0.3);
-  transition: 0.25s ease;
-}
-
-.graph-node:hover,
-.graph-node.active {
-  background: linear-gradient(180deg, #4c8cff, #225eea);
-  box-shadow: 0 0 26px rgba(100,160,255,0.9);
-}
-
-.center-node {
-  left: 50%;
-  top: 50%;
-  font-size: 20px;
-  padding: 20px 26px;
-}
-
-.detail-box {
-  margin-top: 24px;
-  padding: 26px;
-  border-radius: 24px;
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.13);
-}
-
-.detail-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 18px;
-}
-
-.detail-actions a {
-  padding: 10px 16px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.1);
-  color: white;
-  text-decoration: none;
-}
-
-.quick-links {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
-  gap: 14px;
-  margin-top: 24px;
-}
-
-.quick-links a {
-  padding: 18px;
-  border-radius: 18px;
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.12);
-  color: white;
-  text-decoration: none;
-  font-weight: 700;
-}
-
-@media (max-width: 850px) {
-  .graph-map {
-    min-height: 880px;
-  }
-
-  .ring-1, .ring-2, .ring-3 {
-    display: none;
-  }
-
-  .graph-node {
-    position: relative;
-    left: auto !important;
-    top: auto !important;
-    transform: none;
-    display: block;
-    width: calc(100% - 40px);
-    margin: 14px 20px;
-    text-align: center;
-  }
-
-  .center-node {
-    margin-top: 24px;
-  }
+@media(max-width:850px){
+  .atom-stage{min-height:auto;padding:22px}
+  .orbit,.atom-line,.layer-label{display:none}
+  .atom-core,.atom-node{position:relative;left:auto!important;top:auto!important;transform:none;display:flex;width:auto;min-height:54px;margin:12px 0;align-items:center;justify-content:center}
+  .atom-core{border-radius:24px;width:auto;height:76px}
 }
 </style>
 </head>
@@ -229,21 +66,20 @@ fetch("components/navbar.html")
 <main class="container graph-page">
 
 <section class="hero graph-hero">
-  <div class="cosmic-symbol">
-    <div class="flag-field"></div>
+  <div class="atom-hero-bg">
     <div class="mini-earth"></div>
     <div class="white-pencil"></div>
     <div class="light-flow"></div>
   </div>
 
   <div class="hero-card">
-    <h1>Zanistarast Sistem Haritası</h1>
+    <h1>Zanistarast Atom Sistemi</h1>
     <p>
-      Bu grafik; varlık, bilgi, doğrulama, yönetim, ekonomi ve uygarlık katmanlarını
-      tek canlı sistem içinde gösterir.
+      Merkezde Zanistarast; iç halkada varlık, bilgi, doğrulama, yönetim ve ekonomi;
+      dış halkalarda teori, yöntem, toplum, AI ve Newroza Kawa uygarlığı yer alır.
     </p>
 
-    <div class="system-flow">
+    <div class="flow-row">
       <span>Hebûn</span>
       <span>→ Zanabûn</span>
       <span>→ Rasterast</span>
@@ -254,30 +90,35 @@ fetch("components/navbar.html")
   </div>
 </section>
 
-<section class="graph-map">
+<section class="atom-stage">
 
-  <div class="ring ring-1"></div>
-  <div class="ring ring-2"></div>
-  <div class="ring ring-3"></div>
+  <div class="layer-label layer-1">1. Katman — Çekirdek Sistem</div>
+  <div class="layer-label layer-2">2. Katman — Yöntem ve Teori</div>
+  <div class="layer-label layer-3">3. Katman — Uygulama ve Uygarlık</div>
 
-  <button class="graph-node center-node active" style="left:50%;top:50%;" onclick="showDetail('zanistarast', this)">Zanistarast</button>
+  <div class="orbit orbit-1"></div>
+  <div class="orbit orbit-2"></div>
+  <div class="orbit orbit-3"></div>
 
-  <button class="graph-node" style="left:50%;top:27%;" onclick="showDetail('hebun', this)">Hebûn</button>
-  <button class="graph-node" style="left:68%;top:39%;" onclick="showDetail('zanabun', this)">Zanabûn</button>
-  <button class="graph-node" style="left:66%;top:62%;" onclick="showDetail('rasterast', this)">Rasterast</button>
-  <button class="graph-node" style="left:34%;top:62%;" onclick="showDetail('rabun', this)">Rabûn</button>
-  <button class="graph-node" style="left:32%;top:39%;" onclick="showDetail('mabun', this)">Mabûn</button>
+  <button class="atom-core active" onclick="showDetail('zanistarast', this)">Zanistarast</button>
 
-  <button class="graph-node" style="left:50%;top:10%;" onclick="showDetail('theory', this)">Theory</button>
-  <button class="graph-node" style="left:82%;top:50%;" onclick="showDetail('theses', this)">Theses</button>
-  <button class="graph-node" style="left:50%;top:90%;" onclick="showDetail('core', this)">Core</button>
-  <button class="graph-node" style="left:18%;top:50%;" onclick="showDetail('reya', this)">Rêya fem û ferasetê</button>
+  <button class="atom-node" style="left:50%;top:28%;" onclick="showDetail('hebun', this)">Hebûn</button>
+  <button class="atom-node" style="left:67%;top:40%;" onclick="showDetail('zanabun', this)">Zanabûn</button>
+  <button class="atom-node" style="left:61%;top:66%;" onclick="showDetail('rasterast', this)">Rasterast</button>
+  <button class="atom-node" style="left:39%;top:66%;" onclick="showDetail('rabun', this)">Rabûn</button>
+  <button class="atom-node" style="left:33%;top:40%;" onclick="showDetail('mabun', this)">Mabûn</button>
 
-  <button class="graph-node" style="left:50%;top:4%;" onclick="showDetail('newroza', this)">Newroza Kawa</button>
-  <button class="graph-node" style="left:88%;top:22%;" onclick="showDetail('ai', this)">AI</button>
-  <button class="graph-node" style="left:88%;top:78%;" onclick="showDetail('toplum', this)">Toplum</button>
-  <button class="graph-node" style="left:12%;top:78%;" onclick="showDetail('ekonomi', this)">Ekonomi</button>
-  <button class="graph-node" style="left:12%;top:22%;" onclick="showDetail('yonetim', this)">Yönetim</button>
+  <button class="atom-node" style="left:50%;top:16%;" onclick="showDetail('theory', this)">Theory</button>
+  <button class="atom-node" style="left:76%;top:30%;" onclick="showDetail('theses', this)">Theses</button>
+  <button class="atom-node" style="left:76%;top:70%;" onclick="showDetail('core', this)">Core</button>
+  <button class="atom-node" style="left:24%;top:70%;" onclick="showDetail('reya', this)">Rêya fem û ferasetê</button>
+  <button class="atom-node" style="left:24%;top:30%;" onclick="showDetail('final', this)">Final</button>
+
+  <button class="atom-node" style="left:50%;top:5%;" onclick="showDetail('newroza', this)">Newroza Kawa</button>
+  <button class="atom-node" style="left:90%;top:25%;" onclick="showDetail('ai', this)">AI</button>
+  <button class="atom-node" style="left:90%;top:75%;" onclick="showDetail('toplum', this)">Toplum</button>
+  <button class="atom-node" style="left:10%;top:75%;" onclick="showDetail('ekonomi', this)">Ekonomi</button>
+  <button class="atom-node" style="left:10%;top:25%;" onclick="showDetail('yonetim', this)">Yönetim</button>
 
 </section>
 
@@ -285,158 +126,42 @@ fetch("components/navbar.html")
 
 <section class="quick-links">
   <a href="theory.html">Theory</a>
-  <a href="rabun.html">Rabûn Yönetim Modeli</a>
-  <a href="mabun.html">Mabûn Ekonomi Modeli</a>
-  <a href="zanistarast-rasterast.html">Rasterast Doğrulama Filtresi</a>
+  <a href="theses.html">Theses</a>
+  <a href="core.html">Core</a>
+  <a href="final.html">Final Katman</a>
+  <a href="rabun.html">Rabûn</a>
+  <a href="mabun.html">Mabûn</a>
+  <a href="rasterast.html">Rasterast</a>
 </section>
 
 </main>
 
 <script>
 const graphData = {
-  zanistarast: {
-    title: "Zanistarast",
-    tanim: "Varlık, bilgi, doğrulama, yönetim ve uygarlık katmanlarını birleştiren bilimsel sentez.",
-    rol: "Bütün sistemi tek çatı altında toplar.",
-    fonksiyon: "Hebûn, Zanabûn, Rasterast, Rabûn ve Mabûn katmanlarını uyumlu hale getirir.",
-    formul: "Hebûn + Zanabûn + Rasterast + Rabûn + Mabûn → Newroza Kawa",
-    page: "paper.html",
-    related: "Theory, Theses, Core, Graph"
-  },
-  hebun: {
-    title: "Hebûn",
-    tanim: "Varlığın ontolojik zemini.",
-    rol: "Neyin var olduğunu ve neyin yapısal olarak tanınabileceğini belirler.",
-    fonksiyon: "Sistemin gerçeklik tabanını kurar.",
-    formul: "Varlık → Zemin → Ontoloji",
-    page: "thesis-hebun.html",
-    related: "Core, Ontoloji, Varlık Tarihi"
-  },
-  zanabun: {
-    title: "Zanabûn",
-    tanim: "Bilginin oluşumu, sınanması ve anlam kazanması.",
-    rol: "Gerçekliği bilinebilir hale getirir.",
-    fonksiyon: "Gözlem, ölçüm, veri, model ve yorum arasında bağ kurar.",
-    formul: "Gözlem → Ölçüm → Bilgi → Yorum",
-    page: "thesis-zanabun.html",
-    related: "Epistemoloji, Rêya fem û ferasetê"
-  },
-  rasterast: {
-    title: "Rasterast",
-    tanim: "Doğru okuma ve doğrulama filtresi.",
-    rol: "Yanlış bilgi, çarpıtma ve yapısal bozulmayı eler.",
-    fonksiyon: "Bilgi, ahlak, hukuk, ekonomi ve yönetim kararlarını test eder.",
-    formul: "Girdi → Filtre → Doğru Çıktı",
-    page: "zanistarast-rasterast.html",
-    related: "Politika kontrolü, bilimsel doğrulama"
-  },
-  rabun: {
-    title: "Rabûn",
-    tanim: "Doğaya uyumlu, geri bildirimli ve meclis temelli yönetim modeli.",
-    rol: "Sistemin ayağa kalkma ve kendini düzeltme kapasitesini kurar.",
-    fonksiyon: "Hüküm, ahlak, ekonomi ve alt meclisleri dengeler.",
-    formul: "Özgürlük + Sorumluluk + Geri Bildirim → Yönetim",
-    page: "rabun.html",
-    related: "Meclisler, şûra, güvenlik, eğitim"
-  },
-  mabun: {
-    title: "Mabûn",
-    tanim: "Kaynak, değer, denge ve dolaşım ekonomisi.",
-    rol: "Sistemin ekonomik sürekliliğini sağlar.",
-    fonksiyon: "Kaynağı israf değil geri dönüşüm ve toplumsal fayda düzenine bağlar.",
-    formul: "Kaynak → Hizmet → Değer → Geri Dönüş",
-    page: "mabun.html",
-    related: "Ekonomi meclisi, dolaşım, sürdürülebilirlik"
-  },
-  theory: {
-    title: "Theory",
-    tanim: "Zanistarast’ın teorik ana omurgası.",
-    rol: "Sistemin bilimsel ve kavramsal katmanlarını düzenler.",
-    fonksiyon: "Alt teorileri sistemli biçimde sunar.",
-    formul: "Kavram → Teori → Model",
-    page: "theory.html",
-    related: "Boyutsal açılım, biyolojik evre, zaman"
-  },
-  theses: {
-    title: "Theses",
-    tanim: "Zanistarast ana tez dizileri.",
-    rol: "Kurucu iddiaları ve çekirdek tezleri taşır.",
-    fonksiyon: "Sistemin ana savlarını okunabilir hale getirir.",
-    formul: "Tez → Gerekçe → Sistem",
-    page: "theses.html",
-    related: "Hebûn, Zanabûn, Mabûn"
-  },
-  core: {
-    title: "Core",
-    tanim: "Orijinal ham veri ve çekirdek makaleler katmanı.",
-    rol: "Sistemin ilk düşünsel malzemesini korur.",
-    fonksiyon: "Temel kavramların kök metinlerini saklar.",
-    formul: "Ham fikir → Çekirdek → Gelişim",
-    page: "core.html",
-    related: "Varlık, ahlak, hukuk, bilim"
-  },
-  reya: {
-    title: "Rêya fem û ferasetê",
-    tanim: "Bilmenin, bilebilmenin ve doğru bilgiye ulaşmanın yolu.",
-    rol: "Zanistarast’a giden yöntem haritasını kurar.",
-    fonksiyon: "Algıdan ölçüme, ölçümden doğrulamaya ve doğrulamadan hükme geçişi düzenler.",
-    formul: "Algı → Ölçüm → Bilgi → Doğruluk → Hüküm",
-    page: "Reya-fem-u-ferasete.html",
-    related: "Standard, Core Law, Hebûn, Zanabûn"
-  },
-  newroza: {
-    title: "Newroza Kawa Uygarlığı",
-    tanim: "Zanistarast bilimsel sentezinin toplumsal, ahlaki, ekonomik ve yönetimsel uygulama alanı.",
-    rol: "Bilimsel sentezi medeniyet düzenine taşır.",
-    fonksiyon: "İnsan, toplum, ekonomi, hukuk, eğitim ve yönetimi ortak sistemde birleştirir.",
-    formul: "Bilgi + Ahlak + Yönetim + Ekonomi → Uygarlık",
-    page: "makale-07-uygarlik-ve-duzen.html",
-    related: "Rabûn, Mabûn, Rasterast"
-  },
-  ai: {
-    title: "AI",
-    tanim: "Veri, analiz, modelleme ve öneri üreten zekâ katmanı.",
-    rol: "Zekâyı sağlar; akıl meclisler ve ahlak ile tamamlanır.",
-    fonksiyon: "Senaryo üretir, riskleri gösterir, fakat nihai hüküm vermez.",
-    formul: "Veri → Model → Öneri",
-    page: "ai-speech.html",
-    related: "AI-native sistem, Graph"
-  },
-  toplum: {
-    title: "Toplum",
-    tanim: "İnsanın aile, eğitim, ahlak, hukuk ve kültür içinde düzen kazandığı alan.",
-    rol: "Bireysel ahlakı ortak yaşama taşır.",
-    fonksiyon: "Sevgi, merhamet, adalet ve sorumlulukla sosyal denge kurar.",
-    formul: "Birey → Aile → Toplum → Uygarlık",
-    page: "makale-05-siyaset-ve-toplum.html",
-    related: "Ahlak meclisi, eğitim, hukuk"
-  },
-  ekonomi: {
-    title: "Ekonomi",
-    tanim: "Kaynağın, emeğin, hizmetin ve değerin dolaşım düzeni.",
-    rol: "Toplumu ayakta tutan Mabûn katmanıdır.",
-    fonksiyon: "İsrafı azaltır, bağımlılığı kırar, kaynakları toplumsal faydaya döndürür.",
-    formul: "Kaynak → Üretim → Hizmet → Denge",
-    page: "mabun.html",
-    related: "Mabûn, ekonomi meclisi"
-  },
-  yonetim: {
-    title: "Yönetim",
-    tanim: "Rabûn yönetim modelinin meclis, şûra, geri bildirim ve denetim düzeni.",
-    rol: "Gücü tek elde toplamaz; işlevleri dengeye bağlar.",
-    fonksiyon: "Hüküm, ahlak, güvenlik, hukuk ve ekonomi katmanlarını koordine eder.",
-    formul: "Şûra + Meclis + Rasterast → Dengeli Yönetim",
-    page: "rabun.html",
-    related: "Rabûn, güvenlik, hukuk, şûra"
-  }
+  zanistarast:{title:"Zanistarast",tanim:"Hebûn, Zanabûn, Rasterast, Rabûn ve Mabûn katmanlarını birleştiren bilimsel sentez.",rol:"Merkez çekirdek.",fonksiyon:"Tüm katmanları tek sistem ve medeniyet modelinde toplar.",formul:"Hebûn + Zanabûn + Rasterast + Rabûn + Mabûn → Newroza Kawa",page:"zanistarast.html",related:"Theory, Theses, Core, Final"},
+  hebun:{title:"Hebûn",tanim:"Varlığın ontolojik zemini.",rol:"Neyin var olduğunu belirler.",fonksiyon:"Sistemin gerçeklik tabanını kurar.",formul:"Varlık → Zemin → Ontoloji",page:"hebun.html",related:"Ontoloji, Core, Varlık Tarihi"},
+  zanabun:{title:"Zanabûn",tanim:"Bilginin oluşumu ve sınanması.",rol:"Gerçekliği bilinebilir hale getirir.",fonksiyon:"Gözlem, ölçüm, veri, model ve yorum arasında bağ kurar.",formul:"Gözlem → Ölçüm → Bilgi → Yorum",page:"zanabun.html",related:"Epistemoloji, Rêya fem û ferasetê"},
+  rasterast:{title:"Rasterast",tanim:"Doğru okuma ve doğrulama filtresi.",rol:"Yanlışı ve çarpıtmayı eler.",fonksiyon:"Bilgi, hukuk, ekonomi ve yönetim kararlarını test eder.",formul:"Girdi → Filtre → Doğru Çıktı",page:"rasterast.html",related:"Doğrulama, hukuk, politika kontrolü"},
+  rabun:{title:"Rabûn",tanim:"Doğaya uyumlu, geri bildirimli yönetim modeli.",rol:"Sistemin ayağa kalkma düzenidir.",fonksiyon:"Meclisleri, şûrayı ve denetimi dengeler.",formul:"Şûra + Meclis + Rasterast → Dengeli Yönetim",page:"rabun.html",related:"Yönetim, güvenlik, hukuk"},
+  mabun:{title:"Mabûn",tanim:"Kaynak, değer ve dolaşım ekonomisi.",rol:"Ekonomik sürekliliği sağlar.",fonksiyon:"Kaynağı hizmete, hizmeti değere, değeri geri dönüşe bağlar.",formul:"Kaynak → Hizmet → Değer → Geri Dönüş",page:"mabun.html",related:"Ekonomi, dolaşım, sürdürülebilirlik"},
+  theory:{title:"Theory",tanim:"Zanistarast teorik omurgası.",rol:"Kavramsal düzen sağlar.",fonksiyon:"Alt teorileri sistemleştirir.",formul:"Kavram → Teori → Model",page:"theory.html",related:"Boyut, zaman, biyoloji"},
+  theses:{title:"Theses",tanim:"Ana tez dizileri.",rol:"Kurucu iddiaları taşır.",fonksiyon:"Çekirdek savları okunabilir hale getirir.",formul:"Tez → Gerekçe → Sistem",page:"theses.html",related:"Hebûn, Zanabûn, Mabûn"},
+  core:{title:"Core",tanim:"Ham veri ve çekirdek makaleler.",rol:"Kök metinleri korur.",fonksiyon:"Fikirlerin ilk katmanını saklar.",formul:"Ham fikir → Çekirdek → Gelişim",page:"core.html",related:"Varlık, ahlak, hukuk"},
+  reya:{title:"Rêya fem û ferasetê",tanim:"Bilmenin ve doğrulamanın yolu.",rol:"Yöntem haritasıdır.",fonksiyon:"Algıdan hükme geçişi düzenler.",formul:"Algı → Ölçüm → Bilgi → Doğruluk → Hüküm",page:"Reya-fem-u-ferasete.html",related:"Standard, Hebûn, Zanabûn"},
+  final:{title:"Final Katman",tanim:"Tüm katmanların birleştiği nihai sentez.",rol:"Unified Field alanı.",fonksiyon:"Ayrı katmanları tek sistem halinde bağlar.",formul:"Parça → Anlam → Yön → Bütün",page:"final.html",related:"Unified Field, Total Integration"},
+  newroza:{title:"Newroza Kawa Uygarlığı",tanim:"Zanistarast’ın toplumsal, ahlaki, ekonomik ve yönetimsel uygulama alanı.",rol:"Medeniyet sonucu.",fonksiyon:"Bilimi, ahlakı, yönetimi ve ekonomiyi toplumsal yapıya taşır.",formul:"Bilgi + Ahlak + Yönetim + Ekonomi → Uygarlık",page:"makale-07-uygarlik-ve-duzen.html",related:"Rabûn, Mabûn, Rasterast"},
+  ai:{title:"AI",tanim:"Veri, modelleme ve öneri üreten zekâ katmanı.",rol:"Zekâyı sağlar.",fonksiyon:"Senaryo üretir, risk gösterir; nihai hüküm vermez.",formul:"Veri → Model → Öneri",page:"ai-speech.html",related:"AI-native, Graph"},
+  toplum:{title:"Toplum",tanim:"İnsanın aile, eğitim, ahlak, hukuk ve kültür içinde düzen kazandığı alan.",rol:"Ahlakı ortak yaşama taşır.",fonksiyon:"Sevgi, merhamet, adalet ve sorumlulukla denge kurar.",formul:"Birey → Aile → Toplum → Uygarlık",page:"makale-05-siyaset-ve-toplum.html",related:"Ahlak, eğitim, hukuk"},
+  ekonomi:{title:"Ekonomi",tanim:"Kaynak, emek, hizmet ve değerin dolaşımı.",rol:"Mabûn uygulama alanı.",fonksiyon:"İsrafı azaltır, kaynakları toplumsal faydaya döndürür.",formul:"Kaynak → Üretim → Hizmet → Denge",page:"mabun.html",related:"Mabûn, ekonomi meclisi"},
+  yonetim:{title:"Yönetim",tanim:"Rabûn’un meclis, şûra ve geri bildirim düzeni.",rol:"Gücü dengeye bağlar.",fonksiyon:"Hüküm, ahlak, güvenlik, hukuk ve ekonomi katmanlarını koordine eder.",formul:"Şûra + Meclis + Geri Bildirim → Yönetim",page:"rabun.html",related:"Rabûn, güvenlik, şûra"}
 };
 
-function showDetail(key, el) {
+function showDetail(key, el){
   const item = graphData[key];
   const box = document.getElementById("detailBox");
 
-  document.querySelectorAll(".graph-node").forEach(node => node.classList.remove("active"));
-  if (el) el.classList.add("active");
+  document.querySelectorAll(".atom-node,.atom-core").forEach(n => n.classList.remove("active"));
+  if(el) el.classList.add("active");
 
   box.innerHTML = `
     <h2>${item.title}</h2>
@@ -452,7 +177,7 @@ function showDetail(key, el) {
   `;
 }
 
-showDetail("zanistarast", document.querySelector(".center-node"));
+showDetail("zanistarast", document.querySelector(".atom-core"));
 </script>
 
 </body>
