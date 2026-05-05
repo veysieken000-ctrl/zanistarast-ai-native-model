@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zanabûn — Bilgi Katmanı</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+
+<div id="navbar"></div>
+
+<script>
+fetch("components/navbar.html")
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("navbar").innerHTML = data;
+  });
+</script>
+
+<main class="container">
+
+  <section class="hero">
+    <div class="hero-card">
+      <h1>Zanabûn</h1>
+      <p>
+        Zanabûn, Zanistarast sisteminde bilginin oluşumu, tanıklık,
+        ölçüm, modelleme, doğrulama ve hükme dönüşme katmanıdır.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-card">
+    <h2>Sistem Akışı</h2>
+    <p><strong>Hebûn → Zanabûn → Rasterast → Rabûn → Mabûn → Newroza Kawa</strong></p>
+  </section>
+
+  <section class="theory-grid">
+
+    <a class="theory-link-card" href="zanabun-00-bilgi-taniklik-ve-hakikat.html">
+      <span class="theory-index">00</span>
+      <h2>Bilgi, Tanıklık ve Hakikat</h2>
+    </a>
+
+    <a class="theory-link-card" href="zanabun-01-bilginin-tanimi-ve-siniflandirilmasi.html">
+      <span class="theory-index">01</span>
+      <h2>Bilginin Tanımı ve Sınıflandırılması</h2>
+    </a>
+
+    <a class="theory-link-card" href="zanabun-02-bilginin-katmanlari.html">
+      <span class="theory-index">02</span>
+      <h2>Bilginin Katmanları</h2>
+    </a>
+
+    <a class="theory-link-card" href="zanabun-03-ahlak-ve-hukum-yasasi.html">
+      <span class="theory-index">03</span>
+      <h2>Ahlak ve Hüküm Yasası</h2>
+    </a>
+
+    <a class="theory-link-card" href="zanabun-04-taniklik-yasasi.html">
+      <span class="theory-index">04</span>
+      <h2>Tanıklık Yasası</h2>
+    </a>
+
+    <a class="theory-link-card" href="zanabun-05-bilginin-katman-modeli.html">
+      <span class="theory-index">05</span>
+      <h2>Bilginin Katman Modeli</h2>
+    </a>
+
+    <a class="theory-link-card" href="zanabun-06-epistemik-cokus.html">
+      <span class="theory-index">06</span>
+      <h2>Epistemik Çöküş</h2>
+    </a>
+
+    <a class="theory-link-card" href="zanabun-07-bilgi-guc-ayrimi.html">
+      <span class="theory-index">07</span>
+      <h2>Bilgi Güç Ayrımı</h2>
+    </a>
+
+    <a class="theory-link-card" href="zanabun-08-sevgi-ve-fitrat-temelli-bilgi-turleri.html">
+      <span class="theory-index">08</span>
+      <h2>Sevgi ve Fıtrat Temelli Bilgi Türleri</h2>
+    </a>
+
+    <a class="theory-link-card" href="zanabun-09-bilginin-evrensel-dongusu.html">
+      <span class="theory-index">09</span>
+      <h2>Bilginin Evrensel Döngüsü</h2>
+    </a>
+
+    <a class="theory-link-card" href="zanabun-10-bilgi-zaman-iliskisi.html">
+      <span class="theory-index">10</span>
+      <h2>Bilgi Zaman İlişkisi</h2>
+    </a>
+
+    <a class="theory-link-card" href="zanabun-11-bilginin-matematiksel-soyutlanmasi.html">
+      <span class="theory-index">11</span>
+      <h2>Bilginin Matematiksel Soyutlanması</h2>
+    </a>
+
+    <a class="theory-link-card" href="zanabun-12-tanikligin-tarih-uretmesi.html">
+      <span class="theory-index">12</span>
+      <h2>Tanıklığın Tarih Üretmesi</h2>
+    </a>
+
+    <a class="theory-link-card" href="zanabun-13-meta-science-framework.html">
+      <span class="theory-index">13</span>
+      <h2>Meta Science Framework</h2>
+    </a>
+
+    <a class="theory-link-card" href="zanabun-14-nihai-dongu-modeli.html">
+      <span class="theory-index">14</span>
+      <h2>Nihai Döngü Modeli</h2>
+    </a>
+
+    <a class="theory-link-card" href="zanabun-15-epistemolojik-aksiyomlar.html">
+      <span class="theory-index">15</span>
+      <h2>Epistemolojik Aksiyomlar</h2>
+    </a>
+
+    <a class="theory-link-card" href="zanabun-16-bilgi-turlerinin-nihai-katman-modeli.html">
+      <span class="theory-index">16</span>
+      <h2>Bilgi Türlerinin Nihai Katman Modeli</h2>
+    </a>
+
+    <a class="theory-link-card" href="zanabun-17-bilginin-dogrulama-ve-test-mekanizmasi.html">
+      <span class="theory-index">17</span>
+      <h2>Bilginin Doğrulama ve Test Mekanizması</h2>
+    </a>
+
+    <a class="theory-link-card" href="zanabun-18-bilginin-matematiksel-dongu-modeli.html">
+      <span class="theory-index">18</span>
+      <h2>Bilginin Matematiksel Döngü Modeli</h2>
+    </a>
+
+    <a class="theory-link-card" href="zanabun-19-bilginin-toplumsal-gecisi.html">
+      <span class="theory-index">19</span>
+      <h2>Bilginin Toplumsal Geçişi</h2>
+    </a>
+
+    <a class="theory-link-card" href="zanabun-20-nihai-epistemolojik-sonuc.html">
+      <span class="theory-index">20</span>
+      <h2>Nihai Epistemolojik Sonuç</h2>
+    </a>
+
+  </section>
+
+</main>
+
+</body>
+</html>
+
