@@ -5,6 +5,64 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Rabûn Yönetim Modeli</title>
   <link rel="stylesheet" href="style.css" />
+
+  <style>
+    .rabun-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .rabun-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    .rabun-toggle {
+      width: 100%;
+      padding: 20px;
+      background: transparent;
+      color: inherit;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .rabun-toggle span {
+      display: block;
+      margin-top: 8px;
+      font-size: 14px;
+      font-weight: 400;
+      opacity: .78;
+      line-height: 1.5;
+    }
+
+    .rabun-panel {
+      display: none;
+      padding: 0 20px 20px;
+    }
+
+    .rabun-panel.open {
+      display: block;
+    }
+
+    .rabun-panel a {
+      display: block;
+      padding: 10px 0;
+      color: inherit;
+      text-decoration: none;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .rabun-panel a:hover {
+      opacity: .75;
+    }
+  </style>
 </head>
 
 <body>
@@ -16,108 +74,108 @@
       <div class="hero-card">
         <h1>Rabûn Yönetim Modeli</h1>
         <p>
-          Rabûn; özgürlük, iman, sorumluluk, ahlak, şûra, eğitim, toplumsal öğretim
-          ve Rasterast doğrulama filtresiyle çalışan bütüncül yönetim modelidir.
+          Rabûn; özgürlük, iman, ahlak, şûra, Mabûn ekonomi, Rasterast doğrulama
+          ve Newroza Kawa uygarlığı içinde çalışan bütüncül yönetim modelidir.
         </p>
       </div>
     </section>
 
     <section class="section-card">
-      <h2>Rabûn Nedir?</h2>
+      <h2>Rabûn Makale Haritası</h2>
       <p>
-        Rabûn, yalnızca yönetim tekniği değildir. İnsan, toplum, ekonomi, hukuk,
-        eğitim, psikoloji, doğa ve uygarlık düzenini birlikte ele alan bir
-        ayağa kalkış modelidir.
-      </p>
-      <p>
-        Bu model, doğadaki beyin, karınca kolonisi, arı kovanı, mantar ağları,
-        ekosistem, bağışıklık ve geri bildirim sistemlerinden faydalanarak
-        insan toplumuna uygun bir yönetim düzeni kurmayı amaçlar.
+        Aşağıdaki kartlara tıklayarak Rabûn yönetim modelinin bütün makalelerine ulaşabilirsin.
       </p>
     </section>
 
-    <section class="section-card">
-      <h2>Ana İlke</h2>
-      <p>
-        Rabûn yönetim modeli, merkezi baskı ile sınırsız serbestlik arasında
-        üçüncü bir yol önerir: özgür ama doğrulanan, otonom ama ahlakla sınırlanan,
-        yerel ama ortak hedefe bağlı bir yönetim sistemi.
-      </p>
-    </section>
+    <section class="rabun-grid">
 
-    <section class="section-card">
-      <h2>Kurucu Temel</h2>
-      <ul>
-        <li><a href="rabun-01-rabun-yonetim-modeli-nedir.html">01 — Rabûn Yönetim Modeli Nedir?</a></li>
-        <li><a href="rabun-02-rabun-ozgurluk-iman-sorumluluk.html">02 — Rabûn, Özgürlük, İman ve Sorumluluk</a></li>
-        <li><a href="rabun-03-rabun-ve-newroza-kawa-uygarligi.html">03 — Rabûn ve Newroza Kawa Uygarlığı</a></li>
-        <li><a href="rabun-04-rabun-ve-zanistarast-bilimsel-sentezi.html">04 — Rabûn ve Zanistarast Bilimsel Sentezi</a></li>
-      </ul>
-    </section>
+      <div class="rabun-card">
+        <button class="rabun-toggle">Kurucu Temel <span>Rabûn’un tanımı, özgürlük, iman, uygarlık ve Zanistarast bağı.</span></button>
+        <div class="rabun-panel">
+          <a href="rabun-01-rabun-yonetim-modeli-nedir.html">01 — Rabûn Yönetim Modeli Nedir?</a>
+          <a href="rabun-02-rabun-ozgurluk-iman-sorumluluk.html">02 — Rabûn, Özgürlük, İman ve Sorumluluk</a>
+          <a href="rabun-03-rabun-ve-newroza-kawa-uygarligi.html">03 — Rabûn ve Newroza Kawa Uygarlığı</a>
+          <a href="rabun-04-rabun-ve-zanistarast-bilimsel-sentezi.html">04 — Rabûn ve Zanistarast Bilimsel Sentezi</a>
+        </div>
+      </div>
 
-    <section class="section-card">
-      <h2>Doğadaki Karşılıklar</h2>
-      <ul>
-        <li><a href="rabun-05-beyin-modeli.html">05 — Beyin Modeli</a></li>
-        <li><a href="rabun-06-karinca-kolonisi.html">06 — Karınca Kolonisi</a></li>
-        <li><a href="rabun-07-ari-kovani.html">07 — Arı Kovanı</a></li>
-        <li><a href="rabun-08-mantar-aglari-mycelium.html">08 — Mantar Ağları / Mycelium</a></li>
-        <li><a href="rabun-09-orman-ekosistemi.html">09 — Orman Ekosistemi</a></li>
-        <li><a href="rabun-10-hucre-ve-bagisiklik-sistemi.html">10 — Hücre ve Bağışıklık Sistemi</a></li>
-        <li><a href="rabun-11-sinir-sistemi-ve-geri-bildirim.html">11 — Sinir Sistemi ve Geri Bildirim</a></li>
-        <li><a href="rabun-12-kalp-dolasim-ve-mabun.html">12 — Kalp, Dolaşım ve Mabûn</a></li>
-        <li><a href="rabun-13-ekolojik-denge.html">13 — Ekolojik Denge</a></li>
-        <li><a href="rabun-14-dogal-seleksiyon-ve-rasterast.html">14 — Doğal Seleksiyon ve Rasterast</a></li>
-      </ul>
-    </section>
+      <div class="rabun-card">
+        <button class="rabun-toggle">Doğadaki Karşılıklar <span>Beyin, karınca, arı, orman, bağışıklık ve doğal denge örnekleri.</span></button>
+        <div class="rabun-panel">
+          <a href="rabun-05-beyin-modeli.html">05 — Beyin Modeli</a>
+          <a href="rabun-06-karinca-kolonisi.html">06 — Karınca Kolonisi</a>
+          <a href="rabun-07-ari-kovani.html">07 — Arı Kovanı</a>
+          <a href="rabun-08-mantar-aglari-mycelium.html">08 — Mantar Ağları / Mycelium</a>
+          <a href="rabun-09-orman-ekosistemi.html">09 — Orman Ekosistemi</a>
+          <a href="rabun-10-hucre-ve-bagisiklik-sistemi.html">10 — Hücre ve Bağışıklık Sistemi</a>
+          <a href="rabun-11-sinir-sistemi-ve-geri-bildirim.html">11 — Sinir Sistemi ve Geri Bildirim</a>
+          <a href="rabun-12-kalp-dolasim-ve-mabun.html">12 — Kalp, Dolaşım ve Mabûn</a>
+          <a href="rabun-13-ekolojik-denge.html">13 — Ekolojik Denge</a>
+          <a href="rabun-14-dogal-seleksiyon-ve-rasterast.html">14 — Doğal Seleksiyon ve Rasterast</a>
+        </div>
+      </div>
 
-    <section class="section-card">
-      <h2>Hebûn Temelli Meclis Modeli</h2>
-      <ul>
-        <li><a href="rabun-15-proton-notron-elektron-meclisleri.html">15 — Proton–Nötron–Elektron Meclisleri</a></li>
-        <li><a href="rabun-16-hukum-meclisi.html">16 — Hüküm Meclisi</a></li>
-        <li><a href="rabun-17-ahlak-meclisi.html">17 — Ahlak Meclisi</a></li>
-        <li><a href="rabun-18-ekonomi-meclisi-mabun.html">18 — Ekonomi Meclisi / Mabûn</a></li>
-        <li><a href="rabun-19-egitim-meclisi.html">19 — Eğitim Meclisi</a></li>
-        <li><a href="rabun-20-saglik-ve-alt-meclisler.html">20 — Sağlık Meclisi</a></li>
-        <li><a href="rabun-21-hukuk-meclisi.html">21 — Hukuk Meclisi</a></li>
-        <li><a href="rabun-22-guvenlik-meclisi.html">22 — Güvenlik Meclisi</a></li>
-        <li><a href="rabun-23-kultur-din-ve-sosyal-ogreti.html">23 — Kültür, Din ve Sosyal Öğreti</a></li>
-        <li><a href="rabun-24-bilim-ve-teknoloji-meclisi.html">24 — Bilim ve Teknoloji Meclisi</a></li>
-      </ul>
-    </section>
+      <div class="rabun-card">
+        <button class="rabun-toggle">Meclis Sistemi <span>Hüküm, ahlak, ekonomi, eğitim, hukuk, güvenlik ve bilim meclisleri.</span></button>
+        <div class="rabun-panel">
+          <a href="rabun-15-proton-notron-elektron-meclisleri.html">15 — Proton–Nötron–Elektron Meclisleri</a>
+          <a href="rabun-16-hukum-meclisi.html">16 — Hüküm Meclisi</a>
+          <a href="rabun-17-ahlak-meclisi.html">17 — Ahlak Meclisi</a>
+          <a href="rabun-18-ekonomi-meclisi-mabun.html">18 — Ekonomi Meclisi / Mabûn</a>
+          <a href="rabun-19-egitim-meclisi.html">19 — Eğitim Meclisi</a>
+          <a href="rabun-20-saglik-ve-alt-meclisler.html">20 — Sağlık Meclisi</a>
+          <a href="rabun-21-hukuk-meclisi.html">21 — Hukuk Meclisi</a>
+          <a href="rabun-22-guvenlik-meclisi.html">22 — Güvenlik Meclisi</a>
+          <a href="rabun-23-kultur-din-ve-sosyal-ogreti.html">23 — Kültür, Din ve Sosyal Öğreti</a>
+          <a href="rabun-24-bilim-ve-teknoloji-meclisi.html">24 — Bilim ve Teknoloji Meclisi</a>
+        </div>
+      </div>
 
-    <section class="section-card">
-      <h2>İnsan, Psikoloji ve Toplum</h2>
-      <ul>
-        <li><a href="rabun-25-insan-psikolojisi.html">25 — İnsan Psikolojisi</a></li>
-        <li><a href="rabun-26-boyutlar-arasi-gecis.html">26 — Boyutlar Arası Geçiş</a></li>
-        <li><a href="rabun-27-egitim-derin-sistem.html">27 — Eğitim, Öğretim ve Sosyal Öğreti</a></li>
-        <li><a href="rabun-28-aileden-topluma.html">28 — Aileden Topluma Rabûn</a></li>
-        <li><a href="rabun-29-sura-meclis-ve-ahlak.html">29 — Şûra, Meclis ve Ahlak</a></li>
-      </ul>
-    </section>
+      <div class="rabun-card">
+        <button class="rabun-toggle">İnsan ve Toplum <span>Psikoloji, boyut geçişi, eğitim, aile ve şûra sistemi.</span></button>
+        <div class="rabun-panel">
+          <a href="rabun-25-insan-psikolojisi.html">25 — İnsan Psikolojisi</a>
+          <a href="rabun-26-boyutlar-arasi-gecis.html">26 — Boyutlar Arası Geçiş</a>
+          <a href="rabun-27-egitim-derin-sistem.html">27 — Eğitim Derin Sistem</a>
+          <a href="rabun-28-aileden-topluma.html">28 — Aileden Topluma Rabûn</a>
+          <a href="rabun-29-sura-meclis-ve-ahlak.html">29 — Şûra Seçim Kurulu ve Meclis Dengesi</a>
+        </div>
+      </div>
 
-    <section class="section-card">
-      <h2>Şirket, Holding ve Yazılım Ekibi</h2>
-      <ul>
-        <li><a href="rabun-30-sirket-modeli.html">30 — Şirket Modeli</a></li>
-        <li><a href="rabun-31-holding-modeli.html>31 — Holding Modeli</a></li>
-        <li><a href="rabun-32-yazilim-ekibi.html">32 — Yazılım Ekibi</a></li>
-        <li><a href="rabun-33-ai-native-organizasyon.html">33 — AI-Native Organizasyon</a></li>
-      </ul>
-    </section>
+      <div class="rabun-card">
+        <button class="rabun-toggle">Uygulama Alanları <span>Şirket, holding, yazılım, AI ve politika kontrolü.</span></button>
+        <div class="rabun-panel">
+          <a href="rabun-30-sirket-modeli.html">30 — Şirket Modeli</a>
+          <a href="rabun-31-holding-modeli.html">31 — Holding Modeli</a>
+          <a href="rabun-32-yazilim-ekibi.html">32 — Yazılım Ekibi</a>
+          <a href="rabun-33-ai-native-organizasyon.html">33 — AI-Native Organizasyon / Rasterast</a>
+          <a href="rabun-35-rasterast-politika-kontrolu.html">35 — Rasterast Politika Kontrolü</a>
+        </div>
+      </div>
 
-    <section class="section-card">
-      <h2>Karşılaştırma ve Final</h2>
-      <ul>
-        <li><a href="rabun-34-kapitalizm-vs-newroza-kawa.html">34 — Kapitalizm ve Newroza Kawa</a></li>
-        <li><a href="rabun-35-rasterast-politika-kontrolu.html">35 — Rasterast Politika Kontrolü</a></li>
-        <li><a href=rabun-36-final-sentez.html">36 — Rabûn Final Sentez</a></li>
-      </ul>
+      <div class="rabun-card">
+        <button class="rabun-toggle">Karşılaştırma ve Final <span>Kapitalizm karşılaştırması, final sentez ve geçiş mekanizması.</span></button>
+        <div class="rabun-panel">
+          <a href="rabun-34-kapitalizm-vs-newroza-kawa.html">34 — Kapitalizm ve Newroza Kawa</a>
+          <a href="rabun-36-final-sentez.html">36 — Rabûn Final Sentez</a>
+          <a href="rabun-37-bilimin-zorlayici-etkisi.html">37 — Bilimin Zorlayıcı Etkisi</a>
+        </div>
+      </div>
+
     </section>
 
   </main>
+
+  <script>
+    document.querySelectorAll(".rabun-toggle").forEach((button) => {
+      button.addEventListener("click", () => {
+        const panel = button.nextElementSibling;
+        panel.classList.toggle("open");
+      });
+    });
+  </script>
 </body>
 </html>
-
+Commit mesajı
+Plain text
+refactor: convert Rabûn index into expandable modern card navigation
