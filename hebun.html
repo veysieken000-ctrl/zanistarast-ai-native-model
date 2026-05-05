@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hebûn — Ontolojik Katman</title>
+  <link rel="stylesheet" href="style.css"/>
+
+  <style>
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: #111;
+      border-radius: 16px;
+      padding: 20px;
+      transition: 0.25s;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: #4c5cff;
+    }
+
+    .card a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .flow {
+      text-align: center;
+      margin: 40px 0;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="navbar"></div>
+
+<script>
+fetch("components/navbar.html")
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("navbar").innerHTML = data;
+  });
+</script>
+
+<main class="container">
+
+  <section class="hero">
+    <div class="hero-card">
+      <h1>Hebûn</h1>
+      <p>
+        Hebûn, Zanistarast sisteminin ontolojik katmanıdır.
+        Varlığın ne olduğunu, neyin var sayılacağını ve yapının temelini belirler.
+      </p>
+    </div>
+  </section>
+
+  <div class="flow">
+    <strong>Hebûn</strong> → Zanabûn → Rasterast → Rabûn → Mabûn → Newroza Kawa
+  </div>
+
+  <section>
+    <h2>Hebûn Makaleleri</h2>
+
+    <div class="grid">
+
+      <div class="card"><a href="hebun-01-yer-gok-kavrami.html">01 — Yer Gök Kavramı</a></div>
+      <div class="card"><a href="hebun-02-yer-katmanlari.html">02 — Yer Katmanları</a></div>
+      <div class="card"><a href="hebun-03-gok-katmanlari.html">03 — Gök Katmanları</a></div>
+      <div class="card"><a href="hebun-04-merkez-cevre-yasasi.html">04 — Merkez Çevre Yasası</a></div>
+      <div class="card"><a href="hebun-05-ars-istiva-duzen.html">05 — Arş İstiva Düzeni</a></div>
+      <div class="card"><a href="hebun-06-nefs-katmani.html">06 — Nefs Katmanı</a></div>
+      <div class="card"><a href="hebun-07-ruh-katmani.html">07 — Ruh Katmanı</a></div>
+      <div class="card"><a href="hebun-08-insanin-katmanli-yapisi.html">08 — İnsan Katmanları</a></div>
+      <div class="card"><a href="hebun-09-zamanin-ontolojisi.html">09 — Zaman Ontolojisi</a></div>
+      <div class="card"><a href="hebun-10-boyutlar-modeli.html">10 — Boyutlar Modeli</a></div>
+      <div class="card"><a href="hebun-11-taniklik-ve-zaman.html">11 — Tanıklık ve Zaman</a></div>
+      <div class="card"><a href="hebun-12-zamanin-kapanis-modeli.html">12 — Zaman Kapanış Modeli</a></div>
+      <div class="card"><a href="hebun-13-merkez-cevre-modeli.html">13 — Merkez Çevre Modeli</a></div>
+      <div class="card"><a href="hebun-14-mekan-hukum-iliskisi.html">14 — Mekan Hüküm İlişkisi</a></div>
+      <div class="card"><a href="hebun-15-merkezin-kaymasi.html">15 — Merkezin Kayması</a></div>
+      <div class="card"><a href="hebun-16-merkezden-cevreye-donus.html">16 — Dönüş Yasası</a></div>
+      <div class="card"><a href="hebun-17-varligin-dolasimi.html">17 — Varlığın Dolaşımı</a></div>
+      <div class="card"><a href="hebun-18-ekonomik-denge.html">18 — Ekonomik Denge</a></div>
+
+    </div>
+  </section>
+
+</main>
+
+</body>
+</html>
+
