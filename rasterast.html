@@ -2,37 +2,138 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="refresh" content="0; url=zanistarast-rasterast.html" />
-  <title>Rasterast</title>
-<link rel="stylesheet" href="css/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rasterast — Doğrulama Katmanı</title>
+
+  <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
-  <p>Rasterast sayfasına yönlendiriliyorsunuz...</p>
-  <a href="zanistarast-rasterast.html">Rasterast sayfasına git</a>
-<script>
-  fetch("components/navbar.html")
-    .then(function (res) {
-      return res.text();
-    })
-    .then(function (data) {
-      const navbar = document.getElementById("navbar");
-      navbar.innerHTML = data;
 
-      const scripts = navbar.querySelectorAll("script");
+  <div id="navbar"></div>
 
-      scripts.forEach(function (oldScript) {
-        const newScript = document.createElement("script");
+  <script>
+    fetch("components/navbar.html")
+      .then(function (res) {
+        return res.text();
+      })
+      .then(function (data) {
 
-        if (oldScript.src) {
-          newScript.src = oldScript.src;
-        } else {
-          newScript.textContent = oldScript.textContent;
-        }
+        const navbar = document.getElementById("navbar");
+        navbar.innerHTML = data;
 
-        document.body.appendChild(newScript);
-        oldScript.remove();
+        const scripts = navbar.querySelectorAll("script");
+
+        scripts.forEach(function (oldScript) {
+
+          const newScript = document.createElement("script");
+
+          if (oldScript.src) {
+            newScript.src = oldScript.src;
+          } else {
+            newScript.textContent = oldScript.textContent;
+          }
+
+          document.body.appendChild(newScript);
+          oldScript.remove();
+
+        });
+
       });
-    });
-</script>
+  </script>
+
+  <main class="container">
+
+    <section class="hero">
+      <div class="hero-card">
+
+        <h1>Rasterast</h1>
+
+        <p class="hero-text">
+          Rasterast, Zanistarast sisteminin doğrulama,
+          test, filtreleme ve hakikat kontrol katmanıdır.
+          Bilginin gerçeklik ile uyumunu ölçer.
+        </p>
+
+      </div>
+    </section>
+
+    <section class="section-card">
+
+      <h2>Sistem Akışı</h2>
+
+      <p>
+        <strong>Hebûn</strong>
+        →
+        <strong>Zanabûn</strong>
+        →
+        <strong>Rasterast</strong>
+        →
+        Rabûn
+        →
+        Mabûn
+        →
+        Newroza Kawa
+      </p>
+
+    </section>
+
+    <section class="theory-grid">
+
+      <a class="theory-link-card" href="rasterast-00-hakikat-ve-dogrulama.html">
+        <span class="theory-index">00</span>
+        <h2>Hakikat ve Doğrulama</h2>
+      </a>
+
+      <a class="theory-link-card" href="rasterast-01-dogrulama-filtresi.html">
+        <span class="theory-index">01</span>
+        <h2>Doğrulama Filtresi</h2>
+      </a>
+
+      <a class="theory-link-card" href="rasterast-02-celiski-analizi.html">
+        <span class="theory-index">02</span>
+        <h2>Çelişki Analizi</h2>
+      </a>
+
+      <a class="theory-link-card" href="rasterast-03-evrensel-test-modeli.html">
+        <span class="theory-index">03</span>
+        <h2>Evrensel Test Modeli</h2>
+      </a>
+
+      <a class="theory-link-card" href="rasterast-04-fizik-biyoloji-zihin-kontrolu.html">
+        <span class="theory-index">04</span>
+        <h2>Fizik Biyoloji Zihin Kontrolü</h2>
+      </a>
+
+      <a class="theory-link-card" href="rasterast-05-gozlemci-modeli.html">
+        <span class="theory-index">05</span>
+        <h2>Gözlemci Modeli</h2>
+      </a>
+
+      <a class="theory-link-card" href="rasterast-06-yanlislanabilirlik.html">
+        <span class="theory-index">06</span>
+        <h2>Yanlışlanabilirlik</h2>
+      </a>
+
+      <a class="theory-link-card" href="rasterast-07-epistemik-guvenlik.html">
+        <span class="theory-index">07</span>
+        <h2>Epistemik Güvenlik</h2>
+      </a>
+
+      <a class="theory-link-card" href="rasterast-08-sistemsel-dogruluk.html">
+        <span class="theory-index">08</span>
+        <h2>Sistemsel Doğruluk</h2>
+      </a>
+
+      <a class="theory-link-card" href="rasterast-09-gerceklik-kontrolu.html">
+        <span class="theory-index">09</span>
+        <h2>Gerçeklik Kontrolü</h2>
+      </a>
+
+    </section>
+
+  </main>
+
 </body>
 </html>
+
