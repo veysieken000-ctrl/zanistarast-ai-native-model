@@ -1,0 +1,292 @@
+/* =========================================
+   ZANISTARAST CORE UI SYSTEM
+========================================= */
+
+:root{
+
+--bg:#071018;
+--bg2:#0d1724;
+
+--card:rgba(18,28,40,.78);
+
+--line:rgba(120,190,255,.18);
+
+--text:#ffffff;
+--soft:rgba(255,255,255,.72);
+
+--blue:#4cc9ff;
+--blue2:#3b82f6;
+
+--radius:24px;
+
+--shadow:
+0 10px 40px rgba(0,0,0,.35);
+
+--blur:blur(14px);
+
+}
+
+/* =========================================
+   RESET
+========================================= */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:
+linear-gradient(
+180deg,
+#071018,
+#0d1724
+);
+
+color:var(--text);
+
+font-family:
+Inter,
+system-ui,
+sans-serif;
+
+overflow-x:hidden;
+}
+
+/* =========================================
+   CONTAINER
+========================================= */
+
+.container{
+width:min(1200px,92%);
+margin:auto;
+}
+
+/* =========================================
+   NAVBAR SPACE FIX
+========================================= */
+
+main{
+padding-top:110px;
+}
+
+/* =========================================
+   CARD SYSTEM
+========================================= */
+
+.card,
+.hero-card,
+.detail-box{
+
+background:var(--card);
+
+border:
+1px solid var(--line);
+
+backdrop-filter:var(--blur);
+
+border-radius:var(--radius);
+
+box-shadow:var(--shadow);
+}
+
+/* =========================================
+   BUTTON SYSTEM
+========================================= */
+
+.btn,
+.main-cta,
+.badge,
+.atom-node,
+.atom-core{
+
+transition:
+.25s ease;
+
+cursor:pointer;
+}
+
+.btn:hover,
+.main-cta:hover,
+.badge:hover,
+.atom-node:hover,
+.atom-core:hover{
+
+transform:translateY(-2px);
+
+filter:brightness(1.08);
+}
+
+/* =========================================
+   LINKS
+========================================= */
+
+a{
+color:white;
+text-decoration:none;
+}
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero{
+margin-top:20px;
+margin-bottom:30px;
+}
+
+.hero-card{
+padding:32px;
+}
+
+.hero-card h1{
+font-size:clamp(2.3rem,5vw,4.5rem);
+line-height:1.05;
+margin-bottom:14px;
+}
+
+.hero-text{
+font-size:1.08rem;
+line-height:1.8;
+color:var(--soft);
+max-width:900px;
+}
+
+/* =========================================
+   BADGES
+========================================= */
+
+.badges{
+display:flex;
+gap:12px;
+flex-wrap:wrap;
+margin-top:24px;
+}
+
+.badge{
+padding:10px 18px;
+
+border-radius:999px;
+
+background:
+linear-gradient(
+135deg,
+rgba(40,120,255,.25),
+rgba(255,255,255,.06)
+);
+
+border:
+1px solid rgba(255,255,255,.12);
+
+font-weight:700;
+}
+
+/* =========================================
+   DETAIL BOX
+========================================= */
+
+.detail-box{
+padding:28px;
+margin-top:30px;
+}
+
+.detail-box h2{
+margin-bottom:16px;
+font-size:2rem;
+}
+
+.detail-box p{
+margin-bottom:14px;
+line-height:1.8;
+color:var(--soft);
+}
+
+/* =========================================
+   FLOW SYSTEM
+========================================= */
+
+.flow-row{
+display:flex;
+flex-wrap:wrap;
+gap:12px;
+margin-top:22px;
+}
+
+.flow-item{
+padding:16px;
+min-width:180px;
+
+background:
+rgba(255,255,255,.05);
+
+border:
+1px solid rgba(255,255,255,.08);
+
+border-radius:20px;
+}
+
+/* =========================================
+   GRAPH SYSTEM
+========================================= */
+
+.atom-node,
+.atom-core{
+
+border:none;
+
+color:white;
+
+font-weight:700;
+
+background:
+linear-gradient(
+135deg,
+rgba(55,155,255,.92),
+rgba(0,90,255,.78)
+);
+
+box-shadow:
+0 0 24px rgba(55,155,255,.32);
+}
+
+.atom-core.active,
+.atom-node.active{
+
+box-shadow:
+0 0 34px rgba(90,190,255,.72);
+
+transform:scale(1.04);
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:900px){
+
+main{
+padding-top:90px;
+}
+
+.hero-card{
+padding:24px;
+}
+
+.hero-card h1{
+font-size:2.2rem;
+}
+
+.detail-box{
+padding:22px;
+}
+
+.flow-item{
+width:100%;
+}
+
+}
