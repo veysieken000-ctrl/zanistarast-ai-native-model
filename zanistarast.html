@@ -7,7 +7,31 @@
 </head>
 
 <body style="background:#0a0f1f; color:white; font-family:Arial;">
+<script>
+  fetch("components/navbar.html")
+    .then(function (res) {
+      return res.text();
+    })
+    .then(function (data) {
+      const navbar = document.getElementById("navbar");
+      navbar.innerHTML = data;
 
+      const scripts = navbar.querySelectorAll("script");
+
+      scripts.forEach(function (oldScript) {
+        const newScript = document.createElement("script");
+
+        if (oldScript.src) {
+          newScript.src = oldScript.src;
+        } else {
+          newScript.textContent = oldScript.textContent;
+        }
+
+        document.body.appendChild(newScript);
+        oldScript.remove();
+      });
+    });
+</script>
 <h1>Zanistarast Bilimsel Sentezi</h1>
 
 <p>
