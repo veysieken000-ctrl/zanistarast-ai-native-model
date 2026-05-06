@@ -1,121 +1,53 @@
 <!DOCTYPE html>
 <html lang="tr">
-<style>
-#navbar {
-  margin-bottom: 20px;
-}
-</style>
-  <head>
+
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Theory - Zanistarast</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    .theory-page {
-      padding-top: 48px;
-      padding-bottom: 80px;
-    }
 
-    .theory-hero {
-      margin-bottom: 24px;
-    }
+  <title>Theory – Zanistarast</title>
 
-    .theory-hero .section-card h1 {
-      margin: 0 0 12px;
-      font-size: 42px;
-      line-height: 1.08;
-    }
-
-    .theory-hero .section-card p {
-      margin: 0;
-      color: rgba(255,255,255,0.82);
-      font-size: 16px;
-      line-height: 1.7;
-    }
-
-    .theory-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .theory-link-card {
-      display: block;
-      text-decoration: none;
-      color: inherit;
-      border-radius: 24px;
-      padding: 22px;
-      background: linear-gradient(180deg, rgba(40,58,92,0.88), rgba(23,33,54,0.94));
-      border: 1px solid rgba(140,170,255,0.18);
-      box-shadow: 0 18px 40px rgba(0,0,0,0.22);
-      transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
-    }
-
-    .theory-link-card:hover {
-      transform: translateY(-3px);
-      border-color: rgba(160,190,255,0.34);
-      box-shadow: 0 24px 50px rgba(0,0,0,0.28);
-    }
-
-    .theory-index {
-      display: inline-block;
-      margin-bottom: 10px;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.58);
-    }
-
-    .theory-link-card h2 {
-      margin: 0 0 10px;
-      font-size: 24px;
-      line-height: 1.25;
-    }
-
-    .theory-link-card p {
-      margin: 0;
-      color: rgba(255,255,255,0.76);
-      line-height: 1.7;
-      font-size: 15px;
-    }
-
-    @media (max-width: 900px) {
-      .theory-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .theory-hero .section-card h1 {
-        font-size: 32px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
-<body>
-  <div id="navbar"></div>
 
-<script>
-fetch("components/navbar.html")
-  .then(res => res.text())
-  .then(data => {
-    document.getElementById("navbar").innerHTML = data;
-  });
-</script>
+<body>
+
   <div id="navbar"></div>
 
   <script>
     fetch("components/navbar.html")
-      .then((res) => res.text())
-      .then((data) => {
-        document.getElementById("navbar").innerHTML = data;
+      .then(function (res) {
+        return res.text();
+      })
+      .then(function (data) {
+        const navbar = document.getElementById("navbar");
+        navbar.innerHTML = data;
+
+        const scripts = navbar.querySelectorAll("script");
+
+        scripts.forEach(function (oldScript) {
+          const newScript = document.createElement("script");
+
+          if (oldScript.src) {
+            newScript.src = oldScript.src;
+          } else {
+            newScript.textContent = oldScript.textContent;
+          }
+
+          document.body.appendChild(newScript);
+          oldScript.remove();
+        });
       });
   </script>
 
   <main class="container theory-page">
-    <section class="theory-hero">
-      <div class="section-card">
+
+    <a href="paper.html" class="back-link">← Paper sayfasına dön</a>
+
+    <section class="hero theory-hero">
+      <div class="hero-card">
         <h1>Theory</h1>
-        <p>
+        <p class="hero-text">
           Zanistarast teorik yapısının ana başlıkları burada sistematik biçimde sunulur.
           Her başlık kendi alt sayfasına açılır.
         </p>
@@ -124,62 +56,65 @@ fetch("components/navbar.html")
 
     <section class="theory-grid">
 
-<a class="theory-link-card" href="theory-00-framework.html">
-  <span class="theory-index">00</span>
-  <h2>Framework</h2>
-  <p>Zanistarast bilimsel omurgası, birleşik yapı ve ana çerçeve sistemi.</p>
-</a>
-      
-<a class="theory-link-card" href="theory-01-boyutsal-acilim.html">
-<span class="theory-index">01</span>
-<h2>Boyutsal Açılım Teorisi</h2>
-<p>Varlığın katmanlı açılımı, fiziksel temel, geçiş yapıları ve üst boyut zorunluluğu.</p>
-</a>
+      <a class="theory-link-card" href="theory-00-framework.html">
+        <span class="theory-index">00</span>
+        <h2>Framework</h2>
+        <p>Zanistarast bilimsel omurgası, birleşik yapı ve ana çerçeve sistemi.</p>
+      </a>
 
-<a class="theory-link-card" href="theory-02-jeolojik-evrim.html">
-<span class="theory-index">02</span>
-<h2>Jeolojik Evrim</h2>
-<p>Jeolojik çağlar, zihnin eşiği ve biyolojik faza geçişin yapısal zemini.</p>
-</a>
+      <a class="theory-link-card" href="theory-01-boyutsal-acilim.html">
+        <span class="theory-index">01</span>
+        <h2>Boyutsal Açılım Teorisi</h2>
+        <p>Varlığın katmanlı açılımı, fiziksel temel, geçiş yapıları ve üst boyut zorunluluğu.</p>
+      </a>
 
-<a class="theory-link-card" href="theory-03-biyolojik-evre.html">
-<span class="theory-index">03</span>
-<h2>Biyolojik Evre</h2>
-<p>Biyolojik açılım, çok hücrelilik ve zihne giden yapı.</p>
-</a>
+      <a class="theory-link-card" href="theory-02-jeolojik-evrim.html">
+        <span class="theory-index">02</span>
+        <h2>Jeolojik Evrim</h2>
+        <p>Jeolojik çağlar, zihnin eşiği ve biyolojik faza geçişin yapısal zemini.</p>
+      </a>
 
-<a class="theory-link-card" href="theory-04-zihin-boyutu.html">
-<span class="theory-index">04</span>
-<h2>Zihin Boyutu</h2>
-<p>Zihin, genişleme, eşik ve üst boyuta geçiş mekanizmaları.</p>
-</a>
+      <a class="theory-link-card" href="theory-03-biyolojik-evre.html">
+        <span class="theory-index">03</span>
+        <h2>Biyolojik Evre</h2>
+        <p>Biyolojik açılım, çok hücrelilik ve zihne giden yapı.</p>
+      </a>
 
-<a class="theory-link-card" href="theory-05-collapse-reset.html">
-  <span class="theory-index">05</span>
-  <h2>Daralma / Reset Mekanizması</h2>
-  <p>Daralma (collapse), sistemin yeniden dengelenmesi ve reset sürecidir.</p>
-</a>
+      <a class="theory-link-card" href="theory-04-zihin-boyutu.html">
+        <span class="theory-index">04</span>
+        <h2>Zihin Boyutu</h2>
+        <p>Zihin, genişleme, eşik ve üst boyuta geçiş mekanizmaları.</p>
+      </a>
 
-<a class="theory-link-card" href="theory-06-ahlak-boyutu.html">
-<span class="theory-index">06</span>
-<h2>Ahlak Boyutu</h2>
-<p>Ahlaki açılım ve insanın üst boyut eşiği.</p>
-</a>
+      <a class="theory-link-card" href="theory-05-collapse-reset.html">
+        <span class="theory-index">05</span>
+        <h2>Daralma / Reset Mekanizması</h2>
+        <p>Daralma, sistemin yeniden dengelenmesi ve reset sürecidir.</p>
+      </a>
 
-<a class="theory-link-card" href="theory-07-medeniyet.html">
-<span class="theory-index">07</span>
-<h2>Medeniyet Boyutu</h2>
-<p>Medeniyet çekirdeği ve sistem stabilizasyonu.</p>
-</a>
+      <a class="theory-link-card" href="theory-06-ahlak-boyutu.html">
+        <span class="theory-index">06</span>
+        <h2>Ahlak Boyutu</h2>
+        <p>Ahlaki açılım ve insanın üst boyut eşiği.</p>
+      </a>
 
-<a class="theory-link-card" href="theory-08-zaman.html">
-<span class="theory-index">08</span>
-<h2>Zaman Boyutu</h2>
-<p>Zaman, entropi ve birleşik alan.</p>
-</a>
+      <a class="theory-link-card" href="theory-07-medeniyet.html">
+        <span class="theory-index">07</span>
+        <h2>Medeniyet Boyutu</h2>
+        <p>Medeniyet çekirdeği ve sistem stabilizasyonu.</p>
+      </a>
 
-</section>
+      <a class="theory-link-card" href="theory-08-zaman.html">
+        <span class="theory-index">08</span>
+        <h2>Zaman Boyutu</h2>
+        <p>Zaman, entropi ve birleşik alan.</p>
+      </a>
+
+    </section>
+
   </main>
+
 </body>
+
 </html>
 
