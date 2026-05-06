@@ -1,80 +1,164 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <title>Reset Mekanizması</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>05 - Reset Mekanizması</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
+  <div id="navbar"></div>
 
-<main class="container">
+  <script>
+    fetch("components/navbar.html")
+      .then(function (res) { return res.text(); })
+      .then(function (data) {
+        const navbar = document.getElementById("navbar");
+        navbar.innerHTML = data;
 
-  <a href="theory-01-boyutsal-acilim.html">← Back</a>
+        const scripts = navbar.querySelectorAll("script");
 
-  <section class="section-card">
+        scripts.forEach(function (oldScript) {
+          const newScript = document.createElement("script");
 
-  <h1>05 - Reset Mekanizması</h1>
+          if (oldScript.src) {
+            newScript.src = oldScript.src;
+          } else {
+            newScript.textContent = oldScript.textContent;
+          }
 
-  <h2>1. Reset Nedir</h2>
-  <p>
-    Zanistarast bilimine göre reset (daralma) bir yok oluş değildir.
-    Reset, dengeyi kaybeden bir boyutun kendini sadeleştirmesidir.
-    Bu süreç rastgele değil, ontolojik bir zorunluluktur.
-  </p>
+          document.body.appendChild(newScript);
+          oldScript.remove();
+        });
+      });
+  </script>
 
-  <h2>2. Neden Reset Olur</h2>
-  <p>
-    Her boyutta iki temel kuvvet vardır:
-    Karmaşıklık artışı ve denge zorunluluğu.
-    Eğer karmaşıklık taşıma kapasitesini aşarsa sistem
-    ya üst boyuta geçer ya da reset yaşar.
-  </p>
+  <main class="container">
 
-  <h2>3. Reset Formülü</h2>
-  <p>
-    Eğer Karmaşıklık (K) >> Taşıma Kapasitesi (T) ise:
-    Sistem dengelenmek için daralma yaşar.
-    Reset = Karmaşıklığın zorunlu azaltılmasıdır.
-  </p>
+    <a class="back-link" href="theory-01-boyutsal-acilim.html">
+      ← Boyutsal Açılım sayfasına dön
+    </a>
 
-  <h2>4. Jeolojik ve Biyolojik Reset</h2>
-  <p>
-    Doğada görülen büyük yok oluşlar (kitlesel yok oluşlar),
-    Zanistarast’a göre reset mekanizmasının örnekleridir.
-    Bu süreçler sistemi sıfırlamaz, yeniden dengeler.
-  </p>
+    <section class="hero">
+      <div class="hero-card">
+        <h1>05 - Reset Mekanizması</h1>
+        <p>
+          Reset mekanizması, sistemin taşıma kapasitesini aşan karmaşıklığı
+          yeniden dengeleme sürecidir.
+        </p>
+      </div>
+    </section>
 
-  <h2>5. Resetin Görevi</h2>
-  <p>
-    Resetin üç temel işlevi vardır:
-    Karmaşıklığı azaltmak,
-    enerjiyi yeniden dağıtmak,
-    yeni denge kurulumuna zemin hazırlamak.
-  </p>
+    <section class="section-card">
+      <h2>1. Reset Nedir?</h2>
+      <p>
+        Zanistarast bilimine göre reset (daralma) bir yok oluş değildir.
+      </p>
 
-  <h2>6. Reset ve Yeni Başlangıç</h2>
-  <p>
-    Reset sonrası sistemde çeşitlilik yeniden artar.
-    Yeni yapılar ortaya çıkar ve sistem daha yüksek
-    potansiyele hazırlanır.
-  </p>
+      <p>
+        Reset, dengeyi kaybeden bir boyutun kendini sadeleştirmesidir.
+      </p>
 
-  <h2>7. Boyutsal Döngü</h2>
-  <p>
-    Boyutsal süreç şu şekilde işler:
-    Genişleme → Karmaşıklık → Eşik → Reset veya Açılım.
-    Bu döngü tüm boyutlarda tekrar eder.
-  </p>
+      <p>
+        Bu süreç rastgele değil, ontolojik bir zorunluluktur.
+      </p>
+    </section>
 
-  <h2>8. Sonuç</h2>
-  <p>
-    Reset çöküş değildir. Yeni boyuta geçişin
-    ön koşuludur. Reset olmayan sistem
-    üst boyut oluşturamaz.
-  </p>
+    <section class="section-card">
+      <h2>2. Neden Reset Olur?</h2>
+      <p>
+        Her boyutta iki temel kuvvet vardır:
+      </p>
 
-</section>
-</main>
+      <p>
+        Karmaşıklık artışı ve denge zorunluluğu.
+      </p>
 
+      <p>
+        Eğer karmaşıklık taşıma kapasitesini aşarsa sistem ya üst boyuta
+        geçer ya da reset yaşar.
+      </p>
+    </section>
+
+    <section class="section-card">
+      <h2>3. Reset Formülü</h2>
+      <p>
+        Eğer Karmaşıklık (K) >> Taşıma Kapasitesi (T) ise:
+      </p>
+
+      <p>
+        Sistem dengelenmek için daralma yaşar.
+      </p>
+
+      <p>
+        Reset = Karmaşıklığın zorunlu azaltılmasıdır.
+      </p>
+    </section>
+
+    <section class="section-card">
+      <h2>4. Jeolojik ve Biyolojik Reset</h2>
+      <p>
+        Doğada görülen büyük yok oluşlar (kitlesel yok oluşlar),
+        Zanistarast’a göre reset mekanizmasının örnekleridir.
+      </p>
+
+      <p>
+        Bu süreçler sistemi sıfırlamaz, yeniden dengeler.
+      </p>
+    </section>
+
+    <section class="section-card">
+      <h2>5. Resetin Görevi</h2>
+      <p>
+        Resetin üç temel işlevi vardır:
+      </p>
+
+      <p>
+        Karmaşıklığı azaltmak,
+        enerjiyi yeniden dağıtmak,
+        yeni denge kurulumuna zemin hazırlamak.
+      </p>
+    </section>
+
+    <section class="section-card">
+      <h2>6. Reset ve Yeni Başlangıç</h2>
+      <p>
+        Reset sonrası sistemde çeşitlilik yeniden artar.
+      </p>
+
+      <p>
+        Yeni yapılar ortaya çıkar ve sistem daha yüksek potansiyele hazırlanır.
+      </p>
+    </section>
+
+    <section class="section-card">
+      <h2>7. Boyutsal Döngü</h2>
+      <p>
+        Boyutsal süreç şu şekilde işler:
+      </p>
+
+      <p>
+        Genişleme → Karmaşıklık → Eşik → Reset veya Açılım
+      </p>
+
+      <p>
+        Bu döngü tüm boyutlarda tekrar eder.
+      </p>
+    </section>
+
+    <section class="section-card">
+      <h2>8. Sonuç</h2>
+      <p>
+        Reset çöküş değildir. Yeni boyuta geçişin ön koşuludur.
+      </p>
+
+      <p>
+        Reset olmayan sistem üst boyut oluşturamaz.
+      </p>
+    </section>
+
+  </main>
 </body>
 </html>
+
