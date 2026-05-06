@@ -1,61 +1,147 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <title>Physical Foundation</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>01 - Physical Foundation</title>
+
+  <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
 
-<main class="container">
+  <div id="navbar"></div>
 
-  <a href="theory-01-boyutsal-acilim.html">← Back</a>
+  <script>
+    fetch("components/navbar.html")
+      .then(function (res) {
+        return res.text();
+      })
+      .then(function (data) {
+        const navbar = document.getElementById("navbar");
+        navbar.innerHTML = data;
 
-  <section class="section-card">
-    <h1>01 - Physical Foundation</h1>
+        const scripts = navbar.querySelectorAll("script");
 
-    <h2>1. Teorinin Ana İlkesi</h2>
-<p>
-Fiziksel boyut (D1) sonsuz genişlemeye sahip değildir. Fizik enerji yoğunlaşması ve yapı oluşumu dengeli sınırlar üzerine kuruludur.
-</p>
+        scripts.forEach(function (oldScript) {
+          const newScript = document.createElement("script");
 
-<p>
-Bu nedenle varlık sınırsız yayılma değil kontrollü yoğunlaşma eğilimi gösterir.
-</p>
+          if (oldScript.src) {
+            newScript.src = oldScript.src;
+          } else {
+            newScript.textContent = oldScript.textContent;
+          }
 
-<h2>2. Fizik Boyutunun Sınırı</h2>
-<p>
-Fizik evrende genişleme vardır fakat taşıyıcı anlam yoktur. Sadece fizik olduğunda güç artar fakat bilgi oluşmaz.
-</p>
+          document.body.appendChild(newScript);
+          oldScript.remove();
+        });
+      });
+  </script>
 
-<h2>3. Neden Biyoloji Boyutu Açıldı</h2>
-<p>
-Fizik kendi başına sürdürülebilir değildir. Bu nedenle yoğunlaşma sonucu biyolojik yapı ortaya çıkar.
-</p>
+  <main class="container">
 
-<h2>4. Hücre</h2>
-<p>
-Hücre, fizik kurallarını içerir fakat enerji akışı ve düzenli sistem kurma özelliği ile üst düzeye geçiş sağlar.
-</p>
+    <a class="back-link" href="theory-01-boyutsal-acilim.html">
+      ← Boyutsal Açılım sayfasına dön
+    </a>
 
-<h2>5. İlk Genişleme Modeli</h2>
-<p>
-Enerji → Madde → Organik yapı → Tek hücre olarak gerçekleşmiştir. Bu geçiş rastgele değil, zorunludur.
-</p>
+    <section class="hero">
+      <div class="hero-card">
+        <h1>01 - Physical Foundation</h1>
 
-<h2>6. Boyutsal Yasa</h2>
-<p>
-Bir boyut tamamlanmadan üst boyut açılamaz. Bu nedenle fizik, biyolojiye zemin hazırlamıştır.
-</p>
+        <p>
+          Fiziksel temel, varlığın ilk yoğunlaşma evresidir.
+          Enerji, madde ve düzen oluşumu burada başlar.
+        </p>
+      </div>
+    </section>
 
-<h2>7. Sonuç</h2>
-<p>
-Fizik başlangıçtır ancak nihai amaç değildir. Üst boyutlara geçiş zorunludur.
-</p>
+    <section class="section-card">
 
-  </section>
+      <h2>1. Teorinin Ana İlkesi</h2>
 
-</main>
+      <p>
+        Fiziksel boyut (D1) sonsuz genişlemeye sahip değildir.
+        Fizik; enerji yoğunlaşması ve yapı oluşumu üzerine kuruludur.
+      </p>
+
+      <p>
+        Bu nedenle varlık, sınırsız yayılma değil;
+        kontrollü yoğunlaşma eğilimi gösterir.
+      </p>
+
+    </section>
+
+    <section class="section-card">
+
+      <h2>2. Fizik Boyutunun Sınırı</h2>
+
+      <p>
+        Fizik evrende genişleme vardır fakat taşıyıcı anlam yoktur.
+        Sadece fizik olduğunda güç artar fakat bilgi oluşmaz.
+      </p>
+
+    </section>
+
+    <section class="section-card">
+
+      <h2>3. Neden Biyoloji Boyutu Açıldı</h2>
+
+      <p>
+        Fizik kendi başına sürdürülebilir değildir.
+        Bu nedenle yoğunlaşma sonucu biyolojik yapı ortaya çıkar.
+      </p>
+
+    </section>
+
+    <section class="section-card">
+
+      <h2>4. Hücre</h2>
+
+      <p>
+        Hücre, fizik kurallarını içerir fakat enerji akışı
+        ve düzenli sistem kurma özelliği ile üst düzeye geçiş sağlar.
+      </p>
+
+    </section>
+
+    <section class="section-card">
+
+      <h2>5. İlk Genişleme Modeli</h2>
+
+      <p>
+        Enerji → Madde → Organik Yapı → Tek Hücre
+      </p>
+
+      <p>
+        Bu geçiş rastgele değil, zorunlu sistemsel açılımdır.
+      </p>
+
+    </section>
+
+    <section class="section-card">
+
+      <h2>6. Boyutsal Yasa</h2>
+
+      <p>
+        Bir boyut tamamlanmadan üst boyut açılamaz.
+        Bu nedenle fizik, biyolojiye zemin hazırlamıştır.
+      </p>
+
+    </section>
+
+    <section class="section-card">
+
+      <h2>7. Sonuç</h2>
+
+      <p>
+        Fizik başlangıçtır ancak nihai amaç değildir.
+        Üst boyutlara geçiş sistemin zorunlu yönüdür.
+      </p>
+
+    </section>
+
+  </main>
 
 </body>
 </html>
+
