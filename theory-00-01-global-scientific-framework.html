@@ -4,13 +4,41 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>01 – Global Scientific Framework</title>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
-<main class="container">
+<div id="navbar"></div>
 
-<a class="back-link" href="./theory-00-framework.html">← Back to Framework</a>
+<script>
+fetch("components/navbar.html")
+.then(function(res){
+    return res.text();
+})
+.then(function(data){
+    const navbar = document.getElementById("navbar");
+    navbar.innerHTML = data;
+
+    const scripts = navbar.querySelectorAll("script");
+
+    scripts.forEach(function(oldScript){
+        const newScript = document.createElement("script");
+
+        if(oldScript.src){
+            newScript.src = oldScript.src;
+        } else {
+            newScript.textContent = oldScript.textContent;
+        }
+
+        document.body.appendChild(newScript);
+        oldScript.remove();
+    });
+});
+</script>
+
+  <main class="container">
+
+<a class="back-link" href="theory.html">← Theory sayfasına dön</a>
 
 <section class="hero">
   <div class="hero-card">
