@@ -48,6 +48,136 @@
   .atom-core,.atom-node{position:relative;left:auto!important;top:auto!important;transform:none;display:flex;width:auto;min-height:54px;margin:12px 0;align-items:center;justify-content:center}
   .atom-core{border-radius:24px;width:auto;height:76px}
 }
+/* GRAPH FIX 01 — SAHNE HİZALAMA */
+.graph-page {
+  overflow-x: hidden;
+}
+
+.atom-stage {
+  width: 100%;
+  max-width: 980px;
+  margin: 32px auto 0;
+  overflow: hidden;
+}
+
+.atom-core {
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 5;
+}
+
+.atom-node {
+  z-index: 6;
+}
+ /* GRAPH FIX 02 — TIKLANABİLİR KART HİSSİ */
+.atom-node,
+.atom-core,
+.quick-links a,
+.detail-actions a {
+  background: linear-gradient(135deg, #38bdf8, #2563eb) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,.75) !important;
+  box-shadow: 0 0 24px rgba(56,189,248,.42) !important;
+  border-radius: 999px !important;
+  font-weight: 900 !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+}
+
+.atom-node:hover,
+.atom-core:hover,
+.quick-links a:hover,
+.detail-actions a:hover {
+  transform: translate(-50%, -50%) scale(1.06);
+  box-shadow: 0 0 36px rgba(56,189,248,.85) !important;
+}
+
+.atom-node.active,
+.atom-core.active {
+  background: linear-gradient(135deg, #7dd3fc, #2563eb) !important;
+  box-shadow: 0 0 42px rgba(125,211,252,.95) !important;
+}
+ /* GRAPH FIX 03 — DETAY PANELİ */
+.detail-box {
+  position: relative;
+  scroll-margin-top: 110px;
+  animation: detailOpen .35s ease;
+}
+
+.detail-box::before {
+  content: "↓ Aşağıda detay açıldı";
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 9px 14px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #38bdf8, #2563eb);
+  color: white;
+  font-weight: 900;
+  box-shadow: 0 0 22px rgba(56,189,248,.45);
+}
+
+@keyframes detailOpen {
+  from {
+    opacity: .3;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* GRAPH FIX 04 — MOBİL KART LİSTESİ */
+@media (max-width: 850px) {
+  .atom-stage {
+    min-height: auto !important;
+    padding: 22px !important;
+    display: grid !important;
+    gap: 14px !important;
+  }
+
+  .orbit,
+  .atom-line,
+  .layer-label {
+    display: none !important;
+  }
+
+  .atom-core,
+  .atom-node {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    min-height: 58px !important;
+    padding: 16px 18px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    font-size: clamp(1rem, 4.5vw, 1.25rem) !important;
+  }
+
+  .atom-node:hover,
+  .atom-core:hover {
+    transform: translateY(-2px) !important;
+  }
+
+  .atom-node.active,
+  .atom-core.active {
+    transform: scale(1.02) !important;
+  }
+
+  .quick-links {
+    grid-template-columns: 1fr !important;
+  }
+
+  .quick-links a,
+  .detail-actions a {
+    width: 100%;
+    text-align: center;
+  }
+}  
+
 </style>
 </head>
 
@@ -155,12 +285,19 @@ const graphData = {
   yonetim:{title:"Yönetim",tanim:"Rabûn’un meclis, şûra ve geri bildirim düzeni.",rol:"Gücü dengeye bağlar.",fonksiyon:"Hüküm, ahlak, güvenlik, hukuk ve ekonomi katmanlarını koordine eder.",formul:"Şûra + Meclis + Geri Bildirim → Yönetim",page:"rabun.html",related:"Rabûn, güvenlik, şûra"}
 };
 
-function showDetail(key, el){
+function showDetail(key, el) {
   const item = graphData[key];
   const box = document.getElementById("detailBox");
 
-  document.querySelectorAll(".atom-node,.atom-core").forEach(n => n.classList.remove("active"));
-  if(el) el.classList.add("active");
+  document
+    .querySelectorAll(".atom-node, .atom-core")
+    .forEach(function (node) {
+      node.classList.remove("active");
+    });
+
+  if (el) {
+    el.classList.add("active");
+  }
 
   box.innerHTML = `
     <h2>${item.title}</h2>
@@ -169,11 +306,19 @@ function showDetail(key, el){
     <p><strong>Fonksiyon:</strong> ${item.fonksiyon}</p>
     <p><strong>Formül:</strong> ${item.formul}</p>
     <p><strong>İlgili makaleler:</strong> ${item.related}</p>
+
     <div class="detail-actions">
       <a href="${item.page}">Sayfaya git</a>
-     <a href="speech.html?prompt=${encodeURIComponent(item.title)}">AI’ye sor</a>
+      <a href="speech.html?prompt=${encodeURIComponent(item.title)}">AI’ye sor</a>
     </div>
   `;
+
+  setTimeout(function () {
+    box.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }, 140);
 }
 
 showDetail("zanistarast", document.querySelector(".atom-core"));
