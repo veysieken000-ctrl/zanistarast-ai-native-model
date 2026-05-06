@@ -1,72 +1,102 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <title>Zanistarast History</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>00 - Zanistarast History</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
+  <div id="navbar"></div>
 
-<main class="container">
+  <script>
+    fetch("components/navbar.html")
+      .then(function (res) {
+        return res.text();
+      })
+      .then(function (data) {
+        const navbar = document.getElementById("navbar");
+        navbar.innerHTML = data;
 
-  <a href="theory-01-boyutsal-acilim.html">← Back</a>
+        const scripts = navbar.querySelectorAll("script");
+        scripts.forEach(function (oldScript) {
+          const newScript = document.createElement("script");
+          if (oldScript.src) {
+            newScript.src = oldScript.src;
+          } else {
+            newScript.textContent = oldScript.textContent;
+          }
+          document.body.appendChild(newScript);
+          oldScript.remove();
+        });
+      });
+  </script>
 
-  <section class="section-card">
+  <main class="container">
 
-  <h1>00 - Zanistarast History</h1>
+    <a class="back-link" href="theory-01-boyutsal-acilim.html">← Boyutsal Açılım sayfasına dön</a>
 
-  <h2>1. Amaç</h2>
-  <p>
-  Bu metin, tarih okumasını olaylardan değil varlığın boyutsal açılımından başlatır.
-  Tarih, insanın ortaya çıkışıyla başlayan bir kayıt değil, varlık düzeninin üst boyutlara doğru genişlemesinin sahne aldığı bir süreçtir.
-  </p>
+    <section class="hero">
+      <div class="hero-card">
+        <h1>00 - Zanistarast History</h1>
+        <p>
+          Zanistarast tarih okumasını yalnız olaylar üzerinden değil,
+          varlığın boyutsal açılımı, bilgi üretimi ve uygarlık kurucu düzen
+          üzerinden ele alır.
+        </p>
+      </div>
+    </section>
 
-  <h2>2. Tanım</h2>
-  <p>
-  Boyutsal açılım, varlığın kendini sürdürebilmek için üst düzen (üst boyut) üretmesi ilkesidir.
-  Alt boyut kendi başına kapanır; üst boyut alt boyutu kapsayarak süreklilik sağlar.
-  </p>
+    <section class="section-card">
+      <h2>1. Amaç</h2>
+      <p>
+        Bu metin, tarih okumasını olaylardan değil; varlığın boyutsal
+        açılımından başlatır. Tarih, yalnız insanın ortaya çıkışıyla başlayan
+        bir kayıt değil, varlık düzeninin üst boyutlara doğru genişlemesinin
+        sahnesidir.
+      </p>
+    </section>
 
-  <h2>3. Aksiyomlar (Çekirdek Yasalar)</h2>
-  <p>
-  A1 — Üst sistem alt sistemi çalıştırır.  
-  A2 — Boyut kapsama yeteneğidir.  
-  A3 — Boyutların açılımı iki evrede gerçekleşir: kurulum ve süreklilik.  
-  A4 — Bilgi varlıktan ayrı değildir.  
-  A5 — Ahlak üst çerçevedir ve düzeni sınırlar.
-  </p>
+    <section class="section-card">
+      <h2>2. Tanım</h2>
+      <p>
+        Boyutsal açılım, varlığın kendini sürdürebilmek için üst düzen
+        üretmesi ilkesidir. Alt boyut kendi başına kapanır; üst boyut alt
+        boyutu kapsayarak süreklilik sağlar.
+      </p>
+    </section>
 
-  <h2>4. Boyut Dizilimi</h2>
-  <p>
-  D1 — Fizik boyutu (madde ve hareket)  
-  D2 — Biyoloji boyutu (canlılık ve çoğalma)  
-  D3 — Zihin boyutu (algı ve seçim)  
-  D4 — Koordinasyon boyutu (sistem düzeni)  
-  D5 — Ahlak boyutu (sorumluluk ve doğrulama)  
-  D6 — Hüküm boyutu (karar ve sonuç)
-  </p>
+    <section class="section-card">
+      <h2>3. Çekirdek Yasalar</h2>
+      <p>A1 — Üst sistem alt sistemi çalıştırır.</p>
+      <p>A2 — Boyut kapsama yeteneğidir.</p>
+      <p>A3 — Boyutların açılımı iki evrede gerçekleşir: kurulum ve süreklilik.</p>
+      <p>A4 — Bilgi, varlıktan ayrı değildir; varlığın düzenlenmiş izidir.</p>
+      <p>A5 — Uygarlık, varlık-bilgi-yönetim-ekonomi bütünlüğünün tarihsel formudur.</p>
+    </section>
 
-  <h2>5. Temel Teorem</h2>
-  <p>
-  Bir boyut kendini tamamlamadan üst boyut sürdürülebilir şekilde açılamaz.
-  Her üst yapı, alt yapının üzerine kurulur ve onu kapsar.
-  </p>
+    <section class="section-card">
+      <h2>4. Zanistarast Tarih Akışı</h2>
+      <p>
+        Hebûn → Zanabûn → Rasterast → Rabûn → Mabûn → Newroza Kawa
+      </p>
+      <p>
+        Bu akışta tarih; varlık, bilgi, doğrulama, yönetim ve ekonomi
+        katmanlarının birleşerek uygarlık kurucu bir düzene dönüşmesidir.
+      </p>
+    </section>
 
-  <h2>6. Tarih Yorumu</h2>
-  <p>
-  Tarih, kazananların listesi değildir.
-  Hangi boyutun merkez olduğu ve sistemin hangi düzeyde kurulduğunun kaydıdır.
-  </p>
+    <section class="section-card">
+      <h2>5. Sonuç</h2>
+      <p>
+        Zanistarast History, geçmişi yalnız kronolojik olaylar toplamı olarak
+        değil; sistemlerin nasıl doğduğu, nasıl genişlediği, nasıl çöktüğü ve
+        nasıl yeniden kurulduğu üzerinden okur.
+      </p>
+    </section>
 
-  <h2>7. Sonuç</h2>
-  <p>
-  Varlık, rastgele değil boyutsal genişleme üzerinden ilerler.
-  İnsan, bu sürecin bir aşamasıdır ve üst boyutlara geçiş için bir eşik oluşturur.
-  </p>
-
-</section>
-</main>
-
+  </main>
 </body>
 </html>
 
