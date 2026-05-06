@@ -290,3 +290,150 @@ width:100%;
 }
 
 }
+/* =========================================
+   RESPONSIVE TEXT + ZOOM SAFE SYSTEM
+========================================= */
+
+html {
+  font-size: clamp(15px, 1.2vw, 18px);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  min-width: 0;
+  word-break: normal;
+  overflow-wrap: anywhere;
+}
+
+img,
+video,
+iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+h1 {
+  font-size: clamp(2rem, 7vw, 4.5rem);
+  line-height: 1.08;
+}
+
+h2 {
+  font-size: clamp(1.55rem, 5vw, 2.7rem);
+  line-height: 1.15;
+}
+
+h3 {
+  font-size: clamp(1.2rem, 4vw, 1.7rem);
+  line-height: 1.2;
+}
+
+p,
+li,
+a,
+button,
+input,
+textarea,
+select {
+  font-size: clamp(1rem, 3.8vw, 1.15rem);
+  line-height: 1.65;
+}
+
+.container,
+.hero-card,
+.card,
+.detail-box {
+  max-width: 100%;
+}
+
+.hero-card,
+.card,
+.detail-box,
+.flow-item,
+.badge,
+.main-cta {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.system-flow,
+.flow-row,
+.badges,
+.quick-links,
+.detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.system-flow > *,
+.flow-row > *,
+.badges > *,
+.quick-links > *,
+.detail-actions > * {
+  max-width: 100%;
+}
+
+@media (max-width: 700px) {
+  .container {
+    width: min(100% - 24px, 100%);
+  }
+
+  main {
+    padding-top: 86px;
+  }
+
+  .hero-card,
+  .card,
+  .detail-box {
+    padding: 20px;
+    border-radius: 22px;
+  }
+
+  .system-flow,
+  .flow-row,
+  .quick-links,
+  .detail-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .badge,
+  .main-cta,
+  .btn,
+  .quick-links a,
+  .detail-actions a {
+    width: auto;
+    max-width: 100%;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 420px) {
+  h1 {
+    font-size: clamp(1.8rem, 9vw, 2.7rem);
+  }
+
+  h2 {
+    font-size: clamp(1.35rem, 7vw, 2rem);
+  }
+
+  p,
+  li,
+  a,
+  button {
+    font-size: clamp(1rem, 4.5vw, 1.12rem);
+  }
+
+  .hero-card,
+  .card,
+  .detail-box {
+    padding: 18px;
+  }
+}
+
