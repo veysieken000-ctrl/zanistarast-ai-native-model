@@ -1,77 +1,133 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <title>Biyolojiden Fiziğe Geçiş</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>02 - Biyolojiden Fiziğe Geçiş</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
+  <div id="navbar"></div>
 
-<main class="container">
+  <script>
+    fetch("components/navbar.html")
+      .then(function (res) { return res.text(); })
+      .then(function (data) {
+        const navbar = document.getElementById("navbar");
+        navbar.innerHTML = data;
+        const scripts = navbar.querySelectorAll("script");
+        scripts.forEach(function (oldScript) {
+          const newScript = document.createElement("script");
+          if (oldScript.src) newScript.src = oldScript.src;
+          else newScript.textContent = oldScript.textContent;
+          document.body.appendChild(newScript);
+          oldScript.remove();
+        });
+      });
+  </script>
 
-  <a href="theory-01-boyutsal-acilim.html">← Back</a>
+  <main class="container">
 
-  <section class="section-card">
+    <a class="back-link" href="theory-01-boyutsal-acilim.html">
+      ← Boyutsal Açılım sayfasına dön
+    </a>
 
-  <h1>02 - Biyolojiden Fiziğe Geçiş</h1>
+    <section class="hero">
+      <div class="hero-card">
+        <h1>02 - Biyolojiden Fiziğe Geçiş</h1>
+        <p>
+          Bu bölüm, fiziksel yoğunlaşmadan biyolojik düzene geçişin
+          neden zorunlu olduğunu açıklar.
+        </p>
+      </div>
+    </section>
 
-  <h2>1. Geçiş Neden Gerekiyordu</h2>
-  <p>
-    Zanistarast bilimine göre fizik boyut enerji üretir ve yapı oluşturur,
-    ancak kendi kendini sürdüren düzen kuramaz. Bu nedenle fiziksel evrende
-    ortaya çıkan temel sınır aşılmadan bilgi oluşmaz, büyüme süreklilik kazanmaz
-    ve karmaşıklık kontrol altında tutulamaz.
-  </p>
+    <section class="section-card">
+      <h2>1. Geçiş Neden Gerekiyordu?</h2>
+      <p>
+        Zanistarast bilimine göre fizik boyut enerji üretir ve yapı oluşturur;
+        ancak kendi kendini sürdüren düzen kuramaz.
+      </p>
+      <p>
+        Bu nedenle fiziksel evrende ortaya çıkan temel sınır aşılmadan
+        bilgi oluşmaz, büyüme süreklilik kazanmaz ve karmaşıklık kontrol
+        altında tutulamaz.
+      </p>
+    </section>
 
-  <h2>2. Geçişin Ana İlkesi: Yoğunlaşma</h2>
-  <p>
-    Fizik evrende süreç enerji yoğunlaşmasıyla ilerler. Atom oluşumu,
-    moleküler düzen ve organik kimya bu yoğunlaşmanın aşamalarıdır.
-    Zanistarast okumasında bu süreç kaostan düzen doğması değil,
-    düzenin açığa çıkmasıdır.
-  </p>
+    <section class="section-card">
+      <h2>2. Geçişin Ana İlkesi: Yoğunlaşma</h2>
+      <p>
+        Fizik evrende süreç, enerji yoğunlaşmasıyla ilerler.
+        Atom oluşumu, moleküler düzen ve organik kimya bu yoğunlaşmanın
+        aşamalarıdır.
+      </p>
+      <p>
+        Zanistarast okumasında bu süreç kaostan düzen doğması değil;
+        düzenin açığa çıkmasıdır.
+      </p>
+    </section>
 
-  <h2>3. Hücre Neden Kritik Eşiktir</h2>
-  <p>
-    Hücre ortaya çıktığında ilk kez iç ve dış ayrımı oluşur, seçici sınır kurulur
-    ve enerji kontrol altına alınır. Bu durum, fizik yasalarının biyoloji içinde
-    yönetilmesi anlamına gelir.
-  </p>
+    <section class="section-card">
+      <h2>3. Hücre Neden Kritik Eşiktir?</h2>
+      <p>
+        Hücre ortaya çıktığında ilk kez iç ve dış ayrımı oluşur,
+        seçici sınır kurulur ve enerji kontrol altına alınır.
+      </p>
+      <p>
+        Bu durum, fizik yasalarının biyoloji içinde yönetilmesi anlamına gelir.
+      </p>
+    </section>
 
-  <h2>4. Eşeysiz Çoğalma (Biyoloji Evresi 1)</h2>
-  <p>
-    İlk canlı düzeni hücre bölünmesi ve kopyalama mantığı üzerine kurulur.
-    Bu evrede bireysel yönelim yoktur, programlanmış çoğalma vardır.
-    Çeşitlilik sınırlıdır ve yaşam basit biçimlerde sürer.
-  </p>
+    <section class="section-card">
+      <h2>4. Eşeysiz Çoğalma: Biyoloji Evresi 1</h2>
+      <p>
+        İlk canlı düzeni hücre bölünmesi ve kopyalanma mantığı üzerine kurulur.
+      </p>
+      <p>
+        Bu evrede bireysel yönelim yoktur; programlanmış çoğalma vardır.
+        Çeşitlilik sınırlıdır ve yaşam basit biçimlerde sürer.
+      </p>
+    </section>
 
-  <h2>5. Biyolojinin Sınırı</h2>
-  <p>
-    Eşeysiz çoğalma modeli hız kazandırır ama çeşitlilik üretmez.
-    Çeşitlilik olmadan karmaşık organizmalar oluşamaz ve zihin için uygun taşıyıcı
-    yapı kurulamaz. Bu nedenle biyoloji kendi içinde yeni bir genişlemeye zorlanır.
-  </p>
+    <section class="section-card">
+      <h2>5. Biyolojinin Sınırı</h2>
+      <p>
+        Eşeysiz çoğalma modeli hız kazandırır ama çeşitlilik üretmez.
+        Çeşitlilik olmadan karmaşık organizmalar oluşamaz ve zihin için
+        uygun taşıyıcı yapı kurulamaz.
+      </p>
+      <p>
+        Bu nedenle biyoloji kendi içinde yeni bir genişlemeye zorlanır.
+      </p>
+    </section>
 
-  <h2>6. Boyutsal Zorunluluk</h2>
-  <p>
-    Her boyut, üst boyutun mekânını hazırlar. Biyoloji, yapısal çeşitlilik üreterek
-    gelecekteki zihin boyutunun taşıyıcısını hazırlamaya başlar.
-  </p>
+    <section class="section-card">
+      <h2>6. Boyutsal Zorunluluk</h2>
+      <p>
+        Her boyut, üst boyutun mekânını hazırlar.
+        Biyoloji, yapısal çeşitlilik üreterek gelecekteki zihin boyutunun
+        taşıyıcısını hazırlamaya başlar.
+      </p>
+    </section>
 
-  <h2>7. Geçiş Formülü</h2>
-  <p>
-    Fizik → Düzen, Düzen → Hücre, Hücre → Çoğalma, Çoğalma → Karmaşıklık,
-    Karmaşıklık → Üst Boyut Zorunluluğu.
-  </p>
+    <section class="section-card">
+      <h2>7. Geçiş Formülü</h2>
+      <p>
+        Fizik → Düzen → Hücre → Çoğalma → Karmaşıklık → Üst Boyut Zorunluluğu
+      </p>
+    </section>
 
-  <h2>8. Sonuç</h2>
-  <p>
-    Fizikten biyolojiye geçiş tesadüfi değil, boyutsal zorunluluktur.
-    Fizik genişleyemez hale geldiğinde biyoloji açılır.
-  </p>
+    <section class="section-card">
+      <h2>8. Sonuç</h2>
+      <p>
+        Fizikten biyolojiye geçiş tesadüfi değil, boyutsal zorunluluktur.
+        Fizik genişleyemez hale geldiğinde biyoloji açılır.
+      </p>
+    </section>
 
-</section>
-</main>
-
+  </main>
 </body>
 </html>
+
