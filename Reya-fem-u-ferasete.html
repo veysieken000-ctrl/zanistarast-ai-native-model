@@ -6,94 +6,38 @@
   <title>Rêya Fem û Ferasetê</title>
   <link rel="stylesheet" href="css/style.css" />
 
-  <style>
-    body {
-      background:#0b0f1a;
-      color:#fff;
-      font-family:Arial, sans-serif;
-      padding:40px;
-    }
-
-    .back {
-      margin-bottom:20px;
-      display:inline-block;
-      color:#8cb3ff;
-      text-decoration:none;
-    }
-
-    .hero {
-      margin-bottom:24px;
-    }
-
-    .card {
-      background:rgba(255,255,255,0.06);
-      padding:22px;
-      border-radius:14px;
-      margin-bottom:18px;
-      max-width:1050px;
-    }
-
-    h1, h2, h3 {
-      margin-top:0;
-    }
-
-    p {
-      line-height:1.75;
-      color:rgba(255,255,255,0.86);
-    }
-
-    .grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
-      gap:16px;
-    }
-
-    .item {
-      display:block;
-      padding:18px;
-      border-radius:14px;
-      background:rgba(255,255,255,0.06);
-      color:white;
-      text-decoration:none;
-      transition:.2s;
-    }
-
-    .item:hover {
-      background:rgba(255,255,255,0.12);
-      transform:translateY(-2px);
-    }
-
-    .item strong {
-      display:block;
-      font-size:18px;
-      margin-bottom:8px;
-    }
-
-    .item span {
-      display:block;
-      font-size:14px;
-      opacity:.82;
-      line-height:1.5;
-    }
-
-    .branches {
-      margin-top:12px;
-      padding-left:20px;
-      line-height:1.7;
-      color:rgba(255,255,255,0.82);
-    }
-
-    blockquote {
-      border-left:4px solid #8cb3ff;
-      padding-left:16px;
-      margin-left:0;
-      color:rgba(255,255,255,0.9);
-    }
-  </style>
+  
 </head>
 
 <body>
 <div id="navbar"></div>
+
+<script>
+fetch("components/navbar.html")
+.then(function(res){
+  return res.text();
+})
+.then(function(data){
+  const navbar = document.getElementById("navbar");
+  navbar.innerHTML = data;
+
+  const scripts = navbar.querySelectorAll("script");
+
+  scripts.forEach(function(oldScript){
+    const newScript = document.createElement("script");
+
+    if(oldScript.src){
+      newScript.src = oldScript.src;
+    } else {
+      newScript.textContent = oldScript.textContent;
+    }
+
+    document.body.appendChild(newScript);
+    oldScript.remove();
+  });
+});
+</script>
+  <div id="navbar"></div>
 
 <script>
 fetch("components/navbar.html")
