@@ -1,87 +1,169 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <title>Üst Boyut Zorunluluğu</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>06 - Üst Boyut Zorunluluğu</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
+  <div id="navbar"></div>
 
-<main class="container">
+  <script>
+    fetch("components/navbar.html")
+      .then(function (res) { return res.text(); })
+      .then(function (data) {
+        const navbar = document.getElementById("navbar");
+        navbar.innerHTML = data;
 
-  <a href="theory-01-boyutsal-acilim.html">← Back</a>
+        const scripts = navbar.querySelectorAll("script");
 
-  <section class="section-card"> ... </section> içine:
-HTML
-<section class="section-card">
+        scripts.forEach(function (oldScript) {
+          const newScript = document.createElement("script");
 
-  <h1>06 - Üst Boyut Zorunluluğu</h1>
+          if (oldScript.src) {
+            newScript.src = oldScript.src;
+          } else {
+            newScript.textContent = oldScript.textContent;
+          }
 
-  <h2>1. Temel İlke</h2>
-  <p>
-    Zanistarast bilimine göre hiçbir boyut kendi içinde sonsuza kadar
-    genişleyemez. Her boyut belirli bir kapasiteye sahiptir ve bu kapasite
-    aşıldığında yeni bir boyutun açılması zorunlu hale gelir.
-  </p>
+          document.body.appendChild(newScript);
+          oldScript.remove();
+        });
+      });
+  </script>
 
-  <h2>2. Boyut Sınırı Nedir</h2>
-  <p>
-    Bir boyutun sınırı, iç karmaşıklığın düzen kapasitesini aşmasıdır.
-    Matematiksel olarak bu durum:
-    Karmaşıklık (K) > Düzen Kapasitesi (D)
-    olarak ifade edilir.
-  </p>
+  <main class="container">
 
-  <h2>3. Üst Boyut Neden Gereklidir</h2>
-  <p>
-    Alt boyut tek başına anlam üretemez, yön belirleyemez ve dengede kalamaz.
-    Üst boyut, alt boyutu düzenleyen ve ona yön veren yapıdır.
-  </p>
+    <a class="back-link" href="theory-01-boyutsal-acilim.html">
+      ← Boyutsal Açılım sayfasına dön
+    </a>
 
-  <h2>4. Fizik → Biyoloji Geçişi</h2>
-  <p>
-    Fizik boyut maddeyi büyütür ve enerjiyi artırır ancak kendini organize edemez.
-    Bu nedenle biyoloji ortaya çıkar. Hücre, fizik ile biyoloji arasındaki geçiş kapısıdır.
-  </p>
+    <section class="hero">
+      <div class="hero-card">
+        <h1>06 - Üst Boyut Zorunluluğu</h1>
+        <p>
+          Üst boyut zorunluluğu, her sistemin kendi kapasite sınırına ulaştığında
+          daha geniş bir düzen alanına ihtiyaç duymasıdır.
+        </p>
+      </div>
+    </section>
 
-  <h2>5. Biyoloji → Zihin Geçişi</h2>
-  <p>
-    Biyoloji karmaşıklığı artırır ancak yön belirleyemez.
-    Bu nedenle zihin boyutu açılır. Zihin, seçim üretir ve öğrenme ile yön oluşturur.
-  </p>
+    <section class="section-card">
+      <h2>1. Temel İlke</h2>
+      <p>
+        Zanistarast bilimine göre hiçbir boyut kendi içinde sonsuza kadar genişleyemez.
+      </p>
 
-  <h2>6. Zihin → Ahlak Geçişi</h2>
-  <p>
-    Zihin güç üretir ancak iyi-kötü ayrımı yapamaz.
-    Bu nedenle ahlak boyutu açılır. Ahlak, sorumluluk üretir ve sınır koyar.
-  </p>
+      <p>
+        Her boyut belirli bir kapasiteye sahiptir ve bu kapasite aşıldığında
+        yeni bir boyutun açılması zorunlu hale gelir.
+      </p>
+    </section>
 
-  <h2>7. Geçiş Kanunu</h2>
-  <p>
-    Bir boyut tamamlanmadan üst boyut açılmaz.
-    Eğer açılım gerçekleşmezse sistem reset yaşar.
-  </p>
+    <section class="section-card">
+      <h2>2. Boyut Sınırı Nedir?</h2>
+      <p>
+        Bir boyutun sınırı, iç karmaşıklığın düzen kapasitesini aşmasıdır.
+      </p>
 
-  <h2>8. İnsanın Konumu</h2>
-  <p>
-    İnsan, fizik, biyoloji ve zihin katmanlarını taşıyan bir varlıktır.
-    Bu nedenle üst boyuta geçiş potansiyeline sahiptir.
-  </p>
+      <p>
+        Matematiksel olarak bu durum:
+        Karmaşıklık (K) &gt; Düzen Kapasitesi (D)
+        şeklinde ifade edilir.
+      </p>
+    </section>
 
-  <h2>9. Teorik Sonuç</h2>
-  <p>
-    Üst boyut, evrimsel bir lüks değil zorunlu bir dengelenme mekanizmasıdır.
-    Boyutlar yükselmek için değil, dengelenmek için açılır.
-  </p>
+    <section class="section-card">
+      <h2>3. Üst Boyut Neden Gereklidir?</h2>
+      <p>
+        Alt boyut tek başına anlam üretemez, yön belirleyemez ve dengede kalamaz.
+      </p>
 
-  <h2>10. Sonuç</h2>
-  <p>
-    Alt boyut, üst boyutun doğum alanıdır.
-    Üst boyut açılmazsa sistem daralır.
-  </p>
+      <p>
+        Üst boyut, alt boyutu düzenleyen ve ona yön veren yapıdır.
+      </p>
+    </section>
 
-</section>
-</main>
+    <section class="section-card">
+      <h2>4. Fizik → Biyoloji Geçişi</h2>
+      <p>
+        Fizik boyut maddeyi büyütür ve enerjiyi artırır; ancak kendini organize edemez.
+      </p>
 
+      <p>
+        Bu nedenle biyoloji ortaya çıkar. Hücre, fizik ile biyoloji arasındaki geçiş kapısıdır.
+      </p>
+    </section>
+
+    <section class="section-card">
+      <h2>5. Biyoloji → Zihin Geçişi</h2>
+      <p>
+        Biyoloji karmaşıklığı artırır; ancak yön belirleyemez.
+      </p>
+
+      <p>
+        Bu nedenle zihin boyutu açılır. Zihin, seçim üretir ve öğrenme ile yön oluşturur.
+      </p>
+    </section>
+
+    <section class="section-card">
+      <h2>6. Zihin → Ahlak Geçişi</h2>
+      <p>
+        Zihin güç üretir; ancak iyi-kötü ayrımı yapamaz.
+      </p>
+
+      <p>
+        Bu nedenle ahlak boyutu açılır. Ahlak, sorumluluk üretir ve sınır koyar.
+      </p>
+    </section>
+
+    <section class="section-card">
+      <h2>7. Geçiş Kanunu</h2>
+      <p>
+        Bir boyut tamamlanmadan üst boyut açılamaz.
+      </p>
+
+      <p>
+        Eğer açılım gerçekleşmezse sistem reset yaşar.
+      </p>
+    </section>
+
+    <section class="section-card">
+      <h2>8. İnsanın Konumu</h2>
+      <p>
+        İnsan; fizik, biyoloji ve zihin katmanlarını taşıyan bir varlıktır.
+      </p>
+
+      <p>
+        Bu nedenle üst boyuta geçiş potansiyeline sahiptir.
+      </p>
+    </section>
+
+    <section class="section-card">
+      <h2>9. Teorik Sonuç</h2>
+      <p>
+        Üst boyut, evrimsel bir lüks değil; zorunlu bir dengelenme mekanizmasıdır.
+      </p>
+
+      <p>
+        Boyutlar yükselmek için değil, dengelenmek için açılır.
+      </p>
+    </section>
+
+    <section class="section-card">
+      <h2>10. Sonuç</h2>
+      <p>
+        Alt boyut, üst boyutun doğum alanıdır.
+      </p>
+
+      <p>
+        Üst boyut açılmazsa sistem daralır.
+      </p>
+    </section>
+
+  </main>
 </body>
 </html>
+
