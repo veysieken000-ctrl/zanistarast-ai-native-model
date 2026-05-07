@@ -4,32 +4,37 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Zanistarast — Interpretive Layer</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #0f1115;
-      color: #e9edf5;
-      line-height: 1.7;
-      margin: 0;
-      padding: 20px;
-      max-width: 900px;
-    }
-    h1, h2 {
-      color: #8fb8ff;
-    }
-    section {
-      margin-bottom: 40px;
-    }
-    .quote {
-      border-left: 3px solid #8fb8ff;
-      padding-left: 15px;
-      margin: 20px 0;
-      color: #b7ffd6;
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css" />
+  
 </head>
 <body>
+<div id="navbar"></div>
 
+<script>
+fetch("components/navbar.html")
+.then(function(res){
+  return res.text();
+})
+.then(function(data){
+  const navbar = document.getElementById("navbar");
+  navbar.innerHTML = data;
+
+  const scripts = navbar.querySelectorAll("script");
+
+  scripts.forEach(function(oldScript){
+    const newScript = document.createElement("script");
+
+    if(oldScript.src){
+      newScript.src = oldScript.src;
+    } else {
+      newScript.textContent = oldScript.textContent;
+    }
+
+    document.body.appendChild(newScript);
+    oldScript.remove();
+  });
+});
+</script>
 <h1>Zanistarast — Interpretive Layer</h1>
 
 <p>
