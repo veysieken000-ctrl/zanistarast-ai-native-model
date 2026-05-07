@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Zanistarast - Meta Science</title>
 
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="css/style.css" />
 
   <style>
     body {
@@ -41,6 +41,33 @@
 </head>
 
 <body>
+  <div id="navbar"></div>
+
+<script>
+fetch("components/navbar.html")
+.then(function(res){
+  return res.text();
+})
+.then(function(data){
+  const navbar = document.getElementById("navbar");
+  navbar.innerHTML = data;
+
+  const scripts = navbar.querySelectorAll("script");
+
+  scripts.forEach(function(oldScript){
+    const newScript = document.createElement("script");
+
+    if(oldScript.src){
+      newScript.src = oldScript.src;
+    } else {
+      newScript.textContent = oldScript.textContent;
+    }
+
+    document.body.appendChild(newScript);
+    oldScript.remove();
+  });
+});
+</script>
   <a href="theses.html" class="back">← Back to Theses</a>
 
   <div class="card">
