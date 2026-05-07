@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Zaman Teorisi – Unified Mind</title>
+<link rel="stylesheet" href="css/style.css" />
 <style>
 body {
     background-color: #0a0a0a;
@@ -48,6 +49,33 @@ ul {
 </head>
 
 <body>
+<div id="navbar"></div>
+
+<script>
+fetch("components/navbar.html")
+.then(function(res){
+  return res.text();
+})
+.then(function(data){
+  const navbar = document.getElementById("navbar");
+  navbar.innerHTML = data;
+
+  const scripts = navbar.querySelectorAll("script");
+
+  scripts.forEach(function(oldScript){
+    const newScript = document.createElement("script");
+
+    if(oldScript.src){
+      newScript.src = oldScript.src;
+    } else {
+      newScript.textContent = oldScript.textContent;
+    }
+
+    document.body.appendChild(newScript);
+    oldScript.remove();
+  });
+});
+</script>
 <div class="container">
 
 <a class="back" href="thesis-zanabun.html">← Back to Zanabun</a>
