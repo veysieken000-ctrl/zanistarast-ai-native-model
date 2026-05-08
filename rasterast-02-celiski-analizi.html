@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Çelişki Analizi</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div id="navbar"></div>
+
+<script>
+fetch("components/navbar.html")
+  .then(function(res) {
+    return res.text();
+  })
+  .then(function(data) {
+    const navbar = document.getElementById("navbar");
+    navbar.innerHTML = data;
+
+    const scripts = navbar.querySelectorAll("script");
+
+    scripts.forEach(function(oldScript) {
+      const newScript = document.createElement("script");
+
+      if (oldScript.src) {
+        newScript.src = oldScript.src;
+      } else {
+        newScript.textContent = oldScript.textContent;
+      }
+
+      document.body.appendChild(newScript);
+      oldScript.remove();
+    });
+  });
+</script>
+
+<main class="container">
+
+  <a class="back-link" href="rasterast.html">
+    ← Rasterast sayfasına dön
+  </a>
+
+  <section class="hero">
+    <div class="hero-card">
+
+      <h1>02 — Çelişki Analizi</h1>
+
+      <p>
+        Çelişki analizi, bir bilginin kendi içinde ve diğer alanlarla
+        uyumunu test eden kontrol mekanizmasıdır.
+      </p>
+
+    </div>
+  </section>
+
+  <section class="section-card">
+
+    <h2>1. Çelişki Nedir?</h2>
+
+    <p>
+      Bir bilgi aynı anda iki zıt sonucu üretiyorsa,
+      sistem içinde kopukluk oluşturuyorsa
+      veya gerçeklik ile uyuşmuyorsa çelişki oluşur.
+    </p>
+
+    <p>
+      Rasterast sisteminde çelişki,
+      yalnızca mantıksal hata değil;
+      aynı zamanda yapısal uyumsuzluk göstergesidir.
+    </p>
+
+    <h2>2. Neden Çelişki Analizi Gereklidir?</h2>
+
+    <p>
+      İnsan zihni bazen parçalı doğruları
+      bütünsel gerçeklik sanabilir.
+    </p>
+
+    <p>
+      Bir teori belirli bir noktada doğru görünse bile,
+      başka alanlarda büyük kırılmalar oluşturabilir.
+    </p>
+
+    <p>
+      Bu nedenle bilgi yalnızca kendi alanında değil;
+      fizik, biyoloji, zihin, toplum ve sistem düzeyinde test edilir.
+    </p>
+
+    <h2>3. Rasterast Yaklaşımı</h2>
+
+    <p>
+      Rasterast sistemi,
+      gerçekliği çok katmanlı bir yapı olarak ele alır.
+    </p>
+
+    <p>
+      Eğer bilgi:
+    </p>
+
+    <p>
+      fizik ile uyumlu,
+      biyoloji ile uyumsuz;
+      biyoloji ile uyumlu,
+      zihin ile çelişkili;
+      zihin ile uyumlu,
+      toplum ile yıkıcı sonuç üretiyorsa
+      bilgi eksik kabul edilir.
+    </p>
+
+    <h2>4. İç Çelişki Kontrolü</h2>
+
+    <p>
+      İlk aşamada teori kendi içinde incelenir.
+    </p>
+
+    <p>
+      Eğer başlangıç ilkeleri ile sonuçlar uyuşmuyorsa,
+      teori iç çelişki üretmiş olur.
+    </p>
+
+    <p>
+      Bu durum sistemin kararsız olduğunu gösterir.
+    </p>
+
+    <h2>5. Alanlar Arası Çelişki</h2>
+
+    <p>
+      Rasterast yalnızca tek disiplinli doğrulama yapmaz.
+    </p>
+
+    <p>
+      Çünkü gerçeklik bölünmüş değildir.
+    </p>
+
+    <p>
+      Fiziksel süreçler biyolojiyi,
+      biyoloji zihni,
+      zihin toplumu,
+      toplum da yeniden sistemi etkiler.
+    </p>
+
+    <p>
+      Bu nedenle bilgi katmanlar arası geçişlerde test edilir.
+    </p>
+
+    <h2>6. Gizli Çelişkiler</h2>
+
+    <p>
+      Bazı sistemler kısa vadede doğru görünür
+      fakat uzun vadede çöküş üretir.
+    </p>
+
+    <p>
+      Rasterast buna gizli çelişki der.
+    </p>
+
+    <p>
+      Örneğin:
+    </p>
+
+    <p>
+      kısa vadeli ekonomik büyüme,
+      uzun vadeli toplumsal çöküş üretiyorsa
+      sistem içinde gizli çelişki vardır.
+    </p>
+
+    <h2>7. Çelişkinin Anlamı</h2>
+
+    <p>
+      Rasterast sisteminde çelişki düşman değil,
+      uyarıdır.
+    </p>
+
+    <p>
+      Çelişki,
+      sistemin hangi noktada kopmaya başladığını gösterir.
+    </p>
+
+    <p>
+      Bu nedenle çelişki analizi,
+      düzeltme ve yeniden dengeleme mekanizmasıdır.
+    </p>
+
+    <h2>8. Evrensel Uyum İlkesi</h2>
+
+    <p>
+      Gerçek bilgi,
+      farklı katmanlarda ortak uyum kurabilen bilgidir.
+    </p>
+
+    <p>
+      Eğer bilgi yalnızca dar bir alanda çalışıyor
+      fakat genel sistemi bozuyorsa
+      doğruluk seviyesi düşer.
+    </p>
+
+    <h2>9. Sonuç</h2>
+
+    <p>
+      Çelişki analizi,
+      bilgiyi yıkmak için değil,
+      onu daha sağlam hale getirmek için kullanılır.
+    </p>
+
+    <p>
+      Rasterast içinde amaç:
+    </p>
+
+    <p>
+      en hızlı doğruyu değil,
+      en tutarlı ve en gerçekçi sistemi bulmaktır.
+    </p>
+
+  </section>
+
+</main>
+
+</body>
+</html>
+
