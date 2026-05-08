@@ -436,4 +436,36 @@ select {
     padding: 18px;
   }
 }
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-subcontent {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    min-width: 220px;
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 10px;
+    z-index: 999;
+}
+
+.dropdown-subcontent a {
+    display: block;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+.dropdown-subcontent a:hover {
+    background: #1e90ff;
+}
+
+.dropdown-submenu:hover .dropdown-subcontent {
+    display: block;
+}
 
