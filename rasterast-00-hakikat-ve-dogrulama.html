@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hakikat ve Doğrulama</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div id="navbar"></div>
+
+<script>
+fetch("components/navbar.html")
+  .then(function(res) {
+    return res.text();
+  })
+  .then(function(data) {
+    const navbar = document.getElementById("navbar");
+    navbar.innerHTML = data;
+
+    const scripts = navbar.querySelectorAll("script");
+
+    scripts.forEach(function(oldScript) {
+      const newScript = document.createElement("script");
+
+      if (oldScript.src) {
+        newScript.src = oldScript.src;
+      } else {
+        newScript.textContent = oldScript.textContent;
+      }
+
+      document.body.appendChild(newScript);
+      oldScript.remove();
+    });
+  });
+</script>
+
+<main class="container">
+
+  <a class="back-link" href="rasterast.html">← Rasterast sayfasına dön</a>
+
+  <section class="hero">
+    <div class="hero-card">
+      <h1>00 — Hakikat ve Doğrulama</h1>
+      <p>
+        Rasterast sisteminde hakikat, yalnızca iddia edilen şey değil;
+        gözlem, ölçüm, tutarlılık ve alanlar arası doğrulama ile sınanabilen
+        gerçeklik uyumudur.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-card">
+    <h2>1. Amaç</h2>
+    <p>
+      Bu sayfanın amacı, Zanistarast bilimsel sentezinde bir bilginin
+      hakikat değerine nasıl yaklaştırılacağını açıklamaktır. Hakikat burada
+      soyut bir kanaat değil, varlık düzeniyle uyumlu, test edilebilir ve
+      çelişki üretmediği sürece geçerli kabul edilen doğrulanmış bilgidir.
+    </p>
+
+    <h2>2. Temel İlke</h2>
+    <p>
+      Bir bilgi doğru sayılmak için yalnızca mantıklı görünmekle yetinemez.
+      Önce gözleme dayanmalı, sonra ölçülebilir veya gerekçelendirilebilir
+      olmalı, ardından farklı alanlarda çelişki üretip üretmediği kontrol
+      edilmelidir.
+    </p>
+
+    <h2>3. Rasterast Doğrulama Yolu</h2>
+    <p>
+      Rasterast doğrulama yolu şu sırayla işler:
+    </p>
+    <p>
+      Gözlem → Ölçüm → Kavramlaştırma → Çelişki Testi → Alanlar Arası Kontrol
+      → Yanlışlanabilirlik → Geçici Doğruluk.
+    </p>
+
+    <h2>4. Neden Geçici Doğruluk?</h2>
+    <p>
+      Bilimsel doğruluk mutlak kapanış değildir. Yeni gözlem, yeni ölçüm veya
+      daha güçlü bir açıklama ortaya çıktığında bilgi yeniden sınanır. Bu
+      nedenle Rasterast, dogmatik kesinlik yerine denetlenebilir doğruluk
+      üretir.
+    </p>
+
+    <h2>5. Bilimsel Değer</h2>
+    <p>
+      Bu model, fizik, biyoloji, zihin, toplum, hukuk ve yönetim gibi farklı
+      alanlarda aynı iddianın tutarlılığını kontrol etmeye yarar. Bir iddia
+      yalnızca tek alanda anlamlıysa fakat başka bir alanda temel çelişki
+      üretiyorsa, Rasterast filtresinden tam geçemez.
+    </p>
+
+    <h2>6. Sonuç</h2>
+    <p>
+      Hakikat, Zanistarast içinde durağan bir slogan değil; sürekli gözlenen,
+      ölçülen, test edilen ve yeniden doğrulanan bir bilgi sürecidir.
+      Rasterast bu sürecin doğrulama kapısıdır.
+    </p>
+  </section>
+
+</main>
+
+</body>
+</html>
+
