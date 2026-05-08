@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gözlemci Modeli</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div id="navbar"></div>
+
+<script>
+fetch("components/navbar.html")
+  .then(function(res) {
+    return res.text();
+  })
+  .then(function(data) {
+    const navbar = document.getElementById("navbar");
+    navbar.innerHTML = data;
+
+    const scripts = navbar.querySelectorAll("script");
+
+    scripts.forEach(function(oldScript) {
+
+      const newScript = document.createElement("script");
+
+      if (oldScript.src) {
+        newScript.src = oldScript.src;
+      } else {
+        newScript.textContent = oldScript.textContent;
+      }
+
+      document.body.appendChild(newScript);
+
+      oldScript.remove();
+
+    });
+
+  });
+</script>
+
+<main class="container">
+
+  <a class="back-link" href="rasterast.html">
+    ← Rasterast sayfasına dön
+  </a>
+
+  <section class="hero">
+
+    <div class="hero-card">
+
+      <h1>05 — Gözlemci Modeli</h1>
+
+      <p>
+        Rasterast gözlemci modeli,
+        bilginin yalnızca dış dünyadan değil;
+        gözlemcinin konumu, kapasitesi ve sınırlılıkları üzerinden
+        de şekillendiğini kabul eder.
+      </p>
+
+    </div>
+
+  </section>
+
+  <section class="section-card">
+
+    <h2>1. Gözlemci Nedir?</h2>
+
+    <p>
+      Gözlemci,
+      gerçekliği algılayan,
+      yorumlayan
+      ve anlamlandıran sistemdir.
+    </p>
+
+    <p>
+      İnsan zihni yalnızca veri kaydetmez;
+      seçer, filtreler, ilişkilendirir ve anlam üretir.
+    </p>
+
+    <h2>2. Tam Tarafsızlık Problemi</h2>
+
+    <p>
+      Rasterast yaklaşımına göre
+      mutlak tarafsız gözlem mümkün değildir.
+    </p>
+
+    <p>
+      Çünkü her gözlemci:
+    </p>
+
+    <p>
+      bilgi düzeyi,
+      deneyim,
+      kültür,
+      biyolojik yapı,
+      zihinsel kapasite
+      ve bakış açısı ile sınırlıdır.
+    </p>
+
+    <p>
+      Bu nedenle gözlem her zaman belirli bir konumdan yapılır.
+    </p>
+
+    <h2>3. Gözlemci Etkisi</h2>
+
+    <p>
+      Bazı durumlarda gözlemci yalnızca sistemi izlemez,
+      sistemi etkiler.
+    </p>
+
+    <p>
+      Özellikle insan davranışı,
+      toplum,
+      psikoloji
+      ve kuantum düzeyinde
+      gözlem süreci sonucu değiştirebilir.
+    </p>
+
+    <h2>4. Rasterast Yaklaşımı</h2>
+
+    <p>
+      Rasterast sistemi,
+      gözlemci etkisini yok saymak yerine
+      onu analizin parçası haline getirir.
+    </p>
+
+    <p>
+      Çünkü gözlemcinin sınırlarını anlamadan
+      doğrulama sistemi tamamlanamaz.
+    </p>
+
+    <h2>5. Çoklu Gözlem İlkesi</h2>
+
+    <p>
+      Tek gözlemci çoğu zaman eksik veri üretir.
+    </p>
+
+    <p>
+      Bu nedenle Rasterast yaklaşımı:
+    </p>
+
+    <p>
+      farklı bakış açıları,
+      farklı disiplinler,
+      farklı ölçekler
+      ve farklı gözlem yöntemlerini birlikte kullanır.
+    </p>
+
+    <p>
+      Amaç,
+      gözlemci kör noktalarını azaltmaktır.
+    </p>
+
+    <h2>6. Gözlem ve Gerçeklik Ayrımı</h2>
+
+    <p>
+      Gözlenen şey ile gerçeklik tamamen aynı olmayabilir.
+    </p>
+
+    <p>
+      İnsan zihni bazen:
+    </p>
+
+    <p>
+      eksik veri,
+      yanılsama,
+      beklenti,
+      korku,
+      ideoloji
+      veya alışkanlık nedeniyle
+      gerçekliği çarpıtabilir.
+    </p>
+
+    <p>
+      Rasterast bu nedenle gözlemi doğrudan hakikat saymaz;
+      doğrulama sürecinden geçirir.
+    </p>
+
+    <h2>7. Bilimsel Gözlem İlkesi</h2>
+
+    <p>
+      Bilimsel gözlem:
+    </p>
+
+    <p>
+      tekrar edilebilir,
+      ölçülebilir,
+      denetlenebilir
+      ve karşılaştırılabilir olmalıdır.
+    </p>
+
+    <p>
+      Eğer gözlem yalnızca kişisel deneyime dayanıyorsa
+      doğruluk seviyesi sınırlı kalır.
+    </p>
+
+    <h2>8. İnsan ve Üst Boyut</h2>
+
+    <p>
+      İnsan gözlemci olarak yalnızca dış dünyayı değil,
+      kendi zihnini de gözlemleyebilir.
+    </p>
+
+    <p>
+      Rasterast yaklaşımında bu özellik,
+      insanı sıradan veri işleyiciden ayıran
+      üst düzey kapasitedir.
+    </p>
+
+    <h2>9. Sonuç</h2>
+
+    <p>
+      Gözlemci modeli,
+      bilginin yalnızca nesneyle değil;
+      gözlemciyle birlikte oluştuğunu gösterir.
+    </p>
+
+    <p>
+      Rasterast sistemi,
+      gözlemcinin sınırlarını analiz ederek
+      daha güvenilir doğrulama üretmeyi amaçlar.
+    </p>
+
+  </section>
+
+</main>
+
+</body>
+</html>
+Commit mesajı:
+Plain text
+feat(rasterast): add gozlemci modeli article
