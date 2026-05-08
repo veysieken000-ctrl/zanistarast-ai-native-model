@@ -11,8 +11,6 @@
 
     <div class="zn-menu" id="znMenu">
 
-      <a href="index.html">Ana Sayfa</a>
-
       <a href="paper.html">Paper</a>
 
       <a href="speech.html" class="zn-ai-link">
@@ -314,7 +312,14 @@
 
       box-shadow:
       0 22px 55px rgba(0,0,0,.55);
-
+      
+      .zn-drop-content {
+       position: static;
+       transform: none;
+       width: 100%;
+       max-width: none;
+      margin-top: 8px;
+    }
       max-height:
       calc(100vh - 90px);
 
@@ -326,40 +331,31 @@
       gap:10px;
     }
 
-    .zn-menu a,
-    .zn-drop-btn{
-
-      width:100%;
-
-      display:block;
-
-      text-align:left;
-
-      font-size:
-      clamp(1.05rem,4vw,1.22rem);
-
-      padding:14px 16px;
-    }
-
+    .zn-menu {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
     .zn-dropdown{
       width:100%;
     }
 
-    .zn-drop-content{
-
-      position:static;
-
-      width:100%;
-
-      min-width:0;
-
-      margin-top:8px;
-
-      box-shadow:none;
-
-      max-height:none;
-    }
-  }
+    .zn-drop-content {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 210px;
+  max-width: 260px;
+  padding: 10px;
+  border-radius: 18px;
+  background: rgba(15, 23, 42, .96);
+  border: 1px solid rgba(125, 211, 252, .35);
+  box-shadow: 0 18px 45px rgba(0,0,0,.45);
+  z-index: 999999;
+}
 
 </style>
 
