@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Evrensel Test Modeli</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div id="navbar"></div>
+
+<script>
+fetch("components/navbar.html")
+  .then(function(res) {
+    return res.text();
+  })
+  .then(function(data) {
+
+    const navbar = document.getElementById("navbar");
+    navbar.innerHTML = data;
+
+    const scripts = navbar.querySelectorAll("script");
+
+    scripts.forEach(function(oldScript) {
+
+      const newScript = document.createElement("script");
+
+      if (oldScript.src) {
+        newScript.src = oldScript.src;
+      } else {
+        newScript.textContent = oldScript.textContent;
+      }
+
+      document.body.appendChild(newScript);
+
+      oldScript.remove();
+
+    });
+
+  });
+</script>
+
+<main class="container">
+
+  <a class="back-link" href="rasterast.html">
+    ← Rasterast sayfasına dön
+  </a>
+
+  <section class="hero">
+
+    <div class="hero-card">
+
+      <h1>03 — Evrensel Test Modeli</h1>
+
+      <p>
+        Evrensel test modeli,
+        bir teorinin yalnızca tek bir olayda değil;
+        farklı alanlarda ve farklı ölçeklerde
+        çalışıp çalışmadığını inceleyen doğrulama sistemidir.
+      </p>
+
+    </div>
+
+  </section>
+
+  <section class="section-card">
+
+    <h2>1. Evrensel Test Nedir?</h2>
+
+    <p>
+      Bir bilgi belirli bir durumda doğru olabilir.
+      Ancak gerçek bilimsel değer,
+      bilginin farklı koşullarda da çalışabilmesiyle ortaya çıkar.
+    </p>
+
+    <p>
+      Rasterast sisteminde bu nedenle
+      her teori çoklu gerçeklik katmanında sınanır.
+    </p>
+
+    <h2>2. Tek Nokta Doğrusu Yeterli Değildir</h2>
+
+    <p>
+      Bazı teoriler yalnızca dar koşullarda çalışır.
+    </p>
+
+    <p>
+      Örneğin:
+    </p>
+
+    <p>
+      laboratuvar ortamında çalışan bir sistem,
+      gerçek toplum içinde çökmeye başlayabilir.
+    </p>
+
+    <p>
+      Rasterast yaklaşımına göre
+      gerçek bilgi yalnızca izole ortamda değil,
+      karmaşık sistem içinde de ayakta kalmalıdır.
+    </p>
+
+    <h2>3. Çok Katmanlı Test Yapısı</h2>
+
+    <p>
+      Evrensel test modeli,
+      teoriyi farklı katmanlarda kontrol eder:
+    </p>
+
+    <p>
+      Fizik →
+      Biyoloji →
+      Zihin →
+      Toplum →
+      Yönetim →
+      Medeniyet →
+      Uzun vadeli sürdürülebilirlik
+    </p>
+
+    <p>
+      Eğer teori bu katmanlardan birinde büyük çöküş üretiyorsa
+      eksik kabul edilir.
+    </p>
+
+    <h2>4. Ölçek Kontrolü</h2>
+
+    <p>
+      Bir sistem küçük ölçekte doğru çalışırken
+      büyük ölçekte başarısız olabilir.
+    </p>
+
+    <p>
+      Bu nedenle Rasterast sistemi:
+    </p>
+
+    <p>
+      birey,
+      aile,
+      toplum,
+      kurum,
+      devlet
+      ve uygarlık düzeyinde ayrı ayrı test uygular.
+    </p>
+
+    <h2>5. Zaman Testi</h2>
+
+    <p>
+      Gerçek doğruluk yalnızca anlık başarı değildir.
+    </p>
+
+    <p>
+      Bazı sistemler kısa vadede güç üretir
+      fakat uzun vadede çürüme oluşturur.
+    </p>
+
+    <p>
+      Evrensel test modeli,
+      teorilerin zamansal etkisini de inceler.
+    </p>
+
+    <h2>6. Çöküş Analizi</h2>
+
+    <p>
+      Rasterast sisteminde bir teori,
+      yalnızca başarı üzerinden değerlendirilmez.
+    </p>
+
+    <p>
+      Hangi koşullarda çöktüğü de incelenir.
+    </p>
+
+    <p>
+      Çünkü çöküş noktaları,
+      sistemin gerçek sınırlarını gösterir.
+    </p>
+
+    <h2>7. Doğa ile Uyum</h2>
+
+    <p>
+      Evrensel test modeli,
+      insan üretimi sistemleri doğa ile karşılaştırır.
+    </p>
+
+    <p>
+      Eğer bir yapı:
+    </p>
+
+    <p>
+      doğadaki denge,
+      geri bildirim,
+      uyum,
+      sürdürülebilirlik
+      ve dönüşüm ilkeleriyle çelişiyorsa
+      uzun vadede riskli kabul edilir.
+    </p>
+
+    <h2>8. Rasterast Yaklaşımı</h2>
+
+    <p>
+      Rasterast için doğruluk,
+      yalnızca teorik mantık değildir.
+    </p>
+
+    <p>
+      Gerçek doğruluk:
+    </p>
+
+    <p>
+      çok katmanda çalışan,
+      çelişki üretmeyen,
+      zaman içinde çökmeyen
+      ve gerçeklik ile uyum kurabilen yapıdır.
+    </p>
+
+    <h2>9. Sonuç</h2>
+
+    <p>
+      Evrensel test modeli,
+      teorileri ezberden değil,
+      gerçeklik üzerinden değerlendirme yöntemidir.
+    </p>
+
+    <p>
+      Amaç:
+    </p>
+
+    <p>
+      geçici başarı değil,
+      kalıcı uyum ve sürdürülebilir doğruluk üretmektir.
+    </p>
+
+  </section>
+
+</main>
+
+</body>
+</html>
+
