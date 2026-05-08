@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gerçeklik Kontrolü</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div id="navbar"></div>
+
+<script>
+fetch("components/navbar.html")
+  .then(function(res) {
+    return res.text();
+  })
+  .then(function(data) {
+
+    const navbar = document.getElementById("navbar");
+    navbar.innerHTML = data;
+
+    const scripts = navbar.querySelectorAll("script");
+
+    scripts.forEach(function(oldScript) {
+
+      const newScript = document.createElement("script");
+
+      if (oldScript.src) {
+        newScript.src = oldScript.src;
+      } else {
+        newScript.textContent = oldScript.textContent;
+      }
+
+      document.body.appendChild(newScript);
+
+      oldScript.remove();
+
+    });
+
+  });
+</script>
+
+<main class="container">
+
+  <a class="back-link" href="rasterast.html">
+    ← Rasterast sayfasına dön
+  </a>
+
+  <section class="hero">
+
+    <div class="hero-card">
+
+      <h1>09 — Gerçeklik Kontrolü</h1>
+
+      <p>
+        Gerçeklik kontrolü,
+        bilgi ile gerçek dünya arasındaki bağın
+        sürekli olarak sınanması sürecidir.
+      </p>
+
+    </div>
+
+  </section>
+
+  <section class="section-card">
+
+    <h2>1. Gerçeklik Neden Kontrol Edilmelidir?</h2>
+
+    <p>
+      İnsan zihni varsayım üretebilir,
+      modeller kurabilir
+      ve güçlü teoriler geliştirebilir.
+    </p>
+
+    <p>
+      Ancak her mantıklı sistem,
+      gerçeklikle tam uyumlu olmayabilir.
+    </p>
+
+    <p>
+      Rasterast yaklaşımında bu nedenle
+      teori sürekli gerçek dünya ile karşılaştırılır.
+    </p>
+
+    <h2>2. Model ve Gerçeklik Ayrımı</h2>
+
+    <p>
+      Bir teori,
+      gerçekliğin kendisi değil;
+      gerçekliği açıklama girişimidir.
+    </p>
+
+    <p>
+      Eğer model zamanla gözlem,
+      veri
+      veya sonuçlarla çelişmeye başlarsa
+      yeniden değerlendirilmelidir.
+    </p>
+
+    <h2>3. Gerçeklik Kontrolünün Katmanları</h2>
+
+    <p>
+      Rasterast sistemi,
+      gerçeklik kontrolünü şu katmanlarda uygular:
+    </p>
+
+    <p>
+      gözlem,
+      deney,
+      veri,
+      tekrar edilebilirlik,
+      zaman testi,
+      sistemsel sonuç,
+      insan etkisi
+      ve doğa uyumu.
+    </p>
+
+    <h2>4. Teori Körlüğü Problemi</h2>
+
+    <p>
+      Bazı düşünce sistemleri,
+      kendi modellerine aşırı bağlanarak
+      gerçeklikten kopabilir.
+    </p>
+
+    <p>
+      Rasterast buna teori körlüğü der.
+    </p>
+
+    <p>
+      Bu durumda insanlar:
+    </p>
+
+    <p>
+      gerçeği modele uydurmaya çalışır
+      ve çelişkileri görmezden gelir.
+    </p>
+
+    <h2>5. Sürekli Test İlkesi</h2>
+
+    <p>
+      Gerçeklik kontrolü tek seferlik değildir.
+    </p>
+
+    <p>
+      Çünkü:
+    </p>
+
+    <p>
+      zaman değişir,
+      toplum değişir,
+      teknoloji değişir,
+      veri artar
+      ve sistemler dönüşür.
+    </p>
+
+    <p>
+      Bu nedenle doğrulama süreci devamlı olmalıdır.
+    </p>
+
+    <h2>6. Gerçeklik ve Sonuç İlişkisi</h2>
+
+    <p>
+      Rasterast yaklaşımında bir sistemin gerçeklik değeri,
+      ürettiği sonuçlarla da ölçülür.
+    </p>
+
+    <p>
+      Eğer teori:
+    </p>
+
+    <p>
+      büyük çelişkiler,
+      sürdürülemez yapılar,
+      toplumsal çöküş
+      veya insanlık zararları oluşturuyorsa
+      yeniden incelenir.
+    </p>
+
+    <h2>7. Yapay Gerçeklik Riski</h2>
+
+    <p>
+      Modern dünyada medya,
+      algoritmalar,
+      propaganda
+      ve dijital sistemler
+      yapay gerçeklik alanları oluşturabilir.
+    </p>
+
+    <p>
+      Bu nedenle insanlar bazen
+      doğrudan gerçekliği değil,
+      filtrelenmiş gerçeklik katmanlarını görür.
+    </p>
+
+    <p>
+      Rasterast sistemi,
+      bu yapay katmanları ayırmaya çalışır.
+    </p>
+
+    <h2>8. Gerçeklik ile Uyum</h2>
+
+    <p>
+      Gerçek bilgi:
+    </p>
+
+    <p>
+      gözlem ile uyumlu,
+      veri ile desteklenebilir,
+      zaman içinde sürdürülebilir
+      ve çok katmanlı sistemlerle çelişmeyen bilgidir.
+    </p>
+
+    <h2>9. Rasterast Sonucu</h2>
+
+    <p>
+      Rasterast yaklaşımında amaç,
+      mutlak kesinlik üretmek değil;
+      gerçekliğe giderek daha fazla yaklaşabilen
+      güvenilir bilgi üretmektir.
+    </p>
+
+    <h2>10. Sonuç</h2>
+
+    <p>
+      Gerçeklik kontrolü,
+      bilgi sistemlerinin dünyadan kopmasını engelleyen
+      son doğrulama katmanıdır.
+    </p>
+
+    <p>
+      Böylece teori,
+      yalnızca düşünsel değil;
+      gerçek yaşam içinde de sınanmış olur.
+    </p>
+
+  </section>
+
+</main>
+
+</body>
+</html>
+
