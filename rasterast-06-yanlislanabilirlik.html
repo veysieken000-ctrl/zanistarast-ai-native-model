@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yanlışlanabilirlik</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div id="navbar"></div>
+
+<script>
+fetch("components/navbar.html")
+  .then(function(res) {
+    return res.text();
+  })
+  .then(function(data) {
+
+    const navbar = document.getElementById("navbar");
+    navbar.innerHTML = data;
+
+    const scripts = navbar.querySelectorAll("script");
+
+    scripts.forEach(function(oldScript) {
+
+      const newScript = document.createElement("script");
+
+      if (oldScript.src) {
+        newScript.src = oldScript.src;
+      } else {
+        newScript.textContent = oldScript.textContent;
+      }
+
+      document.body.appendChild(newScript);
+
+      oldScript.remove();
+
+    });
+
+  });
+</script>
+
+<main class="container">
+
+  <a class="back-link" href="rasterast.html">
+    ← Rasterast sayfasına dön
+  </a>
+
+  <section class="hero">
+
+    <div class="hero-card">
+
+      <h1>06 — Yanlışlanabilirlik</h1>
+
+      <p>
+        Yanlışlanabilirlik,
+        bir teorinin hangi koşullarda geçersiz sayılabileceğini
+        açık biçimde gösterebilme kapasitesidir.
+      </p>
+
+    </div>
+
+  </section>
+
+  <section class="section-card">
+
+    <h2>1. Neden Yanlışlanabilirlik Gereklidir?</h2>
+
+    <p>
+      Bir teori hiçbir durumda yanlış kabul edilmiyorsa,
+      kendini gerçeklikten izole etmeye başlar.
+    </p>
+
+    <p>
+      Rasterast yaklaşımına göre
+      bilimsel bilgi,
+      test edilmeye açık olmak zorundadır.
+    </p>
+
+    <p>
+      Çünkü doğruluk,
+      eleştiri ve sınama sürecinden geçmeden güven kazanamaz.
+    </p>
+
+    <h2>2. Rasterast Yaklaşımı</h2>
+
+    <p>
+      Rasterast sistemi,
+      teorileri yalnızca destekleyen verilerle değil;
+      onları zorlayan,
+      kıran
+      ve sınırlarını gösteren durumlarla da test eder.
+    </p>
+
+    <p>
+      Amaç teoriyi yıkmak değil,
+      gerçek kapasitesini ortaya çıkarmaktır.
+    </p>
+
+    <h2>3. Yanlışlanabilirlik İlkesi</h2>
+
+    <p>
+      Bir teori şu soruya cevap verebilmelidir:
+    </p>
+
+    <p>
+      “Hangi koşul gerçekleşirse bu teori geçersiz sayılır?”
+    </p>
+
+    <p>
+      Eğer bu soru cevaplanamıyorsa,
+      teori doğrulanamaz alan içinde kalır.
+    </p>
+
+    <h2>4. Kör İnanç Problemi</h2>
+
+    <p>
+      Bazı sistemler kendi iç mantığını mutlaklaştırır
+      ve dış testleri reddeder.
+    </p>
+
+    <p>
+      Rasterast yaklaşımına göre bu durum,
+      bilgi üretiminden çok inanç koruma mekanizmasına dönüşür.
+    </p>
+
+    <p>
+      Çünkü gerçek bilim,
+      hata ihtimalini kabul etmek zorundadır.
+    </p>
+
+    <h2>5. Hata ve Gelişim İlişkisi</h2>
+
+    <p>
+      Yanlışlanabilirlik,
+      teorinin zayıflığı değil;
+      gelişme kapasitesidir.
+    </p>
+
+    <p>
+      Bir sistem hata gösterebiliyorsa,
+      kendini güncelleyebilir.
+    </p>
+
+    <p>
+      Hata gizleyen sistemler ise zamanla donmaya başlar.
+    </p>
+
+    <h2>6. Çok Katmanlı Test</h2>
+
+    <p>
+      Rasterast sistemi teorileri:
+    </p>
+
+    <p>
+      fiziksel,
+      biyolojik,
+      zihinsel,
+      toplumsal
+      ve zamansal düzeylerde sınar.
+    </p>
+
+    <p>
+      Çünkü bazı teoriler kısa vadede çalışır,
+      fakat uzun vadede çöküş üretir.
+    </p>
+
+    <h2>7. Yanlışlanabilirlik ve Sorumluluk</h2>
+
+    <p>
+      Eğer bir düşünce sistemi:
+    </p>
+
+    <p>
+      “Ben asla yanlış olamam”
+    </p>
+
+    <p>
+      noktasına gelirse,
+      eleştiriye kapanır
+      ve güç merkezine dönüşebilir.
+    </p>
+
+    <p>
+      Rasterast bu nedenle doğruluğu değil,
+      sürekli doğrulanabilirliği esas alır.
+    </p>
+
+    <h2>8. Bilimsel Güven İlkesi</h2>
+
+    <p>
+      Güvenilir teori:
+    </p>
+
+    <p>
+      testten kaçmayan,
+      eleştiriye açık olan,
+      hata gösterebilen
+      ve kendini düzeltebilen teoridir.
+    </p>
+
+    <h2>9. Sonuç</h2>
+
+    <p>
+      Yanlışlanabilirlik,
+      Rasterast doğrulama sisteminin güvenlik mekanizmalarından biridir.
+    </p>
+
+    <p>
+      Amaç kusursuzluk iddiası değil;
+      gerçekliğe giderek daha fazla yaklaşabilen
+      dinamik bilgi üretmektir.
+    </p>
+
+  </section>
+
+</main>
+
+</body>
+</html>
+
