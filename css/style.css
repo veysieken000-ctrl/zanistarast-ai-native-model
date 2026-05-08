@@ -468,4 +468,13 @@ select {
 .dropdown-submenu:hover .dropdown-subcontent {
     display: block;
 }
-
+.flow-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 14px 0;
+  color: #7dd3fc;
+  font-size: 28px;
+  font-weight: 900;
+  opacity: .9;
+}
