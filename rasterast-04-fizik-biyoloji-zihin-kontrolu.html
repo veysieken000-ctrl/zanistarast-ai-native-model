@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fizik Biyoloji Zihin Kontrolü</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div id="navbar"></div>
+
+<script>
+fetch("components/navbar.html")
+  .then(function(res) {
+    return res.text();
+  })
+  .then(function(data) {
+    const navbar = document.getElementById("navbar");
+    navbar.innerHTML = data;
+
+    const scripts = navbar.querySelectorAll("script");
+
+    scripts.forEach(function(oldScript) {
+      const newScript = document.createElement("script");
+
+      if (oldScript.src) {
+        newScript.src = oldScript.src;
+      } else {
+        newScript.textContent = oldScript.textContent;
+      }
+
+      document.body.appendChild(newScript);
+      oldScript.remove();
+    });
+  });
+</script>
+
+<main class="container">
+
+  <a class="back-link" href="rasterast.html">
+    ← Rasterast sayfasına dön
+  </a>
+
+  <section class="hero">
+    <div class="hero-card">
+      <h1>04 — Fizik Biyoloji Zihin Kontrolü</h1>
+      <p>
+        Bu kontrol, bir teorinin yalnızca düşünsel olarak değil;
+        fiziksel gerçeklik, biyolojik yaşam ve zihinsel işleyiş düzeyinde
+        uyumlu olup olmadığını sınar.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-card">
+
+    <h2>1. Neden Üçlü Kontrol Gerekir?</h2>
+    <p>
+      Bir teori yalnızca zihinsel olarak tutarlı görünebilir.
+      Ancak fiziksel gerçeklikle, biyolojik yaşamla veya insan zihninin
+      işleyişiyle çelişiyorsa eksik kalır.
+    </p>
+
+    <p>
+      Rasterast bu nedenle teoriyi üç temel alanda sınar:
+    </p>
+
+    <p>
+      Fizik → Biyoloji → Zihin
+    </p>
+
+    <h2>2. Fizik Kontrolü</h2>
+    <p>
+      Fizik kontrolü, teorinin gerçek dünyanın temel sınırlarıyla
+      uyumlu olup olmadığını inceler.
+    </p>
+
+    <p>
+      Burada şu sorular sorulur:
+    </p>
+
+    <p>
+      Teori enerji, madde, zaman, mekân, denge ve nedensellik
+      ilkeleriyle çelişiyor mu?
+    </p>
+
+    <p>
+      Eğer bir model fiziksel sınırları yok sayıyorsa,
+      gerçeklik üzerinde sağlam biçimde kurulamaz.
+    </p>
+
+    <h2>3. Biyoloji Kontrolü</h2>
+    <p>
+      Biyoloji kontrolü, teorinin canlı sistemlerle uyumunu inceler.
+    </p>
+
+    <p>
+      Canlı sistemlerde denge, geri bildirim, adaptasyon,
+      seçilim, çoğalma, sınır koruma ve sürdürülebilirlik vardır.
+    </p>
+
+    <p>
+      Bir yönetim, toplum veya ekonomi modeli bu biyolojik ilkeleri
+      yok sayıyorsa zamanla yapay baskı üretir.
+    </p>
+
+    <h2>4. Zihin Kontrolü</h2>
+    <p>
+      Zihin kontrolü, teorinin insanın anlama, karar verme,
+      öğrenme ve sorumluluk üretme kapasitesiyle uyumunu inceler.
+    </p>
+
+    <p>
+      Bir teori insan zihnini yalnızca makine gibi görürse eksik kalır.
+      Çünkü insan yalnızca veri işleyen değil;
+      anlam kuran, değer veren ve yön seçen bir varlıktır.
+    </p>
+
+    <h2>5. Üç Katman Arasındaki Uyum</h2>
+    <p>
+      Rasterast açısından doğru bir teori,
+      fiziksel gerçekliği inkâr etmez,
+      biyolojik yaşamı zorlamaz
+      ve zihinsel anlam üretimini bozmaz.
+    </p>
+
+    <p>
+      Bu üç katman arasında uyum yoksa,
+      teori kısa vadede güçlü görünse bile uzun vadede çelişki üretir.
+    </p>
+
+    <h2>6. Uygulama Alanı</h2>
+    <p>
+      Bu kontrol yalnızca doğa bilimleri için değil;
+      hukuk, ekonomi, siyaset, eğitim, teknoloji ve yapay zekâ
+      sistemleri için de uygulanır.
+    </p>
+
+    <p>
+      Çünkü her yapay sistem sonunda insan, toplum ve doğa içinde çalışır.
+    </p>
+
+    <h2>7. Test Soruları</h2>
+    <p>
+      Bir teori şu sorularla sınanır:
+    </p>
+
+    <p>
+      Fiziksel gerçeklikle çelişiyor mu?
+    </p>
+
+    <p>
+      Canlı sistemlerin dengesini bozuyor mu?
+    </p>
+
+    <p>
+      İnsan zihninde anlam, sorumluluk ve yön kaybı üretiyor mu?
+    </p>
+
+    <p>
+      Eğer bu üç sorudan biri olumsuz sonuç veriyorsa,
+      model yeniden düzenlenmelidir.
+    </p>
+
+    <h2>8. Sonuç</h2>
+    <p>
+      Fizik-Biyoloji-Zihin Kontrolü,
+      Rasterast doğrulama sisteminin temel ayaklarından biridir.
+    </p>
+
+    <p>
+      Bu kontrol sayesinde teori,
+      yalnızca kavramsal olarak değil,
+      gerçeklik, yaşam ve insan düzeyinde de sınanmış olur.
+    </p>
+
+  </section>
+
+</main>
+
+</body>
+</html>
+
