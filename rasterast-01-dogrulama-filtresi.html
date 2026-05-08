@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Doğrulama Filtresi</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div id="navbar"></div>
+
+<script>
+fetch("components/navbar.html")
+  .then(function(res) {
+    return res.text();
+  })
+  .then(function(data) {
+    const navbar = document.getElementById("navbar");
+    navbar.innerHTML = data;
+
+    const scripts = navbar.querySelectorAll("script");
+
+    scripts.forEach(function(oldScript) {
+      const newScript = document.createElement("script");
+
+      if (oldScript.src) {
+        newScript.src = oldScript.src;
+      } else {
+        newScript.textContent = oldScript.textContent;
+      }
+
+      document.body.appendChild(newScript);
+      oldScript.remove();
+    });
+  });
+</script>
+
+<main class="container">
+
+  <a class="back-link" href="rasterast.html">
+    ← Rasterast sayfasına dön
+  </a>
+
+  <section class="hero">
+    <div class="hero-card">
+      <h1>01 — Doğrulama Filtresi</h1>
+
+      <p>
+        Rasterast doğrulama filtresi, bir bilginin gerçeklik ile ne kadar
+        uyumlu olduğunu test eden çok katmanlı kontrol sistemidir.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-card">
+
+    <h2>1. Filtrenin Amacı</h2>
+
+    <p>
+      Her bilgi doğru görünse bile gerçek olmayabilir.
+      İnsan zihni varsayım üretebilir, toplum yanılsama oluşturabilir,
+      ideolojiler gerçeği örtebilir.
+    </p>
+
+    <p>
+      Bu nedenle Rasterast sistemi, bilgiyi doğrudan kabul etmek yerine
+      onu aşamalı doğrulama filtresinden geçirir.
+    </p>
+
+    <h2>2. Filtre Mantığı</h2>
+
+    <p>
+      Doğrulama filtresi, bir iddianın yalnızca mantıklı olup olmadığını değil;
+      gözlenebilir, ölçülebilir, tutarlı ve alanlar arası uyumlu olup olmadığını
+      kontrol eder.
+    </p>
+
+    <p>
+      Eğer bilgi bu aşamalardan geçemiyorsa bilgi değeri zayıflar.
+    </p>
+
+    <h2>3. Rasterast Filtre Katmanları</h2>
+
+    <p>
+      Rasterast doğrulama sistemi şu katmanlardan oluşur:
+    </p>
+
+    <p>
+      Gözlem Filtresi →
+      Ölçüm Filtresi →
+      Mantık Filtresi →
+      Çelişki Analizi →
+      Sistemsel Uyum →
+      Evrensel Kontrol →
+      Geçici Doğrulama
+    </p>
+
+    <h2>4. Gözlem Filtresi</h2>
+
+    <p>
+      İlk aşamada bilgi gerçek dünyada bir karşılığa sahip mi diye bakılır.
+      Tamamen soyut, bağlantısız ve gözlemsiz iddialar düşük güven taşır.
+    </p>
+
+    <h2>5. Ölçüm ve Veri Kontrolü</h2>
+
+    <p>
+      Bir bilgi ölçülemiyorsa veya hiçbir veri üretmiyorsa
+      bilimsel değeri sınırlı kalır.
+    </p>
+
+    <p>
+      Rasterast sistemi yalnızca söylemi değil,
+      veri üretme kapasitesini de dikkate alır.
+    </p>
+
+    <h2>6. Çelişki Analizi</h2>
+
+    <p>
+      Eğer bir bilgi fizik ile uyumlu görünür fakat biyoloji,
+      zihin veya toplumsal düzende büyük çelişki üretiyorsa
+      bilgi tekrar değerlendirilir.
+    </p>
+
+    <p>
+      Çünkü gerçeklik parçalı değil, bağlantılıdır.
+    </p>
+
+    <h2>7. Sistemsel Uyum</h2>
+
+    <p>
+      Rasterast içinde doğru bilgi;
+      yalnızca tek bir noktayı açıklayan değil,
+      sistemin tamamı ile uyum kurabilen bilgidir.
+    </p>
+
+    <h2>8. Yanlışlanabilirlik</h2>
+
+    <p>
+      Bir teori hiçbir şekilde yanlışlanamıyorsa
+      bilimsel test alanına tam olarak giremez.
+    </p>
+
+    <p>
+      Rasterast bu nedenle her bilgiyi
+      potansiyel yanlışlanma ihtimaliyle birlikte değerlendirir.
+    </p>
+
+    <h2>9. Sonuç</h2>
+
+    <p>
+      Doğrulama filtresi,
+      bilgi ile gerçeklik arasındaki güvenlik katmanıdır.
+    </p>
+
+    <p>
+      Amaç bilgiyi engellemek değil;
+      sahte tutarlılığı ayıklayıp
+      gerçekliğe daha yakın bilgi üretmektir.
+    </p>
+
+  </section>
+
+</main>
+
+</body>
+</html>
+
