@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistemsel Doğruluk</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div id="navbar"></div>
+
+<script>
+fetch("components/navbar.html")
+  .then(function(res) {
+    return res.text();
+  })
+  .then(function(data) {
+    const navbar = document.getElementById("navbar");
+    navbar.innerHTML = data;
+
+    const scripts = navbar.querySelectorAll("script");
+
+    scripts.forEach(function(oldScript) {
+      const newScript = document.createElement("script");
+
+      if (oldScript.src) {
+        newScript.src = oldScript.src;
+      } else {
+        newScript.textContent = oldScript.textContent;
+      }
+
+      document.body.appendChild(newScript);
+      oldScript.remove();
+    });
+  });
+</script>
+
+<main class="container">
+
+  <a class="back-link" href="rasterast.html">
+    ← Rasterast sayfasına dön
+  </a>
+
+  <section class="hero">
+    <div class="hero-card">
+      <h1>08 — Sistemsel Doğruluk</h1>
+
+      <p>
+        Sistemsel doğruluk, bir bilginin yalnızca tek başına doğru görünmesi
+        değil; bağlı olduğu bütün sistem içinde tutarlı, sürdürülebilir ve
+        çelişkisiz çalışmasıdır.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-card">
+
+    <h2>1. Sistemsel Doğruluk Nedir?</h2>
+
+    <p>
+      Rasterast yaklaşımında doğru bilgi, yalnızca cümle düzeyinde doğru olan
+      bilgi değildir.
+    </p>
+
+    <p>
+      Bir bilginin gerçek değeri, ait olduğu sistem içindeki etkileriyle
+      anlaşılır.
+    </p>
+
+    <p>
+      Eğer bir fikir tek noktada doğru görünür fakat bütün yapıyı bozarsa,
+      sistemsel olarak eksik kabul edilir.
+    </p>
+
+    <h2>2. Parça Doğrusu ve Bütün Doğrusu</h2>
+
+    <p>
+      Bazı bilgiler parça düzeyinde işe yarar.
+      Ancak sistemin tamamı içinde çelişki, dengesizlik veya çöküş üretebilir.
+    </p>
+
+    <p>
+      Rasterast bu yüzden parçayı değil, parçanın bütün içindeki etkisini de
+      test eder.
+    </p>
+
+    <h2>3. Sistemsel Test Sorusu</h2>
+
+    <p>
+      Bir bilgi şu sorularla sınanır:
+    </p>
+
+    <p>
+      Bu bilgi sistemi dengeliyor mu?
+      Yeni çelişki üretiyor mu?
+      Uzun vadede çöküşe mi götürüyor?
+      Farklı katmanlarla uyum kuruyor mu?
+    </p>
+
+    <h2>4. Çok Katmanlı Uyum</h2>
+
+    <p>
+      Sistemsel doğruluk şu katmanlarda aranır:
+    </p>
+
+    <p>
+      fiziksel gerçeklik,
+      biyolojik sürdürülebilirlik,
+      zihinsel anlam,
+      ahlaki sorumluluk,
+      toplumsal denge,
+      yönetimsel işleyiş
+      ve ekonomik süreklilik.
+    </p>
+
+    <h2>5. Kısa Vadeli Başarı Yanılsaması</h2>
+
+    <p>
+      Bazı sistemler kısa vadede başarı üretir.
+      Fakat uzun vadede güven kaybı, adaletsizlik, çevresel zarar veya
+      toplumsal kırılma doğurabilir.
+    </p>
+
+    <p>
+      Rasterast bu nedenle yalnızca anlık başarıya değil,
+      zaman içindeki sonuçlara da bakar.
+    </p>
+
+    <h2>6. Geri Bildirim İlkesi</h2>
+
+    <p>
+      Sistemsel doğruluk geri bildirim olmadan korunamaz.
+    </p>
+
+    <p>
+      Her sistem kendi sonuçlarını ölçmeli, hatalarını görmeli ve kendini
+      güncelleyebilmelidir.
+    </p>
+
+    <h2>7. Rabûn ve Mabûn Bağlantısı</h2>
+
+    <p>
+      Rasterast doğrulama filtresi, Rabûn yönetim modelinde kararların
+      denetlenmesini; Mabûn ekonomi modelinde ise değer, üretim ve paylaşımın
+      sürdürülebilirliğini kontrol eder.
+    </p>
+
+    <p>
+      Bu nedenle sistemsel doğruluk, yalnız teorik değil, pratik yönetim
+      ilkesidir.
+    </p>
+
+    <h2>8. Sonuç</h2>
+
+    <p>
+      Sistemsel doğruluk, bilginin bütünle uyum testidir.
+    </p>
+
+    <p>
+      Bir bilgi ancak bütün sistem içinde denge, süreklilik ve gerçeklik uyumu
+      üretebildiği ölçüde güçlü kabul edilir.
+    </p>
+
+  </section>
+
+</main>
+
+</body>
+</html>
+
