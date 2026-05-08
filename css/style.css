@@ -703,43 +703,124 @@ a[href="./index.html"]:first-child:hover {
   background: rgba(56, 189, 248, .12);
   border-color: rgba(56, 189, 248, .55);
 }
+/* ===== NAVBAR ===== */
 
-/* ---------- Navbar mobil ve dropdown düzeltmesi ---------- */
-
-#navbar {
-  position: relative;
-  z-index: 50;
+.navbar{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:14px;
+    padding:14px;
 }
 
-.navbar,
-.nav,
-.nav-menu {
-  max-width: 100%;
+/* Ana kartlar */
+.nav-item{
+    position:relative;
 }
 
-.navbar a,
-.navbar button,
-.nav a,
-.nav button,
-.nav-menu a,
-.nav-menu button {
-  white-space: normal;
-  line-height: 1.2;
+.nav-btn{
+    background:linear-gradient(135deg,#1ea7ff,#3bc7ff);
+    color:white;
+    border:none;
+    padding:14px 22px;
+    border-radius:18px;
+    font-size:17px;
+    font-weight:700;
+    cursor:pointer;
+    transition:0.3s;
+    box-shadow:0 4px 18px rgba(0,180,255,0.35);
+    min-width:160px;
 }
 
-.dropdown-menu,
-.submenu,
-.menu-dropdown {
-  z-index: 99;
-  min-width: 220px;
-  max-width: min(92vw, 320px);
+.nav-btn:hover{
+    transform:translateY(-3px) scale(1.03);
+    box-shadow:0 8px 24px rgba(0,180,255,0.5);
 }
 
-.dropdown-menu a,
-.submenu a,
-.menu-dropdown a {
-  display: block;
-  width: 100%;
+/* ===== DROPDOWN ===== */
+
+.dropdown-menu{
+    position:absolute;
+    top:105%;
+    left:0;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(10px);
+
+    transition:0.25s ease;
+
+    z-index:999;
+    padding-top:10px;
+}
+
+/* Hover açılım */
+.nav-item:hover .dropdown-menu{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+
+/* Alt kartlar */
+.dropdown-menu a{
+    text-decoration:none;
+    background:linear-gradient(135deg,#2ed0ff,#52e0ff);
+    color:white;
+    padding:12px 18px;
+    border-radius:16px;
+    font-size:15px;
+    font-weight:700;
+    min-width:180px;
+
+    transition:0.25s;
+    box-shadow:0 4px 14px rgba(0,180,255,0.28);
+}
+
+.dropdown-menu a:hover{
+    transform:translateX(6px) scale(1.03);
+    background:linear-gradient(135deg,#4be1ff,#7cf0ff);
+}
+
+/* ===== MOBİL ===== */
+
+@media(max-width:768px){
+
+    .navbar{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .nav-btn{
+        width:100%;
+        min-width:unset;
+        font-size:16px;
+    }
+
+    .dropdown-menu{
+        position:relative;
+        top:8px;
+        left:0;
+        width:100%;
+        opacity:1;
+        visibility:visible;
+        transform:none;
+        display:none;
+    }
+
+    .nav-item.active .dropdown-menu{
+        display:flex;
+    }
+
+    .dropdown-menu a{
+        width:100%;
+        min-width:unset;
+        box-sizing:border-box;
+    }
 }
 
 /* ---------- Mobil: Android taşma düzeltmesi ---------- */
