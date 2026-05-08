@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Epistemik Güvenlik</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div id="navbar"></div>
+
+<script>
+fetch("components/navbar.html")
+  .then(function(res) {
+    return res.text();
+  })
+  .then(function(data) {
+
+    const navbar = document.getElementById("navbar");
+    navbar.innerHTML = data;
+
+    const scripts = navbar.querySelectorAll("script");
+
+    scripts.forEach(function(oldScript) {
+
+      const newScript = document.createElement("script");
+
+      if (oldScript.src) {
+        newScript.src = oldScript.src;
+      } else {
+        newScript.textContent = oldScript.textContent;
+      }
+
+      document.body.appendChild(newScript);
+
+      oldScript.remove();
+
+    });
+
+  });
+</script>
+
+<main class="container">
+
+  <a class="back-link" href="rasterast.html">
+    ← Rasterast sayfasına dön
+  </a>
+
+  <section class="hero">
+
+    <div class="hero-card">
+
+      <h1>07 — Epistemik Güvenlik</h1>
+
+      <p>
+        Epistemik güvenlik,
+        bilgi üretim sürecinin yanılsama,
+        manipülasyon,
+        çarpıtma
+        ve sistemsel bozulmalara karşı korunmasıdır.
+      </p>
+
+    </div>
+
+  </section>
+
+  <section class="section-card">
+
+    <h2>1. Bilgi Neden Güvenlik Sorunudur?</h2>
+
+    <p>
+      Bilgi yalnızca öğrenme aracı değildir.
+    </p>
+
+    <p>
+      Yanlış bilgi:
+    </p>
+
+    <p>
+      toplumları yönlendirebilir,
+      savaş çıkarabilir,
+      ekonomileri çökertip
+      insan zihnini manipüle edebilir.
+    </p>
+
+    <p>
+      Bu nedenle Rasterast yaklaşımında
+      bilgi üretimi aynı zamanda güvenlik problemidir.
+    </p>
+
+    <h2>2. Epistemik Tehditler</h2>
+
+    <p>
+      Rasterast sistemi şu tehditleri inceler:
+    </p>
+
+    <p>
+      yanlış veri,
+      eksik gözlem,
+      propaganda,
+      ideolojik körlük,
+      manipülatif medya,
+      sahte bilim,
+      algoritmik yönlendirme,
+      toplu yanılsama
+      ve güç merkezli bilgi kontrolü.
+    </p>
+
+    <h2>3. Manipülasyon Problemi</h2>
+
+    <p>
+      İnsan zihni yalnızca veri ile değil,
+      duygu,
+      korku,
+      aidiyet
+      ve tekrar ile de etkilenebilir.
+    </p>
+
+    <p>
+      Bu nedenle insanlar bazen
+      gerçek olduğu için değil,
+      sürekli tekrar edildiği için
+      bir bilgiyi doğru kabul eder.
+    </p>
+
+    <h2>4. Rasterast Güvenlik Yaklaşımı</h2>
+
+    <p>
+      Rasterast sistemi,
+      bilgiyi doğrudan kabul etmek yerine
+      doğrulama filtrelerinden geçirir.
+    </p>
+
+    <p>
+      Amaç:
+    </p>
+
+    <p>
+      yalnızca hızlı bilgi değil,
+      güvenilir bilgi üretmektir.
+    </p>
+
+    <h2>5. Çoklu Kaynak İlkesi</h2>
+
+    <p>
+      Tek kaynaklı bilgi,
+      manipülasyona daha açıktır.
+    </p>
+
+    <p>
+      Bu nedenle Rasterast yaklaşımı:
+    </p>
+
+    <p>
+      farklı disiplin,
+      farklı yöntem,
+      farklı gözlemci
+      ve farklı veri kaynaklarını
+      birlikte değerlendirmeyi önerir.
+    </p>
+
+    <h2>6. Sistemsel Körlük</h2>
+
+    <p>
+      Bazı toplumlar veya kurumlar,
+      kendi inanç sistemleri nedeniyle
+      açık çelişkileri göremez hale gelir.
+    </p>
+
+    <p>
+      Rasterast buna epistemik körlük der.
+    </p>
+
+    <p>
+      Bu durum uzun vadede
+      gerçeklik ile bağın kopmasına yol açar.
+    </p>
+
+    <h2>7. Yapay Zekâ ve Bilgi Güvenliği</h2>
+
+    <p>
+      Yapay zekâ sistemleri
+      çok büyük veri işleyebilir;
+      fakat yanlış veriyle beslendiğinde
+      büyük ölçekli yanlış sonuçlar da üretebilir.
+    </p>
+
+    <p>
+      Bu nedenle epistemik güvenlik,
+      gelecekte insanlık için kritik alanlardan biri olacaktır.
+    </p>
+
+    <h2>8. Epistemik Savunma Mekanizması</h2>
+
+    <p>
+      Rasterast sistemi şu savunma araçlarını kullanır:
+    </p>
+
+    <p>
+      doğrulama filtresi,
+      çelişki analizi,
+      çoklu gözlem,
+      yanlışlanabilirlik,
+      sistemsel test
+      ve uzun vadeli sonuç kontrolü.
+    </p>
+
+    <h2>9. Gerçeklik ile Bağ</h2>
+
+    <p>
+      Epistemik güvenliğin temel amacı,
+      bilgi ile gerçeklik arasındaki bağın kopmamasıdır.
+    </p>
+
+    <p>
+      Çünkü gerçeklikten kopan bilgi,
+      zamanla güç aracına dönüşebilir.
+    </p>
+
+    <h2>10. Sonuç</h2>
+
+    <p>
+      Epistemik güvenlik,
+      yalnızca bilgiyi koruma sistemi değil;
+      insanın gerçeklikle bağını koruma mekanizmasıdır.
+    </p>
+
+    <p>
+      Rasterast yaklaşımında amaç:
+    </p>
+
+    <p>
+      bilgi üretmekten önce,
+      güvenilir bilgi zemini oluşturmaktır.
+    </p>
+
+  </section>
+
+</main>
+
+</body>
+</html>
+
