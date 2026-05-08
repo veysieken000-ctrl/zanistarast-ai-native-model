@@ -27,57 +27,7 @@
   <div class="xn-drop-content">
     <a href="hebun.html">Hebûn</a>
     <a href="zanabun.html">Zanabûn</a>
-        <div class="dropdown-subcontent">
-            
-          <a href="00_TIME_THEORY_UNIFIED_MIND.html">Time 00</a>
-
-            <a href="01_TIME_THEORY_RASTERAST_ZANISTARAST.html">
-                Time 01
-            </a>
-
-            <a href="02_UNIFIED_MIND_THEORY_ZANISTARAST.html">
-                Time 02
-            </a>
-
-            <a href="03_TIME_MIND_SYNTHESIS_ZANISTARAST.html">
-                Time 03
-            </a>
-
-            <a href="04_TIME_ENTROPY_AND_DIMENSIONAL_TRANSITION.html">
-                Time 04
-            </a>
-
-            <a href="05_TIME_THEORY_UNIFIED_FIELD_SYNTHESIS.html">
-                Time 05
-            </a>
-
-            <a href="06_TIME_THEORY_HUMAN_POSITION.html">
-                Time 06
-            </a>
-
-            <a href="07_TIME_THEORY_CLOSURE_AND_RESET.html">
-                Time 07
-            </a>
-
-            <a href="08_TIME_THEORY_DIMENSIONAL_FLOW.html">
-                Time 08
-            </a>
-
-            <a href="09_TIME_THEORY_DIRECTION_AND_MEANING.html">
-                Time 09
-            </a>
-
-            <a href="10_TIME_THEORY_RESPONSIBILITY_AND_JUDGMENT.html">
-                Time 10
-            </a>
-
-            <a href="11_TIME_THEORY_FINAL_SYNTHESIS.html">
-                Time Final
-            </a>
-        </div>
-    </div>
-
-     <a href="rasterast.html">Rasterast</a>
+    <a href="rasterast.html">Rasterast</a>
     <a href="rabun.html">Rabûn</a>
     <a href="mabun.html">Mabûn</a>
     <a href="final.html">Final</a>
@@ -279,79 +229,91 @@
     cursor:pointer;
   }
 
-  @media (max-width:900px){
+ @media (max-width:900px){
+  .zn-nav-inner{
+    padding:12px 14px;
+    align-items:flex-start;
+  }
 
-    .zn-menu-btn{
-      display:block;
-    }
+  .zn-logo{
+    position:relative;
+    z-index:100001;
+    flex-shrink:0;
+  }
 
-    .zn-menu{
+  .zn-menu-btn{
+    display:block;
+    position:relative;
+    z-index:100002;
+    margin-left:auto;
+  }
 
-      display:none;
+  .zn-menu{
+    display:none;
+    position:absolute;
+    top:74px;
+    left:12px;
+    right:12px;
+    z-index:100000;
+    padding:16px;
+    border-radius:24px;
+    background:rgba(8,14,30,.98);
+    border:1px solid rgba(125,211,252,.35);
+    box-shadow:0 22px 55px rgba(0,0,0,.55);
+    flex-direction:column;
+    align-items:stretch;
+    gap:10px;
+  }
 
-      position:absolute;
+  .zn-menu.active{
+    display:flex;
+  }
 
-      top:72px;
-      left:10px;
-      right:10px;
+  .zn-menu > a,
+  .zn-drop-btn{
+    width:100%;
+    text-align:center;
+    justify-content:center;
+  }
 
-      padding:14px;
+  .zn-dropdown{
+    width:100%;
+  }
 
-      border-radius:20px;
+  .zn-drop-content{
+    display:none;
+    position:static;
+    transform:none;
+    width:100%;
+    max-width:none;
+    min-width:0;
+    margin-top:8px;
+    padding:10px;
+  }
 
-      background:
-      rgba(10,18,35,.99);
+  .zn-dropdown.open .zn-drop-content{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:8px;
+  }
 
-      border:
-      1px solid rgba(125,211,252,.35);
+  .zn-drop-content a{
+    width:100%;
+    text-align:center;
+  }
 
-      box-shadow:
-      0 22px 55px rgba(0,0,0,.55);
-      
-      .zn-drop-content {
-       position: static;
-       transform: none;
-       width: 100%;
-       max-width: none;
-      margin-top: 8px;
-    }
-      max-height:
-      calc(100vh - 90px);
+  .dropdown-subcontent{
+    position:static;
+    display:none;
+    width:100%;
+    margin-top:8px;
+  }
 
-      overflow-y:auto;
-    }
-
-    .zn-menu.active{
-      display:grid;
-      gap:10px;
-    }
-
-    .zn-menu {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
+  .dropdown-submenu.open .dropdown-subcontent{
+    display:grid;
+    gap:8px;
+  }
 }
-    .zn-dropdown{
-      width:100%;
-    }
-
-    .zn-drop-content {
-  display: none;
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 50%;
-  transform: translateX(-50%);
-  min-width: 210px;
-  max-width: 260px;
-  padding: 10px;
-  border-radius: 18px;
-  background: rgba(15, 23, 42, .96);
-  border: 1px solid rgba(125, 211, 252, .35);
-  box-shadow: 0 18px 45px rgba(0,0,0,.45);
-  z-index: 999999;
-}
-
 </style>
 
 <script>
