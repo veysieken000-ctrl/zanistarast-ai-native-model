@@ -99,7 +99,7 @@ fetch("components/navbar.html")
 </script>
 
 <main class="container">
-
+<div id="articleContainer">
 <a class="back-btn" href="paper.html">← Paper'a dön</a>
 
 <section class="hero">
@@ -116,7 +116,13 @@ fetch("components/navbar.html")
     </p>
   </div>
 </section>
-
+<div class="search-box">
+  <input
+    type="text"
+    id="articleSearch"
+    placeholder="Makale ara..."
+  />
+</div>
 <section class="section-card ontology">
 <h2>🧬 01 — Ontoloji Makaleleri</h2>
 <p>Varlık, katman, taşıyıcılık, merkez-çevre ve Hebûn temelli okumalar.</p>
@@ -269,9 +275,30 @@ fetch("components/navbar.html")
 
 </div>
 </section>
-
+</div>
 </main>
+<script>
+const searchInput = document.getElementById("articleSearch");
+const articleCards = document.querySelectorAll(".article-card");
 
+searchInput.addEventListener("input", function () {
+
+  const value = this.value.toLowerCase();
+
+  articleCards.forEach(card => {
+
+    const text = card.innerText.toLowerCase();
+
+    if (text.includes(value)) {
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
+
+  });
+
+});
+</script>
 </body>
 </html>
 
