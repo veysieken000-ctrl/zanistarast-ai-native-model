@@ -1154,4 +1154,128 @@ a[href="./index.html"]:first-child:hover {
   box-shadow:0 0 18px rgba(56,189,248,.35);
   transform:translateY(-2px);
 }
+/* =========================================
+   RASTERAST MAKALER KART DÜZELTME SİSTEMİ
+========================================= */
+
+/* üstteki dikey bozulan kutular */
+.topic-card,
+.point-card,
+.mini-card,
+.side-card {
+    writing-mode: horizontal-tb !important;
+    text-orientation: mixed !important;
+
+    min-width: 220px !important;
+    width: 100% !important;
+    max-width: 320px !important;
+
+    min-height: 180px !important;
+    height: auto !important;
+
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+
+    padding: 22px !important;
+    border-radius: 22px !important;
+
+    line-height: 1.55 !important;
+}
+
+/* başlıklar */
+.topic-card h2,
+.topic-card h3,
+.point-card h2,
+.point-card h3,
+.mini-card h2,
+.mini-card h3,
+.side-card h2,
+.side-card h3 {
+    writing-mode: horizontal-tb !important;
+    font-size: 28px !important;
+    line-height: 1.2 !important;
+    margin-bottom: 14px !important;
+    word-break: normal !important;
+}
+
+/* paragraflar */
+.topic-card p,
+.point-card p,
+.mini-card p,
+.side-card p {
+    font-size: 15px !important;
+    line-height: 1.7 !important;
+    opacity: .92;
+}
+
+/* grid sistemi */
+.topic-grid,
+.points-grid,
+.cards-grid,
+.article-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
+    gap: 24px !important;
+    align-items: stretch !important;
+}
+
+/* hero alanı */
+.hero-card {
+    overflow: hidden !important;
+}
+
+/* üstte kayan dikey yazılar */
+.floating-label,
+.side-label,
+.vertical-label {
+    writing-mode: horizontal-tb !important;
+    text-orientation: mixed !important;
+
+    transform: none !important;
+
+    font-size: 14px !important;
+
+    padding: 8px 14px !important;
+    border-radius: 12px !important;
+
+    opacity: .7;
+}
+
+/* mobil düzeltme */
+@media (max-width: 768px) {
+
+    .topic-grid,
+    .points-grid,
+    .cards-grid,
+    .article-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .topic-card,
+    .point-card,
+    .mini-card,
+    .side-card {
+        min-width: 100% !important;
+        max-width: 100% !important;
+
+        padding: 18px !important;
+    }
+
+    .topic-card h2,
+    .topic-card h3,
+    .point-card h2,
+    .point-card h3,
+    .mini-card h2,
+    .mini-card h3,
+    .side-card h2,
+    .side-card h3 {
+        font-size: 24px !important;
+    }
+}
+
 
