@@ -123,6 +123,16 @@ fetch("components/navbar.html")
     placeholder="Makale ara..."
   />
 </div>
+<div class="filter-box">
+  <button class="filter-btn active" data-filter="all">Tümü</button>
+  <button class="filter-btn" data-filter="ontology">Ontoloji</button>
+  <button class="filter-btn" data-filter="epistemology">Epistemoloji</button>
+  <button class="filter-btn" data-filter="axiology">Aksiyoloji</button>
+  <button class="filter-btn" data-filter="history">Tarih</button>
+  <button class="filter-btn" data-filter="society">Toplum</button>
+  <button class="filter-btn" data-filter="paradox">Rasterast</button>
+  <button class="filter-btn" data-filter="core-reading">Core</button>
+</div>
 <section class="section-card ontology">
 <h2>🧬 01 — Ontoloji Makaleleri</h2>
 <p>Varlık, katman, taşıyıcılık, merkez-çevre ve Hebûn temelli okumalar.</p>
@@ -279,24 +289,46 @@ fetch("components/navbar.html")
 </main>
 <script>
 const searchInput = document.getElementById("articleSearch");
-const articleCards = document.querySelectorAll(".article-card");
+const filterButtons = document.querySelectorAll(".filter-btn");
+const sections = document.querySelectorAll(".section-card");
 
-searchInput.addEventListener("input", function () {
+let activeFilter = "all";
 
-  const value = this.value.toLowerCase();
+function applyFilters() {
+  const searchValue = searchInput.value.toLowerCase();
 
-  articleCards.forEach(card => {
+  sections.forEach(section => {
+    const cards = section.querySelectorAll(".article-card");
+    let visibleCount = 0;
 
-    const text = card.innerText.toLowerCase();
+    cards.forEach(card => {
+      const text = card.innerText.toLowerCase();
+      const matchesSearch = text.includes(searchValue);
+      const matchesFilter =
+        activeFilter === "all" || section.classList.contains(activeFilter);
 
-    if (text.includes(value)) {
-      card.style.display = "block";
-    } else {
-      card.style.display = "none";
-    }
+      if (matchesSearch && matchesFilter) {
+        card.style.display = "block";
+        visibleCount++;
+      } else {
+        card.style.display = "none";
+      }
+    });
 
+    section.style.display = visibleCount > 0 ? "block" : "none";
   });
+}
 
+searchInput.addEventListener("input", applyFilters);
+
+filterButtons.forEach(button => {
+  button.addEventListener("click", function () {
+    filterButtons.forEach(btn => btn.classList.remove("active"));
+    this.classList.add("active");
+
+    activeFilter = this.dataset.filter;
+    applyFilters();
+  });
 });
 </script>
 </body>
