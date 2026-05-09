@@ -908,3 +908,35 @@ a[href="./index.html"]:first-child:hover {
   font-weight: 900;
   opacity: .9;
 }
+.zn-announcement-link{
+  background:
+    linear-gradient(
+      135deg,
+      #2563eb,
+      #38bdf8
+    );
+
+  border:1px solid rgba(255,255,255,.35);
+
+  box-shadow:
+    0 0 24px rgba(56,189,248,.35);
+
+  color:#fff !important;
+
+  font-weight:700;
+
+  border-radius:18px;
+
+  padding:14px 22px;
+
+  text-decoration:none;
+
+  transition:.25s ease;
+}
+
+.zn-announcement-link:hover{
+  transform:translateY(-3px) scale(1.03);
+
+  box-shadow:
+    0 0 35px rgba(56,189,248,.55);
+}
