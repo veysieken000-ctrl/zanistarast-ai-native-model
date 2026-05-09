@@ -1086,4 +1086,46 @@ a[href="./index.html"]:first-child:hover {
 
   margin-left:10px;
 }
+/* MAKALE ARAMA */
 
+.search-box{
+  margin:28px 0 36px;
+}
+
+.search-box input{
+  width:100%;
+
+  padding:18px 22px;
+
+  border-radius:20px;
+
+  border:1px solid rgba(125,211,252,.25);
+
+  background:rgba(15,23,42,.82);
+
+  color:#fff;
+
+  font-size:1rem;
+
+  outline:none;
+
+  transition:
+    border-color .22s ease,
+    box-shadow .22s ease,
+    transform .22s ease;
+}
+
+.search-box input:focus{
+
+  border-color:rgba(125,211,252,.7);
+
+  box-shadow:
+    0 0 18px rgba(56,189,248,.25),
+    0 0 42px rgba(56,189,248,.15);
+
+  transform:scale(1.01);
+}
+
+.search-box input::placeholder{
+  color:rgba(255,255,255,.5);
+}
