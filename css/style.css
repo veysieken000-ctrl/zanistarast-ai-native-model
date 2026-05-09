@@ -1401,5 +1401,107 @@ a[href="./index.html"]:first-child:hover {
         font-size: 24px !important;
     }
 }
+/* KATMANLI VARLIK OKUMASI — KESİN KART DÜZELTME */
+
+.layer-grid,
+.reading-grid,
+.chapter-grid,
+.lesson-grid,
+.step-grid{
+  display:grid !important;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr)) !important;
+  gap:24px !important;
+  align-items:stretch !important;
+  width:100% !important;
+}
+
+.layer-card,
+.reading-card,
+.chapter-card,
+.lesson-card,
+.step-card,
+.card{
+  writing-mode:horizontal-tb !important;
+  text-orientation:mixed !important;
+
+  width:100% !important;
+  min-width:0 !important;
+  max-width:none !important;
+  height:auto !important;
+  min-height:180px !important;
+
+  white-space:normal !important;
+  word-break:normal !important;
+  overflow-wrap:break-word !important;
+
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:flex-start !important;
+
+  padding:24px !important;
+  border-radius:22px !important;
+  line-height:1.55 !important;
+}
+
+.layer-card *,
+.reading-card *,
+.chapter-card *,
+.lesson-card *,
+.step-card *,
+.card *{
+  writing-mode:horizontal-tb !important;
+  text-orientation:mixed !important;
+  white-space:normal !important;
+  word-break:normal !important;
+  overflow-wrap:break-word !important;
+}
+
+.layer-card h2,
+.layer-card h3,
+.reading-card h2,
+.reading-card h3,
+.chapter-card h2,
+.chapter-card h3,
+.lesson-card h2,
+.lesson-card h3,
+.step-card h2,
+.step-card h3,
+.card h2,
+.card h3{
+  font-size:clamp(1.45rem,2.5vw,2rem) !important;
+  line-height:1.2 !important;
+  margin-bottom:12px !important;
+}
+
+.layer-card p,
+.reading-card p,
+.chapter-card p,
+.lesson-card p,
+.step-card p,
+.card p{
+  font-size:1rem !important;
+  line-height:1.65 !important;
+}
+
+@media(max-width:768px){
+  .layer-grid,
+  .reading-grid,
+  .chapter-grid,
+  .lesson-grid,
+  .step-grid{
+    grid-template-columns:1fr !important;
+  }
+
+  .layer-card,
+  .reading-card,
+  .chapter-card,
+  .lesson-card,
+  .step-card,
+  .card{
+    min-height:auto !important;
+    padding:20px !important;
+  }
+}
+
 
 
