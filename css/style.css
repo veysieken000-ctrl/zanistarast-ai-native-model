@@ -1207,6 +1207,85 @@ a[href="./index.html"]:first-child:hover {
     grid-template-columns: 1fr !important;
   }
 }
-Commit:
-Bash
-fix katmanli varlik reading vertical card layout
+/* MAKALE İÇİ BÖLÜMLERİ DÜZ OKUMA METNİNE ÇEVİR */
+
+main.container > section:not(.hero) .article-grid,
+main.container > section:not(.hero) .theory-grid,
+main.container > section:not(.hero) .path-grid,
+main.container > section:not(.hero) .flow-grid {
+  display: block !important;
+}
+
+main.container > section:not(.hero) .article-card,
+main.container > section:not(.hero) .theory-link-card,
+main.container > section:not(.hero) .path-card,
+main.container > section:not(.hero) .flow-card {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: auto !important;
+
+  margin: 0 0 22px !important;
+  padding: 24px 26px !important;
+
+  background: rgba(15, 23, 42, 0.42) !important;
+  border: 1px solid rgba(125, 211, 252, 0.18) !important;
+  border-radius: 20px !important;
+
+  color: #fff !important;
+  text-decoration: none !important;
+
+  cursor: default !important;
+  transform: none !important;
+  box-shadow: none !important;
+  transition: none !important;
+}
+
+main.container > section:not(.hero) .article-card:hover,
+main.container > section:not(.hero) .theory-link-card:hover,
+main.container > section:not(.hero) .path-card:hover,
+main.container > section:not(.hero) .flow-card:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  border-color: rgba(125, 211, 252, 0.18) !important;
+}
+
+main.container > section:not(.hero) .article-card span,
+main.container > section:not(.hero) .theory-link-card span,
+main.container > section:not(.hero) .path-card span,
+main.container > section:not(.hero) .flow-card span {
+  display: inline-block !important;
+  margin-bottom: 10px !important;
+}
+
+main.container > section:not(.hero) .article-card h3,
+main.container > section:not(.hero) .theory-link-card h3,
+main.container > section:not(.hero) .path-card h3,
+main.container > section:not(.hero) .flow-card h3 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem) !important;
+  line-height: 1.2 !important;
+  margin: 0 0 12px !important;
+}
+
+main.container > section:not(.hero) .article-card p,
+main.container > section:not(.hero) .theory-link-card p,
+main.container > section:not(.hero) .path-card p,
+main.container > section:not(.hero) .flow-card p,
+main.container > section:not(.hero) .article-card li,
+main.container > section:not(.hero) .theory-link-card li,
+main.container > section:not(.hero) .path-card li,
+main.container > section:not(.hero) .flow-card li {
+  font-size: clamp(1rem, 2vw, 1.18rem) !important;
+  line-height: 1.75 !important;
+}
+
+@media (max-width: 768px) {
+  main.container > section:not(.hero) .article-card,
+  main.container > section:not(.hero) .theory-link-card,
+  main.container > section:not(.hero) .path-card,
+  main.container > section:not(.hero) .flow-card {
+    padding: 20px !important;
+  }
+}
+
+
