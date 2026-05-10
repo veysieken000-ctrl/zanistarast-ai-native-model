@@ -1154,3 +1154,59 @@ a[href="./index.html"]:first-child:hover {
   box-shadow:0 0 18px rgba(56,189,248,.35);
   transform:translateY(-2px);
 }
+/* KATMANLI VARLIK OKUMASI — DİKEY YAZIYI TAM KAPAT */
+
+.path-item,
+.path-card,
+.flow-card,
+.step-card,
+.reading-card,
+.theory-link-card {
+  writing-mode: horizontal-tb !important;
+  text-orientation: initial !important;
+  transform: none !important;
+
+  width: auto !important;
+  min-width: 240px !important;
+  max-width: 100% !important;
+  height: auto !important;
+
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+}
+
+.path-item *,
+.path-card *,
+.flow-card *,
+.step-card *,
+.reading-card *,
+.theory-link-card * {
+  writing-mode: horizontal-tb !important;
+  text-orientation: initial !important;
+  transform: none !important;
+  white-space: normal !important;
+  word-break: normal !important;
+}
+
+.path-grid,
+.flow-grid,
+.reading-grid,
+.theory-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
+  gap: 22px !important;
+  align-items: stretch !important;
+}
+
+@media (max-width: 768px) {
+  .path-grid,
+  .flow-grid,
+  .reading-grid,
+  .theory-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+Commit:
+Bash
+fix katmanli varlik reading vertical card layout
