@@ -1287,5 +1287,58 @@ main.container > section:not(.hero) .flow-card li {
     padding: 20px !important;
   }
 }
+/* ALT MAKALE KARTLARI — GLOBAL TIKLANABİLİR HİS */
+.article-grid a,
+.paper-grid a,
+.theory-grid a,
+.theory-link-card,
+.article-card,
+.paper-card {
+  display: block;
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 22px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, rgba(15, 43, 70, .96), rgba(20, 119, 150, .72));
+  border: 1px solid rgba(125, 211, 252, .35);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .28);
+  transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease, filter .22s ease;
+}
+
+.article-grid a:hover,
+.paper-grid a:hover,
+.theory-grid a:hover,
+.theory-link-card:hover,
+.article-card:hover,
+.paper-card:hover {
+  transform: translateY(-7px) scale(1.02);
+  border-color: rgba(125, 211, 252, .9);
+  box-shadow:
+    0 0 16px rgba(125, 211, 252, .55),
+    0 0 38px rgba(56, 189, 248, .32),
+    0 24px 60px rgba(0, 0, 0, .5);
+  filter: brightness(1.08);
+}
+
+.article-grid a h3,
+.paper-grid a h3,
+.theory-grid a h3,
+.theory-link-card h3,
+.article-card h3,
+.paper-card h2 {
+  margin: 10px 0 8px;
+  color: #fff;
+}
+
+.article-grid a p,
+.paper-grid a p,
+.theory-grid a p,
+.theory-link-card p,
+.article-card p,
+.paper-card p {
+  color: rgba(255, 255, 255, .86);
+  line-height: 1.55;
+}
 
 
