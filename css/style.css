@@ -1340,5 +1340,53 @@ main.container > section:not(.hero) .flow-card li {
   color: rgba(255, 255, 255, .86);
   line-height: 1.55;
 }
+.system-flow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 22px;
+  margin-top: 28px;
+}
 
+.core-reading-card {
+  display: block;
+  text-decoration: none;
+  color: #fff;
+  padding: 28px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(15, 43, 70, .96), rgba(20, 119, 150, .72));
+  border: 1px solid rgba(125, 211, 252, .38);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .28);
+  transition: .22s ease;
+}
+
+.core-reading-card:hover {
+  transform: translateY(-7px) scale(1.02);
+  border-color: rgba(125, 211, 252, .9);
+  box-shadow:
+    0 0 16px rgba(125, 211, 252, .55),
+    0 0 38px rgba(56, 189, 248, .32),
+    0 24px 60px rgba(0, 0, 0, .5);
+}
+
+.core-label {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(125, 211, 252, .22);
+  color: #dff7ff;
+  font-size: .85rem;
+  font-weight: 800;
+}
+
+.core-reading-card h2 {
+  margin: 0 0 10px;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+}
+
+.core-reading-card p {
+  margin: 0;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, .86);
+}
 
