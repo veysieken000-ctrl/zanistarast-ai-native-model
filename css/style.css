@@ -1501,5 +1501,74 @@ main.container > section:not(.hero) .flow-card li {
     0 24px 60px rgba(0,0,0,.55) !important;
 }
 
+/* MOBİL OKUMA GÜVENLİĞİ — YAZI TAŞMASINI ENGELLE */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.container,
+.hero,
+.hero-card,
+.content-section,
+.card,
+.article-card,
+.theory-link-card,
+.item {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+p,
+li,
+span,
+a,
+blockquote {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.hero-card h1,
+.content-section h1,
+.content-section h2 {
+  font-size: clamp(1.8rem, 7vw, 4.2rem);
+  line-height: 1.08;
+}
+
+.content-section p,
+.content-section li,
+.hero-card p {
+  font-size: clamp(1rem, 3.8vw, 1.15rem);
+  line-height: 1.75;
+}
+
+@media (max-width: 700px) {
+  .container {
+    width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .hero-card {
+    padding: 20px;
+  }
+
+  .content-section {
+    margin: 26px 0;
+  }
+
+  .article-grid,
+  .grid,
+  .theory-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
 
 
