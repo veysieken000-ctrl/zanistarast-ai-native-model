@@ -3,57 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Core Law</title>
-
+  <title>Core Law — Rêya Fem û Ferasetê</title>
   <link rel="stylesheet" href="css/style.css" />
-
-  <style>
-    .content-section {
-      margin: 34px 0;
-      padding: 0;
-      background: transparent;
-      border: none;
-      box-shadow: none;
-    }
-
-    .content-section h2 {
-      margin-bottom: 12px;
-      font-size: clamp(1.5rem, 3vw, 2.2rem);
-    }
-
-    .content-section p,
-    .content-section li {
-      line-height: 1.8;
-      font-size: clamp(1rem, 2vw, 1.08rem);
-      color: rgba(255,255,255,.88);
-    }
-
-    .content-section ul {
-      margin-top: 12px;
-      padding-left: 22px;
-    }
-
-    .content-section blockquote {
-      margin: 18px 0;
-      padding-left: 18px;
-      border-left: 3px solid rgba(125,211,252,.75);
-      color: rgba(255,255,255,.9);
-      font-weight: 700;
-    }
-
-    .back-link {
-      display: inline-block;
-      margin-bottom: 24px;
-      color: #7dd3fc;
-      text-decoration: none;
-      font-weight: 700;
-    }
-
-    .back-link:hover {
-      color: #fff;
-    }
-  </style>
 </head>
 
 <body>
@@ -61,27 +12,9 @@
 
   <script>
     fetch("components/navbar.html")
-      .then(function(res) {
-        return res.text();
-      })
-      .then(function(data) {
-        const navbar = document.getElementById("navbar");
-        navbar.innerHTML = data;
-
-        const scripts = navbar.querySelectorAll("script");
-
-        scripts.forEach(function(oldScript) {
-          const newScript = document.createElement("script");
-
-          if (oldScript.src) {
-            newScript.src = oldScript.src;
-          } else {
-            newScript.textContent = oldScript.textContent;
-          }
-
-          document.body.appendChild(newScript);
-          oldScript.remove();
-        });
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("navbar").innerHTML = data;
       });
   </script>
 
@@ -95,9 +28,8 @@
       <div class="hero-card">
         <h1>2. Core Law</h1>
         <p>
-          Core Law, Rêya Fem û Ferasetê’nin iç yasasıdır. Bu bölüm,
-          bilmenin nasıl başladığını, bilebilmenin hangi şartlara bağlı
-          olduğunu ve bilginin ne zaman doğru kabul edilebileceğini açıklar.
+          Core Law, Rêya Fem û Ferasetê’nin iç yasasıdır. Bu bölüm, bilmenin nasıl başladığını,
+          bilebilmenin hangi şartlara bağlı olduğunu ve bilginin ne zaman doğru kabul edilebileceğini açıklar.
         </p>
       </div>
     </section>
@@ -105,22 +37,20 @@
     <section class="content-section">
       <h2>2.1 Bilmek Nedir?</h2>
       <p>
-        Bilmek, yalnızca görmek değildir. Görülen şeyi ayırt etmek,
-        ölçmek, karşılaştırmak ve sistem içindeki yerini kavramaktır.
+        Bilmek, yalnızca görmek değildir. Görülen şeyi ayırt etmek, ölçmek,
+        karşılaştırmak ve sistem içindeki yerini kavramaktır.
       </p>
       <p>
-        Bilmek; varlığı fark etmek ve onu düzen içinde anlamaktır.
+        Bilmek = varlığı fark etmek ve onu düzen içinde anlamaktır.
       </p>
     </section>
 
     <section class="content-section">
       <h2>2.2 Bilebilmek Nedir?</h2>
       <p>
-        Bilebilmek, insanın veya bir sistemin bilgi üretmeye elverişli
-        olmasıdır. Bunun için gözlem yapabilme, ayırt edebilme,
-        ölçebilme ve sonuçları karşılaştırabilme kapasitesi gerekir.
+        Bilebilmek, insanın veya bir sistemin bilgi üretmeye elverişli olmasıdır.
+        Bunun için gözlem yapabilme, ayırt edebilme, ölçebilme ve sonuçları karşılaştırabilme kapasitesi gerekir.
       </p>
-
       <ul>
         <li>Gözlem kapasitesi</li>
         <li>Ölçüm kapasitesi</li>
@@ -133,11 +63,9 @@
     <section class="content-section">
       <h2>2.3 Bilginin Doğruluğu Nedir?</h2>
       <p>
-        Bir bilginin doğru olması, yalnızca söylenmiş veya inanılmış
-        olmasıyla gerçekleşmez. Doğruluk; varlıkla uyum, ölçümle destek,
-        tutarlılık ve süreklilik gerektirir.
+        Bir bilginin doğru olması, yalnızca söylenmiş veya inanılmış olmasıyla gerçekleşmez.
+        Doğruluk; varlıkla uyum, ölçümle destek, tutarlılık ve süreklilik gerektirir.
       </p>
-
       <blockquote>
         Doğru bilgi = Varlık uyumu + Ölçüm + Tutarlılık + Süreklilik
       </blockquote>
@@ -148,7 +76,6 @@
       <p>
         Core Law, bilgiyi katmanlı bir süreç olarak ele alır.
       </p>
-
       <ul>
         <li><strong>Algı:</strong> Gerçeklikle ilk temas.</li>
         <li><strong>Ölçüm:</strong> Algının sayılabilir veya karşılaştırılabilir hale gelmesi.</li>
@@ -164,40 +91,37 @@
         Bilgi = Algı + Ölçüm + Veri + Model + Doğrulama
       </blockquote>
       <p>
-        Bu formül, bilginin yalnızca fikir değil; ölçülebilir, sınanabilir
-        ve yeniden kurulabilir bir düzen olduğunu gösterir.
+        Bu formül, bilginin yalnızca zihinsel kanaat değil; ölçülebilir, sınanabilir
+        ve düzen içinde taşınabilir bir yapı olduğunu gösterir.
       </p>
     </section>
 
     <section class="content-section">
-      <h2>2.6 Yanlış Bilgi Nasıl Doğar?</h2>
+      <h2>2.6 Yanlış Bilgi Şartları</h2>
       <p>
-        Yanlış bilgi; algının eksik olması, ölçümün hatalı yapılması,
-        verinin bağlamından koparılması veya modelin gerçeklikle
-        uyuşmaması sonucunda doğar.
+        Bir bilgi şu durumlarda bozulur:
       </p>
-
       <ul>
-        <li>Eksik algı</li>
-        <li>Yanlış ölçüm</li>
-        <li>Kopuk veri</li>
-        <li>Zorlanmış model</li>
-        <li>Doğrulanmamış hüküm</li>
+        <li>Varlıkla uyumsuzsa</li>
+        <li>Ölçüsüzse</li>
+        <li>Kendi içinde çelişiyorsa</li>
+        <li>Tekrarlandığında aynı sonucu vermiyorsa</li>
+        <li>İnsanı, düzeni veya hakikati daraltıyorsa</li>
       </ul>
     </section>
 
     <section class="content-section">
       <h2>2.7 Core Law Sonucu</h2>
       <p>
-        Core Law, bilginin keyfî yorumdan çıkıp düzenli bir sınama yoluna
-        girmesini sağlar. Böylece Rêya Fem û Ferasetê yalnızca düşünce yolu
-        değil; ölçü, yöntem ve doğrulama sistemi haline gelir.
+        Core Law, bilginin rastgele kanaat olmadığını; algıdan ölçüme, ölçümden modele,
+        modelden doğrulamaya giden düzenli bir süreç olduğunu ortaya koyar.
+      </p>
+      <p>
+        Bu nedenle Rêya Fem û Ferasetê’de bilgi, ancak sınanabildiği, taşınabildiği
+        ve varlıkla uyumlu kaldığı ölçüde doğru kabul edilir.
       </p>
     </section>
 
   </main>
 </body>
 </html>
-Commit mesajı:
-Bash
-fix core law page as plain reading content
