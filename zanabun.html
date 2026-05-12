@@ -3,281 +3,288 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Zanabûn — Bilgi Katmanı</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
-<div id="navbar"></div>
-
-<script>
-fetch("components/navbar.html")
-.then(function(res){
-  return res.text();
-})
-.then(function(data){
-  const navbar = document.getElementById("navbar");
-  navbar.innerHTML = data;
-
-  const scripts = navbar.querySelectorAll("script");
-
-  scripts.forEach(function(oldScript){
-    const newScript = document.createElement("script");
-
-    if(oldScript.src){
-      newScript.src = oldScript.src;
-    } else {
-      newScript.textContent = oldScript.textContent;
-    }
-
-    document.body.appendChild(newScript);
-    oldScript.remove();
-  });
-});
-</script>
   <div id="navbar"></div>
 
   <script>
     fetch("components/navbar.html")
-      .then(function (res) {
-        return res.text();
-      })
-      .then(function (data) {
-        const navbar = document.getElementById("navbar");
-        navbar.innerHTML = data;
-
-        const scripts = navbar.querySelectorAll("script");
-
-        scripts.forEach(function (oldScript) {
-          const newScript = document.createElement("script");
-
-          if (oldScript.src) {
-            newScript.src = oldScript.src;
-          } else {
-            newScript.textContent = oldScript.textContent;
-          }
-
-          document.body.appendChild(newScript);
-          oldScript.remove();
-        });
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("navbar").innerHTML = data;
       });
   </script>
 
   <main class="container">
-<a class="back-link" href="paper.html">
-    ← Paper sayfasına dön
-</a>
+
+    <a class="back-link" href="paper.html">← Paper sayfasına dön</a>
+
     <section class="hero">
       <div class="hero-card">
         <h1>Zanabûn</h1>
-        <p class="hero-text">
+        <p>
           Zanabûn, Zanistarast sisteminde bilginin oluşumu, tanıklık,
           ölçüm, modelleme, doğrulama ve hükme dönüşme katmanıdır.
         </p>
       </div>
     </section>
 
-    <section class="section-card">
-      <h2>Sistem Akışı</h2>
+    <div class="flow-text">
+      Hebûn → Zanabûn → Rasterast → Rabûn → Mabûn → Newroza Kawa
+    </div>
+
+    <section class="content-section">
+      <h2>Zanabûn Makaleleri</h2>
+
+      <div class="grid">
+
+        <div class="card">
+          <a href="zanabun-00-bilgi-taniklik-ve-hakikat.html">
+            <span>00 — Bilgi, Tanıklık ve Hakikat</span>
+            <p>Bilginin hakikatle kurduğu temel ilişki.</p>
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="zanabun-01-bilginin-tanimi-ve-siniflandirilmasi.html">
+            <span>01 — Bilginin Tanımı ve Sınıflandırılması</span>
+            <p>Bilginin türleri, sınırları ve anlam düzeyi.</p>
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="zanabun-02-bilginin-katmanlari.html">
+            <span>02 — Bilginin Katmanları</span>
+            <p>Bilginin fiziksel, zihinsel ve anlam katmanları.</p>
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="zanabun-03-ahlak-ve-hukum-yasasi.html">
+            <span>03 — Ahlak ve Hüküm Yasası</span>
+            <p>Bilginin ahlak, karar ve hükümle ilişkisi.</p>
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="zanabun-04-taniklik-yasasi.html">
+            <span>04 — Tanıklık Yasası</span>
+            <p>Görme, şahitlik ve doğrulama düzeni.</p>
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="zanabun-05-bilginin-katman-modeli.html">
+            <span>05 — Bilginin Katman Modeli</span>
+            <p>Bilginin çok katmanlı sistem olarak kurulması.</p>
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="zanabun-06-epistemik-cokus.html">
+            <span>06 — Epistemik Çöküş</span>
+            <p>Bilginin bozulması, sapması ve çöküş koşulları.</p>
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="zanabun-07-bilgi-guc-ayrimi.html">
+            <span>07 — Bilgi Güç Ayrımı</span>
+            <p>Bilginin iktidar, güç ve hakikat karşısındaki sınırı.</p>
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="zanabun-08-sevgi-ve-fitrat-temelli-bilgi-turleri.html">
+            <span>08 — Sevgi ve Fıtrat Temelli Bilgi Türleri</span>
+            <p>Bilginin sevgi, fıtrat ve yaratılışla ilişkisi.</p>
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="zanabun-09-bilginin-evrensel-dongusu.html">
+            <span>09 — Bilginin Evrensel Döngüsü</span>
+            <p>Bilginin üretim, aktarım ve dönüşüm döngüsü.</p>
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="zanabun-10-bilgi-zaman-iliskisi.html">
+            <span>10 — Bilgi Zaman İlişkisi</span>
+            <p>Bilginin zaman, yön ve süreklilikle ilişkisi.</p>
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="zanabun-11-bilginin-matematiksel-soyutlanmasi.html">
+            <span>11 — Bilginin Matematiksel Soyutlanması</span>
+            <p>Bilginin ölçülebilir ve soyutlanabilir yapısı.</p>
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="zanabun-12-tanikligin-tarih-uretmesi.html">
+            <span>12 — Tanıklığın Tarih Üretmesi</span>
+            <p>Tanıklığın hafıza, kayıt ve tarih kurması.</p>
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="zanabun-13-meta-science-framework.html">
+            <span>13 — Meta Science Framework</span>
+            <p>Bilginin bilim üstü düzenleme çerçevesi.</p>
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="zanabun-14-nihai-dongu-modeli.html">
+            <span>14 — Nihai Döngü Modeli</span>
+            <p>Bilginin tamamlanma ve yeniden başlama modeli.</p>
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="zanabun-15-epistemolojik-aksiyomlar.html">
+            <span>15 — Epistemolojik Aksiyomlar</span>
+            <p>Zanabûn katmanının temel bilgi ilkeleri.</p>
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="zanabun-16-bilgi-turlerinin-nihai-katman-modeli.html">
+            <span>16 — Bilgi Türlerinin Nihai Katman Modeli</span>
+            <p>Bilgi türlerinin üst düzey katman sınıflaması.</p>
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="zanabun-17-bilginin-dogrulama-ve-test-mekanizmasi.html">
+            <span>17 — Bilginin Doğrulama ve Test Mekanizması</span>
+            <p>Bilginin sınanması, ölçülmesi ve tekrar doğrulanması.</p>
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="zanabun-18-bilginin-matematiksel-dongu-modeli.html">
+            <span>18 — Bilginin Matematiksel Döngü Modeli</span>
+            <p>Bilginin döngüsel ve matematiksel düzeni.</p>
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="zanabun-19-bilginin-toplumsal-gecisi.html">
+            <span>19 — Bilginin Toplumsal Geçişi</span>
+            <p>Bilginin bireyden topluma geçiş düzeni.</p>
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="zanabun-20-nihai-epistemolojik-sonuc.html">
+            <span>20 — Nihai Epistemolojik Sonuç</span>
+            <p>Zanabûn katmanının sonuç ve kapanış ilkesi.</p>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2>Zaman ve Zihin Teorileri</h2>
       <p>
-        <strong>Hebûn</strong>
-        →
-        <strong>Zanabûn</strong>
-        →
-        Rasterast
-        →
-        Rabûn
-        →
-        Mabûn
-        →
-        Newroza Kawa
+        Bu bölüm, Zanabûn katmanında bilginin zaman, zihin, yön, anlam
+        ve doğrulama ile ilişkisini inceler.
       </p>
+
+      <div class="grid">
+
+        <div class="card">
+          <a href="00_TIME_THEORY_UNIFIED_MIND.html">
+            <span>Time 00</span>
+            <h3>Birleşik Zihin ve Zaman</h3>
+            <p>Zihin, zaman ve bilgi oluşumunun ortak teorik zemini.</p>
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="01_TIME_THEORY_RASTERAST_ZANISTARAST.html">
+            <span>Time 01</span>
+            <h3>Zaman, Rasterast ve Zanistarast</h3>
+            <p>Sistemin zaman içinde doğrulanması ve Rasterast filtresiyle sınanması.</p>
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="02_UNIFIED_MIND_THEORY_ZANISTARAST.html">
+            <span>Time 02</span>
+            <h3>Birleşik Zihin Teorisi</h3>
+            <p>Sezinin, akıl, ahlak ve hüküm dönüşümünü birleştiren modeli.</p>
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="03_TIME_MIND_SYNTHESIS_ZANISTARAST.html">
+            <span>Time 03</span>
+            <h3>Zaman Zihin Sentezi</h3>
+            <p>Zihnin zamanı nasıl okuduğu ve anlam ürettiği katman.</p>
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="04_TIME_ENTROPY_AND_DIMENSIONAL_TRANSITION.html">
+            <span>Time 04</span>
+            <h3>Entropi ve Boyutsal Geçiş</h3>
+            <p>Düzensizlik, daralma ve yeni boyuta geçiş ilişkisi.</p>
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="05_TIME_THEORY_UNIFIED_FIELD_SYNTHESIS.html">
+            <span>Time 05</span>
+            <h3>Birleşik Alan Sentezi</h3>
+            <p>Fizik, zihin ve anlam alanlarının ortak okunması.</p>
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="06_TIME_THEORY_HUMAN_POSITION.html">
+            <span>Time 06</span>
+            <h3>İnsanın Konumu</h3>
+            <p>İnsanın üsttek yapı içinde zaman, bilinç ve sorumluluk yeri.</p>
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="07_TIME_THEORY_CLOSURE_AND_RESET.html">
+            <span>Time 07</span>
+            <h3>Kapanış ve Reset</h3>
+            <p>Sistemin daralma, kapanma ve yeniden dengeye geçiş modeli.</p>
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="08_TIME_THEORY_DIMENSIONAL_FLOW.html">
+            <span>Time 08</span>
+            <h3>Boyutsal Akış</h3>
+            <p>Katmanlar arası geçiş, yön ve süreklilik okuması.</p>
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="09_TIME_THEORY_DIRECTION_AND_MEANING.html">
+            <span>Time 09</span>
+            <h3>Yön ve Anlam</h3>
+            <p>Zamanın yalnız akış değil, yön ve anlam üreten bir yapı olarak okunması.</p>
+          </a>
+        </div>
+
+      </div>
     </section>
-
-    <section class="theory-grid">
-
-      <a class="theory-link-card" href="zanabun-00-bilgi-taniklik-ve-hakikat.html">
-        <span class="theory-index">00</span>
-        <h2>Bilgi, Tanıklık ve Hakikat</h2>
-      </a>
-
-      <a class="theory-link-card" href="zanabun-01-bilginin-tanimi-ve-siniflandirilmasi.html">
-        <span class="theory-index">01</span>
-        <h2>Bilginin Tanımı ve Sınıflandırılması</h2>
-      </a>
-
-      <a class="theory-link-card" href="zanabun-02-bilginin-katmanlari.html">
-        <span class="theory-index">02</span>
-        <h2>Bilginin Katmanları</h2>
-      </a>
-
-      <a class="theory-link-card" href="zanabun-03-ahlak-ve-hukum-yasasi.html">
-        <span class="theory-index">03</span>
-        <h2>Ahlak ve Hüküm Yasası</h2>
-      </a>
-
-      <a class="theory-link-card" href="zanabun-04-taniklik-yasasi.html">
-        <span class="theory-index">04</span>
-        <h2>Tanıklık Yasası</h2>
-      </a>
-
-      <a class="theory-link-card" href="zanabun-05-bilginin-katman-modeli.html">
-        <span class="theory-index">05</span>
-        <h2>Bilginin Katman Modeli</h2>
-      </a>
-
-      <a class="theory-link-card" href="zanabun-06-epistemik-cokus.html">
-        <span class="theory-index">06</span>
-        <h2>Epistemik Çöküş</h2>
-      </a>
-
-      <a class="theory-link-card" href="zanabun-07-bilgi-guc-ayrimi.html">
-        <span class="theory-index">07</span>
-        <h2>Bilgi Güç Ayrımı</h2>
-      </a>
-
-      <a class="theory-link-card" href="zanabun-08-sevgi-ve-fitrat-temelli-bilgi-turleri.html">
-        <span class="theory-index">08</span>
-        <h2>Sevgi ve Fıtrat Temelli Bilgi Türleri</h2>
-      </a>
-
-      <a class="theory-link-card" href="zanabun-09-bilginin-evrensel-dongusu.html">
-        <span class="theory-index">09</span>
-        <h2>Bilginin Evrensel Döngüsü</h2>
-      </a>
-
-      <a class="theory-link-card" href="zanabun-10-bilgi-zaman-iliskisi.html">
-        <span class="theory-index">10</span>
-        <h2>Bilgi Zaman İlişkisi</h2>
-      </a>
-
-      <a class="theory-link-card" href="zanabun-11-bilginin-matematiksel-soyutlanmasi.html">
-        <span class="theory-index">11</span>
-        <h2>Bilginin Matematiksel Soyutlanması</h2>
-      </a>
-
-      <a class="theory-link-card" href="zanabun-12-tanikligin-tarih-uretmesi.html">
-        <span class="theory-index">12</span>
-        <h2>Tanıklığın Tarih Üretmesi</h2>
-      </a>
-
-      <a class="theory-link-card" href="zanabun-13-meta-science-framework.html">
-        <span class="theory-index">13</span>
-        <h2>Meta Science Framework</h2>
-      </a>
-
-      <a class="theory-link-card" href="zanabun-14-nihai-dongu-modeli.html">
-        <span class="theory-index">14</span>
-        <h2>Nihai Döngü Modeli</h2>
-      </a>
-
-      <a class="theory-link-card" href="zanabun-15-epistemolojik-aksiyomlar.html">
-        <span class="theory-index">15</span>
-        <h2>Epistemolojik Aksiyomlar</h2>
-      </a>
-
-      <a class="theory-link-card" href="zanabun-16-bilgi-turlerinin-nihai-katman-modeli.html">
-        <span class="theory-index">16</span>
-        <h2>Bilgi Türlerinin Nihai Katman Modeli</h2>
-      </a>
-
-      <a class="theory-link-card" href="zanabun-17-bilginin-dogrulama-ve-test-mekanizmasi.html">
-        <span class="theory-index">17</span>
-        <h2>Bilginin Doğrulama ve Test Mekanizması</h2>
-      </a>
-
-      <a class="theory-link-card" href="zanabun-18-bilginin-matematiksel-dongu-modeli.html">
-        <span class="theory-index">18</span>
-        <h2>Bilginin Matematiksel Döngü Modeli</h2>
-      </a>
-
-      <a class="theory-link-card" href="zanabun-19-bilginin-toplumsal-gecisi.html">
-        <span class="theory-index">19</span>
-        <h2>Bilginin Toplumsal Geçişi</h2>
-      </a>
-
-      <a class="theory-link-card" href="zanabun-20-nihai-epistemolojik-sonuc.html">
-        <span class="theory-index">20</span>
-        <h2>Nihai Epistemolojik Sonuç</h2>
-      </a>
-       
-    </section>
-   <section class="section-card">
-  <h2>Zaman ve Zihin Teorileri</h2>
-  <p>
-    Bu bölüm, Zanabûn katmanında bilginin zaman, zihin, yön, anlam ve doğrulama ile ilişkisini inceler.
-  </p>
-
-   <div class="grid">
-
-   
-
-        <div class="card">href="00_TIME_THEORY_UNIFIED_MIND.html">
-      <span class="theory-index">Time 00</span>
-      <h2>Birleşik Zihin ve Zaman</h2>
-      <p>Zihin, zaman ve bilgi oluşumunun ortak teorik zemini.</p>
-    </a>
-
-    <div class="card"> href="01_TIME_THEORY_RASTERAST_ZANISTARAST.html">
-      <span class="theory-index">Time 01</span>
-      <h2>Zaman, Rasterast ve Zanistarast</h2>
-      <p>Bilginin zaman içinde doğrulanması ve Rasterast filtresiyle sınanması.</p>
-    </a>
-
-       <div class="card"> href="02_UNIFIED_MIND_THEORY_ZANISTARAST.html">
-      <span class="theory-index">Time 02</span>
-      <h2>Birleşik Zihin Teorisi</h2>
-      <p>Zihin, akıl, ahlak ve hüküm döngüsünün birleşik modeli.</p>
-    </a>
-
-    <a class="theory-link-card" href="03_TIME_MIND_SYNTHESIS_ZANISTARAST.html">
-      <span class="theory-index">Time 03</span>
-      <h2>Zaman-Zihin Sentezi</h2>
-      <p>Zihnin zamanı nasıl okuduğu ve anlam ürettiği katman.</p>
-    </a>
-
-    <div class="card">href="04_TIME_ENTROPY_AND_DIMENSIONAL_TRANSITION.html">
-      <span class="theory-index">Time 04</span>
-      <h2>Entropi ve Boyutsal Geçiş</h2>
-      <p>Düzensizlik, daralma ve yeni boyuta geçiş ilişkisi.</p>
-    </a>
-
-       <div class="card"> href="05_TIME_THEORY_UNIFIED_FIELD_SYNTHESIS.html">
-      <span class="theory-index">Time 05</span>
-      <h2>Birleşik Alan Sentezi</h2>
-      <p>Fizik, zihin ve anlam alanlarının ortak okuması.</p>
-    </a>
-
-    <a class="theory-link-card" href="06_TIME_THEORY_HUMAN_POSITION.html">
-      <span class="theory-index">Time 06</span>
-      <h2>İnsanın Konumu</h2>
-      <p>İnsanın 6+tek yapı içinde zaman, bilinç ve sorumluluk yeri.</p>
-    </a>
-
-      <div class="card">  href="07_TIME_THEORY_CLOSURE_AND_RESET.html">
-      <span class="theory-index">Time 07</span>
-      <h2>Kapanış ve Reset</h2>
-      <p>Sistemin daralma, kapanma ve yeniden dengeye geçiş modeli.</p>
-    </a>
-
-      <div class="card"> href="08_TIME_THEORY_DIMENSIONAL_FLOW.html">
-      <span class="theory-index">Time 08</span>
-      <h2>Boyutsal Akış</h2>
-      <p>Katmanlar arası geçiş, yön ve süreklilik okuması.</p>
-    </a>
-
-      <div class="card"> href="09_TIME_THEORY_DIRECTION_AND_MEANING.html">
-      <span class="theory-index">Time 09</span>
-      <h2>Yön ve Anlam</h2>
-      <p>Zamanın yalnız akış değil, yön ve anlam üreten bir yapı olarak okunması.</p>
-    </a>
-
-  </div>
-</section>
 
   </main>
-
 </body>
 </html>
-
 
