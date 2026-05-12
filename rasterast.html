@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Rasterast — Doğrulama Katmanı</title>
 
   <link rel="stylesheet" href="css/style.css" />
@@ -14,35 +15,17 @@
 
   <script>
     fetch("components/navbar.html")
-      .then(function (res) {
-        return res.text();
-      })
-      .then(function (data) {
-
-        const navbar = document.getElementById("navbar");
-        navbar.innerHTML = data;
-
-        const scripts = navbar.querySelectorAll("script");
-
-        scripts.forEach(function (oldScript) {
-
-          const newScript = document.createElement("script");
-
-          if (oldScript.src) {
-            newScript.src = oldScript.src;
-          } else {
-            newScript.textContent = oldScript.textContent;
-          }
-
-          document.body.appendChild(newScript);
-          oldScript.remove();
-
-        });
-
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("navbar").innerHTML = data;
       });
   </script>
 
   <main class="container">
+
+    <a class="back-link" href="paper.html">
+      ← Paper sayfasına dön
+    </a>
 
     <section class="hero">
       <div class="hero-card">
@@ -58,77 +41,87 @@
       </div>
     </section>
 
-    <section class="section-card">
+    <div class="flow-text">
+      Hebûn → Zanabûn → Rasterast → Rabûn → Mabûn → Newroza Kawa
+    </div>
 
-      <h2>Sistem Akışı</h2>
+    <section class="content-section">
 
-      <p>
-        <strong>Hebûn</strong>
-        →
-        <strong>Zanabûn</strong>
-        →
-        <strong>Rasterast</strong>
-        →
-        Rabûn
-        →
-        Mabûn
-        →
-        Newroza Kawa
-      </p>
+      <h2>Rasterast Makaleleri</h2>
 
-    </section>
+      <div class="grid">
 
-    <section class="theory-grid">
+        <div class="card">
+          <a href="rasterast-00-hakikat-ve-dogrulama.html">
+            <span>00 — Hakikat ve Doğrulama</span>
+            <p>Gerçeklik ile doğrulama ilişkisinin temeli.</p>
+          </a>
+        </div>
 
-      <a class="theory-link-card" href="rasterast-00-hakikat-ve-dogrulama.html">
-        <span class="theory-index">00</span>
-        <h2>Hakikat ve Doğrulama</h2>
-      </a>
+        <div class="card">
+          <a href="rasterast-01-dogrulama-filtresi.html">
+            <span>01 — Doğrulama Filtresi</span>
+            <p>Bilginin test ve filtre mekanizması.</p>
+          </a>
+        </div>
 
-      <a class="theory-link-card" href="rasterast-01-dogrulama-filtresi.html">
-        <span class="theory-index">01</span>
-        <h2>Doğrulama Filtresi</h2>
-      </a>
+        <div class="card">
+          <a href="rasterast-02-celiski-analizi.html">
+            <span>02 — Çelişki Analizi</span>
+            <p>Tutarsızlıkların ve çelişkilerin incelenmesi.</p>
+          </a>
+        </div>
 
-      <a class="theory-link-card" href="rasterast-02-celiski-analizi.html">
-        <span class="theory-index">02</span>
-        <h2>Çelişki Analizi</h2>
-      </a>
+        <div class="card">
+          <a href="rasterast-03-evrensel-test-modeli.html">
+            <span>03 — Evrensel Test Modeli</span>
+            <p>Sistemlerin evrensel sınanma modeli.</p>
+          </a>
+        </div>
 
-      <a class="theory-link-card" href="rasterast-03-evrensel-test-modeli.html">
-        <span class="theory-index">03</span>
-        <h2>Evrensel Test Modeli</h2>
-      </a>
+        <div class="card">
+          <a href="rasterast-04-fizik-biyoloji-zihin-kontrolu.html">
+            <span>04 — Fizik Biyoloji Zihin Kontrolü</span>
+            <p>Farklı katmanlarda doğrulama ilişkisi.</p>
+          </a>
+        </div>
 
-      <a class="theory-link-card" href="rasterast-04-fizik-biyoloji-zihin-kontrolu.html">
-        <span class="theory-index">04</span>
-        <h2>Fizik Biyoloji Zihin Kontrolü</h2>
-      </a>
+        <div class="card">
+          <a href="rasterast-05-gozlemci-modeli.html">
+            <span>05 — Gözlemci Modeli</span>
+            <p>Gözlemci etkisi ve doğrulama ilişkisi.</p>
+          </a>
+        </div>
 
-      <a class="theory-link-card" href="rasterast-05-gozlemci-modeli.html">
-        <span class="theory-index">05</span>
-        <h2>Gözlemci Modeli</h2>
-      </a>
+        <div class="card">
+          <a href="rasterast-06-yanlislanabilirlik.html">
+            <span>06 — Yanlışlanabilirlik</span>
+            <p>Bilginin çürütülebilirlik ve sınanabilirlik ilkesi.</p>
+          </a>
+        </div>
 
-      <a class="theory-link-card" href="rasterast-06-yanlislanabilirlik.html">
-        <span class="theory-index">06</span>
-        <h2>Yanlışlanabilirlik</h2>
-      </a>
+        <div class="card">
+          <a href="rasterast-07-epistemik-guvenlik.html">
+            <span>07 — Epistemik Güvenlik</span>
+            <p>Bilginin güvenlik ve bozulma kontrolü.</p>
+          </a>
+        </div>
 
-      <a class="theory-link-card" href="rasterast-07-epistemik-guvenlik.html">
-        <span class="theory-index">07</span>
-        <h2>Epistemik Güvenlik</h2>
-      </a>
+        <div class="card">
+          <a href="rasterast-08-sistemsel-dogruluk.html">
+            <span>08 — Sistemsel Doğruluk</span>
+            <p>Sistemin bütünsel doğruluk yapısı.</p>
+          </a>
+        </div>
 
-      <a class="theory-link-card" href="rasterast-08-sistemsel-dogruluk.html">
-        <span class="theory-index">08</span>
-        <h2>Sistemsel Doğruluk</h2>
-      </a>
+        <div class="card">
+          <a href="rasterast-09-gerceklik-kontrolu.html">
+            <span>09 — Gerçeklik Kontrolü</span>
+            <p>Bilginin gerçeklikle uyum testi.</p>
+          </a>
+        </div>
 
-      <a class="theory-link-card" href="rasterast-09-gerceklik-kontrolu.html">
-        <span class="theory-index">09</span>
-        <h2>Gerçeklik Kontrolü</h2>
-      </a>
+      </div>
 
     </section>
 
