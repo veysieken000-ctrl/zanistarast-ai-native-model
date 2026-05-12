@@ -1419,5 +1419,40 @@ main.container > section:not(.hero) .flow-card li {
   color: #eaffff !important;
   font-weight: 900 !important;
 }
+/* ALT MAKALE KARTLARI — THEORY SAYFALARI */
+.theory-link-card {
+  display: block !important;
+  text-decoration: none !important;
+  color: #fff !important;
+  cursor: pointer !important;
+
+  padding: 24px !important;
+  border-radius: 22px !important;
+  background: linear-gradient(135deg, rgba(20, 50, 85, .96), rgba(25, 115, 145, .82)) !important;
+  border: 1px solid rgba(125, 211, 252, .45) !important;
+
+  box-shadow: 0 14px 34px rgba(0,0,0,.28) !important;
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease !important;
+}
+
+.theory-link-card:hover {
+  transform: translateY(-7px) scale(1.02) !important;
+  border-color: rgba(125,211,252,.95) !important;
+  box-shadow:
+    0 0 18px rgba(56,189,248,.55),
+    0 24px 60px rgba(0,0,0,.45) !important;
+}
+
+.theory-link-card .theory-index {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-bottom: 14px !important;
+  padding: 5px 12px !important;
+  border-radius: 999px !important;
+  background: rgba(125,211,252,.25) !important;
+  color: #eaffff !important;
+  font-weight: 900 !important;
+}
 
 
