@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="tr">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Mabûn – Ekonomi Modeli</title>
+  <title>Mabûn — Ekonomi Modeli</title>
 
   <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -16,32 +15,9 @@
 
   <script>
     fetch("components/navbar.html")
-      .then(function (res) {
-        return res.text();
-      })
-      .then(function (data) {
-
-        const navbar = document.getElementById("navbar");
-        navbar.innerHTML = data;
-
-        const scripts = navbar.querySelectorAll("script");
-
-        scripts.forEach(function (oldScript) {
-
-          const newScript = document.createElement("script");
-
-          if (oldScript.src) {
-            newScript.src = oldScript.src;
-          } else {
-            newScript.textContent = oldScript.textContent;
-          }
-
-          document.body.appendChild(newScript);
-
-          oldScript.remove();
-
-        });
-
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("navbar").innerHTML = data;
       });
   </script>
 
@@ -64,19 +40,11 @@
       </div>
     </section>
 
-    <section class="section-card">
+    <div class="flow-text">
+      Hebûn → Zanabûn → Rasterast → Rabûn → Mabûn → Newroza Kawa
+    </div>
 
-      <h2>Sistem Akışı</h2>
-
-      <p>
-        <strong>
-          Hebûn + Zanabûn + Rasterast + Rabûn + Mabûn + Newroza Kawa
-        </strong>
-      </p>
-
-    </section>
-
-    <section class="section-card">
+    <section class="content-section">
 
       <h2>Mabûn Makaleleri</h2>
 
@@ -84,79 +52,49 @@
         Aşağıdaki kartlardan Mabûn ekonomi modelinin bütün makalelerine ulaşabilirsin.
       </p>
 
-    </section>
+      <div class="grid">
 
-    <section class="theory-grid">
+        <div class="card">
+          <a href="mabun-01-bilginin-toplumsal-ve-ekonomik-degeri.html">
+            <span>01 — Bilginin Toplumsal ve Ekonomik Değeri</span>
+            <p>Bilginin üretim, toplum ve ekonomik yapı üzerindeki etkisi.</p>
+          </a>
+        </div>
 
-      <a class="theory-link-card"
-        href="mabun-01-bilginin-toplumsal-ve-ekonomik-degeri.html">
+        <div class="card">
+          <a href="mabun-02-mabunun-bilimsel-kosullari.html">
+            <span>02 — Mabûn’un Bilimsel Koşulları</span>
+            <p>Mabûn ekonomi modelinin bilimsel ve sistemsel temelleri.</p>
+          </a>
+        </div>
 
-        <span class="theory-index">01</span>
+        <div class="card">
+          <a href="mabun-03-doga-referansli-ekonomi.html">
+            <span>03 — Doğa Referanslı Ekonomi</span>
+            <p>Ekonomik düzenin doğa sistemleriyle uyumlu kurulması.</p>
+          </a>
+        </div>
 
-        <h2>Bilginin Toplumsal ve Ekonomik Değeri</h2>
+        <div class="card">
+          <a href="mabun-04-boyutsal-yonetim-prensibi.html">
+            <span>04 — Boyutsal Yönetim Prensibi</span>
+            <p>Katmanlı yönetim ve ekonomik düzen ilişkisi.</p>
+          </a>
+        </div>
 
-        <p>
-          Bilginin üretim, toplum ve ekonomik yapı üzerindeki etkisi.
-        </p>
+        <div class="card">
+          <a href="mabun-05-ekonominin-medeniyetle-iliskisi.html">
+            <span>05 — Ekonominin Medeniyetle İlişkisi</span>
+            <p>Ekonomi sisteminin uygarlık ve toplum üzerindeki etkisi.</p>
+          </a>
+        </div>
 
-      </a>
-
-      <a class="theory-link-card"
-        href="mabun-02-mabunun-bilimsel-kosullari.html">
-
-        <span class="theory-index">02</span>
-
-        <h2>Mabûn’un Bilimsel Koşulları</h2>
-
-        <p>
-          Mabûn ekonomi modelinin bilimsel ve sistemsel temelleri.
-        </p>
-
-      </a>
-
-      <a class="theory-link-card"
-        href="mabun-03-doga-referansli-ekonomi.html">
-
-        <span class="theory-index">03</span>
-
-        <h2>Doğa Referanslı Ekonomi</h2>
-
-        <p>
-          Ekonomik düzenin doğa sistemleriyle uyumlu kurulması.
-        </p>
-
-      </a>
-
-      <a class="theory-link-card"
-        href="mabun-04-boyutsal-yonetim-prensibi.html">
-
-        <span class="theory-index">04</span>
-
-        <h2>Boyutsal Yönetim Prensibi</h2>
-
-        <p>
-          Katmanlı yönetim ve ekonomik düzen ilişkisi.
-        </p>
-
-      </a>
-
-      <a class="theory-link-card"
-        href="mabun-05-ekonominin-medeniyetle-iliskisi.html">
-
-        <span class="theory-index">05</span>
-
-        <h2>Ekonominin Medeniyetle İlişkisi</h2>
-
-        <p>
-          Ekonomi sisteminin uygarlık ve toplum üzerindeki etkisi.
-        </p>
-
-      </a>
+      </div>
 
     </section>
 
   </main>
 
 </body>
-
 </html>
+
