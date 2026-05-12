@@ -2,218 +2,202 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Rêya Fem û Ferasetê</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Core Law</title>
+
   <link rel="stylesheet" href="css/style.css" />
 
-  
+  <style>
+    .content-section {
+      margin: 34px 0;
+      padding: 0;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+    }
+
+    .content-section h2 {
+      margin-bottom: 12px;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+    }
+
+    .content-section p,
+    .content-section li {
+      line-height: 1.8;
+      font-size: clamp(1rem, 2vw, 1.08rem);
+      color: rgba(255,255,255,.88);
+    }
+
+    .content-section ul {
+      margin-top: 12px;
+      padding-left: 22px;
+    }
+
+    .content-section blockquote {
+      margin: 18px 0;
+      padding-left: 18px;
+      border-left: 3px solid rgba(125,211,252,.75);
+      color: rgba(255,255,255,.9);
+      font-weight: 700;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: #7dd3fc;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .back-link:hover {
+      color: #fff;
+    }
+  </style>
 </head>
 
 <body>
-<div id="navbar"></div>
-
-<script>
-fetch("components/navbar.html")
-.then(function(res){
-  return res.text();
-})
-.then(function(data){
-  const navbar = document.getElementById("navbar");
-  navbar.innerHTML = data;
-
-  const scripts = navbar.querySelectorAll("script");
-
-  scripts.forEach(function(oldScript){
-    const newScript = document.createElement("script");
-
-    if(oldScript.src){
-      newScript.src = oldScript.src;
-    } else {
-      newScript.textContent = oldScript.textContent;
-    }
-
-    document.body.appendChild(newScript);
-    oldScript.remove();
-  });
-});
-</script>
   <div id="navbar"></div>
 
-<script>
-fetch("components/navbar.html")
-.then(res => res.text())
-.then(data => {
-  document.getElementById("navbar").innerHTML = data;
-});
-</script>
-<main class="container">
-  <a href="paper.html" class="back">← Paper sayfasına dön</a>
+  <script>
+    fetch("components/navbar.html")
+      .then(function(res) {
+        return res.text();
+      })
+      .then(function(data) {
+        const navbar = document.getElementById("navbar");
+        navbar.innerHTML = data;
 
-<section class="hero">
-  <div class="card">
-    <h1>Rêya Fem û Ferasetê</h1>
-    <p>
-      Rêya Fem û Ferasetê; bilmenin, bilebilmenin ve bilginin doğruluğunu
-      sınamanın yoludur. Bu sayfa, Zanistarast bilimsel sentezine giden
-      yöntem haritasını kurar.
-    </p>
+        const scripts = navbar.querySelectorAll("script");
 
-    <blockquote>
-      Amaç: algıdan ölçüme, ölçümden bilgiye, bilgiden doğruluğa,
-      doğruluktan hükme ve bütüncül senteze ulaşmak.
-    </blockquote>
-  </div>
-</section>
+        scripts.forEach(function(oldScript) {
+          const newScript = document.createElement("script");
 
-<section class="card">
-  <h2>Ana Yol</h2>
-  <p>
-    Bu yapı sekiz ana bölümden oluşur. 
-    Böylece sistem yalnızca açıklama değil; ölçü, model, uygulama ve test düzeni kazanır.
-  </p>
-</section>
+          if (oldScript.src) {
+            newScript.src = oldScript.src;
+          } else {
+            newScript.textContent = oldScript.textContent;
+          }
 
-<section class="grid">
+          document.body.appendChild(newScript);
+          oldScript.remove();
+        });
+      });
+  </script>
 
-  <a href="Reya-fem-u-ferasete-standard.html" class="item">
-    <strong>1. STANDARD</strong>
-    <span>Metinlerin bilimsel ölçüsü, yazım kuralı ve doğrulama standardı.</span>
-    <ul class="branches">
-      <li>Amaç</li>
-      <li>Kavram tanımı</li>
-      <li>Matematiksel model şartı</li>
-      <li>Alanlara uygulama</li>
-      <li>Rasterast doğrulama</li>
-      <li>Simulation / test şartı</li>
-      <li>Yanlışlanabilirlik</li>
-    </ul>
-  </a>
+  <main class="container">
 
-  <a href="Reya-fem-u-ferasete-core-law.html" class="item">
-    <strong>2. Core Law</strong>
-    <span>Bilmenin, bilebilmenin ve bilginin doğruluğunun temel yasası.</span>
-    <ul class="branches">
-      <li>Bilmek nedir?</li>
-      <li>Bilebilmek nedir?</li>
-      <li>Bilginin doğruluğu</li>
-      <li>Algı → ölçüm → veri → model</li>
-      <li>Bilgi formülü</li>
-      <li>Yanlış bilgi şartları</li>
-      <li>Bilginin hükme dönüşmesi</li>
-    </ul>
-  </a>
+    <a class="back-link" href="Reya-fem-u-ferasete.html">
+      ← Rêya Fem û Ferasetê’ye dön
+    </a>
 
-  <a href="Reya-fem-u-ferasete-hebun.html" class="item">
-    <strong>3. Hebûn</strong>
-    <span>Bilginin varlık zemini; düzen, süreklilik ve form değişimi.</span>
-    <ul class="branches">
-      <li>Varlık nedir?</li>
-      <li>Varlık düzeni</li>
-      <li>Süreklilik</li>
-      <li>Form değişimi</li>
-      <li>Fizikte Hebûn</li>
-      <li>Biyolojide Hebûn</li>
-      <li>Zihinde Hebûn</li>
-      <li>Toplumda Hebûn</li>
-      <li>Hebûn olmadan bilgi olmaz</li>
-    </ul>
-  </a>
+    <section class="hero">
+      <div class="hero-card">
+        <h1>2. Core Law</h1>
+        <p>
+          Core Law, Rêya Fem û Ferasetê’nin iç yasasıdır. Bu bölüm,
+          bilmenin nasıl başladığını, bilebilmenin hangi şartlara bağlı
+          olduğunu ve bilginin ne zaman doğru kabul edilebileceğini açıklar.
+        </p>
+      </div>
+    </section>
 
-  <a href="Reya-fem-u-ferasete-zanabun.html" class="item">
-    <strong>4. Zanabûn</strong>
-    <span>Bilginin oluşumu; gözlem, ölçüm, veri, varyans ve tutarlılık.</span>
-    <ul class="branches">
-      <li>Gözlemci</li>
-      <li>Ölçüm</li>
-      <li>Veri</li>
-      <li>Karşılaştırma</li>
-      <li>Varyans</li>
-      <li>Tutarlılık</li>
-      <li>Model kurma</li>
-      <li>Öğrenme</li>
-      <li>Bilginin doğruluk derecesi</li>
-    </ul>
-  </a>
+    <section class="content-section">
+      <h2>2.1 Bilmek Nedir?</h2>
+      <p>
+        Bilmek, yalnızca görmek değildir. Görülen şeyi ayırt etmek,
+        ölçmek, karşılaştırmak ve sistem içindeki yerini kavramaktır.
+      </p>
+      <p>
+        Bilmek; varlığı fark etmek ve onu düzen içinde anlamaktır.
+      </p>
+    </section>
 
-  <a href="Reya-fem-u-ferasete-mabun.html" class="item">
-    <strong>5. Mabûn</strong>
-    <span>Bilginin ve kaynağın dolaşımı; ekonomi, değer ve sürdürülebilirlik.</span>
-    <ul class="branches">
-      <li>Kaynak nedir?</li>
-      <li>Dolaşım nedir?</li>
-      <li>Bilgi dolaşımı</li>
-      <li>Ekonomik dolaşım</li>
-      <li>Değer üretimi</li>
-      <li>Birikim ve tıkanma</li>
-      <li>Kriz modeli</li>
-      <li>Sürdürülebilirlik</li>
-      <li>Hukuk ve toplum bağlantısı</li>
-    </ul>
-  </a>
+    <section class="content-section">
+      <h2>2.2 Bilebilmek Nedir?</h2>
+      <p>
+        Bilebilmek, insanın veya bir sistemin bilgi üretmeye elverişli
+        olmasıdır. Bunun için gözlem yapabilme, ayırt edebilme,
+        ölçebilme ve sonuçları karşılaştırabilme kapasitesi gerekir.
+      </p>
 
-  <a href="Reya-fem-u-ferasete-rasterast.html" class="item">
-    <strong>6. Rasterast</strong>
-    <span>Doğruluk, hüküm, ahlak, hukuk ve sistem istikrarı filtresi.</span>
-    <ul class="branches">
-      <li>Doğruluk filtresi</li>
-      <li>Hüküm nedir?</li>
-      <li>Ahlak nedir?</li>
-      <li>Hüküm–ahlak iç içeliği</li>
-      <li>Hukukta Rasterast</li>
-      <li>Sosyolojide Rasterast</li>
-      <li>Psikolojide Rasterast</li>
-      <li>Tarihte Rasterast</li>
-      <li>Yönetimde Rasterast</li>
-      <li>Ekonomide Rasterast</li>
-      <li>Yapay zekâda Rasterast</li>
-      <li>Çökme şartları</li>
-    </ul>
-  </a>
+      <ul>
+        <li>Gözlem kapasitesi</li>
+        <li>Ölçüm kapasitesi</li>
+        <li>Karşılaştırma kapasitesi</li>
+        <li>Model kurma kapasitesi</li>
+        <li>Doğrulama kapasitesi</li>
+      </ul>
+    </section>
 
-  <a href="Reya-fem-u-ferasete-simulation.html" class="item">
-    <strong>7. Simulation</strong>
-    <span>Teorinin ajan, veri, kaynak, karar ve geri besleme ile test edilmesi.</span>
-    <ul class="branches">
-      <li>Ajan modeli</li>
-      <li>Durum modeli</li>
-      <li>Bilgi modeli</li>
-      <li>Kaynak modeli</li>
-      <li>Karar modeli</li>
-      <li>Hüküm modeli</li>
-      <li>Geri besleme</li>
-      <li>Denge testi</li>
-      <li>Çöküş testi</li>
-      <li>Sonuç grafikleri</li>
-    </ul>
-  </a>
+    <section class="content-section">
+      <h2>2.3 Bilginin Doğruluğu Nedir?</h2>
+      <p>
+        Bir bilginin doğru olması, yalnızca söylenmiş veya inanılmış
+        olmasıyla gerçekleşmez. Doğruluk; varlıkla uyum, ölçümle destek,
+        tutarlılık ve süreklilik gerektirir.
+      </p>
 
-  <a href="Reya-fem-u-ferasete-unified.html" class="item">
-    <strong>8. Unified</strong>
-    <span>Tüm katmanların Zanistarast bilimsel sentezinde birleşmesi.</span>
-    <ul class="branches">
-      <li>Rêya Fem û Ferasetê nedir?</li>
-      <li>Zanistarast’a giden yol</li>
-      <li>Hebûn + Zanabûn + Mabûn + Rasterast</li>
-      <li>Bilimsel sentez</li>
-      <li>İnsan dünyasına uygulama</li>
-      <li>Newroza Kawa uygarlık temeli</li>
-      <li>6+tek ve 6+Ehad düzeni</li>
-      <li>Nihai sistem formu</li>
-    </ul>
-  </a>
+      <blockquote>
+        Doğru bilgi = Varlık uyumu + Ölçüm + Tutarlılık + Süreklilik
+      </blockquote>
+    </section>
 
-</section>
+    <section class="content-section">
+      <h2>2.4 Algı → Ölçüm → Veri → Model → Doğrulama</h2>
+      <p>
+        Core Law, bilgiyi katmanlı bir süreç olarak ele alır.
+      </p>
 
-<section class="card">
-  <h2>Genel Form</h2>
-  <blockquote>
-    Zanistarast = Hebûn + Zanabûn + Mabûn + Rasterast + Simulation
-  </blockquote>
-  <p>
-    Rêya Fem û Ferasetê, bu senteze ulaşan bilme yoludur.
-  </p>
-</section>
+      <ul>
+        <li><strong>Algı:</strong> Gerçeklikle ilk temas.</li>
+        <li><strong>Ölçüm:</strong> Algının sayılabilir veya karşılaştırılabilir hale gelmesi.</li>
+        <li><strong>Veri:</strong> Ölçümün kayıt altına alınmış formu.</li>
+        <li><strong>Model:</strong> Veriler arasındaki düzenin kurulması.</li>
+        <li><strong>Doğrulama:</strong> Modelin tekrar, tutarlılık ve sonuç üzerinden sınanması.</li>
+      </ul>
+    </section>
 
+    <section class="content-section">
+      <h2>2.5 Bilgi Formülü</h2>
+      <blockquote>
+        Bilgi = Algı + Ölçüm + Veri + Model + Doğrulama
+      </blockquote>
+      <p>
+        Bu formül, bilginin yalnızca fikir değil; ölçülebilir, sınanabilir
+        ve yeniden kurulabilir bir düzen olduğunu gösterir.
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2>2.6 Yanlış Bilgi Nasıl Doğar?</h2>
+      <p>
+        Yanlış bilgi; algının eksik olması, ölçümün hatalı yapılması,
+        verinin bağlamından koparılması veya modelin gerçeklikle
+        uyuşmaması sonucunda doğar.
+      </p>
+
+      <ul>
+        <li>Eksik algı</li>
+        <li>Yanlış ölçüm</li>
+        <li>Kopuk veri</li>
+        <li>Zorlanmış model</li>
+        <li>Doğrulanmamış hüküm</li>
+      </ul>
+    </section>
+
+    <section class="content-section">
+      <h2>2.7 Core Law Sonucu</h2>
+      <p>
+        Core Law, bilginin keyfî yorumdan çıkıp düzenli bir sınama yoluna
+        girmesini sağlar. Böylece Rêya Fem û Ferasetê yalnızca düşünce yolu
+        değil; ölçü, yöntem ve doğrulama sistemi haline gelir.
+      </p>
+    </section>
+
+  </main>
 </body>
 </html>
-
+Commit mesajı:
+Bash
+fix core law page as plain reading content
