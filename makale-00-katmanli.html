@@ -2,183 +2,175 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Katmanlı Varlık Okuması</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>00 — Katmanlı Varlık Okuması</title>
   <link rel="stylesheet" href="css/style.css" />
-
 </head>
 
 <body>
   <div id="navbar"></div>
 
-<script>
-fetch("components/navbar.html")
-.then(function(res){
-  return res.text();
-})
-.then(function(data){
-  const navbar = document.getElementById("navbar");
-  navbar.innerHTML = data;
+  <script>
+    fetch("components/navbar.html")
+      .then(function(res){
+        return res.text();
+      })
+      .then(function(data){
+        const navbar = document.getElementById("navbar");
+        navbar.innerHTML = data;
 
-  const scripts = navbar.querySelectorAll("script");
+        const scripts = navbar.querySelectorAll("script");
 
-  scripts.forEach(function(oldScript){
-    const newScript = document.createElement("script");
+        scripts.forEach(function(oldScript){
+          const newScript = document.createElement("script");
 
-    if(oldScript.src){
-      newScript.src = oldScript.src;
-    } else {
-      newScript.textContent = oldScript.textContent;
-    }
+          if(oldScript.src){
+            newScript.src = oldScript.src;
+          } else {
+            newScript.textContent = oldScript.textContent;
+          }
 
-    document.body.appendChild(newScript);
-    oldScript.remove();
-  });
-});
-</script>
-  <a href="makaleler.html" class="back">← Back to Makaleler</a>
+          document.body.appendChild(newScript);
+          oldScript.remove();
+        });
+      });
+  </script>
 
-  <div class="card">
-    <h1>00 - Katmanlı Varlık Okuması</h1>
+  <main class="container">
 
-    <p>Varlık, tek katmanlı değil; fiziksel, biyolojik, zihinsel ve ahlaki düzeylerden oluşan katmanlı bir yapıdır.</p>
-    <p>Her katman bir öncekine dayanır ve onu ihlal etmeden genişler.</p>
-    <p>Bu yaklaşım, varlığı parçalı değil bütünsel olarak anlamayı sağlar.</p>
-  </div>
+    <a href="makaleler.html" class="back-link">← Makalelere dön</a>
 
-  <div class="article-grid">
+    <section class="hero">
+      <div class="hero-card">
+        <span class="theory-number">00</span>
+        <h1>Katmanlı Varlık Okuması</h1>
+        <p>
+          Varlık tek katmanlı değildir. Fiziksel, biyolojik, zihinsel, ruhsal,
+          ahlaki ve toplumsal düzeyler içinde okunur.
+        </p>
+        <p>
+          Bu sayfa, farklı makaleleri aynı ana okuma düzeni içinde birbirine
+          bağlayan merkez sayfadır.
+        </p>
+      </div>
+    </section>
 
-    <a class="article-card" href="makale-01-01-atomun-olusumu-ve-yapisal-sureklilik.html">
-      <span>01</span>
-      <h3>Atomun Oluşumu</h3>
-      <p>Madde ve yapısal süreklilik ilişkisi.</p>
-    </a>
+    <section class="grid">
 
-    <a class="article-card" href="makale-01-02-kara-delik-ve-boyutsal-esik.html">
-      <span>02</span>
-      <h3>Kara Delik ve Boyutsal Eşik</h3>
-      <p>Yoğunluk, sınır ve geçiş problemi.</p>
-    </a>
+      <div class="card">
+        <a href="makale-01-01-atomun-olusumu-ve-yapisal-sureklilik.html">
+          <h3>01 — Atomun Oluşumu</h3>
+          <p>Fiziksel düzeyde oluşum, yapı ve süreklilik ilişkisini açıklar.</p>
+        </a>
+      </div>
 
-    <a class="article-card" href="makale-01-03-melek-iblis-ilk-varliklar.html">
-      <span>03</span>
-      <h3>İlk Varlıklar</h3>
-      <p>Taşıyıcı bilinç ve ilk düzen tartışması.</p>
-    </a>
+      <div class="card">
+        <a href="makale-01-02-kara-delik-ve-boyutsal-esik.html">
+          <h3>02 — Kara Delik ve Boyutsal Eşik</h3>
+          <p>Yoğunluk, sınır ve geçiş problemini ele alır.</p>
+        </a>
+      </div>
 
-    <a class="article-card" href="makale-01-06-merkez-cevre-yasasi.html">
-      <span>04</span>
-      <h3>Merkez-Çevre Yasası</h3>
-      <p>Hebûn düzeninde merkez ve çevre ilişkisi.</p>
-    </a>
+      <div class="card">
+        <a href="makale-01-03-melek-iblis-ilk-varliklar.html">
+          <h3>03 — İlk Varlıklar</h3>
+          <p>Taşıyıcı bilinç ve ilk düzen tartışmasını açar.</p>
+        </a>
+      </div>
 
-    <a class="article-card" href="makale-01-07-insan-besinci-boyut.html">
-      <span>05</span>
-      <h3>İnsan ve Beşinci Boyut</h3>
-      <p>İnsanın taşıyıcılık ve bilinç düzeyi.</p>
-    </a>
+      <div class="card">
+        <a href="makale-08-merkez-cevre-yasasi-ve-hebun-ontolojisi.html">
+          <h3>08 — Merkez-Çevre Yasası ve Hebûn Ontolojisi</h3>
+          <p>Varlığı merkez, çevre, taşıyıcılık ve denge ilişkisiyle okur.</p>
+        </a>
+      </div>
 
-       <a class="article-card" <a href="makale-09-karanlik-duzen-ve-kozmik-yapi.html">
-         <span>06</span>
-         <h3>Karanlık Düzen ve Kozmik Yapı</h3></p>
-      Kozmik yapının yalnızca görünen maddeyle değil, görünmeyen yoğunluk,
-      taşıyıcı alan ve derin düzen ilkeleriyle birlikte okunması gerektiğini
-      ele alır.</p>
-  </a>
-      
-    <a class="article-card"<a href="makale-08-merkez-cevre-yasasi-ve-hebun-ontolojisi.html">
-    <span>07</span>
-      <h3>Merkez-Çevre Yasası ve Hebûn Ontolojisi</h3>
-      </p>
-   </a>
-      <a class="article-card"<a href="10 — Doğum, Ölüm ve Tanıklığın Sınırları.html">
-     <span>08</span>
-     <h3>Doğum, Ölüm ve Tanıklığın Sınırları</h3>
-    
-      Doğum ve ölüm eşikleri üzerinden insan bilgisinin, tanıklığının ve
-      sorumluluğunun sınırlarını ele alır.
-      
-      Varlığın merkez ve çevre ilişkisi içinde çalışan
-      taşıyıcı ve oranlı düzenini ele alır.
-    </p>
-  </a>
-  
-   <a class="article-card"<a href="makale-11-kuantum-benzetmesi-ve-post-modern-birey.html">
-    <span>09</span>
-     <h3>Kuantum Benzetmesi ve Post-modern Birey</h3>
-    <p>
-      Kuantum kavramlarının yanlış genellenmesini ve post-modern bireyin
-      merkez kaybını katmanlı varlık okuması içinde ele alır.
-    </p>
-  </a>
- 
- 
-  <a class="article-card"<a href="makale-11-varlik-tarihi.html">
-    <h3>Varlık Tarihi</h3>
-     <span>10</span>
-    <p>
-      Tarihi olayların kronolojisi olarak değil; varlık, bilgi, ahlak ve hüküm
-      çizgisinin insanlık içindeki görünümü olarak ele alır.
-    </p>
-  </a>
-     
+      <div class="card">
+        <a href="makale-09-karanlik-duzen-ve-kozmik-yapi.html">
+          <h3>09 — Karanlık Düzen ve Kozmik Yapı</h3>
+          <p>Görünmeyen yoğunluk, taşıyıcı alan ve kozmik düzeni açıklar.</p>
+        </a>
+      </div>
 
-   <a class="article-card"<a href="makale-12-esir-alan-ve-tasiyici-duzen.html">
-    <h3>Esir Alan ve Taşıyıcı Düzen</h3>
-      <span>11</span>
-     <p>
-      Düzenlerin bireyi taşıyan mı yoksa bağımlı ve işlevsiz hâle getiren
-      yapılar mı olduğunu ontolojik ve toplumsal açıdan analiz eder.
-    </p>
-  </a>
-<a class="article-card"<a href="makale-13-hukum-fitrat-ve-ahlak-yeniden-baslangic.html">
-    <h3>Hüküm, Fıtrat ve Ahlak: Yeniden Başlangıç</h3>
-    <span>12</span>
-  <p>
-      Bilgi, usul, hüküm ve ahlak ilişkisini yeniden kurarak sürdürülebilir
-      varlık düzeninin temelini açıklar.
-    </p>
-  </a>
-<a class="article-card"<a href="makale-07-rasterast-metodu-ve-taniklik-problemi.html">
-    <h3>Rasterast Metodu ve Tanıklık Problemi</h3>
-    <span>13</span>
-  <p>
-      Bilginin yalnızca doğru okunmasını değil, sorumlulukla taşınmasını da
-      merkeze alan Rasterast yöntemini açıklar.
-    </p>
-  </a>
-<a class="article-card"<a href="makale-05-meclisler-organik-toplum.html">
-    <h3>Meclisler ve Organik Toplum</h3>
-     <span>14</span>
-  <p>
-      Meclisi toplumsal aklın organı, organik toplumu ise işlevlerin dengeli
-      biçimde yerleştiği taşıyıcı düzen olarak ele alır.
-    </p>
-  </a>
-  
-  <a class="article-card"<a href="makale-04-pilot-secimi-ogrenen-yonetim.html">
-    <h3>Pilot Seçimi ve Öğrenen Yönetim</h3>
-     <span>15</span>
-    <p>
-      Yönetimi güçlü kişiyle değil; doğru pilot, doğru sistem ve öğrenme
-      kapasitesiyle açıklayan katmanlı okuma.
-    </p>
-  </a>
+      <div class="card">
+        <a href="makale-10-dogum-olum-ve-tanikligin-sinirlari.html">
+          <h3>10 — Doğum, Ölüm ve Tanıklığın Sınırları</h3>
+          <p>İnsan bilgisinin, tanıklığın ve sorumluluğun sınırlarını ele alır.</p>
+        </a>
+      </div>
 
-<a class="article-card"<a href="makale-02-varlik-yonetim-duzeni-dogaya-uyum.html">
-    <h3>Varlık, Yönetim Düzeni ve Doğaya Uyum</h3>
-    <span>16</span>
-  <p>
-      Yönetimi doğadaki taşıyıcılık, sınır, oran ve denge ilkelerinin toplumsal
-      düzene çevrilmesi olarak açıklar.
-    </p>
-  </a>
-  </div>
-  </div>
- 
- 
-</section>
+      <div class="card">
+        <a href="makale-11-kuantum-benzetmesi-ve-post-modern-birey.html">
+          <h3>11 — Kuantum Benzetmesi ve Post-modern Birey</h3>
+          <p>Kuantum kavramlarının yanlış genellenmesini ve merkez kaybını inceler.</p>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="makale-11-varlik-tarihi.html">
+          <h3>11 — Varlık Tarihi</h3>
+          <p>Tarihi olay sırası değil, varlık-bilgi-ahlak-hüküm çizgisi olarak okur.</p>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="makale-12-esir-alan-ve-tasiyici-duzen.html">
+          <h3>12 — Esir Alan ve Taşıyıcı Düzen</h3>
+          <p>Düzenin bireyi taşıyan mı yoksa bağımlılaştıran mı olduğunu inceler.</p>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="makale-13-hukum-fitrat-ve-ahlak-yeniden-baslangic.html">
+          <h3>13 — Hüküm, Fıtrat ve Ahlak: Yeniden Başlangıç</h3>
+          <p>Bilgi, usul, hüküm ve ahlak ilişkisini yeniden kurar.</p>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="makale-07-rasterast-metodu-ve-taniklik-problemi.html">
+          <h3>07 — Rasterast Metodu ve Tanıklık Problemi</h3>
+          <p>Bilginin yalnız doğru okunmasını değil, sorumlulukla taşınmasını açıklar.</p>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="makale-05-meclisler-organik-toplum.html">
+          <h3>05 — Meclisler ve Organik Toplum</h3>
+          <p>Meclisi toplumsal aklın organı, organik toplumu ise işlevsel düzen olarak ele alır.</p>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="makale-04-pilot-secimi-ogrenen-yonetim.html">
+          <h3>04 — Pilot Seçimi ve Öğrenen Yönetim</h3>
+          <p>Yönetimi güçlü kişiyle değil, doğru pilot ve öğrenen sistemle açıklar.</p>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="makale-02-varlik-yonetim-duzeni-dogaya-uyum.html">
+          <h3>02 — Varlık, Yönetim Düzeni ve Doğaya Uyum</h3>
+          <p>Yönetimi doğadaki taşıyıcılık, sınır, oran ve denge ilkelerinin toplumsal düzene çevrilmesi olarak açıklar.</p>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="makale-01-rasterast-toplum-duzeni.html">
+          <h3>01 — Rasterast Toplum Düzeni</h3>
+          <p>Toplumu doğru okuma, sınır, meclis, adalet ve taşıyıcılık ilkeleriyle kurulan canlı düzen olarak açıklar.</p>
+        </a>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer style="position:static !important; display:block !important; margin-top:24px !important;">
+    <div class="container">
+      Zanistarast AI Interface
+    </div>
+  </footer>
 
 </body>
 </html>
