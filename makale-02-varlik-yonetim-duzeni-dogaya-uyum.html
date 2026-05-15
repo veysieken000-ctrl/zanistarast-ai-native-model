@@ -3,46 +3,53 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>02 - Varlık, Yönetim Düzeni ve Doğaya Uyum</title>
+  <title>02 — Varlık, Yönetim Düzeni ve Doğaya Uyum</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
   <div id="navbar"></div>
 
-<script>
-fetch("components/navbar.html")
-.then(function(res){
-  return res.text();
-})
-.then(function(data){
-  const navbar = document.getElementById("navbar");
-  navbar.innerHTML = data;
+  <script>
+    fetch("components/navbar.html")
+      .then(function(res){
+        return res.text();
+      })
+      .then(function(data){
+        const navbar = document.getElementById("navbar");
+        navbar.innerHTML = data;
 
-  const scripts = navbar.querySelectorAll("script");
+        const scripts = navbar.querySelectorAll("script");
 
-  scripts.forEach(function(oldScript){
-    const newScript = document.createElement("script");
+        scripts.forEach(function(oldScript){
+          const newScript = document.createElement("script");
 
-    if(oldScript.src){
-      newScript.src = oldScript.src;
-    } else {
-      newScript.textContent = oldScript.textContent;
-    }
+          if(oldScript.src){
+            newScript.src = oldScript.src;
+          } else {
+            newScript.textContent = oldScript.textContent;
+          }
 
-    document.body.appendChild(newScript);
-    oldScript.remove();
-  });
-});
-</script>
+          document.body.appendChild(newScript);
+          oldScript.remove();
+        });
+      });
+  </script>
+
   <main class="container">
-    <a class="back-link" href="./makale-00-katmanli-varlik-okumasi.html">← Back to Katmanlı Varlık Okuması</a>
+
+    <a href="makale-00-katmanli-varlik-okumasi.html" class="back-link">
+      ← Katmanlı Varlık Okumasına dön
+    </a>
 
     <section class="hero">
       <div class="hero-card">
-        <h1>02 - Varlık, Yönetim Düzeni ve Doğaya Uyum</h1>
+        <span class="theory-number">02</span>
+        <h1>Varlık, Yönetim Düzeni ve Doğaya Uyum</h1>
         <p>
-          Yönetim, insanın dışarıdan kurduğu keyfi yapı değil; varlığın zaten taşıdığı
-          düzen ilkelerinin toplumsal düzeyde okunması ve uygulanmasıdır.
+          Yönetim, insanın dışarıdan kurduğu keyfî yapı değil; varlığın zaten
+          taşıdığı düzen ilkelerinin toplumsal düzeyde okunması ve
+          uygulanmasıdır.
         </p>
         <p>
           Bu nedenle sağlıklı yönetim, doğaya karşı değil; doğadaki taşıyıcılık,
@@ -51,186 +58,195 @@ fetch("components/navbar.html")
       </div>
     </section>
 
-    <section class="theory-index">
-
-      <div class="theory-link-card">
-        <h2>1. Yönetim Sorununun Kaynağı</h2>
-        <p>
-          Modern dünyada yönetim çoğu zaman güç merkezileştirme, kaynak kontrolü
-          ve davranış yönlendirme tekniği olarak anlaşılır.
-        </p>
-        <p>
-          Oysa Rasterast yaklaşımında yönetim, önce varlığın nasıl düzenlendiğini
-          anlamadan kurulamaz. Varlığı yanlış okuyan yönetim, toplumu da yanlış düzenler.
-        </p>
-      </div>
-
-      <div class="theory-link-card">
-        <h2>2. Varlık Rastgele Değildir</h2>
-        <p>
-          Doğa, rastgele yığılmış parçalar toplamı değildir.
-          Her yapı belli bir sınır, taşıyıcılık ve denge içinde işler.
-        </p>
-        <p>
-          Tohum gövdeyi taşır, gövde dalı, dal meyveyi; her evre kendinden sonrakini
-          mümkün kılar ama onun yerine geçmez.
-        </p>
-        <p>
-          Bu düzen, yönetimin de keyfi değil; evresel ve taşıyıcı olması gerektiğini gösterir.
-        </p>
-      </div>
-
-      <div class="theory-link-card">
-        <h2>3. Yönetim = Taşıma Sanatı</h2>
-        <p>
-          Rasterast çizgisinde yönetim baskı uygulama değil, taşıma işidir.
-        </p>
-        <p>
-          Sağlıklı yönetim:
-        </p>
-        <ul>
-          <li>yükü dağıtır,</li>
-          <li>işlevi yerli yerine koyar,</li>
-          <li>merkezi çevreyi boğmadan kurar,</li>
-          <li>gelişmeyi zeminsiz bırakmaz.</li>
-        </ul>
-        <p>
-          Yönetemeyen sistem, aslında taşıyamayan sistemdir.
-        </p>
-      </div>
-
-      <div class="theory-link-card">
-        <h2>4. Doğaya Uyum İlkesi</h2>
-        <p>
-          Doğaya uyum, pasif taklit değildir.
-          Doğadaki düzen ilkelerini anlayıp toplumsal düzene doğru çevirebilmektir.
-        </p>
-        <p>
-          Doğada hiçbir süreç sınırsız değildir; hiçbir büyüme zeminsiz ilerlemez;
-          hiçbir merkez taşıyıcısından bağımsız kalmaz.
-        </p>
-        <p>
-          Bu yüzden toplumda da sınır, oran ve denge olmadan yönetim kurulamaz.
-        </p>
-      </div>
-
-      <div class="theory-link-card">
-        <h2>5. Merkez ve Çevre İlişkisi</h2>
-        <p>
-          Her düzen bir merkeze ihtiyaç duyar; fakat merkez çevreyi yutarsa düzen bozulur.
-        </p>
-        <p>
-          Sağlıklı ilişkide:
-        </p>
-        <ul>
-          <li>merkez yön verir,</li>
-          <li>çevre taşır,</li>
-          <li>ikisi birlikte denge üretir.</li>
-        </ul>
-        <p>
-          Bu ilke hem doğada hem toplumda geçerlidir.
-        </p>
-      </div>
-
-      <div class="theory-link-card">
-        <h2>6. Aşırı Müdahale Sorunu</h2>
-        <p>
-          Doğadaki sistemler sürekli dış müdahaleyle ayakta durmaz;
-          iç denge sayesinde sürer.
-        </p>
-        <p>
-          Toplum da böyledir. Yönetim her boşluğu doğrudan doldurmaya kalktığında,
-          taşıyıcı yapılar zayıflar ve toplum kendi işlevini kaybeder.
-        </p>
-        <p>
-          Bu nedenle iyi yönetim her şeyi yapan değil; her şeyi yerli yerine oturtandır.
-        </p>
-      </div>
-
-      <div class="theory-link-card">
-        <h2>7. Hiyerarşi ve Katman Meselesi</h2>
-        <p>
-          Rasterast yaklaşımında hiyerarşi tahakküm anlamına gelmez.
-          Her katmanın bir görevi ve bir sınırı vardır.
-        </p>
-        <p>
-          Üst katman alt katmanı yok etmez; düzenler ve taşır.
-          Yönetim de topluma yukarıdan çöken yabancı güç değil;
-          toplumun işlevsel katmanlarını dengede tutan üst düzen olmalıdır.
-        </p>
-      </div>
-
-      <div class="theory-link-card">
-        <h2>8. Yönetim ve Ahlak</h2>
-        <p>
-          Doğaya uyum yalnız teknik mesele değildir; ahlaki boyut da taşır.
-          Çünkü taşıyamadığı yükü alan, yerini aşan ya da dengeyi bozan yapı
-          sonunda kendisini de çevresini de çökertir.
-        </p>
-        <p>
-          Bu nedenle yönetim, doğru yerleştirme kadar doğru sınır öğretimidir.
-        </p>
-      </div>
-
-      <div class="theory-link-card">
-        <h2>9. Toplumun Organik Yapısı</h2>
-        <p>
-          Toplum mekanik bir makine değil; organik bir taşıyıcı yapıdır.
-          Her birey, her kurum ve her işlev kendi yerine oturduğunda toplum canlı kalır.
-        </p>
-        <p>
-          Bir unsurun aşırı büyümesi, diğerlerinin işlevini bastırması ya da merkezsiz
-          dağılma; doğaya aykırı olduğu için toplumsal çöküş de üretir.
-        </p>
-      </div>
-
-      <div class="theory-link-card">
-        <h2>10. Uyumsuz Yönetimin Sonucu</h2>
-        <p>
-          Doğaya uyumsuz yönetim üç sonuç üretir:
-        </p>
-        <ul>
-          <li>merkez sertleşir,</li>
-          <li>çevre işlevsizleşir,</li>
-          <li>toplum taşıyıcılığını kaybeder.</li>
-        </ul>
-        <p>
-          Böyle bir yapı kısa süre güçlü görünebilir; fakat genişleyemez ve kendini yenileyemez.
-        </p>
-      </div>
-
-      <div class="theory-link-card">
-        <h2>11. Rasterast Sonucu</h2>
-        <p>
-          Varlık, Yönetim Düzeni ve Doğaya Uyum başlığı altında çıkan temel sonuç şudur:
-          toplumun düzeni, doğadaki taşıyıcı ilkelere aykırı kurulamaz.
-        </p>
-        <p>
-          Yönetim başarılı olacaksa önce varlığın nasıl çalıştığını okumalı;
-          sonra bu düzeni zorlamadan toplumsal alana taşımalıdır.
-        </p>
-      </div>
-
-      <div class="theory-link-card">
-        <h2>12. Nihai Sonuç</h2>
-        <p>
-          Yönetim, doğaya karşı kurulan yapay kuvvet değil;
-          doğadaki düzenin toplumsal dile çevrilmiş halidir.
-        </p>
-        <p>
-          Bu yüzden doğru yönetim:
-        </p>
-        <ul>
-          <li>taşır,</li>
-          <li>sınırlar,</li>
-          <li>denge kurar,</li>
-          <li>zorlamaz,</li>
-          <li>genişlemeyi zemine bağlar.</li>
-        </ul>
-      </div>
-
+    <section class="hero-card">
+      <h2>1. Yönetim Sorunun Kaynağı</h2>
+      <p>
+        Modern dünyada yönetim çoğu zaman güç merkezileştirme, kaynak kontrolü
+        ve davranış yönlendirme tekniği olarak anlaşılır.
+      </p>
+      <p>
+        Oysa Rasterast yaklaşımında yönetim, önce varlığın nasıl düzenlendiğini
+        anlamadan kurulamaz. Varlığı yanlış okuyan yönetim, toplumu da yanlış
+        düzenler.
+      </p>
     </section>
+
+    <section class="hero-card">
+      <h2>2. Varlık Rastgele Değildir</h2>
+      <p>
+        Doğa, rastgele yığılmış parçalar toplamı değildir. Her yapı belli bir
+        sınır, taşıyıcılık ve denge içinde işler.
+      </p>
+      <p>
+        Tohum gövdeyi taşır, gövde dalı, dal meyveyi taşır; her evre kendinden
+        sonrakini mümkün kılar ama onun yerine geçmez.
+      </p>
+      <p>
+        Bu düzen, yönetimin de keyfî değil; evresel ve taşıyıcı olması
+        gerektiğini gösterir.
+      </p>
+    </section>
+
+    <section class="hero-card">
+      <h2>3. Yönetim = Taşıma Sanatı</h2>
+      <p>
+        Rasterast çizgisinde yönetim baskı uygulama değil, taşıma işidir.
+      </p>
+      <p>
+        Sağlıklı yönetim:
+      </p>
+      <ul>
+        <li>Yükü dağıtır.</li>
+        <li>İşlevi yerli yerine koyar.</li>
+        <li>Merkez ile çevreyi dengede tutar.</li>
+        <li>Gelişmeyi zeminsiz bırakmaz.</li>
+      </ul>
+      <p>
+        Yönetemeyen sistem, aslında taşıyamayan sistemdir.
+      </p>
+    </section>
+
+    <section class="hero-card">
+      <h2>4. Doğaya Uyum İlkesi</h2>
+      <p>
+        Doğaya uyum, pasif taklit değildir. Doğadaki düzen ilkelerini anlayıp
+        toplumsal düzene doğru çevirebilmektir.
+      </p>
+      <p>
+        Doğada hiçbir süreç sınırsız değildir; hiçbir büyüme zeminsiz
+        ilerlemez; hiçbir merkez taşıyıcısından bağımsız kalmaz.
+      </p>
+      <p>
+        Bu yüzden toplumda da sınır, oran ve denge olmadan yönetim kurulamaz.
+      </p>
+    </section>
+
+    <section class="hero-card">
+      <h2>5. Merkez ve Çevre İlişkisi</h2>
+      <p>
+        Her düzen bir merkeze ihtiyaç duyar; fakat merkez çevreyi yutarsa düzen
+        bozulur.
+      </p>
+      <p>
+        Sağlıklı ilişkide:
+      </p>
+      <ul>
+        <li>Merkez yön verir.</li>
+        <li>Çevre taşır.</li>
+        <li>İkisi birlikte denge üretir.</li>
+      </ul>
+      <p>
+        Merkez çevreyi yok ederse sertleşme, çevre merkezden koparsa dağılma
+        ortaya çıkar.
+      </p>
+    </section>
+
+    <section class="hero-card">
+      <h2>6. Aşırı Müdahale Sorunu</h2>
+      <p>
+        Doğadaki sistemler sürekli dış müdahaleyle ayakta durmaz; iç denge
+        sayesinde sürer.
+      </p>
+      <p>
+        Toplum da böyledir. Yönetim her boşluğu doğrudan doldurmaya kalktığında,
+        taşıyıcı yapılar zayıflar ve toplum kendi işlevini kaybeder.
+      </p>
+      <p>
+        Bu nedenle iyi yönetim her şeyi yapan değil; her şeyi yerli yerine
+        oturtandır.
+      </p>
+    </section>
+
+    <section class="hero-card">
+      <h2>7. Hiyerarşi ve Katman Meselesi</h2>
+      <p>
+        Rasterast yaklaşımında hiyerarşi tahakküm anlamına gelmez. Her katmanın
+        bir görevi ve bir sınırı vardır.
+      </p>
+      <p>
+        Üst katman alt katmanı yok etmez; düzenler ve taşır. Yönetim de topluma
+        yukarıdan çöken yabancı güç değil; toplumun işlevsel katmanlarını
+        dengede tutan üst düzen olmalıdır.
+      </p>
+    </section>
+
+    <section class="hero-card">
+      <h2>8. Yönetim ve Ahlak</h2>
+      <p>
+        Doğaya uyum yalnız teknik mesele değildir; ahlaki boyut da taşır.
+        Çünkü taşıyamadığı yükü alan, yerini aşan ya da dengeyi bozan yapı
+        sonunda kendisini de çevresini de çökertir.
+      </p>
+      <p>
+        Bu nedenle yönetim, doğru yerleştirme kadar doğru sınır öğretimidir.
+      </p>
+    </section>
+
+    <section class="hero-card">
+      <h2>9. Toplumun Organik Yapısı</h2>
+      <p>
+        Toplum mekanik bir makine değil; organik bir taşıyıcı yapıdır. Her
+        birey, her kurum ve her işlev kendi yerine oturduğunda toplum canlı
+        kalır.
+      </p>
+      <p>
+        Bir unsurun aşırı büyümesi, diğerlerinin işlevini bastırması ya da
+        merkezsiz dağılma, doğaya aykırı olduğu için toplumsal çöküş üretir.
+      </p>
+    </section>
+
+    <section class="hero-card">
+      <h2>10. Uyumsuz Yönetimin Sonucu</h2>
+      <p>
+        Doğaya uyumsuz yönetim üç sonuç üretir:
+      </p>
+      <ul>
+        <li>Merkez sertleşir.</li>
+        <li>Çevre işlevsizleşir.</li>
+        <li>Toplum taşıyıcılığını kaybeder.</li>
+      </ul>
+      <p>
+        Böyle bir yapı kısa süre güçlü görünebilir; fakat genişleyemez ve
+        kendini yenileyemez.
+      </p>
+    </section>
+
+    <section class="hero-card">
+      <h2>11. Rasterast Sonucu</h2>
+      <p>
+        Varlık, Yönetim Düzeni ve Doğaya Uyum başlığı altında çıkan temel sonuç
+        şudur: toplum düzeni, doğadaki taşıyıcı ilkelere aykırı kurulamaz.
+      </p>
+      <p>
+        Yönetim başarılı olacaksa önce varlığın nasıl çalıştığını okumalı;
+        sonra bu düzeni zorlamadan toplumsal alana taşımalıdır.
+      </p>
+    </section>
+
+    <section class="hero-card">
+      <h2>12. Nihai Sonuç</h2>
+      <p>
+        Yönetim, doğaya karşı kurulan yapay kuvvet değil; doğadaki düzenin
+        toplumsal dile çevrilmiş halidir.
+      </p>
+      <p>
+        Bu yüzden doğru yönetim:
+      </p>
+      <ul>
+        <li>Taşır.</li>
+        <li>Sınırlar.</li>
+        <li>Denge kurar.</li>
+        <li>Varlığa uyum sağlar.</li>
+      </ul>
+    </section>
+
   </main>
+
+  <footer style="position:static !important; display:block !important; margin-top:24px !important;">
+    <div class="container">
+      Zanistarast AI Interface
+    </div>
+  </footer>
+
 </body>
 </html>
-
