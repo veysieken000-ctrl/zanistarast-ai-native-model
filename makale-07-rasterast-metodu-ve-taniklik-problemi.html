@@ -3,198 +3,186 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>07 - Rasterast Metodu ve Tanıklık Problemi</title>
+  <title>07 — Rasterast Metodu ve Tanıklık Problemi</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
   <div id="navbar"></div>
 
-<script>
-fetch("components/navbar.html")
-.then(function(res){
-  return res.text();
-})
-.then(function(data){
-  const navbar = document.getElementById("navbar");
-  navbar.innerHTML = data;
+  <script>
+    fetch("components/navbar.html")
+      .then(function(res){
+        return res.text();
+      })
+      .then(function(data){
+        const navbar = document.getElementById("navbar");
+        navbar.innerHTML = data;
 
-  const scripts = navbar.querySelectorAll("script");
+        const scripts = navbar.querySelectorAll("script");
 
-  scripts.forEach(function(oldScript){
-    const newScript = document.createElement("script");
+        scripts.forEach(function(oldScript){
+          const newScript = document.createElement("script");
 
-    if(oldScript.src){
-      newScript.src = oldScript.src;
-    } else {
-      newScript.textContent = oldScript.textContent;
-    }
+          if(oldScript.src){
+            newScript.src = oldScript.src;
+          } else {
+            newScript.textContent = oldScript.textContent;
+          }
 
-    document.body.appendChild(newScript);
-    oldScript.remove();
-  });
-});
-</script>
+          document.body.appendChild(newScript);
+          oldScript.remove();
+        });
+      });
+  </script>
+
   <main class="container">
-    <a class="back-link" href="./makale-00-katmanli-varlik-okumasi.html">← Back to Katmanlı Varlık Okuması</a>
+
+    <a href="makale-00-katmanli-varlik-okumasi.html" class="back-link">
+      ← Katmanlı Varlık Okumasına dön
+    </a>
 
     <section class="hero">
       <div class="hero-card">
-        <h1>07 - Rasterast Metodu ve Tanıklık Problemi</h1>
+        <span class="theory-number">07</span>
+        <h1>Rasterast Metodu ve Tanıklık Problemi</h1>
         <p>
-          Yöntem, yalnız bilgi üretme tekniği değildir. Bir yöntem, taşıdığı bilgiyi
-          yaşanabilir, sorumluluk üretici ve gerçeklikle temas halinde tutabildiği
-          ölçüde sahih hale gelir.
+          Yöntem, yalnız bilgi üretme tekniği değildir. Bir yöntem, taşıdığı
+          bilgiyi yaşanabilir, sorumluluk üretici ve gerçeklikle temas halinde
+          tutabildiği ölçüde sahih hale gelir.
         </p>
         <p>
-          Bu nedenle Rasterast metodunun en kritik sınavı, doğruluk iddiası değil;
-          tanıklık kapasitesidir.
+          Bu nedenle Rasterast metodunun en kritik sınavı, doğruluk iddiası
+          değil; tanıklık kapasitesidir.
         </p>
       </div>
     </section>
 
     <section class="hero-card">
-  <h2>1. Yöntem Sorunu</h2>
+      <h2>1. Yöntem Sorunu</h2>
+      <p>
+        Modern düşüncede yöntem çoğu zaman veri toplama, sınıflandırma ve
+        yorumlama tekniği olarak anlaşılır.
+      </p>
+      <p>
+        Oysa yöntem yalnızca “nasıl biliriz?” sorusuna değil, “bildiğimizi
+        nasıl taşırız?” sorusuna da cevap vermek zorundadır.
+      </p>
+      <p>
+        Bu ikinci soru ihmal edildiğinde yöntem güçlenir ama hakikat zayıflar.
+      </p>
+    </section>
 
-  <p>
-    Modern düşüncede yöntem çoğu zaman veri toplama, sınıflandırma ve yorumlama
-    tekniği olarak anlaşılır.
-  </p>
+    <section class="hero-card">
+      <h2>2. Rasterast Metodunun Farkı</h2>
+      <p>
+        Rasterast, bilgiyi açıklama malzemesi gibi kullanmaz. Bilgiyi, insanın
+        üzerinde yük oluşturan ve onu sorumlu kılan bir alan olarak görür.
+      </p>
+      <p>
+        Bu yüzden yöntem:
+      </p>
+      <ul>
+        <li>Hızlı yorum üretmez.</li>
+        <li>Sorumsuz bağ kurmaz.</li>
+        <li>Taşıyamayacağı hükmü vermez.</li>
+      </ul>
+    </section>
 
-  <p>
-    Oysa yöntem yalnızca “nasıl biliriz?” sorusuna değil,
-    “bildiğimizi nasıl taşırız?” sorusuna da cevap vermek zorundadır.
-  </p>
+    <section class="hero-card">
+      <h2>3. Tanıklık Nedir?</h2>
+      <p>
+        Tanıklık, bir bilgiyi görmekten ibaret değildir; onun sonuçlarını
+        taşımaktır.
+      </p>
+      <p>
+        Bilgi; sorumluluk doğurmuyorsa, sınır üretmiyorsa ve hayatla temas
+        etmiyorsa henüz tanıklık düzeyine ulaşmamıştır.
+      </p>
+    </section>
 
-  <p>
-    Bu ikinci soru ihmal edildiğinde yöntem güçlenir ama hakikat zayıflar.
-  </p>
-</section>
+    <section class="hero-card">
+      <h2>4. Teorik Bilgi ile Taşınan Bilgi</h2>
+      <p>
+        Her doğru bilgi taşınan bilgi değildir.
+      </p>
+      <p>
+        Teorik bilgi, zihinde kalabilir; taşınan bilgi ise kişinin duruşuna,
+        davranışına, sözüne ve kararlarına etkiler.
+      </p>
+      <p>
+        Rasterast burada bilgiyi ahlaki sonuçlarından ayırmaz.
+      </p>
+    </section>
 
-<section class="hero-card">
-  <h2>2. Rasterast Metodunun Farkı</h2>
+    <section class="hero-card">
+      <h2>5. Tanıklık Problemi Neden Çıkar?</h2>
+      <p>
+        İnsan çoğu zaman bildiği şeyin yükünü taşımak istemez.
+      </p>
+      <p>
+        Bilgi arttıkça sorumluluk artar; sorumluluk arttıkça insan ya hakikate
+        yaklaşır ya da bilgiden kaçmaya başlar.
+      </p>
+      <p>
+        Yani mesele bilmemek değil, bildiğini taşımaktır.
+      </p>
+    </section>
 
-  <p>
-    Rasterast, bilgiyi açıklama malzemesi gibi kullanmaz.
-    Bilgiyi, insanın üzerinde yük oluşturan ve onu sorumlu kılan bir alan olarak görür.
-  </p>
+    <section class="hero-card">
+      <h2>6. Yöntemin İki İmtihanı</h2>
+      <p>
+        Rasterast metodunda yöntem iki temel imtihandan geçer:
+      </p>
+      <ul>
+        <li>Bilgiyi doğru okumak.</li>
+        <li>Bilgiyi doğru taşımak.</li>
+      </ul>
+      <p>
+        Birinci imtihan zihinsel açıklığı, ikinci imtihan ahlaki sorumluluğu
+        gerektirir.
+      </p>
+    </section>
 
-  <p>Bu yüzden yöntem:</p>
+    <section class="hero-card">
+      <h2>7. Rasterast’ın Sert İlkesi</h2>
+      <p>
+        Rasterast metodunun en sert ilkesi şudur:
+      </p>
+      <p>
+        <strong>Taşınmayan bilgi, tamamlanmış bilgi değildir.</strong>
+      </p>
+      <p>
+        Bu ilke, yöntemi kuru akıl yürütmeden ayırır ve onu ahlaki disiplinle
+        bir çizgiye taşır.
+      </p>
+    </section>
 
-  <ul>
-    <li>hızlı yorum üretmez,</li>
-    <li>sorumsuz bağ kurmaz,</li>
-    <li>taşıyamayacağı hükmü vermez.</li>
-  </ul>
-</section>
-
-<section class="hero-card">
-  <h2>3. Tanıklık Nedir?</h2>
-
-  <p>
-    Tanıklık, bir bilgiyi yalnızca bilmek değil; onun sonuçlarını taşımaktır.
-  </p>
-
-  <p>Bilgi:</p>
-
-  <ul>
-    <li>davranış üretmiyorsa,</li>
-    <li>sorumluluk doğurmuyorsa,</li>
-    <li>hayatla temas etmiyorsa,</li>
-  </ul>
-
-  <p>
-    henüz tanıklık düzeyine ulaşmamıştır.
-  </p>
-</section>
-
-<section class="hero-card">
-  <h2>4. Teorik Bilgi ile Taşınan Bilgi</h2>
-
-  <p>
-    Her doğru bilgi taşınan bilgi değildir.
-  </p>
-
-  <p>
-    Teorik bilgi, zihinde kalabilir; taşınan bilgi ise kişinin duruşuna,
-    davranışına, sözüne ve kararlarına etkiler.
-  </p>
-
-  <p>
-    Rasterast burada bilgiyi ahlaki sonuçlarından ayırmaz.
-  </p>
-</section>
-
-<section class="hero-card">
-  <h2>5. Tanıklık Problemi Neden Çıkar?</h2>
-
-  <p>
-    İnsan çoğu zaman bildiği şeyin yükünü taşımak istemez.
-  </p>
-
-  <p>
-    Bilgi arttıkça sorumluluk artar; sorumluluk arttıkça insan ya hakikate yaklaşır
-    ya da bilgiden kaçmaya başlar.
-  </p>
-
-  <p>
-    Yani mesele bilmemek değil, bildiğini taşımamaktır.
-  </p>
-</section>
-
-<section class="hero-card">
-  <h2>6. Yöntemin İki İmtihanı</h2>
-
-  <p>
-    Rasterast metodunda yöntem iki temel imtihandan geçer:
-  </p>
-
-  <ul>
-    <li>bilgiyi doğru okumak,</li>
-    <li>bilgiyi doğru taşımak.</li>
-  </ul>
-
-  <p>
-    Birinci imtihan zihinsel açıklığı, ikinci imtihan ahlaki sorumluluğu gerektirir.
-  </p>
-</section>
-
-<section class="hero-card">
-  <h2>7. Rasterast’ın Sert İlkesi</h2>
-
-  <p>
-    Rasterast metodunun en sert ilkesi şudur:
-  </p>
-
-  <p>
-    <strong>Taşınmayan bilgi, tamamlanmış bilgi değildir.</strong>
-  </p>
-
-  <p>
-    Bu ilke, yöntemi kuru akıl yürütmeden ayırır ve onu ahlaki-disipliner
-    bir çizgiye taşır.
-  </p>
-</section>
-
-<section class="hero-card">
-  <h2>8. Nihai Sonuç</h2>
-
-  <p>
-    Rasterast Metodu ve Tanıklık Problemi başlığı altında çıkan temel sonuç şudur:
-  </p>
-
-  <p>
-    Yöntem yalnızca doğruya yaklaşma yolu değildir; doğruyu taşıma terbiyesidir.
-    Tanıklık üretmeyen yöntem, güçlü görünebilir; ama düzen kuramaz.
-  </p>
-
-  <p>
-    Bu nedenle tanıklık, yöntemin dış sınavı değil; iç çekirdeğidir.
-  </p>
-</section>
-
-
+    <section class="hero-card">
+      <h2>8. Nihai Sonuç</h2>
+      <p>
+        Rasterast Metodu ve Tanıklık Problemi başlığı altında çıkan temel sonuç
+        şudur:
+      </p>
+      <p>
+        Yöntem yalnızca doğruya yaklaşma yolu değildir; doğruyu taşıma
+        terbiyesidir.
+      </p>
+      <p>
+        Tanıklık üretmeyen yöntem güçlü görünebilir; ama düzen kuramaz.
+      </p>
+      <p>
+        Bu nedenle tanıklık, yöntemin dış sınavı değil; iç çekirdeğidir.
+      </p>
+    </section>
 
   </main>
+
+  <footer style="position:static !important; display:block !important; margin-top:24px !important;">
+    <div class="container">
+      Zanistarast AI Interface
+    </div>
+  </footer>
+
 </body>
 </html>
-
