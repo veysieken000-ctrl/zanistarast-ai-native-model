@@ -3,245 +3,248 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>05 - Meclisler ve Organik Toplum</title>
+  <title>05 — Meclisler ve Organik Toplum</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
   <div id="navbar"></div>
 
-<script>
-fetch("components/navbar.html")
-.then(function(res){
-  return res.text();
-})
-.then(function(data){
-  const navbar = document.getElementById("navbar");
-  navbar.innerHTML = data;
+  <script>
+    fetch("components/navbar.html")
+      .then(function(res){
+        return res.text();
+      })
+      .then(function(data){
+        const navbar = document.getElementById("navbar");
+        navbar.innerHTML = data;
 
-  const scripts = navbar.querySelectorAll("script");
+        const scripts = navbar.querySelectorAll("script");
 
-  scripts.forEach(function(oldScript){
-    const newScript = document.createElement("script");
+        scripts.forEach(function(oldScript){
+          const newScript = document.createElement("script");
 
-    if(oldScript.src){
-      newScript.src = oldScript.src;
-    } else {
-      newScript.textContent = oldScript.textContent;
-    }
+          if(oldScript.src){
+            newScript.src = oldScript.src;
+          } else {
+            newScript.textContent = oldScript.textContent;
+          }
 
-    document.body.appendChild(newScript);
-    oldScript.remove();
-  });
-});
-</script>
+          document.body.appendChild(newScript);
+          oldScript.remove();
+        });
+      });
+  </script>
+
   <main class="container">
-    <a class="back-link" href="./makale-00-katmanli-varlik-okumasi.html">← Back to Katmanlı Varlık Okuması</a>
+
+    <a href="makale-00-katmanli-varlik-okumasi.html" class="back-link">
+      ← Katmanlı Varlık Okumasına dön
+    </a>
 
     <section class="hero">
       <div class="hero-card">
-        <h1>05 - Meclisler ve Organik Toplum</h1>
+        <span class="theory-number">05</span>
+        <h1>Meclisler ve Organik Toplum</h1>
         <p>
           Meclis, yalnız karar alma organı değil; toplumsal aklın dağıtılmış,
           dengeli ve işlevsel biçimde çalıştığı kurumsal alandır.
         </p>
         <p>
-          Organik toplum ise bireylerin rastgele toplamı değil; farklı işlevlerin
+          Organik toplum ise bireyleri rastgele toplam değil, farklı işlevlerin
           birbirini taşıdığı, sınırladığı ve tamamladığı canlı bir düzendir.
         </p>
       </div>
     </section>
 
-    <section class="theory-index">
-
-      <div class="theory-link-card">
-        <h2>1. Mekanik Toplum ile Organik Toplum Ayrımı</h2>
-        <p>
-          Mekanik toplumda bireyler yan yana gelir ama birlikte işlemez.
-          Organik toplumda ise her unsur, bütüne katkı veren belirli bir işleve sahiptir.
-        </p>
-        <p>
-          Bu nedenle organik toplum:
-        </p>
-        <ul>
-          <li>tek tipleşme değil,</li>
-          <li>rastgele çoğulluk da değil,</li>
-          <li>işlevsel bütünlüktür.</li>
-        </ul>
-      </div>
-
-      <div class="theory-link-card">
-        <h2>2. Meclis Neden Gereklidir?</h2>
-        <p>
-          Tek kişinin aklı toplumu taşıyamaz.
-          Toplum büyüdükçe bilgi dağılır, ihtiyaçlar çeşitlenir, yük artar.
-        </p>
-        <p>
-          Bu yüzden meclis, yalnız temsil kurumu değil; dağılmış bilgiyi toplayan,
-          işleyen ve ortak hükme dönüştüren taşıyıcı yapı olarak ortaya çıkar.
-        </p>
-      </div>
-
-      <div class="theory-link-card">
-        <h2>3. Meclis = Toplumsal Sinir Sistemi</h2>
-        <p>
-          Organizmada sinir sistemi nasıl farklı bölgelerden gelen veriyi merkeze taşır
-          ve tepki üretirse, toplumda da meclis benzer işlev görür.
-        </p>
-        <p>
-          Meclis:
-        </p>
-        <ul>
-          <li>bilgiyi toplar,</li>
-          <li>farklı sesleri işler,</li>
-          <li>hüküm için zemin kurar.</li>
-        </ul>
-        <p>
-          Bu yüzden meclis, yalnız siyasal alan değil; toplumsal koordinasyon organıdır.
-        </p>
-      </div>
-
-      <div class="theory-link-card">
-        <h2>4. Söz Çoğaltma ile Hüküm Üretme Farkı</h2>
-        <p>
-          Her konuşma meclis üretmez.
-          Sözün çoğalması ile hükmün oluşması aynı şey değildir.
-        </p>
-        <p>
-          Sağlıklı meclis:
-        </p>
-        <ul>
-          <li>rastgele konuşmayı değil,</li>
-          <li>yerli yerinde sözü,</li>
-          <li>sınır bilen tartışmayı,</li>
-          <li>ortak hükme yönelen aklı</li>
-        </ul>
-        <p>
-          üretir.
-        </p>
-      </div>
-
-      <div class="theory-link-card">
-        <h2>5. Organik Toplumda Farklılık</h2>
-        <p>
-          Organik toplum farkı tehdit olarak değil, dayanıklılık kaynağı olarak görür.
-        </p>
-        <p>
-          Nasıl bir bedende kalp, akciğer ve sinir sistemi aynı işlevi yapmazsa;
-          toplumda da herkes aynı rolü üstlenmez.
-        </p>
-        <p>
-          Düzen, eşitlemeyle değil; işlevleri yerli yerine koymakla kurulur.
-        </p>
-      </div>
-
-      <div class="theory-link-card">
-        <h2>6. Meclisin Ahlaki Niteliği</h2>
-        <p>
-          Meclis yalnız teknik bir kurum değildir.
-          Ahlaki niteliği olmayan meclis, çoğunluk gösterisine ya da çıkar pazarlığına dönüşür.
-        </p>
-        <p>
-          Bu nedenle meclis için şu üç unsur gerekir:
-        </p>
-        <ul>
-          <li>sorumluluk,</li>
-          <li>sınır,</li>
-          <li>ortak iyiyi gözetme iradesi.</li>
-        </ul>
-      </div>
-
-      <div class="theory-link-card">
-        <h2>7. Merkez ve Dağıtılmış Akıl Dengesi</h2>
-        <p>
-          Organik toplum merkezsiz yaşayamaz; fakat yalnız merkezle de ayakta kalamaz.
-        </p>
-        <p>
-          Meclis burada denge kurar:
-        </p>
-        <ul>
-          <li>merkez yön verir,</li>
-          <li>meclis geri besler,</li>
-          <li>çevre taşır ve genişletir.</li>
-        </ul>
-        <p>
-          Bu ilişki koparsa ya merkez sertleşir ya da toplum dağılır.
-        </p>
-      </div>
-
-      <div class="theory-link-card">
-        <h2>8. Temsil Sorunu</h2>
-        <p>
-          Meclis temsile dayanabilir; fakat temsil tek başına yeterli değildir.
-        </p>
-        <p>
-          Birini seçmek, onun gerçekten taşıyıcı olduğu anlamına gelmez.
-          Organik toplumda asıl mesele koltuk değil, yük taşıma kapasitesidir.
-        </p>
-        <p>
-          Bu yüzden meclis üyeliği statü değil, işlevdir.
-        </p>
-      </div>
-
-      <div class="theory-link-card">
-        <h2>9. Karar Üretiminin Doğal Sınırı</h2>
-        <p>
-          Her konu merkezden çözülemez, her detay meclise taşınamaz.
-        </p>
-        <p>
-          Doğru sistemde her düzey, kendi meselesini kendi ölçeğinde işler;
-          yalnızca taşıyamadığı şeyi üst düzeye aktarır.
-        </p>
-        <p>
-          Bu ilke olmadan meclis boğulur, toplum felç olur.
-        </p>
-      </div>
-
-      <div class="theory-link-card">
-        <h2>10. Meclisin Çöküşü</h2>
-        <p>
-          Meclis şu durumlarda işlevini kaybeder:
-        </p>
-        <ul>
-          <li>gösteriye dönüşürse,</li>
-          <li>ahlaktan koparsa,</li>
-          <li>temsili işlevin önüne geçirirse,</li>
-          <li>hüküm yerine pozisyon üretirse.</li>
-        </ul>
-        <p>
-          Böyle bir durumda toplum konuşur ama karar taşıyamaz.
-        </p>
-      </div>
-
-      <div class="theory-link-card">
-        <h2>11. Organik Toplumun Sonucu</h2>
-        <p>
-          Organik toplum, bireyin kaybolduğu yer değil; doğru yerleştiği alandır.
-        </p>
-        <p>
-          Meclis ise bu yerleşimin konuşulduğu değil, işlendiği ve hükme bağlandığı üst düğümdür.
-        </p>
-        <p>
-          Bu yüzden sağlıklı toplum, güçlü sloganlarla değil; güçlü işlev düzeniyle kurulur.
-        </p>
-      </div>
-
-      <div class="theory-link-card">
-        <h2>12. Nihai Sonuç</h2>
-        <p>
-          Meclisler ve Organik Toplum başlığı altında çıkan temel sonuç şudur:
-        </p>
-        <p>
-          Toplumun sağlığı, kalabalığın büyüklüğüne değil;
-          işlevlerin yerli yerine oturmasına, meclisin ahlaki ve akli taşıyıcılık
-          kapasitesine bağlıdır.
-        </p>
-        <p>
-          Böylece meclis, siyasetin dekoru olmaktan çıkar; toplumsal aklın organına dönüşür.
-        </p>
-      </div>
-
+    <section class="hero-card">
+      <h2>1. Mekanik Toplum ile Organik Toplum Ayrımı</h2>
+      <p>
+        Mekanik toplumda bireyler yan yana gelir ama birlikte işlemez.
+        Organik toplumda ise her unsur, bütüne katkı veren belirli bir işleve
+        sahiptir.
+      </p>
+      <ul>
+        <li>Tek tipleşme değildir.</li>
+        <li>Rastgele çoğulluk da değildir.</li>
+        <li>İşlevsel bütünlüktür.</li>
+      </ul>
     </section>
+
+    <section class="hero-card">
+      <h2>2. Meclis Neden Gereklidir?</h2>
+      <p>
+        Tek kişinin aklı toplumu taşıyamaz. Toplum büyüdükçe bilgi dağılır,
+        ihtiyaçlar çeşitlenir ve yük artar.
+      </p>
+      <p>
+        Bu yüzden meclis, yalnız temsil kurumu değil; dağılmış bilgiyi
+        toplayan, işleyen ve ortak hükme dönüştüren taşıyıcı yapı olarak
+        ortaya çıkar.
+      </p>
+    </section>
+
+    <section class="hero-card">
+      <h2>3. Meclis = Toplumsal Sinir Sistemi</h2>
+      <p>
+        Organizmada sinir sistemi nasıl farklı bölgelerden gelen veriyi merkeze
+        taşır ve tepki üretirse, toplumda da meclis benzer işlev görür.
+      </p>
+      <ul>
+        <li>Bilgiyi toplar.</li>
+        <li>Farklı sesleri işler.</li>
+        <li>Hüküm için zemin kurar.</li>
+      </ul>
+      <p>
+        Bu yüzden meclis yalnız siyasi alan değil, toplumsal koordinasyon
+        organıdır.
+      </p>
+    </section>
+
+    <section class="hero-card">
+      <h2>4. Söz Çoğaltma ile Hüküm Üretme Farkı</h2>
+      <p>
+        Her konuşma meclis üretmez. Sözün çoğalması ile hükmün oluşması aynı
+        şey değildir.
+      </p>
+      <p>
+        Sağlıklı meclis rastgele konuşmayı değil; yerli yerinde sözü, sınır
+        bilen tartışmayı ve ortak hükme yönelen aklı üretir.
+      </p>
+    </section>
+
+    <section class="hero-card">
+      <h2>5. Organik Toplumda Farklılık</h2>
+      <p>
+        Organik toplum farkı tehdit olarak değil, dayanıklılık kaynağı olarak
+        görür.
+      </p>
+      <p>
+        Nasıl bedende kalp, akciğer ve sinir sistemi aynı işi yapmazsa;
+        toplumda da herkes aynı rolü üstlenmez.
+      </p>
+      <p>
+        Düzen, eşitlemeyle değil; işlevleri yerli yerine koymakla kurulur.
+      </p>
+    </section>
+
+    <section class="hero-card">
+      <h2>6. Meclisin Ahlaki Niteliği</h2>
+      <p>
+        Meclis yalnız teknik bir kurum değildir. Ahlaki niteliği olmayan meclis,
+        çoğunluk gösterisine ya da çıkar pazarlığına dönüşür.
+      </p>
+      <p>
+        Bu nedenle meclis için üç unsur gerekir:
+      </p>
+      <ul>
+        <li>Sorumluluk.</li>
+        <li>Sınır.</li>
+        <li>Ortak iyiyi gözetme iradesi.</li>
+      </ul>
+    </section>
+
+    <section class="hero-card">
+      <h2>7. Merkez ve Dağıtılmış Akıl Dengesi</h2>
+      <p>
+        Organik toplum merkezsiz yaşayamaz; fakat yalnız merkezle de ayakta
+        kalamaz.
+      </p>
+      <p>
+        Meclis burada denge kurar:
+      </p>
+      <ul>
+        <li>Merkez yön verir.</li>
+        <li>Meclis geri besler.</li>
+        <li>Çevre taşır ve genişletir.</li>
+      </ul>
+      <p>
+        Bu ilişki koparsa ya merkez sertleşir ya da toplum dağılır.
+      </p>
+    </section>
+
+    <section class="hero-card">
+      <h2>8. Temsil Sorunu</h2>
+      <p>
+        Meclis temsile dayanabilir; fakat temsil tek başına yeterli değildir.
+      </p>
+      <p>
+        Birini seçmek, onun gerçekten taşıyıcı olduğu anlamına gelmez. Organik
+        toplumda asıl mesele koltuk değil, yük taşıma kapasitesidir.
+      </p>
+      <p>
+        Bu yüzden meclis üyeliği statü değil, işlevdir.
+      </p>
+    </section>
+
+    <section class="hero-card">
+      <h2>9. Karar Üretiminin Doğal Sınırı</h2>
+      <p>
+        Her konu merkezden çözülemez, her detay meclise taşınamaz.
+      </p>
+      <p>
+        Doğru sistemde her düzey, kendi meselesini kendi ölçeğinde işler;
+        yalnızca taşınamadığı şeyi üst düzeye aktarır.
+      </p>
+      <p>
+        Bu ilke olmadan meclis boğulur, toplum felç olur.
+      </p>
+    </section>
+
+    <section class="hero-card">
+      <h2>10. Meclisin Çöküşü</h2>
+      <p>
+        Meclis şu durumlarda işlevini kaybeder:
+      </p>
+      <ul>
+        <li>Gösteriye dönüşürse.</li>
+        <li>Ahlaktan koparsa.</li>
+        <li>Temsili işlevin önüne geçirirse.</li>
+        <li>Hüküm yerine pozisyon üretirse.</li>
+      </ul>
+      <p>
+        Böyle bir durumda toplum konuşur ama karar taşıyamaz.
+      </p>
+    </section>
+
+    <section class="hero-card">
+      <h2>11. Organik Toplum Sonucu</h2>
+      <p>
+        Organik toplum, bireyin kaybolduğu yer değil; doğru yerleştiği alandır.
+      </p>
+      <p>
+        Meclis ise bu yerleşimin konuşulduğu değil, işlendiği ve hükme
+        bağlandığı üst düğümdür.
+      </p>
+      <p>
+        Bu yüzden sağlıklı toplum, güçlü sloganlarla değil; güçlü işlev
+        düzeniyle kurulur.
+      </p>
+    </section>
+
+    <section class="hero-card">
+      <h2>12. Nihai Sonuç</h2>
+      <p>
+        Meclisler ve Organik Toplum başlığı altında çıkan temel sonuç şudur:
+      </p>
+      <p>
+        Toplumun sağlığı, kalabalığın büyüklüğüne değil; işlevlerin yerli
+        yerine oturmasına, meclisin ahlaki ve akli taşıyıcılık kapasitesine
+        bağlıdır.
+      </p>
+      <p>
+        Böylece meclis, siyasetin dekoru olmaktan çıkar; toplumsal aklın
+        organına dönüşür.
+      </p>
+    </section>
+
   </main>
+
+  <footer style="position:static !important; display:block !important; margin-top:24px !important;">
+    <div class="container">
+      Zanistarast AI Interface
+    </div>
+  </footer>
+
 </body>
 </html>
-
