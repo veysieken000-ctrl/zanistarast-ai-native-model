@@ -167,7 +167,7 @@ All future AI modules,
 agents,
 reasoning systems,
 and recursive architectures
-must remain compatible with the Rastaras Verification Filter.
+must remain compatible with the Rasterast Verification Filter.
 
 Constitutional compatibility is mandatory.
 
