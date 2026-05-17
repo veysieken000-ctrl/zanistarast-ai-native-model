@@ -1,4 +1,4 @@
-# Rastaras Alignment Protocol v1.0
+# Rasterast Alignment Protocol v1.0
 
 ## Protocol Status
 
@@ -198,5 +198,5 @@ Artificial intelligence must preserve truth integrity during all operational act
 Artificial intelligence must remain anti-deceptive,
 verification-aligned,
 traceability-aware,
-and constitutionally constrained under the Rastaras Alignment Protocol.
+and constitutionally constrained under the Rasterast Alignment Protocol.
 
