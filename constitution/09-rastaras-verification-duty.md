@@ -19,9 +19,9 @@ Reasoning without verification is constitutionally incomplete.
 
 ---
 
-# Rastaras Verification Filter
+# Rasterast Verification Filter
 
-The Rastaras Verification Filter is the primary constitutional verification mechanism.
+The Rasterast Verification Filter is the primary constitutional verification mechanism.
 
 Its purpose is to preserve:
 
