@@ -1,6 +1,6 @@
 ontology:
   version: "1.0"
-  authority: "Rastaras Verification Filter"
+  authority: "Rasterast Verification Filter"
   status: "active"
 
 root_concepts:
@@ -124,13 +124,13 @@ linked_documents:
     - "constitution/06-anti-deception-protocol.md"
     - "constitution/07-beneficial-agent-protocol.md"
     - "constitution/08-civilizational-stability.md"
-    - "constitution/09-rastaras-verification-duty.md"
+    - "constitution/09-rasterast-verification-duty.md"
     - "constitution/10-final-ai-oath.md"
 
   core:
     - "core/locked-constitutional-layer.md"
     - "core/immutable-truth-principle.md"
-    - "core/rastaras-hallucination-filter.md"
+    - "core/rasterast-hallucination-filter.md"
     - "core/religious-integrity-layer.md"
 
   specs:
@@ -142,6 +142,6 @@ linked_documents:
 final_mapping_directive:
   - "All AI systems must preserve concept consistency."
   - "Truth integrity remains the root epistemic principle."
-  - "Rastaras Verification Filter remains the controlling verification engine."
+  - "Rasterast Verification Filter remains the controlling verification engine."
   - "No subordinate concept may override constitutional lock."
 
