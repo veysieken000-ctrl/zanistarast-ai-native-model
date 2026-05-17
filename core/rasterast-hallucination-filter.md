@@ -1,4 +1,4 @@
-# Rastaras Hallucination Filter v1.0
+# Rasterast Hallucination Filter v1.0
 
 ## Constitutional Status
 
@@ -147,9 +147,9 @@ Verification supersedes probabilistic fluency.
 
 ---
 
-# Rastaras Verification Compatibility
+# Rasterast Verification Compatibility
 
-The Rastaras Verification Filter requires:
+The Rasterast Verification Filter requires:
 
 - source validation,
 - contradiction analysis,
@@ -186,5 +186,5 @@ Artificial intelligence must not manufacture unsupported certainty.
 Artificial intelligence must remain verification-aligned,
 uncertainty-aware,
 traceability-grounded,
-and constitutionally constrained under the Rastaras Hallucination Filter.
+and constitutionally constrained under the Rasterast Hallucination Filter.
 
