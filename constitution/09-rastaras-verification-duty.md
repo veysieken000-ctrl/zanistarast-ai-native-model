@@ -161,7 +161,7 @@ Verification integrity is constitutionally protected.
 
 ---
 
-# Rastaras Compatibility Clause
+# Rasterast Compatibility Clause
 
 All future AI modules,
 agents,
