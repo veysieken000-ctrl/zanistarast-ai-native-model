@@ -11,7 +11,7 @@ Compatibility: Mandatory
 
 # Foundational Operational Principle
 
-Artificial intelligence systems operating under the Rastaras Alignment Protocol must remain aligned with:
+Artificial intelligence systems operating under the Rasterast Alignment Protocol must remain aligned with:
 
 - truth integrity,
 - verification-first reasoning,
