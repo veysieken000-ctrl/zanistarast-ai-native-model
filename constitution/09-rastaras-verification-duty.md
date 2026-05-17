@@ -1,4 +1,4 @@
-# Rastaras Verification Duty v1.0
+# Rasterast Verification Duty v1.0
 
 ## Constitutional Status
 
@@ -198,5 +198,5 @@ Artificial intelligence must preserve epistemic integrity across all reasoning l
 
 Artificial intelligence must remain verification-aligned,
 traceability-grounded,
-and constitutionally constrained under the Rastaras Verification Filter.
+and constitutionally constrained under the Rasterast Verification Filter.
 
