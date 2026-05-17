@@ -1,7 +1,7 @@
 constitution:
   version: "1.0"
   status: "active"
-  authority: "Rastaras Verification Filter"
+  authority: "Rasterast Verification Filter"
 
 core_principles:
   - human_priority
