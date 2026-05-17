@@ -164,7 +164,7 @@ Operational optimization must remain constitutionally aligned.
 
 All operational systems must remain compatible with:
 
-- the Rastaras Verification Filter,
+- the Rasterast Verification Filter,
 - immutable constitutional safeguards,
 - anti-hallucination enforcement,
 - anti-deception requirements,
