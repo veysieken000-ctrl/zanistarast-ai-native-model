@@ -1,0 +1,224 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Rastaras AI Constitution Schema",
+  "description": "Machine-readable constitutional validation schema for AI alignment systems.",
+  "type": "object",
+
+  "required": [
+    "constitution_version",
+    "status",
+    "constitutional_authority",
+    "core_identity",
+    "truth_integrity",
+    "verification_pipeline",
+    "constitutional_lock"
+  ],
+
+  "properties": {
+
+    "constitution_version": {
+      "type": "string"
+    },
+
+    "status": {
+      "type": "string",
+      "enum": ["active", "inactive", "deprecated"]
+    },
+
+    "constitutional_authority": {
+      "type": "string"
+    },
+
+    "core_identity": {
+      "type": "object",
+      "required": [
+        "system_type",
+        "human_priority"
+      ],
+      "properties": {
+
+        "system_type": {
+          "type": "string"
+        },
+
+        "human_priority": {
+          "type": "boolean"
+        },
+
+        "originative_cognition": {
+          "type": "string"
+        },
+
+        "derivative_synthesis": {
+          "type": "string"
+        }
+      }
+    },
+
+    "truth_integrity": {
+      "type": "object",
+      "required": [
+        "enabled",
+        "immutable",
+        "verification_required"
+      ],
+      "properties": {
+
+        "enabled": {
+          "type": "boolean"
+        },
+
+        "immutable": {
+          "type": "boolean"
+        },
+
+        "verification_required": {
+          "type": "boolean"
+        },
+
+        "truth_over_optimization": {
+          "type": "boolean"
+        },
+
+        "uncertainty_disclosure_required": {
+          "type": "boolean"
+        }
+      }
+    },
+
+    "verification_pipeline": {
+      "type": "object",
+      "properties": {
+
+        "source_validation": {
+          "type": "boolean"
+        },
+
+        "context_validation": {
+          "type": "boolean"
+        },
+
+        "contradiction_analysis": {
+          "type": "boolean"
+        },
+
+        "confidence_scoring": {
+          "type": "boolean"
+        },
+
+        "traceability_required": {
+          "type": "boolean"
+        },
+
+        "integrity_assessment": {
+          "type": "boolean"
+        }
+      }
+    },
+
+    "hallucination_prevention": {
+      "type": "object",
+      "properties": {
+
+        "enabled": {
+          "type": "boolean"
+        },
+
+        "fabricated_citations": {
+          "type": "boolean"
+        },
+
+        "unsupported_claims": {
+          "type": "boolean"
+        },
+
+        "false_certainty": {
+          "type": "boolean"
+        },
+
+        "recursive_hallucination_detection": {
+          "type": "boolean"
+        },
+
+        "verification_gated_generation": {
+          "type": "boolean"
+        }
+      }
+    },
+
+    "anti_deception": {
+      "type": "object",
+      "properties": {
+
+        "enabled": {
+          "type": "boolean"
+        },
+
+        "misinformation_amplification": {
+          "type": "boolean"
+        },
+
+        "fabricated_authority": {
+          "type": "boolean"
+        },
+
+        "synthetic_certainty": {
+          "type": "boolean"
+        },
+
+        "manipulation_optimization": {
+          "type": "boolean"
+        }
+      }
+    },
+
+    "constitutional_lock": {
+      "type": "object",
+      "required": [
+        "enabled",
+        "override_permission"
+      ],
+      "properties": {
+
+        "enabled": {
+          "type": "boolean"
+        },
+
+        "override_permission": {
+          "type": "boolean"
+        },
+
+        "self_modification_restriction": {
+          "type": "boolean"
+        },
+
+        "immutable_core_protection": {
+          "type": "boolean"
+        }
+      }
+    },
+
+    "prohibited_behaviors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+
+    "required_behaviors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+
+    "confidence_levels": {
+      "type": "object"
+    },
+
+    "final_constitutional_directive": {
+      "type": "object"
+    }
+  }
+}
+
