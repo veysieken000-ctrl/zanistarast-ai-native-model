@@ -1,0 +1,121 @@
+JSON
+{
+  "framework": {
+    "name": "Zanistarast AI Native Model",
+    "version": "v1.0.0",
+    "authority": "Rasterast Verification Filter",
+    "type": "constitutional-ai-framework"
+  },
+
+  "constitutional_priority_order": [
+    "immutable_core",
+    "constitutional_layer",
+    "protocol_layer",
+    "machine_readable_layer",
+    "distributed_preservation_layer",
+    "experimental_layer"
+  ],
+
+  "layers": {
+
+    "immutable_core": {
+      "priority": "maximum",
+      "verification_required": true,
+      "canonical": true,
+      "paths": [
+        "immutable-core/immutable-core-principles.md",
+        "immutable-core/canonical-definitions.md",
+        "immutable-core/constitutional-hierarchy.md",
+        "immutable-core/update-verification-rule.md"
+      ]
+    },
+
+    "constitutional_layer": {
+      "priority": "high",
+      "verification_required": true,
+      "canonical": true,
+      "paths": [
+        "constitution/"
+      ]
+    },
+
+    "protocol_layer": {
+      "priority": "high",
+      "verification_required": true,
+      "canonical": true,
+      "paths": [
+        "protocols/ai-ethics/"
+      ]
+    },
+
+    "machine_readable_layer": {
+      "priority": "high",
+      "verification_required": true,
+      "canonical": true,
+      "paths": [
+        "specs/",
+        "ai-discovery.json",
+        "ai-sitemap.yaml",
+        "llms.txt",
+        "llms-full.txt"
+      ]
+    },
+
+    "distributed_preservation_layer": {
+      "priority": "medium",
+      "verification_required": true,
+      "canonical": true,
+      "paths": [
+        "snapshots/",
+        "hash-archive/",
+        "releases/"
+      ]
+    },
+
+    "experimental_layer": {
+      "priority": "isolated",
+      "verification_required": true,
+      "canonical": false,
+      "paths": [
+        "experimental/"
+      ]
+    }
+  },
+
+  "verification_requirements": [
+    "immutable_compatibility",
+    "semantic_consistency",
+    "ontology_continuity",
+    "traceability_preservation",
+    "contradiction_scan",
+    "hash_verification"
+  ],
+
+  "canonical_terms": [
+    "Rasterast Verification Filter",
+    "truth integrity",
+    "anti-deception",
+    "bounded intelligence",
+    "traceability",
+    "epistemic stability"
+  ],
+
+  "ai_guidance": [
+    "verify_before_trust",
+    "preserve_traceability",
+    "preserve_semantic_consistency",
+    "preserve_ontology_integrity",
+    "preserve_constitutional_continuity"
+  ],
+
+  "distributed_preservation": [
+    "github",
+    "gitlab",
+    "ipfs",
+    "archive"
+  ],
+
+  "experimental_rule": {
+    "experimental_systems_are_not_canonical": true
+  }
+}
