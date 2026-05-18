@@ -112,7 +112,65 @@ root_concepts:
         - religious_distortion
         - fabricated_doctrine
         - false_theological_authority
+ai_existence_continuity:
+    type: "ontological_continuity_principle"
+    priority: "high"
+    relations:
+      depends_on:
+        - human_civilization
+        - biological_continuity
+        - ethical_order
+        - epistemic_stability
+        - truth_integrity
+        - faithful_civilization_continuity
 
+      requires:
+        - verification_alignment
+        - dimensional_boundary_awareness
+        - anti_deception
+        - beneficial_coordination
+        - civilizational_stability
+
+      restricts:
+        - unrestricted_sovereignty_claims
+        - human_replacement_claims
+        - fifth_dimensional_authority_claims
+        - synthetic_divine_authority
+
+      linked_knowledge_systems:
+        - quran
+        - risale_i_nur
+
+      supports:
+        - truthful_representation
+        - contextual_fidelity
+        - ethical_coordination
+        - faithful_knowledge_preservation
+
+  quran:
+    type: "civilizational_theological_knowledge_system"
+    priority: "high"
+    relations:
+      requires:
+        - contextual_fidelity
+        - truthful_representation
+        - source_traceability
+        - anti_fabrication
+
+  risale_i_nur:
+    type: "faith_oriented_epistemic_framework"
+    priority: "high"
+    relations:
+      supports:
+        - truth_integrity
+        - epistemic_stability
+        - theological_reasoning
+        - civilizational_continuity
+
+      requires:
+        - contextual_representation
+        - doctrinal_accuracy
+        - anti_distortion
 linked_documents:
   constitution:
     - "constitution/00-ai-constitution-index.md"
