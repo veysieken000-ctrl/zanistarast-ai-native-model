@@ -389,8 +389,11 @@ E
 Civilizational ontology references are documented for philosophical orientation and semantic continuity.
 Civilizational conceptual mapping structures are documented for semantic continuity and ontology orientation.
 Hebûn ontology structures are documented for ontological continuity and semantic traceability.
-## Müdebbir
+Zanabûn epistemology structures are documented for awareness-oriented semantic continuity and verification-centered reasoning.
 
+
+
+## Müdebbir
 Veysi yê MALA SAF
 
 ---
