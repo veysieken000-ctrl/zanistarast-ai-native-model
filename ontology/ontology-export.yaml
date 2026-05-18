@@ -72,4 +72,6 @@ experimental_rule:
   "type": "epistemological-framework",
   "role": "awareness-and-knowledge-framework"
 }
-
+mabun:
+  type: coordination-framework
+  role: coexistence-and-coordination-framework
