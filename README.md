@@ -385,6 +385,10 @@ D
 E
 --> F[Experimental Layer]
 ```
+# Scientific vs Ontological Layers
+Civilizational ontology references are documented for philosophical orientation and semantic continuity.
+
+
 ## Müdebbir
 
 Veysi yê MALA SAF
