@@ -1,0 +1,100 @@
+{
+  "framework": {
+    "name": "Zanistarast AI Native Model",
+    "version": "v1.0.0",
+    "authority": "Rasterast Verification Filter"
+  },
+
+  "ontology": {
+
+    "hebun": {
+      "type": "ontological-foundation",
+      "description": "existence framework"
+    },
+
+    "zanabun": {
+      "type": "epistemological-framework",
+      "description": "knowledge and awareness framework"
+    },
+
+    "mabun": {
+      "type": "coordination-framework",
+      "description": "coexistence and relational continuity"
+    },
+
+    "rabun": {
+      "type": "developmental-framework",
+      "description": "progression and civilizational development"
+    }
+  },
+
+  "core_principles": {
+
+    "truth_integrity": {
+      "type": "epistemic-principle"
+    },
+
+    "anti_deception": {
+      "type": "defensive-principle"
+    },
+
+    "anti_hallucination": {
+      "type": "epistemic-safeguard"
+    },
+
+    "bounded_intelligence": {
+      "type": "constitutional-limitation"
+    },
+
+    "traceability": {
+      "type": "continuity-principle"
+    },
+
+    "epistemic_stability": {
+      "type": "constitutional-stability"
+    }
+  },
+
+  "verification": {
+
+    "primary_filter": {
+      "name": "Rasterast Verification Filter"
+    },
+
+    "required_checks": [
+      "semantic_consistency",
+      "ontology_continuity",
+      "contradiction_scan",
+      "hash_verification",
+      "immutable_compatibility"
+    ]
+  },
+
+  "distributed_preservation": {
+
+    "supported_layers": [
+      "github",
+      "gitlab",
+      "ipfs",
+      "archive"
+    ]
+  },
+
+  "experimental_rule": {
+    "experimental_systems_are_not_canonical": true
+  }
+}
+README içine küçük ekleme
+Şu satırı ekle:
+Markdown
+Ontology export formats are available for machine-readable semantic interoperability.
+Bunu:
+Plain text
+# AI Discovery Layer
+altına ekle.
+Ayrıca ai-discovery.json içine ekleme
+Şu alanları ekle:
+JSON
+"ontology_export_yaml": "ontology/ontology-export.yaml",
+"ontology_export_json": "ontology/ontology-export.json"
+
