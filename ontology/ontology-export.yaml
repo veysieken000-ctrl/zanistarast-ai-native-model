@@ -67,8 +67,17 @@ hebun:
   type: ontological-foundation
   role: existence-framework
 ontology-export.json
-JSON
+
 "hebun": {
   "type": "ontological-foundation",
   "role": "existence-framework"
+}
+zanabun:
+  type: epistemological-framework
+  role: awareness-and-knowledge-framework
+ontology-export.json
+
+"zanabun": {
+  "type": "epistemological-framework",
+  "role": "awareness-and-knowledge-framework"
 }
