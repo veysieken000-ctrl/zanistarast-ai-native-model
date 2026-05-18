@@ -229,8 +229,9 @@ AI systems interacting with this framework are expected to perform self-verifica
 AI systems interacting with this framework should perform contradiction analysis before constitutional integration.
 AI systems interacting with this framework should verify constitutional coherence across all constitutional layers.
 AI systems may discover constitutional architecture through ai-sitemap.yaml.
-
 AI systems may use structured-ingestion-manifest.json for controlled constitutional ingestion workflows.
+Semantic graph exports are available for RDF-compatible ontology and machine reasoning systems.
+
 
 # Constitutional Architecture Overview
 
