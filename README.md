@@ -391,7 +391,7 @@ Civilizational conceptual mapping structures are documented for semantic continu
 Hebûn ontology structures are documented for ontological continuity and semantic traceability.
 Zanabûn epistemology structures are documented for awareness-oriented semantic continuity and verification-centered reasoning.
 Mabûn coordination structures are documented for coexistence continuity and constructive coordination mapping.
-
+Rabûn development structures are documented for continuity-oriented cultivation and civilizational progression mapping.
 
 ## Müdebbir
 Veysi yê MALA SAF
