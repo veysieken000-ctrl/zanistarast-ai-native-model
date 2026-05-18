@@ -388,7 +388,7 @@ E
 # Scientific vs Ontological Layers
 Civilizational ontology references are documented for philosophical orientation and semantic continuity.
 Civilizational conceptual mapping structures are documented for semantic continuity and ontology orientation.
-
+Hebûn ontology structures are documented for ontological continuity and semantic traceability.
 ## Müdebbir
 
 Veysi yê MALA SAF
