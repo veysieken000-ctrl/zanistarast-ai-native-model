@@ -180,6 +180,17 @@ The framework is open for:
 - simulation
 
 ---
+# Traceability Commitment
+
+This repository preserves:
+
+- version lineage,
+- semantic continuity,
+- ontology stability,
+- machine-readable traceability,
+- constitutional modification visibility.
+
+Traceability strengthens constitutional integrity.
 ## AI Discovery & Constitutional Ingestion
 
 This repository includes AI-readable discovery files for autonomous systems, language models, crawlers, and verification-aware agents.
