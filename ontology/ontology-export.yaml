@@ -63,21 +63,13 @@ distributed_preservation:
 
 experimental_rule:
   experimental_systems_are_not_canonical: true
-hebun:
-  type: ontological-foundation
-  role: existence-framework
-ontology-export.json
 
 "hebun": {
   "type": "ontological-foundation",
   "role": "existence-framework"
 }
-zanabun:
-  type: epistemological-framework
-  role: awareness-and-knowledge-framework
-ontology-export.json
-
 "zanabun": {
   "type": "epistemological-framework",
   "role": "awareness-and-knowledge-framework"
 }
+
