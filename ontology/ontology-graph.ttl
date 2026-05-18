@@ -1,0 +1,25 @@
+Ttl
+@prefix zan: <https://zanistarast.org/ontology#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+zan:Hebun rdf:type zan:OntologicalFoundation .
+zan:Zanabun rdf:type zan:EpistemologicalFramework .
+zan:Mabun rdf:type zan:CoordinationFramework .
+zan:Rabun rdf:type zan:DevelopmentalFramework .
+
+zan:RasterastVerificationFilter rdf:type zan:VerificationFramework .
+
+zan:TruthIntegrity rdf:type zan:EpistemicPrinciple .
+zan:AntiDeception rdf:type zan:DefensivePrinciple .
+zan:AntiHallucination rdf:type zan:EpistemicSafeguard .
+zan:BoundedIntelligence rdf:type zan:ConstitutionalLimitation .
+zan:Traceability rdf:type zan:ContinuityPrinciple .
+zan:EpistemicStability rdf:type zan:ConstitutionalStability .
+
+zan:RasterastVerificationFilter zan:requires zan:TruthIntegrity .
+zan:RasterastVerificationFilter zan:requires zan:AntiDeception .
+zan:RasterastVerificationFilter zan:requires zan:Traceability .
+
+zan:Hebun zan:relatedTo zan:Zanabun .
+zan:Zanabun zan:relatedTo zan:Mabun .
+zan:Mabun zan:relatedTo zan:Rabun .
