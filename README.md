@@ -387,7 +387,7 @@ E
 ```
 # Scientific vs Ontological Layers
 Civilizational ontology references are documented for philosophical orientation and semantic continuity.
-
+Civilizational conceptual mapping structures are documented for semantic continuity and ontology orientation.
 
 ## Müdebbir
 
@@ -398,4 +398,4 @@ Veysi yê MALA SAF
 ## License
 
 Open framework — free to explore, test, and critique.
-
+Future versions may include graph-compatible semantic exports for conceptual relationship mapping.
