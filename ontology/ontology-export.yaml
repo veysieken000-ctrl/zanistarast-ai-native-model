@@ -78,3 +78,7 @@ mabun:
 rabun:
   type: developmental-framework
   role: cultivation-and-civilizational-development-framework
+
+dimensional_ontology:
+  type: layered-ontology-framework
+  role: dimensional-continuity-mapping
