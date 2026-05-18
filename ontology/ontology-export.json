@@ -84,17 +84,17 @@
     "experimental_systems_are_not_canonical": true
   }
 }
-README içine küçük ekleme
-Şu satırı ekle:
-Markdown
-Ontology export formats are available for machine-readable semantic interoperability.
-Bunu:
-Plain text
-# AI Discovery Layer
-altına ekle.
-Ayrıca ai-discovery.json içine ekleme
-Şu alanları ekle:
-JSON
+
 "ontology_export_yaml": "ontology/ontology-export.yaml",
 "ontology_export_json": "ontology/ontology-export.json"
+
+hebun:
+  type: ontological-foundation
+  role: existence-framework
+
+zanabun:
+  type: epistemological-framework
+  role: awareness-and-knowledge-framework
+
+
 
