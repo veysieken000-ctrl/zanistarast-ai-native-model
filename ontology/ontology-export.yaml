@@ -63,3 +63,12 @@ distributed_preservation:
 
 experimental_rule:
   experimental_systems_are_not_canonical: true
+hebun:
+  type: ontological-foundation
+  role: existence-framework
+ontology-export.json
+JSON
+"hebun": {
+  "type": "ontological-foundation",
+  "role": "existence-framework"
+}
