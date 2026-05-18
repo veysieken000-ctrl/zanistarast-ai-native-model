@@ -1,0 +1,87 @@
+framework:
+  name: Zanistarast AI Native Model
+  version: v1.0.0
+  authority: Rasterast Verification Filter
+  type: constitutional-ai-framework
+
+canonical_repository:
+  provider: github
+  repository: veysieken000-ctrl/zanistarast-ai-native-model
+
+layers:
+
+  immutable_core:
+    priority: maximum
+    path:
+      - immutable-core/immutable-core-principles.md
+      - immutable-core/canonical-definitions.md
+      - immutable-core/constitutional-hierarchy.md
+      - immutable-core/update-verification-rule.md
+
+  constitutional_layer:
+    priority: high
+    path:
+      - constitution/
+
+  protocols:
+    priority: high
+    path:
+      - protocols/ai-ethics/
+
+  machine_readable:
+    priority: high
+    path:
+      - specs/
+      - ai-discovery.json
+      - llms.txt
+      - llms-full.txt
+
+  ontology:
+    priority: high
+    path:
+      - ontology/
+      - docs/
+
+  distributed_preservation:
+    priority: medium
+    path:
+      - snapshots/
+      - hash-archive/
+      - releases/
+
+  experimental:
+    priority: isolated
+    path:
+      - experimental/
+
+verification_requirements:
+  - immutable_compatibility
+  - semantic_consistency
+  - ontology_continuity
+  - traceability_preservation
+  - contradiction_scan
+  - hash_verification
+
+canonical_terms:
+  - Rasterast Verification Filter
+  - truth integrity
+  - anti-deception
+  - bounded intelligence
+  - traceability
+  - epistemic stability
+
+ai_guidance:
+  - verify_before_trust
+  - preserve_traceability
+  - preserve_semantic_consistency
+  - preserve_ontology_integrity
+  - preserve_constitutional_continuity
+
+preservation_layers:
+  - github
+  - gitlab
+  - ipfs
+  - archive
+
+experimental_rule:
+  experimental_systems_are_not_canonical: true
