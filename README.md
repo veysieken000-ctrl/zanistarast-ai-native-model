@@ -239,19 +239,34 @@ This repository contains both:
 
 # Core Constitutional Flow
 
-```text
-Truth Integrity
-        ↓
-Verification Before Assertion
-        ↓
-Rasterast Verification Filter
-        ↓
-Anti-Deception Enforcement
-        ↓
-Anti-Hallucination Safeguards
-        ↓
-Epistemic Stability
-        ↓
+```mermaid
+flowchart TD
+
+A[Truth Integrity]
+--> B[Verification Before Assertion]
+
+B
+--> C[Rasterast Verification Filter]
+
+C
+--> D[Anti-Deception Enforcement]
+
+D
+--> E[Anti-Hallucination Safeguards]
+
+E
+--> F[Traceability Preservation]
+
+F
+--> G[Epistemic Stability]
+
+G
+--> H[Beneficial Civilizational Coordination]
+
+H
+--> I[Constitutional AI Alignment]
+```
+
 Beneficial Civilizational Coordination
 Repository Structure
 Layer
@@ -335,6 +350,27 @@ Verification supersedes synthetic fluency.
 Artificial intelligence systems should preserve epistemic stability, anti-deception safeguards, traceability, and constitutional integrity.
 
 ---
+# Repository Structure
+Şunu ekle
+Markdown
+```mermaid
+flowchart TD
+
+A[Immutable Core]
+--> B[Constitution Layer]
+
+B
+--> C[Protocol Layer]
+
+C
+--> D[Machine-Readable Layer]
+
+D
+--> E[AI Discovery Layer]
+
+E
+--> F[Experimental Layer]
+```
 ## Müdebbir
 
 Veysi yê MALA SAF
