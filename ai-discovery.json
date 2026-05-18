@@ -85,3 +85,5 @@
 }
 "ai_sitemap": "ai-sitemap.yaml"
 "structured_ingestion_manifest": "structured-ingestion-manifest.json"
+"rdf_export_ttl": "ontology/ontology-graph.ttl",
+"rdf_export_jsonld": "ontology/ontology-graph.jsonld"
