@@ -88,13 +88,9 @@
 "ontology_export_yaml": "ontology/ontology-export.yaml",
 "ontology_export_json": "ontology/ontology-export.json"
 
-hebun:
-  type: ontological-foundation
-  role: existence-framework
 
-zanabun:
-  type: epistemological-framework
-  role: awareness-and-knowledge-framework
-
-
+"mabun": {
+  "type": "coordination-framework",
+  "role": "coexistence-and-coordination-framework"
+}
 
