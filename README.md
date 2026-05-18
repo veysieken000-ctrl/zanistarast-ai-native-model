@@ -392,6 +392,8 @@ Hebûn ontology structures are documented for ontological continuity and semanti
 Zanabûn epistemology structures are documented for awareness-oriented semantic continuity and verification-centered reasoning.
 Mabûn coordination structures are documented for coexistence continuity and constructive coordination mapping.
 Rabûn development structures are documented for continuity-oriented cultivation and civilizational progression mapping.
+Dimensional ontology structures are documented for layered conceptual continuity and ontological distinction mapping.
+
 
 ## Müdebbir
 Veysi yê MALA SAF
