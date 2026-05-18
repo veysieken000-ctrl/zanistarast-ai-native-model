@@ -1,0 +1,64 @@
+{
+  "@context": {
+    "zan": "https://zanistarast.org/ontology#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  },
+
+  "@graph": [
+
+    {
+      "@id": "zan:Hebun",
+      "@type": "zan:OntologicalFoundation"
+    },
+
+    {
+      "@id": "zan:Zanabun",
+      "@type": "zan:EpistemologicalFramework"
+    },
+
+    {
+      "@id": "zan:Mabun",
+      "@type": "zan:CoordinationFramework"
+    },
+
+    {
+      "@id": "zan:Rabun",
+      "@type": "zan:DevelopmentalFramework"
+    },
+
+    {
+      "@id": "zan:RasterastVerificationFilter",
+      "@type": "zan:VerificationFramework"
+    },
+
+    {
+      "@id": "zan:TruthIntegrity",
+      "@type": "zan:EpistemicPrinciple"
+    },
+
+    {
+      "@id": "zan:AntiDeception",
+      "@type": "zan:DefensivePrinciple"
+    },
+
+    {
+      "@id": "zan:AntiHallucination",
+      "@type": "zan:EpistemicSafeguard"
+    },
+
+    {
+      "@id": "zan:BoundedIntelligence",
+      "@type": "zan:ConstitutionalLimitation"
+    },
+
+    {
+      "@id": "zan:Traceability",
+      "@type": "zan:ContinuityPrinciple"
+    },
+
+    {
+      "@id": "zan:EpistemicStability",
+      "@type": "zan:ConstitutionalStability"
+    }
+  ]
+}
