@@ -1603,5 +1603,57 @@ blockquote {
   padding-left: 14px;
   margin: 16px 0;
 }
+.hero-card {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
 
+.hero-card ul {
+  list-style-position: inside;
+  padding-left: 0;
+  margin: 16px 0;
+}
 
+.hero-card li {
+  margin: 8px 0;
+  line-height: 1.7;
+}
+
+.container {
+  width: min(1100px, 94%);
+  margin: 0 auto;
+}
+/* ARTICLE FIX — list bullets + card width */
+.container {
+  width: min(1200px, 96%) !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+}
+
+.hero-card {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  overflow: hidden;
+}
+
+.hero-card ul {
+  list-style-position: outside !important;
+  padding-left: 28px !important;
+  margin: 16px 0 16px 0 !important;
+}
+
+.hero-card li {
+  padding-left: 4px !important;
+  margin: 8px 0 !important;
+  line-height: 1.7 !important;
+}
+
+.hero-card p,
+.hero-card h1,
+.hero-card h2,
+.hero-card h3,
+.hero-card ul {
+  max-width: 100% !important;
+}
