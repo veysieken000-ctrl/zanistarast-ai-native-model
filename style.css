@@ -1808,3 +1808,26 @@ style: make Rabun model link visible as CTA button
 .main-cta:hover {
   opacity: 0.9;
 }
+.hero-card {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.hero-card ul {
+  list-style-position: inside;
+  padding-left: 0;
+  margin: 16px 0;
+}
+
+.hero-card li {
+  margin: 8px 0;
+  line-height: 1.7;
+}
+
+.container {
+  width: min(1200px, 96%);
+  margin: 0 auto;
+}
+
+
