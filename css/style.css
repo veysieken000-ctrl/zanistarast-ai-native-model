@@ -63,8 +63,11 @@ overflow-x:hidden;
 ========================================= */
 
 .container{
-width:min(1200px,92%);
-margin:auto;
+width:96%;
+max-width:1200px;
+margin:0 auto;
+padding:24px 16px;
+box-sizing:border-box;
 }
 
 /* =========================================
@@ -81,7 +84,9 @@ padding-top:110px;
 
 .card,
 .hero-card,
-.detail-box{
+.detail-box,
+.section-card,
+.theory-link-card{
 
 background:var(--card);
 
@@ -92,9 +97,14 @@ backdrop-filter:var(--blur);
 
 border-radius:var(--radius);
 
-box-shadow:var(--shadow);
-}
-
+box-shadow:var(--shadow);   
+   
+width:100%;
+padding:28px;
+margin:24px 0;
+box-sizing:border-box;
+overflow-wrap:break-word;
+ }  
 /* =========================================
    BUTTON SYSTEM
 ========================================= */
@@ -1657,3 +1667,16 @@ blockquote {
 .hero-card ul {
   max-width: 100% !important;
 }
+ul{
+padding-left:24px;
+list-style-position:inside;
+}
+
+li{
+margin:8px 0;
+line-height:1.7;
+}
+
+
+
+
