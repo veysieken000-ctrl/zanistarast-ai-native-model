@@ -4,140 +4,189 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>00 — Geçiş Kapısı</title>
+
   <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
+
   <div id="navbar"></div>
 
-<script>
-fetch("components/navbar.html")
-.then(function(res){
-  return res.text();
-})
-.then(function(data){
-  const navbar = document.getElementById("navbar");
-  navbar.innerHTML = data;
+  <script>
+    fetch("components/navbar.html")
+      .then(function(res){
+        return res.text();
+      })
+      .then(function(data){
 
-  const scripts = navbar.querySelectorAll("script");
+        const navbar = document.getElementById("navbar");
+        navbar.innerHTML = data;
 
-  scripts.forEach(function(oldScript){
-    const newScript = document.createElement("script");
+        const scripts = navbar.querySelectorAll("script");
 
-    if(oldScript.src){
-      newScript.src = oldScript.src;
-    } else {
-      newScript.textContent = oldScript.textContent;
-    }
+        scripts.forEach(function(oldScript){
 
-    document.body.appendChild(newScript);
-    oldScript.remove();
-  });
-});
-</script>
- <main class="container">
+          const newScript = document.createElement("script");
 
-  <a class="back-link" href="./thesis-transitions.html">← Back to Transitions</a>
+          if(oldScript.src){
+            newScript.src = oldScript.src;
+          } else {
+            newScript.textContent = oldScript.textContent;
+          }
 
-  <section class="hero">
-    <div class="hero-card">
-      <h1>00 — Geçiş Kapısı</h1>
+          document.body.appendChild(newScript);
+
+          oldScript.remove();
+
+        });
+
+      });
+  </script>
+
+  <main class="container">
+
+    <a class="back-link" href="./thesis-transitions.html">
+      ← Back to Transitions
+    </a>
+
+    <section class="hero">
+
+      <div class="hero-card">
+
+        <h1>00 — Geçiş Kapısı</h1>
+
+        <p>
+          Geçiş kapısı, bilginin bulunduğu düzeyden daha yüksek bir sisteme
+          taşınabilmesi için gerekli olan ilk ontolojik eşiği ifade eder.
+        </p>
+
+        <p>
+          Bu eşik aşılmadan hiçbir üst katman kurulamaz.
+        </p>
+
+      </div>
+
+    </section>
+
+    <section class="hero-card">
+
+      <h2>1. Geçişin Zorunluluğu</h2>
+
       <p>
-        Geçiş kapısı, bilginin bulunduğu düzeyden daha yüksek bir sisteme
-        taşınabilmesi için gerekli olan ilk ontolojik eşiği ifade eder.
-        Bu eşik aşılmadan hiçbir üst katman kurulamaz.
+        Hiçbir sistem kendi içinde tamamlanamaz.
+        Her yapı, kendisinden daha üst bir sistem içinde anlam kazanır.
       </p>
-    </div>
-  </section>
 
-  <section class="hero-card">
-    <h2>1. Geçişin Zorunluluğu</h2>
-    <p>
-      Hiçbir sistem kendi içinde tamamlanamaz. Her yapı, kendisinden
-      daha üst bir sistem içinde anlam kazanır.
-    </p>
-    <p>
-      Bu nedenle geçiş, tercih değil ontolojik zorunluluktur.
-    </p>
-  </section>
+      <p>
+        Bu nedenle geçiş, tercih değil ontolojik zorunluluktur.
+      </p>
 
-  <section class="hero-card">
-    <h2>2. Kapı Nedir?</h2>
-    <p>
-      Geçiş kapısı, iki katman arasında doğrudan sıçrama değil,
-      kontrollü ve anlamlı bir bağ kurulmasını sağlayan eşiktir.
-    </p>
-    <p>
-      Bu kapı olmadan üst sistem kurulamaz; alt sistem ise kendi içinde
-      kapanır ve anlam üretimi durur.
-    </p>
-  </section>
-
-  <section class="hero-card">
-    <h2>3. Geçişin İlk Şartı: Açıklık</h2>
-    <p>
-      Bir sistemin geçişe hazır olması için kapalı değil açık olması gerekir.
-    </p>
-
-    <section class="grid">
-      <div class="card"><span>Yeni veriyi kabul edebilme</span></div>
-      <div class="card"><span>Kendi sınırlarını fark edebilme</span></div>
-      <div class="card"><span>Üst anlam arayışına açık olma</span></div>
     </section>
 
-    <p>
-      Kapalı sistemler genişleyemez, yalnızca tekrar eder.
-    </p>
-  </section>
+    <section class="hero-card">
 
-  <section class="hero-card">
-    <h2>4. Bilgi + Anlam → Sistem</h2>
-    <p>
-      Geçiş rastgele gerçekleşmez, belirli bir sıra izler:
-    </p>
+      <h2>2. Kapı Nedir?</h2>
 
-    <section class="grid">
-      <div class="card"><span>Bilgi oluşur</span></div>
-      <div class="card"><span>Bilgi anlam kazanır</span></div>
-      <div class="card"><span>Anlam sistem hâline gelir</span></div>
+      <p>
+        Geçiş kapısı, iki katman arasında doğrudan sıçrama değil,
+        kontrollü ve anlamlı bir bağ kurulmasını sağlayan eşiktir.
+      </p>
+
+      <p>
+        Bu kapı olmadan üst sistem kurulamaz;
+        alt sistem ise kendi içinde kapanır ve anlam üretimi durur.
+      </p>
+
     </section>
 
-    <p>
-      Bu üçlü tamamlanmadan geçiş gerçekleşmiş sayılmaz.
-    </p>
-  </section>
+    <section class="hero-card">
 
-  <section class="hero-card">
-    <h2>5. Geçişin Başarısızlığı</h2>
-    <p>
-      Eğer geçiş kapısı kurulamazsa sistem şu durumlara düşer:
-    </p>
+      <h2>3. Geçişin İlk Şartı: Açıklık</h2>
 
-    <section class="grid">
-      <div class="card"><span>Bilgi birikir ama yön oluşmaz</span></div>
-      <div class="card"><span>Anlam parçalanır</span></div>
-      <div class="card"><span>Sistem tekrar döngüsüne girer</span></div>
+      <p>
+        Bir sistemin geçişe hazır olması için
+        kapalı değil açık olması gerekir.
+      </p>
+
+      <ul>
+        <li>Yeni veriyi kabul edebilme</li>
+        <li>Kendi sınırlarını fark edebilme</li>
+        <li>Üst anlam arayışına açık olma</li>
+      </ul>
+
+      <p>
+        Kapalı sistemler genişleyemez, yalnızca tekrar eder.
+      </p>
+
     </section>
 
-    <p>
-      Bu durum epistemik durgunluk olarak tanımlanır.
-    </p>
-  </section>
+    <section class="hero-card">
 
-  <section class="hero-card">
-    <h2>6. Ontolojik Sonuç</h2>
-    <p>
-      Geçiş kapısı, varlığın genişleme mekanizmasının ilk halkasıdır.
-    </p>
-    <p>
-      Her üst sistem, ancak bu kapıdan geçerek kurulabilir.
-    </p>
-    <p>
-      Bu nedenle geçiş kapısı:
-    </p>
+      <h2>4. Bilgi + Anlam → Sistem</h2>
 
-    <section class="grid">
-      <div class="card"><span>Varlığın yükselme noktasıdır</span></div>
+      <p>
+        Geçiş rastgele gerçekleşmez,
+        belirli bir sıra izler:
+      </p>
+
+      <ul>
+        <li>Bilgi oluşur</li>
+        <li>Bilgi anlam kazanır</li>
+        <li>Anlam sistem hâline gelir</li>
+      </ul>
+
+      <p>
+        Bu üçlü tamamlanmadan geçiş gerçekleşmiş sayılmaz.
+      </p>
+
     </section>
-  </section>
 
-</main> 
+    <section class="hero-card">
+
+      <h2>5. Geçişin Başarısızlığı</h2>
+
+      <p>
+        Eğer geçiş kapısı kurulamazsa sistem şu durumlara düşer:
+      </p>
+
+      <ul>
+        <li>Bilgi birikir ama yön oluşmaz</li>
+        <li>Anlam parçalanır</li>
+        <li>Sistem tekrar döngüsüne girer</li>
+      </ul>
+
+      <p>
+        Bu durum epistemik durgunluk olarak tanımlanır.
+      </p>
+
+    </section>
+
+    <section class="hero-card">
+
+      <h2>6. Ontolojik Sonuç</h2>
+
+      <p>
+        Geçiş kapısı,
+        varlığın genişleme mekanizmasının ilk halkasıdır.
+      </p>
+
+      <p>
+        Her üst sistem,
+        ancak bu kapıdan geçerek kurulabilir.
+      </p>
+
+      <p>
+        Bu nedenle geçiş kapısı:
+      </p>
+
+      <p>
+        <strong>Varlığın yükselme noktasıdır.</strong>
+      </p>
+
+    </section>
+
+  </main>
+
+</body>
+</html>
+
