@@ -1190,5 +1190,21 @@ a[href="./index.html"]:first-child:hover {
   padding-left: 24px;
   list-style-position: outside;
 }
+.card {
+  position: relative;
+}
 
+.card::before {
+  pointer-events: none !important;
+}
+
+.card a {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
 
