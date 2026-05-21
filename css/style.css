@@ -916,148 +916,6 @@ a[href="./index.html"]:first-child:hover {
   transform:translateY(-2px);
 }
 
-/* =====================================================
-   RESTORED INTERACTIVE CARD SYSTEM
-===================================================== */
-
-.reading-grid,
-.grid {
-  display: grid;
-  grid-template-columns: 1fr !important;
-  gap: 24px;
-}
-
-main.container > section:not(.hero) .grid {
-  display: grid !important;
-}
-
-main.container > section:not(.hero) .card {
-  display: block !important;
-
-  width: 100% !important;
-  max-width: 100% !important;
-  min-height: 180px !important;
-
-  padding: 30px !important;
-  margin: 0 0 24px 0 !important;
-
-  position: relative !important;
-  overflow: hidden !important;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(15, 25, 42, 0.96),
-      rgba(25, 55, 105, 0.90)
-    ) !important;
-
-  border: 1px solid rgba(125, 211, 252, 0.32) !important;
-
-  border-radius: 24px !important;
-
-  box-shadow:
-    0 12px 30px rgba(0,0,0,.35),
-    inset 0 0 1px rgba(255,255,255,.08) !important;
-
-  transition:
-    transform .25s ease,
-    box-shadow .25s ease,
-    border-color .25s ease,
-    background .25s ease !important;
-}
-
-main.container > section:not(.hero) .card:hover {
-  transform: translateY(-8px) scale(1.015) !important;
-
-  border-color: rgba(125, 211, 252, 0.92) !important;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(20, 45, 80, 0.98),
-      rgba(35, 75, 135, 0.94)
-    ) !important;
-
-  box-shadow:
-    0 0 24px rgba(56, 189, 248, .28),
-    0 22px 50px rgba(0,0,0,.45),
-    inset 0 0 1px rgba(255,255,255,.18) !important;
-}
-
-main.container > section:not(.hero) .card::before {
-  content: "";
-
-  position: absolute;
-  inset: 0;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,.08),
-      transparent 35%
-    );
-
-  pointer-events: none;
-}
-
-main.container > section:not(.hero) .card a {
-  display: block !important;
-
-  width: 100% !important;
-  height: 100% !important;
-
-  color: inherit !important;
-  text-decoration: none !important;
-}
-
-main.container > section:not(.hero) .card span {
-  display: inline-flex !important;
-
-  align-items: center;
-  justify-content: center;
-
-  padding: 6px 14px;
-  margin-bottom: 16px;
-
-  border-radius: 999px;
-
-  background: rgba(56, 189, 248, 0.18);
-  border: 1px solid rgba(125, 211, 252, 0.35);
-
-  color: #7dd3fc !important;
-
-  font-size: .88rem;
-  font-weight: 700;
-  letter-spacing: .05em;
-}
-
-main.container > section:not(.hero) .card h2,
-main.container > section:not(.hero) .card h3 {
-  margin: 0 0 14px 0 !important;
-
-  font-size: clamp(1.45rem, 2.5vw, 2rem) !important;
-  line-height: 1.2 !important;
-
-  color: #ffffff !important;
-}
-
-main.container > section:not(.hero) .card p,
-main.container > section:not(.hero) .card li {
-  font-size: clamp(1rem, 1.6vw, 1.08rem) !important;
-
-  line-height: 1.8 !important;
-
-  color: rgba(255,255,255,.86) !important;
-}
-
-main.container > section:not(.hero) .card ul {
-  padding-left: 22px !important;
-}
-
-main.container > section:not(.hero) .card li {
-  margin-bottom: 10px !important;
-}
-
 @media (max-width: 768px) {
 
   main.container > section:not(.hero) .card {
@@ -1299,6 +1157,38 @@ main.container > section:not(.hero) .card li {
   .category-card:hover {
     transform: none;
   }
+}
+
+/* FINAL SAFE CARD FIX */
+
+.grid {
+  display: grid;
+  gap: 20px;
+}
+
+.grid .card {
+  padding: 22px;
+  min-height: 150px;
+  border-radius: 22px;
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+.grid .card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(125, 211, 252, .65);
+  box-shadow: 0 16px 35px rgba(0,0,0,.35);
+}
+
+.grid .card a {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.hero-card ul {
+  padding-left: 24px;
+  list-style-position: outside;
 }
 
 
