@@ -1235,4 +1235,50 @@ a[href="./index.html"]:first-child:hover {
   color: inherit;
   text-decoration: none;
 }
+/* FINAL RESTORE — ORIGINAL CARD FEEL */
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+}
+
+.grid .card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px;
+  min-height: 150px;
+  cursor: pointer;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+
+.grid .card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(125, 211, 252, .75);
+  box-shadow:
+    0 0 18px rgba(56, 189, 248, .25),
+    0 16px 35px rgba(0,0,0,.35);
+}
+
+.grid .card a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.hero-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.hero-card ul {
+  padding-left: 24px;
+  list-style-position: outside;
+}
 
