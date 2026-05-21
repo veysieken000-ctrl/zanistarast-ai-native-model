@@ -916,15 +916,19 @@ a[href="./index.html"]:first-child:hover {
   transform:translateY(-2px);
 }
 
-/* ===== UNIFIED CONTENT CARD SYSTEM ===== */
+/* =====================================================
+   RESTORED INTERACTIVE CARD SYSTEM
+===================================================== */
 
 .reading-grid,
 .grid {
+  display: grid;
   grid-template-columns: 1fr !important;
+  gap: 24px;
 }
 
 main.container > section:not(.hero) .grid {
-  display: block !important;
+  display: grid !important;
 }
 
 main.container > section:not(.hero) .card {
@@ -932,198 +936,141 @@ main.container > section:not(.hero) .card {
 
   width: 100% !important;
   max-width: 100% !important;
-  min-height: auto !important;
+  min-height: 180px !important;
 
-  margin: 0 0 22px !important;
-  padding: 24px 26px !important;
+  padding: 30px !important;
+  margin: 0 0 24px 0 !important;
 
-  background: rgba(15, 23, 42, 0.42) !important;
-  border: 1px solid rgba(125, 211, 252, 0.18) !important;
-  border-radius: 28px !important;
+  position: relative !important;
+  overflow: hidden !important;
 
-  color: #fff !important;
-  text-decoration: none !important;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(15, 25, 42, 0.96),
+      rgba(25, 55, 105, 0.90)
+    ) !important;
 
-  transform: none !important;
-  box-shadow: none !important;
+  border: 1px solid rgba(125, 211, 252, 0.32) !important;
+
+  border-radius: 24px !important;
+
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.35),
+    inset 0 0 1px rgba(255,255,255,.08) !important;
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    border-color .25s ease,
+    background .25s ease !important;
 }
 
 main.container > section:not(.hero) .card:hover {
-  transform: none !important;
-  box-shadow: none !important;
-  border-color: rgba(125, 211, 252, 0.18) !important;
-}
+  transform: translateY(-8px) scale(1.015) !important;
 
-main.container > section:not(.hero) .card span {
-  display: inline-block !important;
-  margin-bottom: 10px !important;
-}
+  border-color: rgba(125, 211, 252, 0.92) !important;
 
-main.container > section:not(.hero) .card h2,
-main.container > section:not(.hero) .card h3 {
-  font-size: clamp(1.5rem, 3vw, 2.25rem) !important;
-  line-height: 1.2 !important;
-  margin: 0 0 12px !important;
-}
-
-main.container > section:not(.hero) .card p,
-main.container > section:not(.hero) .card li {
-  font-size: clamp(1rem, 2vw, 1.13rem) !important;
-  line-height: 1.75 !important;
-}
-
-@media (max-width: 768px) {
-  main.container > section:not(.hero) .article-card,
-  main.container > section:not(.hero) .theory-link-card,
-  main.container > section:not(.hero) .path-card,
-  main.container > section:not(.hero) .flow-card {
-    padding: 20px !important;
-  }
-}
-.core-reading-card {
-  display: block;
-  text-decoration: none;
-  color: white;
-
-  background: linear-gradient(
-    135deg,
-    rgba(18, 35, 70, 0.96),
-    rgba(28, 95, 150, 0.92)
-  );
-
-  border: 2px solid rgba(125, 211, 252, 0.35);
-
-  border-radius: 24px;
-
-  padding: 24px;
-
-  min-height: 220px;
-
-  transition:
-    transform .22s ease,
-    box-shadow .22s ease,
-    border-color .22s ease;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(20, 45, 80, 0.98),
+      rgba(35, 75, 135, 0.94)
+    ) !important;
 
   box-shadow:
-    0 10px 28px rgba(0,0,0,.35),
-    inset 0 0 0 1px rgba(255,255,255,.03);
-
-  position: relative;
-
-  overflow: hidden;
+    0 0 24px rgba(56, 189, 248, .28),
+    0 22px 50px rgba(0,0,0,.45),
+    inset 0 0 1px rgba(255,255,255,.18) !important;
 }
 
-.core-reading-card:hover {
-  transform: translateY(-10px) scale(1.03);
-
-  border-color: rgba(125,211,252,.95);
-
-  box-shadow:
-    0 0 20px rgba(56,189,248,.55),
-    0 0 45px rgba(56,189,248,.22),
-    0 28px 70px rgba(0,0,0,.55);
-}
-
-.core-reading-card::before {
+main.container > section:not(.hero) .card::before {
   content: "";
 
   position: absolute;
-
   inset: 0;
 
   background:
     linear-gradient(
       135deg,
-      rgba(255,255,255,.06),
-      transparent 40%
+      rgba(255,255,255,.08),
+      transparent 35%
     );
 
   pointer-events: none;
 }
 
-.core-reading-card h2 {
-  font-size: 2rem;
-  margin-bottom: 14px;
-  font-weight: 900;
-  line-height: 1.05;
+main.container > section:not(.hero) .card a {
+  display: block !important;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  color: inherit !important;
+  text-decoration: none !important;
 }
 
-.core-reading-card p {
-  color: rgba(255,255,255,.88);
-  line-height: 1.6;
-  font-size: 1rem;
-}
-
-.core-label {
-  display: inline-flex;
+main.container > section:not(.hero) .card span {
+  display: inline-flex !important;
 
   align-items: center;
-
   justify-content: center;
 
-  padding: 6px 12px;
+  padding: 6px 14px;
+  margin-bottom: 16px;
 
   border-radius: 999px;
 
-  margin-bottom: 16px;
+  background: rgba(56, 189, 248, 0.18);
+  border: 1px solid rgba(125, 211, 252, 0.35);
 
-  font-size: .85rem;
+  color: #7dd3fc !important;
 
-  font-weight: 800;
-
-  background: rgba(125,211,252,.22);
-
-  border: 1px solid rgba(125,211,252,.38);
-
-  color: #dff7ff;
+  font-size: .88rem;
+  font-weight: 700;
+  letter-spacing: .05em;
 }
 
-/* MOBİL OKUMA GÜVENLİĞİ — YAZI TAŞMASINI ENGELLE */
-html {
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
+main.container > section:not(.hero) .card h2,
+main.container > section:not(.hero) .card h3 {
+  margin: 0 0 14px 0 !important;
+
+  font-size: clamp(1.45rem, 2.5vw, 2rem) !important;
+  line-height: 1.2 !important;
+
+  color: #ffffff !important;
 }
 
-body {
-  overflow-x: hidden;
+main.container > section:not(.hero) .card p,
+main.container > section:not(.hero) .card li {
+  font-size: clamp(1rem, 1.6vw, 1.08rem) !important;
+
+  line-height: 1.8 !important;
+
+  color: rgba(255,255,255,.86) !important;
 }
 
-.container,
-.hero,
-.hero-card,
-.content-section,
-.card,
-.item {
-  max-width: 100%;
-  box-sizing: border-box;
+main.container > section:not(.hero) .card ul {
+  padding-left: 22px !important;
 }
 
-h1,
-h2,
-h3,
-p,
-li,
-span,
-a,
-blockquote {
-  overflow-wrap: anywhere;
-  word-break: normal;
+main.container > section:not(.hero) .card li {
+  margin-bottom: 10px !important;
 }
 
-.hero-card h1,
-.content-section h1,
-.content-section h2 {
-  font-size: clamp(1.8rem, 7vw, 4.2rem);
-  line-height: 1.08;
-}
+@media (max-width: 768px) {
 
-.content-section p,
-.content-section li,
-.hero-card p {
-  font-size: clamp(1rem, 3.8vw, 1.15rem);
-  line-height: 1.75;
-}
+  main.container > section:not(.hero) .card {
+    padding: 24px !important;
+    border-radius: 20px !important;
+  }
 
+  main.container > section:not(.hero) .card h2,
+  main.container > section:not(.hero) .card h3 {
+    font-size: 1.45rem !important;
+  }
+
+}
 @media (max-width: 700px) {
   .container {
     width: 100%;
