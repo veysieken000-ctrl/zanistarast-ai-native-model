@@ -1,72 +1,97 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <title>Giriş</title>
- <link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>02 — Geological Evolution</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
-<div id="navbar"></div>
 
-<script>
-fetch("components/navbar.html")
-.then(function(res){
-  return res.text();
-})
-.then(function(data){
-  const navbar = document.getElementById("navbar");
-  navbar.innerHTML = data;
+  <div id="navbar"></div>
 
-  const scripts = navbar.querySelectorAll("script");
+  <script>
+    fetch("components/navbar.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("navbar").innerHTML = data;
+      });
+  </script>
 
-  scripts.forEach(function(oldScript){
-    const newScript = document.createElement("script");
+  <main class="container">
 
-    if(oldScript.src){
-      newScript.src = oldScript.src;
-    } else {
-      newScript.textContent = oldScript.textContent;
-    }
+    <a class="back-link" href="./theory.html">← Theory sayfasına dön</a>
 
-    document.body.appendChild(newScript);
-    oldScript.remove();
-  });
-});
-</script>
-<main class="container">
+    <section class="hero">
+      <div class="hero-card">
+        <h1>02 — Geological Evolution</h1>
+        <p>Bu bölümde teorinin tüm alt makaleleri yer alır.</p>
+      </div>
+    </section>
 
-  <a href="theory-02.html">← Back</a>
+    <section class="grid">
 
-  <section class="section-card">
-    <h1>00 - Giriş</h1>
+      <div class="card">
+        <a href="./theory-02-00-giris.html">
+          <span>00</span>
+          <h3>Giriş</h3>
+          <p>Jeolojik evrim bölümüne giriş ve temel çerçeve.</p>
+        </a>
+      </div>
 
-    <p>
-      Zanistarast modelinde jeolojik evrim, varlığın rastgele oluşumu olarak değil,
-      yapısal ve zorunlu bir süreç olarak ele alınır. Bu teoriye göre fiziksel yapıların
-      oluşumu, enerji akışı, basınç, katmanlaşma ve denge süreçleriyle belirlenir.
-    </p>
+      <div class="card">
+        <a href="./theory-02-01-jeolojik-zemin.html">
+          <span>01</span>
+          <h3>Jeolojik Zemin</h3>
+          <p>Varlığın jeolojik temelini ve oluşum zeminini açıklar.</p>
+        </a>
+      </div>
 
-    <p>
-      Evrim, sadece canlılıkla başlamaz. Daha önce, jeolojik düzeyde düzen kurucu
-      mekanizmalar oluşur. Bu mekanizmalar, üst boyutların (biyoloji ve zihin)
-      ortaya çıkması için zemin hazırlar.
-    </p>
+      <div class="card">
+        <a href="./theory-02-02-katmanlasma.html">
+          <span>02</span>
+          <h3>Katmanlaşma</h3>
+          <p>Jeolojik yapının katmanlı oluşum düzenini açıklar.</p>
+        </a>
+      </div>
 
-    <p>
-      Bu bölümde, jeolojik süreçlerin nasıl yapı oluşturduğu, bu yapının nasıl
-      karmaşıklık ürettiği ve belirli eşiklerden sonra neden yeni bir boyutun
-      açılmasının zorunlu hale geldiği incelenir.
-    </p>
+      <div class="card">
+        <a href="./theory-02-03-enerji-akisi.html">
+          <span>03</span>
+          <h3>Enerji Akışı</h3>
+          <p>Jeolojik düzende enerji akışı ve dönüşüm ilişkisini açıklar.</p>
+        </a>
+      </div>
 
-    <p>
-      Temel ilke şudur:
-      Her sistem, kendi içinde sonsuz büyüyemez. Belirli bir noktada ya
-      üst boyut açılır ya da sistem daralır.
-    </p>
+      <div class="card">
+        <a href="./theory-02-04-yapi-ve-basinc.html">
+          <span>04</span>
+          <h3>Yapı ve Basınç</h3>
+          <p>Jeolojik yapı, basınç ve düzen ilişkisini açıklar.</p>
+        </a>
+      </div>
 
-  </section>
+      <div class="card">
+        <a href="./theory-02-05-esik-ve-gecis.html">
+          <span>05</span>
+          <h3>Eşik ve Geçiş</h3>
+          <p>Jeolojik süreçlerde eşik, kırılma ve geçiş mantığını açıklar.</p>
+        </a>
+      </div>
 
-</main>
+      <div class="card">
+        <a href="./theory-02-06-biyolojiye-zemin.html">
+          <span>06</span>
+          <h3>Biyolojiye Zemin</h3>
+          <p>Jeolojik düzenin biyolojik oluşuma nasıl zemin hazırladığını açıklar.</p>
+        </a>
+      </div>
+
+    </section>
+
+  </main>
 
 </body>
 </html>
+
