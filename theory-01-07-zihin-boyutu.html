@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <title>Zihin Boyutu</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>07 — Zihin Boyutu</title>
+
   <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
+
 <div id="navbar"></div>
 
 <script>
@@ -14,12 +18,14 @@ fetch("components/navbar.html")
   return res.text();
 })
 .then(function(data){
+
   const navbar = document.getElementById("navbar");
   navbar.innerHTML = data;
 
   const scripts = navbar.querySelectorAll("script");
 
   scripts.forEach(function(oldScript){
+
     const newScript = document.createElement("script");
 
     if(oldScript.src){
@@ -29,80 +35,150 @@ fetch("components/navbar.html")
     }
 
     document.body.appendChild(newScript);
+
     oldScript.remove();
   });
 });
 </script>
+
 <main class="container">
 
-  <a href="theory-01-boyutsal-acilim.html">← Back</a>
+<a class="back-link" href="theory-01-boyutsal-acilim.html">
+← Boyutsal Açılım sayfasına dön
+</a>
 
- <section class="section-card">
+<section class="hero">
+  <div class="hero-card">
+    <h1>07 — Zihin Boyutu</h1>
 
-  <h1>07 - Zihin Boyutu</h1>
+    <p>
+      Zihin boyutu, biyolojik sistemlerin yalnızca yaşamı sürdürmekten
+      çıkıp öğrenme, yön üretme ve geleceği tasarlama aşamasına geçtiği
+      kritik evredir.
+    </p>
+  </div>
+</section>
 
+<section class="hero-card">
   <h2>1. Zihin Boyutunun İlk Evresi: Zeka</h2>
+
   <p>
     Zanistarast bilimine göre zihin boyutu tek katmanlı değildir.
-    İlk aşama zekadır. Zeka, uyaranlara cevap verebilen,
-    öğrenebilen ve çevreye uyum sağlayabilen yönelim sistemidir.
+    İlk aşama zekadır.
   </p>
 
-  <h2>2. Biyolojik Geçiş</h2>
   <p>
-    Biyolojik süreçte yumurtlamadan doğurmaya geçiş,
-    zihinsel gelişimin önemli bir eşiğidir. Bu geçiş,
-    yavru korumasını artırır ve öğrenme sürekliliğini sağlar.
+    Zeka; uyaranlara cevap verebilen, öğrenebilen ve çevreye
+    uyum sağlayabilen yönetim sistemidir.
+  </p>
+</section>
+
+<section class="hero-card">
+  <h2>2. Biyolojik Geçiş</h2>
+
+  <p>
+    Yumurtlamadan doğurmaya geçiş, zihinsel gelişimin büyük eşiklerinden biridir.
   </p>
 
-  <h2>3. Zeka Neden Yeterli Değildir</h2>
+  <p>
+    Bu süreç; yavru korumasını, öğrenme süresini ve davranış devamlılığını artırır.
+  </p>
+</section>
+
+<section class="hero-card">
+  <h2>3. Zeka Neden Yeterli Değildir?</h2>
+
   <p>
     Zeka güç üretir ancak yön üretmez.
+  </p>
+
+  <p>
     İyi-kötü ayrımı yapamaz ve uzun vadeli denge kuramaz.
     Bu nedenle tek başına yeterli değildir.
   </p>
+</section>
 
+<section class="hero-card">
   <h2>4. Tarihsel Daralmalar</h2>
+
   <p>
     Zihin boyutu tam açılmadan önce biyolojik çeşitlilik artmış,
-    ancak yön eksikliği nedeniyle büyük daralmalar yaşanmıştır.
-    Bu durum, sistemin denge arayışının sonucudur.
+    fakat yön eksikliği nedeniyle büyük daralmalar yaşanmıştır.
   </p>
 
+  <p>
+    Bu durum sistemin denge arayışının sonucudur.
+  </p>
+</section>
+
+<section class="hero-card">
   <h2>5. Zihnin İkinci Evresi: Akıl</h2>
+
   <p>
     Akıl, zekanın yön kazanmış halidir.
-    Çözüm üretir, sonuç hesaplar ve uzun vadeli denge kurar.
   </p>
 
-  <h2>6. Neden Akıl Gereklidir</h2>
+  <p>
+    Çözüm üretir, sonuç hesaplar ve uzun vadeli denge kurar.
+  </p>
+</section>
+
+<section class="hero-card">
+  <h2>6. Neden Akıl Gereklidir?</h2>
+
   <p>
     Zihin boyutu büyüdükçe çevreyi değiştirme gücü artar.
+  </p>
+
+  <p>
     Bu güç kontrol edilmezse sistem dengesi bozulur.
     Akıl, bu gücü dengeleyen iç mekanizmadır.
   </p>
+</section>
 
+<section class="hero-card">
   <h2>7. İnsana Giden Yol</h2>
+
   <p>
-    Akıl, neden-sonuç ilişkisi kurar ve geleceği tasarlar.
+    Akıl; neden-sonuç ilişkisi kurar ve geleceği tasarlar.
+  </p>
+
+  <p>
     Bu özellik insanın ortaya çıkışına zemin hazırlar.
   </p>
+</section>
 
+<section class="hero-card">
   <h2>8. Zanistarast Sonucu</h2>
+
   <p>
     Boyutsal açılım zinciri:
-    Biyoloji → Zeka → Akıl → Ahlak.
-    Zihin boyutu, bu geçişin merkezinde yer alır.
   </p>
 
-  <h2>9. Sonuç</h2>
   <p>
-    Zeka yaşamı sürdürür, akıl yaşamı yönlendirir.
-    Zihin boyutu açıldığında, üst boyuta geçiş mümkün hale gelir.
+    Biyoloji → Zeka → Akıl → Ahlak
   </p>
 
+  <p>
+    Zihin boyutu bu geçişin merkezinde yer alır.
+  </p>
 </section>
+
+<section class="hero-card">
+  <h2>9. Sonuç</h2>
+
+  <p>
+    Zeka yaşamı sürdürür,
+    akıl ise yaşamı yönlendirir.
+  </p>
+
+  <p>
+    Zihin boyutu açıldığında üst boyuta geçiş mümkün hale gelir.
+  </p>
+</section>
+
 </main>
 
 </body>
 </html>
+
