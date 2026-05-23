@@ -8,30 +8,14 @@
 </head>
 
 <body>
-
 <div id="navbar"></div>
 
 <script>
 fetch("components/navbar.html")
-.then(res => res.text())
-.then(data => {
-  const navbar = document.getElementById("navbar");
-  navbar.innerHTML = data;
-
-  const scripts = navbar.querySelectorAll("script");
-  scripts.forEach(oldScript => {
-    const newScript = document.createElement("script");
-
-    if (oldScript.src) {
-      newScript.src = oldScript.src;
-    } else {
-      newScript.textContent = oldScript.textContent;
-    }
-
-    document.body.appendChild(newScript);
-    oldScript.remove();
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("navbar").innerHTML = data;
   });
-});
 </script>
 
 <main class="container">
@@ -42,74 +26,125 @@ fetch("components/navbar.html")
     <div class="hero-card">
       <h1>02 — Jeolojik Evrim</h1>
       <p>
-        Jeolojik evrim; varlığın fiziksel zeminden biyolojik eşiğe doğru
-        ilerlediği katmanlaşma, enerji akışı, yapı ve geçiş sürecidir.
+        Jeolojik evrim, fiziksel varlığın dağınık maddeden düzenli yapıya,
+        katmanlaşmaya, enerji akışına, eşik geçişlerine ve biyolojik zemine
+        doğru ilerleyen kurucu evresidir.
       </p>
     </div>
   </section>
 
-  <section class="grid">
+  <section class="section-card">
 
-    <div class="card">
-      <a href="theory-02-00-giris.html">
-        <span>00</span>
-        <h2>Giriş</h2>
-        <p>Jeolojik evrimin genel başlangıç çerçevesi.</p>
-      </a>
-    </div>
+    <h2>1. Jeolojik Evrimin Anlamı</h2>
+    <p>
+      Jeolojik evrim, yalnızca taşların, dağların veya yer kabuğunun oluşumu
+      değildir. Zanistarast açısından bu evre, fiziksel varlığın düzen kazanarak
+      daha üst boyutlara zemin hazırladığı yapısal dönüşüm sürecidir.
+    </p>
 
-    <div class="card">
-      <a href="theory-02-01-jeolojik-zemin.html">
-        <span>01</span>
-        <h2>Jeolojik Zemin</h2>
-        <p>Varlığın fiziksel ve yapısal zeminini açıklar.</p>
-      </a>
-    </div>
+    <p>
+      Bu süreçte madde rastgele kalmaz; enerji, basınç, yoğunluk, sıcaklık,
+      hareket ve zaman etkisiyle belirli yapılara ayrılır. Böylece fiziksel
+      boyut, biyolojik boyutun taşıyıcı zemini haline gelir.
+    </p>
 
-    <div class="card">
-      <a href="theory-02-02-katmanlasma.html">
-        <span>02</span>
-        <h2>Katmanlaşma</h2>
-        <p>Jeolojik düzenin katmanlar halinde oluşumu.</p>
-      </a>
-    </div>
+    <h2>2. Jeolojik Zemin</h2>
+    <p>
+      Her ileri oluşum önce bir zemine ihtiyaç duyar. Jeolojik zemin; mineral,
+      su, sıcaklık, basınç, yüzey dengesi ve katmanlı yapıların birlikte
+      çalıştığı temel alandır.
+    </p>
 
-    <div class="card">
-      <a href="theory-02-03-enerji-akisi.html">
-        <span>03</span>
-        <h2>Enerji Akışı</h2>
-        <p>Jeolojik süreçlerde enerji, hareket ve dönüşüm ilişkisi.</p>
-      </a>
-    </div>
+    <p>
+      Biyolojik yaşamın ortaya çıkabilmesi için yalnızca madde yetmez.
+      Maddenin kararlı, düzenli ve taşıyıcı bir ortam oluşturması gerekir.
+      Bu nedenle jeoloji, biyolojinin öncesi değil; biyolojinin zorunlu
+      hazırlık alanıdır.
+    </p>
 
-    <div class="card">
-      <a href="theory-02-04-yapi-ve-basinc.html">
-        <span>04</span>
-        <h2>Yapı ve Basınç</h2>
-        <p>Basınç, yapılaşma ve fiziksel düzen arasındaki bağ.</p>
-      </a>
-    </div>
+    <h2>3. Katmanlaşma</h2>
+    <p>
+      Katmanlaşma, jeolojik evrimin düzen kurucu mekanizmasıdır. Ağır olan
+      aşağıya çöker, hafif olan yukarıda kalır; yoğunluk, basınç ve sıcaklık
+      farkları maddeyi farklı düzeylere ayırır.
+    </p>
 
-    <div class="card">
-      <a href="theory-02-05-esik-ve-gecis.html">
-        <span>05</span>
-        <h2>Eşik ve Geçiş</h2>
-        <p>Jeolojik zeminden biyolojik eşiğe geçiş mantığı.</p>
-      </a>
-    </div>
+    <p>
+      Bu ayrışma rastgele bir bölünme değildir. Her katman farklı bir işlev
+      üstlenir. Böylece sistem kendi içinde merkez, çevre, taşıyıcı alan ve
+      geçiş bölgeleri üretir.
+    </p>
 
-    <div class="card">
-      <a href="theory-02-06-biyolojiye-zemin.html">
-        <span>06</span>
-        <h2>Biyolojiye Zemin</h2>
-        <p>Jeolojik evrimin biyolojik boyuta hazırladığı temel.</p>
-      </a>
-    </div>
+    <h2>4. Enerji Akışı</h2>
+    <p>
+      Jeolojik evrimde enerji, hareketin ve dönüşümün temel kaynağıdır.
+      Enerji olmadan madde yalnızca dağınık bir potansiyel olarak kalır.
+      Enerji maddeyi hareket ettirir, sıkıştırır, genişletir ve yeniden
+      düzenler.
+    </p>
+
+    <p>
+      Ancak enerji tek başına yeterli değildir. Enerji belirli bir denge içinde
+      akmadığında sistem bozulur. Çok düşük enerji durağanlık üretir; aşırı
+      enerji ise kırılma, çökme ve dengesizlik doğurur.
+    </p>
+
+    <h2>5. Yapı ve Basınç</h2>
+    <p>
+      Basınç, jeolojik yapının biçim kazanmasını sağlar. Dağ oluşumları,
+      kaya dönüşümleri, sıkışma bölgeleri ve yüzey şekilleri bu basınç
+      düzeninin sonuçlarıdır.
+    </p>
+
+    <p>
+      Zanistarast açısından basınç, yalnızca fiziksel bir kuvvet değil,
+      düzen kurucu bir sınavdır. Sistem basınca dayanabiliyorsa daha sağlam
+      bir yapı kazanır; dayanamıyorsa kırılır, çöker veya yeniden düzenlenmek
+      zorunda kalır.
+    </p>
+
+    <h2>6. Eşik ve Geçiş</h2>
+    <p>
+      Her sistem belli bir gelişim eşiğine ulaşır. Bu eşik aşıldığında eski
+      yapı artık yeterli olmaz. Sistem ya dağılır ya da daha üst bir düzene
+      geçer.
+    </p>
+
+    <p>
+      Jeolojik evrimde eşikler; kırılmalar, volkanik hareketler, levha
+      kaymaları, iklim değişimleri ve yüzey dönüşümleri şeklinde görünür.
+      Bu olaylar yalnızca yıkım değildir; yeni düzenin doğabileceği geçiş
+      alanlarıdır.
+    </p>
+
+    <h2>7. Biyolojiye Zemin</h2>
+    <p>
+      Jeolojik evrimin en önemli sonucu, biyolojik evreye zemin hazırlamasıdır.
+      Su döngüsü, mineral dengesi, sıcaklık aralığı, kararlı yüzeyler ve
+      kimyasal ortam oluşmadan canlılık başlayamaz.
+    </p>
+
+    <p>
+      Bu nedenle biyoloji, jeolojiden kopuk bir sıçrama değildir. Biyolojik
+      boyut, jeolojik düzenin olgunlaşmış zemini üzerinde açılır.
+    </p>
+
+    <h2>8. Zanistarast Sonucu</h2>
+    <p>
+      Jeolojik evrim, Zanistarast sisteminde fiziksel boyut ile biyolojik
+      boyut arasındaki zorunlu köprüdür. Fiziksel madde burada düzen kazanır,
+      katmanlaşır, basınç ve enerjiyle sınanır, eşiklerden geçer ve sonunda
+      yaşamı taşıyabilecek bir zemin üretir.
+    </p>
+
+    <p>
+      Bu yüzden jeolojik evrim, yalnızca dünyanın geçmişi değil; varlığın
+      üst boyutlara açılmadan önce kurduğu temel düzen aşamasıdır.
+    </p>
 
   </section>
 
 </main>
-
 </body>
 </html>
 
