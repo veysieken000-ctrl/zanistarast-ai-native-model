@@ -3,98 +3,146 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>04 — Zihin Boyutu</title>
+  <title>Zihin Boyutu</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
-
 <body>
-
   <div id="navbar"></div>
 
   <script>
     fetch("components/navbar.html")
       .then(res => res.text())
       .then(data => {
-        document.getElementById("navbar").innerHTML = data;
+        const navbar = document.getElementById("navbar");
+        navbar.innerHTML = data;
+
+        const scripts = navbar.querySelectorAll("script");
+        scripts.forEach(oldScript => {
+          const newScript = document.createElement("script");
+
+          if (oldScript.src) {
+            newScript.src = oldScript.src;
+          } else {
+            newScript.textContent = oldScript.textContent;
+          }
+
+          document.body.appendChild(newScript);
+          oldScript.remove();
+        });
       });
   </script>
 
   <main class="container">
+    <a class="back-link" href="theory.html">← Theory sayfasına dön</a>
 
-    <a class="back-link" href="./theory.html">← Theory sayfasına dön</a>
-
-    <section class="hero">
-      <div class="hero-card">
-        <h1>04 — Zihin Boyutu</h1>
-        <p>
-          Bu bölümde zihin boyutunun açılımı, temeli, genişlemesi,
-          sınırı, krizi ve ahlaka geçişi yer alır.
-        </p>
-      </div>
+    <section class="hero-card">
+      <h1>04 — Zihin Boyutu</h1>
+      <p>
+        Zihin boyutu, biyolojik evrenin yalnızca çoğalma ve yaşama düzeyinde kalmayıp
+        algı, hafıza, seçim, öğrenme, yön bulma ve anlam üretme kapasitesine doğru
+        açıldığı üst katmandır.
+      </p>
     </section>
 
-    <section class="grid">
-
-      <div class="card">
-        <a href="./theory-04-00-zihin-boyutu-nedir.html">
-          <span>00</span>
-          <h3>Zihin Boyutu Nedir?</h3>
-          <p>Zihinsel boyutun temel tanımı ve sistem içindeki konumu.</p>
-        </a>
-      </div>
-
-      <div class="card">
-        <a href="./theory-04-01-zihin-boyutunun-temeli.html">
-          <span>01</span>
-          <h3>Zihin Boyutunun Temeli</h3>
-          <p>Zihinsel yapının oluştuğu temel ilkeleri açıklar.</p>
-        </a>
-      </div>
-
-      <div class="card">
-        <a href="./theory-04-02-zihin-boyutunun-genislemesi.html">
-          <span>02</span>
-          <h3>Zihin Boyutunun Genişlemesi</h3>
-          <p>Zihnin gelişim, genişleme ve çok katmanlı yapısını açıklar.</p>
-        </a>
-      </div>
-
-      <div class="card">
-        <a href="./theory-04-03-zihin-boyutunun-siniri-ve-esigi.html">
-          <span>03</span>
-          <h3>Zihin Boyutunun Sınırı ve Eşiği</h3>
-          <p>Zihinsel sınırlar, eşikler ve geçiş alanlarını açıklar.</p>
-        </a>
-      </div>
-
-      <div class="card">
-        <a href="./theory-04-04-zihin-boyutunun-krizi.html">
-          <span>04</span>
-          <h3>Zihin Boyutunun Krizi</h3>
-          <p>Zihinsel sistemde oluşan kırılma ve kriz yapılarını açıklar.</p>
-        </a>
-      </div>
-
-      <div class="card">
-        <a href="./theory-04-05-zihin-boyutunun-siniri-ve-gecisi.html">
-          <span>05</span>
-          <h3>Zihin Boyutunun Sınırı ve Geçişi</h3>
-          <p>Zihin boyutundan üst düzene geçiş mekanizmasını açıklar.</p>
-        </a>
-      </div>
-
-      <div class="card">
-        <a href="./theory-04-06-ahlaka-gecis.html">
-          <span>06</span>
-          <h3>Ahlaka Geçiş</h3>
-          <p>Zihinsel boyuttan ahlaki düzene geçişin temelini açıklar.</p>
-        </a>
-      </div>
-
+    <section class="section-card">
+      <h2>1. Zihin Boyutu Nedir?</h2>
+      <p>
+        Zanistarast yaklaşımına göre zihin, yalnızca sinir sistemi veya beyin değildir.
+        Zihin, canlı varlığın kendini ve çevresini temsil etmeye başlamasıdır.
+      </p>
+      <p>
+        Fizik maddeyi oluşturur, biyoloji maddeyi canlı hâle getirir; zihin ise canlılığın
+        davranış, hafıza, seçim ve yön üretme kapasitesidir.
+      </p>
     </section>
 
+    <section class="section-card">
+      <h2>2. Zihin Boyutunun Temeli</h2>
+      <p>
+        Zihin boyutunun temeli biyolojik çeşitlilik, sinirsel örgütlenme, çevreye tepki
+        verme ve deneyim biriktirme kapasitesidir.
+      </p>
+      <p>
+        Biyoloji belirli bir karmaşıklığa ulaştığında artık sadece yaşamak yeterli olmaz.
+        Canlı, çevreyi ayırt etmek, riskleri sezmek ve davranışlarını düzenlemek zorunda kalır.
+      </p>
+    </section>
+
+    <section class="section-card">
+      <h2>3. Zihin Boyutunun Genişlemesi</h2>
+      <p>
+        Zihin genişledikçe canlı yalnızca tepki veren bir yapı olmaktan çıkar; öğrenen,
+        karşılaştıran, hatırlayan ve seçim yapan bir sisteme dönüşür.
+      </p>
+      <p>
+        Bu genişleme davranış hafızası, sosyal koordinasyon, strateji, yön bulma ve
+        deneyim aktarımıyla görünür hâle gelir.
+      </p>
+    </section>
+
+    <section class="section-card">
+      <h2>4. Zihin Boyutunun Sınırı</h2>
+      <p>
+        Zihin bilgi üretir, seçenek çoğaltır ve karmaşıklığı artırır. Fakat her artış aynı
+        zamanda enerji maliyeti, denge riski ve yön ihtiyacı üretir.
+      </p>
+      <p>
+        Bu nedenle zihin sonsuz genişleyemez. Zihin kendi içinde büyüdükçe bir eşik
+        noktasına ulaşır.
+      </p>
+    </section>
+
+    <section class="section-card">
+      <h2>5. Zihin Boyutunun Krizi</h2>
+      <p>
+        Zihin krizi, seçim kapasitesinin artmasına rağmen yön ilkesinin eksik kalmasıdır.
+        Daha fazla bilgi, daha fazla seçenek ve daha fazla strateji üretilebilir; fakat hangi
+        seçimin doğru olduğu belirlenemezse sistem iç çatışmaya girer.
+      </p>
+      <p>
+        Bu kriz, zihnin daha yüksek bir ilkeye ihtiyaç duyduğunu gösterir.
+      </p>
+    </section>
+
+    <section class="section-card">
+      <h2>6. Zihin Boyutunun Geçişi</h2>
+      <p>
+        Zihin boyutu biyolojinin zirvesidir; fakat nihai tamamlanma değildir.
+        Zihin akıl, hafıza, seçim ve planlama üretir; ancak doğru-yanlış ayrımını
+        tek başına garanti edemez.
+      </p>
+      <p>
+        Bu nedenle zihin boyutunun sınırı, ahlak boyutuna geçiş kapısıdır.
+      </p>
+    </section>
+
+    <section class="section-card">
+      <h2>7. Ahlaka Geçiş</h2>
+      <p>
+        Ahlak, zihnin üzerine eklenen süs değil; zihnin krizini çözen zorunlu üst katmandır.
+        Zihin güç üretir, akıl sonuç hesaplar; fakat hangi sonucun doğru ve meşru olduğunu
+        belirleyen şey ahlaktır.
+      </p>
+      <ul>
+        <li>Sorumluluk doğar.</li>
+        <li>Doğru-yanlış ayrımı belirir.</li>
+        <li>Güç sınır altına alınır.</li>
+        <li>Karar ilkeye bağlanır.</li>
+      </ul>
+    </section>
+
+    <section class="section-card">
+      <h2>8. Zanistarast Sonucu</h2>
+      <p>
+        Zihin boyutu, biyolojik evrenin doğal zirvesidir; fakat kendi başına tamamlanmış
+        bir düzen değildir. Zihin büyüdükçe yön, ilke ve sorumluluk ihtiyacı doğar.
+      </p>
+      <p>
+        Bu nedenle Zanistarast sonucuna göre zihin boyutu ahlak boyutunu doğurur.
+        Ahlak açılmazsa zihin daralır; ahlak açılırsa üst uygarlık katmanları mümkün olur.
+      </p>
+    </section>
   </main>
-
 </body>
 </html>
 
