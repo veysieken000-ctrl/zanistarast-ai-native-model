@@ -1,28 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <title>02 - Geological Evolution</title>
- <link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>02 — Jeolojik Evrim</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
+
 <div id="navbar"></div>
 
 <script>
 fetch("components/navbar.html")
-.then(function(res){
-  return res.text();
-})
-.then(function(data){
+.then(res => res.text())
+.then(data => {
   const navbar = document.getElementById("navbar");
   navbar.innerHTML = data;
 
   const scripts = navbar.querySelectorAll("script");
-
-  scripts.forEach(function(oldScript){
+  scripts.forEach(oldScript => {
     const newScript = document.createElement("script");
 
-    if(oldScript.src){
+    if (oldScript.src) {
       newScript.src = oldScript.src;
     } else {
       newScript.textContent = oldScript.textContent;
@@ -33,53 +33,78 @@ fetch("components/navbar.html")
   });
 });
 </script>
+
 <main class="container">
 
-  <a href="theory.html">← Back to Theory</a>
+  <a class="back-link" href="theory.html">← Theory sayfasına dön</a>
 
   <section class="hero">
     <div class="hero-card">
-      <h1>02 - Geological Evolution</h1>
-      <p>Bu bölümde teorinin tüm alt makaleleri yer alır.</p>
+      <h1>02 — Jeolojik Evrim</h1>
+      <p>
+        Jeolojik evrim; varlığın fiziksel zeminden biyolojik eşiğe doğru
+        ilerlediği katmanlaşma, enerji akışı, yapı ve geçiş sürecidir.
+      </p>
     </div>
   </section>
 
-  <section class="theory-grid">
+  <section class="grid">
 
-    <a class="theory-link-card" href="theory-02-00-giris.html">
-      <span class="theory-index">00</span>
-      <h2>Giriş</h2>
-    </a>
+    <div class="card">
+      <a href="theory-02-00-giris.html">
+        <span>00</span>
+        <h2>Giriş</h2>
+        <p>Jeolojik evrimin genel başlangıç çerçevesi.</p>
+      </a>
+    </div>
 
-    <a class="theory-link-card" href="theory-02-01-jeolojik-zemin.html">
-      <span class="theory-index">01</span>
-      <h2>Jeolojik Zemin</h2>
-    </a>
+    <div class="card">
+      <a href="theory-02-01-jeolojik-zemin.html">
+        <span>01</span>
+        <h2>Jeolojik Zemin</h2>
+        <p>Varlığın fiziksel ve yapısal zeminini açıklar.</p>
+      </a>
+    </div>
 
-    <a class="theory-link-card" href="theory-02-02-katmanlasma.html">
-      <span class="theory-index">02</span>
-      <h2>Katmanlaşma</h2>
-    </a>
+    <div class="card">
+      <a href="theory-02-02-katmanlasma.html">
+        <span>02</span>
+        <h2>Katmanlaşma</h2>
+        <p>Jeolojik düzenin katmanlar halinde oluşumu.</p>
+      </a>
+    </div>
 
-    <a class="theory-link-card" href="theory-02-03-enerji-akisi.html">
-      <span class="theory-index">03</span>
-      <h2>Enerji Akışı</h2>
-    </a>
+    <div class="card">
+      <a href="theory-02-03-enerji-akisi.html">
+        <span>03</span>
+        <h2>Enerji Akışı</h2>
+        <p>Jeolojik süreçlerde enerji, hareket ve dönüşüm ilişkisi.</p>
+      </a>
+    </div>
 
-    <a class="theory-link-card" href="theory-02-04-yapi-ve-basinç.html">
-      <span class="theory-index">04</span>
-      <h2>Yapı ve Basınç</h2>
-    </a>
+    <div class="card">
+      <a href="theory-02-04-yapi-ve-basinc.html">
+        <span>04</span>
+        <h2>Yapı ve Basınç</h2>
+        <p>Basınç, yapılaşma ve fiziksel düzen arasındaki bağ.</p>
+      </a>
+    </div>
 
-    <a class="theory-link-card" href="theory-02-05-esik-ve-gecis.html">
-      <span class="theory-index">05</span>
-      <h2>Eşik ve Geçiş</h2>
-    </a>
+    <div class="card">
+      <a href="theory-02-05-esik-ve-gecis.html">
+        <span>05</span>
+        <h2>Eşik ve Geçiş</h2>
+        <p>Jeolojik zeminden biyolojik eşiğe geçiş mantığı.</p>
+      </a>
+    </div>
 
-    <a class="theory-link-card" href="theory-02-06-biyolojiye-zemin.html">
-      <span class="theory-index">06</span>
-      <h2>Biyolojiye Zemin</h2>
-    </a>
+    <div class="card">
+      <a href="theory-02-06-biyolojiye-zemin.html">
+        <span>06</span>
+        <h2>Biyolojiye Zemin</h2>
+        <p>Jeolojik evrimin biyolojik boyuta hazırladığı temel.</p>
+      </a>
+    </div>
 
   </section>
 
@@ -87,3 +112,4 @@ fetch("components/navbar.html")
 
 </body>
 </html>
+
