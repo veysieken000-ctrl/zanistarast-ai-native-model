@@ -3,46 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>01 - Boyutsal Açılım Teorisi</title>
+  <title>01 — Boyutsal Açılım Teorisi</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
+
   <div id="navbar"></div>
 
   <script>
     fetch("components/navbar.html")
-      .then(function (res) {
-        return res.text();
-      })
-      .then(function (data) {
-        const navbar = document.getElementById("navbar");
-        navbar.innerHTML = data;
-
-        const scripts = navbar.querySelectorAll("script");
-
-        scripts.forEach(function (oldScript) {
-          const newScript = document.createElement("script");
-
-          if (oldScript.src) {
-            newScript.src = oldScript.src;
-          } else {
-            newScript.textContent = oldScript.textContent;
-          }
-
-          document.body.appendChild(newScript);
-          oldScript.remove();
-        });
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("navbar").innerHTML = data;
       });
   </script>
 
-  <main class="container theory-page">
+  <main class="container">
 
-    <a class="back-link" href="theory.html">← Theory sayfasına dön</a>
+    <a class="back-link" href="./theory.html">← Theory sayfasına dön</a>
 
-    <section class="hero theory-hero">
+    <section class="hero">
       <div class="hero-card">
-        <h1>01 - Boyutsal Açılım Teorisi</h1>
+        <h1>01 — Boyutsal Açılım Teorisi</h1>
+
         <p>
           Bu bölümde boyutsal açılım teorisinin alt makaleleri yer alır.
           Varlığın katmanlı açılımı, fiziksel temel, biyolojik geçiş,
@@ -53,72 +37,91 @@
 
     <section class="section-card">
       <h2>Teori Akışı</h2>
+
       <p>
-        Boyutsal Açılım → Fiziksel Temel → Biyolojik Geçiş → Zihin Boyutu → Üst Boyut Zorunluluğu
+        Boyutsal Açılım → Fiziksel Temel → Biyolojik Geçiş →
+        Zihin Boyutu → Üst Boyut Zorunluluğu
       </p>
     </section>
 
-    <section class="theory-grid">
+    <section class="grid">
 
-      <a class="theory-link-card" href="theory-01-00-zanistarast-history.html">
-        <span class="theory-index">00</span>
-        <h2>Zanistarast History</h2>
-        <p>Teorinin tarihsel başlangıcı ve Zanistarast omurgasına bağlanışı.</p>
-      </a>
+      <div class="card">
+        <a href="./theory-01-00-zanistarast-history.html">
+          <span>00</span>
+          <h3>Zanistarast History</h3>
+          <p>Teorinin tarihsel başlangıcı ve Zanistarast omurgasına bağlanışı.</p>
+        </a>
+      </div>
 
-      <a class="theory-link-card" href="theory-01-01-physical-foundation.html">
-        <span class="theory-index">01</span>
-        <h2>Physical Foundation</h2>
-        <p>Boyutsal açılımın fiziksel temelini kuran ilk katman.</p>
-      </a>
+      <div class="card">
+        <a href="./theory-01-01-physical-foundation.html">
+          <span>01</span>
+          <h3>Physical Foundation</h3>
+          <p>Boyutsal açılımın fiziksel temelini kuran ilk katman.</p>
+        </a>
+      </div>
 
-      <a class="theory-link-card" href="theory-01-02-biyolojiden-fizige-gecis.html">
-        <span class="theory-index">02</span>
-        <h2>Biyolojiden Fiziğe Geçiş</h2>
-        <p>Canlılık, enerji, düzen ve fiziksel yapı arasındaki geçiş zemini.</p>
-      </a>
+      <div class="card">
+        <a href="./theory-01-02-biyolojiden-fizige-gecis.html">
+          <span>02</span>
+          <h3>Biyolojiden Fiziğe Geçiş</h3>
+          <p>Canlılık, enerji, düzen ve fiziksel yapı arasındaki geçiş zemini.</p>
+        </a>
+      </div>
 
-      <a class="theory-link-card" href="theory-01-03-boyutsal-acilim.html">
-        <span class="theory-index">03</span>
-        <h2>Boyutsal Açılım</h2>
-        <p>Varlığın katmanlı açılımını ve üst düzene geçiş mantığını açıklar.</p>
-      </a>
+      <div class="card">
+        <a href="./theory-01-03-boyutsal-acilim.html">
+          <span>03</span>
+          <h3>Boyutsal Açılım</h3>
+          <p>Varlığın katmanlı açılımını ve üst düzene geçiş mantığını açıklar.</p>
+        </a>
+      </div>
 
-      <a class="theory-link-card" href="theory-01-04-matematiksel-ilke.html">
-        <span class="theory-index">04</span>
-        <h2>Matematiksel İlke</h2>
-        <p>Boyutsal düzenin sayı, oran, ölçü ve sistem ilkeleriyle ifadesi.</p>
-      </a>
+      <div class="card">
+        <a href="./theory-01-04-matematiksel-ilke.html">
+          <span>04</span>
+          <h3>Matematiksel İlke</h3>
+          <p>Boyutsal düzenin sayı, oran, ölçü ve sistem ilkeleriyle ifadesi.</p>
+        </a>
+      </div>
 
-      <a class="theory-link-card" href="theory-01-05-reset-mekanizmasi.html">
-        <span class="theory-index">05</span>
-        <h2>Reset Mekanizması</h2>
-        <p>Sistemin daralma, çöküş ve yeniden dengeye dönüş mekanizması.</p>
-      </a>
+      <div class="card">
+        <a href="./theory-01-05-reset-mekanizmasi.html">
+          <span>05</span>
+          <h3>Reset Mekanizması</h3>
+          <p>Sistemin daralma, çöküş ve yeniden dengeye dönüş mekanizması.</p>
+        </a>
+      </div>
 
-      <a class="theory-link-card" href="theory-01-06-ust-boyut-zorunlulugu.html">
-        <span class="theory-index">06</span>
-        <h2>Üst Boyut Zorunluluğu</h2>
-        <p>Alt katmanların tek başına yetmemesi ve üst düzene ihtiyaç doğurması.</p>
-      </a>
+      <div class="card">
+        <a href="./theory-01-06-ust-boyut-zorunlulugu.html">
+          <span>06</span>
+          <h3>Üst Boyut Zorunluluğu</h3>
+          <p>Alt katmanların tek başına yetmemesi ve üst düzene ihtiyaç doğurması.</p>
+        </a>
+      </div>
 
-      <a class="theory-link-card" href="theory-01-07-zihin-boyutu.html">
-        <span class="theory-index">07</span>
-        <h2>Zihin Boyutu</h2>
-        <p>Zihin, algı, anlam ve sistemsel kavrayışın boyutsal açıklaması.</p>
-      </a>
+      <div class="card">
+        <a href="./theory-01-07-zihin-boyutu.html">
+          <span>07</span>
+          <h3>Zihin Boyutu</h3>
+          <p>Zihnin, algı, anlam ve sistemsel kavrayışın boyutsal açıklaması.</p>
+        </a>
+      </div>
 
-      <a class="theory-link-card" href="theory-01-08-insan-3-5-boyut.html">
-        <span class="theory-index">08</span>
-        <h2>İnsan 3 ve 5 Boyut</h2>
-        <p>İnsanın fiziksel, zihinsel ve üst anlam katmanları arasındaki konumu.</p>
-      </a>
+      <div class="card">
+        <a href="./theory-01-08-insan-3-5-boyut.html">
+          <span>08</span>
+          <h3>İnsan 3 ve 5 Boyut</h3>
+          <p>İnsanın fiziksel, zihinsel ve üst anlam katmanları arasındaki konumu.</p>
+        </a>
+      </div>
 
     </section>
 
   </main>
+
 </body>
 </html>
-
-
 
