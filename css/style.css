@@ -1746,6 +1746,56 @@ li{
 margin:8px 0;
 line-height:1.7;
 }
+/* ---------- Theory ana sayfa: güçlü tıklanabilir kart hissi ---------- */
 
+.theory-entry {
+  position: relative;
+  isolation: isolate;
+}
+
+.theory-entry::after {
+  content: "OPEN";
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,.48);
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.10);
+  transition: all .2s ease;
+  pointer-events: none;
+}
+
+.theory-entry::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(56,189,248,.18), transparent 46%);
+  opacity: 0;
+  transition: opacity .25s ease;
+  pointer-events: none;
+}
+
+.theory-entry:hover::before {
+  opacity: 1;
+}
+
+.theory-entry:hover::after {
+  color: #7fe7ff;
+  border-color: rgba(127,231,255,.55);
+  background: rgba(56,189,248,.16);
+}
+
+.theory-entry:hover {
+  transform: translateY(-12px) scale(1.025);
+  border-color: rgba(127,231,255,.45);
+  box-shadow:
+    0 30px 70px rgba(0,170,255,.24),
+    0 0 0 1px rgba(127,231,255,.20);
+}
 
 
