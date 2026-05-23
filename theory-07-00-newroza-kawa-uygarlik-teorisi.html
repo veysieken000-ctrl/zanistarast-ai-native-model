@@ -1,67 +1,140 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>00 - Newroza Kawa Uygarlık Teorisi</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
   <div id="navbar"></div>
 
-<script>
-fetch("components/navbar.html")
-.then(function(res){
-  return res.text();
-})
-.then(function(data){
-  const navbar = document.getElementById("navbar");
-  navbar.innerHTML = data;
+  <script>
+    fetch("components/navbar.html")
+      .then(res => res.text())
+      .then(data => {
+        const navbar = document.getElementById("navbar");
+        navbar.innerHTML = data;
 
-  const scripts = navbar.querySelectorAll("script");
+        const scripts = navbar.querySelectorAll("script");
+        scripts.forEach(function(oldScript){
+          const newScript = document.createElement("script");
 
-  scripts.forEach(function(oldScript){
-    const newScript = document.createElement("script");
+          if(oldScript.src){
+            newScript.src = oldScript.src;
+          } else {
+            newScript.textContent = oldScript.textContent;
+          }
 
-    if(oldScript.src){
-      newScript.src = oldScript.src;
-    } else {
-      newScript.textContent = oldScript.textContent;
-    }
+          document.body.appendChild(newScript);
+          oldScript.remove();
+        });
+      });
+  </script>
 
-    document.body.appendChild(newScript);
-    oldScript.remove();
-  });
-});
-</script>
   <main class="container">
-    <a href="theory-07-medeniyet.html">← Back to Theory</a>
+
+    <a class="back-link" href="theory-07-newroza-kawa-civilization.html">← Medeniyet sayfasına dön</a>
+
+    <section class="hero">
+      <div class="hero-card">
+        <h1>00 - Newroza Kawa Uygarlık Teorisi</h1>
+        <p>
+          Newroza Kawa Uygarlık Teorisi; fizik, biyoloji, zihin, ahlak, ekonomi,
+          bilim ve yönetim katmanlarını dengeli bir uygarlık modeli içinde
+          birleştiren Zanistarast sentezidir.
+        </p>
+      </div>
+    </section>
 
     <section class="section-card">
-      <h1>00 - Newroza Kawa Uygarlık Teorisi</h1>
 
-      <p><strong>1. Giriş — Neden yeni bir uygarlık?</strong> Zanistarast biliminde fizik boyutu maddeyi kurdu, biyolojik boyut canlılığı geliştirdi, zihin boyutu bilgiyi açtı, ahlak boyutu sorumluluğu doğurdu. Ancak bu katmanlar tek başına yeterli değildir. Boyutlar birleşmeden uygarlık oluşmaz. Newroza Kawa Uygarlığı, tüm boyutların dengeli birleşimidir.</p>
+      <h2>1. Giriş — Neden Yeni Bir Uygarlık?</h2>
+      <p>
+        Zanistarast bilimine göre fizik boyut maddeyi kurdu, biyolojik boyut
+        canlılığı geliştirdi, zihin boyutu bilgiyi açtı, ahlak boyutu ise
+        sorumluluğu doğurdu. Fakat bu katmanlar tek başına yeterli değildir.
+        Boyutlar birleşmeden uygarlık oluşmaz.
+      </p>
 
-      <p><strong>2. Uygarlık nedir?</strong> Rasterast-Zanistarast tanımına göre uygarlık; varlığın korunması, bilginin sorumlulukla kullanılması, gücün sınırlandırılması ve ahlakın merkezde tutulmasıdır. Teknoloji tek başına uygarlık değildir, ekonomi tek başına uygarlık değildir, devlet tek başına uygarlık değildir.</p>
+      <h2>2. Uygarlık Nedir?</h2>
+      <p>
+        Rasterast-Zanistarast tanımına göre uygarlık; varlığın korunması,
+        bilginin sorumlulukla kullanılması, gücün sınırlandırılması ve ahlakın
+        toplumsal düzene dönüşmesidir. Teknoloji tek başına uygarlık değildir.
+        Ekonomi tek başına uygarlık değildir. Devlet tek başına uygarlık değildir.
+      </p>
 
-      <p><strong>3. Boyutların birleşmesi:</strong> Newroza Kawa modeli; Fizik = enerji ve madde dengesi, Biyoloji = yaşam sürekliliği ve ekolojik uyum, Zihin = bilgi üretimi ve bilim, Zaman-Mekân = tarih ve coğrafya süreçleri, Ahlak = ölçü ve sorumluluk, Hesap-Ayrım = sonuç ve karşılık sürdürülebilirliği üzerine kurulur.</p>
+      <h2>3. Boyutların Birleşmesi</h2>
+      <p>
+        Newroza Kawa modeli, boyutları birbirinden kopuk alanlar olarak değil,
+        birbirini tamamlayan katmanlar olarak okur. Fizik; enerji ve madde
+        dengesidir. Biyoloji; yaşam sürekliliği ve ekolojik uyumdur. Zihin;
+        bilgi üretimi ve yön arayışıdır. Ahlak; doğru-yanlış ayrımı ve
+        sorumluluktur. Medeniyet ise bu katmanların düzenli birleşimidir.
+      </p>
 
-      <p><strong>4. Newroza Kawa’nın temel ilkesi:</strong> En kritik yasa şudur: Güç bilginin kontrolünde, bilgi ahlakın kontrolünde olmalıdır. Bu zincir kırılırsa zihin güç üretir, güç hükme dönüşür ve sistem daralma yaşar.</p>
+      <h2>4. Temel İlke</h2>
+      <p>
+        Newroza Kawa’nın temel ilkesi şudur: Güç bilginin kontrolünde, bilgi
+        ahlakın kontrolünde olmalıdır. Bu zincir kırılırsa zihin güç üretir,
+        güç hükme dönüşür ve sistem daralma yaşar.
+      </p>
 
-      <p><strong>5. Uygarlık ekonomisi (Mabûn):</strong> Ekonomi büyüme aracı değil, yaşam dengesi aracıdır. Temel ilkeler: emanet bilinci, dolaşım ekonomisi, yerel üretim ve küresel işbirliği. Amaç sınırsız büyüme değil, sürdürülebilir denge kurmaktır.</p>
+      <h2>5. Uygarlık Ekonomisi — Mabûn</h2>
+      <p>
+        Ekonomi büyüme aracı değil, yaşam dengesi aracıdır. Mabûn düzeninde
+        ekonomi; emanet bilinci, dolaşım adaleti, yerel üretim, paylaşım dengesi
+        ve küresel işbirliği üzerine kurulur. Amaç sınırsız büyüme değil,
+        sürdürülebilir denge kurmaktır.
+      </p>
 
-      <p><strong>6. Uygarlık bilimi (Zanabûn):</strong> Bilim yalnız ölçme değil, tanıklık sorumluluğudur. Bilgi manipülasyon için değil, varlığı korumak için kullanılır.</p>
+      <h2>6. Uygarlık Bilimi — Zanabûn</h2>
+      <p>
+        Bilim yalnızca ölçme faaliyeti değildir; tanıklık sorumluluğudur. Bilgi
+        manipülasyon için değil, varlığı korumak için kullanılır. Zanabûn,
+        bilginin ahlakla birleştiği bilimsel uygarlık katmanıdır.
+      </p>
 
-      <p><strong>7. Yönetim modeli (Hebûn):</strong> Newroza Kawa’da yönetim tek merkezli imparatorluk değildir. Bölgesel meclisler, ahlak meclisi, hüküm meclisi ve ekonomi meclisi birlikte çalışır. Merkez denge üretir, çevre uygulama ve geri besleme yapar.</p>
+      <h2>7. Yönetim Modeli — Hebûn Ontolojik Düzeni</h2>
+      <p>
+        Newroza Kawa’da yönetim tek merkezli imparatorluk değildir. Bölgesel
+        meclisler, ahlak meclisi, hüküm meclisi ve ekonomi meclisi birlikte
+        çalışır. Merkez denge üretir; çevre uygulama ve geri besleme sağlar.
+      </p>
 
-      <p><strong>8. Küresel model:</strong> Dünya tek blok değil, dengeli çok merkezli bir sistemdir. Bölgesel merkezler kendi coğrafyasında var olur ama ortak ahlak yasasında birleşir. Bu model emperyalizmi azaltır ve savaş nedenlerini küçültür.</p>
+      <h2>8. Küresel Model</h2>
+      <p>
+        Dünya tek blok değildir; dengeli çok merkezli bir sistemdir. Bölgesel
+        merkezler kendi coğrafyasında var olur, fakat ortak ahlak yasasında
+        birleşir. Bu model emperyalizmi azaltır ve savaş nedenlerini küçültür.
+      </p>
 
-      <p><strong>9. Neden yeni çağ?</strong> Jeolojik çağlar gibi biyolojik çağlar yaşandı, zihinsel çağ açıldı. Şimdi ahlak merkezli çağ başlıyor. Bu çağ, Newroza Kawa çağıdır.</p>
+      <h2>9. Neden Yeni Çağ?</h2>
+      <p>
+        Jeolojik çağlar yaşandı, biyolojik çağ açıldı, zihinsel çağ gelişti.
+        Şimdi ahlak merkezli çağ başlamalıdır. Bu çağ, Newroza Kawa çağıdır.
+        Çünkü güç büyümüş, bilgi çoğalmış, fakat ahlakî denge eksik kalmıştır.
+      </p>
 
-      <p><strong>10. Zanistarast biliminin sonucu:</strong> Madde + Yaşam + Zihin + Ahlak = Dengeli Uygarlık. Eksik katman daralmaya yol açar. Tam birleşim ise sürdürülebilir medeniyettir.</p>
+      <h2>10. Zanistarast Sonucu</h2>
+      <p>
+        Madde + yaşam + zihin + ahlak birleştiğinde dengeli uygarlık doğar.
+        Eksik katman daralmaya yol açar. Tam birleşim ise sürdürülebilir
+        medeniyet üretir.
+      </p>
 
-      <p><strong>11. Sonuç:</strong> Newroza Kawa Uygarlığı ideoloji değildir, imparatorluk modeli değildir, kültür dayatması değildir. Bu model, varlığın doğal evrimsel sonucudur.</p>
+      <h2>11. Sonuç</h2>
+      <p>
+        Newroza Kawa Uygarlığı ideoloji değildir, imparatorluk modeli değildir,
+        kültür dayatması değildir. Bu model, varlığın doğal evrensel sonucudur:
+        güç sınırlanır, bilgi sorumluluk kazanır, ekonomi dengeye bağlanır ve
+        uygarlık ahlak merkezli hâle gelir.
+      </p>
+
     </section>
+
   </main>
 </body>
 </html>
