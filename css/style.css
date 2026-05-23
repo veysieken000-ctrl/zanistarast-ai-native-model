@@ -557,6 +557,76 @@ body {
     0 0 0 1px rgba(56, 189, 248, .18),
     0 18px 46px rgba(56, 189, 248, .18);
 }
+/* ---------- güçlü clickable kart sistemi ---------- */
+
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0,255,255,0),
+      rgba(0,180,255,.22),
+      rgba(0,255,255,0)
+    );
+
+  opacity: 0;
+  transition: opacity .25s ease;
+
+  pointer-events: none;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card:hover {
+  transform:
+    translateY(-10px)
+    scale(1.02);
+
+  box-shadow:
+    0 25px 60px rgba(0,170,255,.22),
+    0 10px 25px rgba(0,0,0,.35);
+}
+
+.card:active {
+  transform:
+    translateY(-2px)
+    scale(.985);
+}
+
+.card a::after {
+  content: "→";
+  position: absolute;
+
+  right: 22px;
+  bottom: 18px;
+
+  font-size: 1.4rem;
+  font-weight: 900;
+
+  color: rgba(255,255,255,.25);
+
+  transition:
+    transform .2s ease,
+    opacity .2s ease;
+
+  opacity: .6;
+}
+
+.card:hover a::after {
+  transform: translateX(6px);
+  opacity: 1;
+}
 
 /* ---------- Back / geri dönüş linkleri ---------- */
 
