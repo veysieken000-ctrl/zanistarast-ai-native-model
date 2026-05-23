@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <title>İnsan 3 ve 5 Boyut</title>
- <link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>08 — İnsan 3 ve 5 Boyut</title>
+
+  <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
+
 <div id="navbar"></div>
 
 <script>
@@ -14,12 +18,14 @@ fetch("components/navbar.html")
   return res.text();
 })
 .then(function(data){
+
   const navbar = document.getElementById("navbar");
   navbar.innerHTML = data;
 
   const scripts = navbar.querySelectorAll("script");
 
   scripts.forEach(function(oldScript){
+
     const newScript = document.createElement("script");
 
     if(oldScript.src){
@@ -29,85 +35,164 @@ fetch("components/navbar.html")
     }
 
     document.body.appendChild(newScript);
+
     oldScript.remove();
   });
 });
 </script>
+
 <main class="container">
 
-  <a href="theory-01-boyutsal-acilim.html">← Back</a>
+<a class="back-link" href="theory-01-boyutsal-acilim.html">
+← Boyutsal Açılım sayfasına dön
+</a>
 
-  <section class="section-card">
+<section class="hero">
+  <div class="hero-card">
+    <h1>08 — İnsan 3 ve 5 Boyut</h1>
 
-  <h1>08 - İnsan 3 ve 5 Boyut</h1>
+    <p>
+      İnsan, yalnızca fiziksel bir organizma değildir.
+      Zanistarast sistemine göre insan; alt boyutların birleştiği
+      ve üst boyutlara geçiş potansiyeli taşıyan çok katmanlı bir yapıdır.
+    </p>
+  </div>
+</section>
 
-  <h2>1. İnsan Nedir</h2>
+<section class="hero-card">
+  <h2>1. İnsan Nedir?</h2>
+
   <p>
-    Zanistarast bilimine göre insan, tek boyutlu bir varlık değildir.
-    İnsan, birden fazla boyutun birleştiği ve birlikte çalıştığı
-    çok katmanlı bir yapıdır.
+    İnsan, tek boyutlu bir varlık değildir.
   </p>
 
+  <p>
+    Fizik, biyoloji ve zihnin birlikte çalıştığı
+    çok katmanlı bir sistemdir.
+  </p>
+</section>
+
+<section class="hero-card">
   <h2>2. Üç Boyutlu İnsan</h2>
+
   <p>
-    İnsan, temel olarak üç alt boyutu taşır:
-    Fizik (madde ve beden),
-    Biyoloji (yaşam ve organizma),
-    Zihin (zeka ve akıl).
-    Bu üçlü yapı, insanın temel varlık düzeyini oluşturur.
+    İnsan temel olarak üç alt boyut taşır:
   </p>
 
-  <h2>3. Üç Boyutun Sınırı</h2>
   <p>
-    Fizik, biyoloji ve zihin birlikte çalışsa da
-    yön eksikliği devam eder. Güç üretilebilir,
+    Fizik → Biyoloji → Zihin
+  </p>
+
+  <p>
+    Bu üçlü yapı insanın temel varlık düzeyini oluşturur.
+  </p>
+</section>
+
+<section class="hero-card">
+  <h2>3. Üç Boyutun Sınırı</h2>
+
+  <p>
+    Fizik, biyoloji ve zihin birlikte çalışsa bile
+    yön eksikliği devam eder.
+  </p>
+
+  <p>
+    Güç üretilebilir,
     ancak bu gücün nasıl kullanılacağı belirlenemez.
   </p>
+</section>
 
+<section class="hero-card">
   <h2>4. Dördüncü Boyut: Ahlak</h2>
+
   <p>
-    Ahlak boyutu, doğru-yanlış ayrımı üretir.
-    Bu boyut olmadan zihin üretilen gücü
-    kontrol edemez ve sistem dengesizleşir.
+    Ahlak boyutu doğru-yanlış ayrımı üretir.
   </p>
 
+  <p>
+    Bu boyut olmadan zihnin ürettiği güç
+    kontrol edilemez ve sistem dengesizleşir.
+  </p>
+</section>
+
+<section class="hero-card">
   <h2>5. Beşinci Boyut: Hüküm</h2>
+
   <p>
-    Hüküm boyutu, karar verme ve sonuç üretme
-    katmanıdır. Ahlak yön verir, hüküm uygulama yapar.
-    Bu iki boyut birlikte sistemin üst yapısını oluşturur.
+    Hüküm boyutu karar verme ve sonuç üretme katmanıdır.
   </p>
 
+  <p>
+    Ahlak yön verir,
+    hüküm ise uygulama üretir.
+  </p>
+</section>
+
+<section class="hero-card">
   <h2>6. Beş Boyutlu İnsan</h2>
+
   <p>
     İnsan şu beş boyutun birleşimidir:
-    Fizik → Biyoloji → Zihin → Ahlak → Hüküm.
-    Bu yapı tamamlandığında insan dengeli bir varlık olur.
   </p>
 
-  <h2>7. Neden Üst Boyut Gereklidir</h2>
+  <p>
+    Fizik → Biyoloji → Zihin → Ahlak → Hüküm
+  </p>
+
+  <p>
+    Bu yapı tamamlandığında insan daha dengeli
+    bir varlık haline gelir.
+  </p>
+</section>
+
+<section class="hero-card">
+  <h2>7. Neden Üst Boyut Gereklidir?</h2>
+
   <p>
     Üç boyutlu insan güç üretir ama yönsüzdür.
-    Beş boyutlu insan ise yönlüdür ve denge kurabilir.
+  </p>
+
+  <p>
+    Beş boyutlu insan ise yönlüdür
+    ve denge kurabilir.
+  </p>
+
+  <p>
     Bu nedenle üst boyutlar zorunludur.
   </p>
-
-  <h2>8. Zanistarast Sonucu</h2>
-  <p>
-    İnsan, boyutsal açılımın bir aşamasıdır.
-    Nihai hedef, boyutların dengeli şekilde
-    birlikte çalıştığı bir sistem kurmaktır.
-  </p>
-
-  <h2>9. Sonuç</h2>
-  <p>
-    İnsan, alt boyutları taşıyan ve üst boyutlara
-    geçiş potansiyeli olan bir varlıktır.
-    Bu nedenle insan, boyutsal sistemin merkezidir.
-  </p>
-
 </section>
+
+<section class="hero-card">
+  <h2>8. Zanistarast Sonucu</h2>
+
+  <p>
+    İnsan, boyutsal açılımın merkez aşamalarından biridir.
+  </p>
+
+  <p>
+    Nihai hedef,
+    tüm boyutların dengeli şekilde birlikte çalıştığı
+    birleşik sistem yapısına ulaşmaktır.
+  </p>
+</section>
+
+<section class="hero-card">
+  <h2>9. Sonuç</h2>
+
+  <p>
+    İnsan; alt boyutları taşıyan
+    ve üst boyutlara geçiş potansiyeli bulunan
+    merkezi bir varlıktır.
+  </p>
+
+  <p>
+    Bu nedenle insan,
+    boyutsal sistemin en kritik eşiklerinden biridir.
+  </p>
+</section>
+
 </main>
 
 </body>
 </html>
+
