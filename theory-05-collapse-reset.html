@@ -3,91 +3,429 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>05 — Daralma / Reset Teorisi</title>
+  <title>Daralma ve Geçiş Sistemi</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
-
 <body>
 
-  <div id="navbar"></div>
+<div id="navbar"></div>
 
-  <script>
-    fetch("components/navbar.html")
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById("navbar").innerHTML = data;
-      });
-  </script>
+<script>
+fetch("components/navbar.html")
+  .then(res => res.text())
+  .then(data => {
+    const navbar = document.getElementById("navbar");
+    navbar.innerHTML = data;
 
-  <main class="container">
+    const scripts = navbar.querySelectorAll("script");
 
-    <a class="back-link" href="./theory.html">← Theory sayfasına dön</a>
+    scripts.forEach(oldScript => {
+      const newScript = document.createElement("script");
 
-    <section class="hero">
-      <div class="hero-card">
-        <h1>05 — Daralma / Reset Teorisi</h1>
-        <p>
-          Bu bölümde daralma, reset, kriz, ahlaka hazırlık,
-          ruh evresi ve ruhtan insana geçiş ele alınır.
-        </p>
-      </div>
-    </section>
+      if (oldScript.src) {
+        newScript.src = oldScript.src;
+      } else {
+        newScript.textContent = oldScript.textContent;
+      }
 
-    <section class="grid">
+      document.body.appendChild(newScript);
+      oldScript.remove();
+    });
+  });
+</script>
 
-      <div class="card">
-        <a href="./theory-05-01-daralma-ve-reset-evresi.html">
-          <span>01</span>
-          <h3>Daralma ve Reset Evresi</h3>
-          <p>Sistemin daralma ve yeniden dengeye dönüş sürecini açıklar.</p>
-        </a>
-      </div>
+<main class="container">
 
-      <div class="card">
-        <a href="./theory-05-02-daralma-mekanizmasi.html">
-          <span>02</span>
-          <h3>Daralma Mekanizması</h3>
-          <p>Daralmanın sistemsel işleyişini ve dönüşüm mantığını açıklar.</p>
-        </a>
-      </div>
+<a class="back-link" href="theory.html">
+← Theory sayfasına dön
+</a>
 
-      <div class="card">
-        <a href="./theory-05-03-daralmadan-ahlaka-gecis.html">
-          <span>03</span>
-          <h3>Daralmadan Ahlaka Geçiş</h3>
-          <p>Kriz sonrası ahlaki düzene geçiş sürecini açıklar.</p>
-        </a>
-      </div>
+<section class="hero-card">
+<h1>05 — Daralma ve Geçiş Sistemi</h1>
 
-      <div class="card">
-        <a href="./theory-05-04-ahlak-boyutuna-hazirlik.html">
-          <span>04</span>
-          <h3>Ahlak Boyutuna Hazırlık</h3>
-          <p>Üst boyuta geçiş öncesi hazırlık ve denge sürecini açıklar.</p>
-        </a>
-      </div>
+<p>
+Zanistarast modeline göre evrimsel süreç doğrusal ve sonsuz yükselen bir çizgi değildir.
+Her boyut kendi içinde büyür, karmaşıklaşır ve belirli bir eşiğe ulaşır.
+Bu eşikten sonra sistem ya yeni bir üst boyuta açılır ya da daralma sürecine girer.
+</p>
 
-      <div class="card">
-        <a href="./theory-05-05-ruh-evresi-ve-melekler.html">
-          <span>05</span>
-          <h3>Ruh Evresi ve Melekler</h3>
-          <p>Ruh boyutu ve melek kavramlarının sistem içindeki yerini açıklar.</p>
-        </a>
-      </div>
+<p>
+Daralma bu modelde yalnızca çöküş veya felaket değildir.
+Daralma aynı zamanda sistemin taşıyamadığı karmaşıklığı bırakması,
+dengeyi yeniden kurması ve üst boyuta hazırlanmasıdır.
+</p>
 
-      <div class="card">
-        <a href="./theory-05-06-ruhtan-insana-gecis.html">
-          <span>06</span>
-          <h3>Ruhtan İnsana Geçiş</h3>
-          <p>Ruhsal yapıdan insan düzeyine geçiş sürecini açıklar.</p>
-        </a>
-      </div>
+<p>
+Bu nedenle fiziksel evren, biyolojik evren, zihinsel evren ve ahlaki geçiş birbirinden kopuk süreçler değil;
+aynı boyutsal zincirin aşamalarıdır.
+</p>
+</section>
 
-    </section>
+<section class="section-card">
+<h2>1. Daralma ve Reset Evresi</h2>
 
-  </main>
+<p>
+Zanistarast yaklaşımına göre hiçbir sistem sonsuza kadar kontrolsüz büyüyemez.
+Her büyüme yeni enerji ihtiyacı, yeni koordinasyon problemi ve yeni riskler üretir.
+Bu nedenle her boyut kendi içinde bir sınır taşır.
+</p>
 
+<p>
+Fiziksel evrende yıldızların çökmesi,
+biyolojik evrende büyük tür yok oluşları,
+zihin boyutunda ise yön kaybı ve iç çatışma bu sınırın farklı yansımalarıdır.
+</p>
+
+<p>
+Daralma burada rastgele yok oluş değil,
+boyutsal geçiş öncesi zorunlu sadeleşme mekanizmasıdır.
+Sistem taşıyamadığı yapıları bırakır,
+karmaşıklığı azaltır ve yeni denge kurmaya çalışır.
+</p>
+
+<p>
+Bu nedenle büyük yok oluşlar yalnızca başarısızlık olarak değil,
+yeni kapasitelere alan açılması olarak okunur.
+Dinozorların yok oluşundan sonra memelilerin yükselmesi buna örnek gösterilebilir.
+</p>
+
+<p>
+Zihin boyutu açıldıktan sonra canlı çeşitliliği,
+sosyal rekabet ve bilgi üretimi hızla artar.
+Ancak bilgi büyüdükçe kriz de büyür.
+Çünkü bilgi tek başına yön üretmez.
+</p>
+
+<p>
+Zanistarast sonucuna göre daralma,
+varlığın cezalandırılması değil,
+kapasite güncellemesidir.
+Sistem eski dengeyi bırakmadan yeni boyuta geçemez.
+</p>
+</section>
+
+<section class="section-card">
+<h2>2. Daralma Mekanizması</h2>
+
+<p>
+Daralma mekanizması dört temel aşamada işler:
+denge kaybı,
+karmaşıklık artışı,
+kontrol zayıflaması
+ve yeniden düzen arayışı.
+</p>
+
+<p>
+Her boyut kendi içinde genişledikçe enerji dağılımı zorlaşır.
+Fiziksel evrende bu durum çekimsel çöküşler üretir.
+Biyolojik evrende tür çatışmaları ve adaptasyon krizleri oluşur.
+Zihin boyutunda ise bilgi yoğunlaşması güç krizine dönüşür.
+</p>
+
+<p>
+Zihin geliştikçe canlı daha fazla seçenek üretir.
+Ancak seçeneklerin çoğalması,
+karar yükünü de artırır.
+Bu durum yön eksikliği oluşturur.
+</p>
+
+<p>
+Bilgi arttıkça:
+</p>
+
+<ul>
+<li>rekabet büyür,</li>
+<li>güç merkezileşir,</li>
+<li>risk çoğalır,</li>
+<li>denge kırılganlaşır.</li>
+</ul>
+
+<p>
+Zanistarast yorumuna göre modern krizlerin büyük kısmı,
+zihinsel kapasitenin büyümesine rağmen
+etik yönün aynı hızda gelişmemesinden kaynaklanır.
+</p>
+
+<p>
+Daralma bu yüzden yalnızca fiziksel küçülme değil,
+yanlış büyümenin tasfiyesidir.
+Kontrolsüz büyüme çöküş üretir;
+kontrollü daralma ise geçiş üretir.
+</p>
+</section>
+
+<section class="section-card">
+<h2>3. Daralmadan Ahlaka Geçiş</h2>
+
+<p>
+Zihin boyutunun temel krizi şudur:
+canlı artık sadece içgüdüyle hareket etmez,
+bilgi üretir,
+hesap yapar,
+geleceği planlar,
+fakat hangi yönün doğru olduğunu kesin belirleyemez.
+</p>
+
+<p>
+Bu nedenle bilgi büyüdükçe güç de büyür.
+Fakat güç yönsüz kaldığında
+rekabet,
+sömürü,
+manipülasyon
+ve yıkım ortaya çıkar.
+</p>
+
+<p>
+Zanistarast modelinde ahlak,
+zihnin üstüne sonradan eklenen kültürel süs değildir.
+Ahlak,
+zihin krizini çözmek için zorunlu açılan üst boyuttur.
+</p>
+
+<p>
+Hayvan zekâsı büyük ölçüde uyum ve içgüdü ile çalışır.
+İnsan ise seçim yapar,
+sorumluluk taşır
+ve doğru-yanlış ayrımı kurabilir.
+Bu nedenle insan,
+zihin boyutunun son ürünü değil;
+ahlak boyutunun başlangıç varlığıdır.
+</p>
+
+<p>
+Daralma burada kritik rol oynar.
+Çünkü sistem,
+ahlaki denge olmadan zihinsel büyümeyi sürdüremez.
+Kriz büyüdüğünde yeni düzen ihtiyacı doğar.
+Bu ihtiyaç ahlak boyutunu zorunlu hâle getirir.
+</p>
+
+<p>
+Zanistarast sonucuna göre:
+fizik maddeyi üretir,
+biyoloji yaşamı kurar,
+zihin bilgiyi üretir,
+daralma krizi gösterir,
+ahlak ise yön ilkesini oluşturur.
+</p>
+</section>
+
+<section class="section-card">
+<h2>4. Ahlak Boyutuna Hazırlık</h2>
+
+<p>
+Hiçbir üst boyut aniden ortaya çıkmaz.
+Her yeni boyut,
+alt boyutun uzun süreli hazırlığı sonucunda açılır.
+</p>
+
+<p>
+Biyoloji milyonlarca yıl boyunca sinir sistemi,
+hafıza,
+sosyal davranış,
+iletişim
+ve öğrenme mekanizmaları geliştirir.
+Bunlar zihin boyutunun altyapısını oluşturur.
+</p>
+
+<p>
+Benzer şekilde zihinsel evren de:
+</p>
+
+<ul>
+<li>özgür seçim,</li>
+<li>sorumluluk,</li>
+<li>gelecek planlama,</li>
+<li>iyi-kötü çatışması,</li>
+<li>adalet ihtiyacı</li>
+</ul>
+
+<p>
+gibi süreçlerle ahlak boyutunun altyapısını hazırlar.
+</p>
+
+<p>
+Zihin büyüdükçe sistem artık şunu fark eder:
+akıl vardır fakat ölçü eksiktir.
+Bilgi vardır fakat hakikat garantisi yoktur.
+Güç vardır fakat yön belirsizdir.
+</p>
+
+<p>
+Bu nedenle ahlak yalnızca toplumsal kural değil,
+ontolojik ihtiyaç hâline gelir.
+</p>
+
+<p>
+Kur’an’daki:
+“Biz emaneti göklere, yere ve dağlara teklif ettik…”
+ifadesi,
+Zanistarast yorumunda
+insanın yalnızca biyolojik varlık olmadığını,
+sorumluluk taşıyan boyutsal varlık olduğunu gösterir.
+</p>
+
+<p>
+Daralma sonrası kurulan yeni denge,
+ahlaki düzen ihtiyacını görünür kılar.
+Bu nedenle daralma,
+ahlak sınavının başlangıç kapısıdır.
+</p>
+</section>
+
+<section class="section-card">
+<h2>5. Ruh Evresi ve Melekler</h2>
+
+<p>
+Zanistarast modelinde ruh boyutu,
+zihin boyutunun taşıyamadığı yön problemini çözmek için açılan ara düzendir.
+</p>
+
+<p>
+Bu yaklaşımda melekler,
+tam düzen ve tam uyum prensibini temsil eder.
+Melek düzeninde çatışma yoktur,
+ego yoktur,
+rekabet yoktur.
+Bu nedenle melekler saf düzenin sembolüdür.
+</p>
+
+<p>
+Kur’an’da meleklerin emir taşıyıcı olarak tanımlanması,
+bu düzen anlayışıyla ilişkilendirilir.
+Zanistarast yorumunda melek,
+özgür irade taşıyan insan gibi değildir;
+düzeni sürdüren ilkesel varlıktır.
+</p>
+
+<p>
+Daralma süreci sistemi sadeleştirir.
+Bu sadeleşme,
+melek düzenine benzer şekilde
+yüksek koordinasyon ve düşük çatışma üretir.
+</p>
+
+<p>
+Ancak ruh boyutunun ikinci aşamasında
+insan ortaya çıkar.
+Burada ilk kez:
+</p>
+
+<ul>
+<li>özgür seçim,</li>
+<li>sorumluluk,</li>
+<li>ahlaki risk,</li>
+<li>yükselme ve düşme ihtimali</li>
+</ul>
+
+<p>
+aynı anda görünür olur.
+</p>
+
+<p>
+“Ona ruhumdan üfledim”
+ifadesi,
+insanın yalnızca biyolojik yapı değil,
+çok katmanlı boyutsal varlık olduğunu gösterir.
+</p>
+
+<p>
+Bu nedenle ruh boyutu,
+mekanik düzen ile ahlaki düzen arasında köprü görevi görür.
+</p>
+</section>
+
+<section class="section-card">
+<h2>6. Ruhtan İnsana Geçiş</h2>
+
+<p>
+Ruhtan insana geçiş,
+Zanistarast modelindeki en kritik kırılma noktalarından biridir.
+Çünkü burada sistem ilk kez
+tam düzen ile özgür seçim arasında denge kurmaya çalışır.
+</p>
+
+<p>
+Melek düzeninde seçim yoktur.
+Hayvan düzeninde seçim sınırlıdır.
+İnsan ise hem bilgi üretir,
+hem seçim yapar,
+hem de sonuçlarından sorumlu olur.
+</p>
+
+<p>
+Bu nedenle insan,
+sadece biyolojik canlı değil;
+fizik,
+biyoloji,
+zihin,
+ruh
+ve ahlak potansiyelini birlikte taşıyan varlıktır.
+</p>
+
+<p>
+Kur’an’daki:
+“Biz insanı en güzel biçimde yarattık,
+sonra aşağıların aşağısına çevirdik”
+ifadesi,
+insanın iki yönlü potansiyelini açıklar:
+yükselme ve düşüş.
+</p>
+
+<p>
+İblis anlatısı da burada ontolojik sembol olarak yorumlanır.
+Bilgisi olan fakat ahlaki yönü eksik kalan yapı,
+ilk büyük boyutsal kırılmayı üretir.
+</p>
+
+<p>
+İnsan bu nedenle yalnızca zekâ taşımaz;
+aynı zamanda sınav taşır.
+Tarih,
+medeniyet,
+adalet,
+savaş,
+hukuk
+ve etik mücadeleler
+insan boyutuyla birlikte mümkün olur.
+</p>
+
+<p>
+Zanistarast sonucuna göre:
+ruh düzeni sistemi hazırlar,
+insan evresi sınavı başlatır,
+ahlak boyutu ise yön ilkesini kurar.
+</p>
+</section>
+
+<section class="hero-card">
+<h2>Genel Sonuç</h2>
+
+<p>
+Zanistarast modelinde evrim yalnızca biyolojik değişim değildir.
+Evrim aynı zamanda boyutsal organizasyon sürecidir.
+</p>
+
+<p>
+Fiziksel evren maddesel düzeni oluşturur.
+Biyolojik evren canlılığı üretir.
+Zihin boyutu bilgi ve seçim doğurur.
+Daralma sistemi krizle yüzleştirir.
+Ruh boyutu yön ihtiyacını açar.
+Ahlak boyutu ise sorumluluk ve ilke üretir.
+</p>
+
+<p>
+Bu nedenle daralma,
+çöküş değil;
+üst boyut hazırlığıdır.
+İnsan ise bu zincirin merkezinde bulunan
+sorumluluk taşıyan geçiş varlığıdır.
+</p>
+
+</section>
+
+</main>
 </body>
 </html>
-
 
