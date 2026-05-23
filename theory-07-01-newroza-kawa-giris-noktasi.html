@@ -1,66 +1,132 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>01 - Newroza Kawa Giriş Noktası</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
- <div id="navbar"></div>
+  <div id="navbar"></div>
 
-<script>
-fetch("components/navbar.html")
-.then(function(res){
-  return res.text();
-})
-.then(function(data){
-  const navbar = document.getElementById("navbar");
-  navbar.innerHTML = data;
+  <script>
+    fetch("components/navbar.html")
+      .then(res => res.text())
+      .then(data => {
+        const navbar = document.getElementById("navbar");
+        navbar.innerHTML = data;
 
-  const scripts = navbar.querySelectorAll("script");
+        const scripts = navbar.querySelectorAll("script");
+        scripts.forEach(function(oldScript) {
+          const newScript = document.createElement("script");
 
-  scripts.forEach(function(oldScript){
-    const newScript = document.createElement("script");
+          if (oldScript.src) {
+            newScript.src = oldScript.src;
+          } else {
+            newScript.textContent = oldScript.textContent;
+          }
 
-    if(oldScript.src){
-      newScript.src = oldScript.src;
-    } else {
-      newScript.textContent = oldScript.textContent;
-    }
+          document.body.appendChild(newScript);
+          oldScript.remove();
+        });
+      });
+  </script>
 
-    document.body.appendChild(newScript);
-    oldScript.remove();
-  });
-});
-</script> 
   <main class="container">
-    <a href="theory-07-medeniyet.html">← Back to Theory</a>
 
-    <section class="section-card">
-      <h1>01 - Newroza Kawa Giriş Noktası</h1>
+    <a class="back-link" href="theory-07-newroza-kawa-civilization.html">
+  ← Theory 07 Newroza Kawa sayfasına dön
+</a>
 
-      <p><strong>1. Giriş:</strong> Önceki teori, ahlak boyutunun bireyde açıldığını gösterdi. Fakat tamamlanan şey bireydir; tarihsel sorun ise bireyde oluşan ahlakın toplumsal mimariye dönüşmemiş olmasıdır.</p>
-
-      <p><strong>2. Ontolojik zorunluluk:</strong> Boyutlar tek tek açılır ama kalıcı olan, hepsinin birlikte çalıştığı sistemdir. Akış şudur: Fizik → Biyoloji → Zihin → Ahlak. Bu zincirin doğal sonucu medeniyet boyutudur. Newroza Kawa, ahlakın toplumsal formudur.</p>
-
-      <p><strong>3. Uygarlık nedir?</strong> Modern anlayışta uygarlık teknoloji, ekonomi ve güç ile ölçülür. Rasterast yaklaşımında ise uygarlık; ahlakın sistem üretmesidir. Bir yapı güçle büyüyorsa geçicidir; ahlakla genişliyorsa süreklidir.</p>
-
-      <p><strong>4. Tarihsel problemin özeti:</strong> İnsanlık şimdiye kadar fizik güç çağını yaşadı, biyolojik yayılmayı yaşadı, bilgi patlamasını yaşadı; ama ahlak merkezli sistem kuramadı. Bu nedenle krizler tekrar etti, merkezler çöktü, medeniyetler daraldı.</p>
-
-      <p><strong>5. Newroza Kawa neyi başlatır?</strong> Bu uygarlık yeni bir din değildir, yeni bir ideoloji değildir, siyasi blok değildir. Bu uygarlık ontolojik denge modelidir. Amaç varlığı korumak, boyutları uyumlu hale getirmektir.</p>
-
-      <p><strong>6. Temel sütunlar:</strong> Newroza Kawa’nın dört ana zemini vardır: Hebûn = varlık düzeni, Zanabûn = bilgi ve tanıklık, Mabûn = ekonomi ve dolaşım, Ahlak = yön verici merkez. Bu dört unsur birleşmeden sürdürülebilir uygarlık kurulamaz.</p>
-
-      <p><strong>7. Neden şimdi?</strong> Zihin boyutu zirveye ulaştı; teknoloji kontrol dışına çıkıyor, bilgi güç üretmeye başladı. Zihin, ahlaktan kopma riski taşıyor. Bu eşik, uygarlık değişimi eşiğidir.</p>
-
-      <p><strong>8. Bu evrenin rolü:</strong> Newroza Kawa evresi; bireysel ahlakı toplumsal mimariye dönüştürür ve gezegensel denge dönüşümünü başlatır.</p>
-
-      <p><strong>9. Ontolojik sonuç:</strong> Boyutlar ilk kez birlikte çalışır: fizik korunur, biyoloji dengelenir, zihin yön bulur, ahlak merkez olur. Bu evre, önceki tüm çağların sentezidir.</p>
-
-      <p><strong>10. Sonuç:</strong> Newroza Kawa; tarih sonrası bir kırılma değil, tarihin doğal devamıdır. Bu evre, insanlığın bilinçli uygarlık aşamasıdır.</p>
+    <section class="hero">
+      <div class="hero-card">
+        <h1>01 - Newroza Kawa Giriş Noktası</h1>
+        <p>
+          Newroza Kawa giriş noktası, bireysel ahlaktan toplumsal uygarlığa
+          geçiş eşiğini açıklar. Bu bölümde ahlakın yalnızca kişisel bir erdem
+          değil, medeniyet kurucu bir sistem ilkesi olduğu gösterilir.
+        </p>
+      </div>
     </section>
+
+    <section class="hero-card">
+
+      <h2>1. Giriş</h2>
+      <p>
+        Önceki teori, ahlak boyutunun bireyde açıldığını gösterdi. Fakat
+        tamamlanan şey yalnızca bireydir. Tarihsel sorun ise bireyde oluşan
+        ahlakın toplumsal mimariye dönüşmesidir.
+      </p>
+
+      <h2>2. Ontolojik Zorunluluk</h2>
+      <p>
+        Boyutlar tek tek açılır; fakat kalıcı olan, bu boyutların birlikte
+        çalıştığı sistemdir. Akış şudur: fizik, biyoloji, zihin ve ahlak.
+        Bu zincirin doğal sonucu medeniyet boyutudur.
+      </p>
+
+      <h2>3. Uygarlık Nedir?</h2>
+      <p>
+        Modern anlayışta uygarlık çoğu zaman teknoloji, ekonomi ve güç ile
+        ölçülür. Rasterast-Zanistarast yaklaşımında ise uygarlık, ahlakın sistem
+        üretmesidir. Bir yapı yalnızca güçle büyüyorsa geçicidir; ahlakla
+        genişliyorsa süreklidir.
+      </p>
+
+      <h2>4. Tarihsel Problemin Özeti</h2>
+      <p>
+        İnsanlık şimdiye kadar fizik güç çağını, biyolojik yayılmayı ve bilgi
+        patlamasını yaşadı. Fakat ahlak merkezli sistem kuramadığı için krizler
+        tekrar etti; merkezler çöktü, medeniyetler daraldı.
+      </p>
+
+      <h2>5. Newroza Kawa Neyi Başlatır?</h2>
+      <p>
+        Newroza Kawa yeni bir din, ideoloji veya siyasi blok değildir. Bu model,
+        varlığı korumayı, boyutları uyumlu hâle getirmeyi ve ahlakı toplumsal
+        düzenin merkezi yapmayı amaçlayan ontolojik denge modelidir.
+      </p>
+
+      <h2>6. Temel Sütunlar</h2>
+      <p>
+        Newroza Kawa’nın dört ana zemini vardır: Hebûn ontolojik düzeni,
+        Zanabûn bilgi ve tanıklık düzeni, Mabûn ekonomi ve dolaşım düzeni,
+        ahlak ise yön verici merkezdir. Bu dört unsur birleşmeden sürdürülebilir
+        uygarlık kurulamaz.
+      </p>
+
+      <h2>7. Neden Şimdi?</h2>
+      <p>
+        Zihin boyutu zirveye ulaştı; teknoloji kontrol dışına çıkıyor, bilgi güç
+        üretmeye başladı. Zihin ahlaktan koparsa kriz doğar. Bu eşik, uygarlık
+        değişimi eşiğidir.
+      </p>
+
+      <h2>8. Bu Evrenin Rolü</h2>
+      <p>
+        Newroza Kawa evresi, bireysel ahlakı toplumsal mimariye dönüştürür ve
+        gezegensel denge dönüşümünü başlatır.
+      </p>
+
+      <h2>9. Ontolojik Sonuç</h2>
+      <p>
+        Boyutlar ilk kez birlikte çalışır: fizik korunur, biyoloji dengelenir,
+        zihin yön bulur, ahlak merkez olur. Bu evre, önceki tüm çağların
+        sentezidir.
+      </p>
+
+      <h2>10. Sonuç</h2>
+      <p>
+        Newroza Kawa, tarih sonrası bir kırılma değil, tarihin doğal devamıdır.
+        Bu evre, insanlığın bilinçli uygarlık aşamasıdır.
+      </p>
+
+    </section>
+
   </main>
 </body>
 </html>
-
+Commit:
+Bash
+git commit -m "Fix Newroza Kawa entry article layout"
