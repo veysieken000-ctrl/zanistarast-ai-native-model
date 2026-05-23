@@ -1,84 +1,88 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <title>03 - Biyolojik Evre</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>03 — Biyolojik Evre</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
-<div id="navbar"></div>
 
-<script>
-fetch("components/navbar.html")
-.then(function(res){
-  return res.text();
-})
-.then(function(data){
-  const navbar = document.getElementById("navbar");
-  navbar.innerHTML = data;
+  <div id="navbar"></div>
 
-  const scripts = navbar.querySelectorAll("script");
+  <script>
+    fetch("components/navbar.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("navbar").innerHTML = data;
+      });
+  </script>
 
-  scripts.forEach(function(oldScript){
-    const newScript = document.createElement("script");
+  <main class="container">
 
-    if(oldScript.src){
-      newScript.src = oldScript.src;
-    } else {
-      newScript.textContent = oldScript.textContent;
-    }
+    <a class="back-link" href="./theory.html">← Theory sayfasına dön</a>
 
-    document.body.appendChild(newScript);
-    oldScript.remove();
-  });
-});
-</script>
-<main class="container">
+    <section class="hero">
+      <div class="hero-card">
+        <h1>03 — Biyolojik Evre</h1>
+        <p>Bu bölümde teorinin tüm alt makaleleri yer alır.</p>
+      </div>
+    </section>
 
-  <a href="theory.html">← Back to Theory</a>
+    <section class="grid">
 
-  <section class="hero">
-    <div class="hero-card">
-      <h1>03 - Biyolojik Evre</h1>
-      <p>Bu bölümde teorinin tüm alt makaleleri yer alır.</p>
-    </div>
-  </section>
+      <div class="card">
+        <a href="./theory-03-00-giris.html">
+          <span>00</span>
+          <h3>Giriş</h3>
+          <p>Biyolojik evre bölümüne giriş ve temel çerçeve.</p>
+        </a>
+      </div>
 
-  <section class="theory-grid">
+      <div class="card">
+        <a href="./theory-03-01-cok-hucrelilik.html">
+          <span>01</span>
+          <h3>Çok Hücrelilik</h3>
+          <p>Biyolojik düzenin çok hücreli yapıya geçişini açıklar.</p>
+        </a>
+      </div>
 
-    <a class="theory-link-card" href="theory-03-00-giris.html">
-      <span class="theory-index">00</span>
-      <h2>Giriş</h2>
-    </a>
+      <div class="card">
+        <a href="./theory-03-02-is-bolumu.html">
+          <span>02</span>
+          <h3>İş Bölümü</h3>
+          <p>Canlı yapıda görev ayrımı, düzen ve işlev paylaşımını açıklar.</p>
+        </a>
+      </div>
 
-    <a class="theory-link-card" href="theory-03-01-cok-hucrelilik.html">
-      <span class="theory-index">01</span>
-      <h2>Çok Hücrelilik</h2>
-    </a>
+      <div class="card">
+        <a href="./theory-03-03-uyum-ve-secim.html">
+          <span>03</span>
+          <h3>Uyum ve Seçim</h3>
+          <p>Biyolojik sistemlerde uyum, seçim ve süreklilik ilişkisini açıklar.</p>
+        </a>
+      </div>
 
-    <a class="theory-link-card" href="theory-03-02-is-bolumu.html">
-      <span class="theory-index">02</span>
-      <h2>İş Bölümü</h2>
-    </a>
+      <div class="card">
+        <a href="./theory-03-04-sinir-esigi.html">
+          <span>04</span>
+          <h3>Sinir Eşiği</h3>
+          <p>Canlılığın sinir sistemi eşiğine yaklaşmasını ve yeni algı düzenini açıklar.</p>
+        </a>
+      </div>
 
-    <a class="theory-link-card" href="theory-03-03-uyum-ve-secim.html">
-      <span class="theory-index">03</span>
-      <h2>Uyum ve Seçim</h2>
-    </a>
+      <div class="card">
+        <a href="./theory-03-05-zihne-gecis.html">
+          <span>05</span>
+          <h3>Zihne Geçiş</h3>
+          <p>Biyolojik evreden zihinsel boyuta geçişin temel zeminini açıklar.</p>
+        </a>
+      </div>
 
-    <a class="theory-link-card" href="theory-03-04-sinir-esigi.html">
-      <span class="theory-index">04</span>
-      <h2>Sinir Eşiği</h2>
-    </a>
+    </section>
 
-    <a class="theory-link-card" href="theory-03-05-zihne-gecis.html">
-      <span class="theory-index">05</span>
-      <h2>Zihne Geçiş</h2>
-    </a>
-
-  </section>
-
-</main>
+  </main>
 
 </body>
 </html>
