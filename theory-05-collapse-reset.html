@@ -1,89 +1,93 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <title>05 - Daralma / Reset Teorisi</title>
- <link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>05 — Daralma / Reset Teorisi</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
-<div id="navbar"></div>
 
-<script>
-fetch("components/navbar.html")
-.then(function(res){
-  return res.text();
-})
-.then(function(data){
-  const navbar = document.getElementById("navbar");
-  navbar.innerHTML = data;
+  <div id="navbar"></div>
 
-  const scripts = navbar.querySelectorAll("script");
+  <script>
+    fetch("components/navbar.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("navbar").innerHTML = data;
+      });
+  </script>
 
-  scripts.forEach(function(oldScript){
-    const newScript = document.createElement("script");
+  <main class="container">
 
-    if(oldScript.src){
-      newScript.src = oldScript.src;
-    } else {
-      newScript.textContent = oldScript.textContent;
-    }
+    <a class="back-link" href="./theory.html">← Theory sayfasına dön</a>
 
-    document.body.appendChild(newScript);
-    oldScript.remove();
-  });
-});
-</script>
-<main class="container">
+    <section class="hero">
+      <div class="hero-card">
+        <h1>05 — Daralma / Reset Teorisi</h1>
+        <p>
+          Bu bölümde daralma, reset, kriz, ahlaka hazırlık,
+          ruh evresi ve ruhtan insana geçiş ele alınır.
+        </p>
+      </div>
+    </section>
 
-  <a href="theory.html">← Back to Theory</a>
+    <section class="grid">
 
-  <section class="hero">
-    <div class="hero-card">
-      <h1>05 - Daralma / Reset Teorisi</h1>
-      <p>Bu bölümde daralma, reset, kriz, ahlaka hazırlık, ruh evresi ve ruhtan insana geçiş ele alınır.</p>
-    </div>
-  </section>
+      <div class="card">
+        <a href="./theory-05-01-daralma-ve-reset-evresi.html">
+          <span>01</span>
+          <h3>Daralma ve Reset Evresi</h3>
+          <p>Sistemin daralma ve yeniden dengeye dönüş sürecini açıklar.</p>
+        </a>
+      </div>
 
-  <section class="theory-grid">
+      <div class="card">
+        <a href="./theory-05-02-daralma-mekanizmasi.html">
+          <span>02</span>
+          <h3>Daralma Mekanizması</h3>
+          <p>Daralmanın sistemsel işleyişini ve dönüşüm mantığını açıklar.</p>
+        </a>
+      </div>
 
-   <a class="theory-link-card" href="theory-05-02-daralma-mekanizmasi.html">
-  <span class="theory-index">02</span>
-  <h2>Daralma Mekanizması</h2>
-</a>
+      <div class="card">
+        <a href="./theory-05-03-daralmadan-ahlaka-gecis.html">
+          <span>03</span>
+          <h3>Daralmadan Ahlaka Geçiş</h3>
+          <p>Kriz sonrası ahlaki düzene geçiş sürecini açıklar.</p>
+        </a>
+      </div>
 
-    <a class="theory-link-card" href="theory-05-01-daralma-ve-reset-evresi.html">
-      <span class="theory-index">01</span>
-      <h2>Daralma ve Reset Evresi</h2>
-    </a>
+      <div class="card">
+        <a href="./theory-05-04-ahlak-boyutuna-hazirlik.html">
+          <span>04</span>
+          <h3>Ahlak Boyutuna Hazırlık</h3>
+          <p>Üst boyuta geçiş öncesi hazırlık ve denge sürecini açıklar.</p>
+        </a>
+      </div>
 
-    <a class="theory-link-card" href="theory-05-02-daralma-mekanizmasi.html">
-      <span class="theory-index">02</span>
-      <h2>Daralma Mekanizması</h2>
-    </a>
+      <div class="card">
+        <a href="./theory-05-05-ruh-evresi-ve-melekler.html">
+          <span>05</span>
+          <h3>Ruh Evresi ve Melekler</h3>
+          <p>Ruh boyutu ve melek kavramlarının sistem içindeki yerini açıklar.</p>
+        </a>
+      </div>
 
-    <a class="theory-link-card" href="theory-05-03-daralmadan-ahlaka-gecis.html">
-      <span class="theory-index">03</span>
-      <h2>Daralmadan Ahlaka Geçiş</h2>
-    </a>
+      <div class="card">
+        <a href="./theory-05-06-ruhtan-insana-gecis.html">
+          <span>06</span>
+          <h3>Ruhtan İnsana Geçiş</h3>
+          <p>Ruhsal yapıdan insan düzeyine geçiş sürecini açıklar.</p>
+        </a>
+      </div>
 
-    <a class="theory-link-card" href="theory-05-04-ahlak-boyutuna-hazirlik.html">
-      <span class="theory-index">04</span>
-      <h2>Ahlak Boyutuna Hazırlık</h2>
-    </a>
+    </section>
 
-    <a class="theory-link-card" href="theory-05-05-ruh-evresi-ve-melekler.html">
-      <span class="theory-index">05</span>
-      <h2>Ruh Evresi ve Melekler</h2>
-    </a>
-
-    <a class="theory-link-card" href="theory-05-06-ruhtan-insana-gecis.html">
-      <span class="theory-index">06</span>
-      <h2>Ruhtan İnsana Geçiş</h2>
-    </a>
-
-  </section>
-
-</main>
+  </main>
 
 </body>
 </html>
+
+
