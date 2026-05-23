@@ -1,89 +1,100 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <title>04 - Zihin Boyutu</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>04 — Zihin Boyutu</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
-<div id="navbar"></div>
 
-<script>
-fetch("components/navbar.html")
-.then(function(res){
-  return res.text();
-})
-.then(function(data){
-  const navbar = document.getElementById("navbar");
-  navbar.innerHTML = data;
+  <div id="navbar"></div>
 
-  const scripts = navbar.querySelectorAll("script");
+  <script>
+    fetch("components/navbar.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("navbar").innerHTML = data;
+      });
+  </script>
 
-  scripts.forEach(function(oldScript){
-    const newScript = document.createElement("script");
+  <main class="container">
 
-    if(oldScript.src){
-      newScript.src = oldScript.src;
-    } else {
-      newScript.textContent = oldScript.textContent;
-    }
+    <a class="back-link" href="./theory.html">← Theory sayfasına dön</a>
 
-    document.body.appendChild(newScript);
-    oldScript.remove();
-  });
-});
-</script>
-<main class="container">
+    <section class="hero">
+      <div class="hero-card">
+        <h1>04 — Zihin Boyutu</h1>
+        <p>
+          Bu bölümde zihin boyutunun açılımı, temeli, genişlemesi,
+          sınırı, krizi ve ahlaka geçişi yer alır.
+        </p>
+      </div>
+    </section>
 
-  <a href="theory.html">← Back to Theory</a>
+    <section class="grid">
 
-  <section class="hero">
-    <div class="hero-card">
-      <h1>04 - Zihin Boyutu</h1>
-      <p>Bu bölümde zihin boyutunun açılımı, temeli, genişlemesi, sınırı, krizi ve ahlaka geçişi yer alır.</p>
-    </div>
-  </section>
+      <div class="card">
+        <a href="./theory-04-00-zihin-boyutu-nedir.html">
+          <span>00</span>
+          <h3>Zihin Boyutu Nedir?</h3>
+          <p>Zihinsel boyutun temel tanımı ve sistem içindeki konumu.</p>
+        </a>
+      </div>
 
-  <section class="theory-grid">
+      <div class="card">
+        <a href="./theory-04-01-zihin-boyutunun-temeli.html">
+          <span>01</span>
+          <h3>Zihin Boyutunun Temeli</h3>
+          <p>Zihinsel yapının oluştuğu temel ilkeleri açıklar.</p>
+        </a>
+      </div>
 
-    <a class="theory-link-card" href="theory-04-00-zihin-boyutu-nedir.html">
-      <span class="theory-index">00</span>
-      <h2>Zihin Boyutu Nedir?</h2>
-    </a>
+      <div class="card">
+        <a href="./theory-04-02-zihin-boyutunun-genislemesi.html">
+          <span>02</span>
+          <h3>Zihin Boyutunun Genişlemesi</h3>
+          <p>Zihnin gelişim, genişleme ve çok katmanlı yapısını açıklar.</p>
+        </a>
+      </div>
 
-    <a class="theory-link-card" href="theory-04-01-zihin-boyutunun-temeli.html">
-      <span class="theory-index">01</span>
-      <h2>Zihin Boyutunun Temeli</h2>
-    </a>
+      <div class="card">
+        <a href="./theory-04-03-zihin-boyutunun-siniri-ve-esigi.html">
+          <span>03</span>
+          <h3>Zihin Boyutunun Sınırı ve Eşiği</h3>
+          <p>Zihinsel sınırlar, eşikler ve geçiş alanlarını açıklar.</p>
+        </a>
+      </div>
 
-    <a class="theory-link-card" href="theory-04-02-zihin-boyutunun-genislemesi.html">
-      <span class="theory-index">02</span>
-      <h2>Zihin Boyutunun Genişlemesi</h2>
-    </a>
+      <div class="card">
+        <a href="./theory-04-04-zihin-boyutunun-krizi.html">
+          <span>04</span>
+          <h3>Zihin Boyutunun Krizi</h3>
+          <p>Zihinsel sistemde oluşan kırılma ve kriz yapılarını açıklar.</p>
+        </a>
+      </div>
 
-    <a class="theory-link-card" href="theory-04-03-zihin-boyutunun-siniri-ve-esigi.html">
-      <span class="theory-index">03</span>
-      <h2>Zihin Boyutunun Sınırı ve Eşiği</h2>
-    </a>
+      <div class="card">
+        <a href="./theory-04-05-zihin-boyutunun-siniri-ve-gecisi.html">
+          <span>05</span>
+          <h3>Zihin Boyutunun Sınırı ve Geçişi</h3>
+          <p>Zihin boyutundan üst düzene geçiş mekanizmasını açıklar.</p>
+        </a>
+      </div>
 
-    <a class="theory-link-card" href="theory-04-04-zihin-boyutunun-krizi.html">
-      <span class="theory-index">04</span>
-      <h2>Zihin Boyutunun Krizi</h2>
-    </a>
+      <div class="card">
+        <a href="./theory-04-06-ahlaka-gecis.html">
+          <span>06</span>
+          <h3>Ahlaka Geçiş</h3>
+          <p>Zihinsel boyuttan ahlaki düzene geçişin temelini açıklar.</p>
+        </a>
+      </div>
 
-    <a class="theory-link-card" href="theory-04-05-zihin-boyutunun-siniri-ve-gecisi.html">
-      <span class="theory-index">05</span>
-      <h2>Zihin Boyutunun Sınırı ve Geçişi</h2>
-    </a>
+    </section>
 
-    <a class="theory-link-card" href="theory-04-06-ahlaka-gecis.html">
-      <span class="theory-index">06</span>
-      <h2>Ahlaka Geçiş</h2>
-    </a>
-
-  </section>
-
-</main>
+  </main>
 
 </body>
 </html>
+
