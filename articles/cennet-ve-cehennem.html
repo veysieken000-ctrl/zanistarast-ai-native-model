@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Cennet ve Cehennem | Zanistarast Bilimsel Sentezi</title>
+
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body>
+
+  <div id="navbar"></div>
+
+  <script>
+    fetch("../components/navbar.html")
+      .then(function(res) {
+        return res.text();
+      })
+      .then(function(data) {
+
+        const navbar = document.getElementById("navbar");
+        navbar.innerHTML = data;
+
+        const scripts = navbar.querySelectorAll("script");
+
+        scripts.forEach(function(oldScript) {
+
+          const newScript = document.createElement("script");
+
+          if (oldScript.src) {
+            newScript.src = oldScript.src;
+          } else {
+            newScript.textContent = oldScript.textContent;
+          }
+
+          document.body.appendChild(newScript);
+          oldScript.remove();
+
+        });
+
+      });
+  </script>
+
+  <main class="container">
+
+    <a href="../makaleler.html" class="back">
+      ← Makaleler sayfasına dön
+    </a>
+
+    <section class="hero">
+
+      <div class="hero-card">
+
+        <span class="theory-number">05</span>
+
+        <h1>
+          Cennet ve Cehennem
+        </h1>
+
+        <p>
+          Zanistarast Bilimsel Sentezi’ne göre cennet ve cehennem,
+          yalnızca ölüm sonrası mekânlar değil;
+          insanın hakikatle kurduğu ilişkinin nihai karşılık alanlarıdır.
+        </p>
+
+        <p>
+          İnsan kendi seçimleriyle yükselir
+          veya kendi seçimleriyle karanlığa düşer.
+        </p>
+
+      </div>
+
+    </section>
+
+    <section class="grid">
+
+      <div class="card">
+        <a href="#kuran-ve-ahiret">
+          Kur’an ve Ahiret
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="#cennet">
+          Cennet Nedir?
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="#cehennem">
+          Cehennem Nedir?
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="#perdeler">
+          Perdeler ve Karanlık
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="#kara-delik">
+          Kara Delik Yorumu
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="#hak-edis">
+          Hak Ediş İlkesi
+        </a>
+      </div>
+
+    </section>
+
+    <section class="hero-card" id="kuran-ve-ahiret">
+
+      <h2>1. Kur’an ve Ahiret</h2>
+
+      <p>
+        Kur’an’da cennet ve cehennem sürekli anlatılır.
+      </p>
+
+      <p>
+        Çünkü insan yalnızca fiziksel ölümle biten varlık değildir.
+      </p>
+
+      <p>
+        İnsan yaptığı seçimlerin,
+        taşıdığı niyetlerin,
+        işlediği zulümlerin,
+        koruduğu emanetlerin
+        ve bozduğu düzenlerin karşılığıyla yüzleşir.
+      </p>
+
+      <p>
+        Kur’an’da hiçbir insana haksızlık edilmeyeceği bildirilir.
+      </p>
+
+      <p>
+        İnsan kendi elleriyle ne hazırladıysa,
+        onunla karşılaşır.
+      </p>
+
+    </section>
+
+    <section class="hero-card" id="cennet">
+
+      <h2>2. Cennet Nedir?</h2>
+
+      <p>
+        Zanistarast açısından cennet,
+        yalnızca ödül alanı değildir.
+      </p>
+
+      <p>
+        Cennet;
+        insanın hakikatle uyumlu hâle gelmesidir.
+      </p>
+
+      <p>
+        Merhametin korunması,
+        vicdanın bozulmaması,
+        emanete sadakat,
+        adalet,
+        sabır,
+        doğruluk
+        ve Ehad’a yöneliş
+        insanı yükseltir.
+      </p>
+
+      <p>
+        İnsan üst katmanlarını korudukça
+        nur alanı genişler.
+      </p>
+
+      <p>
+        Zanistarast’a göre yükseliş yalnızca bilgiyle olmaz.
+      </p>
+
+      <p>
+        Bilgi ahlaksızsa,
+        insanı yükseltmez.
+      </p>
+
+      <p>
+        Gerçek yükseliş;
+        hakikat,
+        sadakat,
+        ahlak
+        ve emanetle olur.
+      </p>
+
+    </section>
+
+    <section class="hero-card" id="cehennem">
+
+      <h2>3. Cehennem Nedir?</h2>
+
+      <p>
+        Cehennem yalnızca dışarıdan verilen ceza değildir.
+      </p>
+
+      <p>
+        Zanistarast açısından cehennem,
+        insanın kendi seçimleriyle oluşturduğu
+        karanlığın karşılığıdır.
+      </p>
+
+      <p>
+        İnsan sürekli hakikati reddettiğinde,
+        zulmü normalleştirdiğinde,
+        emanete ihanet ettiğinde,
+        vicdanını susturduğunda
+        kendi iç dünyasında çöküş başlar.
+      </p>
+
+      <p>
+        İşte cehennem,
+        bu çöküşün nihai karşılık alanıdır.
+      </p>
+
+      <p>
+        İnsan oraya zorla gönderilmez.
+      </p>
+
+      <p>
+        İnsan kendi seçimleriyle
+        kendi karanlığını büyütür.
+      </p>
+
+    </section>
+
+    <section class="hero-card" id="perdeler">
+
+      <h2>4. Perdeler ve Karanlık</h2>
+
+      <p>
+        Kur’an’da kalplerin mühürlenmesi,
+        gözlerin görmemesi,
+        kulakların işitmemesi gibi ifadeler vardır.
+      </p>
+
+      <p>
+        Bunlar yalnızca fiziksel körlük değildir.
+      </p>
+
+      <p>
+        İnsan hakikati sürekli reddettiğinde
+        araya perdeler girer.
+      </p>
+
+      <p>
+        İnsan artık hakikati görmek istemez hâle gelir.
+      </p>
+
+      <p>
+        Akıl çıkara çalışır.
+      </p>
+
+      <p>
+        Vicdan mazeret üretmeye çalışır.
+      </p>
+
+      <p>
+        Güç adalet yerine tahakküme dönüşür.
+      </p>
+
+      <p>
+        İşte bu,
+        insanın kendi nurunu kaybetmeye başlamasıdır.
+      </p>
+
+    </section>
+
+    <section class="hero-card" id="kara-delik">
+
+      <h2>5. Kara Delik Yorumu</h2>
+
+      <p>
+        Zanistarast Bilimsel Sentezi’nde cehennem,
+        insan için olan kara delik gibi yorumlanabilir.
+      </p>
+
+      <p>
+        Kara delik nasıl ışığı içine çekiyorsa,
+        insan da sürekli hakikati reddettiğinde
+        kendi nurunu kaybetmeye başlar.
+      </p>
+
+      <p>
+        Üst katmanlar çökmeye başlar.
+      </p>
+
+      <p>
+        İnsan yalnızca alt katmanlarla yaşamaya başlar.
+      </p>
+
+      <p>
+        Haz,
+        güç,
+        korku,
+        kibir
+        ve nefsani arzular
+        bütün sistemi ele geçirir.
+      </p>
+
+      <p>
+        İşte cehennem,
+        bu karanlığın nihai yoğunlaşmasıdır.
+      </p>
+
+    </section>
+
+    <section class="hero-card" id="hak-edis">
+
+      <h2>6. Hak Ediş İlkesi</h2>
+
+      <p>
+        Zanistarast açısından cennet ve cehennem
+        keyfî değildir.
+      </p>
+
+      <p>
+        İnsan neyi seçtiyse,
+        neyi büyüttüyse,
+        hangi katmana hizmet ettiyse
+        onun karşılığıyla yüzleşir.
+      </p>
+
+      <p>
+        Hakikati koruyan yükselir.
+      </p>
+
+      <p>
+        Hakikati örten düşer.
+      </p>
+
+      <p>
+        Çünkü oyun kurallarla oynanır.
+      </p>
+
+      <p>
+        Kuralları tamamen reddedenin yaptığı şeye oyun denmez.
+      </p>
+
+      <p>
+        Bu nedenle insanın yükselişi de düşüşü de
+        kendi seçimiyle ilgilidir.
+      </p>
+
+    </section>
+
+  </main>
+
+</body>
+</html>
