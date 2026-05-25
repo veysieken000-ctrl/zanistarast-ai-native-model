@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Katmanların Düşüşü | Zanistarast Bilimsel Sentezi</title>
+
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body>
+
+  <div id="navbar"></div>
+
+  <script>
+    fetch("../components/navbar.html")
+      .then(function(res) {
+        return res.text();
+      })
+      .then(function(data) {
+
+        const navbar = document.getElementById("navbar");
+        navbar.innerHTML = data;
+
+        const scripts = navbar.querySelectorAll("script");
+
+        scripts.forEach(function(oldScript) {
+
+          const newScript = document.createElement("script");
+
+          if (oldScript.src) {
+            newScript.src = oldScript.src;
+          } else {
+            newScript.textContent = oldScript.textContent;
+          }
+
+          document.body.appendChild(newScript);
+          oldScript.remove();
+
+        });
+
+      });
+  </script>
+
+  <main class="container">
+
+    <a href="../makaleler.html" class="back">
+      ← Makaleler sayfasına dön
+    </a>
+
+    <section class="hero">
+
+      <div class="hero-card">
+
+        <span class="theory-number">04</span>
+
+        <h1>
+          Katmanların Düşüşü
+        </h1>
+
+        <p>
+          Zanistarast Bilimsel Sentezi’ne göre insanın düşüşü
+          yalnızca fiziksel ölüm değildir.
+        </p>
+
+        <p>
+          Düşüş;
+          üst katmanların alt katmanlara teslim olması,
+          hakikatin perdelenmesi
+          ve insanın kendi özünden uzaklaşmasıdır.
+        </p>
+
+      </div>
+
+    </section>
+
+    <section class="grid">
+
+      <div class="card">
+        <a href="#fiziksel-dusus">
+          Fiziksel Düşüş
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="#biyolojik-dusus">
+          Biyolojik Düşüş
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="#zihinsel-dusus">
+          Zihinsel Düşüş
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="#ahlaki-dusus">
+          Ahlaki Düşüş
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="#kuran-ve-dusus">
+          Kur’an ve Düşüş
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="#kara-delik">
+          Kara Delik ve Cehennem
+        </a>
+      </div>
+
+    </section>
+
+    <section class="hero-card" id="fiziksel-dusus">
+
+      <h2>1. Fiziksel Düşüş</h2>
+
+      <p>
+        Fiziksel dünyada her şey çözülmeye başlar.
+      </p>
+
+      <p>
+        Yıldızlar söner.
+        Gezegenler parçalanır.
+        Organizmalar ölür.
+      </p>
+
+      <p>
+        İnsan bedeni de öldüğünde toprağa döner.
+      </p>
+
+      <p>
+        Kur’an insanın topraktan yaratıldığını
+        ve tekrar toprağa döneceğini bildirir.
+      </p>
+
+      <p>
+        Zanistarast açısından bu,
+        fiziksel katmanın doğal çözülmesidir.
+      </p>
+
+      <p>
+        Fakat insan yalnızca fiziksel varlık olmadığı için
+        insanın düşüşü burada bitmez.
+      </p>
+
+    </section>
+
+    <section class="hero-card" id="biyolojik-dusus">
+
+      <h2>2. Biyolojik Düşüş</h2>
+
+      <p>
+        İnsan yalnızca bedene indirildiğinde
+        yaşamın amacı hazza dönüşür.
+      </p>
+
+      <p>
+        Böylece insan;
+        tüketim,
+        şehvet,
+        güç,
+        korku
+        ve biyolojik dürtüler etrafında yaşamaya başlar.
+      </p>
+
+      <p>
+        Kur’an’da insanın nefsine teslim olması,
+        arzularını ilahlaştırması
+        büyük tehlike olarak anlatılır.
+      </p>
+
+      <p>
+        Zanistarast açısından biyolojik düşüş,
+        üst katmanların alt katmanların hizmetine girmesidir.
+      </p>
+
+      <p>
+        Akıl artık hakikate değil hazza çalışır.
+      </p>
+
+      <p>
+        Bilgi artık hikmete değil çıkara çalışır.
+      </p>
+
+    </section>
+
+    <section class="hero-card" id="zihinsel-dusus">
+
+      <h2>3. Zihinsel Düşüş</h2>
+
+      <p>
+        İnsan hakikati sürekli reddettiğinde
+        zihinsel perdeler oluşmaya başlar.
+      </p>
+
+      <p>
+        Kur’an’da kalplerin mühürlenmesi,
+        gözlerin görmemesi,
+        kulakların işitmemesi gibi ifadeler geçer.
+      </p>
+
+      <p>
+        Bu yalnızca fiziksel körlük değildir.
+      </p>
+
+      <p>
+        İnsan artık hakikati görmek istemez hâle gelir.
+      </p>
+
+      <p>
+        Zanistarast açısından zihinsel düşüş,
+        bilincin kendi karanlığını üretmeye başlamasıdır.
+      </p>
+
+      <p>
+        İnsan gerçeği bildiği hâlde
+        kendi çıkarı için onu örtmeye başlar.
+      </p>
+
+    </section>
+
+    <section class="hero-card" id="ahlaki-dusus">
+
+      <h2>4. Ahlaki Düşüş</h2>
+
+      <p>
+        En büyük düşüşlerden biri ahlaki düşüştür.
+      </p>
+
+      <p>
+        Çünkü insan burada yalnızca kendine zarar vermez.
+      </p>
+
+      <p>
+        Çocuklara,
+        topluma,
+        doğaya,
+        bilgi düzenine
+        ve diğer insanlara zarar vermeye başlar.
+      </p>
+
+      <p>
+        Merhamet kapanır.
+        Vicdan mazeret üretmeye başlar.
+      </p>
+
+      <p>
+        Güç adalet yerine tahakküme dönüşür.
+      </p>
+
+      <p>
+        Kur’an’da zalimlik,
+        kibir,
+        emanete ihanet,
+        yalan,
+        gösteriş,
+        ikiyüzlülük
+        sürekli eleştirilir.
+      </p>
+
+      <p>
+        Zanistarast açısından ahlaki düşüş,
+        insanın kendi özüne ihanet etmesidir.
+      </p>
+
+    </section>
+
+    <section class="hero-card" id="kuran-ve-dusus">
+
+      <h2>5. Kur’an ve Düşüş</h2>
+
+      <p>
+        Kur’an’da insanın yükselişi de düşüşü de anlatılır.
+      </p>
+
+      <p>
+        İnsan en güzel biçimde yaratılmıştır;
+        fakat aşağıların aşağısına da düşebilir.
+      </p>
+
+      <p>
+        Bu düşüş yalnızca fiziksel değildir.
+      </p>
+
+      <p>
+        İnsan hakikati reddettiğinde,
+        emaneti bozduğunda,
+        zulmü normalleştirdiğinde
+        kendi iç dünyasında çöküş başlar.
+      </p>
+
+      <p>
+        Zanistarast Bilimsel Sentezi’ne göre
+        Kur’an’daki düşüş dili,
+        katmanların bozulması olarak da okunabilir.
+      </p>
+
+    </section>
+
+    <section class="hero-card" id="kara-delik">
+
+      <h2>6. Kara Delik ve Cehennem</h2>
+
+      <p>
+        Zanistarast açısından cehennem,
+        insan için olan kara delik gibi düşünülebilir.
+      </p>
+
+      <p>
+        Kara delik nasıl ışığı içine çekiyorsa,
+        insan da sürekli hakikati reddettiğinde
+        kendi nurunu kaybetmeye başlar.
+      </p>
+
+      <p>
+        Araya perdeler girer.
+      </p>
+
+      <p>
+        İnsan artık yalnızca alt katmanlarla yaşamaya başlar.
+      </p>
+
+      <p>
+        İşte cehennem,
+        insanın kendi elleriyle oluşturduğu
+        bu karanlığın nihai karşılığıdır.
+      </p>
+
+      <p>
+        Kimse insana zorla kötülük yaptırmaz.
+      </p>
+
+      <p>
+        İnsan kendi seçimiyle düşer.
+      </p>
+
+      <p>
+        Çünkü oyun kurallara göre oynanır.
+      </p>
+
+      <p>
+        Kuralları tamamen reddedenin yaptığı şeye oyun denmez.
+      </p>
+
+    </section>
+
+  </main>
+
+</body>
+</html>
