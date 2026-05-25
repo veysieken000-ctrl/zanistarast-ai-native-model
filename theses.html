@@ -1,194 +1,122 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Theses</title>
-<link rel="stylesheet" href="style.css" />
-
-<link rel="stylesheet" href="css/style.css" />
-<style>
-
-/* SAYFA YAPISI */
-.container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 40px 20px;
-}
-
-/* HERO */
-.hero-card {
-  padding: 30px;
-  border-radius: 20px;
-  background: linear-gradient(180deg, rgba(40,58,92,0.9), rgba(20,30,50,0.95));
-  border: 1px solid rgba(140,170,255,0.2);
-  margin-bottom: 30px;
-}
-
-.hero-card h1 {
-  font-size: 32px;
-  margin-bottom: 10px;
-}
-
-.hero-card p {
-  color: rgba(255,255,255,0.75);
-}
-
-/* GRID */
-.theory-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
-  gap: 18px;
-}
-
-/* KART */
-.theory-link-card {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-  border-radius: 20px;
-  padding: 20px;
-  background: linear-gradient(180deg, rgba(40,58,92,0.85), rgba(20,30,50,0.95));
-  border: 1px solid rgba(140,170,255,0.18);
-  transition: all 0.2s ease;
-}
-
-.theory-link-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(160,190,255,0.4);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-}
-
-.theory-index {
-  font-size: 12px;
-  opacity: 0.6;
-}
-
-.theory-link-card h2 {
-  margin: 8px 0;
-  font-size: 20px;
-}
-
-.theory-link-card p {
-  font-size: 14px;
-  opacity: 0.8;
-}
-
-/* BACK BUTON */
-.back-btn {
-  display: inline-block;
-  margin-bottom: 20px;
-  padding: 10px 18px;
-  border-radius: 12px;
-  background: rgba(255,255,255,0.08);
-  text-decoration: none;
-  color: white;
-  transition: 0.2s;
-}
-
-.back-btn:hover {
-  background: rgba(255,255,255,0.15);
-}
-
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Theses - Zanistarast</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-<div id="navbar"></div>
+  <div id="navbar"></div>
 
-<script>
-fetch("components/navbar.html")
-.then(res => res.text())
-.then(data => {
-  document.getElementById("navbar").innerHTML = data;
-});
-</script>
+  <script>
+    fetch("components/navbar.html")
+      .then(res => res.text())
+      .then(data => {
+        const navbar = document.getElementById("navbar");
+        navbar.innerHTML = data;
 
-<main class="container">
+        const scripts = navbar.querySelectorAll("script");
+        scripts.forEach(oldScript => {
+          const newScript = document.createElement("script");
 
-  <a class="back-link" href="paper.html">← Paper sayfasına dön</a>
+          if (oldScript.src) {
+            newScript.src = oldScript.src;
+          } else {
+            newScript.textContent = oldScript.textContent;
+          }
 
-  <section class="hero">
-    <div class="hero-card">
-      <h1>Theses</h1>
-      <p>
-        Zanistarast sisteminin tez haritaları, kavramsal graph yapıları
-        ve sistemsel bağlantı katmanları.
-      </p>
-    </div>
-  </section>
+          document.body.appendChild(newScript);
+          oldScript.remove();
+        });
+      });
+  </script>
 
-  <section class="grid">
+  <main class="container">
 
-    <div class="card">
-      <a href="thesis-civilization.html">
-        <span>00</span>
-        <h2>Civilization Framework</h2>
-        <p>Newroza Kawa medeniyet mimarisinin ana çerçevesi.</p>
-      </a>
-    </div>
+    <a class="back-link" href="paper.html">← Paper sayfasına dön</a>
 
-    <div class="card">
-      <a href="thesis-hebun.html">
-        <span>01</span>
-        <h2>Hebûn Ontology</h2>
-        <p>Katmanlı varlık yapısı ve ontolojik temel sistem.</p>
-      </a>
-    </div>
+    <section class="hero">
+      <div class="hero-card">
+        <h1>Theses</h1>
+        <p>
+          Zanistarast sisteminin tez haritaları, kavramsal graph yapıları
+          ve sistemsel bağlantı katmanları.
+        </p>
+      </div>
+    </section>
 
-    <div class="card">
-      <a href="thesis-zanabun.html">
-        <span>02</span>
-        <h2>Zanabûn Epistemology</h2>
-        <p>Bilgi, hakikat, ahlak ve hüküm ilişkisini kuran yapı.</p>
-      </a>
-    </div>
+    <section class="grid">
 
-    <div class="card">
-      <a href="thesis-meta-science.html">
-        <span>03</span>
-        <h2>Meta Science</h2>
-        <p>Bilimsel yöntemlerin üst yapısal analizi.</p>
-      </a>
-    </div>
+      <div class="card">
+        <a href="thesis-civilization.html">
+          <span>00</span>
+          <h2>Civilization Framework</h2>
+          <p>Newroza Kawa medeniyet mimarisinin ana çerçevesi.</p>
+        </a>
+      </div>
 
-    <div class="card">
-      <a href="thesis-ontology-core.html">
-        <span>04</span>
-        <h2>Ontology Core</h2>
-        <p>Varlık sisteminin çekirdek ilkeleri.</p>
-      </a>
-    </div>
+      <div class="card">
+        <a href="thesis-hebun.html">
+          <span>01</span>
+          <h2>Hebûn Ontology</h2>
+          <p>Katmanlı varlık yapısı ve ontolojik temel sistem.</p>
+        </a>
+      </div>
 
-    <div class="card">
-      <a href="thesis-transitions.html">
-        <span>05</span>
-        <h2>Transitions</h2>
-        <p>Katmanlar arası geçiş mekanizmaları.</p>
-      </a>
-    </div>
+      <div class="card">
+        <a href="thesis-zanabun.html">
+          <span>02</span>
+          <h2>Zanabûn Epistemology</h2>
+          <p>Bilgi, hakikat, ahlak ve hüküm ilişkisini kuran yapı.</p>
+        </a>
+      </div>
 
-    <div class="card">
-      <a href="thesis-final-layer.html">
-        <span>06</span>
-        <h2>Final Layer</h2>
-        <p>Tüm katmanların birleştiği nihai yapı.</p>
-      </a>
-    </div>
+      <div class="card">
+        <a href="thesis-meta-science.html">
+          <span>03</span>
+          <h2>Meta Science</h2>
+          <p>Bilimsel yöntemlerin üst yapısal analizi.</p>
+        </a>
+      </div>
 
-    <div class="card">
-      <a href="thesis-mabun.html">
-        <span>07</span>
-        <h2>Mabûn Economy</h2>
-        <p>Ekonomik denge ve sorumluluk temelli sistem.</p>
-      </a>
-    </div>
+      <div class="card">
+        <a href="thesis-ontology-core.html">
+          <span>04</span>
+          <h2>Ontology Core</h2>
+          <p>Varlık sisteminin çekirdek ilkeleri.</p>
+        </a>
+      </div>
 
-  </section>
+      <div class="card">
+        <a href="thesis-transitions.html">
+          <span>05</span>
+          <h2>Transitions</h2>
+          <p>Katmanlar arası geçiş mekanizmaları.</p>
+        </a>
+      </div>
 
-</main>
+      <div class="card">
+        <a href="thesis-final-layer.html">
+          <span>06</span>
+          <h2>Final Layer</h2>
+          <p>Tüm katmanların birleştiği nihai yapı.</p>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="thesis-mabun.html">
+          <span>07</span>
+          <h2>Mabûn Economy</h2>
+          <p>Ekonomik denge ve sorumluluk temelli sistem.</p>
+        </a>
+      </div>
+
+    </section>
+
+  </main>
 
 </body>
 </html>
