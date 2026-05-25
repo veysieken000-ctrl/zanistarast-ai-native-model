@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>İnsan Neden Yargılanır? | Zanistarast Bilimsel Sentezi</title>
+
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body>
+
+  <div id="navbar"></div>
+
+  <script>
+    fetch("../components/navbar.html")
+      .then(function(res) {
+        return res.text();
+      })
+      .then(function(data) {
+
+        const navbar = document.getElementById("navbar");
+        navbar.innerHTML = data;
+
+        const scripts = navbar.querySelectorAll("script");
+
+        scripts.forEach(function(oldScript) {
+
+          const newScript = document.createElement("script");
+
+          if (oldScript.src) {
+            newScript.src = oldScript.src;
+          } else {
+            newScript.textContent = oldScript.textContent;
+          }
+
+          document.body.appendChild(newScript);
+          oldScript.remove();
+
+        });
+
+      });
+  </script>
+
+  <main class="container">
+
+    <a href="../makaleler.html" class="back">
+      ← Makaleler sayfasına dön
+    </a>
+
+    <section class="hero">
+
+      <div class="hero-card">
+
+        <span class="theory-number">03</span>
+
+        <h1>
+          İnsan Neden Yargılanır?
+        </h1>
+
+        <p>
+          Zanistarast Bilimsel Sentezi’ne göre insan,
+          yalnızca yaşadığı için değil;
+          özgür irade,
+          akıl,
+          vicdan
+          ve ahlaki sorumluluk sahibi olduğu için yargılanır.
+        </p>
+
+      </div>
+
+    </section>
+
+    <section class="grid">
+
+      <div class="card">
+        <a href="#ozgur-irade">
+          Özgür İrade
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="#ikinci-ozne">
+          İkinci Özne
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="#hakikat">
+          Hakikati Kabul veya Red
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="#perdeler">
+          Perdeler ve Düşüş
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="#cehennem">
+          Cehennem ve Kara Delik
+        </a>
+      </div>
+
+    </section>
+
+    <section class="hero-card" id="ozgur-irade">
+
+      <h2>1. Özgür İrade</h2>
+
+      <p>
+        İnsan taş değildir.
+        İnsan yalnızca içgüdüyle hareket eden hayvan da değildir.
+      </p>
+
+      <p>
+        İnsan;
+        düşünebilir,
+        seçebilir,
+        kabul edebilir,
+        reddedebilir,
+        sadık kalabilir,
+        ihanet edebilir.
+      </p>
+
+      <p>
+        İşte bu yüzden insan yargılanır.
+      </p>
+
+      <p>
+        Eğer insan yalnızca biyolojik canlı olsaydı,
+        yaptığı şeylerden ahlaki olarak sorumlu tutulmazdı.
+      </p>
+
+      <p>
+        Fakat insanın özü vardır.
+        Aklı vardır.
+        Vicdanı vardır.
+        Kendini tanıtabilme kapasitesi vardır.
+      </p>
+
+    </section>
+
+    <section class="hero-card" id="ikinci-ozne">
+
+      <h2>2. İnsan İkinci Öznedir</h2>
+
+      <p>
+        Zanistarast’a göre insan ikinci özne varlıktır.
+      </p>
+
+      <p>
+        Birinci özne Ehad’dır.
+      </p>
+
+      <p>
+        İnsan ise Ehad karşısında kendini açığa çıkaran,
+        kabul eden veya reddeden ikinci öznedir.
+      </p>
+
+      <p>
+        Bu nedenle insanın hayatı yalnızca biyolojik süreç değildir.
+      </p>
+
+      <p>
+        İnsan,
+        kendi hakikatini ortaya koyduğu bir sınav alanında yaşar.
+      </p>
+
+    </section>
+
+    <section class="hero-card" id="hakikat">
+
+      <h2>3. Hakikati Kabul veya Red</h2>
+
+      <p>
+        İnsan kendisine verilen yolu seçebilir.
+      </p>
+
+      <p>
+        Hakikati kabul edebilir.
+        Emaneti taşıyabilir.
+        Kurallara sadık kalabilir.
+      </p>
+
+      <p>
+        Böylece üst boyutlara yükselir.
+      </p>
+
+      <p>
+        Fakat insan hakikati reddedebilir.
+        Kendi nefsini mutlaklaştırabilir.
+        Kuralları bozabilir.
+      </p>
+
+      <p>
+        İşte düşüş burada başlar.
+      </p>
+
+      <p>
+        Çünkü oyun kuralsız oynanmaz.
+      </p>
+
+      <p>
+        Kuralsızlık özgürlük değildir.
+        Kuralsızlık çürümedir.
+      </p>
+
+    </section>
+
+    <section class="hero-card" id="perdeler">
+
+      <h2>4. Perdeler ve Düşüş</h2>
+
+      <p>
+        İnsan hakikati sürekli reddettiğinde
+        araya perdeler girer.
+      </p>
+
+      <p>
+        Akıl artık hakikate değil çıkara çalışır.
+      </p>
+
+      <p>
+        Dil doğruluğa değil yalana çalışır.
+      </p>
+
+      <p>
+        Vicdan merhamete değil mazerete çalışır.
+      </p>
+
+      <p>
+        İnsan artık kendi karanlığını üretmeye başlar.
+      </p>
+
+      <p>
+        İşte bu,
+        katman düşüşüdür.
+      </p>
+
+    </section>
+
+    <section class="hero-card" id="cehennem">
+
+      <h2>5. Cehennem ve Kara Delik</h2>
+
+      <p>
+        Zanistarast açısından cehennem,
+        insan için olan kara delik gibi düşünülebilir.
+      </p>
+
+      <p>
+        İnsan oraya zorla atılmaz.
+      </p>
+
+      <p>
+        İnsan kendi seçimleriyle,
+        kendi düşüşünü hazırlar.
+      </p>
+
+      <p>
+        Çünkü insan yalnızca kendine zarar vermez.
+      </p>
+
+      <p>
+        İnsan;
+        çocuklara,
+        topluma,
+        doğaya,
+        bilgi düzenine,
+        ahlaka
+        ve kendi alt katmanlarına zarar verir.
+      </p>
+
+      <p>
+        Bu yüzden cehennem yalnızca dış ceza değildir.
+      </p>
+
+      <p>
+        Cehennem;
+        insanın bozduğu hakikat düzeniyle yüzleşmesidir.
+      </p>
+
+      <p>
+        Oyunu ancak kurallara göre oynayan kazanır.
+      </p>
+
+      <p>
+        Kuralları tamamen reddedenin yaptığı şeye oyun denmez.
+      </p>
+
+    </section>
+
+  </main>
+
+</body>
+</html>
