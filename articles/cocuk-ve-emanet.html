@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Çocuk ve Emanet | Zanistarast Bilimsel Sentezi</title>
+
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body>
+
+  <div id="navbar"></div>
+
+  <script>
+    fetch("../components/navbar.html")
+      .then(function(res) {
+        return res.text();
+      })
+      .then(function(data) {
+
+        const navbar = document.getElementById("navbar");
+        navbar.innerHTML = data;
+
+        const scripts = navbar.querySelectorAll("script");
+
+        scripts.forEach(function(oldScript) {
+
+          const newScript = document.createElement("script");
+
+          if (oldScript.src) {
+            newScript.src = oldScript.src;
+          } else {
+            newScript.textContent = oldScript.textContent;
+          }
+
+          document.body.appendChild(newScript);
+          oldScript.remove();
+
+        });
+
+      });
+  </script>
+
+  <main class="container">
+
+    <a href="../makaleler.html" class="back">
+      ← Makaleler sayfasına dön
+    </a>
+
+    <section class="hero">
+
+      <div class="hero-card">
+
+        <span class="theory-number">02</span>
+
+        <h1>
+          Çocuk ve Emanet
+        </h1>
+
+        <p>
+          Zanistarast Bilimsel Sentezi’ne göre çocuk yalnızca biyolojik
+          devamlılık değildir.
+        </p>
+
+        <p>
+          Çocuk; insanın ahlaki sınavı,
+          vicdan aynası
+          ve Ehad tarafından verilmiş emanettir.
+        </p>
+
+      </div>
+
+    </section>
+
+    <section class="grid">
+
+      <div class="card">
+        <a href="#postmodern-insan">
+          Post-Modern İnsan
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="#emanet">
+          Çocuk Neden Emanettir?
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="#ikinci-ozne">
+          İkinci Özne ve Çocuk
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="#dususte-cocuk">
+          Çocuğu Yük Görmek
+        </a>
+      </div>
+
+    </section>
+
+    <section class="hero-card" id="postmodern-insan">
+
+      <h2>1. Post-Modern İnsan ve Çocuk</h2>
+
+      <p>
+        Post-modern dünya insanı çoğu zaman fiziksel birey olarak tanımlar.
+      </p>
+
+      <p>
+        Bu anlayışta insan;
+        tüketen,
+        haz alan,
+        kariyer kuran,
+        ekonomik sistem içinde yaşayan
+        bireysel varlık hâline gelir.
+      </p>
+
+      <p>
+        Böyle bir dünyada çocuk bazen yük,
+        bazen ekonomik sorun,
+        bazen özgürlüğe engel,
+        bazen psikolojik baskı gibi görülmeye başlanır.
+      </p>
+
+      <p>
+        Çünkü insan artık yalnızca kendi bireysel alanını düşünmektedir.
+      </p>
+
+    </section>
+
+    <section class="hero-card" id="emanet">
+
+      <h2>2. Çocuk Neden Emanettir?</h2>
+
+      <p>
+        Zanistarast Bilimsel Sentezi’ne göre çocuk,
+        anne-babanın malı değildir.
+      </p>
+
+      <p>
+        Çocuk;
+        Ehad tarafından verilmiş emanettir.
+      </p>
+
+      <p>
+        İnsan çocuğa yalnızca biyolojik bağ nedeniyle bakmaz.
+      </p>
+
+      <p>
+        Sevgi,
+        vicdan,
+        şefkat,
+        hormonlar,
+        kültür,
+        toplum,
+        aile düzeni,
+        bebeğin sevimliliği
+        gibi birçok katman insanı çocuğa yöneltir.
+      </p>
+
+      <p>
+        Fakat bunlar asıl sebep değil,
+        ara sebeplerdir.
+      </p>
+
+      <p>
+        Asıl sebep;
+        insanın emanet taşıyan ikinci özne olmasıdır.
+      </p>
+
+    </section>
+
+    <section class="hero-card" id="ikinci-ozne">
+
+      <h2>3. İkinci Özne ve Çocuk</h2>
+
+      <p>
+        İnsan yalnızca yaşayan organizma değildir.
+      </p>
+
+      <p>
+        İnsan,
+        kendini tanıtmak zorunda olan ikinci özne varlıktır.
+      </p>
+
+      <p>
+        İnsan çocuğa nasıl davrandığında
+        kendi özünü açığa çıkarır.
+      </p>
+
+      <p>
+        Güçsüz olana merhamet ediyor mu?
+        Yoksa onu eziyor mu?
+      </p>
+
+      <p>
+        Emaneti koruyor mu?
+        Yoksa sahiplenip tahakküm mü kuruyor?
+      </p>
+
+      <p>
+        İnsan çocuk karşısında kendi hakikatini gösterir.
+      </p>
+
+    </section>
+
+    <section class="hero-card" id="dususte-cocuk">
+
+      <h2>4. Çocuğu Yük Görmek ve Katman Düşüşü</h2>
+
+      <p>
+        Zanistarast açısından çocuğu yalnızca yük görmek,
+        insanın üst katmanlarını unutmaya başlamasının işaretidir.
+      </p>
+
+      <p>
+        Çünkü insan yalnızca haz için yaşayan varlık değildir.
+      </p>
+
+      <p>
+        İnsan emanet taşıyan,
+        ahlaki sorumluluk sahibi ikinci özne varlıktır.
+      </p>
+
+      <p>
+        Çocuk karşısında tamamen zalimleşen insan,
+        kendi üst katmanlarını kaybetmeye başlar.
+      </p>
+
+      <p>
+        Merhamet kapanır.
+        Vicdan körelir.
+        Ruh kararmaya başlar.
+        Hakikatle bağ zayıflar.
+      </p>
+
+      <p>
+        İşte bu yüzden çocuk yalnızca biyolojik olay değildir.
+      </p>
+
+      <p>
+        Çocuk,
+        insanın ahlaki sınav alanıdır.
+      </p>
+
+    </section>
+
+  </main>
+
+</body>
+</html>
+
+
