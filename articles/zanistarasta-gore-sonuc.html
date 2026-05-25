@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Zanistarast’a Göre Sonuç | Zanistarast Bilimsel Sentezi</title>
+
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body>
+
+  <div id="navbar"></div>
+
+  <script>
+    fetch("../components/navbar.html")
+      .then(function(res) {
+        return res.text();
+      })
+      .then(function(data) {
+
+        const navbar = document.getElementById("navbar");
+        navbar.innerHTML = data;
+
+        const scripts = navbar.querySelectorAll("script");
+
+        scripts.forEach(function(oldScript) {
+
+          const newScript = document.createElement("script");
+
+          if (oldScript.src) {
+            newScript.src = oldScript.src;
+          } else {
+            newScript.textContent = oldScript.textContent;
+          }
+
+          document.body.appendChild(newScript);
+          oldScript.remove();
+
+        });
+
+      });
+  </script>
+
+  <main class="container">
+
+    <a href="../makaleler.html" class="back">
+      ← Makaleler sayfasına dön
+    </a>
+
+    <section class="hero">
+
+      <div class="hero-card">
+
+        <span class="theory-number">06</span>
+
+        <h1>
+          Zanistarast’a Göre Sonuç
+        </h1>
+
+        <p>
+          İnsan; Ehad karşısında kendini tanıtmakla yükümlü,
+          özgür irade sahibi,
+          ahlaki sorumluluk taşıyan
+          6+Tek varlıktır.
+        </p>
+
+        <p>
+          Onun yükselişi de düşüşü de
+          kendi seçimi,
+          kendi ahlakı
+          ve kendi hakikat ilişkisiyle ilgilidir.
+        </p>
+
+      </div>
+
+    </section>
+
+    <section class="grid">
+
+      <div class="card">
+        <a href="#insan-tanimi">
+          İnsan Tanımı
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="#kul-ve-ozne">
+          Kul ve İkinci Özne
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="#emanet">
+          Emanet Bilinci
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="#yukselis">
+          Yükseliş
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="#dusus">
+          Düşüş
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="#nihai-sonuc">
+          Nihai Sonuç
+        </a>
+      </div>
+
+    </section>
+
+    <section class="hero-card" id="insan-tanimi">
+
+      <h2>1. İnsan Tanımı</h2>
+
+      <p>
+        Zanistarast Bilimsel Sentezi’ne göre insan,
+        yalnızca fiziksel beden değildir.
+      </p>
+
+      <p>
+        İnsan;
+        fiziksel,
+        biyolojik,
+        zihinsel,
+        duygusal,
+        ahlaki,
+        ruhsal
+        ve öznel katmanların birleştiği 6+Tek varlıktır.
+      </p>
+
+      <p>
+        Kur’an’a göre insan başıboş bırakılmış değildir.
+        Ona akıl,
+        irade,
+        vicdan,
+        emanet
+        ve hesap bilinci verilmiştir.
+      </p>
+
+      <p>
+        Bu nedenle insanın değeri,
+        yalnızca yaşamasından değil;
+        nasıl yaşadığından doğar.
+      </p>
+
+    </section>
+
+    <section class="hero-card" id="kul-ve-ozne">
+
+      <h2>2. Kul ve İkinci Özne</h2>
+
+      <p>
+        İnsan kuldur.
+      </p>
+
+      <p>
+        Kul olmak,
+        insanın değersiz olması anlamına gelmez.
+      </p>
+
+      <p>
+        Kul olmak;
+        Ehad’ın koyduğu hakikat,
+        ölçü,
+        ahlak
+        ve düzen yasaları içinde hareket etmek demektir.
+      </p>
+
+      <p>
+        İnsan aynı zamanda ikinci öznedir.
+      </p>
+
+      <p>
+        Birinci özne Ehad’dır.
+      </p>
+
+      <p>
+        İnsan ise Ehad karşısında
+        kendini tanıtan,
+        kabul eden,
+        reddeden,
+        yükselen
+        veya düşen ikinci özne varlıktır.
+      </p>
+
+    </section>
+
+    <section class="hero-card" id="emanet">
+
+      <h2>3. Emanet Bilinci</h2>
+
+      <p>
+        İnsan dünyaya sahip olmak için değil,
+        emaneti taşımak için gelir.
+      </p>
+
+      <p>
+        Beden emanettir.
+        Akıl emanettir.
+        Çocuk emanettir.
+        Doğa emanettir.
+        Bilgi emanettir.
+        Toplum emanettir.
+        Zaman emanettir.
+      </p>
+
+      <p>
+        İnsan bu emanetlere nasıl davrandığında
+        kendi hakikatini açığa çıkarır.
+      </p>
+
+      <p>
+        Emaneti koruyan insan yükselir.
+      </p>
+
+      <p>
+        Emaneti bozan insan,
+        kendi katmanlarını da bozmaya başlar.
+      </p>
+
+    </section>
+
+    <section class="hero-card" id="yukselis">
+
+      <h2>4. Yükseliş</h2>
+
+      <p>
+        Yükseliş yalnızca bilgiyle olmaz.
+      </p>
+
+      <p>
+        Bilgi,
+        ahlakla birleşmezse
+        insanı yükseltmez.
+      </p>
+
+      <p>
+        Gerçek yükseliş;
+        hakikat,
+        sadakat,
+        merhamet,
+        adalet,
+        emanet
+        ve Ehad’a yönelişle olur.
+      </p>
+
+      <p>
+        İnsan kurallara göre yaşadığında,
+        yani oyunu hakikat ölçüsüne göre oynadığında,
+        üst katmanları güçlenir.
+      </p>
+
+      <p>
+        Vicdan açılır.
+        Akıl berraklaşır.
+        Ruh genişler.
+        Emanet korunur.
+      </p>
+
+    </section>
+
+    <section class="hero-card" id="dusus">
+
+      <h2>5. Düşüş</h2>
+
+      <p>
+        Düşüş,
+        insanın dışarıdan zorla karanlığa atılması değildir.
+      </p>
+
+      <p>
+        Düşüş,
+        insanın kendi seçimleriyle hakikatten uzaklaşmasıdır.
+      </p>
+
+      <p>
+        İnsan hakikati reddettiğinde,
+        araya perdeler girer.
+      </p>
+
+      <p>
+        Akıl çıkara çalışır.
+        Dil yalana çalışır.
+        Vicdan mazeret üretir.
+        Güç zulme dönüşür.
+      </p>
+
+      <p>
+        Böylece insan kendi alt katmanlarına zarar verir.
+      </p>
+
+      <p>
+        Sonra çocuklara,
+        aileye,
+        topluma,
+        doğaya
+        ve diğer varlıklara zarar vermeye başlar.
+      </p>
+
+      <p>
+        Bu yüzden cehennem,
+        insanın bozduğu hakikat düzeniyle yüzleşmesidir.
+      </p>
+
+    </section>
+
+    <section class="hero-card" id="nihai-sonuc">
+
+      <h2>6. Nihai Sonuç</h2>
+
+      <p>
+        Zanistarast Bilimsel Sentezi’ne göre insanın nihai tanımı şudur:
+      </p>
+
+      <p>
+        <strong>
+          İnsan; Ehad karşısında kendini tanıtmakla yükümlü,
+          özgür irade sahibi,
+          ahlaki sorumluluk taşıyan,
+          emanetle sınanan
+          ve 6+Tek yapıda var olan ikinci özne varlıktır.
+        </strong>
+      </p>
+
+      <p>
+        İnsan yolu seçerse yükselir.
+      </p>
+
+      <p>
+        Yolu reddederse,
+        araya perdeler girer
+        ve insan kendi eliyle kendi karanlığını üretir.
+      </p>
+
+      <p>
+        Kimse ona zulmetmiş olmaz.
+      </p>
+
+      <p>
+        Çünkü insan kendi seçimlerinin sonucuyla karşılaşır.
+      </p>
+
+      <p>
+        Oyunu kurallara göre oynayan kazanır.
+      </p>
+
+      <p>
+        Kuralları reddedenin yaptığı şeye oyun denmez.
+      </p>
+
+    </section>
+
+  </main>
+
+</body>
+</html>
