@@ -2,248 +2,283 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zaman Teorisi — Unified Mind</title>
+  <title>Zaman Teorisi - Rasterast & Zanistarast</title>
   <link rel="stylesheet" href="css/style.css" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
 <body>
-  <div id="navbar"></div>
 
-  <script>
-    fetch("components/navbar.html")
-      .then(res => res.text())
-      .then(data => {
-        const navbar = document.getElementById("navbar");
-        navbar.innerHTML = data;
+<div id="navbar"></div>
 
-        const scripts = navbar.querySelectorAll("script");
-        scripts.forEach(function(oldScript){
-          const newScript = document.createElement("script");
+<script>
+fetch("components/navbar.html")
+  .then(function(res){
+    return res.text();
+  })
+  .then(function(data){
+    const navbar = document.getElementById("navbar");
+    navbar.innerHTML = data;
 
-          if(oldScript.src){
-            newScript.src = oldScript.src;
-          } else {
-            newScript.textContent = oldScript.textContent;
-          }
+    const scripts = navbar.querySelectorAll("script");
 
-          document.body.appendChild(newScript);
-          oldScript.remove();
-        });
-      });
-  </script>
+    scripts.forEach(function(oldScript){
+      const newScript = document.createElement("script");
 
-<div class="container">
-ve dosyanın sonuna kadar olan makale içeriğini aşağıdakiyle değiştirin.
-Yeni içerik
-HTML
-<div class="container">
+      if(oldScript.src){
+        newScript.src = oldScript.src;
+      } else {
+        newScript.textContent = oldScript.textContent;
+      }
 
-  <a class="back-link" href="theory-03-zaman.html">← Theory Zaman sayfasına dön</a>
+      document.body.appendChild(newScript);
+      oldScript.remove();
+    });
+  });
+</script>
 
-  <section class="hero-card">
-    <h1>Zaman Teorisi — Rasterast & Zanistarast</h1>
+<main class="container">
 
-    <p>
-      Rasterast ve Zanistarast yaklaşımına göre zaman, bağımsız ve tek başına var olan
-      mutlak bir nesne değildir. Zaman; varlık, hareket, değişim, etkileşim, ölçüm ve
-      tanıklık arasındaki ilişkinin ortaya çıkardığı süreçsel düzendir.
-    </p>
+<a class="back-link" href="theory-03-zaman.html">
+← Theory Zaman sayfasına dön
+</a>
 
-    <p>
-      Bu nedenle zaman yalnızca saatlerin gösterdiği mekanik akış değildir. Zaman,
-      varlığın kendi içinde açılması, katmanlar arasında dönüşmesi ve her düzeyde
-      anlam kazanmasıdır.
-    </p>
-  </section>
+<section class="hero-card">
+<h1>Zaman Teorisi - Rasterast & Zanistarast</h1>
 
-  <section class="hero-card">
-    <h2>1. Ontolojik Tanım</h2>
+<p>
+Rasterast ve Zanistarast yaklaşımına göre zaman, bağımsız ve tek başına var olan
+mutlak bir nesne değildir. Zaman; varlık, hareket, değişim, etkileşim, ölçüm ve
+tanıklık arasındaki ilişkinin ortaya çıkardığı süreçsel düzendir.
+</p>
 
-    <p>
-      Zaman tek başına var olmaz. Çünkü zamanın anlaşılabilmesi için en az üç unsur gerekir:
-      varlık, hareket ve tanıklık.
-    </p>
+<p>
+Bu nedenle zaman yalnızca saatlerin gösterdiği mekanik akış değildir.
+Zaman, varlığın kendi içinde açılması, katmanlar arasında dönüşmesi
+ve her düzeyde anlam kazanmasıdır.
+</p>
+</section>
 
-    <p>
-      Varlık yoksa değişim yoktur. Değişim yoksa zaman hissedilemez. Tanıklık yoksa
-      değişimin anlamı kurulamaz. Bu yüzden zaman, yalnızca fiziksel bir ölçü değil,
-      aynı zamanda ontolojik bir ilişkidir.
-    </p>
+<section class="hero-card">
+<h2>1. Ontolojik Tanım</h2>
 
-    <p class="highlight">
-      Zaman = Varlık + Hareket + Değişim + Tanıklık
-    </p>
-  </section>
+<p>
+Zaman tek başına var olmaz.
+Çünkü zamanın anlaşılabilmesi için en az üç unsur gerekir:
+varlık, hareket ve tanıklık.
+</p>
 
-  <section class="hero-card">
-    <h2>2. Zamanın Temel Formülü</h2>
+<p>
+Varlık yoksa değişim yoktur.
+Değişim yoksa zaman hissedilemez.
+Tanıklık yoksa değişimin anlamı kurulamaz.
+Bu yüzden zaman, yalnızca fiziksel bir ölçü değil,
+aynı zamanda ontolojik bir ilişkidir.
+</p>
 
-    <p>
-      Rasterast doğrulama filtresinden geçirildiğinde zaman, etkileşim ve denge arayışı
-      içinde ortaya çıkan bir süreç olarak tanımlanabilir.
-    </p>
+<p class="highlight">
+Zaman = Varlık + Hareket + Değişim + Tanıklık
+</p>
+</section>
 
-    <p class="highlight">
-      Etkileşim + Denge Arayışı = Zaman
-    </p>
+<section class="hero-card">
+<h2>2. Zamanın Temel Formülü</h2>
 
-    <p>
-      Bir sistem tamamen durağan olsaydı zaman yalnızca teorik bir kavram olarak kalırdı.
-      Fakat evrende parçacıklar, alanlar, canlılık, zihin ve bilinç sürekli etkileşim
-      hâlindedir. Bu etkileşim zamanın görünür hâle gelmesini sağlar.
-    </p>
-  </section>
+<p>
+Rasterast doğrulama filtresinden geçirildiğinde zaman,
+etkileşim ve denge arayışı içinde ortaya çıkan bir süreç olarak tanımlanabilir.
+</p>
 
-  <section class="hero-card">
-    <h2>3. Fiziksel Zaman</h2>
+<p class="highlight">
+Etkileşim + Denge Arayışı = Zaman
+</p>
 
-    <p>
-      Fiziksel düzeyde zaman; hareket, enerji, kütle, uzay ve entropi ile ilişkilidir.
-      Bir atomun titreşimi, bir yıldızın oluşumu, ışığın yolculuğu ve galaksilerin hareketi
-      zamanın fiziksel boyuttaki görünüşleridir.
-    </p>
+<p>
+Bir sistem tamamen durağan olsaydı zaman yalnızca teorik bir kavram olarak kalırdı.
+Fakat evrende parçacıklar, alanlar, canlılık, zihin ve bilinç sürekli
+etkileşim hâlindedir.
+Bu etkileşim zamanın görünür hâle gelmesini sağlar.
+</p>
+</section>
 
-    <p>
-      Bu düzeyde zaman ölçülebilir, hesaplanabilir ve matematiksel modellere aktarılabilir.
-      Ancak bu ölçüm, zamanın tamamı değil; yalnızca fiziksel boyuttaki izdüşümüdür.
-    </p>
-  </section>
+<section class="hero-card">
+<h2>3. Fiziksel Zaman</h2>
 
-  <section class="hero-card">
-    <h2>4. Entropi ve Akış</h2>
+<p>
+Fiziksel düzeyde zaman;
+hareket, enerji, kütle, uzay ve entropi ile ilişkilidir.
+Bir atomun titreşimi, bir yıldızın oluşumu,
+ışığın yolculuğu ve galaksilerin hareketi
+zamanın fiziksel boyuttaki görünüşleridir.
+</p>
 
-    <p>
-      Evren tamamen stabil değildir. Her sistem enerji kaybeder, dönüşür, dağılır veya yeni
-      bir düzene geçer. Bu süreç entropi ile açıklanır.
-    </p>
+<p>
+Bu düzeyde zaman ölçülebilir, hesaplanabilir
+ve matematiksel modellere aktarılabilir.
+Ancak bu ölçüm, zamanın tamamı değil,
+yalnızca fiziksel boyuttaki izdüşümüdür.
+</p>
+</section>
 
-    <p>
-      Entropi, zamanın yönünü görünür kılar. Bir bardak kırıldığında parçalar yeniden
-      kendiliğinden eski hâline dönmez. Çünkü fiziksel süreçler genellikle artan düzensizlik
-      yönünde akar.
-    </p>
+<section class="hero-card">
+<h2>4. Entropi ve Akış</h2>
 
-    <p class="highlight">
-      Zamanın oku, değişimin ve entropinin yönüyle görünür olur.
-    </p>
-  </section>
+<p>
+Evren tamamen stabil değildir.
+Her sistem enerji kaybeder, dönüşür,
+dağılır veya yeni bir düzene geçer.
+Bu süreç entropi ile açıklanır.
+</p>
 
-  <section class="hero-card">
-    <h2>5. Sonsuzluk Analojisi</h2>
+<p>
+Entropi, zamanın yönünü görünür kılar.
+Bir bardak kırıldığında parçalar yeniden
+kendiliğinden eski hâline dönmez.
+Çünkü fiziksel süreçler genellikle
+artan düzensizlik yönünde akar.
+</p>
 
-    <p>
-      Matematikte sonsuzluk teorik olarak düşünülebilir. Ancak fiziksel varlıklar mutlak
-      anlamda sonsuz değildir. Her fiziksel yapı bir başlangıç, dönüşüm ve çözülme sürecine
-      sahiptir.
-    </p>
+<p class="highlight">
+Zamanın oku, değişimin ve entropinin yönüyle görünür olur.
+</p>
+</section>
 
-    <p>
-      Bu nedenle zaman, fiziksel varlıklar için sınırlılık anlamına gelir. Her doğan şey
-      dönüşür. Her oluşan yapı başka bir aşamaya geçer. Her düzen kendi içinde bir son
-      ve yeni bir başlangıç taşır.
-    </p>
-  </section>
+<section class="hero-card">
+<h2>5. Sonsuzluk Analojisi</h2>
 
-  <section class="hero-card">
-    <h2>6. Boyutsal Geçiş Olarak Zaman</h2>
+<p>
+Matematikte sonsuzluk teorik olarak düşünülebilir.
+Ancak fiziksel varlıklar mutlak anlamda sonsuz değildir.
+Her fiziksel yapı bir başlangıç,
+dönüşüm ve çözülme sürecine sahiptir.
+</p>
 
-    <p>
-      Zanistarast bilimsel sentezine göre zaman, yalnızca fiziksel evrende akan bir çizgi
-      değildir. Zaman aynı zamanda boyutlar arası geçiş mekanizmasıdır.
-    </p>
+<p>
+Bu nedenle zaman,
+fiziksel varlıklar için sınırlılık anlamına gelir.
+Her doğan şey dönüşür.
+Her oluşan yapı başka bir aşamaya geçer.
+Her düzen kendi içinde bir son ve yeni bir başlangıç taşır.
+</p>
+</section>
 
-    <p>
-      Fiziksel düzeyde hareket olarak görünür. Biyolojik düzeyde yaşam döngüsü hâline gelir.
-      Zihinsel düzeyde hafıza, anlam ve beklentiye dönüşür. Ahlaki düzeyde ise sorumluluk
-      ve hesap bilinci kazanır.
-    </p>
+<section class="hero-card">
+<h2>6. Boyutsal Geçiş Olarak Zaman</h2>
 
-    <ul>
-      <li>Fiziksel boyutta zaman: hareket ve enerji akışı</li>
-      <li>Biyolojik boyutta zaman: doğum, büyüme, yaşlanma ve ölüm</li>
-      <li>Zihinsel boyutta zaman: hafıza, bilinç ve beklenti</li>
-      <li>Ahlaki boyutta zaman: tercih, sorumluluk ve sonuç</li>
-    </ul>
-  </section>
+<p>
+Zanistarast bilimsel sentezine göre zaman,
+yalnızca fiziksel evrende akan bir çizgi değildir.
+Zaman aynı zamanda boyutlar arası geçiş mekanizmasıdır.
+</p>
 
-  <section class="hero-card">
-    <h2>7. Ölüm ve Zaman</h2>
+<p>
+Fiziksel düzeyde hareket olarak görünür.
+Biyolojik düzeyde yaşam döngüsü hâline gelir.
+Zihinsel boyutta hafıza, bilinç ve beklentiye dönüşür.
+Ahlaki düzeyde ise sorumluluk ve hesap bilinci kazanır.
+</p>
 
-    <p>
-      Bu yaklaşıma göre ölüm, zamanın mutlak sonu değildir. Ölüm, bir boyutun kapanması
-      ve başka bir boyutsal eşiğin açılmasıdır.
-    </p>
+<ul>
+<li>Fiziksel boyutta zaman: hareket ve enerji akışı</li>
+<li>Biyolojik boyutta zaman: doğum, büyüme, yaşlanma ve ölüm</li>
+<li>Zihinsel boyutta zaman: hafıza, bilinç ve beklenti</li>
+<li>Ahlaki boyutta zaman: tercih, sorumluluk ve sonuç</li>
+</ul>
+</section>
 
-    <p>
-      Fiziksel beden için zaman çözülme sürecidir. Fakat insan yalnızca fiziksel bedenden
-      ibaret değildir. İnsan; akıl, duygu, ahlak, öz ve sorumluluk taşıyan bir varlıktır.
-      Bu nedenle ölüm, sadece biyolojik faaliyetin sona ermesi değil, varlık düzeyinde
-      bir geçiş meselesidir.
-    </p>
-  </section>
+<section class="hero-card">
+<h2>7. Ölüm ve Zaman</h2>
 
-  <section class="hero-card">
-    <h2>8. Ruh ve Üst Boyut</h2>
+<p>
+Bu yaklaşıma göre ölüm,
+zamanın mutlak sonu değildir.
+Ölüm, bir boyutun kapanması
+ve başka bir boyutsal geçişin açılmasıdır.
+</p>
 
-    <p>
-      Ruh fiziksel değildir. Bu yüzden ruhu yalnızca fizik, kimya veya biyolojiyle
-      açıklamak eksik kalır. Ruh, zamanı taşıyan değil; zamanın üstünde anlam kazanan
-      bir varlık katmanıdır.
-    </p>
+<p>
+Fiziksel beden için zaman çözülme sürecidir.
+Fakat insan yalnızca fiziksel bedenden ibaret değildir.
+İnsan; akıl, duygu, ahlak,
+öz ve sorumluluk taşıyan bir varlıktır.
+Bu nedenle ölüm,
+sadece biyolojik faaliyetin sona ermesi değil,
+varlık düzeyinde bir geçiş meselesidir.
+</p>
+</section>
 
-    <p>
-      Zaman, ruh için bir sınav alanı gibi işler. İnsan zaman içinde karar verir,
-      yön seçer, sorumluluk alır ve kendi özünü açığa çıkarır.
-    </p>
+<section class="hero-card">
+<h2>8. Ruh ve Üst Boyut</h2>
 
-    <p class="highlight">
-      Beden zamanda yaşar; ruh zamanın anlamını taşır.
-    </p>
-  </section>
+<p>
+Ruh fiziksel değildir.
+Bu yüzden ruhu yalnızca fizik,
+kimya veya biyolojiyle açıklamak eksik kalır.
+Ruh, zamanla taşınan değil;
+zamanın üstünde anlam kazanan bir varlık katmanıdır.
+</p>
 
-  <section class="hero-card">
-    <h2>9. İnsan Açısından Zaman</h2>
+<p>
+Zaman, ruh için bir sınav alanı gibi işler.
+İnsan zaman içinde karar verir,
+yön seçer, sorumluluk alır
+ve kendi özünü açığa çıkarır.
+</p>
 
-    <p>
-      İnsan için zaman yalnızca geçen dakikalar değildir. İnsan zamanı hatırlar,
-      yorumlar, planlar ve ahlaki kararlara bağlar.
-    </p>
+<p class="highlight">
+Beden zamanda yaşar; ruh zamanın anlamını taşır.
+</p>
+</section>
 
-    <p>
-      Bu nedenle insan, zamanın pasif bir nesnesi değildir. İnsan zaman içinde tercih
-      yapan ikinci öznedir. Seçim yapar, kabul eder, reddeder, yükselir veya düşer.
-    </p>
+<section class="hero-card">
+<h2>9. İnsan Açısından Zaman</h2>
 
-    <p>
-      Zaman, insanın özünü açığa çıkaran sınav alanıdır.
-    </p>
-  </section>
+<p>
+İnsan için zaman yalnızca geçen dakikalar değildir.
+İnsan zamanı hatırlar,
+yorumlar, planlar ve ahlaki kararlara bağlar.
+</p>
 
-  <section class="hero-card">
-    <h2>10. Büyük Kapanış</h2>
+<p>
+Bu nedenle insan,
+zamanın pasif bir nesnesi değildir.
+İnsan zaman içinde tercih yapan ikinci öznedir.
+Seçim yapar, kabul eder,
+reddeder, yükselir veya düşer.
+</p>
 
-    <p>
-      Zaman ilerler ve sonunda hüküm oluşur. Her hareket bir iz bırakır. Her tercih
-      bir sonuç doğurur. Her varlık kendi zamanını yaşar ve kendi hakikatine doğru
-      ilerler.
-    </p>
+<p>
+Zaman, insanın özünü açığa çıkaran sınav alanıdır.
+</p>
+</section>
 
-    <p>
-      Bu nedenle zaman, yalnızca akış değil; aynı zamanda kayıt, tanıklık ve sonuçtur.
-      Fiziksel evrende entropiyle görünür. Canlılıkta yaşam döngüsüyle işler.
-      Zihinde hafıza ve anlam kazanır. Ahlakta ise sorumluluk ve hüküm hâline gelir.
-    </p>
+<section class="hero-card">
+<h2>10. Büyük Kapanış</h2>
 
-    <p class="highlight">
-      Zaman = Denge arayışındaki varlığın süreçsel tanıklığıdır.
-    </p>
-  </section>
+<p>
+Zaman ilerler ve sonunda hüküm oluşur.
+Her hareket bir iz bırakır.
+Her tercih bir sonuç doğurur.
+Her varlık kendi zamanını yaşar
+ve kendi hakikatine doğru ilerler.
+</p>
 
-</div>
+<p>
+Bu nedenle zaman,
+yalnızca akış değil,
+aynı zamanda kayıt, tanıklık ve sonuçtur.
+Fiziksel evrende entropiyle görünür.
+Canlılıkta yaşam döngüsüyle işler.
+Zihinde hafıza ve anlam kazanır.
+Ahlakta ise sorumluluk ve hüküm hâline gelir.
+</p>
 
-  </main>
+<p class="highlight">
+Zaman = Denge arayışındaki varlığın süreçsel tanıklığıdır.
+</p>
+</section>
+
+</main>
+
 </body>
 </html>
-
