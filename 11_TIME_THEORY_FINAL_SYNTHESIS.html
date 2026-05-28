@@ -1,132 +1,217 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<title>Zaman Teorisi – Nihai Sentez</title>
-<link rel="stylesheet" href="css/style.css" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zaman Teorisi — Nihai Sentez</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
-<div id="navbar"></div>
+  <div id="navbar"></div>
 
-<script>
-fetch("components/navbar.html")
-.then(function(res){
-  return res.text();
-})
-.then(function(data){
-  const navbar = document.getElementById("navbar");
-  navbar.innerHTML = data;
+  <script>
+    fetch("components/navbar.html")
+      .then(res => res.text())
+      .then(data => {
+        const navbar = document.getElementById("navbar");
+        navbar.innerHTML = data;
 
-  const scripts = navbar.querySelectorAll("script");
+        const scripts = navbar.querySelectorAll("script");
+        scripts.forEach(function(oldScript){
+          const newScript = document.createElement("script");
 
-  scripts.forEach(function(oldScript){
-    const newScript = document.createElement("script");
+          if(oldScript.src){
+            newScript.src = oldScript.src;
+          } else {
+            newScript.textContent = oldScript.textContent;
+          }
 
-    if(oldScript.src){
-      newScript.src = oldScript.src;
-    } else {
-      newScript.textContent = oldScript.textContent;
-    }
+          document.body.appendChild(newScript);
+          oldScript.remove();
+        });
+      });
+  </script>
 
-    document.body.appendChild(newScript);
-    oldScript.remove();
-  });
-});
-</script>
-<div class="container">
+  <main class="container">
 
-<a class="back" href="thesis-zanabun.html">← Back to Zanabun</a>
+    <a class="back-link" href="theory-08-zaman.html">← Theory Zaman sayfasına dön</a>
 
-<h1>Zaman Teorisi – Nihai Sentez</h1>
+    <section class="hero">
+      <div class="hero-card">
+        <h1>Zaman Teorisi — Nihai Sentez</h1>
+        <p>
+          Bu sayfa, Zaman Teorisi dizisinin nihai birleşim noktasıdır. Önceki bölümlerde ele alınan
+          hareket, etkileşim, yön, anlam, sorumluluk, daralma, genişleme ve nihai hüküm kavramları
+          burada tek bir bütün içinde yeniden yorumlanır.
+        </p>
+        <p>
+          Zanistarast yaklaşımında zaman, yalnızca saatle ölçülen fiziksel akış değildir. Zaman;
+          varlığın değişme, yön kazanma, anlam üretme ve sonuç verme sürecidir. Bu nedenle zaman
+          hem kozmik, hem biyolojik, hem zihinsel, hem de ahlaki bir düzendir.
+        </p>
+      </div>
+    </section>
 
+    <section class="content-section">
+      <h2>1. Giriş</h2>
+      <p>
+        Zaman Teorisi’nin nihai sentezi, zamanın tek başına var olan bağımsız bir şey olmadığını
+        gösterir. Zaman, varlıklar arasındaki ilişki sonucunda ortaya çıkar. Bir şey değişmiyorsa,
+        yön değiştirmiyorsa, başka bir şeyle etkileşime girmiyorsa görünür zaman da oluşmaz.
+      </p>
+      <p>
+        Bu nedenle zaman, sadece “geçen süre” değildir. Süre, zamanın ölçülebilen yüzüdür.
+        Fakat zamanın daha derin tarafı; yön, anlam, hafıza, sorumluluk ve sonuç üretme gücüdür.
+      </p>
+    </section>
 
+    <section class="content-section">
+      <h2>2. Zamanın Gerçek Tanımı</h2>
+      <p>
+        Zaman, varlıklar arası etkileşimin oluşturduğu süreçtir. Bu süreç bazen hareket olarak,
+        bazen büyüme olarak, bazen bilinç olarak, bazen de ahlaki sonuç olarak görünür.
+      </p>
+      <p>
+        Fizikte zaman hareketin ölçüsüdür. Biyolojide yaşam döngüsünün akışıdır. Zihinde hafıza,
+        beklenti ve anlam üretimidir. Ahlakta ise seçimlerin sonuç doğurduğu sorumluluk alanıdır.
+      </p>
+      <blockquote>
+        Zaman = Etkileşim + Değişim + Yön + Sonuç
+      </blockquote>
+    </section>
 
-<h1>Zaman Teorisi – Nihai Sentez</h1>
+    <section class="content-section">
+      <h2>3. Katmanlar</h2>
+      <p>
+        Zaman her katmanda aynı biçimde görünmez. Her varlık düzeyi zamanı kendi yapısına göre
+        taşır. Bu yüzden zaman yalnızca fiziksel bir kavram olarak açıklanırsa eksik kalır.
+      </p>
+      <ul>
+        <li><strong>Fizik:</strong> Hareket, enerji, konum değişimi ve kuvvet ilişkileri.</li>
+        <li><strong>Biyoloji:</strong> Yaşam, metabolizma, büyüme, yaşlanma ve denge.</li>
+        <li><strong>Zihin:</strong> Hafıza, algı, beklenti, anlam ve karar.</li>
+        <li><strong>Ahlak:</strong> Yön, seçim, sorumluluk ve hüküm.</li>
+      </ul>
+      <p>
+        Bu katmanlar birbirinden kopuk değildir. Fiziksel zaman biyolojik zamanı taşır; biyolojik
+        zaman zihinsel zamanı mümkün kılar; zihinsel zaman ise ahlaki zamanla yön kazanır.
+      </p>
+    </section>
 
-<div class="section">
-<h2>1. Giriş</h2>
-<p>
-Zanistarast zaman teorisi, önceki tüm bölümlerin birleşimidir.
-Bu bölüm, zamanın bütünsel yapısını açıklar.
-</p>
-</div>
+    <section class="content-section">
+      <h2>4. Birleşik Denklem</h2>
+      <p>
+        Zaman Teorisi’nin birleşik denklemi, zamanın yalnızca akış olmadığını; anlam ve sorumlulukla
+        tamamlandığını gösterir.
+      </p>
+      <blockquote>
+        Zaman = Etkileşim + Anlam + Yön + Sorumluluk
+      </blockquote>
+      <p>
+        Etkileşim zamanı başlatır. Anlam zamanı derinleştirir. Yön zamanı düzenler. Sorumluluk ise
+        zamanı ahlaki bir sonuca bağlar.
+      </p>
+      <p>
+        Bu denklemde zaman, kör bir akış değil; varlığın kendini açtığı, sınandığı ve nihai sonucunu
+        ürettiği bir alan haline gelir.
+      </p>
+    </section>
 
-<div class="section">
-<h2>2. Zamanın Gerçek Tanımı</h2>
-<p>
-Zaman bağımsız bir varlık değildir.
-Zaman, varlıklar arası etkileşimin sonucu oluşan süreçtir.
-</p>
-</div>
+    <section class="content-section">
+      <h2>5. Zamanın Evrimi</h2>
+      <p>
+        Zaman, basit akıştan karmaşık anlam yapısına doğru evrilir. İlk düzeyde zaman yalnızca
+        hareket gibi görünür. Daha sonra düzen, canlılık, bilinç ve ahlaki sorumluluk katmanlarıyla
+        derinleşir.
+      </p>
+      <p>
+        Atom düzeyinde zaman hareket ve bağ ilişkisiyle görünür. Canlı düzeyinde gelişim ve yaşam
+        döngüsüne dönüşür. İnsan düzeyinde hafıza, bilinç ve gelecek tasarımı ortaya çıkar.
+        Ahlaki düzeyde ise zaman artık yalnızca yaşanan bir süreç değil, hesabı verilen bir gerçekliktir.
+      </p>
+    </section>
 
-<div class="section">
-<h2>3. Katmanlar</h2>
-<ul>
-<li>Fizik → hareket</li>
-<li>Biyoloji → yaşam</li>
-<li>Zihin → anlam</li>
-<li>Ahlak → yön</li>
-</ul>
-</div>
+    <section class="content-section">
+      <h2>6. Daralma ve Reset</h2>
+      <p>
+        Her sistem zamanla genişler. Fakat genişleme sınırsız değildir. Bir sistem merkezini,
+        dengesini ve yönünü kaybettiğinde daralma başlar.
+      </p>
+      <p>
+        Daralma, yok oluş değildir. Daralma çoğu zaman yeni bir başlangıcın ön koşuludur.
+        Sistem kendi bozulmasını taşıyamaz hale geldiğinde reset mekanizması devreye girer.
+      </p>
+      <p>
+        Bu yüzden zaman yalnızca ilerleme değildir. Zaman aynı zamanda sınır koyar, sonuç üretir
+        ve bozulmuş yapıyı yeniden değerlendirmeye zorlar.
+      </p>
+    </section>
 
-<div class="section">
-<h2>4. Birleşik Denklem</h2>
-<p class="highlight">
-Zaman = Etkileşim + Anlam + Yön + Sorumluluk
-</p>
-</div>
+    <section class="content-section">
+      <h2>7. İnsan Konumu</h2>
+      <p>
+        İnsan, zamanın merkezinde bulunan tek varlıktır. Çünkü insan yalnızca zamana maruz kalmaz;
+        zamanı anlar, yorumlar, hatırlar ve ona yön verir.
+      </p>
+      <p>
+        Hayvan zaman içinde yaşar; insan ise zamanın anlamını sorar. İnsan geçmişi hatırlar,
+        geleceği tasarlar ve bugünkü davranışını bu iki alan arasında kurar.
+      </p>
+      <p>
+        Bu nedenle insan için zaman, sadece biyolojik yaşlanma değildir. İnsan için zaman;
+        emanet, tanıklık, karar ve sorumluluk alanıdır.
+      </p>
+    </section>
 
-<div class="section">
-<h2>5. Zamanın Evrimi</h2>
-<p>
-Zaman, basit akıştan kompleks anlam yapısına doğru evrilir.
-Bu süreç boyutlar arası geçişle gerçekleşir.
-</p>
-</div>
+    <section class="content-section">
+      <h2>8. Nihai Hüküm</h2>
+      <p>
+        Zaman sonunda bir sonuç üretir. Her hareket, her seçim, her yöneliş ve her bozulma nihai
+        bir değerlendirmeye doğru ilerler.
+      </p>
+      <p>
+        Bu sonuç yalnızca fiziksel bir son değildir. Aynı zamanda sistemin ne kadar dengeli,
+        ne kadar anlamlı ve ne kadar sorumlu yaşadığının nihai göstergesidir.
+      </p>
+      <p>
+        Bu nedenle zamanın kapanışı, sistemin nihai hükmüdür. Zaman, varlığın ne yaptığını saklamaz;
+        her şeyi sonuç alanına taşır.
+      </p>
+    </section>
 
-<div class="section">
-<h2>6. Daralma ve Reset</h2>
-<p>
-Her sistem zamanla daralır.
-Bu daralma, yeni bir başlangıcın ön koşuludur.
-</p>
-</div>
+    <section class="content-section">
+      <h2>9. Birleşik Alan</h2>
+      <p>
+        Tüm katmanlar birlikte çalıştığında zaman dengeli hale gelir. Fiziksel hareket biyolojik
+        yaşamla, biyolojik yaşam zihinsel anlamla, zihinsel anlam ahlaki sorumlulukla birleştiğinde
+        zaman yalnızca akış değil, düzen üretir.
+      </p>
+      <p>
+        Bu birleşik alan, Zanistarast zaman teorisinin merkezidir. Zaman burada parçalı olayların
+        toplamı değil, varlığın bütün katmanlarının birlikte çalıştığı ortak düzen alanıdır.
+      </p>
+    </section>
 
-<div class="section">
-<h2>7. İnsan Konumu</h2>
-<p>
-İnsan, zamanın merkezinde bulunan tek varlıktır.
-Zamanı anlamlandırır ve yön verir.
-</p>
-</div>
+    <section class="content-section">
+      <h2>10. Sonuç</h2>
+      <p>
+        Zaman, varlığın boyutsal yolculuğudur. Bir varlık zaman içinde yalnızca hareket etmez;
+        açılır, sınanır, yön kazanır, daralır, genişler ve sonunda kendi sonucunu üretir.
+      </p>
+      <p>
+        Bu nedenle Zaman Teorisi’nin nihai sentezi şudur:
+      </p>
+      <blockquote>
+        Zaman = Varlığın etkileşim, anlam, yön ve sorumluluk içinde sonuca doğru ilerlemesidir.
+      </blockquote>
+      <p>
+        Böylece zaman, sadece fiziksel evrenin ölçüsü değil; insanın, toplumun, uygarlığın ve
+        ahlaki düzenin anlaşılması için temel bir anahtar haline gelir.
+      </p>
+    </section>
 
-<div class="section">
-<h2>8. Nihai Hüküm</h2>
-<p>
-Zaman, sonunda bir sonuç üretir.
-Bu sonuç, sistemin nihai değerlendirmesidir.
-</p>
-</div>
-
-<div class="section">
-<h2>9. Birleşik Alan</h2>
-<p>
-Tüm katmanlar birlikte çalıştığında
-zaman dengeli hale gelir.
-</p>
-</div>
-
-<div class="section">
-<h2>10. Sonuç</h2>
-<p class="highlight">
-Zaman = Varlığın Boyutsal Yolculuğudur
-</p>
-</div>
-
-
-
-</div>
+  </main>
 </body>
 </html>
+
