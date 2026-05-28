@@ -1,334 +1,380 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<title>Zaman Teorisi – Sorumluluk ve Hüküm</title>
-<link rel="stylesheet" href="css/style.css" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zaman Teorisi - Sorumluluk ve Hüküm</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
-<div id="navbar"></div>
+  <div id="navbar"></div>
 
-<script>
-fetch("components/navbar.html")
-.then(function(res){
-  return res.text();
-})
-.then(function(data){
-  const navbar = document.getElementById("navbar");
-  navbar.innerHTML = data;
+  <script>
+    fetch("components/navbar.html")
+      .then(function(res){ return res.text(); })
+      .then(function(data){
+        const navbar = document.getElementById("navbar");
+        navbar.innerHTML = data;
 
-  const scripts = navbar.querySelectorAll("script");
+        const scripts = navbar.querySelectorAll("script");
+        scripts.forEach(function(oldScript){
+          const newScript = document.createElement("script");
 
-  scripts.forEach(function(oldScript){
-    const newScript = document.createElement("script");
+          if(oldScript.src){
+            newScript.src = oldScript.src;
+          } else {
+            newScript.textContent = oldScript.textContent;
+          }
 
-    if(oldScript.src){
-      newScript.src = oldScript.src;
-    } else {
-      newScript.textContent = oldScript.textContent;
-    }
+          document.body.appendChild(newScript);
+          oldScript.remove();
+        });
+      });
+  </script>
 
-    document.body.appendChild(newScript);
-    oldScript.remove();
-  });
-});
-</script>
-<section class="hero-card">
+  <main class="container">
 
-  <h1>Zaman Teorisi — Sorumluluk ve Hüküm Sistemi</h1>
+    <a class="back-link" href="theory-08-zaman.html">
+      ← Theory Zaman sayfasına dön
+    </a>
+
+    <section class="hero">
+      <div class="hero-card">
+        <h1>Zaman Teorisi - Sorumluluk ve Hüküm Sistemi</h1>
+        <p>
+          Zanistarast yaklaşımında zaman yalnızca akan bir süreç değildir.
+          Zaman; kaydı, sonucu, sorumluluğu ve hükmü birlikte taşıyan
+          ontolojik bir düzendir.
+        </p>
+        <p>
+          Bu sayfa, zamanın insan eylemleri, toplumsal sonuçlar, medeniyet
+          dengesi ve nihai karşılık sistemi içindeki yerini açıklar.
+        </p>
+        <p class="highlight">
+          Zaman = Kayıt + Sonuç + Sorumluluk + Hüküm
+        </p>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2>1. Zaman ve Sonuç Üretimi</h2>
+      <p>
+        Evrende gerçekleşen hiçbir hareket tamamen kaybolmaz. Her etki,
+        kendi düzeyinde bir karşılık üretir. Fiziksel düzeyde bu karşılık
+        enerji dönüşümü olarak görünür; biyolojik düzeyde yaşam döngüsüne,
+        zihinsel düzeyde hafızaya, toplumsal düzeyde kurumsal yapıya,
+        ahlaki düzeyde ise sorumluluk alanına dönüşür.
+      </p>
+      <p>
+        Bu nedenle zaman yalnızca geçiş değildir. Zaman, sonuçların biriktiği
+        ve varlığın kendi eylemlerinin karşılığıyla yüzleştiği sistemdir.
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2>2. Sorumluluk Nedir?</h2>
+      <p>
+        Sorumluluk, bilinçli tercihin sonuçlarını taşıma durumudur. Taş yalnızca
+        düşer; hayvan çoğunlukla içgüdüyle hareket eder. İnsan ise düşünür,
+        planlar, seçer, karar verir ve yaptığı tercihle gelecek üzerinde iz
+        bırakır.
+      </p>
+      <p>
+        Bu yüzden insanın zaman üzerindeki etkisi diğer varlıklardan daha
+        büyüktür. İnsan yalnızca mevcut ânı tüketmez; geleceğin yönünü de
+        etkiler.
+      </p>
+      <p class="highlight">
+        Bilinç arttıkça sorumluluk da büyür.
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2>3. Hüküm Mekanizması</h2>
+      <p>
+        Zanistarast modelinde hüküm yalnızca dinî veya metafizik bir kavram
+        değildir. Hüküm, sistemin denge üretme mekanizmasıdır. Bir eylem
+        sistemde bozulma oluşturursa, zaman içinde buna karşılık gelen sonuç
+        ortaya çıkar.
+      </p>
+      <p>
+        Bu bazen bireysel düzeyde, bazen toplumsal düzeyde, bazen de uygarlık
+        ölçeğinde gerçekleşir.
+      </p>
+      <ul>
+        <li>Yanlış bilgi toplumsal çöküş üretir.</li>
+        <li>Ahlaksız teknoloji kontrol kaybı oluşturur.</li>
+        <li>Aşırı tüketim entropiyi hızlandırır.</li>
+        <li>Adalet sistem stabilizasyonu sağlar.</li>
+      </ul>
+      <p>
+        Böylece hüküm, sistemin kendi iç denge yasası haline gelir.
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2>4. Zamanın Kayıt Özelliği</h2>
+      <p>
+        Zaman unutmaz. Her olay sistem içinde bir iz bırakır. İnsan zihni
+        unutabilir, toplum geçmişi bastırabilir, fakat etkiler sistem içinde
+        yaşamaya devam eder.
+      </p>
+      <p>
+        Geçmiş savaşların nesiller boyu etkisi, çevresel tahribatın uzun
+        süreli sonuçları, toplumsal travmaların kültürel aktarımı ve yanlış
+        ideolojilerin uygarlık çöküşüne etkisi bunun açık örnekleridir.
+      </p>
+      <p>
+        Bu nedenle zaman yalnızca akış değil, aynı zamanda ontolojik hafızadır.
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2>5. İnsan ve Sorumluluk</h2>
+      <p>
+        İnsan seçim yapan varlıktır. Bu nedenle zaman insan için nötr değildir.
+        Her tercih geleceğin yönünü değiştirir.
+      </p>
+      <p>
+        İnsan yalnızca kendi yaşamını değil, sonraki kuşakların yaşayacağı
+        sistemi de etkiler. Bu yüzden sorumluluk bireysel sınırı aşar ve
+        uygarlık düzeyine kadar genişler.
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2>6. Hükmün Katmanları</h2>
+      <p>
+        Hüküm yalnızca fiziksel sonuç değildir. Çok katmanlıdır:
+      </p>
+      <ul>
+        <li>Fiziksel sonuç</li>
+        <li>Biyolojik sonuç</li>
+        <li>Zihinsel sonuç</li>
+        <li>Toplumsal sonuç</li>
+        <li>Ahlaki sonuç</li>
+      </ul>
+      <p>
+        Bir uygarlık teknolojik açıdan büyüyebilir fakat ahlaki olarak
+        çökebilir. Böyle bir durumda zaman ilerliyor görünse bile sistem içten
+        daralmaya başlar.
+      </p>
+      <p class="highlight">
+        Gerçek hüküm = Sistemin toplam karşılığıdır.
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2>7. Sonuçların Kaçınılmazlığı</h2>
+      <p>
+        Zaman içinde yapılan hiçbir bilinçli eylem tamamen yok olmaz. Bazı
+        sonuçlar hemen ortaya çıkar; bazıları yıllar veya nesiller sonra görünür
+        hale gelir.
+      </p>
+      <p>
+        Bu nedenle kısa vadeli kazanç, uzun vadeli çöküş doğurabilir. Aynı
+        şekilde küçük bir doğru hareket, gelecekte büyük bir stabilizasyon
+        oluşturabilir.
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2>8. Zaman ve Adalet</h2>
+      <p>
+        Zanistarast yaklaşımında adalet yalnızca hukukî sistem değildir.
+        Adalet, sistemin denge üretme biçimidir.
+      </p>
+      <p>
+        Eğer denge sürekli bozulursa, zaman içinde sistem parçalanmaya başlar.
+        Eğer denge korunursa, sistem stabil hale gelir ve genişler.
+      </p>
+      <p>
+        Bu nedenle adalet, zamanın stabilizasyon mekanizmasıdır.
+      </p>
+    </section>
+<section class="content-section">
+  <h2>09. Entropi ve Ahlaki Çöküş</h2>
 
   <p>
-    Zanistarast yaklaşımında zaman yalnızca akan süreç değildir.
-    Zaman aynı zamanda kayıt tutan, sonuç üreten ve bilinçli eylemleri
-    karşılığa dönüştüren ontolojik sistemdir.
+    Entropi yalnızca fiziksel düzensizlik değildir.
+    Zanistarast yaklaşımında entropi;
+    bilgi, ahlak, toplum ve medeniyet düzeylerinde de ortaya çıkar.
   </p>
 
   <p>
-    Her hareket zaman içinde iz bırakır.
-    Bu izler yalnızca fiziksel sonuç üretmez;
-    aynı zamanda zihinsel, toplumsal ve ahlaki sonuçlar da oluşturur.
+    Bir sistem kendi iç dengesini koruyamazsa,
+    zaman içinde çözülmeye başlar.
+    Bu çözülme bazen ekonomik,
+    bazen kültürel,
+    bazen de ahlaki çöküş şeklinde görünür.
   </p>
 
   <p>
-    Bu nedenle zaman nötr boşluk değildir.
-    Zaman; seçimleri taşıyan, sonuçları büyüten
-    ve sistemi dengeye zorlayan aktif yapıdır.
+    Bilginin yozlaşması,
+    adaletin kaybolması,
+    kontrolsüz tüketim
+    ve sorumsuz teknoloji kullanımı
+    entropiyi hızlandırır.
   </p>
 
   <p class="highlight">
-    Zaman = Kayıt + Sonuç + Sorumluluk + Hüküm
+    Ahlaki çöküş = Zamansal entropinin toplumsal görünümüdür.
   </p>
-
 </section>
 
 <section class="content-section">
-
-  <h2>1. Zaman ve Sonuç Üretimi</h2>
+  <h2>10. Medeniyetlerin Zaman İçindeki Yargılanması</h2>
 
   <p>
-    Evrende gerçekleşen hiçbir hareket tamamen kaybolmaz.
-    Her etki yeni bir karşılık üretir.
+    Medeniyetler yalnızca güçleriyle değil,
+    zaman içinde ürettikleri sonuçlarla değerlendirilir.
   </p>
 
   <p>
-    Fiziksel düzeyde bu durum enerji dönüşümü olarak görünür.
-    Toplumsal düzeyde ise davranışların etkisi olarak ortaya çıkar.
-  </p>
-
-  <p>
-    İnsan düzeyinde ise seçimler zaman içinde büyüyerek
-    karakteri, toplumu ve geleceği şekillendirir.
-  </p>
-
-  <p>
-    Bu nedenle zaman yalnızca geçiş değil;
-    sonuçların biriktiği sistemdir.
-  </p>
-
-</section>
-
-<section class="content-section">
-
-  <h2>2. Sorumluluk Nedir?</h2>
-
-  <p>
-    Sorumluluk, bilinçli tercihin sonuçlarını taşıma durumudur.
-  </p>
-
-  <p>
-    İnsan seçim yapabilen öz olduğu için
-    zaman içinde oluşan etkilerden de sorumludur.
-  </p>
-
-  <p>
-    Bir taş yalnızca düşer.
-    Bir hayvan çoğunlukla içgüdüyle hareket eder.
-    Ancak insan;
-    düşünür,
-    planlar,
-    karar verir
-    ve bilinçli yön tayin eder.
-  </p>
-
-  <p>
-    Bu yüzden insanın zaman üzerindeki etkisi,
-    diğer varlıklardan daha büyüktür.
-  </p>
-
-  <p class="highlight">
-    Bilinç arttıkça sorumluluk da büyür.
-  </p>
-
-</section>
-
-<section class="content-section">
-
-  <h2>3. Hüküm Mekanizması</h2>
-
-  <p>
-    Zanistarast modelinde hüküm yalnızca dini veya metafizik kavram değildir.
-    Hüküm; sistemin denge üretme mekanizmasıdır.
-  </p>
-
-  <p>
-    Eğer bir eylem sistemde bozulma oluşturursa,
-    zaman içinde buna karşılık gelen sonuç ortaya çıkar.
-  </p>
-
-  <p>
-    Bu bazen bireysel düzeyde,
-    bazen toplumsal düzeyde,
-    bazen de uygarlık ölçeğinde gerçekleşebilir.
-  </p>
-
-  <ul>
-    <li>Yanlış bilgi → toplumsal çöküş üretir</li>
-    <li>Ahlaksız teknoloji → kontrol kaybı oluşturur</li>
-    <li>Aşırı tüketim → entropi hızlanması doğurur</li>
-    <li>Adalet → sistem stabilizasyonu sağlar</li>
-  </ul>
-
-  <p>
-    Böylece hüküm,
-    sistemin kendi iç denge yasası haline gelir.
-  </p>
-
-</section>
-
-<section class="content-section">
-
-  <h2>4. Zamanın Kayıt Özelliği</h2>
-
-  <p>
-    Zaman unutmaz.
-    Her olay sistem içinde iz bırakır.
-  </p>
-
-  <p>
-    İnsan zihni unutabilir,
-    toplum geçmişi bastırabilir,
-    fakat etkiler sistem içinde yaşamaya devam eder.
-  </p>
-
-  <p>
-    Günümüzde bunun örnekleri açık biçimde görülebilir:
-  </p>
-
-  <ul>
-    <li>Geçmiş savaşların nesiller boyu etkisi</li>
-    <li>Çevresel tahribatın uzun süreli sonuçları</li>
-    <li>Toplumsal travmaların kültürel aktarımı</li>
-    <li>Yanlış ideolojilerin uygarlık çöküşüne etkisi</li>
-  </ul>
-
-  <p>
-    Bu nedenle zaman yalnızca akış değil;
-    aynı zamanda ontolojik hafızadır.
-  </p>
-
-</section>
-
-<section class="content-section">
-
-  <h2>5. İnsan ve Sorumluluk</h2>
-
-  <p>
-    İnsan seçim yapan varlıktır.
-    Bu nedenle zaman insan için nötr değildir.
-  </p>
-
-  <p>
-    Her tercih,
-    geleceğin yönünü değiştirir.
-  </p>
-
-  <p>
-    İnsan yalnızca kendi yaşamını değil,
-    sonraki kuşakların yaşayacağı sistemi de etkiler.
-  </p>
-
-  <p>
-    Bu yüzden sorumluluk bireysel sınırı aşar
-    ve uygarlık düzeyine kadar genişler.
-  </p>
-
-</section>
-
-<section class="content-section">
-
-  <h2>6. Hükmün Boyutları</h2>
-
-  <p>
-    Hüküm yalnızca fiziksel sonuç değildir.
-    Çok katmanlıdır.
-  </p>
-
-  <ul>
-    <li>Fiziksel sonuç</li>
-    <li>Biyolojik sonuç</li>
-    <li>Zihinsel sonuç</li>
-    <li>Toplumsal sonuç</li>
-    <li>Ahlaki sonuç</li>
-  </ul>
-
-  <p>
-    Bir uygarlık teknoloji açısından büyüyebilir
+    Bir uygarlık teknolojik olarak gelişebilir,
     fakat ahlaki olarak çökebilir.
+    Böyle bir durumda sistem dışarıdan güçlü görünse bile
+    içeriden parçalanmaya başlar.
   </p>
 
   <p>
-    Böyle durumda zaman ilerliyor görünse bile
-    sistem içten daralmaya başlar.
+    Tarihte birçok büyük uygarlığın çöküşü,
+    yalnızca ekonomik sebeplerle değil,
+    iç denge kaybıyla gerçekleşmiştir.
+  </p>
+
+  <ul>
+    <li>Adaletsizlik</li>
+    <li>Aşırı merkezi güç</li>
+    <li>Bilgi yozlaşması</li>
+    <li>Ahlaki çözülme</li>
+    <li>Toplumsal güven kaybı</li>
+  </ul>
+
+  <p>
+    Bunlar zaman içinde sistemin kendi kendini tüketmesine yol açar.
+  </p>
+</section>
+
+<section class="content-section">
+  <h2>11. Bilinç ve Zamansal İz</h2>
+
+  <p>
+    Bilinçli her hareket zaman içinde iz bırakır.
+    Bu iz yalnızca fiziksel değil,
+    zihinsel ve toplumsal katmanlarda da devam eder.
+  </p>
+
+  <p>
+    İnsan düşüncesi,
+    ürettiği bilgi,
+    kurduğu sistemler
+    ve bıraktığı kültür aracılığıyla
+    zaman içinde yaşamaya devam eder.
+  </p>
+
+  <p>
+    Bu nedenle insan,
+    yalnızca yaşayan varlık değil;
+    aynı zamanda zamansal iz üreten varlıktır.
   </p>
 
   <p class="highlight">
-    Gerçek hüküm = Sistemin toplam karşılığıdır
+    Bilinç arttıkça zamansal etkinin çapı büyür.
   </p>
-
 </section>
 
 <section class="content-section">
-
-  <h2>7. Sonuçların Kaçınılmazlığı</h2>
+  <h2>12. Rasterast Doğrulama Katmanı</h2>
 
   <p>
-    Zaman içinde yapılan hiçbir bilinçli eylem tamamen yok olmaz.
+    Rasterast doğrulama filtresi,
+    sistemin gerçeklik ile uyumunu ölçen
+    ontolojik denge katmanıdır.
   </p>
 
   <p>
-    Bazı sonuçlar hemen ortaya çıkar,
-    bazıları ise yıllar veya nesiller sonra görünür hale gelir.
+    Eğer bilgi gerçeklikle uyuşmuyorsa,
+    zaman içinde sistem bozulmaya başlar.
   </p>
 
   <p>
-    Bu nedenle kısa vadeli kazanç,
-    uzun vadeli çöküş doğurabilir.
+    Yanlış bilgi kısa süreli başarı sağlayabilir;
+    fakat uzun vadede sistemin iç stabilizasyonunu bozar.
   </p>
 
   <p>
-    Aynı şekilde küçük bir doğru hareket,
-    gelecekte büyük stabilizasyon oluşturabilir.
-  </p>
-
-</section>
-
-<section class="content-section">
-
-  <h2>8. Zaman ve Adalet</h2>
-
-  <p>
-    Zanistarast yaklaşımında adalet,
-    yalnızca hukuki sistem değildir.
-  </p>
-
-  <p>
-    Adalet; sistemin denge üretme biçimidir.
-  </p>
-
-  <p>
-    Eğer denge sürekli bozulursa,
-    zaman içinde sistem parçalanmaya başlar.
-  </p>
-
-  <p>
-    Eğer denge korunursa,
-    sistem stabil hale gelir ve genişler.
-  </p>
-
-  <p>
-    Bu nedenle adalet,
-    zamanın stabilizasyon mekanizmasıdır.
-  </p>
-
-</section>
-
-<section class="content-section">
-
-  <h2>9. Sonuç</h2>
-
-  <p>
-    Zaman yalnızca geçen süreç değildir.
-    Zaman; kayıt tutan, sonuç üreten ve denge oluşturan ontolojik sistemdir.
-  </p>
-
-  <p>
-    İnsan seçim yapabildiği için sorumluluk taşır.
-    Her bilinçli hareket sistem içinde karşılık üretir.
-  </p>
-
-  <p>
-    Böylece zaman;
-    bilinç, sonuç, sorumluluk ve hükmün birleştiği çok katmanlı yapı haline gelir.
+    Rasterast katmanı bu nedenle yalnızca epistemolojik değil,
+    aynı zamanda medeniyet koruyucu mekanizmadır.
   </p>
 
   <p class="highlight">
-    Zaman hiçbir şeyi tamamen silmez; her şeyi karşılığa dönüştürür.
+    Gerçeklikten kopan sistem zaman içinde çöker.
   </p>
-
 </section>
 
-</div>
+<section class="content-section">
+  <h2>13. Nihai Ontolojik Denge</h2>
+
+  <p>
+    Tüm katmanlar birlikte çalıştığında
+    sistem ontolojik dengeye ulaşır.
+  </p>
+
+  <p>
+    Fiziksel yapı,
+    biyolojik yaşam,
+    zihinsel üretim,
+    toplumsal organizasyon
+    ve ahlaki yön
+    birbirinden kopuk değildir.
+  </p>
+
+  <p>
+    Zaman,
+    bu katmanların toplam etkileşim alanıdır.
+  </p>
+
+  <p>
+    Eğer katmanlardan biri aşırı bozulursa,
+    sistemin tamamı etkilenmeye başlar.
+  </p>
+
+  <p>
+    Bu nedenle nihai denge;
+    yalnızca güç değil,
+    aynı zamanda uyum,
+    doğruluk,
+    sorumluluk
+    ve bilinç üretme kapasitesidir.
+  </p>
+
+  <p class="highlight">
+    Nihai denge = Hebûn + Zanabûn + Rasterast + Mabûn uyumudur.
+  </p>
+</section>
+
+    <section class="content-section">
+      <h2>14.Sonuç</h2>
+      <p>
+        Zaman yalnızca geçen süreç değildir. Zaman; kayıt tutan, sonuç üreten
+        ve denge oluşturan ontolojik sistemdir.
+      </p>
+      <p>
+        İnsan seçim yapabildiği için sorumluluk taşır. Her bilinçli hareket
+        sistem içinde karşılık üretir.
+      </p>
+      <p>
+        Böylece zaman; bilinç, sonuç, sorumluluk ve hükmün birleştiği çok
+        katmanlı yapı haline gelir.
+      </p>
+      <p class="highlight">
+        Zaman hiçbir şeyi tamamen silmez; her şeyi karşılığa dönüştürür.
+      </p>
+    </section>
+
+  </main>
 </body>
 </html>
+
