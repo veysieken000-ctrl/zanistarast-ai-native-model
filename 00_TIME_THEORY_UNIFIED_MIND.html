@@ -1,137 +1,202 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<title>Zaman Teorisi – Unified Mind</title>
-<link rel="stylesheet" href="css/style.css" />
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zaman Teorisi — Unified Mind</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
-<div id="navbar"></div>
+  <div id="navbar"></div>
 
-<script>
-fetch("components/navbar.html")
-.then(function(res){
-  return res.text();
-})
-.then(function(data){
-  const navbar = document.getElementById("navbar");
-  navbar.innerHTML = data;
+  <script>
+    fetch("components/navbar.html")
+      .then(res => res.text())
+      .then(data => {
+        const navbar = document.getElementById("navbar");
+        navbar.innerHTML = data;
 
-  const scripts = navbar.querySelectorAll("script");
+        const scripts = navbar.querySelectorAll("script");
+        scripts.forEach(function(oldScript){
+          const newScript = document.createElement("script");
 
-  scripts.forEach(function(oldScript){
-    const newScript = document.createElement("script");
+          if(oldScript.src){
+            newScript.src = oldScript.src;
+          } else {
+            newScript.textContent = oldScript.textContent;
+          }
 
-    if(oldScript.src){
-      newScript.src = oldScript.src;
-    } else {
-      newScript.textContent = oldScript.textContent;
-    }
+          document.body.appendChild(newScript);
+          oldScript.remove();
+        });
+      });
+  </script>
 
-    document.body.appendChild(newScript);
-    oldScript.remove();
-  });
-});
-</script>
-<div class="container">
+  <main class="container">
 
-<a class="back" href="thesis-zanabun.html">← Back to Zanabun</a>
+    <a class="back-link" href="theory-08-zaman.html">← Theory Zaman sayfasına dön</a>
 
-<h1>Zaman Teorisi – Unified Mind</h1>
+    <section class="hero">
+      <div class="hero-card">
+        <h1>Zaman Teorisi — Unified Mind</h1>
+        <p>
+          Zaman, Zanistarast çerçevesinde bağımsız ve kendi başına akan soyut bir çizgi değildir.
+          Zaman; varlıklar, boyutlar, hareketler, bilinç düzeyleri ve ahlaki yönelimler arasındaki
+          etkileşimin görünür düzenidir.
+        </p>
+        <p>
+          Bir varlık yalnızca var olduğu için zamana sahip olmaz; başka varlıklarla ilişkiye girdiği,
+          değiştiği, yön kazandığı ve sonuç ürettiği ölçüde zamanın içine girer. Bu nedenle zaman,
+          sadece fiziksel hareketin ölçüsü değil, aynı zamanda anlamın, tanıklığın ve sorumluluğun
+          açıldığı boyutsal bir alandır.
+        </p>
+      </div>
+    </section>
 
+    <section class="content-section">
+      <h2>1. Tanım</h2>
+      <p>
+        Zaman, iki durum arasındaki etkileşimin dengeli ya da dengesiz biçimde ilerlemesiyle ortaya
+        çıkan süreçtir. Eğer hiçbir etkileşim yoksa, değişim de yoktur; değişim yoksa görünür zaman
+        da yoktur. Bu yüzden zaman, varlığın içinden akan ayrı bir madde değil, varlığın ilişki kurma
+        biçimidir.
+      </p>
+      <p>
+        Fiziksel düzeyde zaman hareketle, biyolojik düzeyde gelişimle, zihinsel düzeyde algı ve
+        hafıza ile, ahlaki düzeyde ise seçim ve sorumlulukla görünür hale gelir. Böylece zaman,
+        her boyutta farklı biçimde işler.
+      </p>
+    </section>
 
+    <section class="content-section">
+      <h2>2. Zamanın Asgari Şartı</h2>
+      <p>
+        Zamanın oluşması için en az iki şey gerekir: etkileşim ve fark. Etkileşim yoksa zaman yalnızca
+        potansiyel olarak kalır. Fark yoksa değişim ölçülemez. Bu nedenle zamanın ilk şartı, bir
+        varlığın başka bir varlıkla, başka bir durumla veya kendi önceki haliyle ilişkiye girmesidir.
+      </p>
+      <ul>
+        <li>Fizikte zaman, kuvvet ve hareket üzerinden görünür.</li>
+        <li>Biyolojide zaman, metabolizma, büyüme ve denge üzerinden görünür.</li>
+        <li>Zihinde zaman, algı, hafıza ve tepki üzerinden görünür.</li>
+        <li>Ahlakta zaman, seçim, sonuç ve sorumluluk üzerinden görünür.</li>
+      </ul>
+    </section>
 
-<h1>Zaman Teorisi – Unified Mind</h1>
+    <section class="content-section">
+      <h2>3. Tanıklık Boyutu</h2>
+      <p>
+        Zaman yalnızca akmaz; aynı zamanda anlam kazanır. Bir olayın zaman içinde yer alması,
+        onun sadece gerçekleştiği anlamına gelmez. O olay aynı zamanda tanıklık edilir, yorumlanır
+        ve sonuç üretir.
+      </p>
+      <p>
+        Tanıklık yoksa zaman mekanik bir akışa dönüşür. Tanıklık varsa zaman, anlam taşıyan bir
+        süreç haline gelir. İnsan burada özel bir konuma sahiptir; çünkü insan yalnızca değişime
+        maruz kalmaz, değişimi anlar, değerlendirir ve ona yön verebilir.
+      </p>
+    </section>
 
-<div class="section">
-<h2>1. Tanım</h2>
-<p>
-Zanistarast çerçevesinde zaman bağımsız bir varlık değildir.
-Zaman, iki durum/varlık arasındaki etkileşimin bir sonucu olarak ortaya çıkar.
-Etkileşim dengeye ulaşana kadar geçen süreç zaman olarak tanımlanır.
-</p>
-</div>
+    <section class="content-section">
+      <h2>4. Entropi Bağı</h2>
+      <p>
+        Zaman, sonsuz ilerleme değildir. Her süreç bir sonuca yaklaşır. Bir sistem genişlediğinde,
+        merkezini kaybettiğinde veya dengesini koruyamadığında daralma ve reset süreci başlar.
+      </p>
+      <p>
+        Bu anlamda entropi, yalnızca fiziksel düzensizlik değildir; anlamın dağılması, merkezin
+        kaybolması ve sorumluluğun zayıflaması da entropik bir bozulmadır. Zanistarast yorumunda
+        zaman, bu bozulmayı görünür kılan ölçü alanıdır.
+      </p>
+    </section>
 
-<div class="section">
-<h2>2. Zamanın Asgari Şartı</h2>
-<p>
-Etkileşim yoksa zaman yoktur. Etkileşim tüm katmanlarda zorunludur:
-</p>
-<ul>
-<li>Fizikte: Kuvvet – hareket</li>
-<li>Biyolojide: Metabolizma – denge</li>
-<li>Zihinde: Algı – tepki</li>
-<li>Ahlakta: Seçim – sorumluluk</li>
-</ul>
-</div>
+    <section class="content-section">
+      <h2>5. Boyutsal Zaman</h2>
+      <p>
+        Zaman tek bir boyuta ait değildir. Fiziksel boyutta hareket olarak, biyolojik boyutta gelişim
+        olarak, zihinsel boyutta hafıza olarak, ahlaki boyutta sorumluluk olarak çalışır.
+      </p>
+      <ul>
+        <li>Fizik: Hareket</li>
+        <li>Biyoloji: Gelişim</li>
+        <li>Zihin: Hafıza</li>
+        <li>Ahlak: Sorumluluk</li>
+      </ul>
+      <p>
+        Bu yüzden zaman, yalnızca saatle ölçülen nicelik değildir. Saat zamanı ölçer; fakat zamanın
+        anlamını, yönünü ve sonucunu açıklamaz.
+      </p>
+    </section>
 
-<div class="section">
-<h2>3. Tanıklık Boyutu</h2>
-<p>
-Zaman yalnızca akmaz, aynı zamanda anlam kazanır.
-Tanıklık yoksa zaman mekanik bir akışa dönüşür.
-</p>
-</div>
+    <section class="content-section">
+      <h2>6. Unified Mind</h2>
+      <p>
+        Unified Mind, zihnin yalnızca bilgi toplama alanı olmadığını; zeka, akıl ve ahlak aşamalarından
+        geçerek yön kazandığını ifade eder.
+      </p>
+      <ul>
+        <li>Zeka: Uyum ve tepki kapasitesidir.</li>
+        <li>Akıl: Seçim ve muhakeme kapasitesidir.</li>
+        <li>Ahlak: Yön, ölçü ve sorumluluk kapasitesidir.</li>
+      </ul>
+      <p>
+        Zihin yalnızca zeka düzeyinde kalırsa çevreye uyum sağlar ama yön belirleyemez. Akıl
+        düzeyine çıkarsa seçebilir; fakat ahlak olmadan seçimin ölçüsü eksik kalır. Ahlak devreye
+        girdiğinde zaman artık yalnızca geçen süre değil, sorumluluk taşıyan tarih haline gelir.
+      </p>
+    </section>
 
-<div class="section">
-<h2>4. Entropi Bağı</h2>
-<p>
-Zaman sonsuz ilerleme değil, sonuç üreten daralma sürecidir.
-Her süreç bir sonuca yaklaşır.
-</p>
-</div>
+    <section class="content-section">
+      <h2>7. İnsan Konumu</h2>
+      <p>
+        İnsan üç alt boyutu taşır: fiziksel yapı, biyolojik yaşam ve zihinsel kapasite. Fakat insanın
+        gerçek yükselişi, ahlaki katmana çıkmasıyla başlar.
+      </p>
+      <p>
+        Bu nedenle insan, yalnızca zamana maruz kalan bir varlık değildir. İnsan zamanı anlayan,
+        geçmişten ders çıkaran, geleceği düşünen ve seçimleriyle yeni sonuçlar üreten sorumlu
+        varlıktır.
+      </p>
+      <p>
+        İnsan ahlaki boyuta çıkmazsa zaman onun için yalnızca tüketilen bir akış olur. Ahlaki boyuta
+        çıktığında ise zaman, tanıklık, emanet ve sorumluluk alanına dönüşür.
+      </p>
+    </section>
 
-<div class="section">
-<h2>5. Boyutsal Zaman</h2>
-<p>
-Zaman tek bir boyuta ait değildir:
-</p>
-<ul>
-<li>Fizik: Hareket</li>
-<li>Biyoloji: Gelişim</li>
-<li>Zihin: Hafıza</li>
-<li>Ahlak: Sorumluluk</li>
-</ul>
-</div>
+    <section class="content-section">
+      <h2>8. Zamanın Kapanışı</h2>
+      <p>
+        Her süreç bir sonuca kapanır. Bu kapanış yok oluş anlamına gelmez; çoğu zaman daralma,
+        reset ve yeni kurulum mekanizmasıdır.
+      </p>
+      <p>
+        Bir sistem yönünü kaybettiğinde, anlamını dağıttığında ve merkezini yitirdiğinde zaman onun
+        üzerinde baskı üretir. Bu baskı, sistemin ya yeniden dengelenmesini ya da çözülmesini sağlar.
+      </p>
+    </section>
 
-<div class="section">
-<h2>6. Unified Mind</h2>
-<p>
-Zihin üç aşamada gelişir:
-</p>
-<ul>
-<li>Zeka (uyum)</li>
-<li>Akıl (seçim)</li>
-<li>Ahlak (yön)</li>
-</ul>
-</div>
+    <section class="content-section">
+      <h2>9. Sonuç</h2>
+      <p>
+        Zanistarast zaman teorisine göre zaman şu şekilde özetlenebilir:
+      </p>
+      <blockquote>
+        Zaman = Etkileşim + Anlam + Sorumluluk
+      </blockquote>
+      <p>
+        Etkileşim zamanı başlatır, anlam zamanı derinleştirir, sorumluluk ise zamanı ahlaki bir
+        düzene bağlar. Bu nedenle zaman yalnızca fiziksel evrenin ölçüsü değil, insanın ve
+        uygarlığın sınav alanıdır.
+      </p>
+      <p>
+        Unified Mind burada zamanın zihinsel ve ahlaki boyutunu tamamlar. Zihin anlam üretir,
+        akıl seçim yapar, ahlak ise seçime yön verir. Böylece zaman, yalnızca geçen bir süreç değil,
+        varlığın kendini gerçekleştirme sahası haline gelir.
+      </p>
+    </section>
 
-<div class="section">
-<h2>7. İnsan Konumu</h2>
-<p>
-İnsan üç boyutu taşır fakat 5. boyuta (ahlaki katman) çıkmak zorundadır.
-</p>
-</div>
-
-<div class="section">
-<h2>8. Zamanın Kapanışı</h2>
-<p>
-Her süreç bir sonuçla kapanır.
-Bu kapanış daralma ve reset mekanizmasıdır.
-</p>
-</div>
-
-<div class="section">
-<h2>9. Sonuç</h2>
-<p class="highlight">
-Zaman = Etkileşim + Anlam + Sorumluluk
-</p>
-</div>
-
-
-
-</div>
+  </main>
 </body>
 </html>
+
