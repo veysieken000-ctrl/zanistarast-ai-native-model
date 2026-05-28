@@ -1,290 +1,248 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<title>Zaman Teorisi – Yön ve Anlam</title>
-<link rel="stylesheet" href="css/style.css" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zaman Teorisi - Yön ve Anlam</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
-<div id="navbar"></div>
-
-<script>
-fetch("components/navbar.html")
-.then(function(res){
-  return res.text();
-})
-.then(function(data){
-  const navbar = document.getElementById("navbar");
-  navbar.innerHTML = data;
-
-  const scripts = navbar.querySelectorAll("script");
-
-  scripts.forEach(function(oldScript){
-    const newScript = document.createElement("script");
-
-    if(oldScript.src){
-      newScript.src = oldScript.src;
-    } else {
-      newScript.textContent = oldScript.textContent;
-    }
-
-    document.body.appendChild(newScript);
-    oldScript.remove();
-  });
-});
-</script>
-<section class="hero-card">
-
-  <h1>Zaman Teorisi — Yön ve Anlam Sistemi</h1>
-
-  <p>
-    Zanistarast yaklaşımında zaman yalnızca akan fiziksel süreç değildir.
-    Zaman aynı zamanda yön taşıyan, anlam üreten ve bilinç tarafından yorumlanan
-    ontolojik bir akıştır.
-  </p>
-
-  <p>
-    Eğer zaman yalnızca hareket olsaydı, evren rastgele enerji dönüşümünden ibaret
-    olurdu. Fakat insan anlam üretir, yön belirler ve seçim yapar.
-    Bu nedenle zaman; fiziksel akışın ötesinde bilinç ve ahlak boyutu taşıyan
-    çok katmanlı bir süreçtir.
-  </p>
-
-  <p class="highlight">
-    Zaman = Akış + Yön + Anlam + Sorumluluk
-  </p>
-
-</section>
-
-<section class="content-section">
-
-  <h2>1. Zamanın Yön Problemi</h2>
-
-  <p>
-    Klasik fizik zamanı çoğunlukla ileri akan doğrusal süreç olarak ele alır.
-    Ancak yalnızca fiziksel hareket, yönün neden oluştuğunu açıklayamaz.
-  </p>
-
-  <p>
-    Bir sistem hareket ediyor olabilir fakat yönsüz olabilir.
-    Aynı şekilde bilgi büyüyebilir fakat anlam üretmeyebilir.
-  </p>
-
-  <p>
-    Zanistarast modelinde yön, yalnızca enerji akışıyla değil;
-    bilinç, amaç ve ahlaki tercih ile ortaya çıkar.
-  </p>
-
-</section>
-
-<section class="content-section">
-
-  <h2>2. Yön Kavramı</h2>
-
-  <p>
-    Yön, varlığın hangi düzeye doğru ilerlediğini belirleyen ontolojik eksendir.
-    Bu yalnızca mekânsal yön değildir.
-  </p>
-
-  <p>
-    İnsan fiziksel olarak ilerliyor olabilir fakat bilinç olarak daralabilir.
-    Teknoloji gelişebilir fakat ahlak çökebilir.
-  </p>
-
-  <p>
-    Bu nedenle gerçek yön;
-    yalnızca hareket miktarıyla değil,
-    sistemin hangi anlam düzeyine ilerlediğiyle ölçülür.
-  </p>
-
-  <ul>
-    <li><strong>Alt yön:</strong> Daralma, içe kapanma, anlamsızlaşma.</li>
-    <li><strong>Üst yön:</strong> Bilinç, anlam, ahlak ve genişleme.</li>
-  </ul>
-
-  <p class="highlight">
-    Gerçek yön = Bilinçsel ve ahlaki yükseliş yönü
-  </p>
-
-</section>
-
-<section class="content-section">
-
-  <h2>3. Anlamın Kaynağı</h2>
-
-  <p>
-    Anlam yalnızca bilgi değildir.
-    Bilgi zihinsel düzeyde oluşabilir fakat gerçek anlam daha üst katmanlarda ortaya çıkar.
-  </p>
-
-  <p>
-    İnsan veri depolayabilir, hesap yapabilir ve sistem kurabilir.
-    Ancak bunların anlam kazanabilmesi için yön gerekir.
-  </p>
-
-  <p>
-    Ahlak burada merkezi rol oynar.
-    Çünkü ahlak olmadan bilgi yalnızca araç olur.
-    Hikmet oluşmaz.
-  </p>
-
-  <p>
-    Bu nedenle Zanistarast modelinde:
-  </p>
-
-  <ul>
-    <li>Zihin → Bilgi üretir</li>
-    <li>Ahlak → Yön üretir</li>
-    <li>İkisi birleşince → Anlam oluşur</li>
-  </ul>
-
-</section>
-
-<section class="content-section">
-
-  <h2>4. Yönsüz Zaman</h2>
-
-  <p>
-    Eğer ahlak sistemi çökerse zaman yönünü kaybetmeye başlar.
-    Sistem hızlanabilir fakat anlam üretemez hale gelir.
-  </p>
-
-  <p>
-    Günümüz dünyasında bunun örnekleri görülebilir:
-  </p>
-
-  <ul>
-    <li>Teknolojik büyüme fakat bilinç daralması</li>
-    <li>Bilgi artışı fakat hikmet eksikliği</li>
-    <li>İletişim artışı fakat anlam kaybı</li>
-    <li>Hız artışı fakat iç boşluk büyümesi</li>
-  </ul>
-
-  <p>
-    Böylece zaman yalnızca tüketilen süreç haline gelir.
-  </p>
-
-  <p class="highlight">
-    Yönsüz hız = Anlamsız zaman
-  </p>
-
-</section>
-
-<section class="content-section">
-
-  <h2>5. Zaman ve Seçim</h2>
-
-  <p>
-    İnsan seçim yapabilen varlıktır.
-    Bu nedenle zamanın yönü üzerinde etkisi vardır.
-  </p>
-
-  <p>
-    Her tercih sistemin geleceğini değiştirir.
-    İnsan yalnızca zamanı yaşayan değil;
-    zamanın akışını etkileyen bilinçli özdür.
-  </p>
-
-  <p>
-    Bu yüzden sorumluluk kavramı zaman teorisinin merkezindedir.
-  </p>
-
-</section>
-
-<section class="content-section">
-
-  <h2>6. Anlamın Evrimi</h2>
-
-  <p>
-    Anlam sabit değildir.
-    İnsan geliştikçe anlam derinleşir.
-  </p>
-
-  <p>
-    Çocuklukta farklı görünen gerçeklik,
-    bilinç geliştikçe daha karmaşık ve daha derin anlaşılır.
-  </p>
-
-  <p>
-    Aynı şekilde uygarlıklar da zaman içinde yeni anlam katmanları üretir.
-    Bilimsel paradigmalar, ahlaki sistemler ve düşünce yapıları bu evrimin parçasıdır.
-  </p>
-
-</section>
-
-<section class="content-section">
-
-  <h2>7. Yön + Anlam İlişkisi</h2>
-
-  <p>
-    Yön olmadan anlam dağılır.
-    Anlam olmadan yön körleşir.
-  </p>
-
-  <p>
-    Bu nedenle zamanın gerçek yapısı;
-    bilinç, yön ve anlamın birleşiminden oluşur.
-  </p>
-
-  <p class="highlight">
-    Yön = Ahlak  
-    Anlam = Bilinç  
-    Zaman = Bu ikisinin hareketidir
-  </p>
-
-</section>
-
-<section class="content-section">
-
-  <h2>8. İnsan ve Merkezilik</h2>
-
-  <p>
-    İnsan, zamanın merkezindeki yorumlayıcı varlıktır.
-    Çünkü insan yalnızca fiziksel hareketi yaşamaz;
-    aynı zamanda olaylara anlam yükler.
-  </p>
-
-  <p>
-    Bu özellik insanı sıradan biyolojik sistemlerden ayırır.
-    İnsan geçmişi yorumlayabilir,
-    geleceği planlayabilir
-    ve kendi yönünü bilinçli biçimde değiştirebilir.
-  </p>
-
-  <p>
-    Bu nedenle insan, zamanın yalnızca içinde yaşayan değil;
-    zamanın anlam haritasını kurabilen özel varlıktır.
-  </p>
-
-</section>
-
-<section class="content-section">
-
-  <h2>9. Sonuç</h2>
-
-  <p>
-    Zaman yalnızca akan fiziksel süreç değildir.
-    Zaman; yön, anlam, bilinç ve ahlak taşıyan çok katmanlı ontolojik akıştır.
-  </p>
-
-  <p>
-    Eğer sistem yönünü kaybederse zaman anlamsızlaşır.
-    Eğer bilinç ve ahlak birlikte gelişirse zaman derinleşir ve genişler.
-  </p>
-
-  <p>
-    Zanistarast modelinde gerçek zaman;
-    bilinçli yön taşıyan anlamlı dönüşüm sürecidir.
-  </p>
-
-  <p class="highlight">
-    Zaman yalnızca akmaz; yön kazanır ve anlam üretir.
-  </p>
-
-</section>
-
-</div>
+  <div id="navbar"></div>
+
+  <script>
+    fetch("components/navbar.html")
+      .then(function(res){ return res.text(); })
+      .then(function(data){
+        const navbar = document.getElementById("navbar");
+        navbar.innerHTML = data;
+
+        const scripts = navbar.querySelectorAll("script");
+        scripts.forEach(function(oldScript){
+          const newScript = document.createElement("script");
+          if(oldScript.src){
+            newScript.src = oldScript.src;
+          } else {
+            newScript.textContent = oldScript.textContent;
+          }
+          document.body.appendChild(newScript);
+          oldScript.remove();
+        });
+      });
+  </script>
+
+  <main class="container">
+
+    <a class="back-link" href="theory-08-zaman.html">← Zaman Teorisi sayfasına dön</a>
+
+    <section class="hero">
+      <div class="hero-card">
+        <h1>09 - Zaman Teorisi: Yön ve Anlam</h1>
+        <p>
+          Zaman yalnızca akan bir fiziksel süreç değildir. Zanistarast yaklaşımında zaman,
+          hareketin yön kazanması, bilincin anlam üretmesi ve ahlaki sorumluluğun geleceğe
+          doğru iz bırakmasıdır.
+        </p>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2>1. Giriş</h2>
+      <p>
+        Klasik düşüncede zaman çoğu zaman geçmişten geleceğe doğru akan nötr bir çizgi gibi
+        ele alınır. Bu bakış, zamanın ölçülebilir tarafını açıklar; fakat zamanın yön, anlam,
+        bilinç ve sorumlulukla ilişkisini tam olarak açıklamaz.
+      </p>
+      <p>
+        Zanistarast zaman teorisine göre zaman, yalnızca olayların arka arkaya gelmesi değildir.
+        Zaman, varlık katmanlarının birbirleriyle etkileşime girmesi ve bu etkileşimin bir yön
+        üretmesidir.
+      </p>
+      <p class="highlight">
+        Zaman = Akış + Yön + Anlam + Sorumluluk
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2>2. Zamanın Yön Problemi</h2>
+      <p>
+        Fiziksel düzeyde hareket olabilir; fakat her hareket yön üretmez. Bir sistem çalışabilir,
+        enerji harcayabilir, büyüyebilir; ama bu büyüme anlamlı bir yöne sahip olmayabilir.
+      </p>
+      <p>
+        Bu nedenle yön, yalnızca hareketin sonucu değildir. Yön; bilinç, tercih, ahlak ve amaç
+        katmanlarıyla ortaya çıkar.
+      </p>
+      <p>
+        Eğer bir sistem yalnızca güç üretir ama yön üretmezse, sonunda kendi gücüyle kendi
+        dengesini bozabilir.
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2>3. Kör Yön ve Gerçek Yön</h2>
+      <p>
+        Kör yön, yalnızca büyüme, yayılma, hızlanma ve birikme eğilimidir. Bu tür yön,
+        sistemin nereye gittiğini sorgulamaz.
+      </p>
+      <p>
+        Gerçek yön ise bilincin, ahlakın ve sorumluluğun katıldığı yöndür. Bu yön,
+        yalnızca hareket ettirmez; sistemi anlamlı bir hedefe taşır.
+      </p>
+      <ul>
+        <li><strong>Kör yön:</strong> büyüme, hız, tüketim, kontrolsüz ilerleme.</li>
+        <li><strong>Gerçek yön:</strong> bilinç, anlam, ahlak, denge ve sorumluluk.</li>
+      </ul>
+      <p class="highlight">
+        Gerçek yön = Bilinçli ve ahlaki yükseliş yönü
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2>4. Anlamın Kaynağı</h2>
+      <p>
+        Anlam yalnızca zihinsel bir kavram değildir. Anlam, varlığın kendi yerini, görevini,
+        sınırını ve sorumluluğunu tanımasıyla ortaya çıkar.
+      </p>
+      <p>
+        İnsan bilgi toplayabilir, sistem kurabilir ve teknoloji geliştirebilir; fakat bu bilgi
+        yönsüz kalırsa hikmet oluşmaz.
+      </p>
+      <p>
+        Bu nedenle Zanistarast modelinde bilgi tek başına yeterli değildir. Bilginin ahlakla
+        birleşmesi gerekir.
+      </p>
+      <p class="highlight">
+        Bilgi + Ahlak = Anlamlı yön
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2>5. Yönsüz Zaman</h2>
+      <p>
+        Yönsüz zaman, sistemin ilerliyor gibi görünmesine rağmen iç anlamını kaybetmesidir.
+        Böyle bir durumda teknoloji gelişebilir, ekonomi büyüyebilir, bilgi artabilir; fakat
+        insan ve toplum daha dengeli hale gelmeyebilir.
+      </p>
+      <p>
+        Günümüz dünyasında bunun örnekleri görülebilir: bilgi artarken hikmet azalabilir,
+        iletişim çoğalırken anlam kaybolabilir, hız yükselirken insanın iç dengesi zayıflayabilir.
+      </p>
+      <ul>
+        <li>Teknolojik büyüme fakat bilinç daralması</li>
+        <li>Bilgi artışı fakat hikmet eksikliği</li>
+        <li>İletişim artışı fakat anlam kaybı</li>
+        <li>Hız artışı fakat iç boşluk büyümesi</li>
+      </ul>
+      <p class="highlight">
+        Yönsüz hız = Anlamsız zaman
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2>6. Zaman ve Seçim</h2>
+      <p>
+        İnsan seçim yapabilen varlıktır. Bu yüzden zamanın yönü üzerinde etkisi vardır.
+        İnsan yalnızca zamanın içinde yaşayan bir varlık değildir; aynı zamanda zamanın akışını
+        anlamlandıran ve yönlendiren bilinçli bir varlıktır.
+      </p>
+      <p>
+        Her tercih geleceğin yönünü değiştirir. Küçük görünen kararlar bile uzun vadede büyük
+        sonuçlar doğurabilir.
+      </p>
+      <p>
+        Bu nedenle sorumluluk kavramı zaman teorisinin merkezindedir. Çünkü zaman,
+        yalnızca geçen süre değil; tercihlerin sonuç ürettiği alandır.
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2>7. Anlamın Evrimi</h2>
+      <p>
+        Anlam sabit değildir. İnsan geliştikçe anlam derinleşir. Çocuklukta basit görünen bir
+        gerçeklik, bilinç geliştikçe daha karmaşık ve daha derin hale gelir.
+      </p>
+      <p>
+        Aynı durum toplumlar ve medeniyetler için de geçerlidir. Bilimsel paradigmalar,
+        ahlaki sistemler ve düşünce yapıları zaman içinde dönüşür.
+      </p>
+      <p>
+        Bu dönüşüm yalnızca bilgi artışı değildir. Gerçek dönüşüm, bilginin daha yüksek bir
+        sorumluluk ve daha doğru bir yön üretmesidir.
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2>8. Yön ve Anlam İlişkisi</h2>
+      <p>
+        Yön olmadan anlam eksik kalır. Anlam olmadan yön körleşir. Bu nedenle zamanın gerçek
+        yapısı; bilinç, yön ve anlamın birleşiminden oluşur.
+      </p>
+      <p>
+        İnsan, zamanın merkezindeki yorumlayıcı varlıktır. Çünkü insan yalnızca fiziksel hareketi
+        yaşamaz; olaylara anlam yükler, geçmişi yorumlar ve geleceği planlar.
+      </p>
+      <p class="highlight">
+        Yön = Ahlak<br />
+        Anlam = Bilinç<br />
+        Zaman = Bu ikisinin hareketidir
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2>9. İnsan ve Merkezilik</h2>
+      <p>
+        İnsan, zamanın yalnızca içinde yaşayan değil; zamanın anlam haritasını kurabilen özel
+        varlıktır.
+      </p>
+      <p>
+        Bu özellik insanı sıradan biyolojik sistemlerden ayırır. İnsan geçmişi yorumlayabilir,
+        geleceği planlayabilir ve kendi yönünü bilinçli biçimde değiştirebilir.
+      </p>
+      <p>
+        Bu nedenle insanın zamandaki sorumluluğu büyüktür. Çünkü insanın seçimi yalnızca kendisini
+        değil, çevresini, toplumunu ve gelecek kuşakları da etkiler.
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2>10. Rasterast Doğrulama Katmanı</h2>
+      <p>
+        Yönün doğru olup olmadığını anlamak için yalnızca niyet yeterli değildir. Bir yön,
+        Rasterast doğrulama filtresinden geçmelidir.
+      </p>
+      <p>
+        Eğer bir sistem gerçeklikten koparsa, zaman içinde anlam kaybeder. Yanlış bilgi,
+        kısa vadede hareket üretebilir; fakat uzun vadede sistemin yönünü bozar.
+      </p>
+      <p>
+        Bu nedenle gerçek yön, doğrulanabilir bilgiye, ahlaki sınıra ve sistemsel dengeye
+        dayanmalıdır.
+      </p>
+      <p class="highlight">
+        Doğru yön = Rasterast ile doğrulanan yön
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2>11. Sonuç</h2>
+      <p>
+        Zaman yalnızca akan fiziksel süreç değildir. Zaman; yön, anlam, bilinç ve ahlak taşıyan
+        çok katmanlı ontolojik akıştır.
+      </p>
+      <p>
+        Eğer sistem yönünü kaybederse zaman anlamsızlaşır. Eğer bilinç ve ahlak birlikte gelişirse
+        zaman derinleşir ve genişler.
+      </p>
+      <p>
+        Zanistarast modelinde gerçek zaman, bilinçli yön taşıyan anlamlı dönüşüm sürecidir.
+      </p>
+      <p class="highlight">
+        Zaman yalnızca akmaz; yön kazanır ve anlam üretir.
+      </p>
+    </section>
+
+  </main>
 </body>
 </html>
+
