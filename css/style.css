@@ -1797,5 +1797,75 @@ line-height:1.7;
     0 30px 70px rgba(0,170,255,.24),
     0 0 0 1px rgba(127,231,255,.20);
 }
+/* MOBİL OKUMA DÜZELTMESİ */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
 
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-left: 16px;
+  padding-right: 16px;
+  box-sizing: border-box;
+}
+
+.hero-card,
+.content-section,
+.section-card,
+.card {
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: normal;
+}
+
+.hero-card p,
+.content-section p,
+.section-card p,
+.card p,
+.hero-card li,
+.content-section li,
+.section-card li {
+  max-width: 100%;
+  line-height: 1.75;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+.hero-card h1,
+.content-section h1,
+.section-card h1 {
+  font-size: clamp(32px, 8vw, 64px);
+  line-height: 1.1;
+  overflow-wrap: break-word;
+}
+
+.content-section h2,
+.section-card h2 {
+  font-size: clamp(22px, 5vw, 34px);
+  line-height: 1.25;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .hero-card,
+  .content-section,
+  .section-card {
+    padding: 20px;
+  }
+
+  p,
+  li {
+    font-size: 16px;
+  }
+}
 
