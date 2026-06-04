@@ -2063,3 +2063,51 @@ code{
     padding-left:18px;
   }
 }
+/* ================================
+   ZANISTARAST STATISTICS PANEL
+   Protected Add-on
+================================ */
+
+.stats-panel {
+  margin-top: 32px;
+}
+
+.stats-panel h2 {
+  margin-bottom: 12px;
+}
+
+.stats-panel > p {
+  max-width: 760px;
+  opacity: 0.9;
+}
+
+.stats-grid {
+  margin-top: 24px;
+}
+
+.stat-card span {
+  display: inline-block;
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: #7ddcff;
+}
+
+.stat-card h3 {
+  margin-bottom: 10px;
+}
+
+.stat-card p {
+  opacity: 0.88;
+}
+
+/* Android Safe */
+@media (max-width: 700px) {
+  .stats-panel {
+    margin-top: 22px;
+  }
+
+  .stat-card span {
+    font-size: 1.25rem;
+  }
+}
