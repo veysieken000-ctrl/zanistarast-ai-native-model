@@ -1,0 +1,11 @@
+{
+  "name": "Zanistarast",
+  "short_name": "Zanistarast",
+  "description": "Zanistarast Scientific Synthesis and AI Native System",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#050816",
+  "theme_color": "#050816",
+  "orientation": "portrait",
+  "icons": []
+}
