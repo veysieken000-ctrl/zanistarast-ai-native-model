@@ -2230,3 +2230,19 @@ GLOBAL UI PROTECTED
     }
 
 }
+/* ZANISTARAST LANGUAGE SYSTEM */
+
+.language-panel{
+    margin-top:28px;
+}
+
+.language-panel .card{
+    min-height:180px;
+}
+
+@media(max-width:700px){
+    .language-panel{
+        margin-top:22px;
+    }
+}
+
