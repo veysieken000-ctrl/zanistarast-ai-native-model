@@ -2213,3 +2213,20 @@ GLOBAL UI PROTECTED
 .article-detail-panel strong{
     color:#7ddcff;
 }
+/* ZANISTARAST SPEECH SYSTEM */
+
+.speech-panel{
+    margin-top:28px;
+}
+
+.speech-panel .card{
+    min-height:180px;
+}
+
+@media(max-width:700px){
+
+    .speech-panel{
+        margin-top:22px;
+    }
+
+}
