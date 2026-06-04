@@ -2159,4 +2159,45 @@ TAG SYSTEM ADDED SAFELY
 ANDROID SAFE STRUCTURE ENABLED
 GLOBAL UI PROTECTED
 */
+/* ZANISTARAST FAVORITE SYSTEM — SAFE ADD */
+.favorite-panel {
+  margin-top: 28px;
+}
+
+.favorite-grid {
+  margin-top: 20px;
+}
+
+.favorite-card span {
+  display: inline-block;
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: #7ddcff;
+}
+
+.favorite-card h3 {
+  margin-bottom: 8px;
+}
+
+.favorite-card p {
+  opacity: 0.88;
+}
+
+@media (max-width: 700px) {
+  .favorite-panel {
+    margin-top: 22px;
+  }
+
+  .favorite-card span {
+    font-size: 1.25rem;
+  }
+}
+
+/*
+ZANISTARAST CORE LOCK ACTIVE
+FAVORITE SYSTEM ADDED SAFELY
+ANDROID SAFE STRUCTURE ENABLED
+GLOBAL UI PROTECTED
+*/
+
 
