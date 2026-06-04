@@ -16,6 +16,10 @@
   />
   <meta property="og:type" content="website" />
   <link rel="stylesheet" href="css/style.css" />
+
+  <link rel="manifest" href="./manifest.json" />
+<meta name="theme-color" content="#050816" />
+
 </head>
 <body>
   <div id="navbar"></div>
@@ -351,6 +355,15 @@
   </footer>
 <script src="modules/ai/ai.js"></script>
 <script src="modules/speech/speech.js"></script>
+
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker.register("./service-worker.js");
+  });
+}
+</script>
+  
 </body>
 </html>
 
