@@ -2200,4 +2200,16 @@ ANDROID SAFE STRUCTURE ENABLED
 GLOBAL UI PROTECTED
 */
 
+/* ZANISTARAST ARTICLE DETAIL SYSTEM */
 
+.article-detail-panel{
+    margin-top:28px;
+}
+
+.article-detail-panel .card{
+    min-height:220px;
+}
+
+.article-detail-panel strong{
+    color:#7ddcff;
+}
