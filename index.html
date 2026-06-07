@@ -45,11 +45,18 @@
 
     <section class="hero">
       <div class="hero-card">
-        <h1>ZANISTARAST</h1>
-        <p>
+        <h1 data-i18n="site.title">ZANISTARAST</h1>
+
+        <p data-i18n="site.subtitle">
           A structured, testable framework for modeling natural,
           computational, and human systems.
         </p>
+
+        <div class="language-switcher">
+          <button onclick="setLanguage('tr')">TR</button>
+          <button onclick="setLanguage('ku')">KU</button>
+          <button onclick="setLanguage('en')">EN</button>
+        </div>
 
         <div class="hero-actions">
           <a href="paper.html">Read Paper</a>
@@ -213,6 +220,7 @@
     </div>
   </footer>
 
+  <script src="js/translations.js"></script>
   <script src="modules/ai/ai.js"></script>
   <script src="modules/speech/speech.js"></script>
 
@@ -225,5 +233,3 @@
   </script>
 </body>
 </html>
-
-
