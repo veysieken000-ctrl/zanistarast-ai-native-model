@@ -5,6 +5,7 @@ const translations = {
     "nav.paper": "Paper",
     "nav.graph": "Graph",
     "nav.ai": "AI & Speech",
+    "nav.repositories": "Depolar",
     "nav.tags": "Etiketler",
     "nav.favorites": "Favoriler"
   },
@@ -15,6 +16,7 @@ const translations = {
     "nav.paper": "Paper",
     "nav.graph": "Graph",
     "nav.ai": "AI & Speech",
+    "nav.repositories": "Depo",
     "nav.tags": "Etîket",
     "nav.favorites": "Bijare"
   },
@@ -25,6 +27,7 @@ const translations = {
     "nav.paper": "Paper",
     "nav.graph": "Graph",
     "nav.ai": "AI & Speech",
+    "nav.repositories": "Repositories",
     "nav.tags": "Tags",
     "nav.favorites": "Favorites"
   }
