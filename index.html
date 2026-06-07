@@ -3,211 +3,227 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zanistarast – Structural Civilizational Framework</title>
+  <title>Zanistarast — Structural Civilizational Framework</title>
   <link rel="stylesheet" href="css/style.css" />
-  <meta
-    name="description"
-    content="Zanistarast is a structured, testable framework for modeling natural, computational, and human systems."
-  />
-  <meta property="og:title" content="Zanistarast – Structural Civilizational Framework" />
-  <meta
-    property="og:description"
-    content="A structured, testable framework for modeling natural, computational, and human systems."
-  />
+  <meta name="description" content="Zanistarast is a structured, testable framework for modeling natural, computational, and human systems." />
+  <meta property="og:title" content="Zanistarast — Structural Civilizational Framework" />
+  <meta property="og:description" content="A structured, testable framework for modeling natural, computational, and human systems." />
   <meta property="og:type" content="website" />
-  <link rel="stylesheet" href="css/style.css" />
-
   <link rel="manifest" href="./manifest.json" />
-<meta name="theme-color" content="#050816" />
-
+  <meta name="theme-color" content="#0b0f1a" />
 </head>
+
 <body>
   <div id="navbar"></div>
 
   <script>
-  fetch("components/navbar.html")
-    .then(function (res) {
-      return res.text();
-    })
-    .then(function (data) {
-      const navbar = document.getElementById("navbar");
-      navbar.innerHTML = data;
+    fetch("components/navbar.html")
+      .then(function (res) {
+        return res.text();
+      })
+      .then(function (data) {
+        const navbar = document.getElementById("navbar");
+        navbar.innerHTML = data;
 
-      const scripts = navbar.querySelectorAll("script");
+        const scripts = navbar.querySelectorAll("script");
+        scripts.forEach(function (oldScript) {
+          const newScript = document.createElement("script");
 
-      scripts.forEach(function (oldScript) {
-        const newScript = document.createElement("script");
+          if (oldScript.src) {
+            newScript.src = oldScript.src;
+          } else {
+            newScript.textContent = oldScript.textContent;
+          }
 
-        if (oldScript.src) {
-          newScript.src = oldScript.src;
-        } else {
-          newScript.textContent = oldScript.textContent;
-        }
-
-        document.body.appendChild(newScript);
-        oldScript.remove();
+          document.body.appendChild(newScript);
+          oldScript.remove();
+        });
       });
-    });
-</script>
+  </script>
 
   <main class="container">
+
     <section class="hero">
       <div class="hero-card">
         <h1>ZANISTARAST</h1>
         <p>
-          A structured, testable framework for modeling natural, computational,
-          and human systems.
+          A structured, testable framework for modeling natural,
+          computational, and human systems.
         </p>
 
         <div class="hero-actions">
           <a href="paper.html">Read Paper</a>
           <a href="graph.html" class="secondary">Explore Graph</a>
-          <a href="ai.html" class="secondary">Open AI</a>
+          <a href="speech.html" class="secondary">AI & Speech</a>
           <a href="repositories.html" class="secondary">View Repositories</a>
-          <a href="tags.html">Etiketler</a>
-          <a href="favorites.html">Favoriler</a>
+          <a href="tags.html" class="secondary">Tags</a>
+          <a href="favorites.html" class="secondary">Favorites</a>
         </div>
       </div>
     </section>
 
-  <section class="hero-card stats-panel">
-  <h2>Zanistarast Sistem İstatistikleri</h2>
-  <p>Sistemin mevcut yapısını, teori katmanlarını ve çalışma alanlarını özetleyen canlı görünüm.</p>
+    <section class="hero-card stats-panel">
+      <h2>Zanistarast System Statistics</h2>
+      <p>
+        A compact overview of the system structure, theory layers,
+        and active reading areas.
+      </p>
 
-  <div class="grid stats-grid">
-    <div class="card stat-card">
-      <span>08</span>
-      <h3>Ana Katman</h3>
-      <p>Theory sistemindeki temel boyut ve model alanları.</p>
+      <div class="grid stats-grid">
+        <div class="card stat-card">
+          <span>08</span>
+          <h3>Main Layers</h3>
+          <p>Core domains and structural model areas.</p>
+        </div>
+
+        <div class="card stat-card">
+          <span>12+</span>
+          <h3>Time Theory Pages</h3>
+          <p>Synthesis pages related to time, flow, responsibility, and judgment.</p>
+        </div>
+
+        <div class="card stat-card">
+          <span>06</span>
+          <h3>Core Reading Paths</h3>
+          <p>Hebûn, Zanabûn, Rasterast, Rabûn, Mabûn, and Articles.</p>
+        </div>
+
+        <div class="card stat-card">
+          <span>01</span>
+          <h3>AI Interface</h3>
+          <p>Interactive reading, speech, and question-answer access.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-card">
+        <h2>What This Framework Is</h2>
+        <p>
+          Zanistarast is a structured, testable framework for modeling natural,
+          computational, and human systems. It is not presented as ideology or
+          narrative, but as a structural model.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-card">
+        <h2>Start Here</h2>
+        <p>
+          Paper — read the full structural model. Graph — inspect the system visually.
+          AI — query the framework interactively. Repositories — browse the project structure.
+        </p>
+
+        <div class="card">
+          <h3>Manifesto</h3>
+          <p>
+            Read the Zanistarast scientific synthesis manifesto and its
+            civilizational direction.
+          </p>
+          <p><a href="manifesto.html">Open Manifesto</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-card">
+        <h2>Why This Site Exists</h2>
+        <p>
+          This website is the central access point for the Zanistarast system:
+          theory, ontology, graph logic, interactive AI reading, repositories,
+          and civilizational modeling.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-card">
+        <h2>Core Claim</h2>
+        <p>
+          Civilizational collapse begins when knowledge detaches from reality,
+          structure loses coherence, and validation breaks down. Zanistarast
+          proposes a shared structural model for preventing that collapse.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-card">
+        <h2>System Structure</h2>
+        <p>
+          Ontology → Epistemology → Validation → Coherence → Integration
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-card">
+        <h2>Scientific Position</h2>
+        <p>
+          Structured. Testable. Non-ideological. Machine-readable. Cross-domain.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-card">
+        <h2>Frequently Asked Questions</h2>
+
+        <p><strong>What is Zanistarast?</strong></p>
+        <p>
+          A structured, testable framework connecting ontology, knowledge,
+          validation, and civilization.
+        </p>
+
+        <p><strong>Is this a philosophy?</strong></p>
+        <p>
+          Not in the classical sense. It is presented as a structural model
+          designed for comparison, validation, and integration.
+        </p>
+
+        <p><strong>Where should I start?</strong></p>
+        <p>
+          Start with the <a href="paper.html">Paper</a>, then move to the
+          <a href="graph.html">Graph</a> and the
+          <a href="speech.html">AI & Speech interface</a>.
+        </p>
+
+        <p><strong>What is the goal of this system?</strong></p>
+        <p>
+          To build a coherent, reality-aligned framework that can describe how
+          systems originate, stabilize, and collapse.
+        </p>
+
+        <p><strong>Can this system be tested?</strong></p>
+        <p>
+          Yes. It is designed to be testable, structured, and expandable across
+          multiple domains.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      Zanistarast — Structural, Testable, Integrative
+      <br />
+      🔒 ZANISTARAST CORE LOCK ACTIVE — HOMEPAGE STRUCTURE PROTECTED — ANDROID SAFE
     </div>
+  </footer>
 
-    <div class="card stat-card">
-      <span>12+</span>
-      <h3>Zaman Teorisi</h3>
-      <p>Zaman boyutuna bağlı sentez, akış, sorumluluk ve hüküm sayfaları.</p>
-    </div>
+  <script src="modules/ai/ai.js"></script>
+  <script src="modules/speech/speech.js"></script>
 
-    <div class="card stat-card">
-      <span>06</span>
-      <h3>Çekirdek Okuma</h3>
-      <p>Hebûn, Zanabûn, Rasterast, Rabûn, Mabûn ve Makaleler.</p>
-    </div>
-
-    <div class="card stat-card">
-      <span>01</span>
-      <h3>AI Arayüzü</h3>
-      <p>Zanistarast sistemini soru-cevap ve konuşma üzerinden okuma alanı.</p>
-    </div>
-  </div>
-</section>
- <section>
-  <div class="section-card">
-    <h2>What This Framework Is</h2>
-    <p>
-      Zanistarast is a structured, testable framework for modeling natural,
-      computational, and human systems. It is not presented as ideology or
-      narrative, but as a structural model.
-    </p>
-  </div>
-</section>
-
-<section>
-  <div class="section-card">
-    <h2>Start Here</h2>
-    <p>
-      Paper — read the full structural model. Graph — inspect the system visually.
-      AI — query the framework interactively. Repositories — browse the project structure.
-    </p>
-
-    <div class="card">
-      <h3>Manifesto</h3>
-      <p>Read the Zanistarast scientific synthesis manifesto and its civilizational direction.</p>
-      <p><a href="manifesto.html">Open Manifesto</a></p>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="section-card">
-    <h2>Why This Site Exists</h2>
-    <p>
-      This website is the central access point for the Zanistarast system:
-      theory, ontology, graph logic, interactive AI reading, repositories,
-      and civilizational modeling.
-    </p>
-  </div>
-</section>
-
-<section>
-  <div class="section-card">
-    <h2>Core Claim</h2>
-    <p>
-      Civilizational collapse begins when knowledge detaches from reality,
-      structure loses coherence, and validation breaks down. Zanistarast proposes
-      a shared structural model for preventing that collapse.
-    </p>
-  </div>
-</section>
-
-<section>
-  <div class="section-card">
-    <h2>System Structure</h2>
-    <p>Ontology → Epistemology → Validation → Coherence → Integration</p>
-  </div>
-</section>
-
-<section>
-  <div class="section-card">
-    <h2>Scientific Position</h2>
-    <p>Structured. Testable. Non-ideological. Machine-readable. Cross-domain.</p>
-  </div>
-</section>
-
-<section>
-  <div class="section-card">
-    <h2>Frequently Asked Questions</h2>
-
-    <p><strong>What is Zanistarast?</strong></p>
-    <p>A structured, testable framework connecting ontology, knowledge, validation, and civilization.</p>
-
-    <p><strong>Is this a philosophy?</strong></p>
-    <p>Not in the classical sense. It is presented as a structural model designed for comparison, validation, and integration.</p>
-
-    <p><strong>Where should I start?</strong></p>
-    <p>
-      Start with the <a href="paper.html">Paper</a>, then move to the
-      <a href="graph.html">Graph</a> and the <a href="ai.html">AI interface</a>.
-    </p>
-
-    <p><strong>What is the goal of this system?</strong></p>
-    <p>To build a coherent, reality-aligned framework that can describe how systems originate, stabilize, and collapse.</p>
-
-    <p><strong>Can this system be tested?</strong></p>
-    <p>Yes. It is designed to be testable, structured, and expandable across multiple domains.</p>
-  </div>
-</section>
-
-</main>
-
-<footer>
-  <div class="container">
-    Zanistarast — Structural, Testable, Integrative
-    <br>
-    🔒 ZANISTARAST CORE LOCK ACTIVE — HOMEPAGE STRUCTURE PROTECTED — ANDROID SAFE
-  </div>
-</footer>
-
-<script src="modules/ai/ai.js"></script>
-<script src="modules/speech/speech.js"></script>
-
-<script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", function () {
-    navigator.serviceWorker.register("./service-worker.js");
-  });
-}
-</script>
-
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("./service-worker.js");
+      });
+    }
+  </script>
 </body>
 </html>
-  
+
+
