@@ -108,16 +108,17 @@
   </p>
 
   <div class="tag-grid">
-    <span>Ontoloji</span>
-    <span>Zanabûn</span>
-    <span>Rasterast</span>
-    <span>Rabûn</span>
-    <span>Mabûn</span>
-    <span>Zaman Teorisi</span>
-    <span>Ahlak Boyutu</span>
-    <span>AI Native</span>
-    <span>Knowledge Graph</span>
-    <span>Newroza Kawa</span>
+<button class="tag-btn" data-filter="ontoloji">Ontoloji</button>
+<button class="tag-btn" data-filter="zanabun">Zanabûn</button>
+<button class="tag-btn" data-filter="rasterast">Rasterast</button>
+<button class="tag-btn" data-filter="rabun">Rabûn</button>
+<button class="tag-btn" data-filter="mabun">Mabûn</button>
+<button class="tag-btn" data-filter="zaman">Zaman Teorisi</button>
+<button class="tag-btn" data-filter="ahlak">Ahlak Boyutu</button>
+<button class="tag-btn" data-filter="ai">AI Native</button>
+<button class="tag-btn" data-filter="graph">Knowledge Graph</button>
+<button class="tag-btn" data-filter="medeniyet">Newroza Kawa</button>
+<button class="tag-btn active" data-filter="all">Tümü</button>
   </div>
 </section>  
       
@@ -159,7 +160,7 @@
   <h2>Makale Detay Sistemi</h2>
 
   <div class="grid">
-    <div class="card">
+    <div class="card filter-card" data-tags="ontoloji hebun zanabun">
       <h3>Hebûn-01</h3>
       <p>Ontolojik başlangıç ve varlığın ilk ilkeleri.</p>
 
@@ -168,7 +169,7 @@
       <p><strong>Bağlantılar:</strong> Zanabûn, Rasterast</p>
     </div>
 
-    <div class="card">
+    <div class="card filter-card" data-tags="zaman teori ahlak">
       <h3>Zaman Teorisi</h3>
       <p>Zamanın katmanlı ve yapısal modeli.</p>
 
@@ -380,6 +381,36 @@ if ("serviceWorker" in navigator) {
     if (coreEl) coreEl.textContent = stats.core + "+";
   });
 </script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const buttons = document.querySelectorAll(".tag-btn");
+    const cards = document.querySelectorAll(".filter-card");
+
+    buttons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        const filter = button.dataset.filter;
+
+        buttons.forEach(function (btn) {
+          btn.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        cards.forEach(function (card) {
+          const tags = card.dataset.tags || "";
+
+          if (filter === "all" || tags.includes(filter)) {
+            card.classList.remove("is-hidden");
+          } else {
+            card.classList.add("is-hidden");
+          }
+        });
+      });
+    });
+  });
+</script>
+
 </body>
 </html>
 
