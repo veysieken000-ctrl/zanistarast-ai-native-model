@@ -2246,3 +2246,32 @@ GLOBAL UI PROTECTED
     }
 }
 
+/* ZANISTARAST TAG FILTER SYSTEM */
+
+.tag-btn {
+  border: 1px solid rgba(125, 220, 255, 0.45);
+  border-radius: 999px;
+  background: rgba(30, 160, 220, 0.16);
+  color: #e9fbff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.tag-btn.active,
+.tag-btn:hover {
+  background: rgba(125, 220, 255, 0.28);
+  box-shadow: 0 0 18px rgba(34, 211, 238, 0.16);
+}
+
+.filter-card.is-hidden {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .tag-btn {
+    font-size: 0.85rem;
+    padding: 9px 13px;
+  }
+}
