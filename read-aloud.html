@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zanistarast | Sesli Okuma Sistemi</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <div id="navbar"></div>
+
+  <script>
+    fetch("components/navbar.html")
+      .then(function (res) { return res.text(); })
+      .then(function (data) {
+        document.getElementById("navbar").innerHTML = data;
+      });
+  </script>
+
+  <main class="container">
+
+    <a class="back-link" href="index.html">← Ana Sayfa</a>
+
+    <section class="hero-card">
+      <h1>Sesli Okuma Sistemi</h1>
+      <p>
+        Bu modül Zanistarast makalelerinin sesli okunması için güvenli başlangıç sistemidir.
+        AI & Speech sayfasını bozmaz; sadece metin okutma alanı sağlar.
+      </p>
+    </section>
+
+    <section class="hero-card">
+      <h2>Okunacak Metin</h2>
+
+      <textarea id="readText" class="read-box">
+Zanistarast, varlık, bilgi, doğrulama, yönetim, ekonomi ve medeniyet katmanlarını birlikte okuyan yapısal bir sistemdir.
+      </textarea>
+
+      <div class="hero-actions">
+        <button class="button" onclick="readText()">Sesli Oku</button>
+        <button class="button secondary" onclick="stopReading()">Durdur</button>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      🔒 ZANISTARAST READ ALOUD SYSTEM ACTIVE — ANDROID SAFE
+    </div>
+  </footer>
+
+  <script>
+    function readText() {
+      const text = document.getElementById("readText").value;
+      if (!text) return;
+
+      window.speechSynthesis.cancel();
+
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "tr-TR";
+      utterance.rate = 0.95;
+      utterance.pitch = 1;
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function stopReading() {
+      window.speechSynthesis.cancel();
+    }
+  </script>
+</body>
+</html>
