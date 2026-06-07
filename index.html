@@ -363,7 +363,23 @@ if ("serviceWorker" in navigator) {
   });
 }
 </script>
-  
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const stats = {
+      pages: document.querySelectorAll("a[href$='.html']").length,
+      theories: document.querySelectorAll("a[href*='theory']").length,
+      core: document.querySelectorAll("a[href*='hebun'], a[href*='zanabun'], a[href*='rasterast'], a[href*='rabun'], a[href*='mabun']").length
+    };
+
+    const pageEl = document.getElementById("stat-pages");
+    const theoryEl = document.getElementById("stat-theories");
+    const coreEl = document.getElementById("stat-core");
+
+    if (pageEl) pageEl.textContent = stats.pages + "+";
+    if (theoryEl) theoryEl.textContent = stats.theories + "+";
+    if (coreEl) coreEl.textContent = stats.core + "+";
+  });
+</script>
 </body>
 </html>
 
