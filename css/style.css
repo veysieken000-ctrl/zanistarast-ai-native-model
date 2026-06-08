@@ -2295,3 +2295,10 @@ GLOBAL UI PROTECTED
   outline: none;
   box-shadow: 0 0 18px rgba(34, 211, 238, 0.22);
 }
+.article-meta-card {
+  font-size: 0.95rem;
+}
+
+.article-meta-card p {
+  margin: 6px 0;
+}
