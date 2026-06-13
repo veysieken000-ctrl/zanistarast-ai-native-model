@@ -49,3 +49,4 @@ document.addEventListener("DOMContentLoaded", function () {
   const savedLang = localStorage.getItem("zanistarast_lang") || "tr";
   setLanguage(savedLang);
 });
+window.setLanguage = setLanguage;
