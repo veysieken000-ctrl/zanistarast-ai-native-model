@@ -2302,3 +2302,58 @@ GLOBAL UI PROTECTED
 .article-meta-card p {
   margin: 6px 0;
 }
+
+/* ZANISTARAST ETIKET BUTON FIX */
+
+.tag-grid,
+.tag-panel,
+.tag-bar {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 10px !important;
+  margin-top: 18px !important;
+}
+
+.tag-grid span,
+.tag-btn,
+button[onclick^="filterByTag"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: linear-gradient(135deg, #14a6e9, #2563eb) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(186,239,253,.9) !important;
+  border-radius: 999px !important;
+  padding: 10px 16px !important;
+  font-weight: 800 !important;
+  font-size: 0.95rem !important;
+  cursor: pointer !important;
+  box-shadow: 0 0 14px rgba(34,211,238,.25) !important;
+}
+
+.tag-grid span:hover,
+.tag-btn:hover,
+button[onclick^="filterByTag"]:hover {
+  background: linear-gradient(135deg, #38bdf8, #1d4ed8) !important;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 700px) {
+  .tag-grid,
+  .tag-panel,
+  .tag-bar {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+  }
+
+  .tag-grid span,
+  .tag-btn,
+  button[onclick^="filterByTag"] {
+    width: 100% !important;
+    font-size: 0.85rem !important;
+    padding: 10px 8px !important;
+    white-space: normal !important;
+    text-align: center !important;
+  }
+}
