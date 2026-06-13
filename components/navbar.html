@@ -51,17 +51,15 @@
   }
 
  .zn-menu{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    align-items:center;
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
     gap:12px;
-
-    max-width:900px;
-    margin:auto;
 }
 
 .zn-menu a{
+  min-width:140px;
+text-align:center; 
+
     color:#fff;
     text-decoration:none;
     font-size:0.95rem;
