@@ -2363,3 +2363,21 @@ button[onclick^="filterByTag"]:hover {
     align-items:center;
     justify-content:center;
 }
+.read-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 18px 0;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #14a5e9, #2563eb);
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 800;
+  border: 1px solid rgba(186, 230, 253, 0.9);
+  box-shadow: 0 0 16px rgba(14, 165, 233, 0.35);
+}
+
+.read-btn:hover {
+  transform: translateY(-1px);
+}
