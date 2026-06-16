@@ -39,7 +39,16 @@ fetch("components/navbar.html")
 
 <main class="container">
 
+<div id="read-button"></div>
 
+<script>
+fetch("components/read-button.html")
+.then(res => res.text())
+.then(data => {
+ document.getElementById("read-button").innerHTML = data;
+});
+</script>
+  
   <section class="hero-card article-meta-card">
 <p><strong>Kategori:</strong> Zaman Teorisi</p>
 <p><strong>Etiketler:</strong> Zaman, Akış, Döngü, Sorumluluk, Hüküm</p>
@@ -390,6 +399,7 @@ Zaman = Ontolojik dönüşüm süreci
 
 </main>
 
+<script src="js/read-aloud.js"></script>
 </body>
 </html>
 
