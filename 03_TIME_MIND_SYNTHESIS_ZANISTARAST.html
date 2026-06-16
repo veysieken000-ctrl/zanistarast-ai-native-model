@@ -43,7 +43,17 @@ fetch("components/navbar.html")
 
 <main class="container">
 
-<section class="hero-card article-meta-card">
+<div id="read-button"></div>
+
+<script>
+fetch("components/read-button.html")
+.then(res => res.text())
+.then(data => {
+ document.getElementById("read-button").innerHTML = data;
+});
+</script>
+
+  <section class="hero-card article-meta-card">
 <p><strong>Kategori:</strong> Zaman Teorisi</p>
 <p><strong>Etiketler:</strong> Zaman, Akış, Döngü, Sorumluluk, Hüküm</p>
 <p><strong>Okuma Yolu:</strong> Var Olmak → Bilmek → Doğrudanlık → Yükselmek → Kalmak</p>
@@ -544,6 +554,7 @@ Zihin = Ontolojik zaman organizasyonu
 
 </main>
 
+<script src="js/read-aloud.js"></script>
 </body>
 </html>
 
