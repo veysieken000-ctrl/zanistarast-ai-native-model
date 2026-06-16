@@ -39,6 +39,16 @@ fetch("components/navbar.html")
 </script>
   <main class="container">
 
+ <div id="read-button"></div>
+
+<script>
+fetch("components/read-button.html")
+.then(res => res.text())
+.then(data => {
+ document.getElementById("read-button").innerHTML = data;
+});
+</script>
+
     <section class="hero-card article-meta-card">
   <p><strong>Kategori:</strong> Doğal Kültür-Sanat</p>
   <p><strong>Etiketler:</strong> Hebûn, Varlık, Katman, Zanabûn, Rasterast</p>
@@ -1341,6 +1351,8 @@ aynısız biçimde
   <footer style="position:static !important; display:block !important; margin-top:24px !important;">
     <div class="container">Zanistarast AI Interface</div>
   </footer>
+
+<script src="js/read-aloud.js"></script>
 
 </body>
 </html>
