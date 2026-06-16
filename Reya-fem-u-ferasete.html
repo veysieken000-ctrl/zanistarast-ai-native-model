@@ -41,7 +41,18 @@
 
   <main class="container">
 
-  <section class="hero-card article-meta-card">
+<div id="read-button"></div>
+
+<script>
+fetch("components/read-button.html")
+.then(res => res.text())
+.then(data => {
+ document.getElementById("read-button").innerHTML = data;
+});
+</script>
+
+    
+    <section class="hero-card article-meta-card">
 <p><strong>Kategori:</strong> Feraset Yolu</p>
 <p><strong>Etiketler:</strong> Feraset, Hikmet, Hebûn, Zanabûn, Rasterast</p>
 <p><strong>Okuma Yolu:</strong> Hebûn → Zanabûn → Rasterast → Feraset</p>
@@ -132,5 +143,8 @@
     </section>
 
   </main>
+
+<script src="js/read-aloud.js"></script>
+
 </body>
 </html>
