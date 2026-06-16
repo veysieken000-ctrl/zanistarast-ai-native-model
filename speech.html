@@ -717,6 +717,13 @@ function readAnswer(){
 
   u.lang = languageSelect.value;
 
+ if (!('speechSynthesis' in window)) {
+
+ alert("Bu cihaz sesli okumayı desteklemiyor.");
+
+ return;
+
+}  
   if(!speechSynthesis.getVoices().find(v => v.lang === u.lang)){
     u.lang = "en-US";
   }
@@ -766,6 +773,46 @@ window.onload = function(){
   loadChat();
   refreshSessionList();
 };
+
+let currentSpeech = null;
+
+function startReading() {
+
+  const text =
+    document.querySelector("main")?.innerText ||
+    document.querySelector(".panel")?.innerText ||
+    document.body.innerText;
+
+  speechSynthesis.cancel();
+
+  currentSpeech = new SpeechSynthesisUtterance(text);
+
+  currentSpeech.lang = "tr-TR";
+
+  speechSynthesis.speak(currentSpeech);
+}
+
+function pauseReading() {
+
+  speechSynthesis.pause();
+
+}
+
+function resumeReading() {
+
+  speechSynthesis.resume();
+
+}
+
+function stopReading() {
+
+  speechSynthesis.cancel();
+
+}
+
+
+
+
 </script>
 </body>
 </html>
