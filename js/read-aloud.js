@@ -1,36 +1,34 @@
 let zanistarastUtterance = null;
+let zanistarastText = "";
 
 function speakArticle() {
   const main = document.querySelector("main");
   if (!main) return;
 
-  const text = main.innerText.trim();
-  if (!text) return;
+  zanistarastText = main.innerText.trim();
+  if (!zanistarastText) return;
 
   speechSynthesis.cancel();
 
-  zanistarastUtterance = new SpeechSynthesisUtterance(text);
+  zanistarastUtterance = new SpeechSynthesisUtterance(zanistarastText);
   zanistarastUtterance.lang = "tr-TR";
   zanistarastUtterance.rate = 0.95;
   zanistarastUtterance.pitch = 1;
 
   setTimeout(() => {
     speechSynthesis.speak(zanistarastUtterance);
-  }, 300);
+  }, 250);
 }
 
 function pauseReading() {
-  if (speechSynthesis.speaking) {
-    speechSynthesis.pause();
-  }
+  speechSynthesis.pause();
 }
 
 function resumeReading() {
-  if (speechSynthesis.paused) {
-    speechSynthesis.resume();
-  }
+  speechSynthesis.resume();
 }
 
 function stopReading() {
   speechSynthesis.cancel();
+  zanistarastUtterance = null;
 }
