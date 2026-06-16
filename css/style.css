@@ -2416,3 +2416,27 @@ button[onclick^="filterByTag"]:hover {
     font-size:.82rem;
   }
 }
+
+.session-tools button{
+
+background:#24a8ff;
+
+color:white;
+
+border:none;
+
+padding:12px 20px;
+
+border-radius:40px;
+
+font-weight:700;
+
+cursor:pointer;
+
+}
+
+.session-tools button:hover{
+
+transform:translateY(-2px);
+
+}
