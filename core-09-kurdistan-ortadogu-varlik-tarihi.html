@@ -39,7 +39,17 @@ fetch("components/navbar.html")
 </script>
   <main class="container">
 
-   <section class="hero-card article-meta-card">
+ <div id="read-button"></div>
+
+<script>
+fetch("components/read-button.html")
+.then(res => res.text())
+.then(data => {
+ document.getElementById("read-button").innerHTML = data;
+});
+</script>
+    
+    <section class="hero-card article-meta-card">
   <p><strong>Kategori:</strong> Sosyo-Pisikoloji</p>
   <p><strong>Etiketler:</strong> Hebûn, Varlık, Katman, Zanabûn, Rasterast</p>
   <p><strong>Okuma Yolu:</strong> Hebûn → Zanabûn → Rasterast → Rabûn</p>
@@ -1506,5 +1516,7 @@ Yerel + Bölgesel + Küresel = bütüncül yapı</code></pre>
     <div class="container">Zanistarast AI Interface</div>
   </footer>
 
+<script src="js/read-aloud.js"></script>
+  
 </body>
 </html>
