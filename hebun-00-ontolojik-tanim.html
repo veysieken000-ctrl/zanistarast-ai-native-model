@@ -35,7 +35,16 @@ fetch("components/navbar.html")
 });
 </script>
   <main class="container">
-    
+   <div id="read-button"></div>
+
+<script>
+fetch("components/read-button.html")
+.then(res => res.text())
+.then(data => {
+ document.getElementById("read-button").innerHTML = data;
+});
+</script>
+
     <section class="hero-card article-meta-card">
   <p><strong>Kategori:</strong> Ontoloji</p>
   <p><strong>Etiketler:</strong> Hebûn, Varlık, Katman, Zanabûn, Rasterast</p>
@@ -148,10 +157,8 @@ fetch("components/navbar.html")
       <p>bir ontoloji değil,<br />bir sistem modelidir.</p>
     </section>
   </main>
+
+<script src="js/read-aloud.js"></script>
 </body>
 </html>
-thesis-hebun.html içinde kontrol edilecek link
-Bu satır şu olmalı:
-HTML
-<a class="theory-link-card" href="hebun-00-ontolojik-tanim.html">
 
