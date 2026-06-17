@@ -37,8 +37,17 @@ fetch("components/navbar.html")
 });
 </script>
   <main class="container">
+<div id="read-button"></div>
 
-    <section class="hero-card article-meta-card">
+<script>
+fetch("components/read-button.html")
+.then(res => res.text())
+.then(data => {
+ document.getElementById("read-button").innerHTML = data;
+});
+</script>
+
+   <section class="hero-card article-meta-card">
 <p><strong>Kategori:</strong>Aksiyoloji</p>
 <p><strong>Etiketler:</strong> Ahlak, Hüküm, Muhabbet, Ölçü, Rasterast</p>
 <p><strong>Okuma Yolu:</strong>Varoluş → Bilgi → Doğrudanlık → Ortaya Çıkış </p>
@@ -182,6 +191,7 @@ fetch("components/navbar.html")
     </div>
   </footer>
 
+<script src="js/read-aloud.js"></script>
 </body>
 </html>
 
