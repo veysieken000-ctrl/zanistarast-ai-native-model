@@ -37,7 +37,16 @@
   </script>
 
   <main class="container">
-   
+   <div id="read-button"></div>
+
+<script>
+fetch("components/read-button.html")
+.then(res => res.text())
+.then(data => {
+ document.getElementById("read-button").innerHTML = data;
+});
+</script>
+
      <section class="hero-card article-meta-card">
 <p><strong>Kategori:</strong>Medeniyet / Sistem / Yükseliş-Hedef </p>
 <p><strong>Etiketler:</strong> Medeniyet, Yükseliş, Yükseliş, Yönetim, Newroz Kawa</p>
@@ -190,5 +199,6 @@
     </div>
   </footer>
 
+<script src="js/read-aloud.js"></script>
 </body>
 </html>
