@@ -41,8 +41,17 @@ fetch("components/navbar.html")
 </script>
 
 <main class="container">
+<div id="read-button"></div>
 
- <section class="hero-card article-meta-card">
+<script>
+fetch("components/read-button.html")
+.then(res => res.text())
+.then(data => {
+ document.getElementById("read-button").innerHTML = data;
+});
+</script>
+
+<section class="hero-card article-meta-card">
 <p><strong>Kategori:</strong> Rasterast</p>
 <p><strong>Etiketler:</strong> Rasterast, Doğrulama, Hakikat, Test, Tutarlılık</p>
 <p><strong>Okuma Yolu:</strong> Var Olmak → Bilmek → Doğrudanlık → Yükselmek → Kalmak</p>
@@ -234,6 +243,7 @@ fetch("components/navbar.html")
 
 </main>
 
+<script src="js/read-aloud.js"></script>
 </body>
 </html>
 Commit mesajı:
