@@ -35,6 +35,15 @@ fetch("components/navbar.html")
 });
 </script> 
   <main class="container">
+<div id="read-button"></div>
+
+<script>
+fetch("components/read-button.html")
+.then(res => res.text())
+.then(data => {
+ document.getElementById("read-button").innerHTML = data;
+});
+</script>
 
 <section class="hero-card article-meta-card">
 <p><strong>Kategori:</strong> Newroza Kawa Uygarlık Teorisi</p>
@@ -419,6 +428,9 @@ fetch("components/navbar.html")
   </section>
 
 </main>
+
+<script src="js/read-aloud.js"></script>
+
 </body>
 </html>
 
