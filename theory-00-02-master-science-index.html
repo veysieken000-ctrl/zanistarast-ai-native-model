@@ -35,7 +35,16 @@ fetch("components/navbar.html")
 });
 </script>
   <main class="container">
-  
+  <div id="read-button"></div>
+
+<script>
+fetch("components/read-button.html")
+.then(res => res.text())
+.then(data => {
+ document.getElementById("read-button").innerHTML = data;
+});
+</script>
+
     <section class="hero-card article-meta-card">
 <p><strong>Kategori:</strong> Teori Çerçevesi</p>
 <p><strong>Etiketler:</strong> Zanistarast, Teori, Framework, Sistem, Rasterast</p>
@@ -89,6 +98,8 @@ fetch("components/navbar.html")
       <p>Sistem büyüyebilir ama yön değiştiremez.</p>
     </section>
   </main>
+
+<script src="js/read-aloud.js"></script>
 </body>
 </html>
 
