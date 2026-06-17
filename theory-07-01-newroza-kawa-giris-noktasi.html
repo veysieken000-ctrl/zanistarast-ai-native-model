@@ -34,6 +34,15 @@
   </script>
 
   <main class="container">
+<div id="read-button"></div>
+
+<script>
+fetch("components/read-button.html")
+.then(res => res.text())
+.then(data => {
+ document.getElementById("read-button").innerHTML = data;
+});
+</script>
 
  <section class="hero-card article-meta-card">
 <p><strong>Kategori:</strong> Newroza Kawa Uygarlık Teorisi</p>
@@ -132,8 +141,8 @@
     </section>
 
   </main>
+
+<script src="js/read-aloud.js"></script>
+
 </body>
 </html>
-Commit:
-Bash
-git commit -m "Fix Newroza Kawa entry article layout"
