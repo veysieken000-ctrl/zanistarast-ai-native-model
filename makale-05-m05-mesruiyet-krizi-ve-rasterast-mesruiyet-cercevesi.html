@@ -35,8 +35,16 @@ fetch("components/navbar.html")
 });
 </script>
   <main class="container">
-   
-      <section class="hero-card article-meta-card">
+   <div id="read-button"></div>
+
+<script>
+fetch("components/read-button.html")
+.then(res => res.text())
+.then(data => {
+ document.getElementById("read-button").innerHTML = data;
+});
+</script>
+  <section class="hero-card article-meta-card">
   <p><strong>Kategori:</strong> Sosyoloji</p>
   <p><strong>Etiketler:</strong> Toplum, Siyaset, Devlet, Düzen, Rabûn</p>
   <p><strong>Okuma Yolu:</strong> Hebûn → Zanabûn → Rasterast → Rabûn</p>
@@ -392,6 +400,9 @@ fetch("components/navbar.html")
     </section>
 
   </main>
+
+<script src="js/read-aloud.js"></script>
+
 </body>
 </html>
 
