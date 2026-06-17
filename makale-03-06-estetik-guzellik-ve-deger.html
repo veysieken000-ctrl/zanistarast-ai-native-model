@@ -35,7 +35,16 @@ fetch("components/navbar.html")
 });
 </script>
   <main class="container">
-   
+   <div id="read-button"></div>
+
+<script>
+fetch("components/read-button.html")
+.then(res => res.text())
+.then(data => {
+ document.getElementById("read-button").innerHTML = data;
+});
+</script>
+
      <section class="hero-card article-meta-card">
   <p><strong>Kategori:</strong> Aksiyoloji</p>
   <p><strong>Etiketler:</strong> Hebûn, Varlık, Katman, Zanabûn, Rasterast</p>
@@ -362,6 +371,9 @@ fetch("components/navbar.html")
       <p><strong>Güzel olan şey, yalnız görünmez; insanın içini de yerli yerine koyar.</strong></p>
     </section>
   </main>
+
+<script src="js/read-aloud.js"></script>
+
 </body>
 </html>
 
