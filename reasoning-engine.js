@@ -1,40 +1,106 @@
-function classifyQuestion(q) {
-  const text = q.toLowerCase();
+function normalizeText(text) {
+  return (text || "")
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}\s]/gu, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
 
-  let category = "genel";
-  if (text.includes("yapay zeka") || text.includes("ai")) category = "teknoloji";
-  if (text.includes("sağlık") || text.includes("hasta")) category = "sağlık";
-  if (text.includes("kur'an") || text.includes("ayet")) category = "katmanlı okuma";
-  if (text.includes("toplum") || text.includes("medeniyet")) category = "medeniyet";
-  if (text.includes("ahlak") || text.includes("vicdan")) category = "ahlak";
+const ZANISTARAST_DOMAINS = {
+  teknoloji: ["yapay zeka", "ai", "model", "algoritma", "robot", "veri", "kod"],
+  saglik: ["sağlık", "hasta", "hastalık", "yaşlı", "çocuk", "bakım", "ilaç"],
+  din: ["kur'an", "ayet", "hadis", "allah", "ehad", "dabbe", "ruh"],
+  medeniyet: ["toplum", "medeniyet", "newroza", "kawa", "yönetim", "hukuk"],
+  ontoloji: ["varlık", "hebûn", "zanabûn", "mabûn", "rabûn", "rasterast", "öz"],
+  ahlak: ["ahlak", "vicdan", "merhamet", "şefkat", "adalet", "rahmet"]
+};
+
+function detectDomain(text) {
+  let scores = {};
+
+  for (const domain in ZANISTARAST_DOMAINS) {
+    scores[domain] = 0;
+
+    ZANISTARAST_DOMAINS[domain].forEach(word => {
+      if (text.includes(word)) scores[domain]++;
+    });
+  }
+
+  const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+  return sorted[0][1] > 0 ? sorted[0][0] : "genel";
+}
+
+function detectIntent(text) {
+  if (text.includes("nedir")) return "tanım";
+  if (text.includes("nasıl")) return "açıklama";
+  if (text.includes("neden")) return "sebep analizi";
+  if (text.includes("makale") || text.includes("yazı")) return "makale";
+  if (text.includes("eleştir")) return "eleştiri";
+  if (text.includes("linkedin")) return "linkedin";
+  if (text.includes("medium")) return "medium";
+  return "analiz";
+}
+
+function classifyQuestion(question) {
+  const text = normalizeText(question);
 
   return {
-    original: q,
-    category,
-    complexity: q.length > 80 ? "yüksek" : "orta"
+    original: question,
+    clean: text,
+    domain: detectDomain(text),
+    intent: detectIntent(text),
+    depth: text.length > 120 ? "derin" : "orta",
+    zanistarastPath: ["Hebûn", "Zanabûn", "Mabûn", "Rabûn", "Rasterast", "Newroza Kawa"]
   };
 }
 
 function hebunAnalysis(ctx) {
-  return `Hebûn açısından bu soru önce varlığın doğru tanımını ister. "${ctx.original}" sorusunda ele alınan konu yalnızca yüzeysel bir olay değil, kendi zemini içinde anlaşılması gereken bir varlık alanıdır.`;
+  return `
+Bu sorunun Hebûn katmanı, ele alınan konunun gerçek varlık zeminini belirlemektir.
+"${ctx.original}" sorusu yalnızca yüzeysel bir bilgi talebi değildir.
+Önce bu konunun ne olduğu, hangi varlık alanına ait olduğu ve hangi bütün içinde anlam kazandığı belirlenmelidir.
+`;
 }
 
 function zanabunAnalysis(ctx) {
-  return `Zanabûn açısından mesele, bu varlığın nasıl bilineceğidir. Bilgi sadece veri toplamak değildir; konu kendi bağlamı, ilişkileri ve etkileriyle birlikte anlaşılmalıdır.`;
+  return `
+Zanabûn katmanı, bu varlığın nasıl bilineceğini araştırır.
+Bilgi yalnızca veri toplamak değildir.
+Bilgi; bağlamı, ilişkiyi, sebebi, sonucu ve insan üzerindeki etkisini birlikte kavramaktır.
+`;
 }
 
 function mabunAnalysis(ctx) {
-  return `Mabûn açısından bu bilgi bir düzene bağlanmalıdır. Eğer bilgi insan, toplum, ahlak ve sistem içinde yerini bulmazsa eksik kalır.`;
+  return `
+Mabûn katmanı, bilginin düzene dönüşmesidir.
+Bir bilgi insan, toplum, ahlak ve sistem içinde yerini bulmuyorsa eksik kalır.
+Bu nedenle konu yalnızca teorik değil, düzen kurucu yönüyle de incelenmelidir.
+`;
 }
 
 function rabunAnalysis(ctx) {
-  return `Rabûn açısından bu düzen hayata geçirilmelidir. Rabûn, Hebûn'da görülen doğal düzenin insan dünyasında bilinçli olarak kurulmuş hâlidir.`;
+  return `
+Rabûn katmanı, düzenin eyleme dönüşmesidir.
+Rabûn, Hebûn ontolojisinde zaten var olan düzenin insan dünyasında bilinçli ve yapay olarak kurulmuş hâlidir.
+Bu nedenle her fikir, hayatta nasıl uygulanacağı bakımından değerlendirilmelidir.
+`;
 }
 
 function rasterastValidation(ctx) {
-  return `Rasterast doğrulama filtresi bu cevabı şu ölçülerle denetler: Çelişki var mı? Manipülasyon var mı? İnsan, canlı ve çevre zarar görüyor mu? Bilgi açık ve doğrudan mı?`;
+  return `
+Rasterast doğrulama filtresi şu soruları sorar:
+Bu analiz açık mı?
+Çelişki içeriyor mu?
+Manipülasyon var mı?
+İnsana, canlıya veya çevreye zarar veriyor mu?
+Hakikati gizliyor mu, yoksa doğrudan mı gösteriyor?
+`;
 }
 
 function newrozaImpact(ctx) {
-  return `Newroza Kawa açısından bu mesele yalnızca bireysel değil, medeniyet kurucu bir sorudur. Doğru anlaşılırsa insanı, toplumu ve ahlakı yükselten bir sonuca bağlanabilir.`;
+  return `
+Newroza Kawa katmanı, bu bilginin medeniyet kurucu etkisini inceler.
+Eğer bilgi Hebûn'u koruyor, Zanabûn'u üretiyor, Mabûn'u kuruyor, Rabûn'a dönüşüyor ve Rasterast'tan geçiyorsa,
+o bilgi Newroza Kawa uygarlığına hizmet edebilir.
+`;
 }
