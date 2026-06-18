@@ -1,3 +1,15 @@
+function buildOntologyBlock(ctx) {
+  if (!ctx.ontology) return "";
+
+  return `
+<h3>Ontolojik Bağlantı</h3>
+<p><strong>Tür:</strong> ${ctx.ontology.type}</p>
+<p><strong>Katmanlar:</strong> ${ctx.ontology.layers.join(" → ")}</p>
+<p>${ctx.ontology.description}</p>
+
+`;
+}
+
 function getDomainIntro(ctx) {
   const intros = {
     teknoloji: `Bu soru ${ctx.topic} alanına aittir. Zanistarast açısından teknoloji yalnızca araç değildir; insanın bilgi, ahlak, yönetim ve medeniyet kurma biçimini değiştiren bir varlık alanıdır.`,
@@ -129,6 +141,8 @@ function buildMediumArticle(ctx, parts) {
   <h3>Giriş</h3>
   <p>${getDomainIntro(ctx)}</p>
 
+  ${buildOntologyBlock(ctx)}
+
   ${getDomainExamples(ctx)}
 
   <h3>Hebûn</h3>
@@ -172,7 +186,7 @@ function buildLongArticle(ctx, parts) {
 
   <h3>Giriş</h3>
   <p>${getDomainIntro(ctx)}</p>
-
+  ${buildOntologyBlock(ctx)}
   <p>
   Zanistarast Bilimsel Sentezi'ne göre hiçbir mesele yalnızca görünen yüzüyle açıklanamaz.
   Her olayın bir varlık zemini, bilgi düzeni, sistemsel sonucu, uygulama biçimi ve hakikat denetimi vardır.
