@@ -35,7 +35,16 @@ fetch("components/navbar.html")
 });
 </script>
   <main class="container">
-  
+  <div id="read-button"></div>
+
+<script>
+fetch("components/read-button.html")
+.then(res => res.text())
+.then(data => {
+ document.getElementById("read-button").innerHTML = data;
+});
+</script>
+
    <section class="hero-card article-meta-card">
 <p><strong>Kategori:</strong> Uygarlık Tezi</p>
 <p><strong>Etiketler:</strong> Newroza Kawa, Uygarlık, Medeniyet, Rabûn, Mabûn</p>
@@ -211,6 +220,9 @@ fetch("components/navbar.html")
       <p>Bu zincirin ilk halkası Risale-i Nur’dur.</p>
     </section>
   </main>
+
+<script src="js/read-aloud.js"></script>
+
 </body>
 </html>
 
