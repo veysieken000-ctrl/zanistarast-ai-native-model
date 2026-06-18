@@ -35,6 +35,17 @@ fetch("components/navbar.html")
 });
 </script>
   <main class="container">
+  <div id="read-button"></div>
+
+<script>
+fetch("components/read-button.html")
+.then(res => res.text())
+.then(data => {
+ document.getElementById("read-button").innerHTML = data;
+});
+</script>
+
+    
     <a class="back-link" href="./theses.html">← Back to Theses</a>
 
     <section class="hero">
@@ -108,6 +119,9 @@ fetch("components/navbar.html")
 
 </section>
   </main>
+
+<script src="js/read-aloud.js"></script>
+
 </body>
 </html>
 
