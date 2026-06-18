@@ -610,9 +610,9 @@ function ask(){
   }, 500);
 }
 
-function answer(q){
-  const s = q.toLowerCase();
-
+function answer(q) {
+  return zanistarastEngine(q);
+}
   if(
     s.includes("newroza") ||
     s.includes("medeniyet") ||
