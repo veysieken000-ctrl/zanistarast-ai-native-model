@@ -104,3 +104,37 @@ Eğer bilgi Hebûn'u koruyor, Zanabûn'u üretiyor, Mabûn'u kuruyor, Rabûn'a d
 o bilgi Newroza Kawa uygarlığına hizmet edebilir.
 `;
 }
+function detectLengthPreference(text) {
+  if (text.includes("kısa") || text.includes("özet")) return "short";
+  if (text.includes("uzun") || text.includes("ayrıntılı") || text.includes("makale")) return "long";
+  return "medium";
+}
+
+function extractTopic(ctx) {
+  const t = ctx.clean;
+
+  if (ctx.domain === "teknoloji") return "yapay zekâ ve teknoloji";
+  if (ctx.domain === "saglik") return "sağlık ve insan bütünlüğü";
+  if (ctx.domain === "din") return "Kur'an'ın katmanlı okuması";
+  if (ctx.domain === "medeniyet") return "medeniyet ve toplum düzeni";
+  if (ctx.domain === "ontoloji") return "varlık ve ontoloji";
+  if (ctx.domain === "ahlak") return "ahlak ve vicdan";
+  return t.slice(0, 80) || "genel mesele";
+}
+
+function classifyQuestion(question) {
+  const text = normalizeText(question);
+
+  const ctx = {
+    original: question,
+    clean: text,
+    domain: detectDomain(text),
+    intent: detectIntent(text),
+    length: detectLengthPreference(text),
+    depth: text.length > 120 ? "derin" : "orta",
+    zanistarastPath: ["Hebûn", "Zanabûn", "Mabûn", "Rabûn", "Rasterast", "Newroza Kawa"]
+  };
+
+  ctx.topic = extractTopic(ctx);
+  return ctx;
+}
