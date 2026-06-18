@@ -613,100 +613,81 @@ function ask(){
 function answer(q){
   const s = q.toLowerCase();
 
-  if(s.includes("merhaba") || s.includes("selam")){
-    return `
-      <h3>Merhaba</h3>
-      <p>Zanistarast AI sistemine hoş geldin. Bana Hebûn, Zanabûn, Rabûn, Zanistarast, Rasterast veya varlık düzeni hakkında soru sorabilirsin.</p>
-    `;
-  }
+  return zanistarastEngine(s);
+}
+
+function zanistarastEngine(s){
 
   if(s.includes("hebun") || s.includes("hebûn")){
     return `
-      <h3>Hebûn Nedir?</h3>
-      <p><b>Hebûn</b>, varlığın temel ontolojik düzenidir. Bir şeyin sadece mevcut olması değil; kendi sınırı, ilişkisi, amacı ve katmanı içinde anlamlı biçimde var olmasıdır.</p>
-      <p>Zanistarast sisteminde Hebûn ilk basamaktır. Önce varlık anlaşılır, sonra bilgi yani Zanabûn doğar, ardından düzen ve yönetim yani Rabûn kurulur.</p>
-      <ul>
-        <li>Fiziksel katman</li>
-        <li>Biyolojik katman</li>
-        <li>Zihinsel katman</li>
-        <li>Ruhsal / derin bilinç katmanı</li>
-        <li>İnsani / ahlaki katman</li>
-        <li>Ahiret / üst varlık katmanı</li>
-      </ul>
-      <p>Bu yapı, 6+Ehad bütünlüğüyle tamamlanır.</p>
+      <h3>Hebûn Analizi</h3>
+      <p><b>Hebûn:</b> Sorunun varlık zeminidir. Önce konunun ne olduğu, hangi katmanda durduğu ve gerçek bir karşılığı olup olmadığı belirlenir.</p>
+      <p>Zanistarast sisteminde her cevap önce varlığı tanımlar; sonra bilgi, ahlak, yönetim ve doğrulama katmanına geçer.</p>
     `;
   }
 
   if(s.includes("zanabun") || s.includes("zanabûn")){
     return `
-      <h3>Zanabûn Nedir?</h3>
-      <p><b>Zanabûn</b>, bilginin oluşması ve varlığın bilinç tarafından kavranmasıdır.</p>
-      <p>Hebûn varlığın kendisidir; Zanabûn ise o varlığın anlaşılmasıdır. Bu yüzden bilgi, varlıktan kopuk değildir. Bilgi, varlığın izini takip ederek oluşur.</p>
-      <p>Zanistarast sisteminde Zanabûn; gözlem, anlam, doğrulama ve açıklama süreçlerini kapsar.</p>
+      <h3>Zanabûn Analizi</h3>
+      <p><b>Zanabûn:</b> Bilginin nasıl oluştuğunu ve nasıl açıklanacağını inceler.</p>
+      <p>Bir konu yalnızca görünüşüyle değil; anlamı, ilişkisi, amacı ve doğrulanabilir bilgi değeriyle ele alınır.</p>
     `;
   }
 
   if(s.includes("rabun") || s.includes("rabûn")){
     return `
-      <h3>Rabûn Nedir?</h3>
-      <p><b>Rabûn</b>, varlık ve bilgi üzerine kurulan yönetim düzenidir.</p>
-      <p>Hebûn varlığı, Zanabûn bilgiyi, Rabûn ise düzen kurmayı temsil eder. Yani Rabûn; sistemin yönetilmesi, korunması ve sürdürülebilir hale getirilmesidir.</p>
-      <p>Bu nedenle Rabûn sadece siyasi yönetim değil; aile, toplum, hukuk, ekonomi ve medeniyet düzenidir.</p>
-    `;
-  }
-
-  if(s.includes("zanistarast")){
-    return `
-      <h3>Zanistarast Nedir?</h3>
-      <p><b>Zanistarast</b>, Hebûn, Zanabûn ve Rabûn arasındaki ilişkiyi birlikte ele alan bilimsel-sistemsel bir sentezdir.</p>
-      <p>Bu modelde konu önce varlık düzeyinde incelenir, sonra bilgi düzeyinde açıklanır, en sonunda yönetim ve düzen düzeyinde tamamlanır.</p>
-      <p>Zanistarast ideolojik bir slogan değil; varlık, bilgi ve düzen arasında doğrulanabilir ilişki kurma çabasıdır.</p>
+      <h3>Rabûn Analizi</h3>
+      <p><b>Rabûn:</b> Bilginin yönetim, düzen, sorumluluk ve uygulama alanına geçmesidir.</p>
+      <p>Bir fikir yalnızca açıklanmaz; insan, toplum, çevre ve gelecek üzerindeki etkisiyle değerlendirilir.</p>
     `;
   }
 
   if(s.includes("rasterast")){
     return `
       <h3>Rasterast Doğrulama Filtresi</h3>
-      <p><b>Rasterast</b>, bir düşüncenin doğaya, varlığa, bilgiye ve ahlaki düzene uygun olup olmadığını test eden doğrulama filtresidir.</p>
-      <p>Bir fikir yalnızca güzel söylendiği için doğru kabul edilmez. Hebûn ile uyumlu mu, Zanabûn ile açıklanabilir mi, Rabûn içinde düzen kurabiliyor mu diye kontrol edilir.</p>
+      <p><b>Rasterast:</b> Cevabın doğrudanlık, doğruluk, manipülasyonsuzluk ve tutarlılık süzgecidir.</p>
+      <p>Her cevap şu sorularla test edilir: Hebûn ile uyumlu mu? Zanabûn ile açıklanabilir mi? Mabûn hafızasını bozuyor mu? Rabûn içinde zarar üretir mi?</p>
     `;
   }
-
-  if(s.includes("6+ehad") || s.includes("ehad")){
+if(
+    s.includes("newroza") ||
+    s.includes("medeniyet") ||
+    s.includes("uygarlık")
+){
     return `
-      <h3>6+Ehad Yapısı</h3>
-      <p><b>6+Ehad</b>, varlık düzeninin altı katman ve onları birleştiren en üst birlik ilkesiyle düşünülmesidir.</p>
-      <p>Altı katman fiziksel, biyolojik, zihinsel, ruhsal, insani ve ahiret/üst varlık düzeylerini ifade eder. Ehad ise bu katmanların nihai birliğini temsil eder.</p>
-    `;
-  }
+    <h3>Newroza Kawa Uygarlığı Analizi</h3>
 
-  if(s.includes("hukuk") || s.includes("adalet")){
-    return `
-      <h3>Hukuk ve Adalet</h3>
-      <p>Zanistarast açısından hukuk, sadece ceza ve kural sistemi değildir. Hukuk, varlık düzenini koruyan adalet mekanizmasıdır.</p>
-      <p>Adalet; Hebûn düzeyinde varlığın hakkını, Zanabûn düzeyinde doğru bilgiyi, Rabûn düzeyinde ise düzenli yönetimi gerektirir.</p>
-    `;
-  }
+    <p><b>Newroza Kawa:</b> Hebûn, Zanabûn, Mabûn, Rabûn ve Rasterast ilkelerinin toplumsal uygarlık modeline uygulanmış halidir.</p>
 
-  if(s.includes("sanat") || s.includes("güzellik") || s.includes("estetik")){
-    return `
-      <h3>Sanat, Estetik ve Delal</h3>
-      <p>Zanistarast açısından sanat, varlığın güzellik üzerinden görünür hale gelmesidir.</p>
-      <p><b>Delal</b>, olgun, kendini bulmuş, ne yaptığını bilen güzellik anlamında kullanılabilir. Bu yönüyle estetik yalnızca süs değil; varlığın uyumlu ifadesidir.</p>
+    <p>Bu yaklaşımda her fikir:</p>
+
+    <ul>
+      <li>Hebûn: Gerçek bir zemine dayanıyor mu?</li>
+      <li>Zanabûn: Bilgi doğru üretilmiş mi?</li>
+      <li>Mabûn: Etik hafızayı koruyor mu?</li>
+      <li>Rabûn: Yaşama fayda sağlıyor mu?</li>
+      <li>Rasterast: Manipülasyonsuz ve doğrulanabilir mi?</li>
+    </ul>
+
+    <p>Son aşamada sistem insanı, toplumu, doğayı ve özgürlüğü birlikte değerlendirir.</p>
     `;
-  }
+}
 
   return `
-    <h3>Zanistarast Analizi</h3>
-    <p>Bu soru doğrudan tek cümleyle kapanmaz. Zanistarast sistemine göre konu üç aşamada ele alınır:</p>
+    <h3>Zanistarast Makale Düzeyi Analiz</h3>
+    <p>Bu soru Zanistarast bilimsel sentezine göre şu sırayla ele alınır:</p>
     <ul>
       <li><b>Hebûn:</b> Bu şeyin varlık düzeyi nedir?</li>
       <li><b>Zanabûn:</b> Bu şey nasıl bilinir ve açıklanır?</li>
+      <li><b>Mabûn:</b> Bu bilgi hangi hafızaya, sürekliliğe ve değere bağlanır?</li>
       <li><b>Rabûn:</b> Bu bilgi nasıl düzene, yönetime veya yaşama uygulanır?</li>
+      <li><b>Rasterast:</b> Bu cevap doğru, açık ve manipülasyonsuz mu?</li>
+      <li><b>Newroza Kawa:</b> Sonuç insanı, toplumu ve özgür uygarlığı nasıl güçlendirir?</li>
     </ul>
-    <p>Daha özel bir kavram yazarsan sana daha net ve makale düzeyinde cevap verebilirim.</p>
+    <p>Daha özel bir kavram yazarsan sana makale düzeyinde daha keskin cevap verebilirim.</p>
   `;
 }
+
 
 function readAnswer(){
   if(!lastAnswer) return;
