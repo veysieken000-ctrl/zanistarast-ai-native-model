@@ -613,81 +613,73 @@ function ask(){
 function answer(q){
   const s = q.toLowerCase();
 
-  return zanistarastEngine(s);
-}
-
-function zanistarastEngine(s){
+  if(
+    s.includes("newroza") ||
+    s.includes("medeniyet") ||
+    s.includes("uygarlık") ||
+    s.includes("kawa")
+  ){
+    return `
+      <h3>Newroza Kawa Uygarlığı Analizi</h3>
+      <p><b>Newroza Kawa uygarlığı</b>, Zanistarast bilimsel sentezinde insanı, toplumu, bilgiyi, ahlakı ve yönetimi birlikte ele alan yeni bir uygarlık modelidir.</p>
+      <p>Bu modelde cevap önce <b>Hebûn</b> ile varlık zeminine oturtulur; sonra <b>Zanabûn</b> ile bilginin nasıl oluştuğu açıklanır; ardından <b>Mabûn</b> ile etik hafıza korunur; <b>Rabûn</b> ile yaşam, toplum ve yönetim düzenine bağlanır; en sonunda <b>Rasterast doğrulama filtresi</b> ile cevap manipülasyondan, boş slogandan ve tutarsızlıktan arındırılır.</p>
+      <p>Bu yüzden Newroza Kawa yalnızca siyasi ya da kültürel bir kavram değildir. İnsan merkezli, doğaya zarar vermeyen, bilgiyi doğrulayan, ahlakı hafızada tutan ve yönetimi yaşama hizmet ettiren bir uygarlık yönelimidir.</p>
+      <p><b>Sonuç:</b> Newroza Kawa uygarlığı, Zanistarast sisteminde Hebûn’dan Rabûn’a uzanan düzenin toplumsal karşılığıdır.</p>
+    `;
+  }
 
   if(s.includes("hebun") || s.includes("hebûn")){
     return `
-      <h3>Hebûn Analizi</h3>
-      <p><b>Hebûn:</b> Sorunun varlık zeminidir. Önce konunun ne olduğu, hangi katmanda durduğu ve gerçek bir karşılığı olup olmadığı belirlenir.</p>
-      <p>Zanistarast sisteminde her cevap önce varlığı tanımlar; sonra bilgi, ahlak, yönetim ve doğrulama katmanına geçer.</p>
+      <h3>Hebûn Makale Düzeyi Analizi</h3>
+      <p><b>Hebûn</b>, Zanistarast sisteminde varlığın temel zeminidir. Bir şeyin yalnızca “var” olması yetmez; sınırı, ilişkisi, amacı, katmanı ve etkisiyle anlamlı bir düzene sahip olması gerekir.</p>
+      <p>Bu nedenle Hebûn, her sorunun ilk basamağıdır. Bir konu önce “Bu gerçekten nedir, hangi katmandadır, neyle ilişkilidir?” sorularıyla ele alınır.</p>
+      <p>Hebûn olmadan Zanabûn yani bilgi kurulamaz; bilgi kurulmadan Rabûn yani düzen ve yönetim sağlıklı oluşamaz.</p>
+      <p><b>Sonuç:</b> Hebûn, varlığı sahte, kopuk ve boş anlamlardan ayıran ilk ontolojik filtredir.</p>
     `;
   }
 
   if(s.includes("zanabun") || s.includes("zanabûn")){
     return `
-      <h3>Zanabûn Analizi</h3>
-      <p><b>Zanabûn:</b> Bilginin nasıl oluştuğunu ve nasıl açıklanacağını inceler.</p>
-      <p>Bir konu yalnızca görünüşüyle değil; anlamı, ilişkisi, amacı ve doğrulanabilir bilgi değeriyle ele alınır.</p>
+      <h3>Zanabûn Makale Düzeyi Analizi</h3>
+      <p><b>Zanabûn</b>, bilginin varlıktan doğmasıdır. Bilgi, varlıktan kopuk bir yorum değil; varlığın izi, ilişkisi, amacı ve düzeni üzerinden oluşan açıklamadır.</p>
+      <p>Zanabûn pozitivist bilimi reddetmez; onu daha geniş bir zemine yerleştirir. Çünkü yalnızca ölçülen şey değil, o ölçümün varlık, ahlak, hayat ve yönetim içindeki anlamı da dikkate alınmalıdır.</p>
+      <p><b>Sonuç:</b> Zanabûn, bilginin insan merkezli, şeffaf ve doğrulanabilir biçimde kurulmasıdır.</p>
     `;
   }
 
   if(s.includes("rabun") || s.includes("rabûn")){
     return `
-      <h3>Rabûn Analizi</h3>
-      <p><b>Rabûn:</b> Bilginin yönetim, düzen, sorumluluk ve uygulama alanına geçmesidir.</p>
-      <p>Bir fikir yalnızca açıklanmaz; insan, toplum, çevre ve gelecek üzerindeki etkisiyle değerlendirilir.</p>
+      <h3>Rabûn Makale Düzeyi Analizi</h3>
+      <p><b>Rabûn</b>, bilginin yaşama, topluma ve yönetime uygulanmasıdır. Bir bilgi yalnızca açıklama üretmekle kalmaz; insanı, doğayı, toplumu ve geleceği nasıl etkilediğiyle de değerlendirilir.</p>
+      <p>Rabûn düzeninde yönetim; ekonomi, ahlak, hukuk, eğitim, sağlık ve güvenlik gibi alanları canlı yaşamına zarar vermeden organize etmelidir.</p>
+      <p><b>Sonuç:</b> Rabûn, Zanistarast sisteminde bilginin sorumlu eyleme dönüşmesidir.</p>
     `;
   }
 
   if(s.includes("rasterast")){
     return `
       <h3>Rasterast Doğrulama Filtresi</h3>
-      <p><b>Rasterast:</b> Cevabın doğrudanlık, doğruluk, manipülasyonsuzluk ve tutarlılık süzgecidir.</p>
-      <p>Her cevap şu sorularla test edilir: Hebûn ile uyumlu mu? Zanabûn ile açıklanabilir mi? Mabûn hafızasını bozuyor mu? Rabûn içinde zarar üretir mi?</p>
+      <p><b>Rasterast</b>, cevabın doğru, açık, tutarlı ve manipülasyonsuz olup olmadığını test eden doğrulama katmanıdır.</p>
+      <p>Bir cevap güzel görünse bile yeterli değildir. Hebûn ile uyumlu mu, Zanabûn ile açıklanabilir mi, Mabûn hafızasını bozuyor mu, Rabûn içinde yaşama fayda sağlıyor mu diye kontrol edilir.</p>
+      <p><b>Sonuç:</b> Rasterast, Zanistarast AI sisteminin güvenlik ve doğruluk filtresidir.</p>
     `;
   }
-if(
-    s.includes("newroza") ||
-    s.includes("medeniyet") ||
-    s.includes("uygarlık")
-){
-    return `
-    <h3>Newroza Kawa Uygarlığı Analizi</h3>
-
-    <p><b>Newroza Kawa:</b> Hebûn, Zanabûn, Mabûn, Rabûn ve Rasterast ilkelerinin toplumsal uygarlık modeline uygulanmış halidir.</p>
-
-    <p>Bu yaklaşımda her fikir:</p>
-
-    <ul>
-      <li>Hebûn: Gerçek bir zemine dayanıyor mu?</li>
-      <li>Zanabûn: Bilgi doğru üretilmiş mi?</li>
-      <li>Mabûn: Etik hafızayı koruyor mu?</li>
-      <li>Rabûn: Yaşama fayda sağlıyor mu?</li>
-      <li>Rasterast: Manipülasyonsuz ve doğrulanabilir mi?</li>
-    </ul>
-
-    <p>Son aşamada sistem insanı, toplumu, doğayı ve özgürlüğü birlikte değerlendirir.</p>
-    `;
-}
 
   return `
     <h3>Zanistarast Makale Düzeyi Analiz</h3>
-    <p>Bu soru Zanistarast bilimsel sentezine göre şu sırayla ele alınır:</p>
+    <p>Bu soru Zanistarast bilimsel sentezine göre tek cümlelik cevapla kapatılmaz. Sistem önce konunun varlık zeminini, sonra bilgi yönünü, ardından ahlaki hafızasını, yönetim etkisini ve doğrulama katmanını birlikte değerlendirir.</p>
     <ul>
       <li><b>Hebûn:</b> Bu şeyin varlık düzeyi nedir?</li>
-      <li><b>Zanabûn:</b> Bu şey nasıl bilinir ve açıklanır?</li>
-      <li><b>Mabûn:</b> Bu bilgi hangi hafızaya, sürekliliğe ve değere bağlanır?</li>
-      <li><b>Rabûn:</b> Bu bilgi nasıl düzene, yönetime veya yaşama uygulanır?</li>
-      <li><b>Rasterast:</b> Bu cevap doğru, açık ve manipülasyonsuz mu?</li>
-      <li><b>Newroza Kawa:</b> Sonuç insanı, toplumu ve özgür uygarlığı nasıl güçlendirir?</li>
+      <li><b>Zanabûn:</b> Bu bilgi nasıl oluşur ve açıklanır?</li>
+      <li><b>Mabûn:</b> Etik hafıza ve süreklilik korunuyor mu?</li>
+      <li><b>Rabûn:</b> Bu bilgi yaşama, topluma ve yönetime nasıl uygulanır?</li>
+      <li><b>Rasterast:</b> Cevap açık, doğru ve manipülasyonsuz mu?</li>
     </ul>
-    <p>Daha özel bir kavram yazarsan sana makale düzeyinde daha keskin cevap verebilirim.</p>
+    <p><b>Sonuç:</b> Bu konu, Newroza Kawa uygarlığı hedefi açısından insanı, toplumu, doğayı ve özgürlüğü güçlendirecek şekilde ele alınmalıdır.</p>
   `;
 }
 
+ 
 
 function readAnswer(){
   if(!lastAnswer) return;
