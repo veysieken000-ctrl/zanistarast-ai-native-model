@@ -136,5 +136,6 @@ function classifyQuestion(question) {
   };
 
   ctx.topic = extractTopic(ctx);
+  ctx.ontology = detectOntologyNode(ctx); 
   return ctx;
 }
