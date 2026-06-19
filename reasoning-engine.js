@@ -137,5 +137,6 @@ function classifyQuestion(question) {
 
   ctx.topic = extractTopic(ctx);
   ctx.ontology = detectOntologyNode(ctx); 
+ ctx.expandedKnowledge = expandKnowledge(ctx);
   return ctx;
 }
