@@ -1,3 +1,14 @@
+function buildExpandedKnowledgeBlock(ctx) {
+  if (!ctx.expandedKnowledge) return "";
+
+  return `
+<h3>Genişletilmiş Zanistarast Bilgi Katmanı</h3>
+<ul>
+  ${ctx.expandedKnowledge.map(item => `<li>${item}</li>`).join("")}
+</ul>
+`;
+}
+
 function buildOntologyBlock(ctx) {
   if (!ctx.ontology) return "";
 
@@ -142,6 +153,8 @@ function buildMediumArticle(ctx, parts) {
   <p>${getDomainIntro(ctx)}</p>
 
   ${buildOntologyBlock(ctx)}
+
+  ${buildExpandedKnowledgeBlock(ctx)}
 
   ${getDomainExamples(ctx)}
 
