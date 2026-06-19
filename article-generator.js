@@ -198,8 +198,14 @@ function buildLongArticle(ctx, parts) {
   </div>
 
   <h3>Giriş</h3>
-  <p>${getDomainIntro(ctx)}</p>
-  ${buildOntologyBlock(ctx)}
+ <p>${getDomainIntro(ctx)}</p>
+
+${buildOntologyBlock(ctx)}
+
+${buildExpandedKnowledgeBlock(ctx)}
+
+${buildDeepParagraphs(ctx)}
+
   <p>
   Zanistarast Bilimsel Sentezi'ne göre hiçbir mesele yalnızca görünen yüzüyle açıklanamaz.
   Her olayın bir varlık zemini, bilgi düzeni, sistemsel sonucu, uygulama biçimi ve hakikat denetimi vardır.
@@ -279,8 +285,11 @@ function generateArticle(ctx, parts) {
   if (length === "short") return buildShortArticle(ctx, parts);
   if (length === "long") return buildLongArticle(ctx, parts);
   return buildMediumArticle(ctx, parts);
+ 
+
 }
 
+  
 function buildDeepParagraphs(ctx) {
   const topic = ctx.topic || "bu mesele";
 
