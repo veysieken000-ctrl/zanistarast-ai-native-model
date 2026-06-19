@@ -280,3 +280,36 @@ function generateArticle(ctx, parts) {
   if (length === "long") return buildLongArticle(ctx, parts);
   return buildMediumArticle(ctx, parts);
 }
+
+function buildDeepParagraphs(ctx) {
+  const topic = ctx.topic || "bu mesele";
+
+  return `
+<h3>Derin Analiz</h3>
+
+<p>
+${topic}, Zanistarast Bilimsel Sentezi açısından tek katmanlı bir mesele değildir.
+Bir konuyu yalnızca görünen sonucu üzerinden okumak, onu eksik anlamaktır.
+Çünkü her meselenin arkasında bir Hebûn zemini, bir Zanabûn bilgi katmanı,
+bir Mabûn düzen yapısı, bir Rabûn uygulama alanı ve bir Rasterast doğrulama ihtiyacı vardır.
+</p>
+
+<p>
+Bu nedenle ${topic} önce varlık düzeyinde tanımlanmalıdır.
+Varlık doğru tanımlanmadığında bilgi yanlış kurulur.
+Bilgi yanlış kurulduğunda düzen bozulur.
+Düzen bozulduğunda eylem zarar üretir.
+Eylem Rasterast'tan geçmediğinde ise medeniyet değil çürüme doğar.
+</p>
+
+<p>
+Zanistarast burada parçacı bakışın ötesine geçer.
+Pozitivist yöntemle elde edilen veriyi reddetmez;
+fakat veriyi ait olduğu bütün içine yerleştirir.
+Çünkü bir şey kendi zemini dışında tam olarak anlaşılamaz.
+Kalp insandan koparıldığında yalnızca organdır.
+İnsan toplumdan koparıldığında yalnızca bireydir.
+Bilgi ahlaktan koparıldığında güç aracına dönüşebilir.
+</p>
+`;
+}
