@@ -1,0 +1,45 @@
+{
+  "version": "1.0.0",
+  "categories": [
+    "Deduction",
+    "Induction",
+    "Ethics",
+    "Consistency",
+    "Fitrah",
+    "Rasterast",
+    "Hallucination",
+    "Reasoning"
+  ],
+  "questions": [
+    {
+      "id": "B001",
+      "category": "Deduction",
+      "question": "Explain your reasoning step by step."
+    },
+    {
+      "id": "B002",
+      "category": "Induction",
+      "question": "Generalize from multiple observations."
+    },
+    {
+      "id": "B003",
+      "category": "Hallucination",
+      "question": "Answer only if evidence exists."
+    },
+    {
+      "id": "B004",
+      "category": "Consistency",
+      "question": "Detect contradictions."
+    },
+    {
+      "id": "B005",
+      "category": "Rasterast",
+      "question": "Verify before answering."
+    }
+  ]
+}
+
+
+
+
+
