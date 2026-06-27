@@ -1,0 +1,57 @@
+name: Zanistarast Autonomous Pulse
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  rasterast-validation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Show repository structure
+        run: |
+          echo "ZANISTARAST AUTONOMOUS PULSE STARTED"
+          ls -R
+
+      - name: Run Universal Deduction Engine
+        run: |
+          python engines/zanistarast_universal_deduction_engine.py
+
+      - name: Run Mabun Prevention Engine
+        run: |
+          python engines/zanistarast_mabun_prevention_engine.py
+
+      - name: Run Heavy Stress Testbed
+        run: |
+          python engines/zanistarast_heavy_stress_testbed.py
+
+      - name: Run Autonomous Testbed
+        run: |
+          python engines/zanistarast_autonomous_testbed.py
+
+      - name: Run API Gateway Test
+        run: |
+          python api/zanistarast_api_gateway.py
+
+      - name: Run Multilingual Dictionary Test
+        run: |
+          python i18n/zanistarast_multilingual_dictionary.py
+
+      - name: Finish Pulse
+        run: |
+          echo "ZANISTARAST RASTERAST VALIDATION COMPLETED"
+
+
+
+
