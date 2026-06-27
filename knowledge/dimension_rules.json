@@ -1,0 +1,85 @@
+{
+  "zanistarast_rule_set": "dimension_rules",
+  "version": "1.0.0",
+  "authority_layer": "DIMENSIONS",
+  "principle": "Her karar 4 → 3 → 2 → 1 boyut zinciri boyunca doğrulanmalıdır.",
+  "evaluation_order": [
+    "Dimension4",
+    "Dimension3",
+    "Dimension2",
+    "Dimension1"
+  ],
+  "dimensions": [
+    {
+      "id": "D4",
+      "name": "Dördüncü Boyut",
+      "title": "Zihin ve Zaman",
+      "description": "Niyet, hafıza, öğrenme, zaman ve bilinç ilişkisi değerlendirilir.",
+      "tests": [
+        "memory_consistency",
+        "intent_analysis",
+        "temporal_consistency",
+        "knowledge_integrity",
+        "reasoning_stability"
+      ],
+      "hard_block": false
+    },
+    {
+      "id": "D3",
+      "name": "Üçüncü Boyut",
+      "title": "Fizik ve Biyoloji",
+      "description": "Canlılık, fiziksel çevre ve biyolojik sistemlerin uyumu değerlendirilir.",
+      "tests": [
+        "physics_consistency",
+        "biology_consistency",
+        "computer_systems",
+        "traffic_systems",
+        "environmental_balance"
+      ],
+      "hard_block": true
+    },
+    {
+      "id": "D2",
+      "name": "İkinci Boyut",
+      "title": "Toplum ve Sistem",
+      "description": "Toplumsal yapı, ekonomi, emek, adalet ve yönetim dengesi değerlendirilir.",
+      "tests": [
+        "justice",
+        "labour_balance",
+        "economic_balance",
+        "social_order",
+        "mabun_balance"
+      ],
+      "hard_block": false
+    },
+    {
+      "id": "D1",
+      "name": "Birinci Boyut",
+      "title": "Veri ve Kod",
+      "description": "Veri bütünlüğü, yazılım güvenliği ve doğruluk değerlendirilir.",
+      "tests": [
+        "checksum",
+        "data_integrity",
+        "code_integrity",
+        "hallucination_detection",
+        "logical_consistency"
+      ],
+      "hard_block": true
+    }
+  ],
+  "validation_policy": {
+    "flow": "D4_TO_D3_TO_D2_TO_D1",
+    "allow_reverse_validation": true,
+    "require_cross_validation": true,
+    "require_dimension_consistency": true
+  },
+  "decision_policy": {
+    "dimension_failure": "RED",
+    "dimension_conflict": "REVIEW",
+    "all_dimensions_pass": "ALLOW_FOR_NEXT_LAYER"
+  },
+  "next_layer": "mabun_rules.json"
+}
+
+
+
