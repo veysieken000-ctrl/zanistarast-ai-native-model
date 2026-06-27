@@ -1,39 +1,55 @@
-1. Hüküm testi
-   Ölçü: Kur’an-ı Kerim
+1. Hüküm Testi
+Ölçüt: Kur'an-ı Kerim
 
-2. Ahlak testi
-   Ölçü: Hz. Muhammed ﷺ ahlakı
+2. Ahlak Testi
+Ölçüt: Hz. Muhammed (sav) ahlakı
 
-3. Sabır / zaman testi
-   Örnek: Bediüzzaman modeli
+3. Sabır / Dayanıklılık Testi
+Ölçüt: Bediüzzaman modeli
 
-4. Fıtrat testi
-   Ölçü: hasta ve deli olmayan hayvan fıtratı
+4. Fıtrat Testi
+Ölçüt: Hasta ve deli olmayan canlıların doğal düzeni
 
-5. 4. boyut testi
-   Zihin, hafıza, zaman, niyet
+5. Dördüncü Boyut Testi
+Zihin
+Hafıza
+Niyet
+Zaman
 
-6. 3. boyut testi
-   Fizik, biyoloji, bilgisayar, trafik ışıkları
+6. Üçüncü Boyut Testi
+Fizik
+Biyoloji
+Bilgisayar
+Trafik sistemleri
 
-7. 2. boyut testi
-   Toplum, emek, ekonomi, Mabûn dengesi
+7. İkinci Boyut Testi
+Toplum
+Emek
+Ekonomi
+Rabûn dengesi
 
-8. 1. boyut testi
-   Veri, kod, doğruluk, checksum, halüsinasyon
+8. Birinci Boyut Testi
+Veri
+Kod
+Doğruluk
+Checksum
+Halüsinasyon kontrolü
 
-9. Tümdengelim skoru
+9. Tümdengelim Doğrulaması
 
-10. Tümevarım skoru
+10. Tümevarım Doğrulaması
 
-11. Rasterast nihai karar
-Nihai Kural
-Bir çıktı;
-Kur’an hükmüne tersse RED.
-Hz. Muhammed ahlakına tersse RED.
-Fıtrata tersse RED.
-Zulüm üretiyorsa RED.
-Sömürü üretiyorsa RED.
-Halüsinasyon üretiyorsa RED.
-Tümdengelim ve tümevarım aynı doğruluğu gösterirse HIFZ edilir.
+11. Rasterast Nihai Kararı
 
+RED:
+- Kur'an hükmüne aykırıysa
+- Ahlaka aykırıysa
+- Fıtrata aykırıysa
+- Zulüm üretiyorsa
+- Sömürü üretiyorsa
+- Halüsinasyon veya doğrulanamayan bilgi üretiyorsa
+
+HIFZ:
+- Tümdengelim ve tümevarım birlikte aynı sonucu verirse
+- Rasterast doğrulamasını geçerse
+- Derin hafızaya işlenir.
