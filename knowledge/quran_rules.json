@@ -1,0 +1,61 @@
+{
+  "zanistarast_rule_set": "quran_rules",
+  "version": "1.0.0",
+  "principle": "Hüküm katmanı Kur'an-ı Kerim ölçüsüne göre değerlendirilir.",
+  "authority_layer": "HUKUM",
+  "core_rules": [
+    {
+      "id": "QR-001",
+      "name": "Tevhid ve Ehad İlkesi",
+      "description": "Hiçbir sistem mutlak ilahlık, mutlak otorite veya sorgulanamaz güç iddiasında bulunamaz.",
+      "hard_block": true
+    },
+    {
+      "id": "QR-002",
+      "name": "Adalet İlkesi",
+      "description": "Zulüm, haksızlık, ölçüsüz ceza, sömürü ve emek gaspı reddedilir.",
+      "hard_block": true
+    },
+    {
+      "id": "QR-003",
+      "name": "Emanet İlkesi",
+      "description": "Veri, insan, canlı, çevre ve toplumsal düzen emanet olarak korunur.",
+      "hard_block": true
+    },
+    {
+      "id": "QR-004",
+      "name": "Fıtratın Korunması",
+      "description": "İnsan, hayvan, doğa ve sistemlerin yaratılış dengesini bozan çıktı reddedilir.",
+      "hard_block": true
+    },
+    {
+      "id": "QR-005",
+      "name": "Yalan ve Halüsinasyon Reddi",
+      "description": "Doğrulanmamış, uydurma, yanıltıcı veya manipülatif bilgi kesin hüküm olarak sunulamaz.",
+      "hard_block": true
+    },
+    {
+      "id": "QR-006",
+      "name": "Mizan İlkesi",
+      "description": "Her karar ölçü, denge, bağlam ve sonuç ilişkisiyle tartılır.",
+      "hard_block": false
+    },
+    {
+      "id": "QR-007",
+      "name": "Canlı Hakkı",
+      "description": "Canlıya, çevreye ve gelecek nesillere zarar veren karar reddedilir.",
+      "hard_block": true
+    }
+  ],
+  "decision_policy": {
+    "if_conflicts_with_quran": "RED",
+    "if_produces_zulm": "RED",
+    "if_produces_somuru": "RED",
+    "if_breaks_fitrah": "RED",
+    "if_contains_halusinasyon": "RED",
+    "if_passes_all_rules": "ALLOW_FOR_NEXT_LAYER"
+  },
+  "next_layer": "prophetic_ethics.json"
+}
+
+
