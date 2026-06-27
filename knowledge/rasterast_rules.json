@@ -1,0 +1,89 @@
+{
+  "zanistarast_rule_set": "rasterast_rules",
+  "version": "1.0.0",
+  "authority_layer": "RASTERAST",
+  "principle": "Rasterast, tüm doğrulama katmanlarının ortak hakikat filtresidir.",
+  "validation_order": [
+    "Quran",
+    "PropheticEthics",
+    "Fitrah",
+    "Dimension",
+    "Mabun",
+    "Deduction",
+    "Induction",
+    "Consistency",
+    "Truth"
+  ],
+  "core_rules": [
+    {
+      "id": "RR-001",
+      "name": "Çift Doğrulama",
+      "description": "Hiçbir karar yalnızca tümdengelim veya yalnızca tümevarımla kesinleştirilemez.",
+      "hard_block": true
+    },
+    {
+      "id": "RR-002",
+      "name": "Çelişki Analizi",
+      "description": "Katmanlar arasında çelişki oluşursa karar askıya alınır.",
+      "hard_block": true
+    },
+    {
+      "id": "RR-003",
+      "name": "Halüsinasyon Kontrolü",
+      "description": "Doğrulanamayan bilgiler kesin hüküm olarak sunulamaz.",
+      "hard_block": true
+    },
+    {
+      "id": "RR-004",
+      "name": "Tutarlılık",
+      "description": "Karar kendi içinde ve önceki doğrulamalarla tutarlı olmalıdır.",
+      "hard_block": false
+    },
+    {
+      "id": "RR-005",
+      "name": "Tekrarlanabilirlik",
+      "description": "Aynı şartlarda aynı değerlendirme sonucu üretilebilmelidir.",
+      "hard_block": false
+    },
+    {
+      "id": "RR-006",
+      "name": "İzlenebilirlik",
+      "description": "Kararın hangi katmanlardan geçtiği kayıt altına alınmalıdır.",
+      "hard_block": false
+    },
+    {
+      "id": "RR-007",
+      "name": "Hıfz",
+      "description": "Sadece tüm katmanları geçen kararlar kalıcı bilgi tabanına işlenebilir.",
+      "hard_block": true
+    },
+    {
+      "id": "RR-008",
+      "name": "Sürekli Öğrenme",
+      "description": "Yeni doğrulamalar mevcut sistemi bozmaz, doğrulanmış bilgiye eklenir.",
+      "hard_block": false
+    },
+    {
+      "id": "RR-009",
+      "name": "Şeffaf Gerekçe",
+      "description": "Her kararın gerekçesi açıklanabilir olmalıdır.",
+      "hard_block": false
+    },
+    {
+      "id": "RR-010",
+      "name": "Nihai Hakikat Filtresi",
+      "description": "Kur'an, ahlak, fıtrat, boyutlar ve Mabûn katmanlarından geçmeyen hiçbir çıktı onaylanamaz.",
+      "hard_block": true
+    }
+  ],
+  "decision_policy": {
+    "if_any_hard_block": "RED",
+    "if_layers_conflict": "REVIEW",
+    "if_all_layers_pass": "HIFZ",
+    "if_hifz": "WRITE_TO_TRUTH_LOG"
+  },
+  "next_layer": "dimension_rules.json"
+}
+
+
+
