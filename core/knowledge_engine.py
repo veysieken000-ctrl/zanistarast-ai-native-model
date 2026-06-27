@@ -13,14 +13,17 @@ class ZanistarastKnowledgeEngine:
 
     def __init__(self, knowledge_dir="knowledge"):
         self.knowledge_dir = Path(knowledge_dir)
-        self.layers = [
-            "quran_rules.json",
-            "prophetic_ethics.json",
-            "fitrah_rules.json",
-            "dimension_rules.json",
-            "mabun_rules.json",
-            "rasterast_rules.json"
-        ]
+       self.layers = [
+    "quran_rules.json",
+    "prophetic_ethics.json",
+    "fitrah_rules.json",
+    "dimension_rules.json",
+    "mabun_rules.json",
+    "rasterast_rules.json",
+    "asa_muhor_seal.json"
+]
+
+
         self.rules = {}
 
     def load_rules(self):
