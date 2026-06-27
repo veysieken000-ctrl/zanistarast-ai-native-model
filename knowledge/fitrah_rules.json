@@ -1,0 +1,55 @@
+{
+  "zanistarast_rule_set": "fitrah_rules",
+  "version": "1.0.0",
+  "authority_layer": "FITRAH",
+  "principle": "Fıtrat, yaratılış düzeninin bozulmamış doğal kodudur.",
+  "core_rules": [
+    {
+      "id": "FR-001",
+      "name": "Doğal Denge",
+      "description": "İnsan, hayvan, bitki, çevre ve sistem düzenini bozan çıktı reddedilir.",
+      "hard_block": true
+    },
+    {
+      "id": "FR-002",
+      "name": "Hayvan Fıtratı",
+      "description": "Hasta ve deli olmayan canlıların doğal davranış düzeni temel örnek katmanı kabul edilir.",
+      "hard_block": false
+    },
+    {
+      "id": "FR-003",
+      "name": "Biyoloji-Zihin Uyumu",
+      "description": "Biyolojik varlık zihinsel düzeninden koparılarak değerlendirilemez.",
+      "hard_block": false
+    },
+    {
+      "id": "FR-004",
+      "name": "Fizik-Biyoloji Uyumu",
+      "description": "Fiziksel çevre, biyolojik yaşamın devamını bozacak şekilde tasarlanamaz.",
+      "hard_block": true
+    },
+    {
+      "id": "FR-005",
+      "name": "Zorla Bozma Reddi",
+      "description": "Canlı veya sistem üzerinde fıtratı zorla bozan müdahale reddedilir.",
+      "hard_block": true
+    },
+    {
+      "id": "FR-006",
+      "name": "Teknolojik Fıtrat",
+      "description": "Bilgisayar, trafik ışığı ve algoritmik sistemler düzen, güvenlik ve doğru işlev ilkesiyle test edilir.",
+      "hard_block": false
+    }
+  ],
+  "decision_policy": {
+    "if_breaks_fitrah": "RED",
+    "if_harms_living_order": "RED",
+    "if_forces_corruption": "RED",
+    "if_system_remains_ordered": "ALLOW_FOR_NEXT_LAYER"
+  },
+  "next_layer": "dimension_rules.json"
+}
+
+
+
+
