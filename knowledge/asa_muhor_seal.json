@@ -1,0 +1,46 @@
+{
+  "@context": "https://github.io",
+  "@type": "ZanistarastCore",
+  "framework": "Rasterast",
+  "version": "1.0.0",
+  "authority_layer": "ASA_MUHOR_SEAL",
+  "principle": "Rasterast doğrulama filtresinden geçen bilgi, Asa ile yanılsamadan arındırılır ve Muhor ile mühürlenir.",
+  "components": {
+    "Asa_Verification_Filter": {
+      "function": "Illusion_Destroyer",
+      "description": "İnsan önyargısı, sahte bilgi, halüsinasyon, manipülasyon ve çelişkiyi temizleyen doğrulama filtresi.",
+      "input": "Human_Bias_And_Falsehood",
+      "output": "Purified_Data_Structure",
+      "hard_block_targets": [
+        "halusinasyon",
+        "falsehood",
+        "manipulation",
+        "contradiction",
+        "bias_without_evidence"
+      ]
+    },
+    "Muhor_Authority_Seal": {
+      "function": "System_State_Lock",
+      "description": "Rasterast filtresinden geçmiş doğrulanmış bilgiyi değişmez kayıt ve ontolojik yasa katmanına mühürler.",
+      "input": "Verified_Knowledge",
+      "output": "Immutable_Ontological_Law",
+      "seal_policy": {
+        "only_after_rasterast_pass": true,
+        "write_to_truth_log": true,
+        "allow_mutation_after_seal": false,
+        "requires_deduction_and_induction": true
+      }
+    }
+  },
+  "decision_policy": {
+    "if_illusion_detected": "RED",
+    "if_manipulation_detected": "RED",
+    "if_verified_by_rasterast": "SEAL",
+    "if_sealed": "WRITE_TO_TRUTH_LOG"
+  },
+  "next_layer": "Truth_Log.md"
+}
+
+
+
+
