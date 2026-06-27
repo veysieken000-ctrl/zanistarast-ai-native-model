@@ -1,0 +1,51 @@
+cff-version: 1.2.0
+
+title: "Zanistarast AI Native Model"
+
+message: >
+  If you use this repository in research,
+  publications, or derivative works,
+  please cite it using the metadata below.
+
+type: software
+
+authors:
+  - family-names: "MALA SAF"
+    given-names: "Veysi"
+    alias: "Veysi yê MALA SAF"
+
+repository-code: "https://github.com/veysieken000-ctrl/zanistarast-ai-native-model"
+
+license: "MIT"
+
+abstract: >
+  Zanistarast AI Native Model is an open,
+  verification-oriented framework for evaluating
+  AI outputs using deduction, induction,
+  Rasterast verification,
+  ethical validation,
+  traceability,
+  and constitutional consistency.
+
+keywords:
+  - Artificial Intelligence
+  - Verification
+  - AI Alignment
+  - Rasterast
+  - Ontology
+  - Knowledge Graph
+  - Constitutional AI
+  - Explainable AI
+  - Traceability
+  - Validation
+
+language: en
+
+version: "1.0.0"
+
+
+
+
+
+
+
