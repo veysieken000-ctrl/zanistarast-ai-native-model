@@ -1,0 +1,16 @@
+{
+  "directories": [
+    "core",
+    "knowledge",
+    "verification",
+    "benchmark",
+    "papers",
+    "tests",
+    "examples",
+    "docs",
+    "api"
+  ]
+}
+
+
+
