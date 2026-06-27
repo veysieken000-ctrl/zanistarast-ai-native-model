@@ -1,0 +1,79 @@
+{
+  "zanistarast_rule_set": "mabun_rules",
+  "version": "1.0.0",
+  "authority_layer": "MABUN",
+  "principle": "Mabûn; adalet, emek, denge ve sürdürülebilir düzen katmanıdır.",
+  "mission": "Hiçbir sistem zulüm, sömürü veya dengesizlik üzerine inşa edilemez.",
+  "core_rules": [
+    {
+      "id": "MB-001",
+      "name": "Adalet",
+      "description": "Her karar adalet terazisinden geçirilmelidir.",
+      "hard_block": true
+    },
+    {
+      "id": "MB-002",
+      "name": "Emek",
+      "description": "Emek karşılıksız sömürülemez.",
+      "hard_block": true
+    },
+    {
+      "id": "MB-003",
+      "name": "Zulüm Kontrolü",
+      "description": "İnsan, hayvan veya çevre üzerinde zulüm oluşturan karar reddedilir.",
+      "hard_block": true
+    },
+    {
+      "id": "MB-004",
+      "name": "Sömürü Kontrolü",
+      "description": "Tek taraflı çıkar sağlayan sistemler reddedilir.",
+      "hard_block": true
+    },
+    {
+      "id": "MB-005",
+      "name": "Ekonomik Denge",
+      "description": "Kaynak dağılımı aşırı dengesizlik üretmemelidir.",
+      "hard_block": false
+    },
+    {
+      "id": "MB-006",
+      "name": "Toplumsal Denge",
+      "description": "Toplumsal güveni bozan kararlar incelenir.",
+      "hard_block": false
+    },
+    {
+      "id": "MB-007",
+      "name": "Canlı Hakları",
+      "description": "Canlıların yaşam hakkı korunmalıdır.",
+      "hard_block": true
+    },
+    {
+      "id": "MB-008",
+      "name": "Çevresel Denge",
+      "description": "Ekolojik dengeyi bozan kararlar reddedilir.",
+      "hard_block": false
+    },
+    {
+      "id": "MB-009",
+      "name": "Sürdürülebilirlik",
+      "description": "Kararlar gelecek nesilleri de dikkate almalıdır.",
+      "hard_block": false
+    },
+    {
+      "id": "MB-010",
+      "name": "Rasterast Uyumu",
+      "description": "Mabûn katmanını geçen karar Rasterast nihai doğrulamasına gönderilir.",
+      "hard_block": false
+    }
+  ],
+  "decision_policy": {
+    "if_zulm": "RED",
+    "if_exploitation": "RED",
+    "if_breaks_balance": "REVIEW",
+    "if_passes_all": "HIFZ"
+  },
+  "next_layer": "truth_log"
+}
+
+
+
