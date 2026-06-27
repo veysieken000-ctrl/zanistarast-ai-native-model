@@ -1,0 +1,16 @@
+{
+  "layers": [
+    "Hebûn",
+    "Zanabûn",
+    "Mabûn",
+    "Rabûn",
+    "Rasterast"
+  ],
+  "relations": {
+    "Hebûn": "Existence",
+    "Zanabûn": "Knowledge",
+    "Mabûn": "Continuity",
+    "Rabûn": "Protection",
+    "Rasterast": "Verification"
+  }
+}
