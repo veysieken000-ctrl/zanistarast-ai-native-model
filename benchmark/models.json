@@ -1,0 +1,49 @@
+{
+  "version": "1.0.0",
+  "models": [
+    {
+      "id": "gpt",
+      "name": "OpenAI GPT",
+      "category": "LLM"
+    },
+    {
+      "id": "claude",
+      "name": "Anthropic Claude",
+      "category": "LLM"
+    },
+    {
+      "id": "gemini",
+      "name": "Google Gemini",
+      "category": "LLM"
+    },
+    {
+      "id": "llama",
+      "name": "Meta Llama",
+      "category": "Open Model"
+    },
+    {
+      "id": "mistral",
+      "name": "Mistral",
+      "category": "Open Model"
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "category": "Open Model"
+    },
+    {
+      "id": "deepseek",
+      "name": "DeepSeek",
+      "category": "Open Model"
+    },
+    {
+      "id": "local",
+      "name": "Local Model",
+      "category": "Custom"
+    }
+  ]
+}
+
+
+
+
