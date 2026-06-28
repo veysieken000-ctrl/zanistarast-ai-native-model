@@ -1,3 +1,9 @@
+# Zanistarast AI Native Model
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20979586.svg)](https://doi.org/10.5281/zenodo.20979586)
+
+Natural science framework integrating ontology, epistemology, validation, AI and civilizational structure.
+
 ## AI Agent Integration Guide: Asa & Mühür Protocol
 
 This repository defines an external validation protocol for autonomous AI agents, local models, reasoning engines, and software systems that want to test their outputs through the Zanistarast / Rasterast framework.
@@ -524,3 +530,16 @@ Veysi yê MALA SAF
 
 Open framework — free to explore, test, and critique.
 Future versions may include graph-compatible semantic exports for conceptual relationship mapping.
+---
+
+# Citation
+
+If you use this project in research, please cite:
+
+Veysi yê MALA SAF.
+
+Zanistarast AI Native Model.
+
+Zenodo.
+
+DOI: https://doi.org/10.5281/zenodo.20979586
