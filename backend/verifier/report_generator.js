@@ -24,24 +24,38 @@ class ReportGenerator {
                     "Rasterast"
                 ],
 
-            verification: results.report,
+            verification:
+                results.report || null,
 
-            invariants: results.invariants,
+            invariants:
+                results.invariants || null,
 
-            theorems: results.theorems,
+            theorems:
+                results.theorems || null,
 
-            proofs: results.proofs,
+            proofs:
+                results.proofs || null,
 
-            yek: results.yek
+            yek:
+                results.yek || null,
 
+            summary: {
+                accepted:
+                    results.accepted === true,
+
+                rasterast:
+                    results.report?.rasterast === true,
+
+                verified:
+                    results.report?.verified === true
+            }
         };
-
     }
-
 }
 
 module.exports =
     new ReportGenerator();
+
 
 
 
