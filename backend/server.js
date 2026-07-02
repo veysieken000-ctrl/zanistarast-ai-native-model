@@ -7,6 +7,9 @@ import { fileURLToPath } from "url";
 import { buildRagContext } from "./rag_search.js";
 import miEngineRoutes from "./routes/mi_engine.js";
 
+const runtimeGateway =
+    require("../api/runtime_gateway");
+
 const formalGateway =
     require("../api/zanistarast_formal_gateway");
 
@@ -22,6 +25,21 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api", miEngineRoutes);
+
+app.post(
+    "/api/runtime/init",
+    runtimeGateway.initialize
+);
+
+app.post(
+    "/api/runtime/process",
+    runtimeGateway.process
+);
+
+app.get(
+    "/api/runtime/health",
+    runtimeGateway.health
+);
 
 app.post("/api/formal/verify", (req, res) => {
 
