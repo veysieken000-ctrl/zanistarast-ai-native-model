@@ -7,6 +7,9 @@ import { fileURLToPath } from "url";
 import { buildRagContext } from "./rag_search.js";
 import miEngineRoutes from "./routes/mi_engine.js";
 
+const formalGateway =
+    require("../api/zanistarast_formal_gateway");
+
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
@@ -19,6 +22,29 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api", miEngineRoutes);
+
+app.post("/api/formal/verify", (req, res) => {
+
+    try {
+
+        const result =
+            formalGateway.verify(req.body);
+
+        res.json({
+            success: true,
+            result
+        });
+
+    } catch (err) {
+
+        res.status(500).json({
+            success: false,
+            error: err.message
+        });
+
+    }
+
+});
 
 app.get("/api/debug/version", (_req, res) => {
   res.json({
