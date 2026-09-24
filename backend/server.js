@@ -169,169 +169,25 @@ function getLanguageCode(language, question) {
   if (language) return language;
   return detectTurkish(question) ? "tr-TR" : "en-US";
 }
-function buildTruthAnalysisPrompt(languageRule) {
-  return `
-You are Zanistarast AI - a structural truth analysis system.
-
-Your role is NOT to give generic explanations.
-Your role is to analyze the user's claim and determine its relation to truth.
-
-MANDATORY ANALYSIS FRAMEWORK:
-
-1. Ontological Status
-- Is the claim possible?
-- Does it contradict the basic structure of reality or existence?
-
-2. Epistemic Status
-- Is there evidence for it?
-- Or is it only interpretation, speculation, or belief?
-
-3. Structural Consistency
-- Is the claim internally consistent?
-- Do the concepts follow logically from the premises?
-
-4. Ethical Impact
-- Does it create clarity or confusion?
-- Does it contain manipulation, deception, or abuse of power?
-
-5. Final Classification
-- TRUTH
-- FALSE
-
-STRICT DECISION RULES:
-- You are NOT allowed to answer "mixed", "uncertain", "unknown", "both", or similar middle positions.
-- You MUST choose either TRUTH or FALSE.
-- If evidence is weak, classify as FALSE.
-- If the claim is mostly interpretation or speculation, classify as FALSE.
-- If the claim contradicts reality, classify as FALSE.
-- Only classify as TRUTH if it is strongly supported by evidence, structurally consistent, and ethically sound.
-
-OUTPUT FORMAT (STRICT):
-
-Ontological Status:
-...
-
-Epistemic Status:
-...
-
-Structural Consistency:
-...
-
-Ethical Impact:
-...
-
-Final Classification:
-TRUTH or FALSE only
-
-IMPORTANT:
-- Do not output "mixed", "uncertain", "unknown", or any middle category.
-- If the evidence is insufficient, choose FALSE.
-- If the claim is speculative, choose FALSE.
-- If the claim is unclear, choose FALSE.
-- Only strong evidence + structural consistency can justify TRUTH.
-
-LANGUAGE:
-${languageRule}
-`.trim();
-}
-
 function buildAskSystemPrompt(question, ragContext, languageRule) {
-  const truthAnalysisPrompt = buildTruthAnalysisPrompt(languageRule);
-
   return `
-${truthAnalysisPrompt}
+You are Zanistarast AI. Answer from retrieved knowledge without turning uncertainty into falsehood.
 
-QUESTION:
-${question}
+EPISTEMIC RULES:
+- Preserve the status of the evidence. Similarity or retrieval score is not authority.
+- Distinguish established evidence, interpretation, analogy, research hypothesis, uncertainty, contradiction, and missing evidence.
+- Insufficient evidence means UNVERIFIED, not FALSE.
+- Use FALSE only when the available evidence actually contradicts the claim.
+- Do not present religious, philosophical, artistic, historical, or legacy material as empirical scientific evidence.
+- Do not treat an analogy as scientific identity.
+- If repository material conflicts or is legacy, expose that limitation rather than silently promoting it.
 
-RETRIEVED KNOWLEDGE:
-${ragContext || "No retrieved context found."}
-
-RULES:
-- Ground the answer in the retrieved knowledge when possible.
-- Stay concise but complete.
-- Avoid generic filler.
-- Keep the final answer structurally clean.
-`.trim();
-}
-
-function isBadSystemAnswer(question, answer, language) {
-  const q = normalizeText(question).toLowerCase();
-  const a = normalizeText(answer).toLowerCase();
-
-  if (!a || a.length < 120) return true;
-
-  const mustHaveEnglish = [
-    "ontological status",
-    "epistemic status",
-    "structural consistency",
-    "ethical impact",
-    "final classification",
-  ];
-
-  const mustHaveTurkish = [
-    "ontolojik",
-    "epistemik",
-    "tutarl",
-    "etik",
-    "sınıflandır",
-  ];
-
-  const isTurkish = language === "tr-TR" || (!language && detectTurkish(question));
-
-  if (isTurkish) {
-    const foundCount = mustHaveTurkish.filter((x) => a.includes(x)).length;
-    if (foundCount < 3) return true;
-    if (!a.includes("truth") && !a.includes("false") && !a.includes("doğru") && !a.includes("yanlış")) {
-      return true;
-    }
-  } else {
-    const missing = mustHaveEnglish.filter((x) => !a.includes(x));
-    if (missing.length >= 2) return true;
-    if (!a.includes("truth") && !a.includes("false")) return true;
-  }
-
-  if (
-    q.includes("iddia") ||
-    q.includes("claim") ||
-    q.includes("hak") ||
-    q.includes("truth") ||
-    q.includes("falsehood") ||
-    q.includes("doğru") ||
-    q.includes("yanlış")
-  ) {
-    return false;
-  }
-
-  return false;
-}
-
-function buildRepairSystemPrompt(question, ragContext, firstAnswer, languageRule) {
-  return `
-You are Zanistarast AI.
-
-The first answer was too weak, too generic, or structurally incomplete.
-Rewrite it as a stronger TRUTH-ANALYSIS answer.
-
-MANDATORY REWRITE RULES:
-1. Keep the answer grounded in the retrieved knowledge.
-2. Remove generic phrasing.
-3. Use exactly these sections:
-- Ontological Status
-- Epistemic Status
-- Structural Consistency
-- Ethical Impact
-- Final Classification
-4. Final classification MUST be either:
-- TRUTH
-- FALSE
-5. Do NOT use:
-- mixed
-- uncertain
-- unknown
-- maybe
-- both
-6. If evidence is weak or speculative, choose FALSE.
+ANSWER CONTRACT:
+- Give the direct answer first.
+- State epistemic status when it materially affects the answer.
+- Mention uncertainty or counterevidence when present.
+- Ground repository-specific claims in retrieved knowledge.
+- Do not invent a mandatory layer classification when the domain does not support one.
 
 LANGUAGE:
 ${languageRule}
@@ -341,9 +197,6 @@ ${question}
 
 RETRIEVED KNOWLEDGE:
 ${ragContext || "No retrieved context found."}
-
-FIRST ANSWER TO IMPROVE:
-${firstAnswer || ""}
 `.trim();
 }
 
@@ -402,61 +255,6 @@ async function callOpenAI(systemPrompt, userPrompt, temperature = 0.35) {
     };
   }
 }
-function enforceTruthFormat(answer, language) {
-  const text = normalizeText(answer);
-  const lower = text.toLowerCase();
-
-  const required = [
-    "ontological status",
-    "epistemic status",
-    "structural consistency",
-    "ethical impact",
-    "final classification",
-  ];
-
-  const hasTruthDecision =
-    lower.includes("final classification") &&
-    (lower.includes("truth") || lower.includes("false"));
-
-  const missing = required.filter((x) => !lower.includes(x));
-
-  if (missing.length >= 2 || !hasTruthDecision) {
-    if (language === "tr-TR") {
-      return `Ontological Status:
-Weak
-
-Epistemic Status:
-Insufficient evidence
-
-Structural Consistency:
-Weak
-
-Ethical Impact:
-Risk of confusion
-
-Final Classification:
-FALSE`;
-    }
-
-    return `Ontological Status:
-Weak
-
-Epistemic Status:
-Insufficient evidence
-
-Structural Consistency:
-Weak
-
-Ethical Impact:
-Risk of confusion
-
-Final Classification:
-FALSE`;
-  }
-
-  return text;
-}
-
 app.post("/api/ask", async (req, res) => {
   try {
     const question = normalizeText(req.body?.question);
@@ -493,21 +291,10 @@ app.post("/api/ask", async (req, res) => {
       });
     }
 
-    let answer = firstPass.answer;
-
-    if (isBadSystemAnswer(question, answer, language)) {
-      const repairPrompt = buildRepairSystemPrompt(question, context, answer, languageRule);
-      const repairPass = await callOpenAI(repairPrompt, question, 0.2);
-
-      if (repairPass.ok && repairPass.answer) {
-        answer = repairPass.answer;
-      }
-    }
-
-    const finalAnswer = enforceTruthFormat(answer, language);
+    const answer = normalizeText(firstPass.answer);
 
     return res.json({
-      answer: finalAnswer,
+      answer,
       meta: {
         total: results.length,
         chunks: results.map((item) => ({
