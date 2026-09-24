@@ -2,6 +2,12 @@
 
 This registry is a **pre-submission control surface**. Repository presence does not mean scientific validation, journal readiness, acceptance, or permission to submit.
 
+## Mira-equivalent review rule
+
+For this repository, manuscript preparation must be held to the same substantive standards expected from Mira: distinctiveness analysis, epistemic-status preservation, source/counterevidence review, analogy-versus-identity control, reproducibility/testability checks, and a reviewer-style challenge before venue formatting. The reviewer role must not manufacture evidence, grant scientific proof, or convert repository declarations into verified facts. A paper is revised from evidence; it is not made publishable by rhetoric.
+
+The review sequence is: **Scientific review → Rasterast epistemic review → target-venue/editorial review → Müdebbir decision**. A failure at any review stage keeps the candidate out of the submission-ready state.
+
 ## Gate
 
 A paper may move toward a venue-specific manuscript only after:
