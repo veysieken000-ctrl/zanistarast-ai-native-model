@@ -390,6 +390,28 @@ function renderSuggestions(q){
 }
 function askSuggestion(text){ input.value=text; ask(); }
 
+function formatMiraResponse(data){
+  const answer=String(data?.answer || "");
+  const meta=data?.meta || {};
+  const status=[
+    meta.authority_status && `Kaynak otoritesi: ${meta.authority_status}`,
+    meta.epistemic_status && `Epistemik statü: ${meta.epistemic_status}`,
+    meta.rasterast_status && `Rasterast: ${meta.rasterast_status}`,
+    meta.provenance_status && `Kaynak izi: ${meta.provenance_status}`
+  ].filter(Boolean);
+  const sources=Array.isArray(meta.sources) ? meta.sources : [];
+  const sourceLines=sources.slice(0,8).map(source=>{
+    const title=String(source.title || source.id || "Kaynak");
+    const authority=String(source.authority_status || "UNVERIFIED");
+    return `- ${title} [${authority}]`;
+  });
+  return [
+    answer,
+    status.length ? `\n\nDurum\n${status.join("\n")}` : "",
+    sourceLines.length ? `\n\nKaynaklar\n${sourceLines.join("\n")}` : ""
+  ].join("");
+}
+
 async function sendMessage(question){
   const response=await fetch("/api/ask",{
     method:"POST",
@@ -399,14 +421,19 @@ async function sendMessage(question){
   let data={};
   try { data=await response.json(); } catch {}
   if(!response.ok) throw new Error(data.answer || data.error || "Mira API isteği başarısız.");
-  return String(data.answer || "");
+  return {
+    answer:String(data.answer || ""),
+    display:formatMiraResponse(data),
+    meta:data.meta || {}
+  };
 }
 async function ask(){
   const q=input.value.trim(); if(!q) return;
   addMessage("user",q); input.value=""; thinking.classList.add("show");
   try {
-    lastAnswer=await sendMessage(q);
-    addMessage("ai",lastAnswer);
+    const miraResponse=await sendMessage(q);
+    lastAnswer=miraResponse.answer;
+    addMessage("ai",miraResponse.display);
     renderSuggestions(q);
   } catch(error) {
     const message="Mira bağlantısı kurulamadı: "+error.message;
