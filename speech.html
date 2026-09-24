@@ -437,7 +437,10 @@ async function ask(){
     addMessage("ai",miraResponse.display);
     renderSuggestions(q);
   } catch(error) {
-    const message="Mira bağlantısı kurulamadı: "+error.message;
+    const offline = typeof navigator !== "undefined" && navigator.onLine === false;
+    const message = offline
+      ? "Mira çevrimdışı kullanılamaz. İnternet bağlantısı yeniden kurulduğunda tekrar deneyin."
+      : "Mira bağlantısı kurulamadı. Lütfen kısa süre sonra tekrar deneyin.";
     output.textContent=message; addMessage("ai",message);
   } finally { thinking.classList.remove("show"); }
 }
@@ -458,6 +461,7 @@ function startListen(){
   if(!SR){ output.textContent="Bu tarayıcı konuşma algılamayı desteklemiyor."; return; }
   recognition=new SR(); recognition.lang=languageSelect.value; recognition.interimResults=true;
   recognition.onresult=e=>{ let text=""; for(let i=0;i<e.results.length;i++) text+=e.results[i][0].transcript; input.value=text; };
+  recognition.onerror=()=>{ output.textContent="Konuşma algılama kullanılamadı. Metin yazarak devam edebilirsiniz."; };
   recognition.start();
 }
 function stopListen(){ if(recognition) recognition.stop(); }
