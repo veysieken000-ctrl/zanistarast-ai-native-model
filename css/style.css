@@ -2456,3 +2456,54 @@ transform:translateY(-2px);
     transition-duration: 0.01ms !important;
   }
 }
+
+
+/* =========================================================
+   ZANISTARAST MOBILE QUALITY STANDARD
+   Prevent title overflow and keep layer hierarchy consistent.
+   ========================================================= */
+
+.hero-card h1 {
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
+
+@media (max-width: 850px) {
+  .hero-card h1 {
+    font-size: clamp(2rem, 9vw, 3rem) !important;
+    line-height: 1.02 !important;
+  }
+
+  .hero-card > h1:first-child {
+    white-space: nowrap;
+    max-width: 100%;
+  }
+
+  .hero-card,
+  .section-card,
+  .core-reading-card,
+  .theory-link-card,
+  .topic-card,
+  .card {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .core-reading-card {
+    padding: 22px !important;
+    border-radius: 24px !important;
+  }
+
+  .sub-card,
+  .article-card {
+    padding: 17px 18px;
+    border-radius: 18px;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero-card > h1:first-child {
+    font-size: clamp(1.75rem, 8.5vw, 2.25rem) !important;
+  }
+}
