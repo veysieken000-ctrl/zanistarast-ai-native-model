@@ -242,8 +242,8 @@ export async function buildHybridRagContext(question, k = 8) {
 
     const results = [...mergedById.values()]
       .sort((a, b) => {
-        const aHybrid = (a.score || 0) + (a.semantic_score || 0);
-        const bHybrid = (b.score || 0) + (b.semantic_score || 0);
+        const aHybrid = (a.score || 0) + (a.semantic_score || 0) * 3;
+        const bHybrid = (b.score || 0) + (b.semantic_score || 0) * 3;
         return bHybrid - aHybrid;
       })
       .slice(0, k);
