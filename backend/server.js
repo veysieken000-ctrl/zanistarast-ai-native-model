@@ -297,12 +297,23 @@ app.post("/api/ask", async (req, res) => {
       answer,
       meta: {
         total: results.length,
-        chunks: results.map((item) => ({
+        epistemic_status: "UNVERIFIED",
+        rasterast_status: "NOT_REVIEWED",
+        provenance_status: "PARTIAL",
+        notice: "Retrieval matches are context candidates; score is not authority or proof.",
+        sources: results.map((item) => ({
           id: item.id,
           title: item.title,
+          source_type: "RepositoryKnowledge",
+          authority_status: "UNVERIFIED",
+          epistemic_status: "UNVERIFIED",
           domain: item.domain,
           layer: item.layer,
-          score: item.score,
+          retrieval_score: item.score,
+          provenance: {
+            repository_path: `backend/knowledge/${item.title}`,
+            chunk_id: item.id
+          }
         })),
       },
     });
