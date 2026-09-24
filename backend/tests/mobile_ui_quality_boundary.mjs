@@ -4,6 +4,12 @@ import fs from "node:fs";
 const css = fs.readFileSync(new URL("../../css/style.css", import.meta.url), "utf8");
 const paper = fs.readFileSync(new URL("../../paper.html", import.meta.url), "utf8");
 const theory = fs.readFileSync(new URL("../../theory.html", import.meta.url), "utf8");
+const nestedTheoryFiles = [
+  "../../theory-00-framework.html",
+  "../../theory-01-boyutsal-acilim.html",
+  "../../theory-07-newroza-kawa-civilization.html",
+  "../../theory-08-zaman.html"
+].map(path => fs.readFileSync(new URL(path, import.meta.url), "utf8"));
 
 assert.match(css, /ZANISTARAST MOBILE QUALITY STANDARD/);
 assert.match(css, /\.hero-card > h1:first-child/);
@@ -20,5 +26,9 @@ assert.match(css, /\.layer-grid--secondary/);
 assert.match(paper, /layer-grid layer-grid--primary/);
 assert.match(paper, /layer-grid layer-grid--secondary/);
 assert.match(theory, /layer-grid layer-grid--secondary/);
+for (const page of nestedTheoryFiles) {
+  assert.match(page, /layer-grid--level-3/);
+  assert.match(page, /data-layer-level="3"/);
+}
 
 console.log("Mobile UI quality boundary: OK");
