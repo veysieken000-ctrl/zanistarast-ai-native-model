@@ -47,6 +47,9 @@ jobs:
       - name: Check formal epistemic boundary
         run: node tests/formal_epistemic_boundary.mjs
 
+      - name: Check operational confidence boundary
+        run: node tests/operational_confidence_boundary.mjs
+
       - name: Check manifest authority boundary
         run: node tests/manifest_authority_boundary.mjs
 
