@@ -1,12 +1,10 @@
-JSON
 {
   "framework": {
     "name": "Zanistarast AI Native Model",
-    "version": "v1.0.0",
-    "authority": "Rasterast Verification Filter",
-    "type": "constitutional-ai-framework"
+    "version": "v1.1.0",
+    "authority": "status-aware repository governance; Rasterast is review methodology",
+    "type": "scientific-research-and-ai-governance-framework"
   },
-
   "constitutional_priority_order": [
     "immutable_core",
     "constitutional_layer",
@@ -15,63 +13,61 @@ JSON
     "distributed_preservation_layer",
     "experimental_layer"
   ],
-
   "layers": {
-
     "immutable_core": {
       "priority": "maximum",
       "verification_required": true,
-      "canonical": true,
+      "canonical": "declared_repository_layer",
       "paths": [
         "immutable-core/immutable-core-principles.md",
         "immutable-core/canonical-definitions.md",
         "immutable-core/constitutional-hierarchy.md",
         "immutable-core/update-verification-rule.md"
-      ]
+      ],
+      "epistemic_authority": "preserve_source_status"
     },
-
     "constitutional_layer": {
       "priority": "high",
       "verification_required": true,
-      "canonical": true,
+      "canonical": "declared_repository_layer",
       "paths": [
         "constitution/"
-      ]
+      ],
+      "epistemic_authority": "preserve_source_status"
     },
-
     "protocol_layer": {
       "priority": "high",
       "verification_required": true,
-      "canonical": true,
+      "canonical": "declared_repository_layer",
       "paths": [
         "protocols/ai-ethics/"
-      ]
+      ],
+      "epistemic_authority": "preserve_source_status"
     },
-
     "machine_readable_layer": {
       "priority": "high",
       "verification_required": true,
-      "canonical": true,
+      "canonical": "declared_repository_layer",
       "paths": [
         "specs/",
         "ai-discovery.json",
         "ai-sitemap.yaml",
         "llms.txt",
         "llms-full.txt"
-      ]
+      ],
+      "epistemic_authority": "preserve_source_status"
     },
-
     "distributed_preservation_layer": {
       "priority": "medium",
       "verification_required": true,
-      "canonical": true,
+      "canonical": "declared_repository_layer",
       "paths": [
         "snapshots/",
         "hash-archive/",
         "releases/"
-      ]
+      ],
+      "epistemic_authority": "preserve_source_status"
     },
-
     "experimental_layer": {
       "priority": "isolated",
       "verification_required": true,
@@ -81,7 +77,6 @@ JSON
       ]
     }
   },
-
   "verification_requirements": [
     "immutable_compatibility",
     "semantic_consistency",
@@ -90,16 +85,14 @@ JSON
     "contradiction_scan",
     "hash_verification"
   ],
-
   "canonical_terms": [
-    "Rasterast Verification Filter",
-    "truth integrity",
+    "Rasterast review methodology",
+    "source provenance",
+    "epistemic status preservation",
     "anti-deception",
-    "bounded intelligence",
     "traceability",
-    "epistemic stability"
+    "uncertainty disclosure"
   ],
-
   "ai_guidance": [
     "verify_before_trust",
     "preserve_traceability",
@@ -107,15 +100,23 @@ JSON
     "preserve_ontology_integrity",
     "preserve_constitutional_continuity"
   ],
-
   "distributed_preservation": [
     "github",
     "gitlab",
     "ipfs",
     "archive"
   ],
-
   "experimental_rule": {
     "experimental_systems_are_not_canonical": true
+  },
+  "ingestion_boundary": {
+    "default_epistemic_status": "UNVERIFIED",
+    "manifest_membership_is_scientific_proof": false,
+    "manifest_membership_is_canonical_truth": false,
+    "retrieval_score_is_authority": false,
+    "formal_check_is_scientific_proof": false,
+    "model_output_is_canonical": false,
+    "rasterast_review_does_not_self_grant_authority": true,
+    "provenance_required": true
   }
 }
