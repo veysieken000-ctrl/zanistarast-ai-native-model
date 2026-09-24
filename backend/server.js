@@ -88,6 +88,15 @@ app.post("/api/formal/verify", (req, res) => {
 
 });
 
+const debugOnly = (req, res, next) => {
+  if (process.env.NODE_ENV === "production" && process.env.ENABLE_DEBUG_ROUTES !== "true") {
+    return res.status(404).json({ ok: false, error: "Not found" });
+  }
+  next();
+};
+
+app.use("/api/debug", debugOnly);
+
 app.get("/api/debug/version", (_req, res) => {
   res.json({
     ok: true,
