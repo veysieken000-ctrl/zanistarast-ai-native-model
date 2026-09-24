@@ -123,7 +123,7 @@ app.post("/api/formal/review", (req, res) => {
     try {
 
         const result =
-            formalGateway.verify(req.body);
+            formalGateway.review(req.body);
 
         res.json({
             success: true,
