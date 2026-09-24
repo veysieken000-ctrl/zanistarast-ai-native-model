@@ -17,6 +17,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Checkout formal foundations
+        uses: actions/checkout@v4
+        with:
+          repository: veysieken000-ctrl/zanistarast-formal-foundations
+          path: zanistarast-formal-foundations
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
