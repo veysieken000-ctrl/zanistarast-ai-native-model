@@ -68,6 +68,9 @@ jobs:
       - name: Check RAG ingestion status boundary
         run: node tests/rag_ingestion_status_boundary.mjs
 
+      - name: Check mobile UI quality boundary
+        run: node tests/mobile_ui_quality_boundary.mjs
+
       - name: Check manifest Mira terminology boundary
         run: node tests/manifest_mira_terminology_boundary.mjs
 
