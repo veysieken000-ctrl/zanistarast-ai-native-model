@@ -1,69 +1,52 @@
 /**
- * Rasterast Verification Engine
+ * Rasterast Review Engine
  * ZANISTARAST AI Native Model
+ *
+ * Local structural checks do not self-grant scientific proof,
+ * canonical authority, or a verified epistemic status.
  */
-
-const coreRules =
-    require("../../schema/zanistarast_core_rules.json");
 
 class RasterastVerifier {
 
     verify(context) {
 
         const report = {
-
             hebun: this.checkHebun(context),
-
             zanabun: this.checkZanabun(context),
-
             mabun: this.checkMabun(context),
-
             rabun: this.checkRabun(context),
-
-            rasterast: false,
-
-            verified: false
+            structural_checks_passed: false,
+            rasterast_status: "NOT_REVIEWED",
+            epistemic_status: "UNVERIFIED",
+            canonical_authority: false,
+            scientific_proof: false
         };
 
-        report.rasterast =
+        report.structural_checks_passed =
             report.hebun &&
             report.zanabun &&
             report.mabun &&
             report.rabun;
 
-        report.verified = report.rasterast;
-
         return report;
     }
 
-    checkHebun(context){
-
+    checkHebun(context) {
         return context.ontology === true;
     }
 
-    checkZanabun(context){
-
+    checkZanabun(context) {
         return context.consistent === true;
     }
 
-    checkMabun(context){
-
+    checkMabun(context) {
         return context.optimized === true;
     }
 
-    checkRabun(context){
-
+    checkRabun(context) {
         return context.coordinated === true;
     }
-
 }
 
 module.exports =
     new RasterastVerifier();
-
-
-
-
-
-
-
