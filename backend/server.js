@@ -4,14 +4,17 @@ import cors from "cors";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { createRequire } from "module";
 import { buildRagContext } from "./rag_search.js";
 import miEngineRoutes from "./routes/mi_engine.js";
 
+const requireLegacy = createRequire(import.meta.url);
+
 const runtimeGateway =
-    require("../api/runtime_gateway");
+    requireLegacy("../api/runtime_gateway");
 
 const formalGateway =
-    require("../api/zanistarast_formal_gateway");
+    requireLegacy("../api/zanistarast_formal_gateway");
 
 dotenv.config();
 
