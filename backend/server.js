@@ -5,7 +5,7 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { createRequire } from "module";
-import { buildRagContext } from "./rag_search.js";
+import { buildRagContext, buildHybridRagContext } from "./rag_search.js";
 import aiEngineRoutes from "./routes/ai_engine.js";
 
 const requireLegacy = createRequire(import.meta.url);
@@ -296,7 +296,7 @@ app.post("/api/ask", async (req, res) => {
       });
     }
 
-    const { results, context } = buildRagContext(question, 8);
+    const { results, context } = await buildHybridRagContext(question, 8);
 
     if (!results.length) {
       return res.json({
