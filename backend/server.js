@@ -349,8 +349,8 @@ function deriveResponseStatus(results) {
     authorities.some((a) => a.rasterast_status === "REVIEW_REQUIRED");
 
   return {
-    authority_status: allCanonicalDeclared ? "CANONICAL_DECLARED" : "UNVERIFIED",
-    epistemic_status: allCanonicalDeclared ? "VERIFICATION_REQUIRED" : "UNVERIFIED",
+    authority_status: allCanonicalDeclared ? "REPOSITORY_DECLARED" : "UNVERIFIED",
+    epistemic_status: "UNVERIFIED",
     rasterast_status: reviewRequired ? "REVIEW_REQUIRED" : "NOT_REVIEWED",
     provenance_status: allManifestMatched ? "MANIFEST_MATCH" : "PARTIAL"
   };
