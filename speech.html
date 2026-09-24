@@ -474,12 +474,9 @@ function stopReading(){ if("speechSynthesis" in window) speechSynthesis.cancel()
 window.addEventListener("load",()=>{ loadChat(); refreshSessionList(); });
 </script>
 
-<script src="knowledge-base.js"></script>
-<script src="ontology-loader.js"></script>
-<script src="reasoning-engine.js"></script>
-<script src="article-generator.js"></script>
-<script src="rasterast-validator.js"></script>
-<script src="ai-engine.js"></script>
+<!-- Legacy browser reasoning modules are intentionally not loaded on the live Mira
+     answer surface. They remain in the repository for historical/experimental
+     compatibility; live answers use /api/ask with status-aware RAG. -->
 <script src="js/zanistarast-formal-client.js"></script>
 
 </body>
