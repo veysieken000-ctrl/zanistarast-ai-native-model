@@ -65,6 +65,9 @@ jobs:
       - name: Check RAG ingestion status boundary
         run: node tests/rag_ingestion_status_boundary.mjs
 
+      - name: Check manifest Mira terminology boundary
+        run: node tests/manifest_mira_terminology_boundary.mjs
+
       - name: Check manifest authority boundary
         run: node tests/manifest_authority_boundary.mjs
 
