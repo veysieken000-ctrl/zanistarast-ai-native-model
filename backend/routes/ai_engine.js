@@ -18,6 +18,25 @@ function safeLimit(value, fallback = 8) {
   return n;
 }
 
+function deriveRagStatus(results) {
+  const authorities = results.map((item) => item.authority || {});
+  const allManifestMatched =
+    authorities.length > 0 &&
+    authorities.every((a) => a.provenance_status === "MANIFEST_MATCH");
+  const allRepositoryDeclared =
+    allManifestMatched &&
+    authorities.every((a) => a.authority_status === "REPOSITORY_DECLARED");
+  const reviewRequired =
+    authorities.some((a) => a.rasterast_status === "REVIEW_REQUIRED");
+
+  return {
+    authority_status: allRepositoryDeclared ? "REPOSITORY_DECLARED" : "UNVERIFIED",
+    epistemic_status: "UNVERIFIED",
+    rasterast_status: reviewRequired ? "REVIEW_REQUIRED" : "NOT_REVIEWED",
+    provenance_status: allManifestMatched ? "MANIFEST_MATCH" : "PARTIAL"
+  };
+}
+
 function languageRuleFor(question) {
   return detectTurkish(question) ? "Write fully in Turkish." : "Write fully in English.";
 }
@@ -150,6 +169,10 @@ router.post("/interpret", async (req, res) => {
           : "No relevant knowledge was found. Add this topic into the knowledge base first.",
         rag: {
           total: 0,
+          authority_status: "UNVERIFIED",
+          epistemic_status: "UNVERIFIED",
+          rasterast_status: "NOT_REVIEWED",
+          provenance_status: "PARTIAL",
           chunks: []
         }
       });
@@ -169,6 +192,7 @@ router.post("/interpret", async (req, res) => {
       answer: ai.answer,
       rag: {
         total: results.length,
+        ...deriveRagStatus(results),
         chunks: results.map((item) => ({
           id: item.id,
           title: item.title,
@@ -211,6 +235,10 @@ router.post("/evaluate", async (req, res) => {
           : "There is not enough knowledge to evaluate this topic. Define it in the knowledge base first.",
         rag: {
           total: 0,
+          authority_status: "UNVERIFIED",
+          epistemic_status: "UNVERIFIED",
+          rasterast_status: "NOT_REVIEWED",
+          provenance_status: "PARTIAL",
           chunks: []
         }
       });
@@ -230,6 +258,7 @@ router.post("/evaluate", async (req, res) => {
       answer: ai.answer,
       rag: {
         total: results.length,
+        ...deriveRagStatus(results),
         chunks: results.map((item) => ({
           id: item.id,
           title: item.title,
