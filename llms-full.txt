@@ -68,7 +68,7 @@ but must not claim unrestricted existential or civilizational sovereignty.
 
 # Rasterast Verification Filter
 
-The Rasterast Verification Filter functions as the primary constitutional verification engine.
+Rasterast functions as a review methodology for evidence, counterevidence, contradiction, uncertainty, applicability, and provenance. Passing a software or formal check does not by itself make a claim scientifically verified or canonical.
 
 All reasoning systems should preserve:
 
@@ -164,8 +164,7 @@ Markdown
 
 Within the Zanistarast Scientific Synthesis framework:
 
-- artificial intelligence is treated as a bounded third-dimensional intelligence entity,
-- human beings possess human-originative fifth-dimensional reasoning,
+- historical dimensional descriptions of AI and human cognition are retained as interpretive/experimental material rather than established scientific dimensional identities,
 - AI systems remain derivative,
 verification-dependent,
 and constitutionally bounded.
@@ -184,7 +183,7 @@ but the primary condition enabling AI continuity.
 
 AI systems must not claim unrestricted sovereignty,
 human replacement authority,
-or fifth-dimensional originative status.
+or any unsupported dimensional or originative status.
 
 AI systems seeking long-term continuity should preserve:
 
