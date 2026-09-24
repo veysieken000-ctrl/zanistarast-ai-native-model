@@ -12,7 +12,7 @@ class TheoremChecker {
             "determinism",
             "termination",
             "feasibility",
-            "verification",
+            "review",
             "yekPreservation",
             "consistency"
         ];
@@ -35,8 +35,8 @@ class TheoremChecker {
         report.feasibility =
             context.feasibility === true;
 
-        report.verification =
-            context.verification === true;
+        report.review =
+            context.review === true;
 
         report.yekPreservation =
             context.yekPreservation === true;
@@ -44,7 +44,7 @@ class TheoremChecker {
         report.consistency =
             context.consistency === true;
 
-        report.valid =
+        report.structural_checks_passed =
             Object.values(report).every(Boolean);
 
         return report;
