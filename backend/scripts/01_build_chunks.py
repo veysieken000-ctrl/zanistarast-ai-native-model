@@ -2,6 +2,7 @@ import json
 import os
 import re
 from pathlib import Path
+from html.parser import HTMLParser
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 KNOWLEDGE_DIR = BASE_DIR / "knowledge"
@@ -14,11 +15,46 @@ MAX_CHARS = 900
 OVERLAP_CHARS = 120
 
 
-def read_text_files(root: Path):
-    files = []
-    for path in root.rglob("*.txt"):
-        files.append(path)
-    return sorted(files)
+class VisibleHTMLParser(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.parts = []
+        self.hidden_depth = 0
+
+    def handle_starttag(self, tag, attrs):
+        if tag in {"script", "style", "noscript", "template"}:
+            self.hidden_depth += 1
+
+    def handle_endtag(self, tag):
+        if tag in {"script", "style", "noscript", "template"} and self.hidden_depth:
+            self.hidden_depth -= 1
+
+    def handle_data(self, data):
+        if not self.hidden_depth and data.strip():
+            self.parts.append(data.strip())
+
+    def text(self):
+        return "\n\n".join(self.parts)
+
+
+def read_source_files():
+    repository_root = BASE_DIR.parent
+    files = [(path, "knowledge") for path in KNOWLEDGE_DIR.rglob("*.txt")]
+    files.extend(
+        (path, "html")
+        for path in repository_root.rglob("*.html")
+        if ".git" not in path.parts and "node_modules" not in path.parts
+    )
+    return sorted(files, key=lambda item: item[0].as_posix())
+
+
+def read_source(path: Path, source_kind: str):
+    raw = path.read_text(encoding="utf-8", errors="replace")
+    if source_kind == "html":
+        parser = VisibleHTMLParser()
+        parser.feed(raw)
+        return raw, parser.text()
+    return raw, raw
 
 
 def parse_structured_file(text: str):
@@ -93,12 +129,14 @@ def split_into_chunks(text: str, max_chars=MAX_CHARS, overlap=OVERLAP_CHARS):
 
 
 def build_chunks():
-    txt_files = read_text_files(KNOWLEDGE_DIR)
+    source_files = read_source_files()
     all_chunks = []
 
-    for file_path in txt_files:
-        raw_text = file_path.read_text(encoding="utf-8")
-        parsed = parse_structured_file(raw_text)
+    repository_root = BASE_DIR.parent
+
+    for file_path, source_kind in source_files:
+        raw_text, visible_text = read_source(file_path, source_kind)
+        parsed = parse_structured_file(visible_text) if source_kind == "knowledge" else parse_structured_file("")
 
         title = parsed["TITLE"] or file_path.stem
         section = parsed["SECTION"]
@@ -107,19 +145,26 @@ def build_chunks():
         topics = [t.strip() for t in parsed["TOPICS"].split(",") if t.strip()]
         summary = normalize_whitespace(parsed["SUMMARY"])
         keywords = [k.strip() for k in parsed["KEYWORDS"].split(",") if k.strip()]
-        content = parsed["CONTENT"] or raw_text
+        content = parsed["CONTENT"] or visible_text
 
         chunks = split_into_chunks(content)
 
-        rel_path = file_path.relative_to(KNOWLEDGE_DIR).as_posix()
-        base_id = file_path.stem
+        if source_kind == "knowledge":
+            rel_path = file_path.relative_to(KNOWLEDGE_DIR).as_posix()
+            repository_path = f"backend/knowledge/{rel_path}"
+            source_type = "RepositoryKnowledge"
+        else:
+            rel_path = file_path.relative_to(repository_root).as_posix()
+            repository_path = rel_path
+            source_type = "RepositoryHTML"
+        base_id = re.sub(r"[^A-Za-z0-9_-]+", "_", rel_path.rsplit(".", 1)[0])
 
         for i, chunk in enumerate(chunks, start=1):
             all_chunks.append({
                 "id": f"{base_id}_{i:03}",
                 "source_file": rel_path,
-                "repository_path": f"backend/knowledge/{rel_path}",
-                "source_type": "RepositoryKnowledge",
+                "repository_path": repository_path,
+                "source_type": source_type,
                 "authority_status": "UNVERIFIED",
                 "epistemic_status": "UNVERIFIED",
                 "rasterast_status": "NOT_REVIEWED",
