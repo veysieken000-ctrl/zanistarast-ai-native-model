@@ -19,6 +19,9 @@ assert.equal(result.report.rasterast_status, "NOT_REVIEWED");
 assert.equal(result.report.canonical_authority, false);
 assert.equal(result.report.scientific_proof, false);
 assert.equal(result.accepted, false);
+assert.equal(result.structural_checks_passed, true);
+assert.equal(result.canonical_authority, false);
+assert.equal(result.scientific_proof, false);
 assert.equal("verified" in result.report, false);
 assert.equal("rasterast" in result.report, false);
 
