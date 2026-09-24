@@ -123,9 +123,22 @@ jobs:
           test "$status" = "500"
           grep -q 'OPENAI_API_KEY is missing' /tmp/ask-no-provider.json
 
+          kill "$pid" 2>/dev/null || true
+          wait "$pid" 2>/dev/null || true
+
           NODE_ENV=production INTERNAL_API_TOKEN=test-internal-token node server.js > /tmp/zanistarast-production.log 2>&1 &
           prod_pid=$!
-          sleep 1
+
+          for attempt in {1..20}; do
+            if curl --silent http://127.0.0.1:3000/api/runtime/health > /dev/null; then
+              break
+            fi
+            if ! kill -0 "$prod_pid" 2>/dev/null; then
+              cat /tmp/zanistarast-production.log
+              exit 1
+            fi
+            sleep 1
+          done
 
           for route in runtime/health formal/verify query interpret evaluate; do
             method_args=()
