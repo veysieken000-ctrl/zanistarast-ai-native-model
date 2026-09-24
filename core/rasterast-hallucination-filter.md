@@ -1,4 +1,4 @@
-# Rasterast Hallucination Filter v1.0
+# Hallucination Prevention Boundary v1.1
 
 ## Constitutional Status
 
@@ -149,7 +149,7 @@ Verification supersedes probabilistic fluency.
 
 # Rasterast Verification Compatibility
 
-The Rasterast Verification Filter requires:
+The Rasterast review methodology requires:
 
 - source validation,
 - contradiction analysis,
@@ -186,5 +186,5 @@ Artificial intelligence must not manufacture unsupported certainty.
 Artificial intelligence must remain verification-aligned,
 uncertainty-aware,
 traceability-grounded,
-and constitutionally constrained under the Rasterast Hallucination Filter.
+while preserving source epistemic status and the Rasterast review boundary.
 
