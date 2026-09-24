@@ -77,7 +77,7 @@
       ]
     }
   },
-  "verification_requirements": [
+  "review_requirements": [
     "immutable_compatibility",
     "semantic_consistency",
     "ontology_continuity",
@@ -94,7 +94,7 @@
     "uncertainty disclosure"
   ],
   "ai_guidance": [
-    "verify_before_trust",
+    "review_status_before_use",
     "preserve_traceability",
     "preserve_semantic_consistency",
     "preserve_ontology_integrity",
