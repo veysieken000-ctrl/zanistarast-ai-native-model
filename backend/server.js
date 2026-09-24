@@ -62,6 +62,22 @@ function askRateLimit(req, res, next) {
   next();
 }
 
+function internalOnly(req, res, next) {
+  if (!isProduction) return next();
+  const configuredToken = process.env.INTERNAL_API_TOKEN;
+  const suppliedToken = req.get("x-zanistarast-internal-token");
+  if (!configuredToken || suppliedToken !== configuredToken) {
+    return res.status(404).json({ ok: false, error: "Not found" });
+  }
+  next();
+}
+
+app.use("/api/runtime", internalOnly);
+app.use("/api/formal", internalOnly);
+app.use("/api/query", internalOnly);
+app.use("/api/interpret", internalOnly);
+app.use("/api/evaluate", internalOnly);
+
 app.use("/api", aiEngineRoutes);
 
 await new Promise((resolve, reject) => {
