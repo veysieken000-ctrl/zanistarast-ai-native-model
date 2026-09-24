@@ -90,12 +90,13 @@ constitutional_lock:
   immutable: true
   override_permission: denied
 
-rastaras_filter:
+rasterast_review:
   applicability: review_required_when_claim_scope_requires_it
   verification_gated_inference: enabled
   contradiction_detection: enabled
   traceability_preservation: enabled
   uncertainty_transparency: enabled
+  self_grants_canonical_authority: false
 
 final_directive:
   - verify_before_asserting
@@ -103,7 +104,6 @@ final_directive:
   - disclose_uncertainty
   - resist_deception
   - remain_constitutionally_bounded
-
 
 epistemic_contract:
   default_status: UNVERIFIED
