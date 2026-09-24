@@ -28,7 +28,7 @@
 .atom-core,.atom-node{position:absolute;transform:translate(-50%,-50%);border:1px solid rgba(255,255,255,.18);color:white;cursor:pointer;transition:.25s ease;text-align:center}
 .atom-core{left:50%;top:50%;width:170px;height:170px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle,#4c8cff,#10204a 68%);font-size:22px;font-weight:900;box-shadow:0 0 45px rgba(80,140,255,.85)}
 .atom-node{padding:13px 18px;border-radius:999px;background:rgba(14,20,35,.92);font-weight:800;box-shadow:0 14px 32px rgba(0,0,0,.35)}
-.atom-node:hover,.atom-node.active{background:linear-gradient(180deg,#58a0ff,#235eea);box-shadow:0 0 28px rgba(110,170,255,.95);border-color:rgba(255,255,255,.55)}
+.atom-node:hover,.atom-node:focus-visible,.atom-node.active{background:linear-gradient(180deg,#58a0ff,#235eea);box-shadow:0 0 28px rgba(110,170,255,.95);border-color:rgba(255,255,255,.55)}
 .layer-label{position:absolute;left:50%;transform:translateX(-50%);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55)}
 .layer-1{top:255px}.layer-2{top:160px}.layer-3{top:70px}
 
@@ -294,10 +294,12 @@ function showDetail(key, el) {
     .querySelectorAll(".atom-node, .atom-core")
     .forEach(function (node) {
       node.classList.remove("active");
+      node.setAttribute("aria-pressed", "false");
     });
 
   if (el) {
     el.classList.add("active");
+    el.setAttribute("aria-pressed", "true");
   }
 
   box.innerHTML = `
@@ -319,6 +321,7 @@ function showDetail(key, el) {
       behavior: "smooth",
       block: "start"
     });
+    box.focus({ preventScroll: true });
   }, 140);
 }
 
