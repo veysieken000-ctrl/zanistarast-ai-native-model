@@ -185,7 +185,7 @@ jobs:
           test "$ask_status" = "400"
           grep -q '"answer"' /tmp/prod-ask-empty.json
 
-          for route in runtime/health formal/verify query interpret evaluate; do
+          for route in runtime/health formal/review query interpret evaluate; do
             method_args=()
             if [ "$route" != "runtime/health" ]; then
               method_args=(-H "Content-Type: application/json" -d '{"question":"Zanistarast"}')
