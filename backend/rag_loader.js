@@ -15,13 +15,24 @@ function parseJsonl(text) {
     .map((line) => JSON.parse(line));
 }
 
+function conservativeStatus(item) {
+  return {
+    ...item,
+    source_type: item.source_type || "RepositoryKnowledge",
+    authority_status: item.authority_status || "UNVERIFIED",
+    epistemic_status: item.epistemic_status || "UNVERIFIED",
+    rasterast_status: item.rasterast_status || "NOT_REVIEWED",
+    provenance_status: item.provenance_status || "PARTIAL"
+  };
+}
+
 export function loadProcessedKnowledge() {
   if (!fs.existsSync(DATA_FILE)) {
     return [];
   }
 
   const raw = fs.readFileSync(DATA_FILE, "utf-8");
-  return parseJsonl(raw);
+  return parseJsonl(raw).map(conservativeStatus);
 }
 
 export function getProcessedKnowledgeInfo() {
