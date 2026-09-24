@@ -69,7 +69,7 @@ jobs:
 
           status=$(curl --silent --output /tmp/ask-no-provider.json --write-out "%{http_code}" \
             -H "Content-Type: application/json" \
-            -d '{"question":"Hebun"}' \
+            -d '{"question":"Zanistarast"}' \
             http://127.0.0.1:3000/api/ask)
           test "$status" = "500"
           grep -q 'OPENAI_API_KEY is missing' /tmp/ask-no-provider.json
