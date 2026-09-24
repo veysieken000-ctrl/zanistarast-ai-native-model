@@ -1,5 +1,6 @@
 import express from "express";
 import { buildRagContext } from "../rag_search.js";
+import { buildMiraPrompt } from "../mira_core.js";
 
 const router = express.Router();
 
@@ -17,60 +18,26 @@ function safeLimit(value, fallback = 8) {
   return n;
 }
 
+function languageRuleFor(question) {
+  return detectTurkish(question) ? "Write fully in Turkish." : "Write fully in English.";
+}
+
 function buildInterpretPrompt(question, ragContext) {
-  const wantsTurkish = detectTurkish(question);
-
-  return `
-You are Zanistarast AI operating under Mira epistemic discipline.
-
-RULES:
-1. Retrieved material is context, not proof. Retrieval score never establishes authority or truth.
-2. Preserve the source status shown in the retrieved context. UNVERIFIED material must remain unverified.
-3. Use domain-native scientific terminology. Do not force Hebun, Zanabun, Rasterast, Mabun, Rabun, Tek/Yek, or any fixed layer scheme onto a topic when the evidence does not support it.
-4. Distinguish scientific identity from structural or functional similarity, analogy, pedagogical comparison, ontological interpretation, and research hypothesis.
-5. State uncertainty, missing evidence, and relevant contradictions when material.
-6. Religious, philosophical, historical, legacy, or artistic material must not be presented as empirical scientific evidence merely because it was retrieved.
-7. Yek is an ontological category only; do not use it as a label for an article, topic, method, process, or arbitrary group.
-8. Ehad is not a classification layer.
-9. Give the direct answer first. Add structure only when it improves accuracy.
-
-LANGUAGE:
-${wantsTurkish ? "Write fully in Turkish." : "Write fully in English."}
-
-QUESTION:
-${question}
-
-RETRIEVED CONTEXT WITH SOURCE STATUS:
-${ragContext || "No retrieved context found."}
-`.trim();
+  return buildMiraPrompt({
+    mode: "interpret",
+    question,
+    ragContext,
+    languageRule: languageRuleFor(question)
+  });
 }
 
 function buildEvaluatePrompt(question, ragContext) {
-  const wantsTurkish = detectTurkish(question);
-
-  return `
-You are Zanistarast AI performing a Mira/Rasterast epistemic evaluation.
-
-EVALUATION RULES:
-1. Evaluate claim-to-evidence fit; do not manufacture a binary verdict when evidence is insufficient.
-2. Preserve retrieved authority, epistemic, Rasterast, and provenance status. Similarity score is not authority.
-3. Distinguish: established evidence, contradiction, uncertainty, missing evidence, research hypothesis, interpretation, analogy, and scientific identity.
-4. Use the standards of the actual discipline being evaluated. Do not impose a universal fixed layer or Hebun/Zanabun/Mabun/Rabun checklist.
-5. Identify counterevidence or unresolved contradiction when present.
-6. Religious, philosophical, historical, legacy, and artistic sources retain their own source type and are not automatically empirical scientific evidence.
-7. Yek is ontological only. Ehad is not a classification layer.
-8. Rasterast verifies status and coherence; it must not turn unverified retrieval into proof.
-9. End with an epistemic status and the evidence still required, not a rhetorical "final verdict".
-
-LANGUAGE:
-${wantsTurkish ? "Write fully in Turkish." : "Write fully in English."}
-
-QUESTION:
-${question}
-
-RETRIEVED CONTEXT WITH SOURCE STATUS:
-${ragContext || "No retrieved context found."}
-`.trim();
+  return buildMiraPrompt({
+    mode: "evaluate",
+    question,
+    ragContext,
+    languageRule: languageRuleFor(question)
+  });
 }
 
 async function callOpenAI(systemPrompt, userPrompt, temperature = 0.3) {
