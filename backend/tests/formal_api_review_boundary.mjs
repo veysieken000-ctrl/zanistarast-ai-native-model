@@ -1,0 +1,15 @@
+import assert from "node:assert/strict";
+import fs from "node:fs";
+
+const bootstrap = fs.readFileSync(new URL("../bootstrap/index.js", import.meta.url), "utf8");
+const gateway = fs.readFileSync(new URL("../../api/zanistarast_formal_gateway.js", import.meta.url), "utf8");
+const server = fs.readFileSync(new URL("../server.js", import.meta.url), "utf8");
+
+assert.match(bootstrap, /reviewWithZanistarast/);
+assert.match(bootstrap, /verifyWithZanistarast: reviewWithZanistarast/);
+assert.match(gateway, /reviewWithZanistarast/);
+assert.match(server, /\/api\/formal\/review/);
+assert.doesNotMatch(server, /\/api\/formal\/verify/);
+assert.match(server, /Formal review failed/);
+
+console.log("Formal API review boundary: OK");
