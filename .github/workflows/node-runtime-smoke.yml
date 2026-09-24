@@ -50,6 +50,9 @@ jobs:
       - name: Check operational confidence boundary
         run: node tests/operational_confidence_boundary.mjs
 
+      - name: Check runtime status vocabulary
+        run: node tests/runtime_status_vocabulary.mjs
+
       - name: Check manifest authority boundary
         run: node tests/manifest_authority_boundary.mjs
 
