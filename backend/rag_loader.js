@@ -16,8 +16,14 @@ function parseJsonl(text) {
 }
 
 function conservativeStatus(item) {
+  const sourceFile = String(item.source_file || "").replace(/\\/g, "/");
+  const repositoryPath =
+    item.repository_path ||
+    (sourceFile ? `backend/knowledge/${sourceFile}` : null);
+
   return {
     ...item,
+    repository_path: repositoryPath,
     source_type: item.source_type || "RepositoryKnowledge",
     authority_status: item.authority_status || "UNVERIFIED",
     epistemic_status: item.epistemic_status || "UNVERIFIED",
