@@ -21,7 +21,12 @@ assert.match(css, /\.article-card/);
 assert.match(css, /min-width:\s*0/);
 assert.match(css, /max-width:\s*100%/);
 
+assert.match(css, /NAVIGATION SHAPE LANGUAGE/);
 assert.match(css, /\.layer-grid--primary/);
+assert.match(css, /\.layer-grid--level-2/);
+assert.match(css, /\.layer-grid--level-3/);
+assert.match(css, /border-left:\s*4px solid/);
+assert.match(css, /border-top:\s*3px solid/);
 assert.match(css, /\.layer-grid--secondary/);
 assert.match(paper, /layer-grid layer-grid--primary/);
 assert.match(paper, /layer-grid layer-grid--secondary/);
