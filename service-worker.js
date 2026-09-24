@@ -7,7 +7,12 @@ const CORE_ASSETS = [
   "./graph.html",
   "./speech.html",
   "./repositories.html",
-  "./announcements.html",
+  "./article-system.html",
+  "./hebun.html",
+  "./zanabun.html",
+  "./rasterast.html",
+  "./rabun.html",
+  "./mabun.html",
   "./css/style.css",
   "./components/navbar.html"
 ];
