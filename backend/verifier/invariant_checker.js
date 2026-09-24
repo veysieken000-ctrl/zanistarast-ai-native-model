@@ -10,7 +10,7 @@ class InvariantChecker {
         this.invariants = [
             "admissibility",
             "consistency",
-            "verification",
+            "review",
             "traceability",
             "determinism",
             "canonicalOrder",
@@ -29,8 +29,8 @@ class InvariantChecker {
         report.consistency =
             context.consistency === true;
 
-        report.verification =
-            context.verification === true;
+        report.review =
+            context.review === true;
 
         report.traceability =
             context.traceability === true;
@@ -44,7 +44,7 @@ class InvariantChecker {
         report.yek =
             context.yek === true;
 
-        report.valid =
+        report.structural_checks_passed =
             Object.values(report).every(Boolean);
 
         return report;
