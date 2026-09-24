@@ -31,7 +31,7 @@ class ZanistarastFormalGateway {
 
     }
 
-    verify(request) {
+    review(request) {
 
         if (!this.initialized) {
 
