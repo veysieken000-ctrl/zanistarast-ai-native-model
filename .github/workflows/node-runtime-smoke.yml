@@ -64,6 +64,8 @@ jobs:
             -H "Content-Type: application/json" \
             -d '{"question":""}' \
             http://127.0.0.1:3000/api/ask)
+          echo "ask-empty status=$status"
+          cat /tmp/ask-empty.json
           test "$status" = "400"
           grep -q '"answer"' /tmp/ask-empty.json
 
@@ -71,5 +73,7 @@ jobs:
             -H "Content-Type: application/json" \
             -d '{"question":"Zanistarast"}' \
             http://127.0.0.1:3000/api/ask)
+          echo "ask-no-provider status=$status"
+          cat /tmp/ask-no-provider.json
           test "$status" = "500"
           grep -q 'OPENAI_API_KEY is missing' /tmp/ask-no-provider.json
