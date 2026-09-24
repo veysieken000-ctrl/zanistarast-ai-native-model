@@ -8,33 +8,23 @@ class OptimizationEngine {
     optimize(plan, decision) {
 
         const optimizedPlan = {
-
             ...plan,
-
             optimized: true,
-
-            executionOrder:
-                [...plan.steps],
-
-            confidence:
-                decision.confidence
-
+            executionOrder: [...plan.steps],
+            operational_confidence:
+                decision.operational_confidence,
+            epistemic_status:
+                decision.epistemic_status || "UNVERIFIED"
         };
 
         return optimizedPlan;
-
     }
 
     score(plan) {
 
         return {
-
-            complexity:
-                plan.steps.length,
-
-            optimization:
-                1.0
-
+            complexity: plan.steps.length,
+            optimization: 1.0
         };
 
     }
