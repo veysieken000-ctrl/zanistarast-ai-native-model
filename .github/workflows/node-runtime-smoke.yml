@@ -59,6 +59,9 @@ jobs:
       - name: Check API aggregate authority boundary
         run: node tests/api_aggregate_authority_boundary.mjs
 
+      - name: Check AI route aggregate status
+        run: node tests/ai_route_aggregate_status.mjs
+
       - name: Check manifest authority boundary
         run: node tests/manifest_authority_boundary.mjs
 
