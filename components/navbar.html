@@ -296,6 +296,7 @@ text-align:center;
         e.stopPropagation();
 
         menu.classList.toggle("active");
+        menuBtn.setAttribute("aria-expanded", menu.classList.contains("active") ? "true" : "false");
       }
     );
   }
@@ -329,6 +330,11 @@ text-align:center;
   document.addEventListener(
     "click",
     function(){
+
+      if(menu && menuBtn){
+        menu.classList.remove("active");
+        menuBtn.setAttribute("aria-expanded", "false");
+      }
 
       dropdowns.forEach(function(dropdown){
 
