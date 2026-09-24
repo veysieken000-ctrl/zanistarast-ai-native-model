@@ -11,7 +11,7 @@ function initializeZanistarast(config = {}) {
     return bootstrap.initialize(config);
 }
 
-function verifyWithZanistarast(input) {
+function reviewWithZanistarast(input) {
 
     return bootstrap.verify(input);
 }
@@ -23,7 +23,8 @@ function getZanistarastStatus() {
 
 module.exports = {
     initializeZanistarast,
-    verifyWithZanistarast,
+    reviewWithZanistarast,
+    verifyWithZanistarast: reviewWithZanistarast,
     getZanistarastStatus
 };
 
