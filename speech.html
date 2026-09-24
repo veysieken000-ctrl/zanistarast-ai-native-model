@@ -273,544 +273,179 @@ const languageSelect = document.getElementById("languageSelect");
 const chatBox = document.getElementById("chatBox");
 
 function getAllSessions(){
-  return JSON.parse(localStorage.getItem("zanistarast_sessions") || "{}");
+  try { return JSON.parse(localStorage.getItem("zanistarast_sessions") || "{}"); }
+  catch { return {}; }
 }
+function saveAllSessions(sessions){ localStorage.setItem("zanistarast_sessions", JSON.stringify(sessions)); }
+function saveChat(){ localStorage.setItem("zanistarast_chat", JSON.stringify(chatHistory)); }
 
-function saveAllSessions(sessions){
-  localStorage.setItem("zanistarast_sessions", JSON.stringify(sessions));
-}
-
-function saveChat(){
-  localStorage.setItem("zanistarast_chat", JSON.stringify(chatHistory));
-}
-
-function loadChat(){
-  const data = localStorage.getItem("zanistarast_chat");
-  if(!data) return;
-
-  chatHistory = JSON.parse(data);
+function renderChat(){
   chatBox.innerHTML = "";
-
-  chatHistory.forEach(msg=>{
-    addMessage(msg.type, msg.content, false);
-  });
+  chatHistory.forEach(msg => addMessage(msg.type, msg.content, false));
+}
+function loadChat(){
+  try { chatHistory = JSON.parse(localStorage.getItem("zanistarast_chat") || "[]"); }
+  catch { chatHistory = []; }
+  renderChat();
 }
 
 function addMessage(type, content, save = true){
   const div = document.createElement("div");
   div.className = type === "user" ? "message user-message" : "message ai-message";
 
-  const time = new Date().toLocaleTimeString("tr-TR", {
-    hour:"2-digit",
-    minute:"2-digit"
-  });
+  const contentEl = document.createElement("div");
+  contentEl.className = "message-content";
+  contentEl.textContent = String(content || "");
 
-  div.innerHTML = `
-    <div class="message-content">${content}</div>
-    <div class="message-meta">
-      <span>${time}</span>
-      <button onclick="copyMessage(this)">Kopyala</button>
-      <button onclick="deleteMessage(this)">Sil</button>
-    </div>
-  `;
+  const meta = document.createElement("div");
+  meta.className = "message-meta";
+  const time = document.createElement("span");
+  time.textContent = new Date().toLocaleTimeString(languageSelect.value || "tr-TR", {hour:"2-digit", minute:"2-digit"});
 
+  const copy = document.createElement("button");
+  copy.type = "button";
+  copy.textContent = "Kopyala";
+  copy.addEventListener("click", () => copyMessage(copy));
+
+  const del = document.createElement("button");
+  del.type = "button";
+  del.textContent = "Sil";
+  del.addEventListener("click", () => deleteMessage(del));
+
+  meta.append(time, copy, del);
+  div.append(contentEl, meta);
   chatBox.appendChild(div);
 
-  if(save){
-    chatHistory.push({ type, content });
-    saveChat();
-  }
-
+  if(save){ chatHistory.push({type, content:String(content || "")}); saveChat(); }
   refreshMessageIndexes();
-  div.scrollIntoView({ behavior:"smooth", block:"end" });
+  div.scrollIntoView({behavior:"smooth", block:"end"});
 }
-
 function refreshMessageIndexes(){
-  document.querySelectorAll(".message").forEach((msg, index)=>{
-    msg.dataset.index = index;
-  });
+  document.querySelectorAll(".message").forEach((msg,index)=>{ msg.dataset.index=index; });
 }
-
-function copyMessage(btn){
-  const message = btn.closest(".message").querySelector(".message-content").innerText;
-  navigator.clipboard.writeText(message);
-  btn.innerText = "Kopyalandı";
-  setTimeout(()=> btn.innerText = "Kopyala", 1200);
+async function copyMessage(btn){
+  const message=btn.closest(".message").querySelector(".message-content").innerText;
+  await navigator.clipboard.writeText(message);
+  btn.innerText="Kopyalandı";
+  setTimeout(()=>btn.innerText="Kopyala",1200);
 }
-
 function deleteMessage(btn){
-  const messageDiv = btn.closest(".message");
-  const index = Number(messageDiv.dataset.index);
-
-  chatHistory.splice(index, 1);
-  saveChat();
-
-  chatBox.innerHTML = "";
-  chatHistory.forEach(msg=>{
-    addMessage(msg.type, msg.content, false);
-  });
+  chatHistory.splice(Number(btn.closest(".message").dataset.index),1);
+  saveChat(); renderChat();
 }
 
 function saveChatSession(){
-  const nameInput = document.getElementById("sessionName");
-  const name = nameInput.value.trim() || currentSessionName || "varsayilan";
-
-  const sessions = getAllSessions();
-  sessions[name] = chatHistory;
-
-  saveAllSessions(sessions);
-  currentSessionName = name;
-  refreshSessionList();
-
-  alert("Sohbet kaydedildi: " + name);
+  const name=document.getElementById("sessionName").value.trim() || currentSessionName || "varsayilan";
+  const sessions=getAllSessions(); sessions[name]=chatHistory; saveAllSessions(sessions);
+  currentSessionName=name; refreshSessionList(); alert("Sohbet kaydedildi: "+name);
 }
-
 function refreshSessionList(){
-  const sessionList = document.getElementById("sessionList");
-  const sessions = getAllSessions();
-
-  sessionList.innerHTML = `<option value="">Kayıtlı sohbet seç</option>`;
-
-  Object.keys(sessions).forEach(name=>{
-    const option = document.createElement("option");
-    option.value = name;
-    option.textContent = name;
-    sessionList.appendChild(option);
-  });
+  const list=document.getElementById("sessionList"); list.innerHTML="";
+  const first=document.createElement("option"); first.value=""; first.textContent="Kayıtlı sohbet seç"; list.appendChild(first);
+  Object.keys(getAllSessions()).forEach(name=>{ const o=document.createElement("option"); o.value=name; o.textContent=name; list.appendChild(o); });
 }
-
 function loadSelectedSession(){
-  const sessionList = document.getElementById("sessionList");
-  const name = sessionList.value;
-  if(!name) return;
-
-  const sessions = getAllSessions();
-
-  chatHistory = sessions[name] || [];
-  currentSessionName = name;
-
-  document.getElementById("sessionName").value = name;
-
-  chatBox.innerHTML = "";
-  chatHistory.forEach(msg=>{
-    addMessage(msg.type, msg.content, false);
-  });
-
-  saveChat();
+  const name=document.getElementById("sessionList").value; if(!name) return;
+  chatHistory=getAllSessions()[name] || []; currentSessionName=name;
+  document.getElementById("sessionName").value=name; renderChat(); saveChat();
 }
-
 function deleteSelectedSession(){
-  const sessionList = document.getElementById("sessionList");
-  const name = sessionList.value;
-
-  if(!name){
-    alert("Silmek için önce kayıtlı bir sohbet seç.");
-    return;
-  }
-
-  const ok = confirm("Bu sohbet silinsin mi: " + name + "?");
-  if(!ok) return;
-
-  const sessions = getAllSessions();
-  delete sessions[name];
-
-  saveAllSessions(sessions);
-  refreshSessionList();
-
-  if(currentSessionName === name){
-    newChatSession();
-  }
-
-  alert("Sohbet silindi: " + name);
+  const list=document.getElementById("sessionList"), name=list.value;
+  if(!name){ alert("Silmek için önce kayıtlı bir sohbet seç."); return; }
+  if(!confirm("Bu sohbet silinsin mi: "+name+"?")) return;
+  const sessions=getAllSessions(); delete sessions[name]; saveAllSessions(sessions); refreshSessionList();
+  if(currentSessionName===name) newChatSession();
 }
-
 function newChatSession(){
-  chatHistory = [];
-  currentSessionName = "sohbet-" + new Date().toLocaleString("tr-TR");
-
-  chatBox.innerHTML = "";
-  input.value = "";
-  output.innerHTML = "";
-  suggestions.innerHTML = "";
-  lastAnswer = "";
-
-  document.getElementById("sessionName").value = currentSessionName;
-  localStorage.removeItem("zanistarast_chat");
+  chatHistory=[]; currentSessionName="sohbet-"+new Date().toLocaleString("tr-TR");
+  chatBox.innerHTML=""; input.value=""; output.textContent=""; suggestions.innerHTML=""; lastAnswer="";
+  document.getElementById("sessionName").value=currentSessionName; localStorage.removeItem("zanistarast_chat");
 }
-
+function plainHistory(){
+  return chatHistory.map(msg=>(msg.type==="user"?"Kullanıcı":"Zanistarast AI")+": "+msg.content).join("\n\n");
+}
 function downloadChat(){
-  if(!chatHistory.length){
-    alert("İndirilecek geçmiş yok.");
-    return;
-  }
-
-  const text = chatHistory.map(msg=>{
-    const who = msg.type === "user" ? "Kullanıcı" : "Zanistarast AI";
-    return `${who}: ${msg.content.replace(/<[^>]*>/g, "")}`;
-  }).join("\n\n");
-
-  const blob = new Blob([text], { type:"text/plain;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
-
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "zanistarast-chat-gecmisi.txt";
-  a.click();
-
-  URL.revokeObjectURL(url);
+  if(!chatHistory.length){ alert("İndirilecek geçmiş yok."); return; }
+  const url=URL.createObjectURL(new Blob([plainHistory()],{type:"text/plain;charset=utf-8"}));
+  const a=document.createElement("a"); a.href=url; a.download="zanistarast-chat-gecmisi.txt"; a.click(); URL.revokeObjectURL(url);
+}
+async function copyAllChat(){
+  if(!chatHistory.length){ alert("Kopyalanacak sohbet yok."); return; }
+  await navigator.clipboard.writeText(plainHistory()); alert("Tüm sohbet kopyalandı.");
 }
 
-function copyAllChat(){
-  if(!chatHistory.length){
-    alert("Kopyalanacak sohbet yok.");
-    return;
-  }
-function copyAllChat(){
-  if(!chatHistory.length){
-    alert("Kopyalanacak sohbet yok.");
-    return;
-  }
-
-  const text = chatHistory.map(msg=>{
-    const who = msg.type === "user" ? "Kullanıcı" : "Zanistarast AI";
-    return `${who}: ${msg.content.replace(/<[^>]*>/g, "")}`;
-  }).join("\n\n");
-
-  navigator.clipboard.writeText(text);
-  alert("Tüm sohbet kopyalandı.");
-}
-
-function downloadChat(){
-  if(!chatHistory.length){
-    alert("İndirilecek geçmiş yok.");
-    return;
-  }
-
-  const text = chatHistory.map(msg=>{
-    const who = msg.type === "user" ? "Kullanıcı" : "Zanistarast AI";
-    return `${who}: ${msg.content.replace(/<[^>]*>/g, "")}`;
-  }).join("\n\n");
-
-  const blob = new Blob([text], { type:"text/plain;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
-
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "zanistarast-chat-gecmisi.txt";
-  a.click();
-
-  URL.revokeObjectURL(url);
-}
-
-
-  // ====== HEBUN ======
-  if(s.includes("hebun") || s.includes("hebûn")){
-    return `
-<h3>HEBÛN ONTOLOJİK DÜZENİ</h3>
-
-<p><b>Hebûn</b>, Zanistarast bilimsel sentezinde varlığın temel ontolojik düzenini ifade eder. 
-Bu kavram, varlığın sadece mevcut olmasını değil, aynı zamanda katmanlı bir yapı içerisinde 
-düzenli ve anlamlı bir sistem olarak var olmasını açıklar.</p>
-
-<h4>1. Katmanlı Varlık Yapısı</h4>
-<p>Hebûn, varlığı tek boyutlu değil, çok katmanlı bir yapı olarak ele alır. Bu yapı:</p>
-<ul>
-<li>Fiziksel katman</li>
-<li>Biyolojik katman</li>
-<li>Zihinsel katman</li>
-<li>Ruhsal/derin bilinç katmanı</li>
-<li>İnsani/ahlaki katman</li>
-<li>Ahiret/üst varlık katmanı</li>
-</ul>
-
-<p>Bu sistem <b>6+Ehad</b> yapısı ile tamamlanır. Ehad, tüm katmanların birliğini temsil eder.</p>
-
-<h4>2. Merkez-Çevre İlişkisi</h4>
-<p>Hebûn düzeninde her varlık bir merkez ve o merkeze bağlı bir çevre ile tanımlanır. 
-Merkez anlam üretir, çevre ise bu anlamın yayılımını sağlar.</p>
-
-<h4>3. Dinamik Varlık</h4>
-<p>Hebûn statik bir varlık anlayışı değildir. Sürekli oluş, dönüşüm ve yeniden yapılanma içerir.</p>
-
-<h4>4. Zanistarast İçindeki Yeri</h4>
-<p>Hebûn, sistemin ontolojik temelidir. Üzerine şu yapılar kurulur:</p>
-<ul>
-<li>Zanabûn → Bilgi (epistemoloji)</li>
-<li>Mabûn → Ekonomi / sürdürülebilirlik</li>
-<li>Rabûn → Yönetim modeli</li>
-</ul>
-
-<p><b>Sonuç:</b> Hebûn, varlığın sadece “olduğu” değil, “nasıl ve neden düzen içinde var olduğu” sorusunun cevabıdır.</p>
-`;
-  }
-
-  // ====== ZANİSTARAST ======
-  if(s.includes("zanistarast")){
-    return `
-<h3>ZANİSTARAST BİLİMSEL SENTEZİ</h3>
-
-<p>Zanistarast, ontoloji, epistemoloji ve yönetim sistemlerini tek bir çatı altında birleştiren 
-yapısal bir bilim modelidir.</p>
-
-<h4>1. Temel Yapı</h4>
-<ul>
-<li>Hebûn → Ontolojik düzen</li>
-<li>Zanabûn → Bilgi üretimi</li>
-<li>Mabûn → Ekonomik yapı</li>
-<li>Rabûn → Yönetim modeli</li>
-</ul>
-
-<h4>2. Amaç</h4>
-<p>Doğa ile uyumlu, sürdürülebilir ve doğrulanabilir bir sistem kurmak.</p>
-
-<h4>3. Yöntem</h4>
-<p>Her bilgi önce varlık düzleminde konumlandırılır, sonra merkez-çevre ilişkisi ile analiz edilir.</p>
-
-<h4>4. Sonuç</h4>
-<p>Zanistarast, ideoloji değil; test edilebilir yapısal bir modeldir.</p>
-`;
-  }
-
-  // ====== DEFAULT ======
-  return `
-<h3>ZANİSTARAST ANALİZİ</h3>
-
-<p>Bu konu Zanistarast sisteminde doğrudan cevaplanmaz. Önce varlık düzlemine (Hebûn) yerleştirilir, 
-ardından bilgi (Zanabûn) ve yönetim (Rabûn) ilişkileri ile analiz edilir.</p>
-
-<p>Daha spesifik bir kavram sorarsan, sana makale düzeyinde detaylı açıklama verebilirim.</p>
-`;
-}
 function getSuggestions(q){
-  const s = q.toLowerCase();
-
-  if(s.includes("hebun") || s.includes("hebûn")){
-    return [
-      "Hebûn ile Zanabûn arasındaki fark nedir?",
-      "Hebûn ontolojik düzeni kaç katmandan oluşur?",
-      "6+Ehad yapısı ne anlama gelir?"
-    ];
-  }
-
-  if(s.includes("zanistarast")){
-    return [
-      "Zanistarast bilimsel sentezi nedir?",
-      "Rasterast doğrulama filtresi nasıl çalışır?",
-      "Zanistarast ideolojiden nasıl ayrılır?"
-    ];
-  }
-
-  return [
-    "Bu konuyu Hebûn açısından açıklar mısın?",
-    "Bu konunun Zanabûn bilgi yönü nedir?",
-    "Bu konu Rabûn yönetim modeliyle nasıl ilişkilidir?"
-  ];
+  const text=String(q||"").trim();
+  return text ? [
+    "Bu cevabın kaynakları nelerdir?",
+    "Epistemik statüsü nedir?",
+    "Karşı kanıt veya belirsizlik var mı?"
+  ] : [];
 }
-
 function renderSuggestions(q){
-  const list = getSuggestions(q);
-
-  suggestions.innerHTML = `
-    <h4>Konuyla ilgili şunları da sorabilirsin:</h4>
-    ${list.map(item => `
-      <button onclick="askSuggestion('${item.replace(/'/g, "\\'")}')">${item}</button>
-    `).join("")}
-  `;
+  suggestions.innerHTML="";
+  const list=getSuggestions(q); if(!list.length) return;
+  const title=document.createElement("h4"); title.textContent="Konuyla ilgili şunları da sorabilirsin:"; suggestions.appendChild(title);
+  list.forEach(item=>{ const b=document.createElement("button"); b.type="button"; b.textContent=item; b.addEventListener("click",()=>askSuggestion(item)); suggestions.appendChild(b); });
 }
+function askSuggestion(text){ input.value=text; ask(); }
 
-function askSuggestion(text){
-  input.value = text;
-  ask();
+async function sendMessage(question){
+  const response=await fetch("/api/ask",{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({question, language:languageSelect.value})
+  });
+  let data={};
+  try { data=await response.json(); } catch {}
+  if(!response.ok) throw new Error(data.answer || data.error || "Mira API isteği başarısız.");
+  return String(data.answer || "");
 }
-
-function ask(){
-  const q = input.value.trim();
-  if(!q) return;
-
-  addMessage("user", q);
-  input.value = "";
-  thinking.classList.add("show");
-
-  setTimeout(()=>{
-   lastAnswer = await sendMessage(q);
-    addMessage("ai", lastAnswer);
+async function ask(){
+  const q=input.value.trim(); if(!q) return;
+  addMessage("user",q); input.value=""; thinking.classList.add("show");
+  try {
+    lastAnswer=await sendMessage(q);
+    addMessage("ai",lastAnswer);
     renderSuggestions(q);
-    thinking.classList.remove("show");
-  }, 500);
+  } catch(error) {
+    const message="Mira bağlantısı kurulamadı: "+error.message;
+    output.textContent=message; addMessage("ai",message);
+  } finally { thinking.classList.remove("show"); }
 }
-
-function answer(q) {
-  return zanistarastEngine(q);
-}
-  if(
-    s.includes("newroza") ||
-    s.includes("medeniyet") ||
-    s.includes("uygarlık") ||
-    s.includes("kawa")
-  ){
-    return `
-      <h3>Newroza Kawa Uygarlığı Analizi</h3>
-      <p><b>Newroza Kawa uygarlığı</b>, Zanistarast bilimsel sentezinde insanı, toplumu, bilgiyi, ahlakı ve yönetimi birlikte ele alan yeni bir uygarlık modelidir.</p>
-      <p>Bu modelde cevap önce <b>Hebûn</b> ile varlık zeminine oturtulur; sonra <b>Zanabûn</b> ile bilginin nasıl oluştuğu açıklanır; ardından <b>Mabûn</b> ile etik hafıza korunur; <b>Rabûn</b> ile yaşam, toplum ve yönetim düzenine bağlanır; en sonunda <b>Rasterast doğrulama filtresi</b> ile cevap manipülasyondan, boş slogandan ve tutarsızlıktan arındırılır.</p>
-      <p>Bu yüzden Newroza Kawa yalnızca siyasi ya da kültürel bir kavram değildir. İnsan merkezli, doğaya zarar vermeyen, bilgiyi doğrulayan, ahlakı hafızada tutan ve yönetimi yaşama hizmet ettiren bir uygarlık yönelimidir.</p>
-      <p><b>Sonuç:</b> Newroza Kawa uygarlığı, Zanistarast sisteminde Hebûn’dan Rabûn’a uzanan düzenin toplumsal karşılığıdır.</p>
-    `;
-  }
-
-  if(s.includes("hebun") || s.includes("hebûn")){
-    return `
-      <h3>Hebûn Makale Düzeyi Analizi</h3>
-      <p><b>Hebûn</b>, Zanistarast sisteminde varlığın temel zeminidir. Bir şeyin yalnızca “var” olması yetmez; sınırı, ilişkisi, amacı, katmanı ve etkisiyle anlamlı bir düzene sahip olması gerekir.</p>
-      <p>Bu nedenle Hebûn, her sorunun ilk basamağıdır. Bir konu önce “Bu gerçekten nedir, hangi katmandadır, neyle ilişkilidir?” sorularıyla ele alınır.</p>
-      <p>Hebûn olmadan Zanabûn yani bilgi kurulamaz; bilgi kurulmadan Rabûn yani düzen ve yönetim sağlıklı oluşamaz.</p>
-      <p><b>Sonuç:</b> Hebûn, varlığı sahte, kopuk ve boş anlamlardan ayıran ilk ontolojik filtredir.</p>
-    `;
-  }
-
-  if(s.includes("zanabun") || s.includes("zanabûn")){
-    return `
-      <h3>Zanabûn Makale Düzeyi Analizi</h3>
-      <p><b>Zanabûn</b>, bilginin varlıktan doğmasıdır. Bilgi, varlıktan kopuk bir yorum değil; varlığın izi, ilişkisi, amacı ve düzeni üzerinden oluşan açıklamadır.</p>
-      <p>Zanabûn pozitivist bilimi reddetmez; onu daha geniş bir zemine yerleştirir. Çünkü yalnızca ölçülen şey değil, o ölçümün varlık, ahlak, hayat ve yönetim içindeki anlamı da dikkate alınmalıdır.</p>
-      <p><b>Sonuç:</b> Zanabûn, bilginin insan merkezli, şeffaf ve doğrulanabilir biçimde kurulmasıdır.</p>
-    `;
-  }
-
-  if(s.includes("rabun") || s.includes("rabûn")){
-    return `
-      <h3>Rabûn Makale Düzeyi Analizi</h3>
-      <p><b>Rabûn</b>, bilginin yaşama, topluma ve yönetime uygulanmasıdır. Bir bilgi yalnızca açıklama üretmekle kalmaz; insanı, doğayı, toplumu ve geleceği nasıl etkilediğiyle de değerlendirilir.</p>
-      <p>Rabûn düzeninde yönetim; ekonomi, ahlak, hukuk, eğitim, sağlık ve güvenlik gibi alanları canlı yaşamına zarar vermeden organize etmelidir.</p>
-      <p><b>Sonuç:</b> Rabûn, Zanistarast sisteminde bilginin sorumlu eyleme dönüşmesidir.</p>
-    `;
-  }
-
-  if(s.includes("rasterast")){
-    return `
-      <h3>Rasterast Doğrulama Filtresi</h3>
-      <p><b>Rasterast</b>, cevabın doğru, açık, tutarlı ve manipülasyonsuz olup olmadığını test eden doğrulama katmanıdır.</p>
-      <p>Bir cevap güzel görünse bile yeterli değildir. Hebûn ile uyumlu mu, Zanabûn ile açıklanabilir mi, Mabûn hafızasını bozuyor mu, Rabûn içinde yaşama fayda sağlıyor mu diye kontrol edilir.</p>
-      <p><b>Sonuç:</b> Rasterast, Zanistarast AI sisteminin güvenlik ve doğruluk filtresidir.</p>
-    `;
-  }
-
-  return `
-    <h3>Zanistarast Makale Düzeyi Analiz</h3>
-    <p>Bu soru Zanistarast bilimsel sentezine göre tek cümlelik cevapla kapatılmaz. Sistem önce konunun varlık zeminini, sonra bilgi yönünü, ardından ahlaki hafızasını, yönetim etkisini ve doğrulama katmanını birlikte değerlendirir.</p>
-    <ul>
-      <li><b>Hebûn:</b> Bu şeyin varlık düzeyi nedir?</li>
-      <li><b>Zanabûn:</b> Bu bilgi nasıl oluşur ve açıklanır?</li>
-      <li><b>Mabûn:</b> Etik hafıza ve süreklilik korunuyor mu?</li>
-      <li><b>Rabûn:</b> Bu bilgi yaşama, topluma ve yönetime nasıl uygulanır?</li>
-      <li><b>Rasterast:</b> Cevap açık, doğru ve manipülasyonsuz mu?</li>
-    </ul>
-    <p><b>Sonuç:</b> Bu konu, Newroza Kawa uygarlığı hedefi açısından insanı, toplumu, doğayı ve özgürlüğü güçlendirecek şekilde ele alınmalıdır.</p>
-  `;
-}
-
- 
 
 function readAnswer(){
-  if(!lastAnswer) return;
-
+  if(!lastAnswer || !("speechSynthesis" in window)) return;
   speechSynthesis.cancel();
-  const cleanText = lastAnswer.replace(/<[^>]*>/g, "");
-  const u = new SpeechSynthesisUtterance(cleanText);
-
-  u.lang = languageSelect.value;
-
- if (!('speechSynthesis' in window)) {
-
- alert("Bu cihaz sesli okumayı desteklemiyor.");
-
- return;
-
-}  
-  if(!speechSynthesis.getVoices().find(v => v.lang === u.lang)){
-    u.lang = "en-US";
-  }
-
+  const u=new SpeechSynthesisUtterance(lastAnswer); u.lang=languageSelect.value;
+  if(!speechSynthesis.getVoices().some(v=>v.lang===u.lang)) u.lang="en-US";
   speechSynthesis.speak(u);
 }
-
 function clearBox(){
-  input.value = "";
-  output.innerHTML = "";
-  suggestions.innerHTML = "";
-  chatBox.innerHTML = "";
-  lastAnswer = "";
-  chatHistory = [];
-  localStorage.removeItem("zanistarast_chat");
-  thinking.classList.remove("show");
+  input.value=""; output.textContent=""; suggestions.innerHTML=""; chatBox.innerHTML="";
+  lastAnswer=""; chatHistory=[]; localStorage.removeItem("zanistarast_chat"); thinking.classList.remove("show");
 }
-
 function startListen(){
-  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-  if(!SR){
-    output.innerHTML = "Bu tarayıcı konuşma algılamayı desteklemiyor.";
-    return;
-  }
-
-  recognition = new SR();
-  recognition.lang = languageSelect.value;
-  recognition.interimResults = true;
-
-  recognition.onresult = e=>{
-    let text = "";
-    for(let i=0; i<e.results.length; i++){
-      text += e.results[i][0].transcript;
-    }
-    input.value = text;
-  };
-
+  const SR=window.SpeechRecognition || window.webkitSpeechRecognition;
+  if(!SR){ output.textContent="Bu tarayıcı konuşma algılamayı desteklemiyor."; return; }
+  recognition=new SR(); recognition.lang=languageSelect.value; recognition.interimResults=true;
+  recognition.onresult=e=>{ let text=""; for(let i=0;i<e.results.length;i++) text+=e.results[i][0].transcript; input.value=text; };
   recognition.start();
 }
+function stopListen(){ if(recognition) recognition.stop(); }
 
-function stopListen(){
-  if(recognition) recognition.stop();
+let currentSpeech=null;
+function startReading(){
+  if(!("speechSynthesis" in window)) return;
+  const text=document.querySelector("main")?.innerText || document.querySelector(".panel")?.innerText || document.body.innerText;
+  speechSynthesis.cancel(); currentSpeech=new SpeechSynthesisUtterance(text); currentSpeech.lang=languageSelect.value; speechSynthesis.speak(currentSpeech);
 }
+function pauseReading(){ if("speechSynthesis" in window) speechSynthesis.pause(); }
+function resumeReading(){ if("speechSynthesis" in window) speechSynthesis.resume(); }
+function stopReading(){ if("speechSynthesis" in window) speechSynthesis.cancel(); }
 
-window.onload = function(){
-  loadChat();
-  refreshSessionList();
-};
-
-let currentSpeech = null;
-
-function startReading() {
-
-  const text =
-    document.querySelector("main")?.innerText ||
-    document.querySelector(".panel")?.innerText ||
-    document.body.innerText;
-
-  speechSynthesis.cancel();
-
-  currentSpeech = new SpeechSynthesisUtterance(text);
-
-  currentSpeech.lang = "tr-TR";
-
-  speechSynthesis.speak(currentSpeech);
-}
-
-function pauseReading() {
-
-  speechSynthesis.pause();
-
-}
-
-function resumeReading() {
-
-  speechSynthesis.resume();
-
-}
-
-function stopReading() {
-
-  speechSynthesis.cancel();
-
-}</script>
+window.addEventListener("load",()=>{ loadChat(); refreshSessionList(); });
+</script>
 
 <script src="knowledge-base.js"></script>
 <script src="ontology-loader.js"></script>
