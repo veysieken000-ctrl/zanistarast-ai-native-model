@@ -1,6 +1,9 @@
 /**
  * Zanistarast Formal Client
- * Connects Website to AI Native Model formal verification API
+ * Connects Website to the formal-system inspection API.
+ * IMPORTANT: a successful formal-system response is not scientific proof,
+ * canonical authority, or Rasterast approval. Live Mira answers remain
+ * status-aware through /api/ask.
  */
 
 async function verifyWithZanistarast(payload) {
@@ -17,7 +20,13 @@ async function verifyWithZanistarast(payload) {
         throw new Error("Formal verification request failed.");
     }
 
-    return await response.json();
+    const result = await response.json();
+
+    return {
+        ...result,
+        epistemic_notice:
+            "Formal-system verification is a technical/formal result only; it does not confer scientific proof, canonical authority, or Rasterast approval."
+    };
 }
 
 window.verifyWithZanistarast =
