@@ -2,6 +2,8 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 
 const css = fs.readFileSync(new URL("../../css/style.css", import.meta.url), "utf8");
+const paper = fs.readFileSync(new URL("../../paper.html", import.meta.url), "utf8");
+const theory = fs.readFileSync(new URL("../../theory.html", import.meta.url), "utf8");
 
 assert.match(css, /ZANISTARAST MOBILE QUALITY STANDARD/);
 assert.match(css, /\.hero-card > h1:first-child/);
@@ -12,5 +14,11 @@ assert.match(css, /\.sub-card/);
 assert.match(css, /\.article-card/);
 assert.match(css, /min-width:\s*0/);
 assert.match(css, /max-width:\s*100%/);
+
+assert.match(css, /\.layer-grid--primary/);
+assert.match(css, /\.layer-grid--secondary/);
+assert.match(paper, /layer-grid layer-grid--primary/);
+assert.match(paper, /layer-grid layer-grid--secondary/);
+assert.match(theory, /layer-grid layer-grid--secondary/);
 
 console.log("Mobile UI quality boundary: OK");
