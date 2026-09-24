@@ -1,6 +1,8 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { loadProcessedKnowledge } from "./rag_loader.js";
+import { getEmbedding, rankByEmbedding } from "./embedding.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -192,3 +194,62 @@ ${item.content}`;
 }
 
 
+
+
+export async function buildHybridRagContext(question, k = 8) {
+  const lexical = buildRagContext(question, k);
+  if (!process.env.OPENAI_API_KEY) return lexical;
+
+  const processed = loadProcessedKnowledge().filter(
+    (item) => Array.isArray(item.embedding) && item.embedding.length > 0
+  );
+  if (!processed.length) return lexical;
+
+  try {
+    const queryEmbedding = await getEmbedding(String(question || "").trim());
+    const semantic = rankByEmbedding(queryEmbedding, processed, k);
+    if (!semantic.length) return lexical;
+
+    const lexicalByPath = new Map(
+      lexical.results.map((item) => [item.repositoryPath, item])
+    );
+    const merged = [...lexical.results];
+
+    for (const item of semantic) {
+      const repositoryPath = item.repository_path;
+      if (lexicalByPath.has(repositoryPath)) continue;
+      merged.push({
+        id: item.id,
+        title: item.title || item.source_file || item.id,
+        domain: item.domain || "knowledge",
+        layer: item.layer || "knowledge",
+        repositoryPath,
+        authority: {
+          source_type: item.source_type || "RepositoryKnowledge",
+          authority_status: item.authority_status || "UNVERIFIED",
+          epistemic_status: item.epistemic_status || "UNVERIFIED",
+          rasterast_status: item.rasterast_status || "NOT_REVIEWED",
+          provenance_status: item.provenance_status || "PARTIAL"
+        },
+        content: item.content,
+        score: 0,
+        semantic_score: item.semantic_score
+      });
+    }
+
+    const results = merged.slice(0, k);
+    const context = results.map((item) => {
+      const authority = item.authority || {};
+      return `[SOURCE: ${item.title} | ${item.id}
+AUTHORITY: ${authority.authority_status || "UNVERIFIED"}
+EPISTEMIC: ${authority.epistemic_status || "UNVERIFIED"}
+RASTERAST: ${authority.rasterast_status || "NOT_REVIEWED"}
+PROVENANCE: ${authority.provenance_status || "PARTIAL"}]
+${item.content}`;
+    }).join("\n\n---\n\n");
+
+    return { results, context };
+  } catch {
+    return lexical;
+  }
+}
