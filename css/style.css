@@ -2577,3 +2577,58 @@ transform:translateY(-2px);
     border-radius: 18px !important;
   }
 }
+
+
+/* =========================================================
+   NAVIGATION SHAPE LANGUAGE
+   Same level = same visual grammar; different level = distinct shape.
+   ========================================================= */
+
+/* Level 1 — main gateways: strong, spacious, softly rounded */
+.layer-grid--primary > a,
+.layer-grid--primary > .card {
+  border-radius: 28px;
+  border-width: 1px;
+  position: relative;
+}
+
+/* Level 2 — domains/topics: directional cards with a visible left rail */
+.layer-grid--level-2 > a,
+.layer-grid--level-2 > .card {
+  border-radius: 18px 28px 28px 18px !important;
+  border-left: 4px solid rgba(125, 211, 252, .72) !important;
+  position: relative;
+}
+
+/* Level 3 — article/file leaves: compact document-like shape */
+.layer-grid--level-3 > a,
+.layer-grid--level-3 > .card {
+  border-radius: 12px !important;
+  border-left: 1px solid rgba(148, 163, 184, .22) !important;
+  border-top: 3px solid rgba(148, 163, 184, .42) !important;
+  position: relative;
+}
+
+.layer-grid--level-3 > .card > a,
+.layer-grid--level-2 > .card > a {
+  width: 100%;
+}
+
+@media (max-width: 850px) {
+  .layer-grid--primary > a,
+  .layer-grid--primary > .card {
+    border-radius: 24px !important;
+  }
+
+  .layer-grid--level-2 > a,
+  .layer-grid--level-2 > .card {
+    border-radius: 16px 22px 22px 16px !important;
+    border-left-width: 4px !important;
+  }
+
+  .layer-grid--level-3 > a,
+  .layer-grid--level-3 > .card {
+    border-radius: 10px !important;
+    border-top-width: 3px !important;
+  }
+}
