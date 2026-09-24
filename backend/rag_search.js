@@ -175,7 +175,12 @@ export function buildRagContext(question, k = 8) {
 
   const context = scored
     .map((item) => {
-      return `[${item.title} | ${item.id}]
+      const authority = item.authority || {};
+      return `[SOURCE: ${item.title} | ${item.id}
+AUTHORITY: ${authority.authority_status || "UNVERIFIED"}
+EPISTEMIC: ${authority.epistemic_status || "UNVERIFIED"}
+RASTERAST: ${authority.rasterast_status || "NOT_REVIEWED"}
+PROVENANCE: ${authority.provenance_status || "PARTIAL"}]
 ${item.content}`;
     })
     .join("\n\n---\n\n");
