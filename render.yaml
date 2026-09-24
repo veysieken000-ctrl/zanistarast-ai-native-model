@@ -10,7 +10,7 @@ services:
       - key: NODE_ENV
         value: production
       - key: ALLOWED_ORIGINS
-        value: https://zanistarast.org
+        value: https://zanistarast.org,https://veysieken000-ctrl.github.io
       - key: OPENAI_API_KEY
         sync: false
       - key: INTERNAL_API_TOKEN
