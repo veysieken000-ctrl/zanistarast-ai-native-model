@@ -13,7 +13,7 @@ function initializeZanistarast(config = {}) {
 
 function reviewWithZanistarast(input) {
 
-    return bootstrap.verify(input);
+    return bootstrap.review(input);
 }
 
 function getZanistarastStatus() {
