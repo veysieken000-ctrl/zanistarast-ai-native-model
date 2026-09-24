@@ -29,6 +29,17 @@ app.use(express.json());
 
 app.use("/api", aiEngineRoutes);
 
+await new Promise((resolve, reject) => {
+    runtimeGateway.initialize(
+        { body: {} },
+        {
+            json: resolve,
+            status: () => ({ json: (body) => reject(new Error(body?.error || "Runtime initialization failed")) })
+        }
+    );
+});
+
+
 app.post(
     "/api/runtime/init",
     runtimeGateway.initialize
