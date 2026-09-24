@@ -321,14 +321,14 @@ function deriveResponseStatus(results) {
   const allManifestMatched =
     authorities.length > 0 &&
     authorities.every((a) => a.provenance_status === "MANIFEST_MATCH");
-  const allCanonicalDeclared =
+  const allRepositoryDeclared =
     allManifestMatched &&
-    authorities.every((a) => a.authority_status === "CANONICAL_DECLARED");
+    authorities.every((a) => a.authority_status === "REPOSITORY_DECLARED");
   const reviewRequired =
     authorities.some((a) => a.rasterast_status === "REVIEW_REQUIRED");
 
   return {
-    authority_status: allCanonicalDeclared ? "REPOSITORY_DECLARED" : "UNVERIFIED",
+    authority_status: allRepositoryDeclared ? "REPOSITORY_DECLARED" : "UNVERIFIED",
     epistemic_status: "UNVERIFIED",
     rasterast_status: reviewRequired ? "REVIEW_REQUIRED" : "NOT_REVIEWED",
     provenance_status: allManifestMatched ? "MANIFEST_MATCH" : "PARTIAL"
