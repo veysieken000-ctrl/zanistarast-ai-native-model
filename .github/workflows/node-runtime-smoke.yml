@@ -56,6 +56,9 @@ jobs:
       - name: Check formal API review boundary
         run: node tests/formal_api_review_boundary.mjs
 
+      - name: Check API aggregate authority boundary
+        run: node tests/api_aggregate_authority_boundary.mjs
+
       - name: Check manifest authority boundary
         run: node tests/manifest_authority_boundary.mjs
 
