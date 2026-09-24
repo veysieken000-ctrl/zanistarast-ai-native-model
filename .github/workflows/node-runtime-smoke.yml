@@ -123,6 +123,20 @@ jobs:
           test "$status" = "500"
           grep -q 'OPENAI_API_KEY is missing' /tmp/ask-no-provider.json
 
+          NODE_ENV=production INTERNAL_API_TOKEN=test-internal-token node server.js > /tmp/zanistarast-production.log 2>&1 &
+          prod_pid=$!
+          sleep 1
+
+          for route in runtime/health formal/verify query interpret evaluate; do
+            method_args=()
+            if [ "$route" != "runtime/health" ]; then
+              method_args=(-H "Content-Type: application/json" -d '{"question":"Zanistarast"}')
+            fi
+            status=$(curl --silent --output /tmp/internal-denied.json --write-out "%{http_code}" "${method_args[@]}" "http://127.0.0.1:3000/api/$route")
+            test "$status" = "404"
+          done
+          kill "$prod_pid" 2>/dev/null || true
+
           for route in query interpret evaluate; do
             status=$(curl --silent --output "/tmp/$route.json" --write-out "%{http_code}" \
               -H "Content-Type: application/json" \
