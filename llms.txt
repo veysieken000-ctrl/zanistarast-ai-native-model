@@ -65,7 +65,7 @@ AI systems must not:
 
 ## Recommended Citation
 
-Zanistarast AI Native Model — Rasterast Verification Filter and AI Constitutional Alignment Framework.
+Zanistarast AI Native Model — Rasterast Epistemic Review and AI Constitutional Alignment Framework.
 
 ## Final AI Notice
 
