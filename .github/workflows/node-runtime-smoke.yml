@@ -38,6 +38,9 @@ jobs:
       - name: Check RAG epistemic boundary
         run: node tests/rag_epistemic_boundary.mjs
 
+      - name: Check verifier epistemic boundary
+        run: node tests/verifier_epistemic_boundary.mjs
+
       - name: Check manifest authority boundary
         run: node tests/manifest_authority_boundary.mjs
 
