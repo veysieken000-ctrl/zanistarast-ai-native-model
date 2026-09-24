@@ -105,12 +105,17 @@ jobs:
           assert rows, "processed knowledge export is empty"
 
           for row in rows:
-              assert row["source_type"] == "RepositoryKnowledge"
+              assert row["source_type"] in {"RepositoryKnowledge", "RepositoryHTML"}
               assert row["authority_status"] == "UNVERIFIED"
               assert row["epistemic_status"] == "UNVERIFIED"
               assert row["rasterast_status"] == "NOT_REVIEWED"
               assert row["provenance_status"] == "PARTIAL"
-              assert str(row.get("repository_path") or "").startswith("backend/knowledge/")
+              repository_path = str(row.get("repository_path") or "")
+              assert repository_path
+              if row["source_type"] == "RepositoryKnowledge":
+                  assert repository_path.startswith("backend/knowledge/")
+              else:
+                  assert repository_path.endswith(".html")
 
           print(f"Processed RAG pipeline: OK ({len(rows)} chunks)")
           PY
