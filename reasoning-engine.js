@@ -50,13 +50,13 @@ function classifyQuestion(question) {
     domain: detectDomain(text),
     intent: detectIntent(text),
     depth: text.length > 120 ? "derin" : "orta",
-    zanistarastPath: ["Hebûn", "Zanabûn", "Mabûn", "Rabûn", "Rasterast", "Newroza Kawa"]
+    zanistarastPath: []
   };
 }
 
 function hebunAnalysis(ctx) {
   return `
-Bu sorunun Hebûn katmanı, ele alınan konunun gerçek varlık zeminini belirlemektir.
+Hebûn yalnız ontolojik varlık sorusu gerçekten ilgiliyse ele alınır; bu durumda konunun varlık zemini araştırılır.
 "${ctx.original}" sorusu yalnızca yüzeysel bir bilgi talebi değildir.
 Önce bu konunun ne olduğu, hangi varlık alanına ait olduğu ve hangi bütün içinde anlam kazandığı belirlenmelidir.
 `;
@@ -64,7 +64,7 @@ Bu sorunun Hebûn katmanı, ele alınan konunun gerçek varlık zeminini belirle
 
 function zanabunAnalysis(ctx) {
   return `
-Zanabûn katmanı, bu varlığın nasıl bilineceğini araştırır.
+Zanabûn, epistemik soru gerçekten ilgiliyse bu konunun nasıl bilinebileceğini araştırır.
 Bilgi yalnızca veri toplamak değildir.
 Bilgi; bağlamı, ilişkiyi, sebebi, sonucu ve insan üzerindeki etkisini birlikte kavramaktır.
 `;
@@ -72,7 +72,7 @@ Bilgi; bağlamı, ilişkiyi, sebebi, sonucu ve insan üzerindeki etkisini birlik
 
 function mabunAnalysis(ctx) {
   return `
-Mabûn katmanı, bilginin düzene dönüşmesidir.
+Mabûn yalnız ekonomi/değer/dolaşım alanı gerçekten ilgiliyse kendi alan terminolojisiyle ele alınır.
 Bir bilgi insan, toplum, ahlak ve sistem içinde yerini bulmuyorsa eksik kalır.
 Bu nedenle konu yalnızca teorik değil, düzen kurucu yönüyle de incelenmelidir.
 `;
@@ -80,7 +80,7 @@ Bu nedenle konu yalnızca teorik değil, düzen kurucu yönüyle de incelenmelid
 
 function rabunAnalysis(ctx) {
   return `
-Rabûn katmanı, düzenin eyleme dönüşmesidir.
+Rabûn yalnız yönetim/uygulama alanı gerçekten ilgiliyse kendi alan terminolojisiyle ele alınır.
 Rabûn, Hebûn ontolojisinde zaten var olan düzenin insan dünyasında bilinçli ve yapay olarak kurulmuş hâlidir.
 Bu nedenle her fikir, hayatta nasıl uygulanacağı bakımından değerlendirilmelidir.
 `;
@@ -88,20 +88,18 @@ Bu nedenle her fikir, hayatta nasıl uygulanacağı bakımından değerlendirilm
 
 function rasterastValidation(ctx) {
   return `
-Rasterast doğrulama filtresi şu soruları sorar:
+Rasterast doğrulama metodolojisi, uygulanabildiği ölçüde şu soruları sorar:
 Bu analiz açık mı?
 Çelişki içeriyor mu?
 Manipülasyon var mı?
 İnsana, canlıya veya çevreye zarar veriyor mu?
-Hakikati gizliyor mu, yoksa doğrudan mı gösteriyor?
+Kanıt, karşı-delil, belirsizlik ve epistemik statü açıkça gösteriliyor mu?
 `;
 }
 
 function newrozaImpact(ctx) {
   return `
-Newroza Kawa katmanı, bu bilginin medeniyet kurucu etkisini inceler.
-Eğer bilgi Hebûn'u koruyor, Zanabûn'u üretiyor, Mabûn'u kuruyor, Rabûn'a dönüşüyor ve Rasterast'tan geçiyorsa,
-o bilgi Newroza Kawa uygarlığına hizmet edebilir.
+Newroza Kawa bağlamı yalnız toplumsal/uygarlık etkisi gerçekten ilgiliyse ayrı bir yorum ve uygulama alanı olarak incelenir.
 `;
 }
 function detectLengthPreference(text) {
@@ -132,7 +130,7 @@ function classifyQuestion(question) {
     intent: detectIntent(text),
     length: detectLengthPreference(text),
     depth: text.length > 120 ? "derin" : "orta",
-    zanistarastPath: ["Hebûn", "Zanabûn", "Mabûn", "Rabûn", "Rasterast", "Newroza Kawa"]
+    zanistarastPath: []
   };
 
   ctx.topic = extractTopic(ctx);
