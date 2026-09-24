@@ -147,7 +147,12 @@ router.post("/query", (req, res) => {
         domain: item.domain,
         layer: item.layer,
         score: item.score,
-        summary: item.summary
+        summary: item.summary,
+        source_type: item.authority?.source_type || "RepositoryKnowledge",
+        authority_status: item.authority?.authority_status || "UNVERIFIED",
+        epistemic_status: item.authority?.epistemic_status || "UNVERIFIED",
+        rasterast_status: item.authority?.rasterast_status || "NOT_REVIEWED",
+        provenance_status: item.authority?.provenance_status || "PARTIAL"
       }))
     });
   } catch (_error) {
