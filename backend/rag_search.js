@@ -210,15 +210,18 @@ export async function buildHybridRagContext(question, k = 8) {
     const semantic = rankByEmbedding(queryEmbedding, processed, k);
     if (!semantic.length) return lexical;
 
-    const lexicalByPath = new Map(
-      lexical.results.map((item) => [item.repositoryPath, item])
+    const mergedById = new Map(
+      lexical.results.map((item) => [item.id, item])
     );
-    const merged = [...lexical.results];
 
     for (const item of semantic) {
       const repositoryPath = item.repository_path;
-      if (lexicalByPath.has(repositoryPath)) continue;
-      merged.push({
+      const existing = mergedById.get(item.id);
+      if (existing) {
+        existing.semantic_score = item.semantic_score;
+        continue;
+      }
+      mergedById.set(item.id, {
         id: item.id,
         title: item.title || item.source_file || item.id,
         domain: item.domain || "knowledge",
@@ -237,7 +240,13 @@ export async function buildHybridRagContext(question, k = 8) {
       });
     }
 
-    const results = merged.slice(0, k);
+    const results = [...mergedById.values()]
+      .sort((a, b) => {
+        const aHybrid = (a.score || 0) + (a.semantic_score || 0);
+        const bHybrid = (b.score || 0) + (b.semantic_score || 0);
+        return bHybrid - aHybrid;
+      })
+      .slice(0, k);
     const context = results.map((item) => {
       const authority = item.authority || {};
       return `[SOURCE: ${item.title} | ${item.id}
