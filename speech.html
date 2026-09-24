@@ -415,7 +415,9 @@ function formatMiraResponse(data){
 }
 
 async function sendMessage(question){
-  const response=await fetch(new URL("api/ask", document.baseURI),{
+  const configuredApiBase = document.querySelector('meta[name="zanistarast-api-base"]')?.content?.trim();
+  const apiBase = configuredApiBase || document.baseURI;
+  const response=await fetch(new URL("api/ask", apiBase),{
     method:"POST",
     headers:{"Content-Type":"application/json"},
     body:JSON.stringify({question, language:languageSelect.value})
