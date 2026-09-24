@@ -118,6 +118,12 @@ def build_chunks():
             all_chunks.append({
                 "id": f"{base_id}_{i:03}",
                 "source_file": rel_path,
+                "repository_path": f"backend/knowledge/{rel_path}",
+                "source_type": "RepositoryKnowledge",
+                "authority_status": "UNVERIFIED",
+                "epistemic_status": "UNVERIFIED",
+                "rasterast_status": "NOT_REVIEWED",
+                "provenance_status": "PARTIAL",
                 "title": title,
                 "section": section,
                 "domain": domain,
