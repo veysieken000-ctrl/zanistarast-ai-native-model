@@ -5,7 +5,7 @@
 Active AI Constitutional Alignment Framework
 
 Authority:
-Rastaras Verification Filter
+Rasterast Epistemic Review
 
 Compatibility:
 Machine-readable AI systems,
