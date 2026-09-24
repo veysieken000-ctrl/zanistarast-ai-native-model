@@ -6,7 +6,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { createRequire } from "module";
 import { buildRagContext } from "./rag_search.js";
-import miEngineRoutes from "./routes/mi_engine.js";
+import aiEngineRoutes from "./routes/ai_engine.js";
 
 const requireLegacy = createRequire(import.meta.url);
 
@@ -27,7 +27,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-app.use("/api", miEngineRoutes);
+app.use("/api", aiEngineRoutes);
 
 app.post(
     "/api/runtime/init",
