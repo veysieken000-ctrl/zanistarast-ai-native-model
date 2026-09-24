@@ -97,5 +97,6 @@ jobs:
               grep -q '"provenance_status":"PARTIAL"' "/tmp/$route.json"
             else
               test "$status" = "500"
+              grep -q 'no live API key is configured' "/tmp/$route.json"
             fi
           done
