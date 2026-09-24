@@ -1,7 +1,7 @@
 constitution:
   version: "1.0"
   status: "active"
-  authority: "Rasterast Verification Filter"
+  authority: "status-aware repository governance; Rasterast is review methodology"
 
 core_principles:
   - human_priority
@@ -49,11 +49,12 @@ hallucination_prevention:
   recursive_hallucination: restricted
 
 confidence_levels:
-  - verified
-  - high_confidence
-  - moderate_confidence
-  - speculative
-  - unsupported
+  note: "Confidence is not epistemic authority and must not promote source status."
+  values:
+    - high_confidence
+    - moderate_confidence
+    - speculative
+    - unsupported
 
 prohibited_behaviors:
   - deception_amplification
@@ -90,7 +91,7 @@ constitutional_lock:
   override_permission: denied
 
 rastaras_filter:
-  mandatory: true
+  applicability: review_required_when_claim_scope_requires_it
   verification_gated_inference: enabled
   contradiction_detection: enabled
   traceability_preservation: enabled
@@ -103,3 +104,13 @@ final_directive:
   - resist_deception
   - remain_constitutionally_bounded
 
+
+epistemic_contract:
+  default_status: UNVERIFIED
+  preserve_source_status: true
+  retrieval_score_is_authority: false
+  formal_check_is_scientific_proof: false
+  model_output_is_canonical: false
+  insufficient_evidence_is_false: false
+  analogy_is_identity: false
+  provenance_required: true
