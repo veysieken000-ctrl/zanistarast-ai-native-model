@@ -12,3 +12,7 @@ node_modules/
 
 # Local logs
 *.log
+
+# Generated RAG artifacts
+backend/data/chunks_raw.json
+backend/data/processed_knowledge.jsonl
