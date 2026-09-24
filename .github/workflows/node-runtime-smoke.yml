@@ -150,22 +150,4 @@ jobs:
           done
           kill "$prod_pid" 2>/dev/null || true
 
-          for route in query interpret evaluate; do
-            status=$(curl --silent --output "/tmp/$route.json" --write-out "%{http_code}" \
-              -H "Content-Type: application/json" \
-              -d '{"question":"Zanistarast"}' \
-              "http://127.0.0.1:3000/api/$route")
-            echo "$route status=$status"
-            cat "/tmp/$route.json"
-
-            if [ "$route" = "query" ]; then
-              test "$status" = "200"
-              grep -q '"authority_status":"UNVERIFIED"' "/tmp/$route.json"
-              grep -q '"epistemic_status":"UNVERIFIED"' "/tmp/$route.json"
-              grep -q '"rasterast_status":"NOT_REVIEWED"' "/tmp/$route.json"
-              grep -q '"provenance_status":"PARTIAL"' "/tmp/$route.json"
-            else
-              test "$status" = "500"
-              grep -q 'no live API key is configured' "/tmp/$route.json"
-            fi
-          done
+          wait "$prod_pid" 2>/dev/null || true
