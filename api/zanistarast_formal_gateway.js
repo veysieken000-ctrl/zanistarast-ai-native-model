@@ -5,7 +5,7 @@
 
 const {
     initializeZanistarast,
-    verifyWithZanistarast,
+    reviewWithZanistarast,
     getZanistarastStatus
 } = require("../backend/bootstrap");
 
@@ -39,7 +39,7 @@ class ZanistarastFormalGateway {
 
         }
 
-        return verifyWithZanistarast(request);
+        return reviewWithZanistarast(request);
 
     }
 
