@@ -344,6 +344,10 @@ app.post("/api/ask", async (req, res) => {
           domain: item.domain,
           layer: item.layer,
           retrieval_score: item.score,
+          semantic_score: Number.isFinite(item.semantic_score) ? item.semantic_score : null,
+          retrieval_method: Number.isFinite(item.semantic_score)
+            ? (item.score > 0 ? "HYBRID" : "SEMANTIC")
+            : "LEXICAL",
           provenance: {
             repository_path: item.repositoryPath || `backend/knowledge/${item.title}`,
             chunk_id: item.id,
