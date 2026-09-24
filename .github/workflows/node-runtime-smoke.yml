@@ -53,6 +53,9 @@ jobs:
       - name: Check runtime status vocabulary
         run: node tests/runtime_status_vocabulary.mjs
 
+      - name: Check formal API review boundary
+        run: node tests/formal_api_review_boundary.mjs
+
       - name: Check manifest authority boundary
         run: node tests/manifest_authority_boundary.mjs
 
