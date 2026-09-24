@@ -19,7 +19,7 @@ class ProofVerifier {
             formalEngine.verify();
 
         const spec =
-            specVerifier.verify();
+            specVerifier.check();
 
         return {
             formal,
