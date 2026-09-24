@@ -2,7 +2,7 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20979586.svg)](https://doi.org/10.5281/zenodo.20979586)
 
-Natural science framework integrating ontology, epistemology, validation, AI and civilizational structure.
+Research framework integrating ontology, epistemology, validation, AI, and civilizational models. Scientific, interpretive, historical, and experimental claims retain separate evidence and epistemic status.
 
 ## AI Agent Integration Guide: Asa & Mühür Protocol
 
@@ -13,16 +13,14 @@ Instead, it provides a transparent, testable, external validation layer.
 
 ### Core Principle
 
-Before an AI output is accepted, it should be passed through:
+AI outputs are not accepted as scientific or canonical merely because they pass a software check. The current live boundary requires:
 
-1. **Asa Verification Filter**  
-   Detects hallucination, manipulation, bias, contradiction, and false structure.
+1. **Evidence and provenance inspection** — identify source type, version, and traceability.
+2. **Epistemic-status preservation** — retrieval similarity, formal checks, and model confidence do not raise authority.
+3. **Rasterast review** — inspect evidence, counterevidence, contradictions, uncertainty, and applicability.
+4. **Human governance where required** — canonical or publication decisions remain subject to the repository's review/governance process.
 
-2. **Mühür Authority Seal**  
-   Locks only the verified output into a traceable state record.
-
-3. **Rasterast Validation Layer**  
-   Confirms that the result passed deduction, induction, ethics, fitrah, dimension, and Mabûn checks.
+Legacy Asa/Mühür material below is retained as historical/experimental architecture and must not be interpreted as an automatic truth or authority mechanism.
 
 ### JSON-LD Metadata
 
@@ -129,7 +127,7 @@ Zanistarast Scientific Synthesis is presented here as a natural science framewor
 
 Within this framework, the Newroza-Kawa Civilization is not treated as a cultural ornament or optional narrative layer, but as the civilizational expression of a deeper structural necessity: when ontology, knowledge, responsibility, and validation are correctly aligned, coherent order emerges as a natural requirement rather than an ideological choice.
 
-Zanistarast therefore defines scientific synthesis not as a human-centered negotiation with truth, but as a disciplined effort to align human beings, institutions, and civilizational forms with the laws, limits, and structure of reality. Science does not change according to the human; the human must learn to live according to science. In this sense, the 6+TEK / 6+Ehad principle is presented as a structural requirement of valid order, not as an arbitrary doctrine.
+Zanistarast therefore defines scientific synthesis not as a human-centered negotiation with truth, but as a disciplined effort to align human beings, institutions, and civilizational forms with the laws, limits, and structure of reality. Science does not change according to the human; the human must learn to live according to science. Historical dimensional formulations such as 6+TEK / 6+Ehad are retained for traceability; they are not the live universal scientific classification spine.
 
 ## Core Position
 
@@ -137,7 +135,7 @@ Zanistarast therefore defines scientific synthesis not as a human-centered negot
 - Human systems must be revised to fit reality.
 - Civilizational coherence requires ontological grounding, epistemic validity, structural discipline, and ethical responsibility.
 - The Newroza-Kawa Civilization is presented as the civilizational form of that coherence.
-- 6+TEK / 6+Ehad is treated as a structural principle of order, not as a rhetorical slogan.
+- Historical layer formulas are not treated as automatic scientific proof or universal classification.
 
 A Unified Framework for Modeling Natural, Computational, and Human Systems
 
