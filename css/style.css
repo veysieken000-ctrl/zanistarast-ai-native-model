@@ -2507,3 +2507,40 @@ transform:translateY(-2px);
     font-size: clamp(1.75rem, 8.5vw, 2.25rem) !important;
   }
 }
+
+
+/* Shared layer hierarchy: primary reading layer vs secondary topic layer */
+.layer-grid {
+  width: 100%;
+  min-width: 0;
+}
+
+.layer-grid--primary > .core-reading-card {
+  border-color: rgba(125, 211, 252, .42);
+  box-shadow: 0 22px 60px rgba(8, 145, 178, .18);
+}
+
+.layer-grid--secondary > .card,
+.layer-grid--secondary > .core-reading-card {
+  border-color: rgba(148, 163, 184, .24);
+  box-shadow: 0 16px 42px rgba(0, 0, 0, .24);
+}
+
+@media (max-width: 850px) {
+  .layer-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 16px !important;
+  }
+
+  .layer-grid--primary > .core-reading-card {
+    padding: 22px !important;
+    border-radius: 24px !important;
+  }
+
+  .layer-grid--secondary > .card,
+  .layer-grid--secondary > .core-reading-card {
+    padding: 18px !important;
+    border-radius: 20px !important;
+  }
+}
