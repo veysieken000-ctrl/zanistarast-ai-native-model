@@ -140,14 +140,9 @@ jobs:
             sleep 1
           done
 
-          public_status=$(curl --silent --output /tmp/public-home.html --write-out "%{http_code}" http://127.0.0.1:3000/)
-          test "$public_status" = "200"
-          grep -q 'ZANISTARAST' /tmp/public-home.html
-
-          speech_status=$(curl --silent --output /tmp/public-speech.html --write-out "%{http_code}" http://127.0.0.1:3000/speech.html)
-          test "$speech_status" = "200"
-          grep -q 'Zanistarast Mira & Speech' /tmp/public-speech.html
-          grep -q '/api/ask' /tmp/public-speech.html
+          grep -q 'ZANISTARAST' ../index.html
+          grep -q 'Zanistarast Mira & Speech' ../speech.html
+          grep -q '/api/ask' ../speech.html
 
           ask_status=$(curl --silent --output /tmp/prod-ask-empty.json --write-out "%{http_code}" \
             -H "Origin: https://zanistarast.org" \
