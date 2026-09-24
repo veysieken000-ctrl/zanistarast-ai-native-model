@@ -20,7 +20,9 @@ function loadAuthorityManifest() {
         rules.push({
           layer,
           sourcePath: String(sourcePath).replace(/\\/g, "/"),
-          canonical: config.canonical === true,
+          declaredRepositoryLayer:
+            config.canonical === true || config.canonical === "declared_repository_layer",
+          epistemicAuthority: config.epistemic_authority || null,
           verificationRequired: config.verification_required === true,
           priority: config.priority || null
         });
@@ -53,8 +55,8 @@ function authorityForRepositoryPath(repositoryPath) {
 
   return {
     source_type: match.layer,
-    authority_status: match.canonical ? "CANONICAL_DECLARED" : "EXPERIMENTAL",
-    epistemic_status: match.verificationRequired ? "VERIFICATION_REQUIRED" : "UNVERIFIED",
+    authority_status: match.declaredRepositoryLayer ? "REPOSITORY_DECLARED" : "EXPERIMENTAL",
+    epistemic_status: "UNVERIFIED",
     rasterast_status: match.verificationRequired ? "REVIEW_REQUIRED" : "NOT_REVIEWED",
     provenance_status: "MANIFEST_MATCH",
     manifest_priority: match.priority
