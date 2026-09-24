@@ -48,11 +48,22 @@ app.use((_req, res, next) => {
 });
 
 const askRateBuckets = new Map();
+let lastRateSweep = 0;
 function askRateLimit(req, res, next) {
   const now = Date.now();
   const windowMs = 60_000;
   const maxRequests = 30;
   const key = req.ip || req.socket?.remoteAddress || "unknown";
+
+  if (now - lastRateSweep >= windowMs) {
+    for (const [bucketKey, timestamps] of askRateBuckets) {
+      const active = timestamps.filter(ts => now - ts < windowMs);
+      if (active.length) askRateBuckets.set(bucketKey, active);
+      else askRateBuckets.delete(bucketKey);
+    }
+    lastRateSweep = now;
+  }
+
   const recent = (askRateBuckets.get(key) || []).filter(ts => now - ts < windowMs);
   if (recent.length >= maxRequests) {
     return res.status(429).json({ answer: "Too many requests. Please try again shortly." });
