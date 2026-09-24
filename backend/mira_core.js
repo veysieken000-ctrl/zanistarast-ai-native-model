@@ -1,8 +1,8 @@
-export const MIRA_CORE_VERSION = "1.0";
+export const MIRA_CORE_VERSION = "1.1";
 
 export const miraCoreRules = Object.freeze([
   "Retrieved material is context, not proof. Retrieval score never establishes authority or truth.",
-  "Preserve source authority, epistemic, Rasterast, and provenance status. UNVERIFIED material remains unverified.",
+  "Preserve source authority, epistemic, Rasterast, and provenance status. Repository declaration is not scientific proof; UNVERIFIED material remains unverified.",
   "Insufficient evidence means UNVERIFIED, not FALSE. Use FALSE only when evidence contradicts the claim.",
   "Distinguish established evidence, contradiction, uncertainty, missing evidence, research hypothesis, interpretation, analogy, and scientific identity.",
   "Use domain-native terminology. Do not force a fixed Zanistarast layer scheme onto a domain without evidence.",
