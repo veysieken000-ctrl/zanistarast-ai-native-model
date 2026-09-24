@@ -1,5 +1,8 @@
 /**
- * Proof Verifier
+ * Formal Proof Artifact Checker
+ *
+ * This module checks repository formalization coverage. It does not convert
+ * technical completeness into scientific or canonical verification.
  */
 
 const formalEngine =
@@ -19,17 +22,15 @@ class ProofVerifier {
             specVerifier.verify();
 
         return {
-
             formal,
-
             specification: spec,
-
-            verified:
-
-                formal.verified &&
-
-                spec.valid
-
+            formal_checks_passed:
+                formal.formal_artifacts_complete === true &&
+                spec.valid === true,
+            epistemic_status: "UNVERIFIED",
+            rasterast_status: "NOT_REVIEWED",
+            canonical_authority: false,
+            scientific_proof: false
         };
 
     }
@@ -38,6 +39,3 @@ class ProofVerifier {
 
 module.exports =
     new ProofVerifier();
-
-
-
