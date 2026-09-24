@@ -255,6 +255,25 @@ async function callOpenAI(systemPrompt, userPrompt, temperature = 0.35) {
     };
   }
 }
+function deriveResponseStatus(results) {
+  const authorities = results.map((item) => item.authority || {});
+  const allManifestMatched =
+    authorities.length > 0 &&
+    authorities.every((a) => a.provenance_status === "MANIFEST_MATCH");
+  const allCanonicalDeclared =
+    allManifestMatched &&
+    authorities.every((a) => a.authority_status === "CANONICAL_DECLARED");
+  const reviewRequired =
+    authorities.some((a) => a.rasterast_status === "REVIEW_REQUIRED");
+
+  return {
+    authority_status: allCanonicalDeclared ? "CANONICAL_DECLARED" : "UNVERIFIED",
+    epistemic_status: allCanonicalDeclared ? "VERIFICATION_REQUIRED" : "UNVERIFIED",
+    rasterast_status: reviewRequired ? "REVIEW_REQUIRED" : "NOT_REVIEWED",
+    provenance_status: allManifestMatched ? "MANIFEST_MATCH" : "PARTIAL"
+  };
+}
+
 app.post("/api/ask", async (req, res) => {
   try {
     const question = normalizeText(req.body?.question);
@@ -292,14 +311,16 @@ app.post("/api/ask", async (req, res) => {
     }
 
     const answer = normalizeText(firstPass.answer);
+    const responseStatus = deriveResponseStatus(results);
 
     return res.json({
       answer,
       meta: {
         total: results.length,
-        epistemic_status: "UNVERIFIED",
-        rasterast_status: "NOT_REVIEWED",
-        provenance_status: "PARTIAL",
+        authority_status: responseStatus.authority_status,
+        epistemic_status: responseStatus.epistemic_status,
+        rasterast_status: responseStatus.rasterast_status,
+        provenance_status: responseStatus.provenance_status,
         notice: "Retrieval matches are context candidates; score is not authority or proof.",
         sources: results.map((item) => ({
           id: item.id,
