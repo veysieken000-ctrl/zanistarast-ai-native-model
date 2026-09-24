@@ -36,7 +36,7 @@ jobs:
           for attempt in {1..20}; do
             if curl --fail --silent http://127.0.0.1:3000/api/runtime/health > /tmp/health.json; then
               cat /tmp/health.json
-              exit 0
+              break
             fi
             if ! kill -0 "$pid" 2>/dev/null; then
               cat /tmp/zanistarast-backend.log
@@ -45,5 +45,21 @@ jobs:
             sleep 1
           done
 
-          cat /tmp/zanistarast-backend.log
-          exit 1
+          if ! curl --fail --silent http://127.0.0.1:3000/api/runtime/health > /dev/null; then
+            cat /tmp/zanistarast-backend.log
+            exit 1
+          fi
+
+          status=$(curl --silent --output /tmp/ask-empty.json --write-out "%{http_code}" \
+            -H "Content-Type: application/json" \
+            -d '{"question":""}' \
+            http://127.0.0.1:3000/api/ask)
+          test "$status" = "400"
+          grep -q '"answer"' /tmp/ask-empty.json
+
+          status=$(curl --silent --output /tmp/ask-no-provider.json --write-out "%{http_code}" \
+            -H "Content-Type: application/json" \
+            -d '{"question":"Hebun"}' \
+            http://127.0.0.1:3000/api/ask)
+          test "$status" = "500"
+          grep -q 'OPENAI_API_KEY is missing' /tmp/ask-no-provider.json
