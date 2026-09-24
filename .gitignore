@@ -1,0 +1,14 @@
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+
+# Node dependencies
+node_modules/
+**/node_modules/
+
+# Local logs
+*.log
