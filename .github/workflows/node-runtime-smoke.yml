@@ -47,6 +47,10 @@ jobs:
       - name: Check hybrid RAG fallback
         run: node tests/hybrid_rag_fallback.mjs
 
+      - name: Check hybrid RAG chunk merge
+        run: node tests/hybrid_rag_chunk_merge.mjs
+
+
 
 
 
