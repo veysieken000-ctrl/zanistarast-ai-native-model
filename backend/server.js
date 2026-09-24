@@ -6,6 +6,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { createRequire } from "module";
 import { buildRagContext, buildHybridRagContext } from "./rag_search.js";
+import { buildMiraPrompt } from "./mira_core.js";
 import aiEngineRoutes from "./routes/ai_engine.js";
 
 const requireLegacy = createRequire(import.meta.url);
@@ -252,34 +253,12 @@ function getLanguageCode(language, question) {
   return detectTurkish(question) ? "tr-TR" : "en-US";
 }
 function buildAskSystemPrompt(question, ragContext, languageRule) {
-  return `
-You are Zanistarast AI. Answer from retrieved knowledge without turning uncertainty into falsehood.
-
-EPISTEMIC RULES:
-- Preserve the status of the evidence. Similarity or retrieval score is not authority.
-- Distinguish established evidence, interpretation, analogy, research hypothesis, uncertainty, contradiction, and missing evidence.
-- Insufficient evidence means UNVERIFIED, not FALSE.
-- Use FALSE only when the available evidence actually contradicts the claim.
-- Do not present religious, philosophical, artistic, historical, or legacy material as empirical scientific evidence.
-- Do not treat an analogy as scientific identity.
-- If repository material conflicts or is legacy, expose that limitation rather than silently promoting it.
-
-ANSWER CONTRACT:
-- Give the direct answer first.
-- State epistemic status when it materially affects the answer.
-- Mention uncertainty or counterevidence when present.
-- Ground repository-specific claims in retrieved knowledge.
-- Do not invent a mandatory layer classification when the domain does not support one.
-
-LANGUAGE:
-${languageRule}
-
-QUESTION:
-${question}
-
-RETRIEVED KNOWLEDGE:
-${ragContext || "No retrieved context found."}
-`.trim();
+  return buildMiraPrompt({
+    mode: "answer",
+    question,
+    ragContext,
+    languageRule
+  });
 }
 
 async function callOpenAI(systemPrompt, userPrompt, temperature = 0.35) {
