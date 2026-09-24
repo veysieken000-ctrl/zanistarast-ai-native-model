@@ -118,7 +118,7 @@ app.get(
     runtimeGateway.health
 );
 
-app.post("/api/formal/verify", (req, res) => {
+app.post("/api/formal/review", (req, res) => {
 
     try {
 
@@ -134,7 +134,7 @@ app.post("/api/formal/verify", (req, res) => {
 
         res.status(500).json({
             success: false,
-            error: isProduction ? "Formal verification failed." : err.message
+            error: isProduction ? "Formal review failed." : err.message
         });
 
     }
