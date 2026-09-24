@@ -1,25 +1,26 @@
-async function sendMessage(message) {
+// Compatibility helper for pages that import js/speech.js.
+// Live Mira answers use the same status-aware /api/ask endpoint as speech.html.
+async function sendMessage(question, options = {}) {
+    const configuredApiBase =
+        document.querySelector('meta[name="zanistarast-api-base"]')?.content?.trim();
+    const apiBase = configuredApiBase || document.baseURI;
+    const language =
+        options.language ||
+        document.getElementById("languageSelect")?.value ||
+        "tr-TR";
 
-    const payload = {
+    const response = await fetch(new URL("api/ask", apiBase), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question: String(question || "").trim(), language })
+    });
 
-        ontology: true,
+    let data = {};
+    try { data = await response.json(); } catch {}
 
-        consistent: true,
+    if (!response.ok) {
+        throw new Error(data.answer || data.error || "Mira API request failed.");
+    }
 
-        optimized: true,
-
-        coordinated: true,
-
-        text: message
-
-    };
-
-    const response =
-        await verifyWithZanistarast(payload);
-
-    return response;
-
+    return data;
 }
-
-
-
