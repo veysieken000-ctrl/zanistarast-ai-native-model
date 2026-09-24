@@ -41,6 +41,10 @@ jobs:
       - name: Check embedding retrieval boundary
         run: node tests/embedding_boundary.mjs
 
+      - name: Check embedding build stage
+        run: node tests/embedding_build_stage.mjs
+
+
 
       - name: Check processed RAG pipeline
         run: |
