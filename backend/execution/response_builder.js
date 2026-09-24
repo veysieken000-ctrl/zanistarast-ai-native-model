@@ -1,5 +1,5 @@
 /**
- * Verified Response Builder
+ * Status-Preserving Response Builder
  * ZANISTARAST AI Native Model
  */
 
@@ -13,8 +13,8 @@ class ResponseBuilder {
         const report =
             reportGenerator.generate({
 
-                accepted:
-                    result.success,
+                epistemic_status:
+                    result.verification.epistemic_status || "UNVERIFIED",
 
                 report:
                     result.verification.report,
