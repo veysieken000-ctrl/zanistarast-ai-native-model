@@ -221,9 +221,9 @@ fetch("components/navbar.html")
 
 <section class="atom-stage">
 
-  <div class="layer-label layer-1">1. Katman — Çekirdek Sistem</div>
-  <div class="layer-label layer-2">2. Katman — Yöntem ve Teori</div>
-  <div class="layer-label layer-3">3. Katman — Uygulama ve Toplumsal Alan</div>
+  <div class="layer-label layer-1">Çekirdek Sistem</div>
+  <div class="layer-label layer-2">Yöntem ve Teori</div>
+  <div class="layer-label layer-3">Uygulama ve Toplumsal Alan</div>
 
   <div class="orbit orbit-1"></div>
   <div class="orbit orbit-2"></div>
@@ -257,7 +257,7 @@ fetch("components/navbar.html")
   <a href="theory.html">Theory</a>
   <a href="theses.html">Theses</a>
   <a href="core.html">Core</a>
-  <a href="final.html">Final Katman</a>
+  <a href="final.html">Final Sentez</a>
   <a href="rabun.html">Rabûn</a>
   <a href="mabun.html">Mabûn</a>
   <a href="rasterast.html">Rasterast</a>
@@ -270,7 +270,7 @@ const graphData = {
   zanistarast:{title:"Zanistarast",tanim:"Hebûn, Zanabûn, Rasterast, Rabûn ve Mabûn alanlarını ilişkilendiren bilimsel sentez.",rol:"Merkez çekirdek.",fonksiyon:"Alanlar arası ilişkileri tek araştırma sisteminde görünür kılar.",formul:"Hebûn + Zanabûn + Rasterast + Rabûn + Mabûn → Newroza Kawa",page:"zanistarast.html",related:"Theory, Theses, Core, Final"},
   hebun:{title:"Hebûn",tanim:"Varlığın ontolojik zemini.",rol:"Neyin var olduğunu belirler.",fonksiyon:"Sistemin gerçeklik tabanını kurar.",formul:"Varlık → Zemin → Ontoloji",page:"hebun.html",related:"Ontoloji, Core, Varlık Tarihi"},
   zanabun:{title:"Zanabûn",tanim:"Bilginin oluşumu ve sınanması.",rol:"Gerçekliği bilinebilir hale getirir.",fonksiyon:"Gözlem, ölçüm, veri, model ve yorum arasında bağ kurar.",formul:"Gözlem → Ölçüm → Bilgi → Yorum",page:"zanabun.html",related:"Epistemoloji, Rêya fem û ferasetê"},
-  rasterast:{title:"Rasterast",tanim:"Doğru okuma ve doğrulama filtresi.",rol:"Yanlışı ve çarpıtmayı eler.",fonksiyon:"Bilgi, hukuk, ekonomi ve yönetim kararlarını test eder.",formul:"Girdi → Filtre → Doğru Çıktı",page:"rasterast.html",related:"Doğrulama, hukuk, politika kontrolü"},
+  rasterast:{title:"Rasterast",tanim:"Doğru okuma ve doğrulama filtresi.",rol:"İddiaların doğrulama durumunu izler.",fonksiyon:"Kanıt, karşı-delil ve epistemik statüyü inceleme sürecinde birlikte tutar.",formul:"İddia → Kanıt/Karşı-delil → Statü",page:"rasterast.html",related:"Doğrulama, hukuk, politika kontrolü"},
   rabun:{title:"Rabûn",tanim:"Doğaya uyumlu, geri bildirimli yönetim modeli.",rol:"Sistemin ayağa kalkma düzenidir.",fonksiyon:"Meclisleri, şûrayı ve denetimi dengeler.",formul:"Şûra + Meclis + Rasterast → Dengeli Yönetim",page:"rabun.html",related:"Yönetim, güvenlik, hukuk"},
   mabun:{title:"Mabûn",tanim:"Kaynak, değer ve dolaşım ekonomisi.",rol:"Ekonomik sürekliliği sağlar.",fonksiyon:"Kaynağı hizmete, hizmeti değere, değeri geri dönüşe bağlar.",formul:"Kaynak → Hizmet → Değer → Geri Dönüş",page:"mabun.html",related:"Ekonomi, dolaşım, sürdürülebilirlik"},
   theory:{title:"Theory",tanim:"Zanistarast teorik omurgası.",rol:"Kavramsal düzen sağlar.",fonksiyon:"Alt teorileri sistemleştirir.",formul:"Kavram → Teori → Model",page:"theory.html",related:"Boyut, zaman, biyoloji"},
@@ -282,7 +282,7 @@ const graphData = {
   ai:{title:"AI",tanim:"Veri, modelleme ve öneri üreten araştırma aracı.",rol:"Analitik destek sağlar.",fonksiyon:"Senaryo üretir, risk gösterir; nihai hüküm vermez.",formul:"Veri → Model → Öneri",page:"ai-speech.html",related:"AI-native, Graph"},
   toplum:{title:"Toplum",tanim:"İnsanın aile, eğitim, ahlak, hukuk ve kültür içinde düzen kazandığı alan.",rol:"Ahlakı ortak yaşama taşır.",fonksiyon:"Sevgi, merhamet, adalet ve sorumlulukla denge kurar.",formul:"Birey → Aile → Toplum → Uygarlık",page:"makale-05-siyaset-ve-toplum.html",related:"Ahlak, eğitim, hukuk"},
   ekonomi:{title:"Ekonomi",tanim:"Kaynak, emek, hizmet ve değerin dolaşımı.",rol:"Mabûn uygulama alanı.",fonksiyon:"İsrafı azaltır, kaynakları toplumsal faydaya döndürür.",formul:"Kaynak → Üretim → Hizmet → Denge",page:"mabun.html",related:"Mabûn, ekonomi meclisi"},
-  yonetim:{title:"Yönetim",tanim:"Rabûn’un meclis, şûra ve geri bildirim düzeni.",rol:"Gücü dengeye bağlar.",fonksiyon:"Hüküm, ahlak, güvenlik, hukuk ve ekonomi katmanlarını koordine eder.",formul:"Şûra + Meclis + Geri Bildirim → Yönetim",page:"rabun.html",related:"Rabûn, güvenlik, şûra"}
+  yonetim:{title:"Yönetim",tanim:"Rabûn’un meclis, şûra ve geri bildirim düzeni.",rol:"Gücü dengeye bağlar.",fonksiyon:"Hüküm, ahlak, güvenlik, hukuk ve ekonomi alanlarını koordine eder.",formul:"Şûra + Meclis + Geri Bildirim → Yönetim",page:"rabun.html",related:"Rabûn, güvenlik, şûra"}
 };
 
 function showDetail(key, el) {
@@ -309,7 +309,7 @@ function showDetail(key, el) {
 
     <div class="detail-actions">
       <a href="${item.page}">Sayfaya git</a>
-      <a href="speech.html?prompt=${encodeURIComponent(item.title)}">AI’ye sor</a>
+      <a href="speech.html?prompt=${encodeURIComponent(item.title)}">Mira'ya Sor</a>
     </div>
   `;
 
