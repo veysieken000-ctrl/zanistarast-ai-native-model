@@ -19,7 +19,7 @@ class PlanningEngine {
 
                 "ontology",
 
-                "formal_verification",
+                "formal_artifact_check",
 
                 "reasoning",
 
