@@ -23,6 +23,8 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const isProduction = process.env.NODE_ENV === "production";
+if (isProduction) app.set("trust proxy", 1);
 
 const allowedOrigins = (process.env.ALLOWED_ORIGINS || "https://zanistarast.org")
   .split(",")
@@ -104,7 +106,7 @@ app.post("/api/formal/verify", (req, res) => {
 
         res.status(500).json({
             success: false,
-            error: err.message
+            error: isProduction ? "Formal verification failed." : err.message
         });
 
     }
@@ -359,7 +361,7 @@ app.post("/api/ask", askRateLimit, async (req, res) => {
 
     if (!firstPass.ok) {
       return res.status(500).json({
-        answer: firstPass.error,
+        answer: isProduction ? "Mira provider request failed." : firstPass.error,
       });
     }
 
@@ -400,7 +402,7 @@ app.post("/api/ask", askRateLimit, async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      answer: `Server error: ${error.message}`,
+      answer: isProduction ? "Mira request failed." : `Server error: ${error.message}`,
     });
   }
 });
