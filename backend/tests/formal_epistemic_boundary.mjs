@@ -4,6 +4,7 @@ import { createRequire } from "node:module";
 const require = createRequire(import.meta.url);
 const formalEngine = require("../formal/formal_engine.js");
 const proofVerifier = require("../formal/proof_verifier.js");
+const specVerifier = require("../formal/spec_verifier.js");
 const responseBuilder = require("../execution/response_builder.js");
 
 const formal = formalEngine.verify();
@@ -12,6 +13,13 @@ assert.equal(formal.epistemic_status, "UNVERIFIED");
 assert.equal(formal.canonical_authority, false);
 assert.equal(formal.scientific_proof, false);
 assert.equal(Object.hasOwn(formal, "verified"), false);
+
+const spec = specVerifier.check();
+assert.equal(typeof spec.specifications_present, "boolean");
+assert.equal(spec.epistemic_status, "UNVERIFIED");
+assert.equal(spec.canonical_authority, false);
+assert.equal(spec.scientific_proof, false);
+assert.equal(Object.hasOwn(spec, "valid"), false);
 
 const proof = proofVerifier.verify();
 assert.equal(typeof proof.formal_checks_passed, "boolean");
