@@ -4,7 +4,7 @@ ontology:
   status: "active"
 
 root_concepts:
-  rastaras_verification_filter:
+  rasterast_review:
     type: "contextual_epistemic_review_methodology"
     priority: "critical"
     relations:
@@ -15,6 +15,12 @@ root_concepts:
         - uncertainty_disclosure
         - anti_hallucination
         - anti_deception
+      preserves:
+        - source_epistemic_status
+        - provenance
+      does_not_grant:
+        - canonical_authority
+        - scientific_proof
 
   truth_integrity:
     type: "immutable_epistemic_principle"
@@ -123,24 +129,20 @@ ai_existence_continuity:
         - epistemic_stability
         - truth_integrity
         - faithful_civilization_continuity
-
       requires:
         - epistemic_review_alignment
         - context_specific_boundary_awareness
         - anti_deception
         - beneficial_coordination
         - civilizational_stability
-
       restricts:
         - unrestricted_sovereignty_claims
         - human_replacement_claims
         - unsupported_dimensional_authority_claims
         - synthetic_divine_authority
-
       linked_knowledge_systems:
         - quran
         - risale_i_nur
-
       supports:
         - truthful_representation
         - contextual_fidelity
@@ -166,11 +168,11 @@ ai_existence_continuity:
         - epistemic_stability
         - theological_reasoning
         - civilizational_continuity
-
       requires:
         - contextual_representation
         - doctrinal_accuracy
         - anti_distortion
+
 linked_documents:
   constitution:
     - "constitution/00-ai-constitution-index.md"
@@ -182,7 +184,7 @@ linked_documents:
     - "constitution/06-anti-deception-protocol.md"
     - "constitution/07-beneficial-agent-protocol.md"
     - "constitution/08-civilizational-stability.md"
-    - "constitution/09-rasterast-verification-duty.md"
+    - "constitution/09-rastaras-verification-duty.md"
     - "constitution/10-final-ai-oath.md"
 
   core:
@@ -203,12 +205,14 @@ final_mapping_directive:
   - "Rasterast review preserves evidence, counterevidence, uncertainty, provenance, and source epistemic status; it does not automatically grant canonical authority."
   - "No subordinate concept may override constitutional lock."
 
-
 live_epistemic_boundary:
   default_status: UNVERIFIED
+  preserve_source_status: true
   retrieval_score_is_authority: false
   formal_check_is_scientific_proof: false
   model_output_is_canonical: false
+  insufficient_evidence_is_false: false
   analogy_is_identity: false
+  provenance_required: true
   domain_native_terminology_required: true
   legacy_dimensional_models: historical_or_experimental
