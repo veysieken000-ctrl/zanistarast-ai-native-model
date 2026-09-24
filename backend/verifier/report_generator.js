@@ -1,5 +1,5 @@
 /**
- * Verification Report Generator
+ * Review Report Generator
  * ZANISTARAST AI Native Model
  */
 
@@ -8,12 +8,11 @@ class ReportGenerator {
     generate(results) {
 
         return {
-
             timestamp:
                 new Date().toISOString(),
 
             status:
-                results.accepted ? "VERIFIED" : "REJECTED",
+                results.epistemic_status || "UNVERIFIED",
 
             pipeline:
                 [
@@ -40,14 +39,15 @@ class ReportGenerator {
                 results.yek || null,
 
             summary: {
-                accepted:
-                    results.accepted === true,
-
-                rasterast:
-                    results.report?.rasterast === true,
-
-                verified:
-                    results.report?.verified === true
+                accepted: false,
+                structural_checks_passed:
+                    results.report?.structural_checks_passed === true,
+                rasterast_status:
+                    results.report?.rasterast_status || "NOT_REVIEWED",
+                epistemic_status:
+                    results.report?.epistemic_status || "UNVERIFIED",
+                canonical_authority: false,
+                scientific_proof: false
             }
         };
     }
@@ -55,7 +55,3 @@ class ReportGenerator {
 
 module.exports =
     new ReportGenerator();
-
-
-
-
