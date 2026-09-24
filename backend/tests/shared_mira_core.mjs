@@ -17,7 +17,10 @@ assert.match(prompt, /does not self-grant scientific proof or canonical authorit
 
 const server = fs.readFileSync(new URL("../server.js", import.meta.url), "utf8");
 const engine = fs.readFileSync(new URL("../routes/ai_engine.js", import.meta.url), "utf8");
+const compatibilityPrompt = fs.readFileSync(new URL("../prompt.js", import.meta.url), "utf8");
 assert.match(server, /buildMiraPrompt/);
 assert.match(engine, /buildMiraPrompt/);
+assert.match(compatibilityPrompt, /from "\.\/mira_core\.js"/);
+assert.doesNotMatch(compatibilityPrompt, /6\+Ehad|Qur\x27an as the primary reference|Risale-i Nur as interpretive lens/);
 
 console.log("Shared Mira Core contract: OK");
