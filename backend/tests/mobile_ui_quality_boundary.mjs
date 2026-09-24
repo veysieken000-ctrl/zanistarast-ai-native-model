@@ -41,6 +41,16 @@ for (const page of levelTwoPages) {
   assert.match(page, /data-layer-level="2"/);
   assert.match(page, /name="viewport"/);
 }
+const readingPages = [
+  "../../theory-00-00-framework-core.html",
+  "../../makale-00-katmanli.html"
+].map(path => fs.readFileSync(new URL(path, import.meta.url), "utf8"));
+
+for (const page of readingPages) {
+  assert.doesNotMatch(page, /data-layer-level=/);
+  assert.doesNotMatch(page, /layer-grid--level-[123]/);
+}
+
 for (const page of nestedTheoryFiles) {
   assert.match(page, /layer-grid--level-3/);
   assert.match(page, /data-layer-level="3"/);
