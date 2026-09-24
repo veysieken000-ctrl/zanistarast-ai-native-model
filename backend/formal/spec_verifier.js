@@ -1,5 +1,5 @@
 /**
- * Specification Verifier
+ * Specification Artifact Checker
  */
 
 const specLoader =
@@ -7,7 +7,7 @@ const specLoader =
 
 class SpecVerifier {
 
-    verify() {
+    check() {
 
         const specs =
             specLoader.getAll();
@@ -20,8 +20,12 @@ class SpecVerifier {
             count:
                 Object.keys(specs).length,
 
-            valid:
-                Object.keys(specs).length > 0
+            specifications_present:
+                Object.keys(specs).length > 0,
+
+            epistemic_status: "UNVERIFIED",
+            canonical_authority: false,
+            scientific_proof: false
 
         };
 
