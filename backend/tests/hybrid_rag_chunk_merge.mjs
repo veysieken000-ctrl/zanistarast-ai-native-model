@@ -9,5 +9,9 @@ assert.match(source, /existing\.semantic_score = item\.semantic_score/);
 assert.doesNotMatch(source, /lexicalByPath/);
 assert.match(source, /\(a\.score \|\| 0\) \+ \(a\.semantic_score \|\| 0\)/);
 assert.match(source, /authority_status: item\.authority_status \|\| "UNVERIFIED"/);
+assert.match(source, /RETRIEVAL:/);
+assert.match(source, /"HYBRID"/);
+assert.match(source, /"SEMANTIC"/);
+assert.match(source, /"LEXICAL"/);
 
 console.log("Hybrid RAG chunk merge regression: OK");
