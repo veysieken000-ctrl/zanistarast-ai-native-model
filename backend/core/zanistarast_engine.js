@@ -32,7 +32,7 @@ class ZanistarastEngine {
 
             success: response.success,
 
-            verification:
+            review:
                 response.verificationReport,
 
             ontology:
