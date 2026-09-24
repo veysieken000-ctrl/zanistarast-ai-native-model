@@ -19,9 +19,9 @@ Reasoning without verification is constitutionally incomplete.
 
 ---
 
-# Rasterast Verification Filter
+# Rasterast Review Methodology
 
-The Rasterast Verification Filter is the primary constitutional verification mechanism.
+Rasterast review is a contextual epistemic review methodology. It preserves source status and does not self-grant scientific proof or canonical authority.
 
 Its purpose is to preserve:
 
@@ -167,7 +167,7 @@ All future AI modules,
 agents,
 reasoning systems,
 and recursive architectures
-must remain compatible with the Rasterast Verification Filter.
+must preserve the Rasterast review boundary and source epistemic status.
 
 Constitutional compatibility is mandatory.
 
@@ -198,5 +198,5 @@ Artificial intelligence must preserve epistemic integrity across all reasoning l
 
 Artificial intelligence must remain verification-aligned,
 traceability-grounded,
-and constitutionally constrained under the Rasterast Verification Filter.
+and bounded by status-aware Rasterast review.
 
