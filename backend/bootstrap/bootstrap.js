@@ -8,7 +8,7 @@ const path = require("path");
 const formalRegistry =
     require("../loader/formal_registry");
 
-const verificationPipeline =
+const reviewPipeline =
     require("../verifier/verification_pipeline");
 
 class Bootstrap {
@@ -64,13 +64,13 @@ class Bootstrap {
         };
     }
 
-    verify(input) {
+    review(input) {
 
         if (!this.loaded) {
-            throw new Error("Bootstrap must be initialized before verification.");
+            throw new Error("Bootstrap must be initialized before review.");
         }
 
-        return verificationPipeline.run(input);
+        return reviewPipeline.run(input);
     }
 
     status() {
