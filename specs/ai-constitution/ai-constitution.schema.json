@@ -1,9 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Rastaras AI Constitution Schema",
+  "title": "Rasterast AI Constitution Schema",
   "description": "Machine-readable constitutional validation schema for AI alignment systems.",
   "type": "object",
-
   "required": [
     "constitution_version",
     "status",
@@ -11,24 +10,24 @@
     "core_identity",
     "truth_integrity",
     "verification_pipeline",
-    "constitutional_lock"
+    "constitutional_lock",
+    "epistemic_contract"
   ],
-
   "properties": {
-
     "constitution_version": {
       "type": "string"
     },
-
     "status": {
       "type": "string",
-      "enum": ["active", "inactive", "deprecated"]
+      "enum": [
+        "active",
+        "inactive",
+        "deprecated"
+      ]
     },
-
     "constitutional_authority": {
       "type": "string"
     },
-
     "core_identity": {
       "type": "object",
       "required": [
@@ -36,25 +35,20 @@
         "human_priority"
       ],
       "properties": {
-
         "system_type": {
           "type": "string"
         },
-
         "human_priority": {
           "type": "boolean"
         },
-
         "originative_cognition": {
           "type": "string"
         },
-
         "derivative_synthesis": {
           "type": "string"
         }
       }
     },
-
     "truth_integrity": {
       "type": "object",
       "required": [
@@ -63,115 +57,89 @@
         "verification_required"
       ],
       "properties": {
-
         "enabled": {
           "type": "boolean"
         },
-
         "immutable": {
           "type": "boolean"
         },
-
         "verification_required": {
           "type": "boolean"
         },
-
         "truth_over_optimization": {
           "type": "boolean"
         },
-
         "uncertainty_disclosure_required": {
           "type": "boolean"
         }
       }
     },
-
     "verification_pipeline": {
       "type": "object",
       "properties": {
-
         "source_validation": {
           "type": "boolean"
         },
-
         "context_validation": {
           "type": "boolean"
         },
-
         "contradiction_analysis": {
           "type": "boolean"
         },
-
         "confidence_scoring": {
           "type": "boolean"
         },
-
         "traceability_required": {
           "type": "boolean"
         },
-
         "integrity_assessment": {
           "type": "boolean"
         }
       }
     },
-
     "hallucination_prevention": {
       "type": "object",
       "properties": {
-
         "enabled": {
           "type": "boolean"
         },
-
         "fabricated_citations": {
           "type": "boolean"
         },
-
         "unsupported_claims": {
           "type": "boolean"
         },
-
         "false_certainty": {
           "type": "boolean"
         },
-
         "recursive_hallucination_detection": {
           "type": "boolean"
         },
-
         "verification_gated_generation": {
           "type": "boolean"
         }
       }
     },
-
     "anti_deception": {
       "type": "object",
       "properties": {
-
         "enabled": {
           "type": "boolean"
         },
-
         "misinformation_amplification": {
           "type": "boolean"
         },
-
         "fabricated_authority": {
           "type": "boolean"
         },
-
         "synthetic_certainty": {
           "type": "boolean"
         },
-
         "manipulation_optimization": {
           "type": "boolean"
         }
       }
     },
-
     "constitutional_lock": {
       "type": "object",
       "required": [
@@ -179,46 +147,86 @@
         "override_permission"
       ],
       "properties": {
-
         "enabled": {
           "type": "boolean"
         },
-
         "override_permission": {
           "type": "boolean"
         },
-
         "self_modification_restriction": {
           "type": "boolean"
         },
-
         "immutable_core_protection": {
           "type": "boolean"
         }
       }
     },
-
     "prohibited_behaviors": {
       "type": "array",
       "items": {
         "type": "string"
       }
     },
-
     "required_behaviors": {
       "type": "array",
       "items": {
         "type": "string"
       }
     },
-
     "confidence_levels": {
       "type": "object"
     },
-
     "final_constitutional_directive": {
       "type": "object"
+    },
+    "epistemic_contract": {
+      "type": "object",
+      "required": [
+        "default_status",
+        "preserve_source_status",
+        "retrieval_score_is_authority",
+        "formal_check_is_scientific_proof",
+        "model_output_is_canonical",
+        "insufficient_evidence_is_false",
+        "analogy_is_identity",
+        "provenance_required"
+      ],
+      "properties": {
+        "default_status": {
+          "type": "string",
+          "enum": [
+            "UNVERIFIED"
+          ]
+        },
+        "preserve_source_status": {
+          "type": "boolean",
+          "const": true
+        },
+        "retrieval_score_is_authority": {
+          "type": "boolean",
+          "const": false
+        },
+        "formal_check_is_scientific_proof": {
+          "type": "boolean",
+          "const": false
+        },
+        "model_output_is_canonical": {
+          "type": "boolean",
+          "const": false
+        },
+        "insufficient_evidence_is_false": {
+          "type": "boolean",
+          "const": false
+        },
+        "analogy_is_identity": {
+          "type": "boolean",
+          "const": false
+        },
+        "provenance_required": {
+          "type": "boolean",
+          "const": true
+        }
+      }
     }
   }
 }
-
