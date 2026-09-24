@@ -1,4 +1,4 @@
-const CACHE_NAME = "zanistarast-core-v2";
+const CACHE_NAME = "zanistarast-core-v3";
 
 const CORE_ASSETS = [
   "./",
@@ -14,8 +14,13 @@ const CORE_ASSETS = [
 
 self.addEventListener("install", event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(CORE_ASSETS))
+    caches.open(CACHE_NAME).then(async cache => {
+      await Promise.allSettled(
+        CORE_ASSETS.map(asset => cache.add(asset))
+      );
+    })
   );
+  self.skipWaiting();
 });
 
 self.addEventListener("activate", event => {
