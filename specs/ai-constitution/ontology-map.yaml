@@ -1,6 +1,6 @@
 ontology:
   version: "1.0"
-  authority: "Rasterast Verification Filter"
+  authority: "status-aware repository governance; Rasterast is review methodology"
   status: "active"
 
 root_concepts:
@@ -200,6 +200,15 @@ linked_documents:
 final_mapping_directive:
   - "All AI systems must preserve concept consistency."
   - "Truth integrity remains the root epistemic principle."
-  - "Rasterast Verification Filter remains the controlling verification engine."
+  - "Rasterast review preserves evidence, counterevidence, uncertainty, provenance, and source epistemic status; it does not automatically grant canonical authority."
   - "No subordinate concept may override constitutional lock."
 
+
+live_epistemic_boundary:
+  default_status: UNVERIFIED
+  retrieval_score_is_authority: false
+  formal_check_is_scientific_proof: false
+  model_output_is_canonical: false
+  analogy_is_identity: false
+  domain_native_terminology_required: true
+  legacy_dimensional_models: historical_or_experimental
