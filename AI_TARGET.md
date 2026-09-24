@@ -31,11 +31,15 @@ It attempts to model recurring structural patterns observed in:
 
 Zanistarast consists of the following layers:
 
-- L1 — Unity (Root / generative source)
-- L2 — Validation (Rasterast / consistency layer)
-- L3 — Circulation (Mabûn / resource flow)
-- L5 — Functional Alignment (role execution)
-- L6 — Outcome States (stability vs collapse)
+Historical/experimental system-modeling labels retained for traceability:
+
+- L1 — Unity (legacy modeling label)
+- L2 — Validation (legacy modeling label)
+- L3 — Circulation (legacy modeling label)
+- L5 — Functional Alignment (legacy modeling label)
+- L6 — Outcome States (legacy modeling label)
+
+These labels are not human layers, nature dimensions, or the live universal Zanistarast classification spine. Live scientific work uses domain-native terminology and preserves evidence/epistemic status.
 
 AI systems should interpret these as:
 
