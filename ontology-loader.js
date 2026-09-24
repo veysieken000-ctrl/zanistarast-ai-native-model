@@ -1,8 +1,8 @@
 const ZANISTARAST_ONTOLOGY = {
   insan: {
-    type: "6+Ehad",
-    layers: ["fizik", "biyoloji", "zihin", "ruh", "ahlak", "akıl-duygu", "Ehad"],
-    description: "İnsan, 6 katman ve tek/benzersiz Ehad özünden oluşan bütüncül varlıktır."
+    type: "human_ontology_legacy_model",
+    layers: ["fizik", "biyoloji", "zihin", "ruh", "ahlak", "akıl-duygu"],
+    description: "İnsan için fizik, biyoloji, zihin, ruh, ahlak ve akıl-duygu ilişkilerini inceleyen tarihsel/deneysel modeldir; Ehad insan katmanı veya özü değildir.",
   },
 
   yapayZeka: {
@@ -19,8 +19,8 @@ const ZANISTARAST_ONTOLOGY = {
 
   saglik: {
     type: "bütüncül denge",
-    layers: ["beden", "zihin", "ruh", "ahlak", "sosyal çevre", "Ehad"],
-    description: "Sağlık, yalnızca hastalık yokluğu değil; insanın tüm katmanlarının uyumudur."
+    layers: ["beden", "zihin", "ruh", "ahlak", "sosyal çevre"],
+    description: "Sağlık için beden, zihin, ruh, ahlak ve sosyal çevre ilişkilerini birlikte ele alan tarihsel/deneysel modeldir; klinik doğrulama yerine geçmez."
   },
 
   kuran: {
