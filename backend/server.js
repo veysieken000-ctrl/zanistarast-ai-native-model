@@ -304,15 +304,18 @@ app.post("/api/ask", async (req, res) => {
         sources: results.map((item) => ({
           id: item.id,
           title: item.title,
-          source_type: "RepositoryKnowledge",
-          authority_status: "UNVERIFIED",
-          epistemic_status: "UNVERIFIED",
+          source_type: item.authority?.source_type || "RepositoryKnowledge",
+          authority_status: item.authority?.authority_status || "UNVERIFIED",
+          epistemic_status: item.authority?.epistemic_status || "UNVERIFIED",
+          rasterast_status: item.authority?.rasterast_status || "NOT_REVIEWED",
+          provenance_status: item.authority?.provenance_status || "PARTIAL",
           domain: item.domain,
           layer: item.layer,
           retrieval_score: item.score,
           provenance: {
-            repository_path: `backend/knowledge/${item.title}`,
-            chunk_id: item.id
+            repository_path: item.repositoryPath || `backend/knowledge/${item.title}`,
+            chunk_id: item.id,
+            manifest_priority: item.authority?.manifest_priority || null
           }
         })),
       },
