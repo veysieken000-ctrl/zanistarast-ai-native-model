@@ -8,12 +8,19 @@ OUTPUT_FILE = BASE_DIR / "data" / "processed_knowledge.jsonl"
 
 def normalize_item(item):
     source_file = str(item.get("source_file") or "").replace("\\", "/")
-    repository_path = f"backend/knowledge/{source_file}" if source_file else None
+    source_type = item.get("source_type") or "RepositoryKnowledge"
+    repository_path = item.get("repository_path")
+    if not repository_path and source_file:
+        repository_path = (
+            source_file
+            if source_type == "RepositoryHTML"
+            else f"backend/knowledge/{source_file}"
+        )
 
     return {
         **item,
         "repository_path": repository_path,
-        "source_type": "RepositoryKnowledge",
+        "source_type": source_type,
         "authority_status": "UNVERIFIED",
         "epistemic_status": "UNVERIFIED",
         "rasterast_status": "NOT_REVIEWED",
