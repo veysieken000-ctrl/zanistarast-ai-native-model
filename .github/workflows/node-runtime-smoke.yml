@@ -21,7 +21,11 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: veysieken000-ctrl/zanistarast-formal-foundations
-          path: ../zanistarast-formal-foundations
+          path: zanistarast-formal-foundations
+
+      - name: Place formal foundations at runtime path
+        run: mv zanistarast-formal-foundations ../zanistarast-formal-foundations
+        working-directory: .
 
       - name: Setup Node
         uses: actions/setup-node@v4
