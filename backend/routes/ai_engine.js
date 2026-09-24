@@ -202,7 +202,12 @@ router.post("/interpret", async (req, res) => {
           title: item.title,
           domain: item.domain,
           layer: item.layer,
-          score: item.score
+          score: item.score,
+          source_type: item.authority?.source_type || "RepositoryKnowledge",
+          authority_status: item.authority?.authority_status || "UNVERIFIED",
+          epistemic_status: item.authority?.epistemic_status || "UNVERIFIED",
+          rasterast_status: item.authority?.rasterast_status || "NOT_REVIEWED",
+          provenance_status: item.authority?.provenance_status || "PARTIAL"
         }))
       }
     });
@@ -258,7 +263,12 @@ router.post("/evaluate", async (req, res) => {
           title: item.title,
           domain: item.domain,
           layer: item.layer,
-          score: item.score
+          score: item.score,
+          source_type: item.authority?.source_type || "RepositoryKnowledge",
+          authority_status: item.authority?.authority_status || "UNVERIFIED",
+          epistemic_status: item.authority?.epistemic_status || "UNVERIFIED",
+          rasterast_status: item.authority?.rasterast_status || "NOT_REVIEWED",
+          provenance_status: item.authority?.provenance_status || "PARTIAL"
         }))
       }
     });
