@@ -38,6 +38,10 @@ jobs:
       - name: Check RAG epistemic boundary
         run: node tests/rag_epistemic_boundary.mjs
 
+      - name: Check embedding retrieval boundary
+        run: node tests/embedding_boundary.mjs
+
+
       - name: Check processed RAG pipeline
         run: |
           python3 scripts/01_build_chunks.py
