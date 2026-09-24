@@ -25,7 +25,7 @@ function getDomainIntro(ctx) {
   const intros = {
     teknoloji: `Bu soru ${ctx.topic} alanına aittir. Zanistarast açısından teknoloji yalnızca araç değildir; insanın bilgi, ahlak, yönetim ve medeniyet kurma biçimini değiştiren bir varlık alanıdır.`,
 
-    saglik: `Bu soru ${ctx.topic} alanına aittir. Zanistarast açısından sağlık yalnızca bedenin tamiri değil; fizik, biyoloji, zihin, ruh, ahlak, akıl-duygu ve Ehad bütünlüğünün korunmasıdır.`,
+    saglik: `Bu soru ${ctx.topic} alanına aittir. Zanistarast açısından sağlık yalnızca bedenin tamiri değil; fizik, biyoloji, zihin, ruh, ahlak, akıl-duygu ve insanın ilgili fiziksel, biyolojik, zihinsel, ruhsal ve sosyal boyutlarının alanına uygun biçimde değerlendirilmesidir.`,
 
     din: `Bu soru ${ctx.topic} alanına aittir. Zanistarast yaklaşımında Kur'an; varlık, bilgi, ahlak, hukuk, eğitim, toplum ve medeniyet ilkelerini çok katmanlı biçimde okuma imkânı verir.`,
 
@@ -84,7 +84,7 @@ Hebûn düzeninin farklı ölçeklerdeki izleridir.
 
     ahlak: `
 <p>
-Ahlak alanında Hebûn insanın Ehad tekilliğini tanır.
+Ahlak alanında Hebûn, insanın ontolojik durumunu yalnız ilgili ontolojik iddia bağlamında inceler; Ehad insanın katmanı veya özü değildir.
 Zanabûn insanın acısını, değerini ve sorumluluğunu bilir.
 Mabûn ahlaki düzeni kurar.
 Rabûn merhameti eyleme dönüştürür.
@@ -118,7 +118,7 @@ function buildShortArticle(ctx, parts) {
   <p>${getDomainIntro(ctx)}</p>
 
   <p>
-  Zanistarast zinciri şöyledir:
+  Zanistarast alanları gerektiğinde ilişkilendirilebilir:
   <strong>Hebûn → Zanabûn → Mabûn → Rabûn → Rasterast → Newroza Kawa.</strong>
   </p>
 
@@ -127,7 +127,7 @@ function buildShortArticle(ctx, parts) {
   Zanabûn nasıl bilineceğini açıklar.
   Mabûn bilgiyi düzene bağlar.
   Rabûn bu düzeni uygulamaya taşır.
-  Rasterast bütün süreci hakikat filtresinden geçirir.
+  Rasterast ilgili iddiaların kanıt, karşı-delil, belirsizlik ve epistemik statüsünü inceler.
   Newroza Kawa ise bu bilginin medeniyet ufkunu gösterir.
   </p>
 
@@ -178,8 +178,8 @@ function buildMediumArticle(ctx, parts) {
 
   <h3>Sonuç</h3>
   <p>
-  Bu analiz, konuyu tek boyutlu ele almak yerine Zanistarast zincirinden geçirir.
-  Böylece cevap yalnızca bilgi vermez; varlık, bağlam, düzen, uygulama ve hakikat denetimi sunar.
+  Bu analiz, yalnız konuyla gerçekten ilgili Zanistarast alanlarını ilişkilendirir; sabit bir zinciri zorunlu kılmaz.
+  Böylece cevap, ilgili alanlarda kaynak ve epistemik sınırları görünür tutmayı amaçlar.
   </p>
 </article>`;
 }
@@ -208,8 +208,8 @@ ${buildDeepParagraphs(ctx)}
 
   <p>
   Zanistarast Bilimsel Sentezi'ne göre hiçbir mesele yalnızca görünen yüzüyle açıklanamaz.
-  Her olayın bir varlık zemini, bilgi düzeni, sistemsel sonucu, uygulama biçimi ve hakikat denetimi vardır.
-  Bu nedenle soru ne olursa olsun önce Hebûn ile başlar, sonra Zanabûn'a, Mabûn'a, Rabûn'a ve Rasterast doğrulamasına geçer.
+  Bir olay ontolojik, epistemik, sistemsel veya uygulamalı boyutlar taşıyabilir; hangilerinin ilgili olduğu ayrıca belirlenmelidir.
+  Bu alanlar yalnız soruyla gerçekten ilgili olduklarında kullanılır; hiçbir soru sabit bir Hebûn–Zanabûn–Mabûn–Rabûn zincirine zorlanmaz.
   </p>
 
   ${getDomainExamples(ctx)}
