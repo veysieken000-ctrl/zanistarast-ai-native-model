@@ -1,6 +1,8 @@
 /**
  * Simulation Engine
  * ZANISTARAST AI Native Model
+ *
+ * Simulation completion is operational only; it carries no epistemic authority.
  */
 
 class SimulationEngine {
@@ -8,23 +10,18 @@ class SimulationEngine {
     simulate(plan) {
 
         return {
-
             executed: true,
-
             steps:
-
                 plan.steps.map((step,index)=>({
-
                     id:index+1,
-
                     name:step,
-
                     status:"completed"
-
                 })),
-
-            success:true
-
+            operational_success: true,
+            epistemic_status:
+                plan.epistemic_status || "UNVERIFIED",
+            canonical_authority: false,
+            scientific_proof: false
         };
 
     }
@@ -33,6 +30,3 @@ class SimulationEngine {
 
 module.exports =
     new SimulationEngine();
-
-
-
