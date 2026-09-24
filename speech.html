@@ -232,7 +232,7 @@ button{padding:12px 18px;border:0;border-radius:12px;margin:10px 8px 0 0;cursor:
   <option value="gu-IN">ગુજરાતી</option>
 </select>
  <div class="session-tools">
-  <input id="sessionName" placeholder="Sohbet adı yaz..." />
+  <input id="sessionName" aria-label="Sohbet adı" placeholder="Sohbet adı yaz..." />
   <button onclick="newChatSession()">Yeni Sohbet</button>
   <button onclick="saveChatSession()">Sohbeti Kaydet</button>
   <select id="sessionList" onchange="loadSelectedSession()">
@@ -245,7 +245,7 @@ button{padding:12px 18px;border:0;border-radius:12px;margin:10px 8px 0 0;cursor:
 
 <div id="suggestions" class="suggestions"></div>
 
-<textarea id="input" placeholder="Bir şey yaz veya konuş..."></textarea>
+<textarea id="input" aria-label="Mira'ya sorunuz" placeholder="Bir şey yaz veya konuş..."></textarea>
 
 <div>
   <button class="start" onclick="startListen()"> Başla</button>
