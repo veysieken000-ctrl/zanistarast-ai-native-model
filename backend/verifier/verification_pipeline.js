@@ -1,6 +1,6 @@
 /**
- * Canonical Verification Pipeline
- * Hebûn → Zanabûn → Mabûn → Rabûn → Rasterast
+ * Structural Review Pipeline
+ * Hebûn → Zanabûn → Mabûn → Rabûn → Rasterast review boundary
  */
 
 const rasterastVerifier =
@@ -19,7 +19,9 @@ class VerificationPipeline {
             input,
             context,
             report,
-            accepted: report.verified === true
+            accepted: false,
+            epistemic_status: report.epistemic_status,
+            rasterast_status: report.rasterast_status
         };
     }
 
@@ -37,6 +39,3 @@ class VerificationPipeline {
 
 module.exports =
     new VerificationPipeline();
-
-
-
