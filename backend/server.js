@@ -37,6 +37,29 @@ app.use(cors({
 }));
 app.use(express.json({ limit: "1mb" }));
 
+app.use((_req, res, next) => {
+  res.setHeader("X-Content-Type-Options", "nosniff");
+  res.setHeader("X-Frame-Options", "DENY");
+  res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+  res.setHeader("Permissions-Policy", "camera=(), geolocation=(), payment=()");
+  next();
+});
+
+const askRateBuckets = new Map();
+function askRateLimit(req, res, next) {
+  const now = Date.now();
+  const windowMs = 60_000;
+  const maxRequests = 30;
+  const key = req.ip || req.socket?.remoteAddress || "unknown";
+  const recent = (askRateBuckets.get(key) || []).filter(ts => now - ts < windowMs);
+  if (recent.length >= maxRequests) {
+    return res.status(429).json({ answer: "Too many requests. Please try again shortly." });
+  }
+  recent.push(now);
+  askRateBuckets.set(key, recent);
+  next();
+}
+
 app.use("/api", aiEngineRoutes);
 
 await new Promise((resolve, reject) => {
@@ -304,7 +327,7 @@ function deriveResponseStatus(results) {
   };
 }
 
-app.post("/api/ask", async (req, res) => {
+app.post("/api/ask", askRateLimit, async (req, res) => {
   try {
     const question = normalizeText(req.body?.question);
     const language = getLanguageCode(req.body?.language, question);
