@@ -182,7 +182,8 @@ export function buildRagContext(question, k = 8) {
 AUTHORITY: ${authority.authority_status || "UNVERIFIED"}
 EPISTEMIC: ${authority.epistemic_status || "UNVERIFIED"}
 RASTERAST: ${authority.rasterast_status || "NOT_REVIEWED"}
-PROVENANCE: ${authority.provenance_status || "PARTIAL"}]
+PROVENANCE: ${authority.provenance_status || "PARTIAL"}
+RETRIEVAL: ${Number.isFinite(item.semantic_score) ? (item.score > 0 ? "HYBRID" : "SEMANTIC") : "LEXICAL"}]
 ${item.content}`;
     })
     .join("\n\n---\n\n");
