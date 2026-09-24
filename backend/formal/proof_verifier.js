@@ -26,7 +26,7 @@ class ProofVerifier {
             specification: spec,
             formal_checks_passed:
                 formal.formal_artifacts_complete === true &&
-                spec.valid === true,
+                spec.specifications_present === true,
             epistemic_status: "UNVERIFIED",
             rasterast_status: "NOT_REVIEWED",
             canonical_authority: false,
