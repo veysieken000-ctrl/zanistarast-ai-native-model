@@ -12,6 +12,11 @@ for (const source of [chunkBuilder, exporter, loader]) {
   assert.match(source, /provenance_status/);
 }
 assert.match(chunkBuilder, /repository_path/);
+assert.match(chunkBuilder, /rglob\("\*\.html"\)/);
+assert.match(chunkBuilder, /RepositoryHTML/);
+assert.match(chunkBuilder, /VisibleHTMLParser/);
+assert.match(exporter, /RepositoryHTML/);
+assert.match(loader, /RepositoryHTML/);
 assert.match(exporter, /repository_path/);
 assert.match(loader, /repository_path/);
 
