@@ -5,6 +5,59 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const KNOWLEDGE_DIR = path.join(__dirname, "knowledge");
+const REPO_ROOT = path.resolve(__dirname, "..");
+const INGESTION_MANIFEST = path.join(REPO_ROOT, "structured-ingestion-manifest.json");
+
+function loadAuthorityManifest() {
+  try {
+    const raw = fs.readFileSync(INGESTION_MANIFEST, "utf8").replace(/^\s*JSON\s*/, "");
+    const manifest = JSON.parse(raw);
+    const rules = [];
+    for (const [layer, config] of Object.entries(manifest.layers || {})) {
+      for (const sourcePath of config.paths || []) {
+        rules.push({
+          layer,
+          sourcePath: String(sourcePath).replace(/\\/g, "/"),
+          canonical: config.canonical === true,
+          verificationRequired: config.verification_required === true,
+          priority: config.priority || null
+        });
+      }
+    }
+    return rules;
+  } catch {
+    return [];
+  }
+}
+
+const authorityRules = loadAuthorityManifest();
+
+function authorityForRepositoryPath(repositoryPath) {
+  const normalized = String(repositoryPath || "").replace(/\\/g, "/");
+  const match = authorityRules.find((rule) => {
+    if (rule.sourcePath.endsWith("/")) return normalized.startsWith(rule.sourcePath);
+    return normalized === rule.sourcePath;
+  });
+
+  if (!match) {
+    return {
+      source_type: "RepositoryKnowledge",
+      authority_status: "UNVERIFIED",
+      epistemic_status: "UNVERIFIED",
+      rasterast_status: "NOT_REVIEWED",
+      provenance_status: "PARTIAL"
+    };
+  }
+
+  return {
+    source_type: match.layer,
+    authority_status: match.canonical ? "CANONICAL_DECLARED" : "EXPERIMENTAL",
+    epistemic_status: match.verificationRequired ? "VERIFICATION_REQUIRED" : "UNVERIFIED",
+    rasterast_status: match.verificationRequired ? "REVIEW_REQUIRED" : "NOT_REVIEWED",
+    provenance_status: "MANIFEST_MATCH",
+    manifest_priority: match.priority
+  };
+}
 
 function normalizeText(value) {
   return String(value || "")
@@ -63,11 +116,14 @@ function loadKnowledgeChunks() {
     const parts = splitIntoChunks(raw);
 
     parts.forEach((content, index) => {
+      const repositoryPath = `backend/knowledge/${file}`;
       chunks.push({
         id: `${file}#${index + 1}`,
         title: file,
         domain: "knowledge",
         layer: "knowledge",
+        repositoryPath,
+        authority: authorityForRepositoryPath(repositoryPath),
         content
       });
     });
