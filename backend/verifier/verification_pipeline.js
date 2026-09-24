@@ -21,7 +21,10 @@ class VerificationPipeline {
             report,
             accepted: false,
             epistemic_status: report.epistemic_status,
-            rasterast_status: report.rasterast_status
+            rasterast_status: report.rasterast_status,
+            structural_checks_passed: report.structural_checks_passed === true,
+            canonical_authority: false,
+            scientific_proof: false
         };
     }
 
