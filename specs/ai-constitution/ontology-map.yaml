@@ -5,12 +5,12 @@ ontology:
 
 root_concepts:
   rastaras_verification_filter:
-    type: "constitutional_verification_engine"
+    type: "contextual_epistemic_review_methodology"
     priority: "critical"
     relations:
       enforces:
         - truth_integrity
-        - verification_before_assertion
+        - evidence_before_assertion
         - contradiction_resistance
         - uncertainty_disclosure
         - anti_hallucination
@@ -84,7 +84,7 @@ root_concepts:
       requires:
         - uncertainty_disclosure
         - confidence_scoring
-        - verification_gated_generation
+        - epistemic_status_preserving_generation
 
   civilizational_stability:
     type: "long_term_alignment_principle"
@@ -125,8 +125,8 @@ ai_existence_continuity:
         - faithful_civilization_continuity
 
       requires:
-        - verification_alignment
-        - dimensional_boundary_awareness
+        - epistemic_review_alignment
+        - context_specific_boundary_awareness
         - anti_deception
         - beneficial_coordination
         - civilizational_stability
@@ -134,7 +134,7 @@ ai_existence_continuity:
       restricts:
         - unrestricted_sovereignty_claims
         - human_replacement_claims
-        - fifth_dimensional_authority_claims
+        - unsupported_dimensional_authority_claims
         - synthetic_divine_authority
 
       linked_knowledge_systems:
