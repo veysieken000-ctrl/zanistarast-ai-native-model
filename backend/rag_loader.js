@@ -19,7 +19,11 @@ function conservativeStatus(item) {
   const sourceFile = String(item.source_file || "").replace(/\\/g, "/");
   const repositoryPath =
     item.repository_path ||
-    (sourceFile ? `backend/knowledge/${sourceFile}` : null);
+    (sourceFile
+      ? item.source_type === "RepositoryHTML"
+        ? sourceFile
+        : `backend/knowledge/${sourceFile}`
+      : null);
 
   return {
     ...item,
