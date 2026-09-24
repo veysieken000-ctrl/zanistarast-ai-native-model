@@ -71,6 +71,9 @@ jobs:
       - name: Check mobile UI quality boundary
         run: node tests/mobile_ui_quality_boundary.mjs
 
+      - name: Check speech Mira boundary
+        run: node tests/speech_mira_boundary.mjs
+
       - name: Check manifest Mira terminology boundary
         run: node tests/manifest_mira_terminology_boundary.mjs
 
