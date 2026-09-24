@@ -46,7 +46,7 @@ class Orchestrator {
         const executionPlan =
             planner.createPlan(request);
 
-        // 4. Formal Verification
+        // 4. Structural review / formal artifact checks
         const execution =
             executor.execute(executionPlan);
 
@@ -110,7 +110,7 @@ class Orchestrator {
 
             simulation,
 
-            verification:
+            review:
                 response.verificationReport,
 
             response:
