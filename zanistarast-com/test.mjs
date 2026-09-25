@@ -72,5 +72,6 @@ assert.equal(runtimeConfig({ZANISTARAST_ENV:ENV.LOCAL}).production,false);assert
 assert.equal(containsLikelySecret("postgresql://user:password@db.example/test"),true);assert.equal(containsLikelySecret("ZANISTARAST_API_BASE=https://api.example.test"),false);
 const notReady=productionReadiness({smokeGreen:true});assert.equal(notReady.ready,false);assert.ok(notReady.missing.includes("restoreTested"));assert.equal(productionReadiness({smokeGreen:true,accessibilityChecked:true,performanceChecked:true,secretsScanGreen:true,restoreTested:true,withdrawalTested:true,apiConfigured:true,storageConfigured:true,deploymentApproved:true}).ready,true);
 assert.match(sw,/cache:"no-store"/);assert.match(sw,/governed/);assert.match(sw,/shell-v2/);
+const readinessState=JSON.parse(read("./readiness-state.json"));assert.equal(readinessState.productionReady,false);assert.equal(readinessState.domainActivationAllowed,false);assert.equal(readinessState.liveClaimAllowed,false);assert.equal(readinessState.packages.F.codeSide,"COMPLETE_AS_BLOCKED_CANDIDATE");assert.equal(readinessState.packages.G.codeSide,"COMPLETE");
 assert.match(sw,/caches\.open/);
 console.log("zanistarast-com smoke: OK");
