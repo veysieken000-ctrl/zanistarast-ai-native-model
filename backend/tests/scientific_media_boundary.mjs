@@ -70,4 +70,8 @@ const validDiagram = prepareScientificMediaRecord({
   publicationRelation: "site-enrichment"
 });
 assert.equal(validDiagram.displayable, true);
+const serverSource = await (await import("node:fs/promises")).readFile("../server.js", "utf8");
+assert.match(serverSource, /media_hints: deriveMediaHints\(answer\)/);
+assert.match(serverSource, /selectScientificMedia/);
+assert.doesNotMatch(serverSource, /media_hints:\s*\[\s*["']video/);
 console.log("scientific media boundary: OK");
