@@ -1,0 +1,11 @@
+{
+  "candidateId":"pilot-emanet-irade",
+  "version":"candidate-1",
+  "title":"Emanet ve İrade",
+  "status":"CANDIDATE",
+  "publicAdmission":"BLOCKED",
+  "originality":{"mode":"ORIGINAL_MIRA","namedProtectedAdaptation":false},
+  "themes":["Güven","Sorumluluk","İrade"],
+  "requiredArtifacts":["source-ledger","script","storyboard","character-location-costume","accessibility-plan","media-asset-manifest","similarity-rights-report","cultural-review","rasterast-report","mudabbir-decision-package"],
+  "gates":{"provenance":"PENDING","rights":"PENDING","culture":"PENDING","visualMoral":"PENDING","accessibility":"PENDING","similarity":"PENDING","rasterast":"PENDING","mudabbir":"NOT_APPROVED"}
+}
