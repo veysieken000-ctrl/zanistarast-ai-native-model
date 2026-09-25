@@ -14,4 +14,11 @@ export function createUserState(storage=globalThis.localStorage){
   clear:()=>write(empty())
  });
 }
+export function createAccountStateAdapter(remote){
+ return Object.freeze({
+  load:()=>remote?.load?.(),
+  save:state=>remote?.save?.(state),
+  available:()=>Boolean(remote?.load&&remote?.save)
+ });
+}
 export const userState=createUserState();
