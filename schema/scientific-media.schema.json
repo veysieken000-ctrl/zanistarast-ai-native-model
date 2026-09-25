@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://zanistarast.org/schema/scientific-media.schema.json",
+  "title": "Zanistarast Scientific Media Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "article", "kind", "purpose", "provenance", "accessibility", "publicationRelation"],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "article": { "type": "string", "minLength": 1 },
+    "kind": { "enum": ["figure","diagram","observation","experiment","chart","table","timeline","map","interactive","animation","video","audio","supplement"] },
+    "purpose": { "type": "string", "minLength": 1 },
+    "caption": { "type": "string" },
+    "epistemicStatus": { "enum": ["published-source","empirical-result","observation","simulation","reconstruction","conceptual","interpretation","unverified"] },
+    "publicationRelation": { "enum": ["peer-reviewed-original","site-enrichment","supplementary","not-applicable"] },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["method"],
+      "properties": {
+        "source": { "type": "string" },
+        "method": { "type": "string", "minLength": 1 },
+        "data": { "type": "string" },
+        "createdBy": { "type": "string" }
+      }
+    },
+    "accessibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["textAlternative"],
+      "properties": {
+        "alt": { "type": "string" },
+        "textAlternative": { "type": "string", "minLength": 1 },
+        "transcript": { "type": "string" }
+      }
+    },
+    "publication": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "doi": { "type": "string" },
+        "publisherUrl": { "type": "string", "format": "uri" },
+        "license": { "type": "string" },
+        "version": { "type": "string" }
+      }
+    }
+  }
+}
