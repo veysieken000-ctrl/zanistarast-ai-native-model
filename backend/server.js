@@ -7,6 +7,7 @@ import { fileURLToPath } from "url";
 import { createRequire } from "module";
 import { buildRagContext, buildHybridRagContext } from "./rag_search.js";
 import { buildMiraPrompt } from "./mira_core.js";
+import { selectScientificMedia } from "./scientific_media.js";
 import aiEngineRoutes from "./routes/ai_engine.js";
 
 const requireLegacy = createRequire(import.meta.url);
@@ -316,6 +317,19 @@ async function callOpenAI(systemPrompt, userPrompt, temperature = 0.35) {
     };
   }
 }
+function deriveMediaHints(answer) {
+  const text = normalizeText(answer).toLowerCase();
+  const phenomenon = {
+    quantitativeData: /\b(data|dataset|ölçüm|measurement|oran|yüzde|percent|istatistik|statistic)\b/.test(text),
+    comparison: /\b(compare|comparison|karşılaştır|fark|versus| vs\.? )\b/.test(text),
+    structure: /\b(structure|yapı|architecture|mimari|katman|layer)\b/.test(text),
+    relationships: /\b(relation|relationship|ilişki|bağlantı|network|ağ)\b/.test(text),
+    temporalSequence: /\b(timeline|zaman|sequence|süreç|aşama|evre)\b/.test(text),
+    spatialRelation: /\b(map|harita|spatial|mekânsal|coğraf)\b/.test(text)
+  };
+  return selectScientificMedia({ phenomenon, availableMaterial: ["chart"] });
+}
+
 function deriveResponseStatus(results) {
   const authorities = results.map((item) => item.authority || {});
   const allManifestMatched =
@@ -383,6 +397,7 @@ app.post("/api/ask", askRateLimit, async (req, res) => {
         rasterast_status: responseStatus.rasterast_status,
         provenance_status: responseStatus.provenance_status,
         notice: "Retrieval matches are context candidates; score is not authority or proof.",
+        media_hints: deriveMediaHints(answer),
         sources: results.map((item) => ({
           id: item.id,
           title: item.title,
