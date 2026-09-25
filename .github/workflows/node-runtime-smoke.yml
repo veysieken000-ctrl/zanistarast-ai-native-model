@@ -150,7 +150,46 @@ jobs:
               assert (root / icon["src"].removeprefix("./")).exists()
           assert (root / "404.html").exists()
           assert "Sitemap: https://zanistarast.org/sitemap.xml" in robots
-          ET.fromstring(sitemap)
+          sitemap_root = ET.fromstring(sitemap)
+          ns = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+          sitemap_urls = [node.text for node in sitemap_root.findall("sm:url/sm:loc", ns)]
+          assert sitemap_urls, "Sitemap is empty"
+          assert len(sitemap_urls) == len(set(sitemap_urls)), "Sitemap contains duplicate URLs"
+          assert all(url.startswith("https://zanistarast.org/") for url in sitemap_urls)
+          assert not any("/future/" in url or "/components/" in url or url.endswith("/404.html") for url in sitemap_urls)
+
+          public_pages = sorted(
+              [p for p in root.glob("*.html") if p.name != "404.html"] +
+              list((root / "articles").glob("*.html"))
+          )
+          expected_urls = {
+              "https://zanistarast.org/" if p.name == "index.html"
+              else "https://zanistarast.org/" + p.as_posix()
+              for p in public_pages
+          }
+          assert set(sitemap_urls) == expected_urls, (
+              f"Sitemap/public HTML mismatch: missing={sorted(expected_urls-set(sitemap_urls))[:10]} "
+              f"extra={sorted(set(sitemap_urls)-expected_urls)[:10]}"
+          )
+
+          key_pages = [
+              root / "index.html", root / "paper.html", root / "theory.html",
+              root / "makaleler.html", root / "theses.html", root / "about.html",
+              root / "article-system.html", root / "speech.html"
+          ]
+          for page in key_pages:
+              page_text = page.read_text(encoding="utf-8", errors="ignore")
+              assert re.search(r"<html[^>]+lang=[\"'][^\"']+[\"']", page_text, re.I), f"{page}: html lang missing"
+              assert re.search(r"<meta[^>]+name=[\"']viewport[\"']", page_text, re.I), f"{page}: viewport missing"
+              assert re.search(r"<title>[^<]+</title>", page_text, re.I), f"{page}: title missing"
+              assert re.search(r"<meta[^>]+name=[\"']description[\"']", page_text, re.I), f"{page}: description missing"
+              canonical = "https://zanistarast.org/" if page.name == "index.html" else f"https://zanistarast.org/{page.name}"
+              assert canonical in page_text, f"{page}: canonical missing"
+
+          navbar = (root / "components" / "navbar.html").read_text(encoding="utf-8")
+          assert 'id="znMenu"' in navbar
+          assert 'aria-controls="znMenu"' in navbar
+          assert 'aria-expanded="false"' in navbar
 
           missing = []
           html_files = list(root.glob("*.html")) + list((root / "articles").glob("*.html"))
