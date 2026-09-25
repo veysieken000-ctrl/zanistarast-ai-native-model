@@ -5,7 +5,8 @@ import{works,eligibleWorks,eligibleWorkById}from"./data.js";
 import{GOVERNANCE,publicGovernance,canRenderPublic}from"./contracts.js";
 import{createContentAdapter}from"./content-adapter.js";
 import{normalizeRepresentation,hasTraceableMedia,renderMedia}from"./media.js";
-import{createUserState}from"./user-state.js";
+import{createUserState,createAccountStateAdapter}from"./user-state.js";
+import{createDiscoveryService}from"./discovery.js";
 
 const read=p=>fs.readFileSync(new URL(p,import.meta.url),"utf8");
 const html=read("./index.html"),css=read("./styles.css"),app=read("./app.js"),data=read("./data.js"),manifest=JSON.parse(read("./manifest.webmanifest")),sw=read("./sw.js");
@@ -56,5 +57,7 @@ assert.equal(state.liked("real-1"),false);assert.equal(state.toggleLike("real-1"
 assert.equal(state.toggleSave("real-1"),true);assert.equal(state.saved("real-1"),true);
 state.setProgress("real-1","v1",{seconds:42});assert.deepEqual(state.progress("real-1","v1"),{seconds:42});assert.equal(state.progress("real-1","v2"),null);
 state.clear();assert.equal(state.liked("real-1"),false);assert.equal(state.saved("real-1"),false);
+const account=createAccountStateAdapter({load:()=>({ok:true}),save:x=>x});assert.equal(account.available(),true);assert.deepEqual(account.load(),{ok:true});
+const discovery=createDiscoveryService(gateAdapter);assert.equal(discovery.search("Real").length,1);assert.equal(discovery.search("blocked").length,0);assert.equal(discovery.related("real-1").some(w=>w.workId==="blocked-2"),false);
 assert.match(sw,/caches\.open/);
 console.log("zanistarast-com smoke: OK");
