@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { scientificMediaKinds, scientificMediaRules, buildScientificMediaBrief, publishedArticleEnrichmentRules, selectScientificMedia, createPublishedEnrichmentPlan } from "../scientific_media.js";
+import { scientificMediaKinds, scientificMediaRules, buildScientificMediaBrief, publishedArticleEnrichmentRules, selectScientificMedia, createPublishedEnrichmentPlan, validateScientificMediaRecord, prepareScientificMediaRecord } from "../scientific_media.js";
 
 assert(scientificMediaKinds.includes("observation"));
 assert(scientificMediaKinds.includes("experiment"));
@@ -46,4 +46,28 @@ const publishedPlan = createPublishedEnrichmentPlan({
 });
 assert.equal(publishedPlan.state, "published-enrichment");
 assert(publishedPlan.media.every(item => item.publicationRelation === "site-enrichment"));
+const invalidChart = validateScientificMediaRecord({
+  id: "fig-1", article: "example", kind: "chart", purpose: "show trend",
+  provenance: { method: "generated from dataset" },
+  accessibility: { textAlternative: "Trend description" },
+  publicationRelation: "site-enrichment"
+});
+assert.equal(invalidChart.valid, false);
+assert(invalidChart.errors.includes("chart-data-required"));
+
+const invalidVideo = validateScientificMediaRecord({
+  id: "vid-1", article: "example", kind: "video", purpose: "show motion",
+  provenance: { method: "recording" },
+  accessibility: { textAlternative: "Motion description" },
+  publicationRelation: "site-enrichment"
+});
+assert(invalidVideo.errors.includes("transcript-required"));
+
+const validDiagram = prepareScientificMediaRecord({
+  id: "dia-1", article: "example", kind: "diagram", purpose: "show relation",
+  provenance: { method: "conceptual synthesis" },
+  accessibility: { textAlternative: "Relationship diagram described in text." },
+  publicationRelation: "site-enrichment"
+});
+assert.equal(validDiagram.displayable, true);
 console.log("scientific media boundary: OK");
