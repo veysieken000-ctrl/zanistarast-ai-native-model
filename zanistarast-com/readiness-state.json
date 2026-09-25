@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "status": "EXTERNAL_PRODUCTION_ACTIVATION_PENDING",
+  "packages": {
+    "A": {
+      "codeSide": "COMPLETE",
+      "external": [
+        "production-deployment-verification"
+      ]
+    },
+    "B": {
+      "codeSide": "COMPLETE",
+      "external": [
+        "real-admitted-production-records"
+      ]
+    },
+    "C": {
+      "codeSide": "COMPLETE",
+      "external": [
+        "final-media-accessibility-review"
+      ]
+    },
+    "D": {
+      "codeSide": "COMPLETE",
+      "external": [
+        "production-account-persistence-service"
+      ]
+    },
+    "E": {
+      "codeSide": "COMPLETE",
+      "external": [
+        "production-index-service",
+        "admitted-corpus"
+      ]
+    },
+    "F": {
+      "codeSide": "COMPLETE_AS_BLOCKED_CANDIDATE",
+      "external": [
+        "rights-evidence",
+        "culture-evidence",
+        "final-media-accessibility",
+        "rasterast-review",
+        "exact-version-mudabbir-decision"
+      ]
+    },
+    "G": {
+      "codeSide": "COMPLETE",
+      "external": [
+        "https-api",
+        "storage",
+        "release-secrets-scan",
+        "deployed-accessibility-performance",
+        "restore-drill",
+        "withdrawal-drill",
+        "release-smoke",
+        "deployment-approval",
+        "domain-dns-tls-cors-pwa-verification"
+      ]
+    }
+  },
+  "productionReady": false,
+  "domainActivationAllowed": false,
+  "liveClaimAllowed": false
+}
