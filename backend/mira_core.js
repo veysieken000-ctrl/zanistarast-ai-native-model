@@ -1,3 +1,5 @@
+import { renderScientificMediaRules } from "./scientific_media.js";
+
 export const MIRA_CORE_VERSION = "1.1";
 
 export const miraCoreRules = Object.freeze([
