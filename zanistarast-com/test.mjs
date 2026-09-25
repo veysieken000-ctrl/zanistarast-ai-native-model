@@ -53,11 +53,12 @@ assert.match(renderMedia({id:"x",version:"1",kind:"unknown",src:"\/x"}),/temsil 
 assert.match(renderMedia(null),/Medya şu anda kullanılamıyor/);
 assert.match(renderMedia(rep,{demo:true}),/DEMO MEDYA ALANI/);
 const memory=new Map();const storage={getItem:k=>memory.get(k)??null,setItem:(k,v)=>memory.set(k,v)};const state=createUserState(storage);
-assert.equal(state.liked("real-1"),false);assert.equal(state.toggleLike("real-1"),true);assert.equal(state.liked("real-1"),true);
+assert.equal(state.liked("real-1"),false);assert.equal(state.toggleLike("real-1"),true);assert.equal(state.liked("real-1"),true);assert.deepEqual(state.likedIds(),["real-1"]);
 assert.equal(state.toggleSave("real-1"),true);assert.equal(state.saved("real-1"),true);
 state.setProgress("real-1","v1",{seconds:42});assert.deepEqual(state.progress("real-1","v1"),{seconds:42});assert.equal(state.progress("real-1","v2"),null);
 state.clear();assert.equal(state.liked("real-1"),false);assert.equal(state.saved("real-1"),false);
 const account=createAccountStateAdapter({load:()=>({ok:true}),save:x=>x});assert.equal(account.available(),true);assert.deepEqual(account.load(),{ok:true});
 const discovery=createDiscoveryService(gateAdapter);assert.equal(discovery.search("Real").length,1);assert.equal(discovery.search("blocked").length,0);assert.equal(discovery.related("real-1").some(w=>w.workId==="blocked-2"),false);
+const rankedAdapter=createContentAdapter([{...base,workId:"a",title:"A",values:["Adalet"],format:"Film",governance:{rights:true,rasterast:true,mudabbirRequired:false}},{...base,workId:"b",title:"B",values:["Merhamet"],format:"Ses",governance:{rights:true,rasterast:true,mudabbirRequired:false}},{...base,workId:"c",title:"C",values:["Adalet"],format:"Film",governance:{rights:true,rasterast:true,mudabbirRequired:false}}]);const ranked=createDiscoveryService(rankedAdapter);assert.equal(ranked.related("a",{likedIds:["c"]})[0].workId,"c");assert.equal(ranked.related("a",{likedIds:["c"]}).some(w=>w.workId==="blocked-2"),false);
 assert.match(sw,/caches\.open/);
 console.log("zanistarast-com smoke: OK");
