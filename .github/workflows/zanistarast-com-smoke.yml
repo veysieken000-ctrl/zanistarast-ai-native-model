@@ -23,21 +23,26 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "22"
-
       - name: Run com smoke
         run: node zanistarast-com/test.mjs
-
-      - name: Verify static shell files
+      - name: Verify static production boundary
         shell: bash
         run: |
-          test -s zanistarast-com/index.html
-          test -s zanistarast-com/styles.css
-          test -s zanistarast-com/app.js
-          test -s zanistarast-com/data.js
-          test -s zanistarast-com/manifest.webmanifest
-          test -s zanistarast-com/sw.js
+          set -euo pipefail
+          for f in index.html styles.css app.js data.js domain.js contracts.js content-adapter.js media.js user-state.js discovery.js runtime-config.js production-readiness.js manifest.webmanifest sw.js readiness-state.json; do
+            test -s "zanistarast-com/$f"
+          done
+          test ! -e zanistarast-com/CNAME
+          node -e 'const s=require("./zanistarast-com/readiness-state.json"); if(s.productionReady||s.domainActivationAllowed||s.liveClaimAllowed) process.exit(1)'
+      - name: Repository secret pattern guard
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -RInE --exclude='test.mjs' --exclude-dir='.git' '(BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY|postgres(ql)?://[^[:space:]]+:[^[:space:]]+@|api[_-]?key[[:space:]]*[:=][[:space:]]*["'\'''][^"'\'']+|secret[[:space:]]*[:=][[:space:]]*["'\'''][^"'\'']+)' zanistarast-com; then
+            echo "Potential secret material detected"
+            exit 1
+          fi
