@@ -70,6 +70,8 @@ button{padding:12px 18px;border:0;border-radius:12px;margin:10px 8px 0 0;cursor:
 .suggestions button:hover{
   background:#23456f;
 }
+.media-hints{margin:12px 0 0;padding:12px 14px;border:1px solid rgba(78,161,255,.45);border-radius:14px;background:rgba(78,161,255,.08)}
+.media-hints h4{margin:0 0 8px;font-size:14px}.media-hints ul{margin:0;padding-left:20px}.media-hints li{margin:4px 0;font-size:14px}
 .chat-box{
   margin:22px 0;
   display:flex;
@@ -392,6 +394,13 @@ function renderSuggestions(q){
 }
 function askSuggestion(text){ input.value=text; ask(); }
 
+const mediaLabels={chart:"Grafik",table:"Tablo",diagram:"Bilimsel şema",timeline:"Zaman çizelgesi",map:"Harita",interactive:"İnteraktif model",animation:"Animasyon",observation:"Gözlem materyali",experiment:"Deney materyali",audio:"Ses",video:"Video"};
+function formatMediaHints(meta){
+  const hints=Array.isArray(meta?.media_hints) ? meta.media_hints : [];
+  if(!hints.length) return "";
+  return "\n\nBilimsel anlatım önerisi\n"+hints.map(h=>"- "+(mediaLabels[h.kind]||h.kind)+": "+String(h.reason||"")).join("\n");
+}
+
 function formatMiraResponse(data){
   const answer=String(data?.answer || "");
   const meta=data?.meta || {};
@@ -410,7 +419,8 @@ function formatMiraResponse(data){
   return [
     answer,
     status.length ? `\n\nDurum\n${status.join("\n")}` : "",
-    sourceLines.length ? `\n\nKaynaklar\n${sourceLines.join("\n")}` : ""
+    sourceLines.length ? `\n\nKaynaklar\n${sourceLines.join("\n")}` : "",
+    formatMediaHints(meta)
   ].join("");
 }
 
