@@ -7,7 +7,7 @@ export function toWorkSummary(record){
 
 export function toWorkDetail(record){
  const summary=toWorkSummary(record);if(!summary)return null;
- return Object.freeze({...summary,reading:record.reading??"",sourceSummary:record.sourceSummary??record.source??"",representation:record.representation??null});
+ return Object.freeze({...summary,reading:record.reading??"",sourceSummary:record.sourceSummary??record.source??"",representation:record.representation??null,transcript:record.transcript??record.representation?.transcript??null});
 }
 
 export function publicGovernance(record){
