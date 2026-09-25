@@ -7,32 +7,59 @@
       "state": "PENDING",
       "evidence": [
         "similarity-rights-report.md"
-      ]
+      ],
+      "version": "candidate-1"
     },
     "cultureVisual": {
       "state": "PENDING",
       "evidence": [
         "cultural-review.md"
-      ]
+      ],
+      "version": "candidate-1"
     },
     "accessibility": {
       "state": "PENDING",
       "evidence": [
         "accessibility-plan.md"
-      ]
+      ],
+      "version": "candidate-1"
     },
     "rasterast": {
       "state": "PENDING",
       "evidence": [
         "rasterast-report.md"
-      ]
+      ],
+      "version": "candidate-1"
     },
     "mudabbir": {
       "state": "NOT_APPROVED",
       "evidence": [
         "mudabbir-decision-package.md"
-      ]
+      ],
+      "version": "candidate-1"
     }
   },
-  "rule": "Only evidence-bearing exact-version review decisions may change a gate. Repository presence is not approval."
+  "rule": "Only evidence-bearing exact-version review decisions may change a gate. Repository presence is not approval.",
+  "unresolvedItems": [
+    {
+      "id": "U1",
+      "blocking": true
+    },
+    {
+      "id": "U2",
+      "blocking": true
+    },
+    {
+      "id": "U3",
+      "blocking": true
+    },
+    {
+      "id": "U4",
+      "blocking": true
+    },
+    {
+      "id": "U5",
+      "blocking": true
+    }
+  ]
 }
