@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { scientificMediaKinds, scientificMediaRules, buildScientificMediaBrief } from "../scientific_media.js";
+import { scientificMediaKinds, scientificMediaRules, buildScientificMediaBrief, publishedArticleEnrichmentRules } from "../scientific_media.js";
 
 assert(scientificMediaKinds.includes("observation"));
 assert(scientificMediaKinds.includes("experiment"));
@@ -11,4 +11,8 @@ assert(scientificMediaRules.some(rule => /conceptual diagram/.test(rule) && /emp
 const brief = buildScientificMediaBrief({ subject: "test", evidenceType: "observation" });
 assert.equal(brief.evidenceType, "observation");
 assert.match(brief.rule, /not decoration or fabricated content/);
+assert(publishedArticleEnrichmentRules.some(rule => /DOI/.test(rule)));
+assert(publishedArticleEnrichmentRules.some(rule => /site enrichment/.test(rule)));
+assert(publishedArticleEnrichmentRules.some(rule => /copyright, license/.test(rule)));
+assert(publishedArticleEnrichmentRules.some(rule => /corrections, retractions/.test(rule)));
 console.log("scientific media boundary: OK");
