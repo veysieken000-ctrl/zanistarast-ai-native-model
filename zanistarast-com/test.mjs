@@ -8,6 +8,7 @@ import{normalizeRepresentation,hasTraceableMedia,renderMedia}from"./media.js";
 import{createUserState,createAccountStateAdapter}from"./user-state.js";
 import{createDiscoveryService}from"./discovery.js";
 import{publicAdmission as reviewAdmission}from"./review-gates.js";
+import{verifyPilotPackage}from"./pilot-verifier.js";
 
 const read=p=>fs.readFileSync(new URL(p,import.meta.url),"utf8");
 const html=read("./index.html"),css=read("./styles.css"),app=read("./app.js"),data=read("./data.js"),manifest=JSON.parse(read("./manifest.webmanifest")),sw=read("./sw.js");
@@ -63,5 +64,7 @@ const discovery=createDiscoveryService(gateAdapter);assert.equal(discovery.searc
 const rankedAdapter=createContentAdapter([{...base,workId:"a",title:"A",values:["Adalet"],format:"Film",governance:{rights:true,rasterast:true,mudabbirRequired:false}},{...base,workId:"b",title:"B",values:["Merhamet"],format:"Ses",governance:{rights:true,rasterast:true,mudabbirRequired:false}},{...base,workId:"c",title:"C",values:["Adalet"],format:"Film",governance:{rights:true,rasterast:true,mudabbirRequired:false}}]);const ranked=createDiscoveryService(rankedAdapter);assert.equal(ranked.related("a",{likedIds:["c"]})[0].workId,"c");assert.equal(ranked.related("a",{likedIds:["c"]}).some(w=>w.workId==="blocked-2"),false);
 const reviewBase={candidateId:"p",version:"v1",reviews:{similarityRights:{version:"v1",state:"PASS",evidence:["r"]},cultureVisual:{version:"v1",state:"PASS",evidence:["c"]},accessibility:{version:"v1",state:"PASS",evidence:["a"]},rasterast:{version:"v1",state:"PASS",evidence:["x"]},mudabbir:{version:"v1",state:"APPROVED",evidence:["m"]}},unresolvedItems:[]};
 assert.equal(reviewAdmission(reviewBase),"ADMITTED");assert.equal(reviewAdmission({...reviewBase,reviews:{...reviewBase.reviews,rasterast:{version:"v2",state:"PASS",evidence:["x"]}}}),"BLOCKED");assert.equal(reviewAdmission({...reviewBase,reviews:{...reviewBase.reviews,similarityRights:{version:"v1",state:"PASS",evidence:[]}}}),"BLOCKED");assert.equal(reviewAdmission({...reviewBase,reviews:{...reviewBase.reviews,mudabbir:{version:"v1",state:"NOT_APPROVED",evidence:["m"]}}}),"BLOCKED");assert.equal(reviewAdmission({...reviewBase,unresolvedItems:[{id:"u",blocking:true}]}),"BLOCKED");
+const pilotManifest=JSON.parse(read("./pilots/emanet-irade/candidate-1.json"));const pilotReview=JSON.parse(read("./pilots/emanet-irade/review-state.json"));const pilotUnresolved=JSON.parse(read("./pilots/emanet-irade/unresolved-items.json"));const pilotCheck=verifyPilotPackage(pilotManifest,pilotReview,pilotUnresolved);assert.equal(pilotCheck.valid,true);assert.equal(pilotCheck.admission,"BLOCKED");assert.deepEqual(pilotCheck.errors,[]);
+assert.equal(verifyPilotPackage({...pilotManifest,version:"candidate-2"},pilotReview,pilotUnresolved).admission,"BLOCKED");assert.equal(verifyPilotPackage({...pilotManifest,publicAdmission:"ADMITTED"},pilotReview,pilotUnresolved).valid,false);
 assert.match(sw,/caches\.open/);
 console.log("zanistarast-com smoke: OK");
