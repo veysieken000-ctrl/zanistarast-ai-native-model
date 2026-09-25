@@ -6,7 +6,14 @@
   "display": "standalone",
   "background_color": "#050816",
   "theme_color": "#050816",
-  "icons": [],
+  "icons": [
+    {
+      "src": "./assets/icons/zanistarast-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
   "scope": "./",
   "lang": "en",
   "id": "./"
