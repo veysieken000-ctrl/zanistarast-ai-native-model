@@ -1,0 +1,6 @@
+export const works=[
+ {workId:"demo-merhamet",title:"Merhametin İzinde",summary:"İnsan ilişkilerinde merhameti anlatan geliştirme amaçlı örnek eser.",format:"Kısa film",values:["Merhamet","Sorumluluk"],language:"Türkçe",eligible:true,demo:true,reading:"Bu metin yalnızca .com arayüzünü geliştirmek için hazırlanmış DEMO içeriğidir. Bilimsel yayın, dini kaynak aktarımı veya onaylanmış Zanistarast eseri değildir.",source:"Mira arayüz geliştirme demosu — yayınlanmış eser değildir."},
+ {workId:"demo-emanet",title:"Emanet",summary:"Güven ve sorumluluk temasını gösteren geliştirme örneği.",format:"Hikâye",values:["Güven","Sorumluluk"],language:"Türkçe",eligible:true,demo:true,reading:"DEMO: Eser sayfası, okuma katmanı ve ilgili içerik yerleşimini sınamak için geçici metin.",source:"Geliştirme fixture'ı — gerçek kaynak/eser değildir."},
+ {workId:"demo-sabir",title:"Bir Anlık Sabır",summary:"Sabır ve iradeli seçim üzerine geliştirme örneği.",format:"Animasyon",values:["Sabır","İrade"],language:"Kurmancî / Türkçe",eligible:true,demo:true,reading:"DEMO: Çok dilli temsil alanı için geçici arayüz verisi.",source:"Geliştirme fixture'ı — yayın kaydı değildir."}
+];
+export const eligibleWorks=()=>works.filter(w=>w.eligible===true);
