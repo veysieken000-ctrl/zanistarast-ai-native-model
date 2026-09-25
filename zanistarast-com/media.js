@@ -16,3 +16,13 @@ export function renderMedia(rep,{demo=false}={}){
  if(r.kind==="audio")return `<audio class="audio-player" controls preload="metadata">${source}${tracks}Tarayıcınız ses oynatmayı desteklemiyor.</audio>`;
  return '<p class="media-fallback" role="status">Bu temsil türü oynatılamıyor. Okuma veya transkript katmanını kullanabilirsiniz.</p>';
 }
+
+export function bindMediaProgress(root,{workId,version,state}){
+ const el=root?.querySelector?.("video.media-player, audio.audio-player");
+ if(!el||!workId||!version||!state)return()=>{};
+ const saved=state.progress(workId,version);
+ const restore=()=>{if(saved?.seconds>0&&Number.isFinite(saved.seconds)&&saved.seconds<el.duration)el.currentTime=saved.seconds};
+ const persist=()=>{if(Number.isFinite(el.currentTime))state.setProgress(workId,version,{seconds:Math.max(0,Math.floor(el.currentTime)),duration:Number.isFinite(el.duration)?Math.floor(el.duration):null})};
+ el.addEventListener("loadedmetadata",restore,{once:true});el.addEventListener("timeupdate",persist);el.addEventListener("pause",persist);
+ return()=>{el.removeEventListener("timeupdate",persist);el.removeEventListener("pause",persist)};
+}
