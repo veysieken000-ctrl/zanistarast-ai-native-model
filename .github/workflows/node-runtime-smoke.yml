@@ -157,7 +157,7 @@ jobs:
           for page in html_files:
               text = page.read_text(encoding="utf-8", errors="ignore")
               for href in re.findall(r'href=["\']([^"\']+)["\']', text, flags=re.I):
-                  if href.startswith(("http://", "https://", "#", "mailto:", "tel:", "javascript:")):
+                  if href.startswith(("http://", "https://", "#", "mailto:", "tel:", "javascript:")) or "${" in href:
                       continue
                   target = href.split("#", 1)[0].split("?", 1)[0]
                   if not target:
