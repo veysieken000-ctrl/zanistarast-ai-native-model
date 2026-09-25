@@ -2632,3 +2632,13 @@ transform:translateY(-2px);
     border-top-width: 3px !important;
   }
 }
+
+
+/* Scientific media and published-article enrichment surface */
+.scientific-media-panel,.published-enrichment-panel{margin-top:28px}
+.scientific-media-grid .card{min-height:160px}
+.scientific-media-grid h3{color:#bae6fd}
+.publication-flow{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:20px 0}
+.publication-flow span[role="listitem"]{padding:10px 14px;border:1px solid rgba(125,211,252,.35);border-radius:14px;background:rgba(14,165,233,.10);font-weight:700}
+.media-note{padding:14px 16px;border-left:4px solid #7dd3fc;background:rgba(125,211,252,.08);border-radius:12px}
+@media(max-width:700px){.publication-flow{display:grid;grid-template-columns:1fr}.publication-flow span[aria-hidden="true"]{display:none}.scientific-media-grid .card{min-height:0}}
