@@ -42,7 +42,32 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if grep -RInE --exclude='test.mjs' --exclude-dir='.git' '(BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY|postgres(ql)?://[^[:space:]]+:[^[:space:]]+@|api[_-]?key[[:space:]]*[:=][[:space:]]*["'\'''][^"'\'']+|secret[[:space:]]*[:=][[:space:]]*["'\'''][^"'\'']+)' zanistarast-com; then
-            echo "Potential secret material detected"
-            exit 1
-          fi
+          node <<'NODE'
+          const fs = require("fs");
+          const path = require("path");
+          const root = "zanistarast-com";
+          const skip = new Set(["test.mjs"]);
+          const patterns = [
+            /BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY/i,
+            /postgres(?:ql)?:\/\/[^\s]+:[^\s]+@/i,
+            /api[_-]?key\s*[:=]\s*["'][^"']+/i,
+            /secret\s*[:=]\s*["'][^"']+/i
+          ];
+          let bad = false;
+          function walk(dir) {
+            for (const ent of fs.readdirSync(dir, {withFileTypes:true})) {
+              if (ent.name === ".git") continue;
+              const p = path.join(dir, ent.name);
+              if (ent.isDirectory()) walk(p);
+              else if (!skip.has(ent.name)) {
+                const text = fs.readFileSync(p, "utf8");
+                if (patterns.some(re => re.test(text))) {
+                  console.error("Potential secret material detected in " + p);
+                  bad = true;
+                }
+              }
+            }
+          }
+          walk(root);
+          if (bad) process.exit(1);
+          NODE
