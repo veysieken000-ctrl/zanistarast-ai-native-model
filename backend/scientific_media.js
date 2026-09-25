@@ -93,3 +93,28 @@ export function createPublishedEnrichmentPlan({ publication, phenomenon, availab
     }))
   };
 }
+
+
+export function validateScientificMediaRecord(record = {}) {
+  const errors = [];
+  if (!record.id) errors.push("id-required");
+  if (!record.article) errors.push("article-required");
+  if (!scientificMediaKinds.includes(record.kind)) errors.push("unsupported-kind");
+  if (!record.purpose) errors.push("purpose-required");
+  if (!record.provenance?.method) errors.push("provenance-method-required");
+  if (!record.accessibility?.textAlternative) errors.push("text-alternative-required");
+  if (!record.publicationRelation) errors.push("publication-relation-required");
+
+  if (record.kind === "chart" && !record.provenance?.data) errors.push("chart-data-required");
+  if (["video", "audio"].includes(record.kind) && !record.accessibility?.transcript) errors.push("transcript-required");
+  if (record.kind === "interactive" && !record.accessibility?.textAlternative) errors.push("interactive-fallback-required");
+  if (record.publicationRelation === "peer-reviewed-original" && !record.publication?.doi && !record.publication?.publisherUrl) {
+    errors.push("published-anchor-required");
+  }
+  return { valid: errors.length === 0, errors };
+}
+
+export function prepareScientificMediaRecord(record) {
+  const validation = validateScientificMediaRecord(record);
+  return { ...record, validation, displayable: validation.valid };
+}
