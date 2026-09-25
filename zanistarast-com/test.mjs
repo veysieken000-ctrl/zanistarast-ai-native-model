@@ -21,6 +21,7 @@ assert.ok(eligibleWorks().every(isPubliclyRenderable));
 for(const state of [PUBLICATION.PENDING,PUBLICATION.BLOCKED,PUBLICATION.WITHDRAWN]) assert.equal(isPubliclyRenderable({workId:"x",eligible:true,version:"1",publicationState:state,demo:false}),false);
 assert.match(data,/publicationState:PUBLICATION\.DEMO/);
 assert.match(data,/demo:true/);
+assert.doesNotMatch(data,/eligible:true/);
 assert.doesNotMatch(data,/doi\.org|RASTERAST_ACCEPTED|MÜDEBBIR_APPROVED/i);
 assert.equal(manifest.display,"standalone");
 assert.ok(manifest.start_url);
