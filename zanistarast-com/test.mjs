@@ -9,6 +9,8 @@ import{createUserState,createAccountStateAdapter}from"./user-state.js";
 import{createDiscoveryService}from"./discovery.js";
 import{publicAdmission as reviewAdmission}from"./review-gates.js";
 import{verifyPilotPackage}from"./pilot-verifier.js";
+import{runtimeConfig,ENV,PUBLIC_CONFIG_KEYS}from"./runtime-config.js";
+import{productionReadiness,containsLikelySecret}from"./production-readiness.js";
 
 const read=p=>fs.readFileSync(new URL(p,import.meta.url),"utf8");
 const html=read("./index.html"),css=read("./styles.css"),app=read("./app.js"),data=read("./data.js"),manifest=JSON.parse(read("./manifest.webmanifest")),sw=read("./sw.js");
@@ -66,5 +68,9 @@ const reviewBase={candidateId:"p",version:"v1",reviews:{similarityRights:{versio
 assert.equal(reviewAdmission(reviewBase),"ADMITTED");assert.equal(reviewAdmission({...reviewBase,reviews:{...reviewBase.reviews,rasterast:{version:"v2",state:"PASS",evidence:["x"]}}}),"BLOCKED");assert.equal(reviewAdmission({...reviewBase,reviews:{...reviewBase.reviews,similarityRights:{version:"v1",state:"PASS",evidence:[]}}}),"BLOCKED");assert.equal(reviewAdmission({...reviewBase,reviews:{...reviewBase.reviews,mudabbir:{version:"v1",state:"NOT_APPROVED",evidence:["m"]}}}),"BLOCKED");assert.equal(reviewAdmission({...reviewBase,unresolvedItems:[{id:"u",blocking:true}]}),"BLOCKED");
 const pilotManifest=JSON.parse(read("./pilots/emanet-irade/candidate-1.json"));const pilotReview=JSON.parse(read("./pilots/emanet-irade/review-state.json"));const pilotUnresolved=JSON.parse(read("./pilots/emanet-irade/unresolved-items.json"));const pilotCheck=verifyPilotPackage(pilotManifest,pilotReview,pilotUnresolved);assert.equal(pilotCheck.valid,true);assert.equal(pilotCheck.admission,"BLOCKED");assert.deepEqual(pilotCheck.errors,[]);
 assert.equal(verifyPilotPackage({...pilotManifest,version:"candidate-2"},pilotReview,pilotUnresolved).admission,"BLOCKED");assert.equal(verifyPilotPackage({...pilotManifest,publicAdmission:"ADMITTED"},pilotReview,pilotUnresolved).valid,false);
+assert.equal(runtimeConfig({ZANISTARAST_ENV:ENV.LOCAL}).production,false);assert.throws(()=>runtimeConfig({ZANISTARAST_ENV:ENV.PRODUCTION,ZANISTARAST_API_BASE:"http://example.test"}));assert.equal(runtimeConfig({ZANISTARAST_ENV:ENV.PRODUCTION,ZANISTARAST_API_BASE:"https://api.example.test"}).production,true);assert.deepEqual(PUBLIC_CONFIG_KEYS,["ZANISTARAST_ENV","ZANISTARAST_API_BASE"]);
+assert.equal(containsLikelySecret("postgresql://user:password@db.example/test"),true);assert.equal(containsLikelySecret("ZANISTARAST_API_BASE=https://api.example.test"),false);
+const notReady=productionReadiness({smokeGreen:true});assert.equal(notReady.ready,false);assert.ok(notReady.missing.includes("restoreTested"));assert.equal(productionReadiness({smokeGreen:true,accessibilityChecked:true,performanceChecked:true,secretsScanGreen:true,restoreTested:true,withdrawalTested:true,apiConfigured:true,storageConfigured:true,deploymentApproved:true}).ready,true);
+assert.match(sw,/cache:"no-store"/);assert.match(sw,/governed/);assert.match(sw,/shell-v2/);
 assert.match(sw,/caches\.open/);
 console.log("zanistarast-com smoke: OK");
