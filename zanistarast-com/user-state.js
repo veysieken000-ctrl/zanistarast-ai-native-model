@@ -6,6 +6,7 @@ export function createUserState(storage=globalThis.localStorage){
  const toggle=(bucket,id)=>{const s=read();s[bucket]={...s[bucket]};s[bucket][id]=!s[bucket][id];write(s);return s[bucket][id]};
  return Object.freeze({
   liked:id=>read().likes[id]===true,
+  likedIds:()=>Object.entries(read().likes).filter(([,v])=>v===true).map(([id])=>id),
   saved:id=>read().saves[id]===true,
   toggleLike:id=>toggle("likes",id),
   toggleSave:id=>toggle("saves",id),
