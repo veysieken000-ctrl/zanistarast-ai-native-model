@@ -49,3 +49,47 @@ export function buildScientificMediaBrief({ subject, evidenceType = "unspecified
     rule: "Use only media justified by the phenomenon and available evidence; richness means appropriate variety, not decoration or fabricated content."
   };
 }
+
+
+export function selectScientificMedia({ phenomenon = {}, availableMaterial = [] } = {}) {
+  const selected = [];
+  const add = (kind, reason) => {
+    if (!selected.some(item => item.kind === kind)) selected.push({ kind, reason });
+  };
+
+  if (phenomenon.quantitativeData) add("chart", "Quantitative data can be inspected visually.");
+  if (phenomenon.comparison) add("table", "Structured comparison benefits from a table.");
+  if (phenomenon.structure || phenomenon.relationships) add("diagram", "Structure or relations benefit from a scientific diagram.");
+  if (phenomenon.temporalSequence) add("timeline", "Temporal order is part of the explanation.");
+  if (phenomenon.spatialRelation) add("map", "Spatial relation is scientifically relevant.");
+  if (phenomenon.network || phenomenon.inspectableModel) add("interactive", "The model or network benefits from inspection.");
+  if (phenomenon.motion || phenomenon.changeOverTime) add("animation", "Change or motion is materially clearer over time.");
+  if (phenomenon.observationMedia) add("observation", "Direct observation material is available.");
+  if (phenomenon.experimentMedia) add("experiment", "Experiment material is available.");
+  if (phenomenon.audioPhenomenon) add("audio", "The phenomenon has scientifically relevant audio.");
+  if (phenomenon.videoEvidence) add("video", "Video materially preserves the observed process.");
+
+  const available = new Set(availableMaterial);
+  return selected.filter(item =>
+    available.has(item.kind) ||
+    ["diagram", "table", "timeline"].includes(item.kind)
+  );
+}
+
+export function createPublishedEnrichmentPlan({ publication, phenomenon, availableMaterial = [] }) {
+  if (!publication?.verified || !(publication.doi || publication.publisherUrl)) {
+    return { state: "not-published-enrichment", media: [], reason: "Authoritative publication record is not verified." };
+  }
+  return {
+    state: "published-enrichment",
+    anchor: {
+      doi: publication.doi || null,
+      publisherUrl: publication.publisherUrl || null,
+      license: publication.license || "unknown"
+    },
+    media: selectScientificMedia({ phenomenon, availableMaterial }).map(item => ({
+      ...item,
+      publicationRelation: "site-enrichment"
+    }))
+  };
+}
