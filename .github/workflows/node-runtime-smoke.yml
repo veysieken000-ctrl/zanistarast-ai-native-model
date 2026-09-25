@@ -127,6 +127,52 @@ jobs:
           PY
 
 
+      - name: Check zanistarast.org production shell
+        working-directory: .
+        run: |
+          python3 - <<'PY'
+          import json
+          import pathlib
+          import re
+          import xml.etree.ElementTree as ET
+
+          root = pathlib.Path(".")
+          index = (root / "index.html").read_text(encoding="utf-8")
+          manifest = json.loads((root / "manifest.json").read_text(encoding="utf-8"))
+          robots = (root / "robots.txt").read_text(encoding="utf-8")
+          sitemap = (root / "sitemap.xml").read_text(encoding="utf-8")
+
+          assert 'rel="canonical" href="https://zanistarast.org/"' in index
+          assert 'property="og:url" content="https://zanistarast.org/"' in index
+          assert 'application/ld+json' in index
+          assert manifest["icons"], "PWA icon metadata is missing"
+          for icon in manifest["icons"]:
+              assert (root / icon["src"].removeprefix("./")).exists()
+          assert (root / "404.html").exists()
+          assert "Sitemap: https://zanistarast.org/sitemap.xml" in robots
+          ET.fromstring(sitemap)
+
+          missing = []
+          html_files = list(root.glob("*.html")) + list((root / "articles").glob("*.html"))
+          for page in html_files:
+              text = page.read_text(encoding="utf-8", errors="ignore")
+              for href in re.findall(r'href=["\']([^"\']+)["\']', text, flags=re.I):
+                  if href.startswith(("http://", "https://", "#", "mailto:", "tel:", "javascript:")):
+                      continue
+                  target = href.split("#", 1)[0].split("?", 1)[0]
+                  if not target:
+                      continue
+                  resolved = (page.parent / target).resolve()
+                  try:
+                      resolved.relative_to(root.resolve())
+                  except ValueError:
+                      continue
+                  if not resolved.exists():
+                      missing.append(f"{page}: {href}")
+          assert not missing, "Broken local links:\n" + "\n".join(missing[:50])
+          print(f"zanistarast.org production shell: OK ({len(html_files)} HTML pages checked)")
+          PY
+
       - name: Start backend and check health
         shell: bash
         run: |
