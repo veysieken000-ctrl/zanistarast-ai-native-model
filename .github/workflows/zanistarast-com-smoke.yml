@@ -1,0 +1,43 @@
+name: zanistarast-com-smoke
+
+on:
+  push:
+    branches:
+      - feat/zanistarast-com
+    paths:
+      - "zanistarast-com/**"
+      - ".github/workflows/zanistarast-com-smoke.yml"
+  pull_request:
+    paths:
+      - "zanistarast-com/**"
+      - ".github/workflows/zanistarast-com-smoke.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Run com smoke
+        run: node zanistarast-com/test.mjs
+
+      - name: Verify static shell files
+        shell: bash
+        run: |
+          test -s zanistarast-com/index.html
+          test -s zanistarast-com/styles.css
+          test -s zanistarast-com/app.js
+          test -s zanistarast-com/data.js
+          test -s zanistarast-com/manifest.webmanifest
+          test -s zanistarast-com/sw.js
