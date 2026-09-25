@@ -1,0 +1,11 @@
+{
+  "candidateId":"pilot-emanet-irade",
+  "version":"candidate-1",
+  "items":[
+    {"id":"U1","area":"rights","blocking":true,"status":"OPEN","issue":"External expression-similarity search and final-asset rights review not completed."},
+    {"id":"U2","area":"culture","blocking":true,"status":"OPEN","issue":"Selected Kurdistan locality/period and material-culture references not yet evidenced."},
+    {"id":"U3","area":"accessibility","blocking":true,"status":"OPEN","issue":"No final media exists for caption/transcript/accessibility conformance review."},
+    {"id":"U4","area":"rasterast","blocking":true,"status":"OPEN","issue":"Rasterast review awaits upstream evidence-bearing reviews."},
+    {"id":"U5","area":"mudabbir","blocking":true,"status":"OPEN","issue":"Exact-version final decision has not been made."}
+  ]
+}
