@@ -5,6 +5,7 @@ import{works,eligibleWorks,eligibleWorkById}from"./data.js";
 import{GOVERNANCE,publicGovernance,canRenderPublic}from"./contracts.js";
 import{createContentAdapter}from"./content-adapter.js";
 import{normalizeRepresentation,hasTraceableMedia,renderMedia}from"./media.js";
+import{createUserState}from"./user-state.js";
 
 const read=p=>fs.readFileSync(new URL(p,import.meta.url),"utf8");
 const html=read("./index.html"),css=read("./styles.css"),app=read("./app.js"),data=read("./data.js"),manifest=JSON.parse(read("./manifest.webmanifest")),sw=read("./sw.js");
@@ -50,5 +51,10 @@ assert.match(renderMedia({kind:"video",src:"\/x.mp4"}),/sürüm bilgisi doğrula
 assert.match(renderMedia({id:"x",version:"1",kind:"unknown",src:"\/x"}),/temsil türü oynatılamıyor/);
 assert.match(renderMedia(null),/Medya şu anda kullanılamıyor/);
 assert.match(renderMedia(rep,{demo:true}),/DEMO MEDYA ALANI/);
+const memory=new Map();const storage={getItem:k=>memory.get(k)??null,setItem:(k,v)=>memory.set(k,v)};const state=createUserState(storage);
+assert.equal(state.liked("real-1"),false);assert.equal(state.toggleLike("real-1"),true);assert.equal(state.liked("real-1"),true);
+assert.equal(state.toggleSave("real-1"),true);assert.equal(state.saved("real-1"),true);
+state.setProgress("real-1","v1",{seconds:42});assert.deepEqual(state.progress("real-1","v1"),{seconds:42});assert.equal(state.progress("real-1","v2"),null);
+state.clear();assert.equal(state.liked("real-1"),false);assert.equal(state.saved("real-1"),false);
 assert.match(sw,/caches\.open/);
 console.log("zanistarast-com smoke: OK");
