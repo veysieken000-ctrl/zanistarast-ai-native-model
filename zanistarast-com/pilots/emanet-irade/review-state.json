@@ -1,0 +1,38 @@
+{
+  "candidateId": "pilot-emanet-irade",
+  "version": "candidate-1",
+  "publicAdmission": "BLOCKED",
+  "reviews": {
+    "similarityRights": {
+      "state": "PENDING",
+      "evidence": [
+        "similarity-rights-report.md"
+      ]
+    },
+    "cultureVisual": {
+      "state": "PENDING",
+      "evidence": [
+        "cultural-review.md"
+      ]
+    },
+    "accessibility": {
+      "state": "PENDING",
+      "evidence": [
+        "accessibility-plan.md"
+      ]
+    },
+    "rasterast": {
+      "state": "PENDING",
+      "evidence": [
+        "rasterast-report.md"
+      ]
+    },
+    "mudabbir": {
+      "state": "NOT_APPROVED",
+      "evidence": [
+        "mudabbir-decision-package.md"
+      ]
+    }
+  },
+  "rule": "Only evidence-bearing exact-version review decisions may change a gate. Repository presence is not approval."
+}
