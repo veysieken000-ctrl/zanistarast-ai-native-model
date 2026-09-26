@@ -1,5 +1,5 @@
 const KEY="zanistarast-com:user-state:v1";
-const empty=()=>({likes:{},saves:{},progress:{}});
+const empty=()=>({likes:{},saves:{},progress:{},history:[]});
 export function createUserState(storage=globalThis.localStorage){
  const read=()=>{try{return {...empty(),...JSON.parse(storage?.getItem(KEY)||"{}")}}catch{return empty()}};
  const write=s=>{try{storage?.setItem(KEY,JSON.stringify(s))}catch{}return s};
@@ -8,6 +8,9 @@ export function createUserState(storage=globalThis.localStorage){
   liked:id=>read().likes[id]===true,
   likedIds:()=>Object.entries(read().likes).filter(([,v])=>v===true).map(([id])=>id),
   saved:id=>read().saves[id]===true,
+  savedIds:()=>Object.entries(read().saves).filter(([,v])=>v===true).map(([id])=>id),
+  history:()=>[...read().history],
+  visit:id=>{const s=read();s.history=[id,...s.history.filter(x=>x!==id)].slice(0,100);write(s);return s.history},
   toggleLike:id=>toggle("likes",id),
   toggleSave:id=>toggle("saves",id),
   progress:(id,version)=>read().progress[`${id}@${version}`]??null,
