@@ -137,6 +137,9 @@ Work:
 - allow skippable media after a configured short delay, with automatic continuation when the promotion ends;
 - link internal publication announcements to the exact admitted Work/version they describe;
 - keep "Yeni Eklenenler" independent from promotion delivery so discovery never requires watching an ad;
+- provide a non-interruptive promotion shelf in the watch-page related-content area, so Zanistarast announcements remain discoverable even when interruptive ad inventory is full;
+- allow that shelf to open a richer announcement/detail presentation than the short in-stream promotion, including the full trailer, explainer, documentary or other admitted representation when available;
+- when the promoted Work itself is newly admitted, let it also appear naturally in "Yeni Eklenenler"; promotion placement must not replace or distort newest-content ordering;
 - define frequency caps, repeat suppression and short-content exclusions to avoid excessive interruption;
 - require external promotions to pass applicable rights, Rasterast, cultural/moral visual and Müdebbir gates before eligibility;
 - label paid/sponsored material clearly and keep commercial ranking separate from scientific/publication status;
@@ -147,7 +150,8 @@ Acceptance:
 - skip becomes available only according to explicit configuration and the main media resumes automatically on skip or completion;
 - internal announcements cannot claim publication before the referenced exact version is admitted;
 - frequency caps are deterministic and testable;
-- disabling or failing promotion delivery never blocks the requested Work;
+- disabling, exhausting or filling interruptive promotion inventory never blocks the requested Work or suppresses Zanistarast announcements from their non-interruptive shelf;
+- a shelf announcement and an in-stream short may point to the same exact Work/version while remaining distinct representations and disclosure contexts;
 - CI covers eligibility, skip timing, completion continuation and frequency limits.
 
 Implementation order: build first with DEMO/internal announcements only. External ad-network integration is deferred until production governance, privacy and deployment requirements are explicitly satisfied.
