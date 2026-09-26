@@ -11,7 +11,7 @@ import{publicAdmission as reviewAdmission}from"./review-gates.js";
 import{verifyPilotPackage}from"./pilot-verifier.js";
 import{runtimeConfig,ENV,PUBLIC_CONFIG_KEYS}from"./runtime-config.js";
 import{productionReadiness,containsLikelySecret}from"./production-readiness.js";
-import{CAMPAIGN_STATE,CREATIVE_ORIGIN,validateCampaign,validateCreative,exactVersionAdmission,campaignDeliveryState,materialCreativeChange}from"./ad-contracts.js";
+import{CAMPAIGN_STATE,CREATIVE_ORIGIN,validateCampaign,validateCreative,exactVersionAdmission,campaignDeliveryState,materialCreativeChange,renewCampaign}from"./ad-contracts.js";
 import{CLAIM_STATUS,createAdSourceLedger,miraCreativeHandoff}from"./ad-source-ledger.js";
 import{PROMOTION_KIND,promotionEligible,createPromotionService,promotionPlayback,renderPromotionInterstitial}from"./promotions.js";
 
@@ -100,4 +100,6 @@ const adLedger=createAdSourceLedger({campaignId:"c1",campaignVersion:"v1",source
 assert.equal(adLedger.valid,true);assert.equal(miraCreativeHandoff(adLedger,{creativeId:"m1",version:"mv1"}).ready,true);
 const openLedger=createAdSourceLedger({campaignId:"c1",campaignVersion:"v1",sources:[{sourceId:"s1",rightsStatus:"UNVERIFIED"}],claims:[{claimId:"cl1",status:CLAIM_STATUS.UNVERIFIED,sourceIds:["s1"]}]});assert.equal(miraCreativeHandoff(openLedger,{creativeId:"m1",version:"mv1"}).ready,false);
 const badLedger=createAdSourceLedger({campaignId:"c1",campaignVersion:"v1",sources:[],claims:[{claimId:"cl1",status:CLAIM_STATUS.SUPPORTED,sourceIds:["missing"]}]});assert.equal(badLedger.valid,false);
+const renewal=renewCampaign({...campaign,impressionEntitlement:100000},{version:"v2",startAt:"2026-11-01",endAt:"2026-12-01",impressionEntitlement:50000});
+assert.equal(renewal.ready,true);assert.equal(renewal.campaign.state,CAMPAIGN_STATE.REVIEW);assert.equal(renewal.campaign.impressionEntitlement,50000);assert.equal(renewal.previousVersion,"v1");assert.equal(renewal.requiresFreshReview,true);assert.equal(renewCampaign(campaign,{version:"v1",startAt:"2026-11-01",endAt:"2026-12-01"}).ready,false);
 console.log("zanistarast-com smoke: OK");
