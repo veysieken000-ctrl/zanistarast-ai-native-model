@@ -1,0 +1,28 @@
+name: zanistarast-com-preview
+
+on:
+  push:
+    branches:
+      - feat/zanistarast-com
+    paths:
+      - "zanistarast-com/**"
+      - ".github/workflows/zanistarast-com-preview.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build branch preview
+        run: |
+          rm -rf _site
+          mkdir -p _site/zanistarast-com
+          cp -R zanistarast-com/. _site/zanistarast-com/
+          touch _site/.nojekyll
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
