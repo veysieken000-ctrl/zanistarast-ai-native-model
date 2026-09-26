@@ -17,6 +17,7 @@ import{INSPECTION_STATE,inspectAdCreative,antiManipulationReviewEvidence}from"./
 import{AD_PLACEMENT,createAdScheduler,selectPromotionOrInternal}from"./ad-scheduler.js";
 import{AUDIT_EVENT,createCampaignAuditLog,lifecycleTransition,shouldDeliverCampaign}from"./ad-lifecycle.js";
 import{buildDemoCampaign}from"./ad-demo-campaign.js";
+import{advertiserIntake,billingEligibility}from"./ad-external-intake.js";
 import{PROMOTION_KIND,promotionEligible,createPromotionService,promotionPlayback,renderPromotionInterstitial,renderPromotionShelf,PROMOTION_OUTCOME,promotionOutcome}from"./promotions.js";
 
 const read=p=>fs.readFileSync(new URL(p,import.meta.url),"utf8");
@@ -139,4 +140,10 @@ assert.throws(()=>lifecycleTransition(schedCampaign,CAMPAIGN_STATE.WITHDRAWN,{at
 const expired=lifecycleTransition(schedCampaign,CAMPAIGN_STATE.EXPIRED,{at:"2026-11-01T00:00:01Z"});assert.equal(expired.lifecycle.reason,"CAMPAIGN_WINDOW_ENDED");assert.equal(shouldDeliverCampaign(expired,new Date("2026-11-01T00:00:01Z")),false);
 assert.equal(shouldDeliverCampaign(schedCampaign,new Date("2026-10-15T12:00:00Z")),true);
 const demoCampaign=buildDemoCampaign();assert.equal(demoCampaign.demo,true);assert.equal(demoCampaign.publicDeliveryAllowed,false);assert.equal(demoCampaign.ledger.valid,true);assert.equal(demoCampaign.handoff.ready,true);assert.equal(demoCampaign.inspection.state,"PASS");assert.equal(demoCampaign.antiManipulation.ready,true);assert.equal(demoCampaign.campaign.state,CAMPAIGN_STATE.REVIEW);assert.equal(exactVersionAdmission(demoCampaign.campaign,demoCampaign.creative,{}),"BLOCKED");
+const externalIntake=advertiserIntake({campaign:{...campaign,targetUrl:"https://sponsor.example/path"},asset:{assetId:"asset-1",version:"av1",kind:"video"},legalAccepted:true,privacyAccepted:true,deploymentReady:true});assert.equal(externalIntake.readyForReview,true);assert.equal(externalIntake.directPublishAllowed,false);assert.equal(externalIntake.billingAllowed,false);assert.equal(externalIntake.asset.trust,"UNTRUSTED_INPUT");
+assert.equal(advertiserIntake({campaign,asset:{assetId:"asset-1",version:"av1"}}).readyForReview,false);
+assert.equal(advertiserIntake({campaign:{...campaign,targetUrl:"http://unsafe.example"},asset:{assetId:"asset-1",version:"av1"},legalAccepted:true,privacyAccepted:true,deploymentReady:true}).readyForReview,false);
+assert.equal(billingEligibility({intake:externalIntake,admissionState:"BLOCKED",commercialApproval:true}).allowed,false);
+assert.equal(billingEligibility({intake:externalIntake,admissionState:"ADMITTED",commercialApproval:false}).allowed,false);
+assert.equal(billingEligibility({intake:externalIntake,admissionState:"ADMITTED",commercialApproval:true}).allowed,true);
 console.log("zanistarast-com smoke: OK");
