@@ -15,3 +15,7 @@
 .zan-flag:before{content:"";position:absolute;left:-5px;top:-5px;width:3px;height:39px;border-radius:2px;background:#d7b75a}.flag-z{font-family:Georgia,serif;font-weight:800;color:#17130b;text-shadow:0 1px rgba(255,255,255,.35)}
 @keyframes zanFlagWave{0%,100%{transform:perspective(90px) rotateY(0deg) skewY(0deg)}50%{transform:perspective(90px) rotateY(-12deg) skewY(2deg)}}
 @media(prefers-reduced-motion:reduce){.zan-flag{animation:none}}
+
+.identity-copy{display:flex;flex-direction:column;align-items:center;line-height:1.15}
+.identity-copy .era-title{font-size:clamp(1rem,2.2vw,1.25rem)}
+.civilization-signature{margin-top:.18rem;font-family:Georgia,"Times New Roman",serif;font-size:clamp(.68rem,1.5vw,.82rem);font-style:italic;font-weight:700;letter-spacing:.035em;background:linear-gradient(90deg,#f4d03f 0 33%,#d43c32 33% 66%,#3b9b55 66%);-webkit-background-clip:text;background-clip:text;color:transparent}
