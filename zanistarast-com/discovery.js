@@ -1,6 +1,7 @@
 export function createDiscoveryService(contentAdapter){
  const eligible=()=>contentAdapter.list();
  const norm=v=>String(v??"").toLocaleLowerCase("tr");
+ const newest=()=>eligible().filter(w=>w.publishedAt).sort((a,b)=>String(b.publishedAt).localeCompare(String(a.publishedAt))||a.workId.localeCompare(b.workId));
  const score=(source,w,prefs)=>{
   const shared=(w.values??[]).filter(v=>source?.values?.includes(v)).length;
   const preferred=(w.values??[]).filter(v=>prefs.values.has(v)).length;
@@ -8,6 +9,7 @@ export function createDiscoveryService(contentAdapter){
   return shared*4+preferred*2+likedFormat;
  };
  return Object.freeze({
+  newest(limit=12){return newest().slice(0,Math.max(0,limit));},
   search(query){
    const q=norm(query).trim();if(!q)return eligible();
    return eligible().filter(w=>norm([w.title,w.summary,w.format,w.language,...(w.values??[])].join(" ")).includes(q));
