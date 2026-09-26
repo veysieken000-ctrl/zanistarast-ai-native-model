@@ -1,10 +1,11 @@
-import{applyIdentityLocale}from"./locale.js";
+import{applyIdentityLocale,detectLocale,setLocale}from"./locale.js";
 import{contentAdapter}from"./content-adapter.js";
 import{renderMedia,bindMediaProgress,bindPlayerControls,bindAdvancedPlayer}from"./media.js";
 import{userState}from"./user-state.js";
 import{createDiscoveryService}from"./discovery.js";
 const discovery=createDiscoveryService(contentAdapter);
-applyIdentityLocale();
+const activeLocale=applyIdentityLocale();
+const languageSelect=document.querySelector("#language-select");if(languageSelect){languageSelect.value=activeLocale;languageSelect.addEventListener("change",e=>setLocale(e.currentTarget.value))}
 const main=document.querySelector("#main");
 const menu=document.querySelector("#side-menu"),scrim=document.querySelector(".menu-scrim"),menuButton=document.querySelector(".menu-toggle");
 function setMenu(open){menu.hidden=!open;scrim.hidden=!open;menuButton.setAttribute("aria-expanded",String(open))}
