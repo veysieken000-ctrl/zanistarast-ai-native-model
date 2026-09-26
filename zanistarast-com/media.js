@@ -38,3 +38,14 @@ export function bindPlayerControls(root){
  media.addEventListener("click",click);document.addEventListener("keydown",key);
  return()=>{media.removeEventListener("click",click);document.removeEventListener("keydown",key);clearTimeout(timer);badge.remove()};
 }
+
+export function bindAdvancedPlayer(root,{nextHref=null,autoplayNext=false}={}){
+ const media=root?.querySelector?.("video.media-player");if(!media)return()=>{};
+ const bar=document.createElement("div");bar.className="player-tools";bar.innerHTML='<button type="button" data-pip>Resim içinde resim</button><button type="button" data-full>Tam ekran</button>';
+ media.insertAdjacentElement("afterend",bar);
+ const pip=async()=>{try{if(document.pictureInPictureElement)await document.exitPictureInPicture();else if(document.pictureInPictureEnabled&&media.requestPictureInPicture)await media.requestPictureInPicture()}catch{}};
+ const full=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await media.requestFullscreen?.()}catch{}};
+ const ended=()=>{if(autoplayNext&&nextHref)location.hash=nextHref};
+ bar.querySelector("[data-pip]")?.addEventListener("click",pip);bar.querySelector("[data-full]")?.addEventListener("click",full);media.addEventListener("ended",ended);
+ return()=>{media.removeEventListener("ended",ended);bar.remove()};
+}
