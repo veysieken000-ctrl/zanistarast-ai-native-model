@@ -146,4 +146,5 @@ assert.equal(advertiserIntake({campaign:{...campaign,targetUrl:"http://unsafe.ex
 assert.equal(billingEligibility({intake:externalIntake,admissionState:"BLOCKED",commercialApproval:true}).allowed,false);
 assert.equal(billingEligibility({intake:externalIntake,admissionState:"ADMITTED",commercialApproval:false}).allowed,false);
 assert.equal(billingEligibility({intake:externalIntake,admissionState:"ADMITTED",commercialApproval:true}).allowed,true);
+assert.match(index,/id="top-search"/);assert.match(index,/id="top-q"/);assert.match(app,/location\.hash="#\/search"/);assert.match(app,/discovery\.search\(s\)/);assert.match(app,/Sonuç bulunamadı/);
 console.log("zanistarast-com smoke: OK");
