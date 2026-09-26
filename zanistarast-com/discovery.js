@@ -10,9 +10,22 @@ export function createDiscoveryService(contentAdapter){
  };
  return Object.freeze({
   newest(limit=12){return newest().slice(0,Math.max(0,limit));},
-  search(query){
-   const q=norm(query).trim();if(!q)return eligible();
-   return eligible().filter(w=>norm([w.title,w.summary,w.format,w.language,...(w.values??[])].join(" ")).includes(q));
+  search(query,{format=null,language=null,value=null}={}){
+   const q=norm(query).trim();
+   return eligible().filter(w=>{
+    if(format&&w.format!==format)return false;
+    if(language&&w.language!==language)return false;
+    if(value&&!(w.values??[]).includes(value))return false;
+    return !q||norm([w.title,w.summary,w.format,w.language,...(w.values??[])].join(" ")).includes(q);
+   });
+  },
+  facets(){
+   const ws=eligible(),uniq=xs=>[...new Set(xs.filter(Boolean))].sort((a,b)=>String(a).localeCompare(String(b),"tr"));
+   return Object.freeze({formats:Object.freeze(uniq(ws.map(w=>w.format))),languages:Object.freeze(uniq(ws.map(w=>w.language))),values:Object.freeze(uniq(ws.flatMap(w=>w.values??[])))});
+  },
+  suggest(query,limit=6){
+   const q=norm(query).trim();if(!q)return[];
+   return this.search(q).slice(0,Math.max(0,limit)).map(w=>Object.freeze({workId:w.workId,title:w.title,format:w.format,language:w.language}));
   },
   preferences(likedIds=[]){
    const liked=new Set(likedIds);
