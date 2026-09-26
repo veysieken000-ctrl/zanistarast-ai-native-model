@@ -49,7 +49,9 @@ export function bindAdvancedPlayer(root,{nextHref=null,autoplayNext=false,chapte
  const full=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await media.requestFullscreen?.()}catch{}};
  const speed=e=>{media.playbackRate=Number(e.currentTarget.value)||1};
  const captions=()=>{const tracks=[...media.textTracks];if(!tracks.length)return;const on=tracks.some(t=>t.mode==="showing");tracks.forEach((t,i)=>t.mode=!on&&i===0?"showing":"disabled");bar.querySelector("[data-captions]").textContent=on?"Altyazı":"Altyazı kapat"};
- const ended=()=>{if(autoplayNext&&nextHref)location.hash=nextHref};
+ let countdown=null,count=5;
+ const cancelNext=()=>{if(countdown)clearInterval(countdown);countdown=null;root.querySelector(".next-countdown")?.remove()};
+ const ended=()=>{if(!autoplayNext||!nextHref)return;cancelNext();count=5;const box=document.createElement("div");box.className="next-countdown";box.setAttribute("role","status");box.innerHTML='<span data-count></span><button type="button">İptal</button>';host?.append(box);const paint=()=>box.querySelector("[data-count]").textContent='Sıradaki içerik '+count+' sn sonra oynatılacak';paint();box.querySelector("button").addEventListener("click",cancelNext);countdown=setInterval(()=>{count-=1;if(count<=0){cancelNext();location.hash=nextHref}else paint()},1000)};
  bar.querySelector("[data-speed]")?.addEventListener("change",speed);bar.querySelector("[data-captions]")?.addEventListener("click",captions);bar.querySelector("[data-pip]")?.addEventListener("click",pip);bar.querySelector("[data-full]")?.addEventListener("click",full);media.addEventListener("ended",ended);
- return()=>{media.removeEventListener("ended",ended);bar.remove()};
+ return()=>{cancelNext();media.removeEventListener("ended",ended);bar.remove()};
 }
