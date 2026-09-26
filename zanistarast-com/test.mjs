@@ -11,6 +11,7 @@ import{publicAdmission as reviewAdmission}from"./review-gates.js";
 import{verifyPilotPackage}from"./pilot-verifier.js";
 import{runtimeConfig,ENV,PUBLIC_CONFIG_KEYS}from"./runtime-config.js";
 import{productionReadiness,containsLikelySecret}from"./production-readiness.js";
+import{CAMPAIGN_STATE,CREATIVE_ORIGIN,validateCampaign,validateCreative,exactVersionAdmission}from"./ad-contracts.js";
 import{PROMOTION_KIND,promotionEligible,createPromotionService,promotionPlayback,renderPromotionInterstitial}from"./promotions.js";
 
 const read=p=>fs.readFileSync(new URL(p,import.meta.url),"utf8");
@@ -83,4 +84,9 @@ assert.equal(promotionService.next(0)?.id,"promo-1");assert.equal(promotionServi
 const playback=promotionPlayback({skipAfterSeconds:5});assert.equal(playback.canSkip(4.9),false);assert.equal(playback.canSkip(5),true);assert.equal(playback.completionAction,"RESUME_REQUESTED_WORK");assert.equal(playback.failureAction,"RESUME_REQUESTED_WORK");
 const promoVideoHtml=renderPromotionInterstitial({...promo,representation:{id:"promo-video",version:"pv1",kind:"video",src:"/demo/promo.mp4",mime:"video/mp4"},skipAfterSeconds:5});assert.match(promoVideoHtml,/data-promotion-media/);assert.match(promoVideoHtml,/promo\.mp4/);assert.match(promoVideoHtml,/Atla · 5 sn/);
 const unsafePromoVideoHtml=renderPromotionInterstitial({...promo,representation:{kind:"video",src:"/demo/unversioned.mp4"}});assert.doesNotMatch(unsafePromoVideoHtml,/data-promotion-media/);
+const campaign={campaignId:"c1",version:"v1",state:CAMPAIGN_STATE.ADMITTED,sponsor:{name:"Sponsor"},startAt:"2026-10-01",endAt:"2026-10-31",claims:[],rightsEvidence:["license"],targetUrl:"https://example.test"};
+const creative={creativeId:"cr1",version:"cv1",campaignId:"c1",campaignVersion:"v1",origin:CREATIVE_ORIGIN.MIRA,representation:{id:"r1",version:"cv1"}};
+assert.equal(validateCampaign(campaign).valid,true);assert.equal(validateCreative(creative).valid,true);assert.equal(validateCreative({...creative,origin:CREATIVE_ORIGIN.ADVERTISER,trusted:true}).valid,false);
+const adReviews=Object.fromEntries(["rights","claims","antiManipulation","culturalMoral","rasterast"].map(k=>[k,{version:"cv1",state:"PASS"}]));
+assert.equal(exactVersionAdmission(campaign,creative,adReviews),"ADMITTED");assert.equal(exactVersionAdmission(campaign,{...creative,version:"cv2"},adReviews),"BLOCKED");
 console.log("zanistarast-com smoke: OK");
