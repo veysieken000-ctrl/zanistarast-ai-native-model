@@ -15,7 +15,7 @@ import{CAMPAIGN_STATE,CREATIVE_ORIGIN,validateCampaign,validateCreative,exactVer
 import{CLAIM_STATUS,createAdSourceLedger,miraCreativeHandoff}from"./ad-source-ledger.js";
 import{INSPECTION_STATE,inspectAdCreative,antiManipulationReviewEvidence}from"./ad-inspection.js";
 import{AD_PLACEMENT,createAdScheduler,selectPromotionOrInternal}from"./ad-scheduler.js";
-import{PROMOTION_KIND,promotionEligible,createPromotionService,promotionPlayback,renderPromotionInterstitial,renderPromotionShelf}from"./promotions.js";
+import{PROMOTION_KIND,promotionEligible,createPromotionService,promotionPlayback,renderPromotionInterstitial,renderPromotionShelf,PROMOTION_OUTCOME,promotionOutcome}from"./promotions.js";
 
 const read=p=>fs.readFileSync(new URL(p,import.meta.url),"utf8");
 const html=read("./index.html"),css=read("./styles.css"),app=read("./app.js"),data=read("./data.js"),manifest=JSON.parse(read("./manifest.webmanifest")),sw=read("./sw.js");
@@ -87,6 +87,10 @@ assert.equal(promotionService.next(0)?.id,"promo-1");assert.equal(promotionServi
 const shelfHtml=renderPromotionShelf([promo]);assert.match(shelfHtml,/Tanıtımlar/);assert.match(shelfHtml,/TANITIM/);assert.match(shelfHtml,/#\/work\/real-1/);assert.equal(renderPromotionShelf([]),"");
 assert.match(app,/renderPromotionShelf\(promotionService\.shelf\(\)\)/);
 const playback=promotionPlayback({skipAfterSeconds:5});assert.equal(playback.canSkip(4.9),false);assert.equal(playback.canSkip(5),true);assert.equal(playback.completionAction,"RESUME_REQUESTED_WORK");assert.equal(playback.failureAction,"RESUME_REQUESTED_WORK");
+assert.equal(promotionOutcome(PROMOTION_OUTCOME.SKIPPED).resumeRequestedWork,true);assert.equal(promotionOutcome(PROMOTION_OUTCOME.SKIPPED).countsAsCompleted,false);
+assert.equal(promotionOutcome(PROMOTION_OUTCOME.COMPLETED).resumeRequestedWork,true);assert.equal(promotionOutcome(PROMOTION_OUTCOME.COMPLETED).countsAsCompleted,true);
+assert.equal(promotionOutcome(PROMOTION_OUTCOME.FAILED).resumeRequestedWork,true);assert.equal(promotionOutcome(PROMOTION_OUTCOME.FAILED).countsAsCompleted,false);
+assert.equal(promotionOutcome("UNKNOWN").valid,false);
 const promoVideoHtml=renderPromotionInterstitial({...promo,representation:{id:"promo-video",version:"pv1",kind:"video",src:"/demo/promo.mp4",mime:"video/mp4"},skipAfterSeconds:5});assert.match(promoVideoHtml,/data-promotion-media/);assert.match(promoVideoHtml,/promo\.mp4/);assert.match(promoVideoHtml,/Atla · 5 sn/);
 const unsafePromoVideoHtml=renderPromotionInterstitial({...promo,representation:{kind:"video",src:"/demo/unversioned.mp4"}});assert.doesNotMatch(unsafePromoVideoHtml,/data-promotion-media/);
 const campaign={campaignId:"c1",version:"v1",state:CAMPAIGN_STATE.ADMITTED,sponsor:{name:"Sponsor"},startAt:"2026-10-01",endAt:"2026-10-31",claims:[],rightsEvidence:["license"],targetUrl:"https://example.test"};
