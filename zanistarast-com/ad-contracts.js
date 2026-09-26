@@ -33,3 +33,19 @@ export function exactVersionAdmission(campaign,creative,reviews={}){
  if(reviews.mudabbir?.required===true&&(reviews.mudabbir.version!==creative.version||reviews.mudabbir.state!=="APPROVED"))return"BLOCKED";
  return"ADMITTED";
 }
+
+export function campaignDeliveryState(campaign,creative,reviews={},now=new Date()){
+ const admission=exactVersionAdmission(campaign,creative,reviews);
+ if(admission!=="ADMITTED")return admission;
+ const t=now instanceof Date?now:new Date(now),start=new Date(campaign.startAt),end=new Date(campaign.endAt);
+ if(!Number.isFinite(t.getTime())||!Number.isFinite(start.getTime())||!Number.isFinite(end.getTime())||start>=end)return"BLOCKED";
+ if(t<start)return"SCHEDULED";
+ if(t>end)return"EXPIRED";
+ return"ACTIVE";
+}
+export function materialCreativeChange(previous,next){
+ if(!previous||!next)return true;
+ const fields=["version","campaignVersion","targetUrl","thumbnail","voiceOver","text"];
+ if(fields.some(k=>JSON.stringify(previous[k]??null)!==JSON.stringify(next[k]??null)))return true;
+ return JSON.stringify(previous.representation??null)!==JSON.stringify(next.representation??null);
+}
