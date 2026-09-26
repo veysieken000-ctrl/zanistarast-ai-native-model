@@ -11,6 +11,7 @@ import{publicAdmission as reviewAdmission}from"./review-gates.js";
 import{verifyPilotPackage}from"./pilot-verifier.js";
 import{runtimeConfig,ENV,PUBLIC_CONFIG_KEYS}from"./runtime-config.js";
 import{productionReadiness,containsLikelySecret}from"./production-readiness.js";
+import{PROMOTION_KIND,promotionEligible,createPromotionService}from"./promotions.js";
 
 const read=p=>fs.readFileSync(new URL(p,import.meta.url),"utf8");
 const html=read("./index.html"),css=read("./styles.css"),app=read("./app.js"),data=read("./data.js"),manifest=JSON.parse(read("./manifest.webmanifest")),sw=read("./sw.js");
@@ -74,4 +75,9 @@ const notReady=productionReadiness({smokeGreen:true});assert.equal(notReady.read
 assert.match(sw,/cache:"no-store"/);assert.match(sw,/governed/);assert.match(sw,/shell-v2/);
 const readinessState=JSON.parse(read("./readiness-state.json"));assert.equal(readinessState.productionReady,false);assert.equal(readinessState.domainActivationAllowed,false);assert.equal(readinessState.liveClaimAllowed,false);assert.equal(readinessState.packages.F.codeSide,"COMPLETE_AS_BLOCKED_CANDIDATE");assert.equal(readinessState.packages.G.codeSide,"COMPLETE");
 assert.match(sw,/caches\.open/);const mediaSource=read("./media.js");assert.match(mediaSource,/next-countdown/);assert.match(mediaSource,/Sıradaki içerik/);assert.match(mediaSource,/data-speed/);assert.match(mediaSource,/requestPictureInPicture/);
+const promo={id:"promo-1",version:"p1",kind:PROMOTION_KIND.INTERNAL,state:"ADMITTED",rights:true,rasterast:true,mudabbirRequired:false,targetWorkId:"real-1",targetVersion:"v1"};
+assert.equal(promotionEligible(promo,id=>gateAdapter.get(id)),true);
+assert.equal(promotionEligible({...promo,targetVersion:"v2"},id=>gateAdapter.get(id)),false);
+const promotionService=createPromotionService([promo],{workLookup:id=>gateAdapter.get(id),maxPerSession:1,minWorksBetween:3});
+assert.equal(promotionService.next(0)?.id,"promo-1");assert.equal(promotionService.next(4),null);assert.equal(promotionService.remaining(),0);
 console.log("zanistarast-com smoke: OK");
