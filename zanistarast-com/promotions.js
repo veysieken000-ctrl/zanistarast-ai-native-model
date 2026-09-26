@@ -40,10 +40,10 @@ export function renderPromotionInterstitial(p){
 export function bindPromotionInterstitial(root,{onResume=()=>{},durationSeconds=null}={}){
  const box=root?.querySelector?.("[data-promotion]");if(!box)return()=>{};
  const button=box.querySelector("[data-skip]");let left=Math.max(0,Number(box.dataset.skipAfter||5)),done=false,timer,completion=null;
- const finish=()=>{if(done)return;done=true;clearInterval(timer);if(completion)clearTimeout(completion);box.remove();onResume()};
+ const finish=(outcome=PROMOTION_OUTCOME.COMPLETED)=>{if(done)return;done=true;clearInterval(timer);if(completion)clearTimeout(completion);box.remove();onResume(promotionOutcome(outcome))};
  const paint=()=>{if(left<=0){button.disabled=false;button.textContent="Atla"}else button.textContent="Atla · "+left+" sn"};
- const media=box.querySelector("[data-promotion-media]");media?.addEventListener("ended",finish,{once:true});media?.addEventListener("error",finish,{once:true});media?.play?.().catch?.(()=>finish());paint();timer=setInterval(()=>{left-=1;paint();if(left<=0)clearInterval(timer)},1000);completion=Number(durationSeconds)>0?setTimeout(finish,Number(durationSeconds)*1000):null;
- button?.addEventListener("click",()=>{if(!button.disabled)finish()});
+ const media=box.querySelector("[data-promotion-media]");media?.addEventListener("ended",()=>finish(PROMOTION_OUTCOME.COMPLETED),{once:true});media?.addEventListener("error",()=>finish(PROMOTION_OUTCOME.FAILED),{once:true});media?.play?.().catch?.(()=>finish(PROMOTION_OUTCOME.FAILED));paint();timer=setInterval(()=>{left-=1;paint();if(left<=0)clearInterval(timer)},1000);completion=Number(durationSeconds)>0?setTimeout(finish,Number(durationSeconds)*1000):null;
+ button?.addEventListener("click",()=>{if(!button.disabled)finish(PROMOTION_OUTCOME.SKIPPED)});
  return finish;
 }
 
@@ -58,4 +58,11 @@ export function renderPromotionShelf(records=[]){
   const body='<span class="promotion-label">'+label+'</span><strong>'+esc(p.title??"Tanıtım")+'</strong><p>'+esc(p.summary??"")+'</p>';
   return href?'<a class="promotion-card" href="'+href+'">'+body+'</a>':'<article class="promotion-card">'+body+'</article>';
  }).join("")+'</div></section>';
+}
+
+
+export const PROMOTION_OUTCOME=Object.freeze({SKIPPED:"SKIPPED",COMPLETED:"COMPLETED",FAILED:"FAILED"});
+export function promotionOutcome(outcome){
+ if(!Object.values(PROMOTION_OUTCOME).includes(outcome))return Object.freeze({valid:false,resumeRequestedWork:true,countsAsCompleted:false});
+ return Object.freeze({valid:true,resumeRequestedWork:true,countsAsCompleted:outcome===PROMOTION_OUTCOME.COMPLETED});
 }
