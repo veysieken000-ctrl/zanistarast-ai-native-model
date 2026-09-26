@@ -126,3 +126,28 @@ Acceptance:
 ## Execution rule
 
 Proceed package by package. A package closes only after its implementation and applicable CI/tests are green. Do not reopen the 32 locked roadmap items unless a concrete implementation conflict or regression requires a narrowly scoped correction.
+
+
+## Package H — Promotion, advertising and publication announcement system
+
+Goal: support restrained, clearly disclosed promotional interstitials without turning attention or payment into publication authority.
+
+Work:
+- support short Zanistarast publication/work announcements and, later, governed external advertising as distinct promotion classes;
+- allow skippable media after a configured short delay, with automatic continuation when the promotion ends;
+- link internal publication announcements to the exact admitted Work/version they describe;
+- keep "Yeni Eklenenler" independent from promotion delivery so discovery never requires watching an ad;
+- define frequency caps, repeat suppression and short-content exclusions to avoid excessive interruption;
+- require external promotions to pass applicable rights, Rasterast, cultural/moral visual and Müdebbir gates before eligibility;
+- label paid/sponsored material clearly and keep commercial ranking separate from scientific/publication status;
+- collect only the minimum delivery state needed for frequency control; do not let ad engagement affect content admission.
+
+Acceptance:
+- a promotion can never make a blocked/pending Work publicly eligible;
+- skip becomes available only according to explicit configuration and the main media resumes automatically on skip or completion;
+- internal announcements cannot claim publication before the referenced exact version is admitted;
+- frequency caps are deterministic and testable;
+- disabling or failing promotion delivery never blocks the requested Work;
+- CI covers eligibility, skip timing, completion continuation and frequency limits.
+
+Implementation order: build first with DEMO/internal announcements only. External ad-network integration is deferred until production governance, privacy and deployment requirements are explicitly satisfied.
