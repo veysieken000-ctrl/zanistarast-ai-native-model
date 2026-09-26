@@ -18,3 +18,13 @@ export function createPromotionService(records=[],{workLookup=()=>null,maxPerSes
   remaining:()=>Math.max(0,maxPerSession-total)
  });
 }
+
+export function promotionPlayback(p){
+ const skipAfter=Math.max(0,Number(p?.skipAfterSeconds??5));
+ return Object.freeze({
+  skipAfterSeconds:skipAfter,
+  canSkip:elapsed=>Number(elapsed)>=skipAfter,
+  completionAction:"RESUME_REQUESTED_WORK",
+  failureAction:"RESUME_REQUESTED_WORK"
+ });
+}
