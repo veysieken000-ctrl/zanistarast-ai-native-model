@@ -2,7 +2,7 @@ export const GOVERNANCE=Object.freeze({DEMO:"DEMO",ADMITTED:"ADMITTED",PENDING:"
 
 export function toWorkSummary(record){
  if(!record||!record.workId||!record.title||!record.summary)return null;
- return Object.freeze({workId:record.workId,version:record.version??null,title:record.title,summary:record.summary,format:record.format??"",language:record.language??"",values:Object.freeze([...(record.values??[])]),demo:record.demo===true});
+ return Object.freeze({workId:record.workId,version:record.version??null,title:record.title,summary:record.summary,format:record.format??"",language:record.language??"",values:Object.freeze([...(record.values??[])]),demo:record.demo===true,publishedAt:record.publishedAt??record.addedAt??null,localizations:record.localizations??null});
 }
 
 export function toWorkDetail(record){
