@@ -8,3 +8,10 @@
 .next-countdown{position:absolute;right:1rem;bottom:4.5rem;z-index:4;display:flex;align-items:center;gap:.65rem;padding:.7rem .85rem;border-radius:.75rem;background:rgba(0,0,0,.82);color:#fff}.next-countdown button{min-height:40px}@media(max-width:700px){.next-countdown{left:.75rem;right:.75rem;bottom:3.75rem;justify-content:space-between}.gesture-player video{touch-action:manipulation}}
 
 .queue-item{display:flex;justify-content:space-between;align-items:center;gap:.5rem;padding:.55rem 0;border-bottom:1px solid currentColor}.queue-item span{display:flex;gap:.25rem}.queue-item button{min-width:40px;min-height:40px}
+
+.identity-banner{position:relative;z-index:20;display:flex;justify-content:center;align-items:center;gap:.8rem;min-height:52px;padding:.45rem 1rem;text-align:center;background:#090d16;color:#f4d98b;border-bottom:1px solid rgba(244,217,139,.28)}
+.era-title{font-family:Georgia,"Times New Roman",serif;font-weight:700;letter-spacing:.045em;font-size:clamp(1rem,2.7vw,1.35rem)}
+.zan-flag{position:relative;display:inline-flex;align-items:center;justify-content:center;width:42px;height:29px;transform-origin:left center;background:linear-gradient(110deg,#e7c66c,#fff4bf 48%,#b98b31);clip-path:polygon(0 4%,100% 0,92% 50%,100% 100%,0 94%);box-shadow:0 0 12px rgba(244,217,139,.28);animation:zanFlagWave 2.8s ease-in-out infinite}
+.zan-flag:before{content:"";position:absolute;left:-5px;top:-5px;width:3px;height:39px;border-radius:2px;background:#d7b75a}.flag-z{font-family:Georgia,serif;font-weight:800;color:#17130b;text-shadow:0 1px rgba(255,255,255,.35)}
+@keyframes zanFlagWave{0%,100%{transform:perspective(90px) rotateY(0deg) skewY(0deg)}50%{transform:perspective(90px) rotateY(-12deg) skewY(2deg)}}
+@media(prefers-reduced-motion:reduce){.zan-flag{animation:none}}
