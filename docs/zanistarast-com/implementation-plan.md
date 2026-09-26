@@ -155,3 +155,17 @@ Acceptance:
 - CI covers eligibility, skip timing, completion continuation and frequency limits.
 
 Implementation order: build first with DEMO/internal announcements only. External ad-network integration is deferred until production governance, privacy and deployment requirements are explicitly satisfied.
+
+
+## Post-H UX backlog — persistent public search
+
+After the current Package H governance/advertising work is closed, harden the existing search capability into a persistent public search experience:
+- a clearly visible top search bar on desktop and an accessible mobile search surface;
+- search suggestions/autocomplete derived only from publicly renderable/admitted content;
+- optional local recent-search history with clear/delete controls;
+- useful filters (for example format, language and relevant public categories) without exposing blocked/unpublished records;
+- keyboard and screen-reader accessible interaction;
+- empty/no-result states and Kurmancî fallback/localized interface copy;
+- no ranking signal may bypass Rasterast/public-admission eligibility.
+
+This backlog item extends the existing Search route/discovery engine; it must not create a second competing search implementation.
