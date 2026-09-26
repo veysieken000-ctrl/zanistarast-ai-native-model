@@ -42,7 +42,7 @@ export function bindPromotionInterstitial(root,{onResume=()=>{},durationSeconds=
  const button=box.querySelector("[data-skip]");let left=Math.max(0,Number(box.dataset.skipAfter||5)),done=false,timer,completion=null;
  const finish=()=>{if(done)return;done=true;clearInterval(timer);if(completion)clearTimeout(completion);box.remove();onResume()};
  const paint=()=>{if(left<=0){button.disabled=false;button.textContent="Atla"}else button.textContent="Atla · "+left+" sn"};
- const media=box.querySelector("[data-promotion-media]");media?.addEventListener("ended",finish,{once:true});media?.addEventListener("error",finish,{once:true});media?.play?.().catch?.(()=>{});paint();timer=setInterval(()=>{left-=1;paint();if(left<=0)clearInterval(timer)},1000);completion=Number(durationSeconds)>0?setTimeout(finish,Number(durationSeconds)*1000):null;
+ const media=box.querySelector("[data-promotion-media]");media?.addEventListener("ended",finish,{once:true});media?.addEventListener("error",finish,{once:true});media?.play?.().catch?.(()=>finish());paint();timer=setInterval(()=>{left-=1;paint();if(left<=0)clearInterval(timer)},1000);completion=Number(durationSeconds)>0?setTimeout(finish,Number(durationSeconds)*1000):null;
  button?.addEventListener("click",()=>{if(!button.disabled)finish()});
  return finish;
 }
