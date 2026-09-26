@@ -6,10 +6,14 @@ on:
       - feat/zanistarast-com
     paths:
       - "zanistarast-com/**"
+      - "zanistarast-com-api/**"
+      - "render.yaml"
       - ".github/workflows/zanistarast-com-smoke.yml"
   pull_request:
     paths:
       - "zanistarast-com/**"
+      - "zanistarast-com-api/**"
+      - "render.yaml"
       - ".github/workflows/zanistarast-com-smoke.yml"
   workflow_dispatch:
 
@@ -29,6 +33,8 @@ jobs:
           node-version: "22"
       - name: Run com smoke
         run: node zanistarast-com/test.mjs
+      - name: Run com API smoke
+        run: node zanistarast-com-api/test.cjs
       - name: Verify static production boundary
         shell: bash
         run: |
