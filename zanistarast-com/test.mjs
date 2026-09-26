@@ -16,6 +16,7 @@ import{CLAIM_STATUS,createAdSourceLedger,miraCreativeHandoff}from"./ad-source-le
 import{INSPECTION_STATE,inspectAdCreative,antiManipulationReviewEvidence}from"./ad-inspection.js";
 import{AD_PLACEMENT,createAdScheduler,selectPromotionOrInternal}from"./ad-scheduler.js";
 import{AUDIT_EVENT,createCampaignAuditLog,lifecycleTransition,shouldDeliverCampaign}from"./ad-lifecycle.js";
+import{buildDemoCampaign}from"./ad-demo-campaign.js";
 import{PROMOTION_KIND,promotionEligible,createPromotionService,promotionPlayback,renderPromotionInterstitial,renderPromotionShelf,PROMOTION_OUTCOME,promotionOutcome}from"./promotions.js";
 
 const read=p=>fs.readFileSync(new URL(p,import.meta.url),"utf8");
@@ -137,4 +138,5 @@ const withdrawn=lifecycleTransition(schedCampaign,CAMPAIGN_STATE.WITHDRAWN,{at:"
 assert.throws(()=>lifecycleTransition(schedCampaign,CAMPAIGN_STATE.WITHDRAWN,{at:"2026-10-15T12:05:00Z"}),/WITHDRAWAL_REASON_REQUIRED/);
 const expired=lifecycleTransition(schedCampaign,CAMPAIGN_STATE.EXPIRED,{at:"2026-11-01T00:00:01Z"});assert.equal(expired.lifecycle.reason,"CAMPAIGN_WINDOW_ENDED");assert.equal(shouldDeliverCampaign(expired,new Date("2026-11-01T00:00:01Z")),false);
 assert.equal(shouldDeliverCampaign(schedCampaign,new Date("2026-10-15T12:00:00Z")),true);
+const demoCampaign=buildDemoCampaign();assert.equal(demoCampaign.demo,true);assert.equal(demoCampaign.publicDeliveryAllowed,false);assert.equal(demoCampaign.ledger.valid,true);assert.equal(demoCampaign.handoff.ready,true);assert.equal(demoCampaign.inspection.state,"PASS");assert.equal(demoCampaign.antiManipulation.ready,true);assert.equal(demoCampaign.campaign.state,CAMPAIGN_STATE.REVIEW);assert.equal(exactVersionAdmission(demoCampaign.campaign,demoCampaign.creative,{}),"BLOCKED");
 console.log("zanistarast-com smoke: OK");
