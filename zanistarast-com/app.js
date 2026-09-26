@@ -4,7 +4,10 @@ import{resolveLocalizedWork}from"./localized-work.js";
 import{renderMedia,bindMediaProgress,bindPlayerControls,bindAdvancedPlayer}from"./media.js";
 import{userState}from"./user-state.js";
 import{createDiscoveryService}from"./discovery.js";
+import{createPromotionService}from"./promotions.js";
+import{promotions}from"./promotion-data.js";
 const discovery=createDiscoveryService(contentAdapter);
+const promotionService=createPromotionService(promotions,{workLookup:id=>contentAdapter.get(id)});
 let activeLocale=applyIdentityLocale();
 const languageSelect=document.querySelector("#language-select");if(languageSelect){languageSelect.value=activeLocale;languageSelect.addEventListener("change",e=>{activeLocale=setLocale(e.currentTarget.value);route()})}
 const main=document.querySelector("#main");
