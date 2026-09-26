@@ -146,6 +146,6 @@ assert.equal(advertiserIntake({campaign:{...campaign,targetUrl:"http://unsafe.ex
 assert.equal(billingEligibility({intake:externalIntake,admissionState:"BLOCKED",commercialApproval:true}).allowed,false);
 assert.equal(billingEligibility({intake:externalIntake,admissionState:"ADMITTED",commercialApproval:false}).allowed,false);
 assert.equal(billingEligibility({intake:externalIntake,admissionState:"ADMITTED",commercialApproval:true}).allowed,true);
-assert.match(html,/id="top-search"/);assert.match(html,/id="top-q"/);assert.match(app,/location\.hash="#\/search"/);assert.match(app,/discovery\.search\(s\)/);assert.match(app,/Sonuç bulunamadı/);
+assert.match(html,/id="top-search"/);assert.match(html,/id="top-q"/);assert.match(app,/location\.hash="#\/search"/);assert.match(app,/discovery\.search\(s,opts\)/);assert.match(app,/Sonuç bulunamadı/);
 const searchDiscovery=createDiscoveryService(createContentAdapter(works));const facets=searchDiscovery.facets();assert.equal(Array.isArray(facets.formats),true);assert.equal(Array.isArray(facets.languages),true);assert.equal(Array.isArray(facets.values),true);assert.equal(searchDiscovery.suggest("mer").every(x=>x.workId),true);
 console.log("zanistarast-com smoke: OK");
