@@ -39,10 +39,12 @@ export function bindPlayerControls(root){
  return()=>{media.removeEventListener("click",click);document.removeEventListener("keydown",key);clearTimeout(timer);badge.remove()};
 }
 
-export function bindAdvancedPlayer(root,{nextHref=null,autoplayNext=false}={}){
+export function bindAdvancedPlayer(root,{nextHref=null,autoplayNext=false,chapters=[]}={}){
  const media=root?.querySelector?.("video.media-player");if(!media)return()=>{};
  const bar=document.createElement("div");bar.className="player-tools";bar.innerHTML='<label>Hız <select data-speed aria-label="Oynatma hızı"><option value=".5">0.5×</option><option value=".75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2×</option></select></label><button type="button" data-captions>Altyazı</button><button type="button" data-pip>Resim içinde resim</button><button type="button" data-full>Tam ekran</button>';
  media.insertAdjacentElement("afterend",bar);
+ if(chapters.length){const nav=document.createElement("nav");nav.className="chapters";nav.setAttribute("aria-label","Bölümler");nav.innerHTML=chapters.filter(x=>Number.isFinite(x?.start)&&x?.title).map((x,i)=>'<button type="button" data-chapter="'+i+'">'+esc(x.title)+'</button>').join("");bar.insertAdjacentElement("afterend",nav);nav.addEventListener("click",e=>{const i=Number(e.target?.dataset?.chapter);if(Number.isInteger(i)&&chapters[i])media.currentTime=Math.max(0,chapters[i].start)})}
+
  const pip=async()=>{try{if(document.pictureInPictureElement)await document.exitPictureInPicture();else if(document.pictureInPictureEnabled&&media.requestPictureInPicture)await media.requestPictureInPicture()}catch{}};
  const full=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await media.requestFullscreen?.()}catch{}};
  const speed=e=>{media.playbackRate=Number(e.currentTarget.value)||1};
