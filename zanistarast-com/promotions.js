@@ -36,12 +36,12 @@ export function renderPromotionInterstitial(p){
  const summary=String(p.summary??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
  return '<section class="promotion-interstitial" data-promotion data-skip-after="'+skip+'" aria-label="Tanıtım"><span class="promotion-label">TANITIM</span><strong>'+title+'</strong><p>'+summary+'</p><button type="button" data-skip disabled>Atla · '+skip+' sn</button></section>';
 }
-export function bindPromotionInterstitial(root,{onResume=()=>{}}={}){
+export function bindPromotionInterstitial(root,{onResume=()=>{},durationSeconds=null}={}){
  const box=root?.querySelector?.("[data-promotion]");if(!box)return()=>{};
- const button=box.querySelector("[data-skip]");let left=Math.max(0,Number(box.dataset.skipAfter||5)),done=false,timer;
- const finish=()=>{if(done)return;done=true;clearInterval(timer);box.remove();onResume()};
+ const button=box.querySelector("[data-skip]");let left=Math.max(0,Number(box.dataset.skipAfter||5)),done=false,timer,completion=null;
+ const finish=()=>{if(done)return;done=true;clearInterval(timer);if(completion)clearTimeout(completion);box.remove();onResume()};
  const paint=()=>{if(left<=0){button.disabled=false;button.textContent="Atla"}else button.textContent="Atla · "+left+" sn"};
- paint();timer=setInterval(()=>{left-=1;paint();if(left<=0)clearInterval(timer)},1000);
+ paint();timer=setInterval(()=>{left-=1;paint();if(left<=0)clearInterval(timer)},1000);completion=Number(durationSeconds)>0?setTimeout(finish,Number(durationSeconds)*1000):null;
  button?.addEventListener("click",()=>{if(!button.disabled)finish()});
  return finish;
 }
