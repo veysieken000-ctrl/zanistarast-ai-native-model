@@ -32,3 +32,18 @@ Every external delivery event must be attributable to campaign ID/version, creat
 ## Governance
 
 Placement eligibility never bypasses rights, claims, anti-manipulation, cultural/moral, Rasterast or Müdebbir gates. Paid status, quota pressure or advertiser preference cannot override these gates.
+
+
+## Inventory scarcity and repetition standard
+
+External advertising inventory must not be stretched by excessive repetition. The same external campaign/creative may be shown to the same viewer at most **2 times in one session**, across interruptive placements. A placement-specific rule may be stricter, never looser, unless Müdebbir explicitly revises this standard.
+
+When eligible external inventory is insufficient, exhausted, frequency-capped, expired, paused, withdrawn, or otherwise unavailable, Mira must not increase repetition merely to fill advertising space. The remaining opportunity may instead be left empty or filled with an eligible **INTERNAL_ANNOUNCEMENT** selected from admitted Zanistarast material, such as:
+- a newly admitted/publication-ready article announcement;
+- a newly admitted video/film/documentary or other work;
+- an appropriate public explanation of the Newroza Kawa civilization/system;
+- another eligible Zanistarast educational/public-interest announcement.
+
+Internal fallback content is not an external sponsored impression, does not consume advertiser entitlement, and must retain its own source/publication/Rasterast/Müdebbir eligibility. A working article, blocked candidate, unverified claim, or unpublished material cannot become public merely because advertising inventory is empty.
+
+The scheduler should prefer contextual diversity among eligible internal announcements and avoid turning fallback into repetitive self-promotion.
