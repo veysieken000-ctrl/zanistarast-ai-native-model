@@ -49,3 +49,11 @@ export function materialCreativeChange(previous,next){
  if(fields.some(k=>JSON.stringify(previous[k]??null)!==JSON.stringify(next[k]??null)))return true;
  return JSON.stringify(previous.representation??null)!==JSON.stringify(next.representation??null);
 }
+
+export function renewCampaign(previous,{version,startAt,endAt,impressionEntitlement,creativeMode="NEW_CREATIVE"}={}){
+ if(!previous?.campaignId||!version||version===previous.version)return Object.freeze({ready:false,reason:"NEW_CAMPAIGN_VERSION_REQUIRED"});
+ const start=new Date(startAt),end=new Date(endAt);
+ if(!startAt||!endAt||!Number.isFinite(start.getTime())||!Number.isFinite(end.getTime())||start>=end)return Object.freeze({ready:false,reason:"VALID_RENEWAL_WINDOW_REQUIRED"});
+ const campaign=Object.freeze({campaignId:previous.campaignId,version,state:CAMPAIGN_STATE.REVIEW,sponsor:previous.sponsor,startAt,endAt,impressionEntitlement:Math.max(0,Number(impressionEntitlement??0)),targetUrl:previous.targetUrl,claims:Object.freeze([...(previous.claims??[])]),rightsEvidence:Object.freeze([...(previous.rightsEvidence??[])])});
+ return Object.freeze({ready:true,campaign,creativeMode,requiresNewCreative:creativeMode==="NEW_CREATIVE",requiresFreshReview:true,previousVersion:previous.version});
+}
