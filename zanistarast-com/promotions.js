@@ -46,3 +46,16 @@ export function bindPromotionInterstitial(root,{onResume=()=>{},durationSeconds=
  button?.addEventListener("click",()=>{if(!button.disabled)finish()});
  return finish;
 }
+
+
+const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+export function renderPromotionShelf(records=[]){
+ const items=records.filter(Boolean);
+ if(!items.length)return"";
+ return '<section class="promotion-shelf" aria-label="Tanıtımlar"><h2>Tanıtımlar</h2><div class="promotion-shelf-list">'+items.map(p=>{
+  const label=p.kind===PROMOTION_KIND.EXTERNAL?"SPONSORLU":"TANITIM";
+  const href=p.targetWorkId?"#/work/"+encodeURIComponent(p.targetWorkId):null;
+  const body='<span class="promotion-label">'+label+'</span><strong>'+esc(p.title??"Tanıtım")+'</strong><p>'+esc(p.summary??"")+'</p>';
+  return href?'<a class="promotion-card" href="'+href+'">'+body+'</a>':'<article class="promotion-card">'+body+'</article>';
+ }).join("")+'</div></section>';
+}
