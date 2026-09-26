@@ -26,3 +26,15 @@ export function bindMediaProgress(root,{workId,version,state}){
  el.addEventListener("loadedmetadata",restore,{once:true});el.addEventListener("timeupdate",persist);el.addEventListener("pause",persist);
  return()=>{el.removeEventListener("timeupdate",persist);el.removeEventListener("pause",persist)};
 }
+
+export function bindPlayerControls(root){
+ const media=root?.querySelector?.("video.media-player, audio.audio-player");if(!media)return()=>{};
+ const host=media.parentElement;host?.classList.add("gesture-player");
+ const badge=document.createElement("div");badge.className="seek-badge";badge.setAttribute("aria-live","polite");host?.append(badge);
+ let last={side:null,time:0},timer;
+ const seek=delta=>{const end=Number.isFinite(media.duration)?media.duration:Infinity;media.currentTime=Math.max(0,Math.min(end,media.currentTime+delta));badge.textContent=(delta>0?"+":"−")+"10 sn";badge.classList.add("show");clearTimeout(timer);timer=setTimeout(()=>badge.classList.remove("show"),650)};
+ const click=e=>{if(media.tagName!=="VIDEO")return;const rect=media.getBoundingClientRect(),side=e.clientX<rect.left+rect.width/2?"left":"right",now=Date.now();if(last.side===side&&now-last.time<360){seek(side==="right"?10:-10);last={side:null,time:0}}else last={side,time:now}};
+ const key=e=>{if(!["INPUT","TEXTAREA"].includes(document.activeElement?.tagName)){if(e.code==="Space"){e.preventDefault();media.paused?media.play():media.pause()}else if(e.code==="ArrowRight")seek(10);else if(e.code==="ArrowLeft")seek(-10)}};
+ media.addEventListener("click",click);document.addEventListener("keydown",key);
+ return()=>{media.removeEventListener("click",click);document.removeEventListener("keydown",key);clearTimeout(timer);badge.remove()};
+}
