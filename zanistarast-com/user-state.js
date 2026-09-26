@@ -1,5 +1,5 @@
 const KEY="zanistarast-com:user-state:v1";
-const empty=()=>({likes:{},saves:{},progress:{},history:[],autoplayNext:false});
+const empty=()=>({likes:{},saves:{},progress:{},history:[],queue:[],autoplayNext:false});
 export function createUserState(storage=globalThis.localStorage){
  const read=()=>{try{return {...empty(),...JSON.parse(storage?.getItem(KEY)||"{}")}}catch{return empty()}};
  const write=s=>{try{storage?.setItem(KEY,JSON.stringify(s))}catch{}return s};
@@ -10,6 +10,11 @@ export function createUserState(storage=globalThis.localStorage){
   saved:id=>read().saves[id]===true,
   savedIds:()=>Object.entries(read().saves).filter(([,v])=>v===true).map(([id])=>id),
   history:()=>[...read().history],
+  queue:()=>[...read().queue],
+  setQueue:ids=>{const s=read();s.queue=[...new Set(ids.filter(Boolean))].slice(0,100);write(s);return s.queue},
+  enqueue:id=>{const s=read();s.queue=s.queue.includes(id)?s.queue:[...s.queue,id].slice(0,100);write(s);return s.queue},
+  dequeue:id=>{const s=read();s.queue=s.queue.filter(x=>x!==id);write(s);return s.queue},
+  moveQueue:(id,delta)=>{const s=read(),i=s.queue.indexOf(id),j=i+delta;if(i>=0&&j>=0&&j<s.queue.length){[s.queue[i],s.queue[j]]=[s.queue[j],s.queue[i]];write(s)}return s.queue},
   autoplayNext:()=>read().autoplayNext===true,
   setAutoplayNext:value=>{const s=read();s.autoplayNext=value===true;write(s);return s.autoplayNext},
   visit:id=>{const s=read();s.history=[id,...s.history.filter(x=>x!==id)].slice(0,100);write(s);return s.history},
