@@ -73,5 +73,5 @@ assert.equal(containsLikelySecret("postgresql://user:password@db.example/test"),
 const notReady=productionReadiness({smokeGreen:true});assert.equal(notReady.ready,false);assert.ok(notReady.missing.includes("restoreTested"));assert.equal(productionReadiness({smokeGreen:true,accessibilityChecked:true,performanceChecked:true,secretsScanGreen:true,restoreTested:true,withdrawalTested:true,apiConfigured:true,storageConfigured:true,deploymentApproved:true}).ready,true);
 assert.match(sw,/cache:"no-store"/);assert.match(sw,/governed/);assert.match(sw,/shell-v2/);
 const readinessState=JSON.parse(read("./readiness-state.json"));assert.equal(readinessState.productionReady,false);assert.equal(readinessState.domainActivationAllowed,false);assert.equal(readinessState.liveClaimAllowed,false);assert.equal(readinessState.packages.F.codeSide,"COMPLETE_AS_BLOCKED_CANDIDATE");assert.equal(readinessState.packages.G.codeSide,"COMPLETE");
-assert.match(sw,/caches\.open/);
+assert.match(sw,/caches\.open/);const mediaSource=read("./media.js");assert.match(mediaSource,/next-countdown/);assert.match(mediaSource,/Sıradaki içerik/);assert.match(mediaSource,/data-speed/);assert.match(mediaSource,/requestPictureInPicture/);
 console.log("zanistarast-com smoke: OK");
