@@ -18,3 +18,17 @@ export function shouldIssueCampaignReport(report,{periodDue=false}={}){
  if(!report)return false;
  return periodDue||[DELIVERY_STATUS.NEAR_LIMIT,DELIVERY_STATUS.FULFILLED,DELIVERY_STATUS.EXPIRED,DELIVERY_STATUS.WITHDRAWN].includes(report.status);
 }
+
+export function campaignReportSnapshot(report,{recordedAt=new Date().toISOString(),reason="PERIODIC"}={}){
+ if(!report)return null;
+ return Object.freeze({...report,recordedAt,reason});
+}
+export function campaignReportHistory(snapshots=[],campaignId){
+ return Object.freeze(snapshots.filter(x=>x?.campaignId===campaignId).sort((a,b)=>String(a.recordedAt).localeCompare(String(b.recordedAt))));
+}
+export function onDemandCampaignReport(campaign,metrics,snapshots=[],now=new Date()){
+ const current=externalCampaignReport(campaign,metrics,now);if(!current)return null;
+ const history=campaignReportHistory(snapshots,current.campaignId);
+ const previous=history.length?history[history.length-1]:null;
+ return Object.freeze({current,historyCount:history.length,previous,deliveredSincePrevious:previous?Math.max(0,current.deliveredImpressions-previous.deliveredImpressions):null,generatedOnDemand:true});
+}
