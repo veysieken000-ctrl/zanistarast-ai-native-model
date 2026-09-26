@@ -11,7 +11,7 @@ import{publicAdmission as reviewAdmission}from"./review-gates.js";
 import{verifyPilotPackage}from"./pilot-verifier.js";
 import{runtimeConfig,ENV,PUBLIC_CONFIG_KEYS}from"./runtime-config.js";
 import{productionReadiness,containsLikelySecret}from"./production-readiness.js";
-import{CAMPAIGN_STATE,CREATIVE_ORIGIN,validateCampaign,validateCreative,exactVersionAdmission}from"./ad-contracts.js";
+import{CAMPAIGN_STATE,CREATIVE_ORIGIN,validateCampaign,validateCreative,exactVersionAdmission,campaignDeliveryState,materialCreativeChange}from"./ad-contracts.js";
 import{PROMOTION_KIND,promotionEligible,createPromotionService,promotionPlayback,renderPromotionInterstitial}from"./promotions.js";
 
 const read=p=>fs.readFileSync(new URL(p,import.meta.url),"utf8");
@@ -89,4 +89,10 @@ const creative={creativeId:"cr1",version:"cv1",campaignId:"c1",campaignVersion:"
 assert.equal(validateCampaign(campaign).valid,true);assert.equal(validateCreative(creative).valid,true);assert.equal(validateCreative({...creative,origin:CREATIVE_ORIGIN.ADVERTISER,trusted:true}).valid,false);
 const adReviews=Object.fromEntries(["rights","claims","antiManipulation","culturalMoral","rasterast"].map(k=>[k,{version:"cv1",state:"PASS"}]));
 assert.equal(exactVersionAdmission(campaign,creative,adReviews),"ADMITTED");assert.equal(exactVersionAdmission(campaign,{...creative,version:"cv2"},adReviews),"BLOCKED");
+assert.equal(campaignDeliveryState(campaign,creative,adReviews,new Date("2026-09-30T12:00:00Z")),"SCHEDULED");
+assert.equal(campaignDeliveryState(campaign,creative,adReviews,new Date("2026-10-15T12:00:00Z")),"ACTIVE");
+assert.equal(campaignDeliveryState(campaign,creative,adReviews,new Date("2026-11-01T12:00:00Z")),"EXPIRED");
+assert.equal(campaignDeliveryState({...campaign,state:CAMPAIGN_STATE.PAUSED},creative,adReviews,new Date("2026-10-15T12:00:00Z")),"BLOCKED");
+assert.equal(campaignDeliveryState({...campaign,state:CAMPAIGN_STATE.WITHDRAWN},creative,adReviews,new Date("2026-10-15T12:00:00Z")),"BLOCKED");
+assert.equal(materialCreativeChange(creative,{...creative,text:"changed"}),true);assert.equal(materialCreativeChange(creative,{...creative}),false);
 console.log("zanistarast-com smoke: OK");
