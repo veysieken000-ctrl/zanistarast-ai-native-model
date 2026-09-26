@@ -1,0 +1,1 @@
+{"name":"zanistarast-com-api","version":"0.1.0","private":true,"scripts":{"start":"node server.cjs","test":"node test.cjs"},"engines":{"node":">=22"}}
