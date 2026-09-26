@@ -12,6 +12,7 @@ import{verifyPilotPackage}from"./pilot-verifier.js";
 import{runtimeConfig,ENV,PUBLIC_CONFIG_KEYS}from"./runtime-config.js";
 import{productionReadiness,containsLikelySecret}from"./production-readiness.js";
 import{CAMPAIGN_STATE,CREATIVE_ORIGIN,validateCampaign,validateCreative,exactVersionAdmission,campaignDeliveryState,materialCreativeChange}from"./ad-contracts.js";
+import{CLAIM_STATUS,createAdSourceLedger,miraCreativeHandoff}from"./ad-source-ledger.js";
 import{PROMOTION_KIND,promotionEligible,createPromotionService,promotionPlayback,renderPromotionInterstitial}from"./promotions.js";
 
 const read=p=>fs.readFileSync(new URL(p,import.meta.url),"utf8");
@@ -95,4 +96,8 @@ assert.equal(campaignDeliveryState(campaign,creative,adReviews,new Date("2026-11
 assert.equal(campaignDeliveryState({...campaign,state:CAMPAIGN_STATE.PAUSED},creative,adReviews,new Date("2026-10-15T12:00:00Z")),"BLOCKED");
 assert.equal(campaignDeliveryState({...campaign,state:CAMPAIGN_STATE.WITHDRAWN},creative,adReviews,new Date("2026-10-15T12:00:00Z")),"BLOCKED");
 assert.equal(materialCreativeChange(creative,{...creative,text:"changed"}),true);assert.equal(materialCreativeChange(creative,{...creative}),false);
+const adLedger=createAdSourceLedger({campaignId:"c1",campaignVersion:"v1",sources:[{sourceId:"s1",origin:"ADVERTISER",rightsStatus:"CLEARED",reference:"brief"}],claims:[{claimId:"cl1",text:"Test claim",status:CLAIM_STATUS.SUPPORTED,sourceIds:["s1"]}]});
+assert.equal(adLedger.valid,true);assert.equal(miraCreativeHandoff(adLedger,{creativeId:"m1",version:"mv1"}).ready,true);
+const openLedger=createAdSourceLedger({campaignId:"c1",campaignVersion:"v1",sources:[{sourceId:"s1",rightsStatus:"UNVERIFIED"}],claims:[{claimId:"cl1",status:CLAIM_STATUS.UNVERIFIED,sourceIds:["s1"]}]});assert.equal(miraCreativeHandoff(openLedger,{creativeId:"m1",version:"mv1"}).ready,false);
+const badLedger=createAdSourceLedger({campaignId:"c1",campaignVersion:"v1",sources:[],claims:[{claimId:"cl1",status:CLAIM_STATUS.SUPPORTED,sourceIds:["missing"]}]});assert.equal(badLedger.valid,false);
 console.log("zanistarast-com smoke: OK");
