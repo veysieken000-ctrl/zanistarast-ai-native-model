@@ -32,3 +32,13 @@ export function onDemandCampaignReport(campaign,metrics,snapshots=[],now=new Dat
  const previous=history.length?history[history.length-1]:null;
  return Object.freeze({current,historyCount:history.length,previous,deliveredSincePrevious:previous?Math.max(0,current.deliveredImpressions-previous.deliveredImpressions):null,generatedOnDemand:true});
 }
+
+export function campaignLifecycleReport(campaignId,versions=[],snapshots=[]){
+ const relatedVersions=versions.filter(v=>v?.campaignId===campaignId).sort((a,b)=>String(a.startAt??"").localeCompare(String(b.startAt??"")));
+ const relatedSnapshots=snapshots.filter(s=>s?.campaignId===campaignId).sort((a,b)=>String(a.recordedAt??"").localeCompare(String(b.recordedAt??"")));
+ const totals=relatedVersions.reduce((a,v)=>a+Math.max(0,Number(v.impressionEntitlement??0)),0);
+ const deliveredByVersion=new Map();
+ for(const s of relatedSnapshots){const key=s.version??"";deliveredByVersion.set(key,Math.max(deliveredByVersion.get(key)??0,Number(s.deliveredImpressions??0)));}
+ const delivered=[...deliveredByVersion.values()].reduce((a,n)=>a+n,0);
+ return Object.freeze({campaignId,renewalCount:Math.max(0,relatedVersions.length-1),versions:Object.freeze(relatedVersions.map(v=>Object.freeze({version:v.version,state:v.state,startAt:v.startAt,endAt:v.endAt,impressionEntitlement:Math.max(0,Number(v.impressionEntitlement??0))}))),totalEntitlement:totals,totalDelivered:delivered,totalRemaining:Math.max(0,totals-delivered),reportSnapshots:relatedSnapshots.length});
+}
