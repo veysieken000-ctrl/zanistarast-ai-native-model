@@ -15,6 +15,7 @@ import{CAMPAIGN_STATE,CREATIVE_ORIGIN,validateCampaign,validateCreative,exactVer
 import{CLAIM_STATUS,createAdSourceLedger,miraCreativeHandoff}from"./ad-source-ledger.js";
 import{INSPECTION_STATE,inspectAdCreative,antiManipulationReviewEvidence}from"./ad-inspection.js";
 import{AD_PLACEMENT,createAdScheduler,selectPromotionOrInternal}from"./ad-scheduler.js";
+import{AUDIT_EVENT,createCampaignAuditLog,lifecycleTransition,shouldDeliverCampaign}from"./ad-lifecycle.js";
 import{PROMOTION_KIND,promotionEligible,createPromotionService,promotionPlayback,renderPromotionInterstitial,renderPromotionShelf,PROMOTION_OUTCOME,promotionOutcome}from"./promotions.js";
 
 const read=p=>fs.readFileSync(new URL(p,import.meta.url),"utf8");
@@ -131,4 +132,9 @@ const fulfilled=createAdScheduler();assert.equal(fulfilled.eligible({...schedCan
 const paused={...schedCandidate,campaign:{...schedCampaign,state:CAMPAIGN_STATE.PAUSED}};assert.equal(createAdScheduler().eligible({...paused,placement:AD_PLACEMENT.FEED_SPONSORED_CARD,now:new Date("2026-10-15T12:00:00Z")}).reason,"CAMPAIGN_NOT_ACTIVE");
 const fallback=selectPromotionOrInternal({scheduler:createAdScheduler(),candidates:[schedCandidate],internalAnnouncements:[{id:"internal-1",eligible:true,admitted:true}],placement:AD_PLACEMENT.PRE_ROLL,now:new Date("2026-10-15T12:00:00Z"),metricsByCampaign:{"c1@v1":{delivered:10}}});assert.equal(fallback.kind,"INTERNAL_ANNOUNCEMENT");assert.equal(fallback.item.id,"internal-1");
 assert.equal(selectPromotionOrInternal({scheduler:createAdScheduler(),candidates:[],internalAnnouncements:[],placement:AD_PLACEMENT.PRE_ROLL}).kind,"EMPTY");
+const audit=createCampaignAuditLog();audit.append({campaignId:"c1",campaignVersion:"v1",type:AUDIT_EVENT.DELIVERED,at:"2026-10-15T12:00:00Z"});assert.equal(audit.history("c1").length,1);
+const withdrawn=lifecycleTransition(schedCampaign,CAMPAIGN_STATE.WITHDRAWN,{at:"2026-10-15T12:05:00Z",reason:"RIGHTS_REVOKED"});assert.equal(withdrawn.state,CAMPAIGN_STATE.WITHDRAWN);assert.equal(shouldDeliverCampaign(withdrawn,new Date("2026-10-15T12:06:00Z")),false);
+assert.throws(()=>lifecycleTransition(schedCampaign,CAMPAIGN_STATE.WITHDRAWN,{at:"2026-10-15T12:05:00Z"}),/WITHDRAWAL_REASON_REQUIRED/);
+const expired=lifecycleTransition(schedCampaign,CAMPAIGN_STATE.EXPIRED,{at:"2026-11-01T00:00:01Z"});assert.equal(expired.lifecycle.reason,"CAMPAIGN_WINDOW_ENDED");assert.equal(shouldDeliverCampaign(expired,new Date("2026-11-01T00:00:01Z")),false);
+assert.equal(shouldDeliverCampaign(schedCampaign,new Date("2026-10-15T12:00:00Z")),true);
 console.log("zanistarast-com smoke: OK");
