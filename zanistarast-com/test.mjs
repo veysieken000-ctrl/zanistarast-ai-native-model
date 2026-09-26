@@ -14,6 +14,7 @@ import{productionReadiness,containsLikelySecret}from"./production-readiness.js";
 import{CAMPAIGN_STATE,CREATIVE_ORIGIN,validateCampaign,validateCreative,exactVersionAdmission,campaignDeliveryState,materialCreativeChange,renewCampaign}from"./ad-contracts.js";
 import{CLAIM_STATUS,createAdSourceLedger,miraCreativeHandoff}from"./ad-source-ledger.js";
 import{INSPECTION_STATE,inspectAdCreative,antiManipulationReviewEvidence}from"./ad-inspection.js";
+import{AD_PLACEMENT,createAdScheduler,selectPromotionOrInternal}from"./ad-scheduler.js";
 import{PROMOTION_KIND,promotionEligible,createPromotionService,promotionPlayback,renderPromotionInterstitial}from"./promotions.js";
 
 const read=p=>fs.readFileSync(new URL(p,import.meta.url),"utf8");
@@ -111,4 +112,17 @@ assert.equal(inspectAdCreative({...inspectCreative,inspectionSignals:["SYSTEM_WA
 const anti=antiManipulationReviewEvidence(inspectAdCreative(inspectCreative,{framesReviewed:true,audioReviewed:true,metadataReviewed:true}));
 assert.equal(anti.ready,true);assert.equal(anti.review.version,"cv1");assert.equal(anti.humanOrGovernedReviewRequired,true);
 assert.equal(antiManipulationReviewEvidence(inspectAdCreative(inspectCreative,{})).ready,false);
+const schedCampaign={...campaign,impressionEntitlement:10};
+const schedCandidate={campaign:schedCampaign,creative,reviews:adReviews};
+const scheduler=createAdScheduler();
+let verdict=scheduler.eligible({...schedCandidate,placement:AD_PLACEMENT.PRE_ROLL,now:new Date("2026-10-15T12:00:00Z"),session:{consumedWorks:0},metrics:{delivered:0}});
+assert.equal(verdict.ok,true);scheduler.record({...schedCandidate,placement:AD_PLACEMENT.PRE_ROLL,now:new Date("2026-10-15T12:00:00Z"),session:{consumedWorks:0}});
+assert.equal(scheduler.eligible({...schedCandidate,placement:AD_PLACEMENT.PRE_ROLL,now:new Date("2026-10-15T12:16:00Z"),session:{consumedWorks:2},metrics:{delivered:1}}).reason,"INTERRUPTIVE_SPACING");
+verdict=scheduler.eligible({...schedCandidate,placement:AD_PLACEMENT.PRE_ROLL,now:new Date("2026-10-15T12:16:00Z"),session:{consumedWorks:3},metrics:{delivered:1}});assert.equal(verdict.ok,true);
+scheduler.record({...schedCandidate,placement:AD_PLACEMENT.PRE_ROLL,now:new Date("2026-10-15T12:16:00Z"),session:{consumedWorks:3}});
+assert.equal(scheduler.eligible({...schedCandidate,placement:AD_PLACEMENT.PRE_ROLL,now:new Date("2026-10-15T12:40:00Z"),session:{consumedWorks:7},metrics:{delivered:2}}).reason,"SESSION_CREATIVE_CAP");
+const fulfilled=createAdScheduler();assert.equal(fulfilled.eligible({...schedCandidate,placement:AD_PLACEMENT.FEED_SPONSORED_CARD,now:new Date("2026-10-15T12:00:00Z"),metrics:{delivered:10}}).reason,"ENTITLEMENT_FULFILLED");
+const paused={...schedCandidate,campaign:{...schedCampaign,state:CAMPAIGN_STATE.PAUSED}};assert.equal(createAdScheduler().eligible({...paused,placement:AD_PLACEMENT.FEED_SPONSORED_CARD,now:new Date("2026-10-15T12:00:00Z")}).reason,"CAMPAIGN_NOT_ACTIVE");
+const fallback=selectPromotionOrInternal({scheduler:createAdScheduler(),candidates:[schedCandidate],internalAnnouncements:[{id:"internal-1",eligible:true,admitted:true}],placement:AD_PLACEMENT.PRE_ROLL,now:new Date("2026-10-15T12:00:00Z"),metricsByCampaign:{"c1@v1":{delivered:10}}});assert.equal(fallback.kind,"INTERNAL_ANNOUNCEMENT");assert.equal(fallback.item.id,"internal-1");
+assert.equal(selectPromotionOrInternal({scheduler:createAdScheduler(),candidates:[],internalAnnouncements:[],placement:AD_PLACEMENT.PRE_ROLL}).kind,"EMPTY");
 console.log("zanistarast-com smoke: OK");
