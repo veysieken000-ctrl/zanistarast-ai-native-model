@@ -15,7 +15,7 @@ import{CAMPAIGN_STATE,CREATIVE_ORIGIN,validateCampaign,validateCreative,exactVer
 import{CLAIM_STATUS,createAdSourceLedger,miraCreativeHandoff}from"./ad-source-ledger.js";
 import{INSPECTION_STATE,inspectAdCreative,antiManipulationReviewEvidence}from"./ad-inspection.js";
 import{AD_PLACEMENT,createAdScheduler,selectPromotionOrInternal}from"./ad-scheduler.js";
-import{PROMOTION_KIND,promotionEligible,createPromotionService,promotionPlayback,renderPromotionInterstitial}from"./promotions.js";
+import{PROMOTION_KIND,promotionEligible,createPromotionService,promotionPlayback,renderPromotionInterstitial,renderPromotionShelf}from"./promotions.js";
 
 const read=p=>fs.readFileSync(new URL(p,import.meta.url),"utf8");
 const html=read("./index.html"),css=read("./styles.css"),app=read("./app.js"),data=read("./data.js"),manifest=JSON.parse(read("./manifest.webmanifest")),sw=read("./sw.js");
@@ -84,6 +84,8 @@ assert.equal(promotionEligible(promo,id=>gateAdapter.get(id)),true);
 assert.equal(promotionEligible({...promo,targetVersion:"v2"},id=>gateAdapter.get(id)),false);
 const promotionService=createPromotionService([promo],{workLookup:id=>gateAdapter.get(id),maxPerSession:1,minWorksBetween:3});
 assert.equal(promotionService.next(0)?.id,"promo-1");assert.equal(promotionService.next(4),null);assert.equal(promotionService.remaining(),0);
+const shelfHtml=renderPromotionShelf([promo]);assert.match(shelfHtml,/Tanıtımlar/);assert.match(shelfHtml,/TANITIM/);assert.match(shelfHtml,/#\/work\/real-1/);assert.equal(renderPromotionShelf([]),"");
+assert.match(app,/renderPromotionShelf\(promotionService\.shelf\(\)\)/);
 const playback=promotionPlayback({skipAfterSeconds:5});assert.equal(playback.canSkip(4.9),false);assert.equal(playback.canSkip(5),true);assert.equal(playback.completionAction,"RESUME_REQUESTED_WORK");assert.equal(playback.failureAction,"RESUME_REQUESTED_WORK");
 const promoVideoHtml=renderPromotionInterstitial({...promo,representation:{id:"promo-video",version:"pv1",kind:"video",src:"/demo/promo.mp4",mime:"video/mp4"},skipAfterSeconds:5});assert.match(promoVideoHtml,/data-promotion-media/);assert.match(promoVideoHtml,/promo\.mp4/);assert.match(promoVideoHtml,/Atla · 5 sn/);
 const unsafePromoVideoHtml=renderPromotionInterstitial({...promo,representation:{kind:"video",src:"/demo/unversioned.mp4"}});assert.doesNotMatch(unsafePromoVideoHtml,/data-promotion-media/);
