@@ -2,7 +2,7 @@ const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&
 export function normalizeRepresentation(rep){
  if(!rep)return null;
  const kind=["video","audio","reading"].includes(rep.kind)?rep.kind:"unknown";
- return Object.freeze({id:rep.id??null,version:rep.version??null,kind,src:rep.src??null,mime:rep.mime??null,poster:rep.poster??null,captions:Object.freeze([...(rep.captions??[])]),transcript:rep.transcript??null});
+ return Object.freeze({id:rep.id??null,version:rep.version??null,kind,src:rep.src??null,mime:rep.mime??null,poster:rep.poster??null,captions:Object.freeze([...(rep.captions??[])]),transcript:rep.transcript??null,chapters:Object.freeze([...(rep.chapters??[])])});
 }
 export const hasTraceableMedia=r=>Boolean(r?.id&&r?.version);
 export function renderMedia(rep,{demo=false}={}){
@@ -41,11 +41,13 @@ export function bindPlayerControls(root){
 
 export function bindAdvancedPlayer(root,{nextHref=null,autoplayNext=false}={}){
  const media=root?.querySelector?.("video.media-player");if(!media)return()=>{};
- const bar=document.createElement("div");bar.className="player-tools";bar.innerHTML='<button type="button" data-pip>Resim içinde resim</button><button type="button" data-full>Tam ekran</button>';
+ const bar=document.createElement("div");bar.className="player-tools";bar.innerHTML='<label>Hız <select data-speed aria-label="Oynatma hızı"><option value=".5">0.5×</option><option value=".75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2×</option></select></label><button type="button" data-captions>Altyazı</button><button type="button" data-pip>Resim içinde resim</button><button type="button" data-full>Tam ekran</button>';
  media.insertAdjacentElement("afterend",bar);
  const pip=async()=>{try{if(document.pictureInPictureElement)await document.exitPictureInPicture();else if(document.pictureInPictureEnabled&&media.requestPictureInPicture)await media.requestPictureInPicture()}catch{}};
  const full=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await media.requestFullscreen?.()}catch{}};
+ const speed=e=>{media.playbackRate=Number(e.currentTarget.value)||1};
+ const captions=()=>{const tracks=[...media.textTracks];if(!tracks.length)return;const on=tracks.some(t=>t.mode==="showing");tracks.forEach((t,i)=>t.mode=!on&&i===0?"showing":"disabled");bar.querySelector("[data-captions]").textContent=on?"Altyazı":"Altyazı kapat"};
  const ended=()=>{if(autoplayNext&&nextHref)location.hash=nextHref};
- bar.querySelector("[data-pip]")?.addEventListener("click",pip);bar.querySelector("[data-full]")?.addEventListener("click",full);media.addEventListener("ended",ended);
+ bar.querySelector("[data-speed]")?.addEventListener("change",speed);bar.querySelector("[data-captions]")?.addEventListener("click",captions);bar.querySelector("[data-pip]")?.addEventListener("click",pip);bar.querySelector("[data-full]")?.addEventListener("click",full);media.addEventListener("ended",ended);
  return()=>{media.removeEventListener("ended",ended);bar.remove()};
 }
