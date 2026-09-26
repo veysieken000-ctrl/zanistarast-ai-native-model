@@ -1,8 +1,10 @@
+import{applyIdentityLocale}from"./locale.js";
 import{contentAdapter}from"./content-adapter.js";
 import{renderMedia,bindMediaProgress,bindPlayerControls,bindAdvancedPlayer}from"./media.js";
 import{userState}from"./user-state.js";
 import{createDiscoveryService}from"./discovery.js";
 const discovery=createDiscoveryService(contentAdapter);
+applyIdentityLocale();
 const main=document.querySelector("#main");
 const card=w=>`<a class="card" href="#/work/${w.workId}"><div class="poster" aria-hidden="true">DEMO</div><p class="demo">GELİŞTİRME DEMOSU</p><h3>${w.title}</h3><p>${w.summary}</p><p class="muted">${w.format} · ${w.language}</p></a>`;
 function home(){const ws=contentAdapter.list();main.innerHTML=`<div class="page"><section class="hero"><p class="eyebrow">Gör · Hisset · Anla · Derinleş</p><h1>İyi olanı görmenin, anlamanın ve yaşatmanın yolları.</h1><p>Film, hikâye, ses ve okuma için Zanistarast.com ürün iskeleti.</p><p class="demo">Aşağıdaki eserler yalnızca geliştirme demosudur; yayımlanmış Zanistarast içeriği değildir.</p></section><section><h2>Değerlerle keşfet</h2><div class="chips"><span class="chip">Merhamet</span><span class="chip">Adalet</span><span class="chip">Doğruluk</span><span class="chip">Sabır</span><span class="chip">Sorumluluk</span></div></section><section><h2>Yeni Eklenenler</h2><div class="grid">${discovery.newest().map(card).join("")||"<p>Henüz tarihli yayın bulunmuyor.</p>"}</div></section><section><h2>Demo eserler</h2><div class="grid">${ws.map(card).join("")}</div></section></div>`}
