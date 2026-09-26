@@ -13,6 +13,7 @@ import{runtimeConfig,ENV,PUBLIC_CONFIG_KEYS}from"./runtime-config.js";
 import{productionReadiness,containsLikelySecret}from"./production-readiness.js";
 import{CAMPAIGN_STATE,CREATIVE_ORIGIN,validateCampaign,validateCreative,exactVersionAdmission,campaignDeliveryState,materialCreativeChange,renewCampaign}from"./ad-contracts.js";
 import{CLAIM_STATUS,createAdSourceLedger,miraCreativeHandoff}from"./ad-source-ledger.js";
+import{INSPECTION_STATE,inspectAdCreative,antiManipulationReviewEvidence}from"./ad-inspection.js";
 import{PROMOTION_KIND,promotionEligible,createPromotionService,promotionPlayback,renderPromotionInterstitial}from"./promotions.js";
 
 const read=p=>fs.readFileSync(new URL(p,import.meta.url),"utf8");
@@ -102,4 +103,12 @@ const openLedger=createAdSourceLedger({campaignId:"c1",campaignVersion:"v1",sour
 const badLedger=createAdSourceLedger({campaignId:"c1",campaignVersion:"v1",sources:[],claims:[{claimId:"cl1",status:CLAIM_STATUS.SUPPORTED,sourceIds:["missing"]}]});assert.equal(badLedger.valid,false);
 const renewal=renewCampaign({...campaign,impressionEntitlement:100000},{version:"v2",startAt:"2026-11-01",endAt:"2026-12-01",impressionEntitlement:50000});
 assert.equal(renewal.ready,true);assert.equal(renewal.campaign.state,CAMPAIGN_STATE.REVIEW);assert.equal(renewal.campaign.impressionEntitlement,50000);assert.equal(renewal.previousVersion,"v1");assert.equal(renewal.requiresFreshReview,true);assert.equal(renewCampaign(campaign,{version:"v1",startAt:"2026-11-01",endAt:"2026-12-01"}).ready,false);
+const inspectCreative={...creative,representation:{id:"r1",version:"cv1",kind:"video"}};
+assert.equal(inspectAdCreative(inspectCreative,{framesReviewed:true,audioReviewed:true,metadataReviewed:true}).state,INSPECTION_STATE.PASS);
+assert.equal(inspectAdCreative(inspectCreative,{framesReviewed:false,audioReviewed:true,metadataReviewed:true}).state,INSPECTION_STATE.REVIEW);
+assert.equal(inspectAdCreative({...inspectCreative,inspectionSignals:["HIDDEN_MESSAGE"]},{framesReviewed:true,audioReviewed:true,metadataReviewed:true}).state,INSPECTION_STATE.BLOCK);
+assert.equal(inspectAdCreative({...inspectCreative,inspectionSignals:["SYSTEM_WARNING_IMPERSONATION"]},{framesReviewed:true,audioReviewed:true,metadataReviewed:true}).state,INSPECTION_STATE.BLOCK);
+const anti=antiManipulationReviewEvidence(inspectAdCreative(inspectCreative,{framesReviewed:true,audioReviewed:true,metadataReviewed:true}));
+assert.equal(anti.ready,true);assert.equal(anti.review.version,"cv1");assert.equal(anti.humanOrGovernedReviewRequired,true);
+assert.equal(antiManipulationReviewEvidence(inspectAdCreative(inspectCreative,{})).ready,false);
 console.log("zanistarast-com smoke: OK");
