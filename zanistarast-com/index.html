@@ -13,11 +13,16 @@
   <a class="skip" href="#main">İçeriğe geç</a>
   <div class="identity-banner"><span class="era-title">Fıtrat ve Ahlak Çağı</span><span class="zan-flag" aria-hidden="true"><span class="flag-z">Z</span></span></div>
   <header class="topbar">
+    <button class="menu-toggle" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="side-menu">☰</button>
     <a class="brand" href="#/">Zanistarast</a>
     <nav aria-label="Ana gezinme">
       <a href="#/">Ana Sayfa</a><a href="#/discover">Keşfet</a><a href="#/search">Ara</a><a href="#/library">Kitaplığım</a>
     </nav>
   </header>
+  <aside id="side-menu" class="side-menu" aria-label="Kullanıcı menüsü" hidden>
+    <nav><a href="#/">Ana Sayfa</a><a href="#/library">Kitaplığım</a><a href="#/history">Geçmiş</a><a href="#/liked">Beğenilenler</a><a href="#/settings">Ayarlar</a></nav>
+  </aside>
+  <div class="menu-scrim" hidden></div>
   <main id="main" tabindex="-1"></main>
   <script src="./deployment-config.js"></script>
   <script type="module" src="./app.js"></script>
