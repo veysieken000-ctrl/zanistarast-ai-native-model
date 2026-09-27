@@ -1,0 +1,39 @@
+{
+  "candidateId": "pilot-emanet-irade",
+  "version": "candidate-1",
+  "status": "DRAFT",
+  "publicAdmission": "BLOCKED",
+  "canonicalLocale": "tr",
+  "locales": {
+    "tr": {
+      "status": "DRAFT",
+      "title": "Emanet ve İrade",
+      "summary": "",
+      "body": "",
+      "sourceTrace": []
+    },
+    "ku": {
+      "status": "NOT_TRANSLATED",
+      "title": "",
+      "summary": "",
+      "body": "",
+      "sourceTrace": []
+    },
+    "en": {
+      "status": "NOT_TRANSLATED",
+      "title": "",
+      "summary": "",
+      "body": "",
+      "sourceTrace": []
+    },
+    "de": {
+      "status": "NOT_TRANSLATED",
+      "title": "",
+      "summary": "",
+      "body": "",
+      "sourceTrace": []
+    }
+  },
+  "traceRule": "Every non-fiction factual, attributed, historical, religious or scientific claim in a publishable locale must reference source-ledger entries. Translation does not create new source authority.",
+  "publicationRule": "Empty, draft, untranslated, untraced, or non-final locale content is not publicly admissible."
+}
