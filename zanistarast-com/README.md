@@ -24,6 +24,14 @@ node zanistarast-com/test.mjs
 
 The fixture works are intentionally marked DEMO and are not publication records.
 
+## Readiness boundary
+
+The code-side implementation packages A-G and the final UI/i18n cleanup are complete. Production activation remains deliberately blocked on the external evidence recorded in `readiness-state.json`.
+
+Until those dependencies exist, the application MUST NOT claim production readiness, domain activation readiness, or live-content readiness. In particular, real admitted production records, production account/index services, final media/accessibility review, HTTPS API/storage, deployed accessibility/performance evidence, restore/withdrawal drills, release smoke, deployment approval, and domain/DNS/TLS/CORS/PWA verification remain activation-time dependencies.
+
+This keeps the static branch useful for development and CI without substituting demo fixtures or code-side checks for real production evidence.
+
 ## Current scope
 
 - Home / Discover / Search
