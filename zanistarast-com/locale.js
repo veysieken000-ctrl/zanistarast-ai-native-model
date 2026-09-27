@@ -1,14 +1,17 @@
 const FALLBACK="ku";
 const COPY={
- ku:{era:"Serdema Fıtrat û Exlaqê",civilization:"Şaristaniya Newroza Kawa"},
- en:{era:"The Age of Fitrah and Morality",civilization:"Newroza Kawa Civilization"},
- de:{era:"Zeitalter von Fitrah und Moral",civilization:"Newroza-Kawa-Zivilisation"},
- tr:{era:"Fıtrat ve Ahlak Çağı",civilization:"Newroza Kawa Uygarlığı"}
+ ku:{era:"Serdema Fıtrat û Exlaqê",civilization:"Şaristaniya Newroza Kawa",nav:{home:"Malper",discover:"Vekeşîn",search:"Lêgerîn",library:"Pirtûkxaneya min",history:"Dîrok",liked:"Hezkirî",watchLater:"Paşê temaşe bike",queue:"Rêz",settings:"Mîheng"},ui:{search:"Lêgerîn",all:"Hemû",clear:"Paqij bike",empty:"Hê tiştek tune ye.",new:"Nû hatine zêdekirin",demo:"Naveroka DEMO"}},
+ en:{era:"The Age of Fitrah and Morality",civilization:"Newroza Kawa Civilization",nav:{home:"Home",discover:"Discover",search:"Search",library:"My library",history:"History",liked:"Liked",watchLater:"Watch later",queue:"Queue",settings:"Settings"},ui:{search:"Search",all:"All",clear:"Clear",empty:"Nothing here yet.",new:"New additions",demo:"DEMO content"}},
+ de:{era:"Zeitalter von Fitrah und Moral",civilization:"Newroza-Kawa-Zivilisation",nav:{home:"Start",discover:"Entdecken",search:"Suchen",library:"Meine Bibliothek",history:"Verlauf",liked:"Gefällt mir",watchLater:"Später ansehen",queue:"Warteschlange",settings:"Einstellungen"},ui:{search:"Suchen",all:"Alle",clear:"Löschen",empty:"Noch nichts vorhanden.",new:"Neu hinzugefügt",demo:"DEMO-Inhalt"}},
+ tr:{era:"Fıtrat ve Ahlak Çağı",civilization:"Newroza Kawa Uygarlığı",nav:{home:"Ana Sayfa",discover:"Keşfet",search:"Ara",library:"Kitaplığım",history:"Geçmiş",liked:"Beğenilenler",watchLater:"Daha Sonra İzle",queue:"Kuyruk",settings:"Ayarlar"},ui:{search:"Ara",all:"Tümü",clear:"Temizle",empty:"Henüz içerik yok.",new:"Yeni Eklenenler",demo:"DEMO içerik"}}
 };
 const LOCALE_KEY="zanistarast-com:locale:v1";
 const base=v=>String(v||"").toLowerCase().split("-")[0];
+const localeKey=locale=>COPY[base(locale)]?base(locale):FALLBACK;
 export function savedLocale(){try{const k=base(localStorage.getItem(LOCALE_KEY));return COPY[k]?k:null}catch{return null}}
-export function setLocale(locale){const k=COPY[base(locale)]?base(locale):FALLBACK;try{localStorage.setItem(LOCALE_KEY,k)}catch{}applyIdentityLocale(k);return k}
+export function setLocale(locale){const k=localeKey(locale);try{localStorage.setItem(LOCALE_KEY,k)}catch{}applyIdentityLocale(k);return k}
 export function detectLocale(){const saved=savedLocale();if(saved)return saved;for(const v of navigator.languages||[navigator.language]){const k=base(v);if(COPY[k])return k}return FALLBACK}
-export function applyIdentityLocale(locale=detectLocale()){const k=COPY[base(locale)]?base(locale):FALLBACK;document.documentElement.lang=k;const e=document.querySelector("#era-title"),c=document.querySelector("#civilization-title");if(e)e.textContent=COPY[k].era;if(c)c.textContent=COPY[k].civilization;return k}
+export function copyFor(locale=detectLocale()){return COPY[localeKey(locale)]}
+export function t(path,locale=detectLocale()){let value=copyFor(locale);for(const key of String(path).split("."))value=value?.[key];return typeof value==="string"?value:path}
+export function applyIdentityLocale(locale=detectLocale()){const k=localeKey(locale);document.documentElement.lang=k;const e=document.querySelector("#era-title"),c=document.querySelector("#civilization-title");if(e)e.textContent=COPY[k].era;if(c)c.textContent=COPY[k].civilization;return k}
 export{FALLBACK,COPY};
