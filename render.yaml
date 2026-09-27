@@ -29,3 +29,5 @@ services:
         value: production
       - key: ALLOWED_ORIGINS
         value: https://veysieken000-ctrl.github.io
+      - key: BUILD_SHA
+        value: pre-domain
