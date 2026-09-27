@@ -1,0 +1,12 @@
+{
+  "candidateId": "pilot-emanet-irade",
+  "version": "candidate-1",
+  "status": "NO_FINAL_MEDIA",
+  "assets": [],
+  "requirements": {
+    "exactVersionBinding": true,
+    "rightsEvidenceRequired": true,
+    "accessibilityEvidenceRequired": true
+  },
+  "note": "Final media assets may be added only with stable identifiers and exact-version rights/accessibility evidence."
+}
