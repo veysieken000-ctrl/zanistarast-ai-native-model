@@ -21,3 +21,13 @@ export function createBridgeIndex(records=[]){
  });
 }
 export{ORIGIN as BRIDGE_ORIGIN};
+
+export function bridgeNextSteps(record,index){
+ const r=normalizeBridgeRecord(record);if(!bridgeEligible(r))return Object.freeze([]);
+ const related=index?.related?.(r.id)??[];
+ const label=x=>x.origin===ORIGIN.ORG?"Bilimsel kaynağı oku":x.type==="video"?"Videoyu izle":x.type==="documentary"?"Belgeseli izle":x.type==="interview"?"Söyleşiyi dinle":x.type==="presentation"?"Sunumu aç":x.type==="audio"?"Dinle":"İlgili içeriği aç";
+ return Object.freeze(related.map(x=>Object.freeze({id:x.id,version:x.version,origin:x.origin,label:label(x),url:x.canonicalUrl,type:x.type})));
+}
+export function externalDiscoveryCandidate(x={}){
+ return Object.freeze({candidate:true,publiclyIndexed:false,origin:ORIGIN.EXTERNAL,id:x.id??null,version:x.version??null,canonicalUrl:x.canonicalUrl??null,title:x.title??"",type:x.type??"unknown",language:x.language??null,topics:Object.freeze([...(x.topics??[])]),provenance:x.provenance??null,rightsStatus:x.rightsStatus??"UNVERIFIED",status:"DISCOVERED",rasterast:"UNVERIFIED",checkedAt:x.checkedAt??null,requires:Object.freeze(["DEDUPLICATION","RELEVANCE","RIGHTS_LICENSE","SOURCE_TRUST","RASTERAST","ADMISSION"])});
+}
