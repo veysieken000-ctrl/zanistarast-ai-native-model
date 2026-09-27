@@ -1,3 +1,4 @@
+import{t}from"./locale.js";
 const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 export function normalizeRepresentation(rep){
  if(!rep)return null;
@@ -39,19 +40,19 @@ export function bindPlayerControls(root){
  return()=>{media.removeEventListener("click",click);document.removeEventListener("keydown",key);clearTimeout(timer);badge.remove()};
 }
 
-export function bindAdvancedPlayer(root,{nextHref=null,autoplayNext=false,chapters=[]}={}){
- const media=root?.querySelector?.("video.media-player");if(!media)return()=>{};
- const bar=document.createElement("div");bar.className="player-tools";bar.innerHTML='<label>Hız <select data-speed aria-label="Oynatma hızı"><option value=".5">0.5×</option><option value=".75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2×</option></select></label><button type="button" data-captions>Altyazı</button><button type="button" data-pip>Resim içinde resim</button><button type="button" data-full>Tam ekran</button>';
+export function bindAdvancedPlayer(root,{nextHref=null,autoplayNext=false,chapters=[],locale}={}){
+ const media=root?.querySelector?.("video.media-player");if(!media)return()=>{};const tx=(key,vars)=>t(key,locale,vars);
+ const bar=document.createElement("div");bar.className="player-tools";bar.innerHTML=`<label>${tx("ui.speed")} <select data-speed aria-label="${tx("ui.playbackSpeed")}"><option value=".5">0.5×</option><option value=".75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2×</option></select></label><button type="button" data-captions>${tx("ui.captions")}</button><button type="button" data-pip>${tx("ui.pip")}</button><button type="button" data-full>${tx("ui.fullscreen")}</button>`;
  media.insertAdjacentElement("afterend",bar);
- if(chapters.length){const nav=document.createElement("nav");nav.className="chapters";nav.setAttribute("aria-label","Bölümler");nav.innerHTML=chapters.filter(x=>Number.isFinite(x?.start)&&x?.title).map((x,i)=>'<button type="button" data-chapter="'+i+'">'+esc(x.title)+'</button>').join("");bar.insertAdjacentElement("afterend",nav);nav.addEventListener("click",e=>{const i=Number(e.target?.dataset?.chapter);if(Number.isInteger(i)&&chapters[i])media.currentTime=Math.max(0,chapters[i].start)})}
+ if(chapters.length){const nav=document.createElement("nav");nav.className="chapters";nav.setAttribute("aria-label",tx("ui.chapters"));nav.innerHTML=chapters.filter(x=>Number.isFinite(x?.start)&&x?.title).map((x,i)=>'<button type="button" data-chapter="'+i+'">'+esc(x.title)+'</button>').join("");bar.insertAdjacentElement("afterend",nav);nav.addEventListener("click",e=>{const i=Number(e.target?.dataset?.chapter);if(Number.isInteger(i)&&chapters[i])media.currentTime=Math.max(0,chapters[i].start)})}
 
  const pip=async()=>{try{if(document.pictureInPictureElement)await document.exitPictureInPicture();else if(document.pictureInPictureEnabled&&media.requestPictureInPicture)await media.requestPictureInPicture()}catch{}};
  const full=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await media.requestFullscreen?.()}catch{}};
  const speed=e=>{media.playbackRate=Number(e.currentTarget.value)||1};
- const captions=()=>{const tracks=[...media.textTracks];if(!tracks.length)return;const on=tracks.some(t=>t.mode==="showing");tracks.forEach((t,i)=>t.mode=!on&&i===0?"showing":"disabled");bar.querySelector("[data-captions]").textContent=on?"Altyazı":"Altyazı kapat"};
+ const captions=()=>{const tracks=[...media.textTracks];if(!tracks.length)return;const on=tracks.some(t=>t.mode==="showing");tracks.forEach((t,i)=>t.mode=!on&&i===0?"showing":"disabled");bar.querySelector("[data-captions]").textContent=on?tx("ui.captions"):tx("ui.captionsOff")};
  let countdown=null,count=5;
  const cancelNext=()=>{if(countdown)clearInterval(countdown);countdown=null;root.querySelector(".next-countdown")?.remove()};
- const ended=()=>{if(!autoplayNext||!nextHref)return;cancelNext();count=5;const box=document.createElement("div");box.className="next-countdown";box.setAttribute("role","status");box.innerHTML='<span data-count></span><button type="button">İptal</button>';host?.append(box);const paint=()=>box.querySelector("[data-count]").textContent='Sıradaki içerik '+count+' sn sonra oynatılacak';paint();box.querySelector("button").addEventListener("click",cancelNext);countdown=setInterval(()=>{count-=1;if(count<=0){cancelNext();location.hash=nextHref}else paint()},1000)};
+ const ended=()=>{if(!autoplayNext||!nextHref)return;cancelNext();count=5;const box=document.createElement("div");box.className="next-countdown";box.setAttribute("role","status");box.innerHTML=`<span data-count></span><button type="button>${tx("ui.cancel")}</button>`;host?.append(box);const paint=()=>box.querySelector("[data-count]").textContent=tx("ui.nextIn",{seconds:count});paint();box.querySelector("button").addEventListener("click",cancelNext);countdown=setInterval(()=>{count-=1;if(count<=0){cancelNext();location.hash=nextHref}else paint()},1000)};
  bar.querySelector("[data-speed]")?.addEventListener("change",speed);bar.querySelector("[data-captions]")?.addEventListener("click",captions);bar.querySelector("[data-pip]")?.addEventListener("click",pip);bar.querySelector("[data-full]")?.addEventListener("click",full);media.addEventListener("ended",ended);
  return()=>{cancelNext();media.removeEventListener("ended",ended);bar.remove()};
 }
