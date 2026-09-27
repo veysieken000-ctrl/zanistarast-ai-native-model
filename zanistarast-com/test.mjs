@@ -19,6 +19,7 @@ import{AUDIT_EVENT,createCampaignAuditLog,lifecycleTransition,shouldDeliverCampa
 import{buildDemoCampaign}from"./ad-demo-campaign.js";
 import{advertiserIntake,billingEligibility}from"./ad-external-intake.js";
 import{BRIDGE_ORIGIN,bridgeEligible,createBridgeIndex,bridgeNextSteps,externalDiscoveryCandidate,admitExternalCandidate,refreshBridgeRecord,mergeBridgeSearch}from"./discovery-bridge.js";
+import{loadOrgDiscovery}from"./bridge-client.js";
 import{PROMOTION_KIND,promotionEligible,createPromotionService,promotionPlayback,renderPromotionInterstitial,renderPromotionShelf,PROMOTION_OUTCOME,promotionOutcome}from"./promotions.js";
 
 const read=p=>fs.readFileSync(new URL(p,import.meta.url),"utf8");
@@ -158,4 +159,8 @@ assert.equal(admitExternalCandidate(discovered,{rightsStatus:"UNVERIFIED",source
 const admittedExternal=admitExternalCandidate(discovered,{rightsStatus:"LINK_ONLY",sourceTrust:"PASS",rasterast:"PASS",reviewedAt:"2026-09-27T03:00:00Z"});assert.equal(admittedExternal.admitted,true);assert.equal(bridgeEligible(admittedExternal.record),true);
 const revokedExternal=refreshBridgeRecord(admittedExternal.record,{available:true,rightsStatus:"REVOKED",checkedAt:"2026-09-27T04:00:00Z"});assert.equal(revokedExternal.withdrawn,true);assert.equal(bridgeEligible(revokedExternal),false);
 const bridge=createBridgeIndex([bridgeOrg,bridgeCom,bridgeBlocked]);assert.equal(bridge.search("ethics").length,2);assert.equal(bridge.search("blocked").length,0);assert.equal(bridge.related("com-1")[0].id,"org-1");const mergedBridge=mergeBridgeSearch([{workId:"local-1",version:"v1",title:"Local",format:"video",language:"ku"}],bridge.search("ethics"));assert.equal(mergedBridge.some(x=>x.source==="ORG"&&x.id==="org-1"),true);assert.equal(mergedBridge.some(x=>x.source==="COM"&&x.id==="com-blocked"),false);assert.equal(new Set(mergedBridge.map(x=>x.source+":"+x.id+":"+x.version)).size,mergedBridge.length);const steps=bridgeNextSteps(bridgeCom,bridge);assert.equal(steps[0].label,"Bilimsel kaynağı oku");assert.equal(steps[0].origin,BRIDGE_ORIGIN.ORG);
+const unconfiguredOrg=await loadOrgDiscovery({source:{}});assert.equal(unconfiguredOrg.configured,false);assert.equal(unconfiguredOrg.records.length,0);
+const orgCfg={ZANISTARAST_ORG_DISCOVERY_BASE:"https://zanistarast.org/discovery.json"};
+const orgLoaded=await loadOrgDiscovery({source:orgCfg,fetchImpl:async()=>({ok:true,json:async()=>({records:[bridgeOrg,bridgeBlocked]})})});assert.equal(orgLoaded.available,true);assert.equal(orgLoaded.records.length,1);assert.equal(orgLoaded.records[0].origin,"ORG");
+const orgOffline=await loadOrgDiscovery({source:orgCfg,fetchImpl:async()=>{throw Error("offline")}});assert.equal(orgOffline.available,false);assert.equal(orgOffline.records.length,0);
 console.log("zanistarast-com smoke: OK");
