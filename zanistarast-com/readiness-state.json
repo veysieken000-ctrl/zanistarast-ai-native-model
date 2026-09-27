@@ -60,5 +60,27 @@
   },
   "productionReady": false,
   "domainActivationAllowed": false,
-  "liveClaimAllowed": false
+  "liveClaimAllowed": false,
+  "productionEvidence": {
+    "offline": {
+      "status": "CI_REQUIRED",
+      "checks": [
+        "smokeGreen",
+        "staticBoundaryGreen",
+        "secretsScanGreen",
+        "restoreTested",
+        "withdrawalTested"
+      ]
+    },
+    "live": {
+      "status": "EXTERNAL_ACTIVATION_REQUIRED",
+      "checks": [
+        "accessibilityChecked",
+        "performanceChecked",
+        "apiConfigured",
+        "storageConfigured",
+        "deploymentApproved"
+      ]
+    }
+  }
 }
