@@ -64,10 +64,10 @@ const rep=normalizeRepresentation({id:"rep-1",version:"v1",kind:"video",src:"/me
 assert.equal(hasTraceableMedia(rep),true);
 const rendered=renderMedia(rep);
 assert.match(rendered,/<video/);assert.match(rendered,/controls/);assert.match(rendered,/preload="metadata"/);assert.match(rendered,/<track kind="captions"/);assert.match(rendered,/srclang="tr"/);
-assert.match(renderMedia({kind:"video",src:"\/x.mp4"}),/sürüm bilgisi doğrulanamadı/);
-assert.match(renderMedia({id:"x",version:"1",kind:"unknown",src:"\/x"}),/temsil türü oynatılamıyor/);
-assert.match(renderMedia(null),/Medya şu anda kullanılamıyor/);
-assert.match(renderMedia(rep,{demo:true}),/DEMO MEDYA ALANI/);assert.deepEqual(normalizeRepresentation({...rep,chapters:[{title:"Başlangıç",start:0}]}).chapters,[{title:"Başlangıç",start:0}]);
+assert.match(renderMedia({kind:"video",src:"\/x.mp4"},{locale:"tr"}),/sürüm bilgisi doğrulanamadı/);
+assert.match(renderMedia({id:"x",version:"1",kind:"unknown",src:"\/x"},{locale:"tr"}),/temsil türü oynatılamıyor/);
+assert.match(renderMedia(null,{locale:"tr"}),/Medya şu anda kullanılamıyor/);
+assert.match(renderMedia(rep,{demo:true,locale:"tr"}),/DEMO MEDYA ALANI/);assert.deepEqual(normalizeRepresentation({...rep,chapters:[{title:"Başlangıç",start:0}]}).chapters,[{title:"Başlangıç",start:0}]);
 const memory=new Map();const storage={getItem:k=>memory.get(k)??null,setItem:(k,v)=>memory.set(k,v)};const state=createUserState(storage);
 assert.equal(state.liked("real-1"),false);assert.equal(state.toggleLike("real-1"),true);assert.equal(state.liked("real-1"),true);assert.deepEqual(state.likedIds(),["real-1"]);
 assert.equal(state.toggleSave("real-1"),true);assert.equal(state.saved("real-1"),true);assert.deepEqual(state.savedIds(),["real-1"]);state.visit("real-1");state.visit("real-2");state.visit("real-1");assert.deepEqual(state.history(),["real-1","real-2"]);assert.deepEqual(state.watchLater(),[]);assert.equal(state.watchLaterHas("real-1"),false);assert.equal(state.toggleWatchLater("real-1"),true);assert.equal(state.watchLaterHas("real-1"),true);assert.equal(state.toggleWatchLater("real-1"),false);assert.deepEqual(state.queue(),[]);state.enqueue("real-1");state.enqueue("real-2");state.enqueue("real-1");assert.deepEqual(state.queue(),["real-1","real-2"]);state.moveQueue("real-2",-1);assert.deepEqual(state.queue(),["real-2","real-1"]);state.dequeue("real-2");assert.deepEqual(state.queue(),["real-1"]);assert.equal(state.autoplayNext(),false);assert.equal(state.setAutoplayNext(true),true);assert.equal(state.autoplayNext(),true);
