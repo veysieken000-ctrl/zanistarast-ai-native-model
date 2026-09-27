@@ -10,18 +10,18 @@
   <title>Zanistarast — Gör · Hisset · Anla · Derinleş</title>
 </head>
 <body>
-  <a class="skip" href="#main">İçeriğe geç</a>
+  <a class="skip" href="#main" data-i18n="ui.skip">Derbasî naverokê bibe</a>
   <div class="identity-banner"><span class="identity-copy"><span class="era-title" id="era-title">Serdema Fıtrat û Exlaqê</span><span class="civilization-signature" id="civilization-title">Şaristaniya Newroza Kawa</span></span><span class="zan-flag" aria-hidden="true"><span class="flag-z">Z</span></span></div>
   <header class="topbar">
     <button class="menu-toggle" type="button" aria-label="Menüyü aç" data-i18n-aria="nav.menu" aria-expanded="false" aria-controls="side-menu">☰</button>
     <a class="brand" href="#/">Zanistarast</a>
-    <form class="top-search" role="search" id="top-search"><label class="sr-only" for="top-q">Ara</label><input id="top-q" type="search" autocomplete="off" placeholder="Ara…" aria-label="Zanistarast içinde ara" data-i18n-placeholder="ui.search" data-i18n-aria="ui.search"><button type="submit" aria-label="Ara" data-i18n-aria="ui.search">⌕</button></form>
-    <nav aria-label="Ana gezinme">
+    <form class="top-search" role="search" id="top-search"><label class="sr-only" for="top-q" data-i18n="ui.search">Lêgerîn</label><input id="top-q" type="search" autocomplete="off" placeholder="Ara…" aria-label="Di Zanistarast de bigere" data-i18n-placeholder="ui.search" data-i18n-aria="ui.searchSite"><button type="submit" aria-label="Ara" data-i18n-aria="ui.search">⌕</button></form>
+    <nav aria-label="Gerîna sereke" data-i18n-aria="ui.mainNav">
       <a href="#/" data-i18n="nav.home">Ana Sayfa</a><a href="#/discover" data-i18n="nav.discover">Keşfet</a><a href="#/search" data-i18n="nav.search">Ara</a><a href="#/library" data-i18n="nav.library">Kitaplığım</a>
     </nav>
   </header>
-  <aside id="side-menu" class="side-menu" aria-label="Kullanıcı menüsü" hidden>
-    <nav><a href="#/" data-i18n="nav.home">Ana Sayfa</a><a href="#/library" data-i18n="nav.library">Kitaplığım</a><a href="#/history" data-i18n="nav.history">Geçmiş</a><a href="#/liked" data-i18n="nav.liked">Beğenilenler</a><a href="#/watch-later" data-i18n="nav.watchLater">Daha Sonra İzle</a><a href="#/queue" data-i18n="nav.queue">Kuyruk</a><a href="#/settings" data-i18n="nav.settings">Ayarlar</a><label class="language-control"><span data-i18n="ui.language">Dil</span><select id="language-select" aria-label="Dil seç"><option value="ku">Kurmancî</option><option value="en">English</option><option value="de">Deutsch</option><option value="tr">Türkçe</option></select></label></nav>
+  <aside id="side-menu" class="side-menu" aria-label="Menuya bikarhêner" data-i18n-aria="ui.userMenu" hidden>
+    <nav><a href="#/" data-i18n="nav.home">Ana Sayfa</a><a href="#/library" data-i18n="nav.library">Kitaplığım</a><a href="#/history" data-i18n="nav.history">Geçmiş</a><a href="#/liked" data-i18n="nav.liked">Beğenilenler</a><a href="#/watch-later" data-i18n="nav.watchLater">Daha Sonra İzle</a><a href="#/queue" data-i18n="nav.queue">Kuyruk</a><a href="#/settings" data-i18n="nav.settings">Ayarlar</a><label class="language-control"><span data-i18n="ui.language">Dil</span><select id="language-select" aria-label="Ziman hilbijêre" data-i18n-aria="ui.languageSelect"><option value="ku">Kurmancî</option><option value="en">English</option><option value="de">Deutsch</option><option value="tr">Türkçe</option></select></label></nav>
   </aside>
   <div class="menu-scrim" hidden></div>
   <main id="main" tabindex="-1"></main>
