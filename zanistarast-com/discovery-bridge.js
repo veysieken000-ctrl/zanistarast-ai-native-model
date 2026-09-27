@@ -31,3 +31,19 @@ export function bridgeNextSteps(record,index){
 export function externalDiscoveryCandidate(x={}){
  return Object.freeze({candidate:true,publiclyIndexed:false,origin:ORIGIN.EXTERNAL,id:x.id??null,version:x.version??null,canonicalUrl:x.canonicalUrl??null,title:x.title??"",type:x.type??"unknown",language:x.language??null,topics:Object.freeze([...(x.topics??[])]),provenance:x.provenance??null,rightsStatus:x.rightsStatus??"UNVERIFIED",status:"DISCOVERED",rasterast:"UNVERIFIED",checkedAt:x.checkedAt??null,requires:Object.freeze(["DEDUPLICATION","RELEVANCE","RIGHTS_LICENSE","SOURCE_TRUST","RASTERAST","ADMISSION"])});
 }
+
+export function admitExternalCandidate(candidate,{rightsStatus,sourceTrust,rasterast,reviewedAt,canonicalUrl}={}){
+ if(candidate?.origin!==ORIGIN.EXTERNAL||candidate?.candidate!==true)return Object.freeze({admitted:false,reason:"NOT_EXTERNAL_CANDIDATE"});
+ if(!nonempty(candidate.id)||!nonempty(candidate.version)||!nonempty(canonicalUrl??candidate.canonicalUrl))return Object.freeze({admitted:false,reason:"IDENTITY_OR_URL_MISSING"});
+ if(!["CLEARED","LINK_ONLY","EMBED_ALLOWED"].includes(rightsStatus))return Object.freeze({admitted:false,reason:"RIGHTS_NOT_CLEARED"});
+ if(sourceTrust!=="PASS")return Object.freeze({admitted:false,reason:"SOURCE_TRUST_NOT_PASS"});
+ if(rasterast!=="PASS")return Object.freeze({admitted:false,reason:"RASTERAST_NOT_PASS"});
+ if(!nonempty(reviewedAt))return Object.freeze({admitted:false,reason:"REVIEW_TIME_REQUIRED"});
+ const record=normalizeBridgeRecord({...candidate,canonicalUrl:canonicalUrl??candidate.canonicalUrl,rightsStatus,status:"ADMITTED",rasterast,checkedAt:reviewedAt,withdrawn:false});
+ return Object.freeze({admitted:bridgeEligible(record),record});
+}
+export function refreshBridgeRecord(record,{available=true,rightsStatus=record?.rightsStatus,status=record?.status,rasterast=record?.rasterast,checkedAt}={}){
+ if(!nonempty(checkedAt))throw new Error("CHECK_TIME_REQUIRED");
+ const withdrawn=!available||status==="WITHDRAWN"||rightsStatus==="REVOKED";
+ return normalizeBridgeRecord({...record,rightsStatus,status:withdrawn?"WITHDRAWN":status,rasterast,withdrawn,checkedAt});
+}
