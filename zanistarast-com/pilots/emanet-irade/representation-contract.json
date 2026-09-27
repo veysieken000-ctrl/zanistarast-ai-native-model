@@ -1,0 +1,39 @@
+{
+  "candidateId": "pilot-emanet-irade",
+  "version": "candidate-1",
+  "status": "DRAFT_ONLY",
+  "publicAdmission": "BLOCKED",
+  "representations": [
+    {
+      "kind": "public-text",
+      "language": "tr",
+      "status": "DRAFT",
+      "final": false,
+      "source": "public-content.json"
+    },
+    {
+      "kind": "video",
+      "status": "NOT_PRODUCED",
+      "final": false,
+      "assetId": null
+    },
+    {
+      "kind": "audio",
+      "status": "NOT_PRODUCED",
+      "final": false,
+      "assetId": null
+    },
+    {
+      "kind": "image",
+      "status": "NOT_PRODUCED",
+      "final": false,
+      "assetId": null
+    }
+  ],
+  "publicationRule": "No representation is publicly renderable until exact-version source, rights, quality, cultural/visual, accessibility, Rasterast and final human decision gates pass.",
+  "finalMediaRequiredEvidence": [
+    "media-asset-manifest.json",
+    "rights-report.md",
+    "accessibility-plan.md"
+  ]
+}
