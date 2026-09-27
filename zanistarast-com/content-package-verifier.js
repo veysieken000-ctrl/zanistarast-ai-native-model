@@ -8,11 +8,11 @@ export function verifyContentPackage({manifest,reviewState,unresolved,evidenceIn
  for(const part of parts)if(!same(manifest,part)){errors.push("IDENTITY_OR_VERSION_MISMATCH");break}
  const pilot=verifyPilotPackage(manifest,reviewState,unresolved);
  if(!pilot.valid)errors.push(...pilot.errors);
- if(publicContent.publicAdmission!=="BLOCKED"||representations.publicAdmission!=="BLOCKED"||publicCopy.publicAdmission!=="BLOCKED")errors.push("PREMATURE_PUBLIC_ADMISSION");
+ const expectedSurfaceAdmission=pilot.admission==="ADMITTED"?"ADMITTED":"BLOCKED";
+ if(publicContent.publicAdmission!==expectedSurfaceAdmission||representations.publicAdmission!==expectedSurfaceAdmission||publicCopy.publicAdmission!==expectedSurfaceAdmission)errors.push(pilot.admission==="ADMITTED"?"PUBLIC_SURFACES_NOT_ADMITTED":"PREMATURE_PUBLIC_ADMISSION");
  if(mediaManifest.status!=="NO_FINAL_MEDIA"&&(!Array.isArray(mediaManifest.assets)||mediaManifest.assets.length===0))errors.push("MEDIA_STATUS_WITHOUT_ASSETS");
  if((representations.representations??[]).some(r=>r.final===true)&&mediaManifest.status!=="FINAL_MEDIA")errors.push("FINAL_REPRESENTATION_WITHOUT_FINAL_MEDIA");
  if(pilot.admission==="ADMITTED"){
-  if(publicContent.publicAdmission!=="ADMITTED"||representations.publicAdmission!=="ADMITTED"||publicCopy.publicAdmission!=="ADMITTED")errors.push("PUBLIC_SURFACES_NOT_ADMITTED");
   if(mediaManifest.status!=="FINAL_MEDIA"||!Array.isArray(mediaManifest.assets)||mediaManifest.assets.length===0)errors.push("FINAL_MEDIA_REQUIRED");
   if((representations.representations??[]).some(r=>r.final!==true))errors.push("NON_FINAL_REPRESENTATION");
  }
