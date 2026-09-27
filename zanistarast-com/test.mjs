@@ -18,6 +18,7 @@ import{AD_PLACEMENT,createAdScheduler,selectPromotionOrInternal}from"./ad-schedu
 import{AUDIT_EVENT,createCampaignAuditLog,lifecycleTransition,shouldDeliverCampaign}from"./ad-lifecycle.js";
 import{buildDemoCampaign}from"./ad-demo-campaign.js";
 import{advertiserIntake,billingEligibility}from"./ad-external-intake.js";
+import{BRIDGE_ORIGIN,bridgeEligible,createBridgeIndex}from"./discovery-bridge.js";
 import{PROMOTION_KIND,promotionEligible,createPromotionService,promotionPlayback,renderPromotionInterstitial,renderPromotionShelf,PROMOTION_OUTCOME,promotionOutcome}from"./promotions.js";
 
 const read=p=>fs.readFileSync(new URL(p,import.meta.url),"utf8");
@@ -148,4 +149,9 @@ assert.equal(billingEligibility({intake:externalIntake,admissionState:"ADMITTED"
 assert.equal(billingEligibility({intake:externalIntake,admissionState:"ADMITTED",commercialApproval:true}).allowed,true);
 assert.match(html,/id="top-search"/);assert.match(html,/id="top-q"/);assert.match(app,/location\.hash="#\/search"/);assert.match(app,/discovery\.search\(s,opts\)/);assert.match(app,/Sonuç bulunamadı/);
 const searchDiscovery=createDiscoveryService(createContentAdapter(works));const facets=searchDiscovery.facets();assert.equal(Array.isArray(facets.formats),true);assert.equal(Array.isArray(facets.languages),true);assert.equal(Array.isArray(facets.values),true);assert.equal(searchDiscovery.suggest("mer").every(x=>x.workId),true);
+const bridgeOrg={id:"org-1",version:"v1",origin:BRIDGE_ORIGIN.ORG,canonicalUrl:"https://zanistarast.org/work/1",title:"Scientific source",type:"article",language:"en",topics:["ethics"],status:"PUBLISHED"};
+const bridgeCom={id:"com-1",version:"v1",origin:BRIDGE_ORIGIN.COM,canonicalUrl:"https://zanistarast.com/#/work/com-1",title:"Public explanation",type:"video",language:"ku",topics:["ethics"],status:"ADMITTED",rasterast:"PASS",related:["org-1"]};
+const bridgeBlocked={...bridgeCom,id:"com-blocked",status:"BLOCKED"};
+assert.equal(bridgeEligible(bridgeOrg),true);assert.equal(bridgeEligible(bridgeCom),true);assert.equal(bridgeEligible(bridgeBlocked),false);
+const bridge=createBridgeIndex([bridgeOrg,bridgeCom,bridgeBlocked]);assert.equal(bridge.search("ethics").length,2);assert.equal(bridge.search("blocked").length,0);assert.equal(bridge.related("com-1")[0].id,"org-1");
 console.log("zanistarast-com smoke: OK");
