@@ -3,6 +3,27 @@
   "version": "candidate-1",
   "publicAdmission": "BLOCKED",
   "reviews": {
+    "provenance": {
+      "state": "PENDING",
+      "evidence": [
+        "source-ledger.md"
+      ],
+      "version": "candidate-1"
+    },
+    "rights": {
+      "state": "PENDING",
+      "evidence": [
+        "rights-report.md"
+      ],
+      "version": "candidate-1"
+    },
+    "quality": {
+      "state": "PENDING",
+      "evidence": [
+        "quality-report.md"
+      ],
+      "version": "candidate-1"
+    },
     "similarityRights": {
       "state": "PENDING",
       "evidence": [
@@ -39,7 +60,7 @@
       "version": "candidate-1"
     }
   },
-  "rule": "Only evidence-bearing exact-version review decisions may change a gate. Repository presence is not approval.",
+  "rule": "Only evidence-bearing exact-version review decisions may change a gate. Provenance, rights, quality, culture/visual, accessibility and Rasterast must PASS; Müdebbir exact-version approval is additionally required. Repository presence is not approval.",
   "unresolvedItems": [
     {
       "id": "U1",
