@@ -1,0 +1,20 @@
+{
+  "candidateId": "pilot-emanet-irade",
+  "version": "candidate-1",
+  "status": "DRAFT",
+  "publicAdmission": "BLOCKED",
+  "sourceWork": {
+    "canonicalId": null,
+    "doi": null,
+    "publicationStatus": "UNVERIFIED",
+    "note": "Canonical .org identity must be supplied from real accepted/admitted source evidence; do not invent it."
+  },
+  "adaptation": {
+    "title": "Emanet ve İrade",
+    "language": "tr",
+    "audience": "general-public",
+    "scriptStatus": "DRAFT",
+    "sourceLedger": "source-ledger.md"
+  },
+  "mediaManifest": "media-asset-manifest.json"
+}
