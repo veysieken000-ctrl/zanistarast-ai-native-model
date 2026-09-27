@@ -1,0 +1,66 @@
+{
+  "candidateId": "pilot-emanet-irade",
+  "version": "candidate-1",
+  "publicAdmission": "BLOCKED",
+  "rule": "Repository presence is not approval. Only evidence-bearing exact-version decisions may change a gate.",
+  "gates": [
+    {
+      "gate": "provenance",
+      "review": "PENDING",
+      "blocker": null,
+      "requiredEvidence": [
+        "source-ledger.md"
+      ]
+    },
+    {
+      "gate": "rights",
+      "review": "PENDING",
+      "blocker": "U1",
+      "requiredEvidence": [
+        "rights-report.md",
+        "similarity-rights-report.md"
+      ]
+    },
+    {
+      "gate": "quality",
+      "review": "PENDING",
+      "blocker": null,
+      "requiredEvidence": [
+        "quality-report.md"
+      ]
+    },
+    {
+      "gate": "cultureVisual",
+      "review": "PENDING",
+      "blocker": "U2",
+      "requiredEvidence": [
+        "cultural-review.md"
+      ]
+    },
+    {
+      "gate": "accessibility",
+      "review": "PENDING",
+      "blocker": "U3",
+      "requiredEvidence": [
+        "accessibility-plan.md"
+      ]
+    },
+    {
+      "gate": "rasterast",
+      "review": "PENDING",
+      "blocker": "U4",
+      "requiredEvidence": [
+        "rasterast-report.md"
+      ]
+    },
+    {
+      "gate": "mudabbir",
+      "review": "NOT_APPROVED",
+      "blocker": "U5",
+      "requiredEvidence": [
+        "mudabbir-decision-package.md"
+      ]
+    }
+  ],
+  "materialChangeRequiresNewVersion": true
+}
