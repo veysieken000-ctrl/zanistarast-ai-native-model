@@ -18,7 +18,7 @@ import{AD_PLACEMENT,createAdScheduler,selectPromotionOrInternal}from"./ad-schedu
 import{AUDIT_EVENT,createCampaignAuditLog,lifecycleTransition,shouldDeliverCampaign}from"./ad-lifecycle.js";
 import{buildDemoCampaign}from"./ad-demo-campaign.js";
 import{advertiserIntake,billingEligibility}from"./ad-external-intake.js";
-import{BRIDGE_ORIGIN,bridgeEligible,createBridgeIndex}from"./discovery-bridge.js";
+import{BRIDGE_ORIGIN,bridgeEligible,createBridgeIndex,bridgeNextSteps,externalDiscoveryCandidate}from"./discovery-bridge.js";
 import{PROMOTION_KIND,promotionEligible,createPromotionService,promotionPlayback,renderPromotionInterstitial,renderPromotionShelf,PROMOTION_OUTCOME,promotionOutcome}from"./promotions.js";
 
 const read=p=>fs.readFileSync(new URL(p,import.meta.url),"utf8");
@@ -153,5 +153,6 @@ const bridgeOrg={id:"org-1",version:"v1",origin:BRIDGE_ORIGIN.ORG,canonicalUrl:"
 const bridgeCom={id:"com-1",version:"v1",origin:BRIDGE_ORIGIN.COM,canonicalUrl:"https://zanistarast.com/#/work/com-1",title:"Public explanation",type:"video",language:"ku",topics:["ethics"],status:"ADMITTED",rasterast:"PASS",related:["org-1"]};
 const bridgeBlocked={...bridgeCom,id:"com-blocked",status:"BLOCKED"};
 assert.equal(bridgeEligible(bridgeOrg),true);assert.equal(bridgeEligible(bridgeCom),true);assert.equal(bridgeEligible(bridgeBlocked),false);
-const bridge=createBridgeIndex([bridgeOrg,bridgeCom,bridgeBlocked]);assert.equal(bridge.search("ethics").length,2);assert.equal(bridge.search("blocked").length,0);assert.equal(bridge.related("com-1")[0].id,"org-1");
+const discovered=externalDiscoveryCandidate({id:"ext-1",version:"seen-1",canonicalUrl:"https://example.org/talk",title:"External talk",type:"interview"});assert.equal(discovered.publiclyIndexed,false);assert.equal(bridgeEligible(discovered),false);assert.ok(discovered.requires.includes("RIGHTS_LICENSE"));
+const bridge=createBridgeIndex([bridgeOrg,bridgeCom,bridgeBlocked]);assert.equal(bridge.search("ethics").length,2);assert.equal(bridge.search("blocked").length,0);assert.equal(bridge.related("com-1")[0].id,"org-1");const steps=bridgeNextSteps(bridgeCom,bridge);assert.equal(steps[0].label,"Bilimsel kaynağı oku");assert.equal(steps[0].origin,BRIDGE_ORIGIN.ORG);
 console.log("zanistarast-com smoke: OK");
