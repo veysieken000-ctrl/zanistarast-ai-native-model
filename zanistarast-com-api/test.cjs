@@ -1,1 +1,11 @@
-const assert=require("node:assert/strict"),http=require("node:http");process.env.PORT="0";process.env.ALLOWED_ORIGINS="https://veysieken000-ctrl.github.io";const server=require("./server.cjs");server.on("listening",()=>{const port=server.address().port;const q=http.get({host:"127.0.0.1",port,path:"/health",headers:{Origin:"https://veysieken000-ctrl.github.io"}},r=>{let b="";r.on("data",x=>b+=x);r.on("end",()=>{assert.equal(r.statusCode,200);assert.equal(r.headers["cache-control"],"no-store");assert.equal(r.headers["access-control-allow-origin"],"https://veysieken000-ctrl.github.io");assert.equal(JSON.parse(b).ok,true);server.close(()=>process.exit(0))})});q.on("error",()=>process.exit(1))});
+const assert=require("node:assert/strict"),http=require("node:http");
+process.env.PORT="0";process.env.ALLOWED_ORIGINS="https://veysieken000-ctrl.github.io";process.env.BUILD_SHA="test-sha";
+const server=require("./server.cjs");
+const request=(port,path,origin="https://veysieken000-ctrl.github.io",method="GET")=>new Promise((resolve,reject)=>{const q=http.request({host:"127.0.0.1",port,path,method,headers:{Origin:origin}},r=>{let b="";r.on("data",x=>b+=x);r.on("end",()=>resolve({status:r.statusCode,headers:r.headers,body:b?JSON.parse(b):null}))});q.on("error",reject);q.end()});
+server.on("listening",async()=>{try{const port=server.address().port;
+ const health=await request(port,"/health");assert.equal(health.status,200);assert.equal(health.headers["cache-control"],"no-store");assert.equal(health.headers["x-content-type-options"],"nosniff");assert.equal(health.headers["access-control-allow-origin"],"https://veysieken000-ctrl.github.io");assert.equal(health.body.build,"test-sha");
+ const ready=await request(port,"/readiness");assert.equal(ready.status,200);assert.equal(ready.body.publication,"fail-closed");assert.equal(ready.body.checks.persistentStorage,false);assert.equal(ready.body.checks.domain,false);
+ const denied=await request(port,"/health","https://evil.example");assert.equal(denied.headers["access-control-allow-origin"],undefined);
+ const preflight=await request(port,"/health","https://evil.example","OPTIONS");assert.equal(preflight.status,403);
+ server.close(()=>process.exit(0));
+ }catch(e){console.error(e);server.close(()=>process.exit(1))}});
