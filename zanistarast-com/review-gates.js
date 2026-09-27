@@ -1,5 +1,5 @@
 export const REVIEW_STATE=Object.freeze({PENDING:"PENDING",PASS:"PASS",FAIL:"FAIL",NOT_APPROVED:"NOT_APPROVED",APPROVED:"APPROVED"});
-export const REQUIRED_CONTENT_REVIEWS=Object.freeze(["provenance","rights","quality","cultureVisual","accessibility","rasterast"]);
+export const REQUIRED_CONTENT_REVIEWS=Object.freeze(["provenance","rights","quality","similarityRights","cultureVisual","accessibility","rasterast"]);
 export function validateEvidenceDecision(review,version){
  if(!review||review.version!==version||review.state!==REVIEW_STATE.PASS)return false;
  return Array.isArray(review.evidence)&&review.evidence.length>0&&review.evidence.every(e=>typeof e==="string"&&e.trim().length>0);
