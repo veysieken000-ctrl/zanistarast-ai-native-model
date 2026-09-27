@@ -47,3 +47,11 @@ export function refreshBridgeRecord(record,{available=true,rightsStatus=record?.
  const withdrawn=!available||status==="WITHDRAWN"||rightsStatus==="REVOKED";
  return normalizeBridgeRecord({...record,rightsStatus,status:withdrawn?"WITHDRAWN":status,rasterast,withdrawn,checkedAt});
 }
+
+export function mergeBridgeSearch(localResults=[],bridgeResults=[]){
+ const seen=new Set(),out=[];
+ for(const item of [...localResults.map(x=>({source:"COM_LOCAL",id:x.workId,version:x.version,title:x.title,type:x.format,language:x.language,url:"#/work/"+encodeURIComponent(x.workId)})),...bridgeResults.map(x=>({source:x.origin,id:x.id,version:x.version,title:x.publicTitle||x.title,type:x.type,language:x.language,url:x.canonicalUrl}))]){
+  const key=item.source+":"+item.id+":"+item.version;if(seen.has(key))continue;seen.add(key);out.push(Object.freeze(item));
+ }
+ return Object.freeze(out);
+}
