@@ -25,6 +25,7 @@ import{PROMOTION_KIND,promotionEligible,createPromotionService,promotionPlayback
 const read=p=>fs.readFileSync(new URL(p,import.meta.url),"utf8");
 const html=read("./index.html"),css=read("./styles.css"),app=read("./app.js"),data=read("./data.js"),manifest=JSON.parse(read("./manifest.webmanifest")),sw=read("./sw.js");
 
+assert.equal(FALLBACK,"ku");assert.equal(t("nav.home","ku"),"Malper");assert.equal(t("nav.home","en"),"Home");assert.equal(t("nav.settings","de"),"Einstellungen");assert.equal(t("ui.new","tr"),"Yeni Eklenenler");assert.equal(t("missing.key","ku"),"missing.key");assert.ok(["ku","en","de","tr"].every(k=>COPY[k]?.era&&COPY[k]?.civilization));
 assert.match(html,/id="main"/);
 assert.match(html,/manifest\.webmanifest/);
 assert.match(html,/İçeriğe geç/);
