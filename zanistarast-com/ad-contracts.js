@@ -57,3 +57,19 @@ export function renewCampaign(previous,{version,startAt,endAt,impressionEntitlem
  const campaign=Object.freeze({campaignId:previous.campaignId,version,state:CAMPAIGN_STATE.REVIEW,sponsor:previous.sponsor,startAt,endAt,impressionEntitlement:Math.max(0,Number(impressionEntitlement??0)),targetUrl:previous.targetUrl,claims:Object.freeze([...(previous.claims??[])]),rightsEvidence:Object.freeze([...(previous.rightsEvidence??[])])});
  return Object.freeze({ready:true,campaign,creativeMode,requiresNewCreative:creativeMode==="NEW_CREATIVE",requiresFreshReview:true,previousVersion:previous.version});
 }
+
+export const DELIVERY_SCOPE=Object.freeze({GLOBAL:"GLOBAL",COUNTRY:"COUNTRY",REGION:"REGION"});
+export const PLACEMENT_PURPOSE=Object.freeze({COMMERCIAL:"COMMERCIAL",PUBLIC_SERVICE:"PUBLIC_SERVICE",ZANISTARAST_UPDATE:"ZANISTARAST_UPDATE"});
+export function validateDeliveryScope(scope){
+ const errors=[];
+ if(!Object.values(DELIVERY_SCOPE).includes(scope?.type))errors.push("scope.type");
+ if(scope?.type===DELIVERY_SCOPE.COUNTRY&&(!Array.isArray(scope.countries)||!scope.countries.length))errors.push("scope.countries");
+ if(scope?.type===DELIVERY_SCOPE.REGION&&(!Array.isArray(scope.regions)||!scope.regions.length))errors.push("scope.regions");
+ return Object.freeze({valid:errors.length===0,errors:Object.freeze(errors)});
+}
+export function deliveryScopeMatches(scope,{country,region}={}){
+ if(!validateDeliveryScope(scope).valid)return false;
+ if(scope.type===DELIVERY_SCOPE.GLOBAL)return true;
+ if(scope.type===DELIVERY_SCOPE.COUNTRY)return scope.countries.includes(country);
+ return scope.regions.includes(region);
+}
