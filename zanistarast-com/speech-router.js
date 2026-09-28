@@ -32,8 +32,6 @@ export function createSpeechInput({router,scope=globalThis,locale="ku",onState=(
  recognition.continuous=false;
  recognition.maxAlternatives=1;
  let terminalState=false;
- recognition.onstart=()=>{terminalState=false;onState("LISTENING")};
- recognition.onend=()=>{if(!terminalState)onState("IDLE")};
  recognition.onerror=event=>{terminalState=true;onState(event?.error==="not-allowed"||event?.error==="service-not-allowed"?"PERMISSION_DENIED":"ERROR")};
  recognition.onresult=event=>{const alt=event?.results?.[0]?.[0],transcript=alt?.transcript??"",confidence=Number(alt?.confidence);onState("TRANSCRIPT",transcript);if(Number.isFinite(confidence)&&confidence<minConfidence){terminalState=true;onState("LOW_CONFIDENCE",transcript);return Object.freeze({status:"LOW_CONFIDENCE",target:null})}const result=router.route(transcript);terminalState=result.status!=="EMPTY";onState(result.status,transcript);return result};
  let active=false;
