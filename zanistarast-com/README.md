@@ -44,3 +44,16 @@ This keeps the static branch useful for development and CI without substituting 
 - keyboard/accessibility baseline
 
 Production content ingestion, authentication, persistence, media streaming and recommendation services are later implementation layers and must preserve the governance documents under docs/zanistarast-com/.
+
+## Portability and media-storage boundary
+
+Zanistarast.com MUST remain portable across hosting, storage and CDN providers. GitHub is the source-code and CI/development boundary, not the long-term origin for large production video/audio assets.
+
+- Do not make published media depend on large binary files committed to this repository.
+- Media records must reference provider-neutral URLs/identifiers and keep content metadata separate from storage implementation details.
+- Player, catalog, search and governance logic must not depend on a single commercial storage/CDN vendor.
+- A future migration to Zanistarast-owned/company-operated infrastructure, object storage, CDN or another provider must be possible by changing adapters/configuration and migrating assets, without rewriting public content records or the player.
+- Keep canonical content identity, versions, rights/governance evidence, captions/transcripts and checksums exportable independently of the media host.
+- Production backup/restore and bulk export/import are required before treating any storage provider as a durable production home.
+
+This is a permanent architecture constraint: growth may justify company-owned infrastructure later, but ownership of the data model and easy transferability take precedence over any current hosting provider.
