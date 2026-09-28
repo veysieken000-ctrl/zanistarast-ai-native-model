@@ -7,7 +7,9 @@ const COPY={
 };
 const LOCALE_KEY="zanistarast-com:locale:v1";
 export const INTERFACE_LOCALES=Object.freeze(["ku","en","de","tr"]);
-export const PLANNED_LOCALES=Object.freeze(["ar","fa","fr","es"]);
+export const PLANNED_LOCALES=Object.freeze(["ar","fa","fr","es","ru","zh","ja","ko","vi","th","id"]);
+export const RTL_LOCALES=Object.freeze(["ar","fa"]);
+export const localeDirection=locale=>RTL_LOCALES.includes(String(locale||"").toLowerCase().split("-")[0])?"rtl":"ltr";
 const base=v=>String(v||"").toLowerCase().split("-")[0];
 export const interfaceLocaleAvailable=locale=>INTERFACE_LOCALES.includes(base(locale));
 export const localeKey=locale=>interfaceLocaleAvailable(locale)?base(locale):FALLBACK;
