@@ -32,6 +32,7 @@ export function createDiscoveryService(contentAdapter){
    const works=eligible().filter(w=>liked.has(w.workId));
    return Object.freeze({values:new Set(works.flatMap(w=>w.values??[])),formats:new Set(works.map(w=>w.format).filter(Boolean))});
   },
+  recommended({likedIds=[],excludeIds=[],limit=12}={}){const prefs=this.preferences(likedIds),excluded=new Set(excludeIds);return eligible().filter(w=>!excluded.has(w.workId)).map(w=>({work:w,rank:(w.values??[]).filter(v=>prefs.values.has(v)).length*2+(prefs.formats.has(w.format)?1:0)})).sort((a,b)=>b.rank-a.rank||String(b.work.publishedAt??"").localeCompare(String(a.work.publishedAt??""))||a.work.workId.localeCompare(b.work.workId)).slice(0,Math.max(0,limit)).map(x=>x.work);},
   related(workId,{likedIds=[],likedValues=[]}={}){
    const source=contentAdapter.get(workId);if(!source)return[];
    const derived=this.preferences(likedIds);const prefs={values:new Set([...derived.values,...likedValues]),formats:derived.formats};
