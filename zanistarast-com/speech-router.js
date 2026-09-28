@@ -20,7 +20,7 @@ export function speechRecognitionSupport(scope=globalThis){
  return Object.freeze({supported:typeof Ctor==="function",Recognition:Ctor??null});
 }
 
-export const SPEECH_LOCALES=Object.freeze({ku:"ku-TR",tr:"tr-TR",en:"en-US",de:"de-DE",ar:"ar-SA",fa:"fa-IR",fr:"fr-FR",es:"es-ES"});
+export const SPEECH_LOCALES=Object.freeze({ku:"ku-TR",tr:"tr-TR",en:"en-US",de:"de-DE",ar:"ar-SA",fa:"fa-IR",fr:"fr-FR",es:"es-ES",ru:"ru-RU",zh:"zh-CN",ja:"ja-JP",ko:"ko-KR",vi:"vi-VN",th:"th-TH",id:"id-ID"});
 export function speechLocale(locale="ku"){return SPEECH_LOCALES[String(locale).toLowerCase().split("-")[0]]??"ku-TR"}
 
 export function createSpeechInput({router,scope=globalThis,locale="ku",onState=()=>{},minConfidence=.45}={}){
