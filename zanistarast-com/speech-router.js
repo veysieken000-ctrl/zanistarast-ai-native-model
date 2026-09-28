@@ -22,13 +22,16 @@ export function speechRecognitionSupport(scope=globalThis){
 
 export function speechLocale(locale="ku"){return({ku:"ku-TR",tr:"tr-TR",en:"en-US",de:"de-DE"})[String(locale).toLowerCase().split("-")[0]]??"ku-TR"}
 
-export function createSpeechInput({router,scope=globalThis,locale="ku"}={}){
+export function createSpeechInput({router,scope=globalThis,locale="ku",onState=()=>{}}={}){
  const support=speechRecognitionSupport(scope);
  if(!router?.route||!support.supported)return Object.freeze({available:false,start:()=>false,stop:()=>false});
  const recognition=new support.Recognition();
  recognition.lang=speechLocale(locale);
  recognition.interimResults=false;
  recognition.maxAlternatives=1;
- recognition.onresult=event=>router.route(event?.results?.[0]?.[0]?.transcript??"");
- return Object.freeze({available:true,start:()=>{recognition.start();return true},stop:()=>{recognition.stop();return true}});
+ recognition.onstart=()=>onState("LISTENING");
+ recognition.onend=()=>onState("IDLE");
+ recognition.onerror=()=>onState("ERROR");
+ recognition.onresult=event=>{const transcript=event?.results?.[0]?.[0]?.transcript??"";const result=router.route(transcript);onState(result.status);return result};
+ return Object.freeze({available:true,start:()=>{try{recognition.start();return true}catch{onState("ERROR");return false}},stop:()=>{try{recognition.stop();return true}catch{return false}}});
 }
