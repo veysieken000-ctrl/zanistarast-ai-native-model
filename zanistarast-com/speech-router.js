@@ -36,5 +36,8 @@ export function createSpeechInput({router,scope=globalThis,locale="ku",onState=(
  recognition.onend=()=>{if(!terminalState)onState("IDLE")};
  recognition.onerror=event=>{terminalState=true;onState(event?.error==="not-allowed"||event?.error==="service-not-allowed"?"PERMISSION_DENIED":"ERROR")};
  recognition.onresult=event=>{const alt=event?.results?.[0]?.[0],transcript=alt?.transcript??"",confidence=Number(alt?.confidence);onState("TRANSCRIPT",transcript);if(Number.isFinite(confidence)&&confidence<minConfidence){terminalState=true;onState("LOW_CONFIDENCE",transcript);return Object.freeze({status:"LOW_CONFIDENCE",target:null})}const result=router.route(transcript);terminalState=result.status!=="EMPTY";onState(result.status,transcript);return result};
- return Object.freeze({available:true,start:()=>{try{recognition.start();return true}catch{onState("ERROR");return false}},stop:()=>{try{recognition.stop();return true}catch{return false}}});
+ let active=false;
+ recognition.onstart=()=>{active=true;terminalState=false;onState("LISTENING")};
+ recognition.onend=()=>{active=false;if(!terminalState)onState("IDLE")};
+ return Object.freeze({available:true,start:()=>{if(active)return false;try{recognition.start();return true}catch{onState("ERROR");return false}},stop:()=>{if(!active)return false;try{recognition.stop();return true}catch{return false}}});
 }
