@@ -22,7 +22,7 @@ export function speechRecognitionSupport(scope=globalThis){
 
 export function speechLocale(locale="ku"){return({ku:"ku-TR",tr:"tr-TR",en:"en-US",de:"de-DE"})[String(locale).toLowerCase().split("-")[0]]??"ku-TR"}
 
-export function createSpeechInput({router,scope=globalThis,locale="ku",onState=()=>{}}={}){
+export function createSpeechInput({router,scope=globalThis,locale="ku",onState=()=>{},minConfidence=.45}={}){
  const support=speechRecognitionSupport(scope);
  if(!router?.route||!support.supported)return Object.freeze({available:false,start:()=>false,stop:()=>false});
  const recognition=new support.Recognition();
@@ -33,6 +33,6 @@ export function createSpeechInput({router,scope=globalThis,locale="ku",onState=(
  recognition.onstart=()=>onState("LISTENING");
  recognition.onend=()=>onState("IDLE");
  recognition.onerror=event=>onState(event?.error==="not-allowed"||event?.error==="service-not-allowed"?"PERMISSION_DENIED":"ERROR");
- recognition.onresult=event=>{const transcript=event?.results?.[0]?.[0]?.transcript??"";onState("TRANSCRIPT",transcript);const result=router.route(transcript);onState(result.status,transcript);return result};
+ recognition.onresult=event=>{const alt=event?.results?.[0]?.[0],transcript=alt?.transcript??"",confidence=Number(alt?.confidence);onState("TRANSCRIPT",transcript);if(Number.isFinite(confidence)&&confidence<minConfidence){onState("LOW_CONFIDENCE",transcript);return Object.freeze({status:"LOW_CONFIDENCE",target:null})}const result=router.route(transcript);onState(result.status,transcript);return result};
  return Object.freeze({available:true,start:()=>{try{recognition.start();return true}catch{onState("ERROR");return false}},stop:()=>{try{recognition.stop();return true}catch{return false}}});
 }
