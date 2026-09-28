@@ -14,11 +14,11 @@ let orgBridge=null;loadOrgDiscovery().then(x=>{orgBridge=x.available?x.index:nul
 const discovery=createDiscoveryService(contentAdapter);
 const promotionService=createPromotionService(promotions,{workLookup:id=>contentAdapter.get(id)});
 let activeLocale=applyIdentityLocale();
-const languageSelect=document.querySelector("#language-select");if(languageSelect){languageSelect.value=activeLocale;languageSelect.addEventListener("change",e=>{activeLocale=setLocale(e.currentTarget.value);route()})}
+const languageSelect=document.querySelector("#language-select");if(languageSelect){languageSelect.value=activeLocale;languageSelect.addEventListener("change",e=>{activeLocale=setLocale(e.currentTarget.value);speechInput=createSpeechInput({router:speechRouter,locale:activeLocale});if(speechButton)speechButton.hidden=!speechInput.available;route()})}
 const main=document.querySelector("#main");
 const topSearch=document.querySelector("#top-search"),topQ=document.querySelector("#top-q");
 topSearch?.addEventListener("submit",e=>{e.preventDefault();const q=topQ?.value?.trim()??"";if(q)searchState.remember(q);location.hash="#/search"+(q?"?q="+encodeURIComponent(q):"")});
-const speechButton=document.querySelector("#speech-search");const speechRouter=createSpeechRouter({search:q=>discovery.search(q),open:id=>{location.hash="#/work/"+encodeURIComponent(id)}});const speechInput=createSpeechInput({router:speechRouter,locale:"ku-TR"});if(speechButton){speechButton.hidden=!speechInput.available;speechButton.addEventListener("click",()=>speechInput.start())}
+const speechButton=document.querySelector("#speech-search");const speechRouter=createSpeechRouter({search:q=>discovery.search(q),open:id=>{location.hash="#/work/"+encodeURIComponent(id)}});let speechInput=createSpeechInput({router:speechRouter,locale:activeLocale});if(speechButton){speechButton.hidden=!speechInput.available;speechButton.addEventListener("click",()=>speechInput.start())}
 const menu=document.querySelector("#side-menu"),scrim=document.querySelector(".menu-scrim"),menuButton=document.querySelector(".menu-toggle");
 function setMenu(open){menu.hidden=!open;scrim.hidden=!open;menuButton.setAttribute("aria-expanded",String(open))}
 menuButton?.addEventListener("click",()=>setMenu(menu.hidden));scrim?.addEventListener("click",()=>setMenu(false));menu?.addEventListener("click",e=>{if(e.target.closest("a"))setMenu(false)});
