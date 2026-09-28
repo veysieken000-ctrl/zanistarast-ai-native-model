@@ -57,3 +57,26 @@ Zanistarast.com MUST remain portable across hosting, storage and CDN providers. 
 - Production backup/restore and bulk export/import are required before treating any storage provider as a durable production home.
 
 This is a permanent architecture constraint: growth may justify company-owned infrastructure later, but ownership of the data model and easy transferability take precedence over any current hosting provider.
+
+## Governed external contribution boundary
+
+Zanistarast.com may later accept documentary, educational, scientific, historical, biographical, animation and other media proposals from people outside the core team, but submission is never publication.
+
+- External contributors may submit a proposal or upload candidate media only into a quarantined, non-public intake area.
+- Nothing becomes searchable, recommendable, playable on a public route, monetizable, or associated with a public creator/channel until the exact candidate version completes the same admission pipeline as first-party content.
+- Admission is fail-closed. Required evidence includes provenance/identity, copyright or license rights, media/accessibility checks, advertising/sponsorship disclosure, cultural/visual review, Rasterast review and the final exact-version governance decision. Missing, expired or changed evidence keeps the candidate blocked.
+- Review applies to the complete representation: video/audio, poster/thumbnail, title, description, captions, transcript, links, embedded promotion, clothing/visual material and later edits. A material edit creates a new version and requires re-review.
+- External films, documentaries, cartoons or other copyrighted works are not copied or republished merely because they are valuable. They require documented permission/license or a lawful source/link/embedding basis before admission.
+- Advertising, covert promotion, unsafe or governance-incompatible material cannot bypass admission through creator profiles, descriptions, links, thumbnails or sponsorships.
+- Withdrawal and emergency unpublish remain available after admission; an admitted item can be suspended without deleting its audit/evidence history.
+
+### Creator/channel and earnings rollout
+
+Creator accounts, public channels and revenue sharing are deliberately **not part of the first rollout**. They add identity, moderation, copyright disputes, fraud/abuse, payment/tax/accounting, child-safety and ongoing enforcement obligations. The safer sequence is:
+
+1. **Curated intake:** trusted staff can add content quickly through one governed intake form/import path.
+2. **External proposals:** selected contributors can submit candidates, but only reviewers can admit them publicly.
+3. **Verified contributors:** after the moderation and rights pipeline has real operational evidence, approved contributors may receive limited submission workspaces.
+4. **Channels/earnings:** only after production identity, moderation, rights/dispute, accounting/payment and abuse controls exist and have been tested. Revenue eligibility must be separate from content admission.
+
+This boundary is designed to enrich the catalogue without turning an upload button into a publication bypass. It also preserves the option to add creator channels later without rewriting the core content/admission model.
