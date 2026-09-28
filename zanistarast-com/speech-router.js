@@ -20,11 +20,13 @@ export function speechRecognitionSupport(scope=globalThis){
  return Object.freeze({supported:typeof Ctor==="function",Recognition:Ctor??null});
 }
 
-export function createSpeechInput({router,scope=globalThis,locale="ku-TR"}={}){
+export function speechLocale(locale="ku"){return({ku:"ku-TR",tr:"tr-TR",en:"en-US",de:"de-DE"})[String(locale).toLowerCase().split("-")[0]]??"ku-TR"}
+
+export function createSpeechInput({router,scope=globalThis,locale="ku"}={}){
  const support=speechRecognitionSupport(scope);
  if(!router?.route||!support.supported)return Object.freeze({available:false,start:()=>false,stop:()=>false});
  const recognition=new support.Recognition();
- recognition.lang=locale;
+ recognition.lang=speechLocale(locale);
  recognition.interimResults=false;
  recognition.maxAlternatives=1;
  recognition.onresult=event=>router.route(event?.results?.[0]?.[0]?.transcript??"");
