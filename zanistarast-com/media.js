@@ -3,7 +3,7 @@ const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&
 export function normalizeRepresentation(rep){
  if(!rep)return null;
  const kind=["video","audio","reading"].includes(rep.kind)?rep.kind:"unknown";
- return Object.freeze({id:rep.id??null,version:rep.version??null,kind,src:rep.src??null,mime:rep.mime??null,poster:rep.poster??null,captions:Object.freeze([...(rep.captions??[])]),transcript:rep.transcript??null,chapters:Object.freeze([...(rep.chapters??[])])});
+ const list=value=>Array.isArray(value)?value:[];return Object.freeze({id:rep.id??null,version:rep.version??null,kind,src:rep.src??null,mime:rep.mime??null,poster:rep.poster??null,captions:Object.freeze([...list(rep.captions)]),transcript:rep.transcript??null,chapters:Object.freeze([...list(rep.chapters)])});
 }
 export const hasTraceableMedia=r=>Boolean(r?.id&&r?.version);
 export function renderMedia(rep,{demo=false,locale}={}){
