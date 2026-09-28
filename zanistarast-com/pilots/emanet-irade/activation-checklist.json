@@ -1,0 +1,55 @@
+{
+  "candidateId": "pilot-emanet-irade",
+  "version": "candidate-1",
+  "status": "BLOCKED",
+  "checks": [
+    {
+      "id": "U1",
+      "area": "rights",
+      "state": "OPEN",
+      "requires": [
+        "external-similarity-review",
+        "final-asset-rights-review"
+      ]
+    },
+    {
+      "id": "U2",
+      "area": "culture",
+      "state": "OPEN",
+      "requires": [
+        "locality-period-evidence",
+        "material-culture-evidence"
+      ]
+    },
+    {
+      "id": "U3",
+      "area": "accessibility",
+      "state": "OPEN",
+      "requires": [
+        "final-media",
+        "caption-transcript-review",
+        "final-accessibility-review"
+      ]
+    },
+    {
+      "id": "U4",
+      "area": "rasterast",
+      "state": "OPEN",
+      "requires": [
+        "upstream-evidence-complete",
+        "exact-version-rasterast-review"
+      ]
+    },
+    {
+      "id": "U5",
+      "area": "mudabbir",
+      "state": "OPEN",
+      "requires": [
+        "all-prior-gates-pass",
+        "exact-version-final-decision"
+      ]
+    }
+  ],
+  "activationRule": "All checks must be RESOLVED with evidence for the exact candidate version before admission can be considered.",
+  "automaticPromotion": false
+}
