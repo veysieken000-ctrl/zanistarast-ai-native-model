@@ -28,6 +28,8 @@ import{FALLBACK,COPY,t}from"./locale.js";
 
 const read=p=>fs.readFileSync(new URL(p,import.meta.url),"utf8");
 const html=read("./index.html"),css=read("./styles.css"),app=read("./app.js"),data=read("./data.js"),manifest=JSON.parse(read("./manifest.webmanifest")),sw=read("./sw.js");
+const readinessState=JSON.parse(read("./readiness-state.json"));assert.equal(readinessState.productionReady,false);assert.equal(readinessState.domainActivationAllowed,false);assert.equal(readinessState.liveClaimAllowed,false);assert.equal(readinessState.productionEvidence.contentActivation.status,"EXTERNAL_ACTIVATION_REQUIRED");assert.deepEqual(readinessState.productionEvidence.contentActivation.requiredChecks,["U1","U2","U3","U4","U5"]);
+
 
 assert.equal(FALLBACK,"ku");assert.equal(t("nav.home","ku"),"Malper");assert.equal(t("nav.home","en"),"Home");assert.equal(t("nav.settings","de"),"Einstellungen");assert.equal(t("ui.new","tr"),"Yeni Eklenenler");assert.equal(t("missing.key","ku"),"missing.key");assert.ok(["ku","en","de","tr"].every(k=>COPY[k]?.era&&COPY[k]?.civilization));
 assert.match(html,/id="main"/);
