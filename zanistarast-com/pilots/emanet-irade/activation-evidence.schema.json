@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "required": [
+    "candidateId",
+    "version",
+    "checkId",
+    "state",
+    "evidence"
+  ],
+  "states": [
+    "OPEN",
+    "RESOLVED"
+  ],
+  "evidenceItemRequired": [
+    "id",
+    "kind",
+    "reference",
+    "exactVersion"
+  ],
+  "rules": {
+    "resolvedRequiresEvidence": true,
+    "exactVersionRequired": true,
+    "repositoryPresenceIsNotApproval": true,
+    "externalEvidenceMustNotBeSynthesized": true
+  }
+}
