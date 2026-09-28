@@ -14,7 +14,7 @@ let orgBridge=null;loadOrgDiscovery().then(x=>{orgBridge=x.available?x.index:nul
 const discovery=createDiscoveryService(contentAdapter);
 const promotionService=createPromotionService(promotions,{workLookup:id=>contentAdapter.get(id)});
 let activeLocale=applyIdentityLocale();
-const languageSelect=document.querySelector("#language-select");if(languageSelect){languageSelect.value=activeLocale;languageSelect.addEventListener("change",e=>{activeLocale=setLocale(e.currentTarget.value);speechInput=createSpeechInput({router:speechRouter,locale:activeLocale});if(speechButton)speechButton.hidden=!speechInput.available;route()})}
+const languageSelect=document.querySelector("#language-select");if(languageSelect){languageSelect.value=activeLocale;languageSelect.addEventListener("change",e=>{activeLocale=setLocale(e.currentTarget.value);speechInput=createSpeechInput({router:speechRouter,locale:activeLocale,onState:announceSpeech});if(speechButton)speechButton.hidden=!speechInput.available;route()})}
 const main=document.querySelector("#main");
 const topSearch=document.querySelector("#top-search"),topQ=document.querySelector("#top-q");
 topSearch?.addEventListener("submit",e=>{e.preventDefault();const q=topQ?.value?.trim()??"";if(q)searchState.remember(q);location.hash="#/search"+(q?"?q="+encodeURIComponent(q):"")});
