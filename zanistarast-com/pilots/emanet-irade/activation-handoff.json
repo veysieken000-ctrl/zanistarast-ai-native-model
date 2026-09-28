@@ -1,0 +1,44 @@
+{
+  "candidateId": "pilot-emanet-irade",
+  "version": "candidate-1",
+  "status": "WAITING_FOR_EXTERNAL_EVIDENCE",
+  "nextActions": [
+    {
+      "order": 1,
+      "checkId": "U1",
+      "action": "complete-rights-and-external-similarity-evidence"
+    },
+    {
+      "order": 2,
+      "checkId": "U2",
+      "action": "complete-cultural-locality-period-evidence"
+    },
+    {
+      "order": 3,
+      "checkId": "U3",
+      "action": "produce-final-media-and-complete-accessibility-review"
+    },
+    {
+      "order": 4,
+      "checkId": "U4",
+      "action": "complete-exact-version-rasterast-review",
+      "dependsOn": [
+        "U1",
+        "U2",
+        "U3"
+      ]
+    },
+    {
+      "order": 5,
+      "checkId": "U5",
+      "action": "record-exact-version-final-decision",
+      "dependsOn": [
+        "U1",
+        "U2",
+        "U3",
+        "U4"
+      ]
+    }
+  ],
+  "invariant": "No action in this handoff changes public admission, production readiness, domain activation, or live-claim flags by itself."
+}
