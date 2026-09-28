@@ -80,3 +80,17 @@ Creator accounts, public channels and revenue sharing are deliberately **not par
 4. **Channels/earnings:** only after production identity, moderation, rights/dispute, accounting/payment and abuse controls exist and have been tested. Revenue eligibility must be separate from content admission.
 
 This boundary is designed to enrich the catalogue without turning an upload button into a publication bypass. It also preserves the option to add creator channels later without rewriting the core content/admission model.
+
+## Two-layer Zanistarast model
+
+This project preserves a paired, hierarchical model rather than collapsing the scientific and public systems into one layer.
+
+- **.org / upper-spiritual system:** Hüküm → Duygu → Akıl → Ahlak.
+- **.com / material-manifest system:** Ruh → Zihin → Zekâ → Biyoloji → Fizik.
+- The terms across the two systems can correspond without being identical. In particular, Hüküm/Ruh and Ahlak/Fizik must not be flattened into synonyms: they belong to different planes and roles.
+- The relationship is upper/lower and command/execution, while both remain parts of one Zanistarast synthesis; hierarchy does not mean that the lower layer is disposable or a different essence.
+- .org establishes the scientific/meaning boundary; .com processes, produces and makes that boundary visible through media, interaction and diverse human representation.
+- First-party Zanistarast production is the system's own productive biology. Governed external media is nutritional input: it may enrich growth after admission, but it does not replace or command the core production system.
+- .com should express human and cultural diversity rather than mechanically reproducing the singular scientific presentation of .org. Diversity of language, people, geography and appropriate cultural representation belongs to the public manifestation layer while the governing core remains traceable.
+
+This model is an architectural invariant for Mira-facing implementation decisions: future features must identify which layer they belong to and must not bypass the upper governance/admission relationship.
