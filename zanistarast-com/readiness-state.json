@@ -81,6 +81,20 @@
         "storageConfigured",
         "deploymentApproved"
       ]
+    },
+    "contentActivation": {
+      "status": "EXTERNAL_ACTIVATION_REQUIRED",
+      "candidate": "pilot-emanet-irade",
+      "version": "candidate-1",
+      "checklist": "pilots/emanet-irade/activation-checklist.json",
+      "requiredChecks": [
+        "U1",
+        "U2",
+        "U3",
+        "U4",
+        "U5"
+      ],
+      "rule": "All activation receipts must be validated for the exact candidate version. Evidence completion does not by itself set productionReady, domainActivationAllowed, or liveClaimAllowed."
     }
   }
 }
