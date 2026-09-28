@@ -183,5 +183,5 @@ const unconfiguredOrg=await loadOrgDiscovery({source:{}});assert.equal(unconfigu
 const orgCfg={ZANISTARAST_ORG_DISCOVERY_BASE:"https://zanistarast.org/discovery.json"};
 const orgLoaded=await loadOrgDiscovery({source:orgCfg,fetchImpl:async()=>({ok:true,json:async()=>({records:[bridgeOrg,bridgeBlocked]})})});assert.equal(orgLoaded.available,true);assert.equal(orgLoaded.records.length,1);assert.equal(orgLoaded.records[0].origin,"ORG");
 const orgOffline=await loadOrgDiscovery({source:orgCfg,fetchImpl:async()=>{throw Error("offline")}});assert.equal(orgOffline.available,false);assert.equal(orgOffline.records.length,0);
-console.log("zanistarast-com smoke: OK");
 assert.equal(deliveryScopeMatches({type:DELIVERY_SCOPE.GLOBAL},{country:"TR"}),true);assert.equal(deliveryScopeMatches({type:DELIVERY_SCOPE.COUNTRY,countries:["TR"]},{country:"TR"}),true);assert.equal(deliveryScopeMatches({type:DELIVERY_SCOPE.COUNTRY,countries:["DE"]},{country:"TR"}),false);assert.equal(deliveryScopeMatches({type:DELIVERY_SCOPE.REGION,regions:["kurdistan-demo"]},{region:"kurdistan-demo"}),true);assert.equal(validateDeliveryScope({type:DELIVERY_SCOPE.COUNTRY,countries:[]}).valid,false);assert.equal(PLACEMENT_PURPOSE.PUBLIC_SERVICE,"PUBLIC_SERVICE");assert.equal(PLACEMENT_PURPOSE.ZANISTARAST_UPDATE,"ZANISTARAST_UPDATE");
+console.log("zanistarast-com smoke: OK");
