@@ -94,3 +94,15 @@ This project preserves a paired, hierarchical model rather than collapsing the s
 - .com should express human and cultural diversity rather than mechanically reproducing the singular scientific presentation of .org. Diversity of language, people, geography and appropriate cultural representation belongs to the public manifestation layer while the governing core remains traceable.
 
 This model is an architectural invariant for Mira-facing implementation decisions: future features must identify which layer they belong to and must not bypass the upper governance/admission relationship.
+
+### Human feedback as governed nutritional input
+
+External contribution includes not only media but also human questions, requests, criticism, observations and proposals. These inputs are treated as **nutritional material**, not as automatically accepted knowledge, scientific findings or governance decisions.
+
+- The system needs a digestion boundary between intake and production: raw input is preserved with provenance, screened, classified and transformed before it can influence a public surface or research workflow.
+- Useful input may become a .com product/feature proposal, a .com content candidate, or an .org research candidate. Classification alone grants none of these publication or scientific status.
+- A promising .org research candidate is only research material. It must pass the independent scientific method, sourcing/evidence and publication workflow before it can contribute to a paper or the Yek/Matbaa track.
+- Rejected, unsafe, manipulative, covertly promotional or unverifiable input cannot bypass the intake boundary merely because it came from a user or contributor.
+- The feedback loop is intentionally open to learning: people may reveal needs, questions and possibilities the current system did not anticipate, while the Zanistarast core retains responsibility for how those inputs are processed.
+
+Future intake UX should therefore distinguish **idea/question/observation submissions** from **media/content submissions**. Neither path publishes directly; both enter governed candidate workflows with auditable provenance and decisions.
