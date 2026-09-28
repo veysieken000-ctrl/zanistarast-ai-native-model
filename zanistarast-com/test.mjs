@@ -25,7 +25,7 @@ import{advertiserIntake,billingEligibility}from"./ad-external-intake.js";
 import{BRIDGE_ORIGIN,bridgeEligible,createBridgeIndex,bridgeNextSteps,externalDiscoveryCandidate,admitExternalCandidate,refreshBridgeRecord,mergeBridgeSearch}from"./discovery-bridge.js";
 import{loadOrgDiscovery}from"./bridge-client.js";
 import{PROMOTION_KIND,promotionEligible,createPromotionService,promotionPlayback,renderPromotionInterstitial,renderPromotionShelf,PROMOTION_OUTCOME,promotionOutcome}from"./promotions.js";
-import{FALLBACK,COPY,t}from"./locale.js";
+import{FALLBACK,COPY,INTERFACE_LOCALES,PLANNED_LOCALES,interfaceLocaleAvailable,localeKey,t}from"./locale.js";
 import{createSpeechRouter,speechRecognitionSupport,SPEECH_LOCALES,speechLocale,createSpeechInput}from"./speech-router.js";
 
 const read=p=>fs.readFileSync(new URL(p,import.meta.url),"utf8");
