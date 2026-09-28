@@ -47,7 +47,7 @@ assert.match(app,/data-recommended/);
 assert.match(app,/tx\("ui\.newest"\)/);
 assert.match(app,/tx\("ui\.recommended"\)/);
 assert.match(app,/userState\.toggleLike\(w\.workId\);work\(w\.workId\)/);
-assert.match(app,/if\(!w\)\{main\.innerHTML=\`<div class="page"><h1>\$\{tx\("ui\.notFound"\)\}<\\\/h1><p>\$\{tx\("ui\.notPublishable"\)\}<\\\/p><\\\/div>\`;return\}/);
+assert.match(app,/if\(!w\)\{main\.innerHTML=`<div class="page"><h1>\$\{tx\("ui\.notFound"\)\}<\/h1><p>\$\{tx\("ui\.notPublishable"\)\}<\/p><\/div>`;return\}/);
 assert.doesNotMatch(app,/main\.innerHTML='<div class="page"><h1>\$\{tx\("ui\.notFound"\)\}/);
 assert.doesNotMatch(app,/toggleLike\(w\.workId\)\?\`♥/);
 assert.equal(t("ui.recommended","ku"),"Ji bo te pêşniyar kirin");
