@@ -32,7 +32,7 @@ const read=p=>fs.readFileSync(new URL(p,import.meta.url),"utf8");
 const html=read("./index.html"),css=read("./styles.css"),app=read("./app.js"),data=read("./data.js"),manifest=JSON.parse(read("./manifest.webmanifest")),sw=read("./sw.js");
 
 assert.equal(FALLBACK,"ku");assert.equal(t("nav.home","ku"),"Malper");assert.equal(t("nav.home","en"),"Home");assert.equal(t("nav.settings","de"),"Einstellungen");assert.equal(t("ui.new","tr"),"Yeni Eklenenler");assert.equal(t("missing.key","ku"),"missing.key");assert.ok(["ku","en","de","tr"].every(k=>COPY[k]?.era&&COPY[k]?.civilization));
-assert.match(html,/id="main"/);assert.match(html,/id="speech-search"/);assert.match(app,/createSpeechRouter/);assert.match(app,/createSpeechInput/);assert.match(app,/speechButton\.hidden=!speechInput\.available/);
+assert.match(html,/id="main"/);assert.match(html,/id="speech-search"/);assert.match(html,/id="speech-status"/);assert.match(html,/aria-live="polite"/);assert.match(app,/announceSpeech/);assert.match(app,/createSpeechRouter/);assert.match(app,/createSpeechInput/);assert.match(app,/speechButton\.hidden=!speechInput\.available/);
 assert.match(html,/manifest\.webmanifest/);
 assert.match(html,/data-i18n="ui\.skip"/);assert.equal(t("ui.skip","tr"),"İçeriğe geç");assert.equal(t("ui.skip","ku"),"Derbasî naverokê bibe");
 assert.match(css,/@media\(max-width:760px\)/);
