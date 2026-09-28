@@ -46,6 +46,8 @@ assert.match(app,/data-newest/);
 assert.match(app,/data-recommended/);
 assert.match(app,/tx\("ui\.newest"\)/);
 assert.match(app,/tx\("ui\.recommended"\)/);
+assert.match(app,/userState\.toggleLike\(w\.workId\);work\(w\.workId\)/);
+assert.doesNotMatch(app,/toggleLike\(w\.workId\)\?\`♥/);
 assert.equal(t("ui.recommended","ku"),"Ji bo te pêşniyar kirin");
 assert.equal(t("ui.recommended","en"),"Recommended for you");
 assert.equal(t("ui.recommended","de"),"Für dich empfohlen");
