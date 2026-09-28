@@ -33,6 +33,6 @@ export function createSpeechInput({router,scope=globalThis,locale="ku",onState=(
  recognition.onstart=()=>onState("LISTENING");
  recognition.onend=()=>onState("IDLE");
  recognition.onerror=event=>onState(event?.error==="not-allowed"||event?.error==="service-not-allowed"?"PERMISSION_DENIED":"ERROR");
- recognition.onresult=event=>{const transcript=event?.results?.[0]?.[0]?.transcript??"";const result=router.route(transcript);onState(result.status);return result};
+ recognition.onresult=event=>{const transcript=event?.results?.[0]?.[0]?.transcript??"";onState("TRANSCRIPT",transcript);const result=router.route(transcript);onState(result.status,transcript);return result};
  return Object.freeze({available:true,start:()=>{try{recognition.start();return true}catch{onState("ERROR");return false}},stop:()=>{try{recognition.stop();return true}catch{return false}}});
 }
