@@ -14,3 +14,19 @@ export function createSpeechRouter({search,open}={}){
   }
  });
 }
+
+export function speechRecognitionSupport(scope=globalThis){
+ const Ctor=scope?.SpeechRecognition??scope?.webkitSpeechRecognition;
+ return Object.freeze({supported:typeof Ctor==="function",Recognition:Ctor??null});
+}
+
+export function createSpeechInput({router,scope=globalThis,locale="ku-TR"}={}){
+ const support=speechRecognitionSupport(scope);
+ if(!router?.route||!support.supported)return Object.freeze({available:false,start:()=>false,stop:()=>false});
+ const recognition=new support.Recognition();
+ recognition.lang=locale;
+ recognition.interimResults=false;
+ recognition.maxAlternatives=1;
+ recognition.onresult=event=>router.route(event?.results?.[0]?.[0]?.transcript??"");
+ return Object.freeze({available:true,start:()=>{recognition.start();return true},stop:()=>{recognition.stop();return true}});
+}
