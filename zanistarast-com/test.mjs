@@ -28,7 +28,7 @@ import{loadOrgDiscovery}from"./bridge-client.js";
 import{PROMOTION_KIND,promotionEligible,createPromotionService,promotionPlayback,renderPromotionInterstitial,renderPromotionShelf,PROMOTION_OUTCOME,promotionOutcome}from"./promotions.js";
 import{FALLBACK,COPY,INTERFACE_LOCALES,PLANNED_LOCALES,RTL_LOCALES,localeDirection,interfaceLocaleAvailable,localeKey,t}from"./locale.js";
 import{createSpeechRouter,speechRecognitionSupport,SPEECH_LOCALES,speechLocale,createSpeechInput}from"./speech-router.js";
-import{KURMANCI_VISIBILITY_COUNTRIES,resolveInitialLocale,kurmanciVisibility}from"./locale-visibility.js";
+import{KURMANCI_VISIBILITY_COUNTRIES,resolveInitialLocale,regionalLanguageContext,kurmanciVisibility}from"./locale-visibility.js";
 
 const read=p=>fs.readFileSync(new URL(p,import.meta.url),"utf8");
 const html=read("./index.html"),css=read("./styles.css"),app=read("./app.js"),data=read("./data.js"),manifest=JSON.parse(read("./manifest.webmanifest")),sw=read("./sw.js"),mediaModule=read("./media.js"),userStateModule=read("./user-state.js");
@@ -39,6 +39,9 @@ assert.equal(resolveInitialLocale({browserLocales:["fa-IR","ku"],country:"IR",av
 assert.equal(resolveInitialLocale({browserLocales:["tr-TR"],country:"TR",availableLocales:["ku","tr"]}),"tr");
 assert.deepEqual(kurmanciVisibility({country:"TR",activeLocale:"tr"}),{regional:true,showPersistentKurmanciChoice:true,inferEthnicity:false,forceLocale:false});
 assert.equal(kurmanciVisibility({country:"DE",activeLocale:"de"}).regional,false);
+assert.deepEqual(regionalLanguageContext({country:"tr"}),{country:"TR",regionalHintAvailable:true,identityInferred:false,languageForced:false});
+assert.deepEqual(regionalLanguageContext({country:null}),{country:null,regionalHintAvailable:false,identityInferred:false,languageForced:false});
+assert.equal(kurmanciVisibility({country:"TUR",activeLocale:"tr"}).regional,false);
 assert.equal(kurmanciVisibility({country:"SY",activeLocale:"ku"}).showPersistentKurmanciChoice,false);
 assert.match(html,/data-kurmanci-choice/);
 assert.match(app,/runtimeConfig\(\)\.country/);
