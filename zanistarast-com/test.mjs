@@ -30,6 +30,7 @@ import{FALLBACK,COPY,INTERFACE_LOCALES,PLANNED_LOCALES,RTL_LOCALES,localeDirecti
 import{createSpeechRouter,speechRecognitionSupport,SPEECH_LOCALES,speechLocale,createSpeechInput}from"./speech-router.js";
 import{KURMANCI_VISIBILITY_POLICY,KURMANCI_VISIBILITY_COUNTRIES,resolveInitialLocale,regionalLanguageContext,kurmanciVisibility}from"./locale-visibility.js";
 import{SUBMISSION_KIND,TRUST_STATE,INTAKE_STATE,senderGate,intakeSubmission,trustTransition}from"./contribution-intake.js";
+import{FEEDBACK_ACTION,REPORT_REASON,normalizeFeedback,feedbackReviewRoute}from"./feedback.js";
 import{PREFILTER_REASON,contributionPrefilter,contributionReviewPlan}from"./contribution-review.js";
 
 const read=p=>fs.readFileSync(new URL(p,import.meta.url),"utf8");
@@ -75,6 +76,12 @@ assert.equal(trustTransition(TRUST_STATE.NORMAL,"REPEATED_BYPASS"),TRUST_STATE.R
 assert.equal(trustTransition(TRUST_STATE.RESTRICTED,"REPEATED_BYPASS"),TRUST_STATE.BLOCKED);
 assert.equal(trustTransition(TRUST_STATE.NORMAL,"SEVERE_ABUSE"),TRUST_STATE.BLOCKED);
 assert.equal(trustTransition(TRUST_STATE.REVIEW,"RECONSIDERED_CLEAR"),TRUST_STATE.NORMAL);
+const report=normalizeFeedback({feedbackId:"f1",senderId:"u1",workId:"w1",version:"v1",action:FEEDBACK_ACTION.REPORT,reason:REPORT_REASON.SOURCE,detail:"Kaynak kontrol edilsin"});
+assert.equal(report.accepted,true);assert.deepEqual(feedbackReviewRoute(report),{next:"REVIEW_QUEUE",humanSignal:true,automaticVerdict:false});
+assert.equal(normalizeFeedback({feedbackId:"f2",senderId:"u1",workId:"w1",version:"v1",action:FEEDBACK_ACTION.REPORT}).accepted,false);
+assert.deepEqual(feedbackReviewRoute(normalizeFeedback({feedbackId:"f3",senderId:"u1",workId:"w1",version:"v1",action:FEEDBACK_ACTION.LIKE})),{next:"PERSONALIZATION",humanSignal:true,automaticVerdict:false});
+assert.deepEqual(feedbackReviewRoute(normalizeFeedback({feedbackId:"f4",senderId:"u1",workId:"w1",version:"v1",action:FEEDBACK_ACTION.NOT_INTERESTED})),{next:"PERSONALIZATION",humanSignal:true,automaticVerdict:false});
+for(const action of [FEEDBACK_ACTION.REQUEST,FEEDBACK_ACTION.SUGGESTION,FEEDBACK_ACTION.COMPLAINT])assert.equal(feedbackReviewRoute(normalizeFeedback({feedbackId:"f-"+action,senderId:"u1",workId:"w1",version:"v1",action})).next,"FEEDBACK_INTAKE");
 assert.deepEqual(contributionPrefilter({kind:SUBMISSION_KIND.CONTENT,textContent:"draft",sourceRefs:["source-1"],rightsDeclared:true}),{pass:true,reason:null});
 assert.equal(contributionPrefilter({kind:SUBMISSION_KIND.MEDIA,textContent:"clip",sourceRefs:[],rightsDeclared:true}).reason,PREFILTER_REASON.MISSING_SOURCE);
 assert.equal(contributionPrefilter({kind:SUBMISSION_KIND.MEDIA,textContent:"clip",sourceRefs:["source-1"],rightsDeclared:false}).reason,PREFILTER_REASON.MISSING_RIGHTS);
