@@ -13,7 +13,7 @@ export const KURMANCI_VISIBILITY_COUNTRIES=Object.freeze(["TR","IR","SY","IQ"]);
 const normCountry=value=>{const code=String(value??"").trim().toUpperCase();return /^[A-Z]{2}$/.test(code)?code:null};
 const normLocale=value=>String(value??"").trim().toLowerCase().replace("_","-").split("-")[0];
 
-export function resolveInitialLocale({savedLocale=null,browserLocales=[],country=null,availableLocales=[]}={}){
+export function resolveInitialLocale({savedLocale=null,browserLocales=[],availableLocales=[]}={}){
  const available=new Set(availableLocales);
  const saved=normLocale(savedLocale);if(saved&&available.has(saved))return saved;
  for(const candidate of Array.isArray(browserLocales)?browserLocales:[]){
@@ -30,6 +30,7 @@ export function kurmanciVisibility({country=null,activeLocale=null}={}){
   regional,
   showPersistentKurmanciChoice:regional&&normLocale(activeLocale)!==KURMANCI,
   inferEthnicity:false,
-  forceLocale:false
+  forceLocale:false,
+  purpose:KURMANCI_VISIBILITY_POLICY.purpose
  });
 }
