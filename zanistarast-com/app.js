@@ -10,11 +10,16 @@ import{searchState}from"./search-state.js";
 import{loadOrgDiscovery}from"./bridge-client.js";
 import{mergeBridgeSearch}from"./discovery-bridge.js";
 import{createSpeechRouter,createSpeechInput}from"./speech-router.js";
+import{kurmanciVisibility}from"./locale-visibility.js";
 let orgBridge=null;loadOrgDiscovery().then(x=>{orgBridge=x.available?x.index:null}).catch(()=>{});
 const discovery=createDiscoveryService(contentAdapter);
 const promotionService=createPromotionService(promotions,{workLookup:id=>contentAdapter.get(id)});
 let activeLocale=applyIdentityLocale();
-const languageSelect=document.querySelector("#language-select");if(languageSelect){languageSelect.value=activeLocale;languageSelect.addEventListener("change",e=>{activeLocale=setLocale(e.currentTarget.value);speechInput.stop();speechInput=createSpeechInput({router:speechRouter,locale:activeLocale,onState:announceSpeech});if(speechButton)speechButton.hidden=!speechInput.available;route()})}
+const regionalCountry=String(globalThis.ZANISTARAST_DEPLOYMENT?.country??"").toUpperCase();
+const kurmanciChoice=document.querySelector("[data-kurmanci-choice]");
+function syncKurmanciVisibility(){const policy=kurmanciVisibility({country:regionalCountry,activeLocale});if(kurmanciChoice)kurmanciChoice.hidden=!policy.showPersistentKurmanciChoice}
+const languageSelect=document.querySelector("#language-select");if(languageSelect){languageSelect.value=activeLocale;languageSelect.addEventListener("change",e=>{activeLocale=setLocale(e.currentTarget.value);syncKurmanciVisibility();speechInput.stop();speechInput=createSpeechInput({router:speechRouter,locale:activeLocale,onState:announceSpeech});if(speechButton)speechButton.hidden=!speechInput.available;route()})}
+syncKurmanciVisibility();kurmanciChoice?.addEventListener("click",()=>{activeLocale=setLocale("ku");if(languageSelect)languageSelect.value=activeLocale;syncKurmanciVisibility();speechInput.stop();speechInput=createSpeechInput({router:speechRouter,locale:activeLocale,onState:announceSpeech});route()});
 const main=document.querySelector("#main");
 const topSearch=document.querySelector("#top-search"),topQ=document.querySelector("#top-q");
 topSearch?.addEventListener("submit",e=>{e.preventDefault();const q=topQ?.value?.trim()??"";if(q)searchState.remember(q);location.hash="#/search"+(q?"?q="+encodeURIComponent(q):"")});
