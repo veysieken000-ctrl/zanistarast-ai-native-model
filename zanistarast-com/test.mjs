@@ -28,10 +28,18 @@ import{loadOrgDiscovery}from"./bridge-client.js";
 import{PROMOTION_KIND,promotionEligible,createPromotionService,promotionPlayback,renderPromotionInterstitial,renderPromotionShelf,PROMOTION_OUTCOME,promotionOutcome}from"./promotions.js";
 import{FALLBACK,COPY,INTERFACE_LOCALES,PLANNED_LOCALES,RTL_LOCALES,localeDirection,interfaceLocaleAvailable,localeKey,t}from"./locale.js";
 import{createSpeechRouter,speechRecognitionSupport,SPEECH_LOCALES,speechLocale,createSpeechInput}from"./speech-router.js";
+import{KURMANCI_VISIBILITY_COUNTRIES,resolveInitialLocale,kurmanciVisibility}from"./locale-visibility.js";
 
 const read=p=>fs.readFileSync(new URL(p,import.meta.url),"utf8");
 const html=read("./index.html"),css=read("./styles.css"),app=read("./app.js"),data=read("./data.js"),manifest=JSON.parse(read("./manifest.webmanifest")),sw=read("./sw.js"),mediaModule=read("./media.js"),userStateModule=read("./user-state.js");
 
+assert.deepEqual(KURMANCI_VISIBILITY_COUNTRIES,["TR","IR","SY","IQ"]);
+assert.equal(resolveInitialLocale({savedLocale:"ku",browserLocales:["tr-TR"],country:"TR",availableLocales:["ku","tr"]}),"ku");
+assert.equal(resolveInitialLocale({browserLocales:["fa-IR","ku"],country:"IR",availableLocales:["ku","tr"]}),"ku");
+assert.equal(resolveInitialLocale({browserLocales:["tr-TR"],country:"TR",availableLocales:["ku","tr"]}),"tr");
+assert.deepEqual(kurmanciVisibility({country:"TR",activeLocale:"tr"}),{regional:true,showPersistentKurmanciChoice:true,inferEthnicity:false,forceLocale:false});
+assert.equal(kurmanciVisibility({country:"DE",activeLocale:"de"}).regional,false);
+assert.equal(kurmanciVisibility({country:"SY",activeLocale:"ku"}).showPersistentKurmanciChoice,false);
 assert.equal(FALLBACK,"ku");assert.equal(t("nav.home","ku"),"Malper");assert.equal(t("nav.home","en"),"Home");assert.equal(t("nav.settings","de"),"Einstellungen");assert.equal(t("ui.new","tr"),"Yeni Eklenenler");assert.equal(t("missing.key","ku"),"missing.key");assert.ok(["ku","en","de","tr"].every(k=>COPY[k]?.era&&COPY[k]?.civilization));
 assert.match(html,/id="main"/);assert.match(html,/id="speech-search"/);assert.match(html,/data-i18n-aria="ui\.speechSearch"/);assert.match(html,/data-i18n-title="ui\.speechSearch"/);assert.equal(t("ui.speechSearch","ku"),"Bi dengî bigere");assert.equal(t("ui.speechSearch","en"),"Voice search");assert.equal(t("ui.speechSearch","de"),"Sprachsuche");assert.equal(t("ui.speechSearch","tr"),"Sesli ara");assert.match(html,/id="speech-status"/);assert.match(html,/aria-live="polite"/);assert.match(app,/announceSpeech/);assert.match(app,/PERMISSION_DENIED/);assert.match(app,/LOW_CONFIDENCE/);assert.match(app,/NO_SPEECH/);assert.match(app,/NO_MICROPHONE/);assert.match(app,/state==="TRANSCRIPT"/);assert.match(app,/topQ\.value=transcript/);assert.match(app,/createSpeechRouter/);assert.match(app,/createSpeechInput/);const speechModule=read("./speech-router.js");assert.match(speechModule,/terminalState/);assert.match(speechModule,/if\(!terminalState\)onState\("IDLE"\)/);assert.match(speechModule,/if\(active\)return false/);assert.match(speechModule,/if\(!active\)return false/);assert.match(speechModule,/Math\.min\(1,Math\.max\(0/);assert.match(speechModule,/if\(!transcript\)/);assert.equal([...speechModule.matchAll(/recognition\.onstart=/g)].length,1);assert.equal([...speechModule.matchAll(/recognition\.onend=/g)].length,1);assert.match(app,/speechButton\.hidden=!speechInput\.available/);assert.match(app,/speechInput\.stop\(\);speechInput=createSpeechInput/);
 assert.match(html,/manifest\.webmanifest/);
