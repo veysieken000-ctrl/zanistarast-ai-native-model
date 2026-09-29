@@ -1,7 +1,7 @@
 import{normalizeTopicMetadata,topicOverlap,topicMatches,topicFacets,topicInterestProfile}from"./topics.js";
 export function createDiscoveryService(contentAdapter){
  const eligible=()=>contentAdapter.list();
- const norm=v=>String(v??"").toLocaleLowerCase("tr");
+ const norm=v=>String(v??"").normalize("NFKC").toLocaleLowerCase("und");
  const topicText=w=>normalizeTopicMetadata(w).topics.join(" ");
  const newest=()=>eligible().filter(w=>w.publishedAt).sort((a,b)=>String(b.publishedAt).localeCompare(String(a.publishedAt))||a.workId.localeCompare(b.workId));
  const score=(source,w,prefs)=>{
@@ -22,7 +22,7 @@ export function createDiscoveryService(contentAdapter){
    });
   },
   facets(){
-   const ws=eligible(),uniq=xs=>[...new Set(xs.filter(Boolean))].sort((a,b)=>String(a).localeCompare(String(b),"tr"));
+   const ws=eligible(),uniq=xs=>[...new Set(xs.filter(Boolean))].sort((a,b)=>String(a).localeCompare(String(b)));
    return Object.freeze({formats:Object.freeze(uniq(ws.map(w=>w.format))),languages:Object.freeze(uniq(ws.map(w=>w.language))),values:Object.freeze(uniq(ws.flatMap(w=>w.values??[]))),topics:topicFacets(ws)});
   },
   suggest(query,limit=6){
@@ -40,7 +40,7 @@ export function createDiscoveryService(contentAdapter){
    const derived=this.preferences(likedIds);const prefs={values:new Set([...derived.values,...likedValues]),formats:derived.formats};
    return eligible().filter(w=>w.workId!==workId).map(w=>({work:w,rank:score(source,w,prefs),topicRank:topicOverlap(source,w)}))
     .filter(x=>x.rank>0)
-    .sort((a,b)=>b.topicRank-a.topicRank||b.rank-a.rank||a.work.title.localeCompare(b.work.title,"tr")||a.work.workId.localeCompare(b.work.workId))
+    .sort((a,b)=>b.topicRank-a.topicRank||b.rank-a.rank||a.work.title.localeCompare(b.work.title)||a.work.workId.localeCompare(b.work.workId))
     .map(x=>x.work);
   }
  });
