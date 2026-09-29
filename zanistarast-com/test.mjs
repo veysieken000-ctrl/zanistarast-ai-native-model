@@ -82,6 +82,15 @@ assert.equal(normalizeFeedback({feedbackId:"f2",senderId:"u1",workId:"w1",versio
 assert.deepEqual(feedbackReviewRoute(normalizeFeedback({feedbackId:"f3",senderId:"u1",workId:"w1",version:"v1",action:FEEDBACK_ACTION.LIKE})),{next:"PERSONALIZATION",humanSignal:true,automaticVerdict:false});
 assert.deepEqual(feedbackReviewRoute(normalizeFeedback({feedbackId:"f4",senderId:"u1",workId:"w1",version:"v1",action:FEEDBACK_ACTION.NOT_INTERESTED})),{next:"PERSONALIZATION",humanSignal:true,automaticVerdict:false});
 for(const action of [FEEDBACK_ACTION.REQUEST,FEEDBACK_ACTION.SUGGESTION,FEEDBACK_ACTION.COMPLAINT])assert.equal(feedbackReviewRoute(normalizeFeedback({feedbackId:"f-"+action,senderId:"u1",workId:"w1",version:"v1",action})).next,"FEEDBACK_INTAKE");
+assert.match(app,/data-not-interested/);
+assert.match(app,/data-report/);
+assert.match(app,/data-feedback/);
+assert.match(app,/Object\.values\(REPORT_REASON\)/);
+assert.match(app,/data-report-detail/);
+assert.match(app,/data-feedback-kind="REQUEST"/);
+assert.match(app,/data-feedback-kind="SUGGESTION"/);
+assert.match(app,/data-feedback-kind="COMPLAINT"/);
+assert.match(css,/\.feedback-panel/);
 assert.deepEqual(contributionPrefilter({kind:SUBMISSION_KIND.CONTENT,textContent:"draft",sourceRefs:["source-1"],rightsDeclared:true}),{pass:true,reason:null});
 assert.equal(contributionPrefilter({kind:SUBMISSION_KIND.MEDIA,textContent:"clip",sourceRefs:[],rightsDeclared:true}).reason,PREFILTER_REASON.MISSING_SOURCE);
 assert.equal(contributionPrefilter({kind:SUBMISSION_KIND.MEDIA,textContent:"clip",sourceRefs:["source-1"],rightsDeclared:false}).reason,PREFILTER_REASON.MISSING_RIGHTS);
