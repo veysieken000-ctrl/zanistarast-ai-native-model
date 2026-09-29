@@ -374,6 +374,8 @@ assert.match(mediaModule,/const safeChapters=\(Array\.isArray\(chapters\)\?chapt
 assert.equal(safeMediaUrl("media/video.mp4"),"media/video.mp4");
 assert.equal(safeMediaUrl("./media/video.mp4"),"./media/video.mp4");
 assert.equal(safeMediaUrl("/media/video.mp4"),"/media/video.mp4");
+assert.equal(safeMediaUrl("media/video.mp4\n"),"media/video.mp4");
+assert.equal(safeMediaUrl("media/vi\u0000deo.mp4"),null);
 assert.equal(safeMediaUrl("https://cdn.example.org/video.mp4"),"https://cdn.example.org/video.mp4");
 assert.equal(safeMediaUrl("https://user:secret@cdn.example.org/video.mp4"),null);
 assert.equal(safeMediaUrl("//cdn.example.org/video.mp4"),null);
