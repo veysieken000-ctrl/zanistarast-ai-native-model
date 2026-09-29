@@ -124,6 +124,11 @@ assert.equal(recommendationDiscovery.related("liked").some(w=>w.workId==="blocke
 assert.deepEqual(normalizeTopicMetadata({topics:[" Rabûn ","rabûn"],tags:["Tarih"],values:["Mabûn"]}).topics,["rabûn","tarih","mabûn"]);
 assert.equal(topicOverlap({topics:["Kuantum","Sosyoloji"]},{tags:["kuantum"]}),1);
 assert.equal(topicMatches({topics:["Kuantum Fiziği"]},"kuantum"),true);
+assert.equal(topicMatches({topics:["IRAK"]},"irak"),true);
+assert.equal(topicMatches({topics:["ÎRO"]},"îro"),true);
+assert.doesNotMatch(read("./topics.js"),/toLocaleLowerCase\("tr"\)/);
+assert.doesNotMatch(read("./discovery.js"),/toLocaleLowerCase\("tr"\)/);
+assert.doesNotMatch(read("./user-state.js"),/toLocaleLowerCase\("tr"\)/);
 const topicAdapter=createContentAdapter([
  {...base,workId:"topic-source",title:"Kaynak",summary:"Kaynak",format:"Text",values:[],topics:["Rabûn"],governance:{rights:true,rasterast:true,mudabbirRequired:false}},
  {...base,workId:"topic-match",title:"Eşleşme",summary:"Eşleşme",format:"Audio",values:[],tags:["rabûn"],governance:{rights:true,rasterast:true,mudabbirRequired:false}},
