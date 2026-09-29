@@ -103,6 +103,11 @@ assert.match(app,/context==="saved"\)userState\.removeSave\(id\)/);
 assert.match(app,/context==="watch-later"\)userState\.toggleWatchLater\(id\)/);
 assert.match(app,/context==="queue"\)userState\.dequeue\(id\)/);
 assert.match(app,/data-card-context="watch-later"/);
+assert.match(app,/function librarySearch\(/);
+assert.match(app,/data-library-search/);
+assert.match(app,/data-library-results/);
+assert.match(app,/toLocaleLowerCase\(activeLocale\)/);
+assert.match(app,/q\?tx\("ui\.noResults"\):empty/);
 assert.match(app,/data-card-context="queue"/);
 
 const feedbackStorage={value:"",getItem(){return this.value},setItem(_k,v){this.value=v}};
