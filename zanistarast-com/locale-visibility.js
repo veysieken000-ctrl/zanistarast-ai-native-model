@@ -1,4 +1,13 @@
 export const KURMANCI="ku";
+export const KURMANCI_VISIBILITY_POLICY=Object.freeze({
+ purpose:"continuity-and-visibility",
+ projectContext:"zanistarast-newroza-kawa",
+ superiorityClaim:false,
+ diminishOtherLanguages:false,
+ userChoiceRequired:true,
+ identityInference:false
+});
+
 export const KURMANCI_VISIBILITY_COUNTRIES=Object.freeze(["TR","IR","SY","IQ"]);
 
 const normCountry=value=>{const code=String(value??"").trim().toUpperCase();return /^[A-Z]{2}$/.test(code)?code:null};
