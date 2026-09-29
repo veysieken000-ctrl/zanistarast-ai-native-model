@@ -1,7 +1,7 @@
 export const KURMANCI="ku";
 export const KURMANCI_VISIBILITY_COUNTRIES=Object.freeze(["TR","IR","SY","IQ"]);
 
-const normCountry=value=>String(value??"").trim().toUpperCase();
+const normCountry=value=>{const code=String(value??"").trim().toUpperCase();return /^[A-Z]{2}$/.test(code)?code:null};
 const normLocale=value=>String(value??"").trim().toLowerCase().replace("_","-").split("-")[0];
 
 export function resolveInitialLocale({savedLocale=null,browserLocales=[],country=null,availableLocales=[]}={}){
@@ -12,6 +12,8 @@ export function resolveInitialLocale({savedLocale=null,browserLocales=[],country
  }
  return available.has(KURMANCI)?KURMANCI:[...available][0]??KURMANCI;
 }
+
+export function regionalLanguageContext({country=null}={}){const countryCode=normCountry(country);return Object.freeze({country:countryCode,regionalHintAvailable:Boolean(countryCode),identityInferred:false,languageForced:false})}
 
 export function kurmanciVisibility({country=null,activeLocale=null}={}){
  const countryCode=normCountry(country),regional=KURMANCI_VISIBILITY_COUNTRIES.includes(countryCode);
