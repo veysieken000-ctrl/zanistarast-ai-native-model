@@ -91,6 +91,12 @@ assert.match(app,/data-feedback-kind="REQUEST"/);
 assert.match(app,/data-feedback-kind="SUGGESTION"/);
 assert.match(app,/data-feedback-kind="COMPLAINT"/);
 assert.match(css,/\.feedback-panel/);
+assert.match(css,/@media\(max-width:760px\).*?\.grid\{grid-template-columns:1fr/s);
+assert.match(css,/@media\(min-width:1100px\).*?\.side-menu\[hidden\]\{display:block\}/s);
+assert.match(css,/@media\(min-width:1100px\).*?main\{margin-left:224px\}/s);
+assert.match(css,/@media\(min-width:1100px\).*?\.work-layout\{grid-template-columns:minmax\(0,2\.25fr\) minmax\(320px,\.9fr\)/s);
+assert.match(css,/\.card-more summary\{[^}]*width:44px[^}]*height:44px/s);
+
 const feedbackStorage={value:"",getItem(){return this.value},setItem(_k,v){this.value=v}};
 const feedbackQueue=createFeedbackStore(feedbackStorage);
 assert.equal(feedbackQueue.submit({feedbackId:"queue-1",senderId:"u1",workId:"w1",version:"v1",action:FEEDBACK_ACTION.REPORT,reason:REPORT_REASON.SOURCE}).route,"REVIEW_QUEUE");
