@@ -1,9 +1,11 @@
+import{normalizeTopicMetadata,topicOverlap,topicMatches}from"./topics.js";
 export function createDiscoveryService(contentAdapter){
  const eligible=()=>contentAdapter.list();
  const norm=v=>String(v??"").toLocaleLowerCase("tr");
+ const topicText=w=>normalizeTopicMetadata(w).topics.join(" ");
  const newest=()=>eligible().filter(w=>w.publishedAt).sort((a,b)=>String(b.publishedAt).localeCompare(String(a.publishedAt))||a.workId.localeCompare(b.workId));
  const score=(source,w,prefs)=>{
-  const shared=(w.values??[]).filter(v=>source?.values?.includes(v)).length;
+  const shared=(w.values??[]).filter(v=>source?.values?.includes(v)).length+topicOverlap(source,w);
   const preferred=(w.values??[]).filter(v=>prefs.values.has(v)).length;
   const likedFormat=prefs.formats.has(w.format)?1:0;
   return shared*4+preferred*2+likedFormat;
@@ -16,7 +18,7 @@ export function createDiscoveryService(contentAdapter){
     if(format&&w.format!==format)return false;
     if(language&&w.language!==language)return false;
     if(value&&!(w.values??[]).includes(value))return false;
-    return !q||norm([w.title,w.summary,w.format,w.language,...(w.values??[])].join(" ")).includes(q);
+    return !q||norm([w.title,w.summary,w.format,w.language,...(w.values??[]),topicText(w)].join(" ")).includes(q)||topicMatches(w,q);
    });
   },
   facets(){
