@@ -10,6 +10,7 @@ export function createUserState(storage=globalThis.localStorage){
   removeLike:id=>{const s=read();s.likes={...s.likes};delete s.likes[id];write(s);return s.likes},
   saved:id=>read().saves[id]===true,
   savedIds:()=>Object.entries(read().saves).filter(([,v])=>v===true).map(([id])=>id),
+  removeSaved:id=>{const s=read();s.saves={...s.saves};delete s.saves[id];write(s);return s.saves},
   removeSave:id=>{const s=read();s.saves={...s.saves};delete s.saves[id];write(s);return s.saves},
   history:()=>[...read().history],
   removeHistory:id=>{const s=read();s.history=s.history.filter(x=>x!==id);for(const key of Object.keys(s.progress))if(key.startsWith(`${id}@`))delete s.progress[key];write(s);return s.history},
