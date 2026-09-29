@@ -55,6 +55,8 @@ assert.equal(t("ui.recommended","ku"),"Ji bo te pêşniyar kirin");
 assert.equal(t("ui.recommended","en"),"Recommended for you");
 assert.equal(t("ui.recommended","de"),"Für dich empfohlen");
 assert.equal(t("ui.recommended","tr"),"Sana önerilenler");
+assert.equal(t("ui.topic","ku"),"Mijar");assert.equal(t("ui.topic","en"),"Topic");assert.equal(t("ui.topic","de"),"Thema");assert.equal(t("ui.topic","tr"),"Konu");
+assert.match(app,/data-filter="topic"/);assert.match(app,/facets\.topics\.map/);assert.match(app,/const baseItems=discovery\.search\(s,opts\),items=topic\?/);
 assert.match(app,/tx\("ui\.sourceTrust"\)/);
 assert.match(app,/contentAdapter\.get\(id\)/);
 assert.doesNotMatch(app,/from\"\.\/data\.js\"/);
