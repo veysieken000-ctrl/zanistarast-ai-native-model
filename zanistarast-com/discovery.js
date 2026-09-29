@@ -1,4 +1,4 @@
-import{normalizeTopicMetadata,topicOverlap,topicMatches}from"./topics.js";
+import{normalizeTopicMetadata,topicOverlap,topicMatches,topicFacets,topicInterestProfile}from"./topics.js";
 export function createDiscoveryService(contentAdapter){
  const eligible=()=>contentAdapter.list();
  const norm=v=>String(v??"").toLocaleLowerCase("tr");
@@ -23,7 +23,7 @@ export function createDiscoveryService(contentAdapter){
   },
   facets(){
    const ws=eligible(),uniq=xs=>[...new Set(xs.filter(Boolean))].sort((a,b)=>String(a).localeCompare(String(b),"tr"));
-   return Object.freeze({formats:Object.freeze(uniq(ws.map(w=>w.format))),languages:Object.freeze(uniq(ws.map(w=>w.language))),values:Object.freeze(uniq(ws.flatMap(w=>w.values??[])))});
+   return Object.freeze({formats:Object.freeze(uniq(ws.map(w=>w.format))),languages:Object.freeze(uniq(ws.map(w=>w.language))),values:Object.freeze(uniq(ws.flatMap(w=>w.values??[]))),topics:topicFacets(ws)});
   },
   suggest(query,limit=6){
    const q=norm(query).trim();if(!q)return[];
@@ -34,7 +34,7 @@ export function createDiscoveryService(contentAdapter){
    const works=eligible().filter(w=>liked.has(w.workId));
    return Object.freeze({values:new Set(works.flatMap(w=>w.values??[])),formats:new Set(works.map(w=>w.format).filter(Boolean))});
   },
-  recommended({likedIds=[],searchInterests={},excludeIds=[],limit=12}={}){const prefs=this.preferences(likedIds),excluded=new Set(excludeIds),interests=Object.entries(searchInterests??{}).filter(([,count])=>Number(count)>=2),hasPrefs=prefs.values.size>0||prefs.formats.size>0||interests.length>0;return eligible().filter(w=>!excluded.has(w.workId)).map(w=>({work:w,rank:(w.values??[]).filter(v=>prefs.values.has(v)).length*2+(prefs.formats.has(w.format)?1:0)+interests.reduce((sum,[topic,count])=>sum+(topicMatches(w,topic)?Math.min(6,Number(count)):0),0)})).filter(x=>!hasPrefs||x.rank>0).sort((a,b)=>b.rank-a.rank||String(b.work.publishedAt??"").localeCompare(String(a.work.publishedAt??""))||a.work.workId.localeCompare(b.work.workId)).slice(0,Math.max(0,limit)).map(x=>x.work);},
+  recommended({likedIds=[],searchInterests={},excludeIds=[],limit=12}={}){const prefs=this.preferences(likedIds),excluded=new Set(excludeIds),interests=topicInterestProfile(searchInterests).map(x=>[x.topic,x.count]),hasPrefs=prefs.values.size>0||prefs.formats.size>0||interests.length>0;return eligible().filter(w=>!excluded.has(w.workId)).map(w=>({work:w,rank:(w.values??[]).filter(v=>prefs.values.has(v)).length*2+(prefs.formats.has(w.format)?1:0)+interests.reduce((sum,[topic,count])=>sum+(topicMatches(w,topic)?Math.min(6,Number(count)):0),0)})).filter(x=>!hasPrefs||x.rank>0).sort((a,b)=>b.rank-a.rank||String(b.work.publishedAt??"").localeCompare(String(a.work.publishedAt??""))||a.work.workId.localeCompare(b.work.workId)).slice(0,Math.max(0,limit)).map(x=>x.work);},
   related(workId,{likedIds=[],likedValues=[]}={}){
    const source=contentAdapter.get(workId);if(!source)return[];
    const derived=this.preferences(likedIds);const prefs={values:new Set([...derived.values,...likedValues]),formats:derived.formats};
