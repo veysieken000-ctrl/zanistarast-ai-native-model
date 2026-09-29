@@ -113,6 +113,7 @@ assert.match(app,/function closeCardMenus\(/);
 assert.match(app,/function bindInteractionA11y\(/);
 assert.match(app,/e\.key==="Escape"/);
 assert.match(app,/bindCardMenus\(\);bindInteractionA11y\(\);main\.focus/);
+// route binding regression sentinel: card menus -> a11y hooks -> main focus
 assert.match(app,/function librarySearch\(/);
 assert.match(app,/data-library-search/);
 assert.match(app,/data-library-results/);
