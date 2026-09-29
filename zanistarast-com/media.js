@@ -1,6 +1,6 @@
 import{t}from"./locale.js";
 const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-export const safeMediaUrl=value=>{if(typeof value!=="string"||!value.trim())return null;const v=value.trim();if(/[\\u0000-\\u001f\\u007f]/.test(v)||/^(?:javascript|data|blob|file):/i.test(v))return null;if(v.startsWith("//"))return null;if(v.startsWith("/")&&!v.startsWith("//"))return v;if(v.startsWith("/")&&!v.startsWith("//"))return v;if(/^[a-z][a-z0-9+.-]*:/i.test(v)&&!/^https?:/i.test(v))return null;if(/^https?:/i.test(v)){try{const u=new URL(v);if(!["http:","https:"].includes(u.protocol)||u.username||u.password)return null}catch{return null}}return v};
+export const safeMediaUrl=value=>{if(typeof value!=="string"||!value.trim())return null;const v=value.trim(),hasControl=[...v].some(ch=>{const n=ch.codePointAt(0);return n<=31||n===127});if(hasControl||/^(?:javascript|data|blob|file):/i.test(v))return null;if(v.startsWith("//"))return null;if(v.startsWith("/"))return v;if(/^[a-z][a-z0-9+.-]*:/i.test(v)&&!/^https?:/i.test(v))return null;if(/^https?:/i.test(v)){try{const u=new URL(v);if(!["http:","https:"].includes(u.protocol)||u.username||u.password)return null}catch{return null}}return v};
 export function normalizeRepresentation(rep){
  if(!rep)return null;
  const kind=["video","audio","reading"].includes(rep.kind)?rep.kind:"unknown";
