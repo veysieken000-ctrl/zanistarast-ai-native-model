@@ -120,7 +120,7 @@ assert.match(app,/bindCardMenus\(\);bindInteractionA11y\(\);main\.focus/);
 assert.match(app,/function librarySearch\(/);
 assert.match(app,/data-library-search/);
 assert.match(app,/data-library-results/);
-assert.match(css,/:where\\(a,button,input,select,textarea,summary\\):focus-visible/);
+assert.match(css,/:where\(a,button,input,select,textarea,summary\):focus-visible/);
 assert.match(css,/\\.card-more>summary\\{min-width:44px;min-height:44px/);
 assert.match(css,/\.library-tools\{display:flex/);
 assert.match(css,/@media\(max-width:760px\).*?\.library-tools\{position:sticky/s);
