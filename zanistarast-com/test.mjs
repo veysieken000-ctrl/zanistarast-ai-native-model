@@ -30,7 +30,7 @@ import{FALLBACK,COPY,INTERFACE_LOCALES,PLANNED_LOCALES,RTL_LOCALES,localeDirecti
 import{createSpeechRouter,speechRecognitionSupport,SPEECH_LOCALES,speechLocale,createSpeechInput}from"./speech-router.js";
 import{KURMANCI_VISIBILITY_POLICY,KURMANCI_VISIBILITY_COUNTRIES,resolveInitialLocale,regionalLanguageContext,kurmanciVisibility}from"./locale-visibility.js";
 import{SUBMISSION_KIND,TRUST_STATE,INTAKE_STATE,senderGate,intakeSubmission,trustTransition}from"./contribution-intake.js";
-import{FEEDBACK_ACTION,REPORT_REASON,normalizeFeedback,feedbackReviewRoute}from"./feedback.js";
+import{FEEDBACK_ACTION,REPORT_REASON,normalizeFeedback,feedbackReviewRoute,createFeedbackStore}from"./feedback.js";
 import{PREFILTER_REASON,contributionPrefilter,contributionReviewPlan}from"./contribution-review.js";
 
 const read=p=>fs.readFileSync(new URL(p,import.meta.url),"utf8");
@@ -91,6 +91,14 @@ assert.match(app,/data-feedback-kind="REQUEST"/);
 assert.match(app,/data-feedback-kind="SUGGESTION"/);
 assert.match(app,/data-feedback-kind="COMPLAINT"/);
 assert.match(css,/\.feedback-panel/);
+const feedbackStorage={value:"",getItem(){return this.value},setItem(_k,v){this.value=v}};
+const feedbackQueue=createFeedbackStore(feedbackStorage);
+assert.equal(feedbackQueue.submit({feedbackId:"queue-1",senderId:"u1",workId:"w1",version:"v1",action:FEEDBACK_ACTION.REPORT,reason:REPORT_REASON.SOURCE}).route,"REVIEW_QUEUE");
+assert.equal(feedbackQueue.submit({feedbackId:"queue-2",senderId:"u1",workId:"w1",version:"v1",action:FEEDBACK_ACTION.NOT_INTERESTED}).route,"PERSONALIZATION");
+assert.equal(feedbackQueue.pending().length,2);
+assert.equal(feedbackQueue.pending()[0].automaticVerdict,false);
+assert.match(app,/createFeedbackStore\(\)/);
+assert.match(app,/feedbackStore\.submit/);
 assert.deepEqual(contributionPrefilter({kind:SUBMISSION_KIND.CONTENT,textContent:"draft",sourceRefs:["source-1"],rightsDeclared:true}),{pass:true,reason:null});
 assert.equal(contributionPrefilter({kind:SUBMISSION_KIND.MEDIA,textContent:"clip",sourceRefs:[],rightsDeclared:true}).reason,PREFILTER_REASON.MISSING_SOURCE);
 assert.equal(contributionPrefilter({kind:SUBMISSION_KIND.MEDIA,textContent:"clip",sourceRefs:["source-1"],rightsDeclared:false}).reason,PREFILTER_REASON.MISSING_RIGHTS);
