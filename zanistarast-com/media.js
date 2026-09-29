@@ -1,9 +1,10 @@
 import{t}from"./locale.js";
 const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const safeMediaUrl=value=>{if(typeof value!=="string"||!value.trim())return null;const v=value.trim();if(/^(?:javascript|data|blob|file):/i.test(v))return null;if(/^[a-z][a-z0-9+.-]*:/i.test(v)&&!/^https?:/i.test(v))return null;return v};
 export function normalizeRepresentation(rep){
  if(!rep)return null;
  const kind=["video","audio","reading"].includes(rep.kind)?rep.kind:"unknown";
- const list=value=>Array.isArray(value)?value:[];return Object.freeze({id:rep.id??null,version:rep.version??null,kind,src:rep.src??null,mime:rep.mime??null,poster:rep.poster??null,captions:Object.freeze([...list(rep.captions)]),transcript:rep.transcript??null,chapters:Object.freeze([...list(rep.chapters)])});
+ const list=value=>Array.isArray(value)?value:[];return Object.freeze({id:rep.id??null,version:rep.version??null,kind,src:safeMediaUrl(rep.src),mime:rep.mime??null,poster:safeMediaUrl(rep.poster),captions:Object.freeze(list(rep.captions).map(x=>x&&typeof x==="object"?Object.freeze({...x,src:safeMediaUrl(x.src)}):x).filter(x=>x?.src)),transcript:rep.transcript??null,chapters:Object.freeze([...list(rep.chapters)])});
 }
 export const hasTraceableMedia=r=>Boolean(r?.id&&r?.version);
 export function renderMedia(rep,{demo=false,locale}={}){
