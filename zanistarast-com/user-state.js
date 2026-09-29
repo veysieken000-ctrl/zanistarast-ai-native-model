@@ -1,5 +1,5 @@
 const KEY="zanistarast-com:user-state:v1";
-const empty=()=>({likes:{},saves:{},progress:{},history:[],queue:[],watchLater:[],autoplayNext:false});
+const empty=()=>({likes:{},saves:{},progress:{},history:[],queue:[],watchLater:[],searchInterests:{},autoplayNext:false});
 export function createUserState(storage=globalThis.localStorage){
  const read=()=>{try{return {...empty(),...JSON.parse(storage?.getItem(KEY)||"{}")}}catch{return empty()}};
  const write=s=>{try{storage?.setItem(KEY,JSON.stringify(s))}catch{}return s};
@@ -24,6 +24,8 @@ export function createUserState(storage=globalThis.localStorage){
   autoplayNext:()=>read().autoplayNext===true,
   setAutoplayNext:value=>{const s=read();s.autoplayNext=value===true;write(s);return s.autoplayNext},
   visit:id=>{const s=read();s.history=[id,...s.history.filter(x=>x!==id)].slice(0,100);write(s);return s.history},
+  recordSearchInterest:query=>{const key=String(query??"").trim().toLocaleLowerCase("tr").normalize("NFKC");if(!key)return null;const s=read();s.searchInterests={...s.searchInterests};s.searchInterests[key]=Math.min(20,(Number(s.searchInterests[key])||0)+1);write(s);return s.searchInterests[key]},
+  searchInterests:()=>Object.freeze({...read().searchInterests}),
   toggleLike:id=>toggle("likes",id),
   toggleSave:id=>toggle("saves",id),
   progress:(id,version)=>read().progress[`${id}@${version}`]??null,
