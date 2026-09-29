@@ -96,7 +96,7 @@ assert.match(css,/@media\(min-width:1100px\).*?\.side-menu\[hidden\]\{display:bl
 assert.match(css,/@media\(min-width:1100px\).*?main\{margin-left:224px\}/s);
 assert.match(css,/@media\(min-width:1100px\).*?\.work-layout\{grid-template-columns:minmax\(0,2\.25fr\) minmax\(320px,\.9fr\)/s);
 assert.match(css,/\.card-more summary\{[^}]*width:44px[^}]*height:44px/s);
-assert.match(app,/bindCardMenus\(\);main\.focus/);
+assert.match(app,/bindCardMenus\(\);bindInteractionA11y\(\);main\.focus/);
 assert.match(app,/context==="history"\)userState\.removeHistory\(id\)/);
 assert.match(app,/context==="liked"\)userState\.removeLike\(id\)/);
 assert.match(app,/context==="saved"\)userState\.removeSave\(id\)/);
