@@ -101,6 +101,8 @@ assert.match(app,/context==="history"\)userState\.removeHistory\(id\)/);
 assert.match(app,/context==="liked"\)userState\.removeLike\(id\)/);
 assert.match(app,/context==="saved"\)userState\.removeSave\(id\)/);
 assert.match(app,/context==="watch-later"\)userState\.toggleWatchLater\(id\)/);
+assert.match(app,/context=b\.closest\("\[data-card-context\]"\)/);
+assert.match(app,/if\(context==="watch-later"\)b\.closest\("\.media-card"\)\?\.remove\(\)/);
 assert.match(app,/context==="queue"\)userState\.dequeue\(id\)/);
 assert.match(app,/context:"watch-later"/);
 assert.match(app,/const eligibleUserItems=ids=>/);
