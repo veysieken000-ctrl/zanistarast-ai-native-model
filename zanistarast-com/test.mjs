@@ -111,6 +111,9 @@ assert.match(app,/function queuePage\(\)\{const items=eligibleUserItems\(userSta
 assert.match(app,/aria-label="\$\{tx\("ui\.more"\)\}"/);
 assert.match(app,/function closeCardMenus\(/);
 assert.match(app,/function bindInteractionA11y\(/);
+assert.match(app,/data-feedback-panel role="status" aria-live="polite"/);
+assert.match(app,/data-report-detail aria-label="\$\{tx\("ui\.detail"\)\}"/);
+assert.match(app,/data-feedback-detail aria-label="\$\{tx\("ui\.detail"\)\}"/);
 assert.match(app,/e\.key==="Escape"/);
 assert.match(app,/bindCardMenus\(\);bindInteractionA11y\(\);main\.focus/);
 // route binding regression sentinel: card menus -> a11y hooks -> main focus
