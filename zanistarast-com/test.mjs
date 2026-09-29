@@ -373,6 +373,7 @@ assert.match(userStateModule,/Array\.isArray\(ids\)\?ids:\[\]/);assert.match(use
 assert.match(mediaModule,/const safeChapters=\(Array\.isArray\(chapters\)\?chapters:\[\]\)/);assert.match(mediaModule,/x\.start>=0/);assert.match(mediaModule,/x\.title\.trim\(\)/);assert.match(mediaModule,/\.sort\(\(a,b\)=>a\.start-b\.start\)/);assert.match(mediaModule,/const end=Number\.isFinite\(media\.duration\)\?media\.duration:Infinity/);assert.match(mediaModule,/media\.currentTime=Math\.min\(end,chapter\.start\)/);
 assert.equal(safeMediaUrl("media/video.mp4"),"media/video.mp4");
 assert.equal(safeMediaUrl("./media/video.mp4"),"./media/video.mp4");
+assert.equal(safeMediaUrl("/media/video.mp4"),"/media/video.mp4");
 assert.equal(safeMediaUrl("https://cdn.example.org/video.mp4"),"https://cdn.example.org/video.mp4");
 assert.equal(safeMediaUrl("https://user:secret@cdn.example.org/video.mp4"),null);
 assert.equal(safeMediaUrl("//cdn.example.org/video.mp4"),null);
