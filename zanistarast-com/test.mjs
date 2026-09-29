@@ -43,7 +43,7 @@ assert.deepEqual(KURMANCI_VISIBILITY_COUNTRIES,["TR","IR","SY","IQ"]);
 assert.equal(resolveInitialLocale({savedLocale:"ku",browserLocales:["tr-TR"],country:"TR",availableLocales:["ku","tr"]}),"ku");
 assert.equal(resolveInitialLocale({browserLocales:["fa-IR","ku"],country:"IR",availableLocales:["ku","tr"]}),"ku");
 assert.equal(resolveInitialLocale({browserLocales:["tr-TR"],country:"TR",availableLocales:["ku","tr"]}),"tr");
-assert.deepEqual(kurmanciVisibility({country:"TR",activeLocale:"tr"}),{regional:true,showPersistentKurmanciChoice:true,inferEthnicity:false,forceLocale:false});
+assert.deepEqual(kurmanciVisibility({country:"TR",activeLocale:"tr"}),{regional:true,showPersistentKurmanciChoice:true,inferEthnicity:false,forceLocale:false,purpose:"continuity-and-visibility"});
 assert.equal(kurmanciVisibility({country:"DE",activeLocale:"de"}).regional,false);
 assert.deepEqual(regionalLanguageContext({country:"tr"}),{country:"TR",regionalHintAvailable:true,identityInferred:false,languageForced:false});
 assert.deepEqual(regionalLanguageContext({country:null}),{country:null,regionalHintAvailable:false,identityInferred:false,languageForced:false});
