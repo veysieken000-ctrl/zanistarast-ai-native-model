@@ -28,11 +28,17 @@ import{loadOrgDiscovery}from"./bridge-client.js";
 import{PROMOTION_KIND,promotionEligible,createPromotionService,promotionPlayback,renderPromotionInterstitial,renderPromotionShelf,PROMOTION_OUTCOME,promotionOutcome}from"./promotions.js";
 import{FALLBACK,COPY,INTERFACE_LOCALES,PLANNED_LOCALES,RTL_LOCALES,localeDirection,interfaceLocaleAvailable,localeKey,t}from"./locale.js";
 import{createSpeechRouter,speechRecognitionSupport,SPEECH_LOCALES,speechLocale,createSpeechInput}from"./speech-router.js";
-import{KURMANCI_VISIBILITY_COUNTRIES,resolveInitialLocale,regionalLanguageContext,kurmanciVisibility}from"./locale-visibility.js";
+import{KURMANCI_VISIBILITY_POLICY,KURMANCI_VISIBILITY_COUNTRIES,resolveInitialLocale,regionalLanguageContext,kurmanciVisibility}from"./locale-visibility.js";
 
 const read=p=>fs.readFileSync(new URL(p,import.meta.url),"utf8");
 const html=read("./index.html"),css=read("./styles.css"),app=read("./app.js"),data=read("./data.js"),manifest=JSON.parse(read("./manifest.webmanifest")),sw=read("./sw.js"),mediaModule=read("./media.js"),userStateModule=read("./user-state.js");
 
+assert.equal(KURMANCI_VISIBILITY_POLICY.purpose,"continuity-and-visibility");
+assert.equal(KURMANCI_VISIBILITY_POLICY.projectContext,"zanistarast-newroza-kawa");
+assert.equal(KURMANCI_VISIBILITY_POLICY.superiorityClaim,false);
+assert.equal(KURMANCI_VISIBILITY_POLICY.diminishOtherLanguages,false);
+assert.equal(KURMANCI_VISIBILITY_POLICY.userChoiceRequired,true);
+assert.equal(KURMANCI_VISIBILITY_POLICY.identityInference,false);
 assert.deepEqual(KURMANCI_VISIBILITY_COUNTRIES,["TR","IR","SY","IQ"]);
 assert.equal(resolveInitialLocale({savedLocale:"ku",browserLocales:["tr-TR"],country:"TR",availableLocales:["ku","tr"]}),"ku");
 assert.equal(resolveInitialLocale({browserLocales:["fa-IR","ku"],country:"IR",availableLocales:["ku","tr"]}),"ku");
