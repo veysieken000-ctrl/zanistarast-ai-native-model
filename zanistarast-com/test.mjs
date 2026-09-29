@@ -43,6 +43,8 @@ assert.match(css,/\.audio-player/);
 assert.match(app,/tx\("ui\.read"\)/);
 assert.match(app,/discovery\.newest\(4\)/);
 assert.match(app,/discovery\.recommended\(\{likedIds:userState\.likedIds\(\),searchInterests:userState\.searchInterests\(\),excludeIds:\[w\.workId,\.\.\.newest\.map\(x=>x\.workId\)\],limit:6\}\)/);
+assert.match(app,/data-related-topics/);assert.match(app,/relatedPreview=related\.slice\(0,6\)/);assert.match(app,/tx\("ui\.relatedTopics"\)/);
+assert.equal(t("ui.relatedTopics","ku"),"Mijarên têkildar");assert.equal(t("ui.relatedTopics","en"),"Related topics");assert.equal(t("ui.relatedTopics","de"),"Verwandte Themen");assert.equal(t("ui.relatedTopics","tr"),"Benzer konular");
 assert.match(app,/data-newest/);
 assert.match(app,/data-recommended/);
 assert.match(app,/tx\("ui\.newest"\)/);
@@ -131,6 +133,12 @@ const topicDiscovery=createDiscoveryService(topicAdapter);
 assert.deepEqual(topicDiscovery.search("rabûn").map(w=>w.workId),["topic-source","topic-match"]);
 assert.equal(topicDiscovery.search("rabûn").some(w=>w.workId==="topic-blocked"),false);
 assert.equal(topicDiscovery.related("topic-source")[0].workId,"topic-match");
+const unrelatedTopicAdapter=createContentAdapter([
+ {...base,workId:"source-a",title:"A",summary:"A",format:"Film",values:[],topics:["tarih"],governance:{rights:true,rasterast:true,mudabbirRequired:false}},
+ {...base,workId:"same-topic",title:"B",summary:"B",format:"Audio",values:[],topics:["tarih"],governance:{rights:true,rasterast:true,mudabbirRequired:false}},
+ {...base,workId:"unrelated-topic",title:"C",summary:"C",format:"Text",values:[],topics:["kuantum"],governance:{rights:true,rasterast:true,mudabbirRequired:false}}
+]);
+assert.deepEqual(createDiscoveryService(unrelatedTopicAdapter).related("source-a").map(w=>w.workId),["same-topic"]);
 assert.deepEqual(topicFacets(topicAdapter.list()).map(x=>[x.topic,x.count]),[["rabûn",2]]);
 assert.deepEqual(topicDiscovery.facets().topics.map(x=>[x.topic,x.count]),[["rabûn",2]]);
 assert.equal(topicDiscovery.facets().topics.some(x=>x.topic.includes("blocked")),false);
