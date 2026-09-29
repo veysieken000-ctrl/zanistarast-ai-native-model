@@ -29,6 +29,7 @@ import{PROMOTION_KIND,promotionEligible,createPromotionService,promotionPlayback
 import{FALLBACK,COPY,INTERFACE_LOCALES,PLANNED_LOCALES,RTL_LOCALES,localeDirection,interfaceLocaleAvailable,localeKey,t}from"./locale.js";
 import{createSpeechRouter,speechRecognitionSupport,SPEECH_LOCALES,speechLocale,createSpeechInput}from"./speech-router.js";
 import{KURMANCI_VISIBILITY_POLICY,KURMANCI_VISIBILITY_COUNTRIES,resolveInitialLocale,regionalLanguageContext,kurmanciVisibility}from"./locale-visibility.js";
+import{SUBMISSION_KIND,TRUST_STATE,INTAKE_STATE,senderGate,intakeSubmission,trustTransition}from"./contribution-intake.js";
 
 const read=p=>fs.readFileSync(new URL(p,import.meta.url),"utf8");
 const html=read("./index.html"),css=read("./styles.css"),app=read("./app.js"),data=read("./data.js"),manifest=JSON.parse(read("./manifest.webmanifest")),sw=read("./sw.js"),mediaModule=read("./media.js"),userStateModule=read("./user-state.js");
@@ -62,6 +63,17 @@ assert.equal(runtimeConfig({ZANISTARAST_ENV:"staging"}).country,null);
 assert.throws(()=>runtimeConfig({ZANISTARAST_ENV:"staging",ZANISTARAST_COUNTRY:"TUR"}),/ISO alpha-2/);
 assert.ok(PUBLIC_CONFIG_KEYS.includes("ZANISTARAST_COUNTRY"));
 assert.match(read("./deployment-config.js"),/regional UI visibility only; never identity or language inference/);
+assert.equal(senderGate({senderId:"sender-1",trustState:TRUST_STATE.NORMAL}).state,INTAKE_STATE.QUARANTINED);
+assert.deepEqual(senderGate({senderId:"sender-1",trustState:TRUST_STATE.BLOCKED}),{accepted:false,state:INTAKE_STATE.STOPPED,reason:"SENDER_BLOCKED",expensiveReviewAllowed:false});
+assert.equal(senderGate({senderId:"sender-1",trustState:TRUST_STATE.RESTRICTED}).expensiveReviewAllowed,false);
+assert.equal(intakeSubmission({submissionId:"s1",senderId:"sender-1",kind:SUBMISSION_KIND.QUESTION,payload:{text:"?"}}).state,INTAKE_STATE.QUARANTINED);
+assert.equal(intakeSubmission({submissionId:"s2",senderId:"sender-1",kind:SUBMISSION_KIND.MEDIA,payload:{ref:"asset"}}).state,INTAKE_STATE.QUARANTINED);
+assert.equal(intakeSubmission({submissionId:"s3",senderId:"sender-1",kind:"UNKNOWN",payload:{}}).state,INTAKE_STATE.REJECTED);
+assert.equal(trustTransition(TRUST_STATE.NORMAL,"REPEATED_REJECTED"),TRUST_STATE.REVIEW);
+assert.equal(trustTransition(TRUST_STATE.NORMAL,"REPEATED_BYPASS"),TRUST_STATE.RESTRICTED);
+assert.equal(trustTransition(TRUST_STATE.RESTRICTED,"REPEATED_BYPASS"),TRUST_STATE.BLOCKED);
+assert.equal(trustTransition(TRUST_STATE.NORMAL,"SEVERE_ABUSE"),TRUST_STATE.BLOCKED);
+assert.equal(trustTransition(TRUST_STATE.REVIEW,"RECONSIDERED_CLEAR"),TRUST_STATE.NORMAL);
 assert.equal(FALLBACK,"ku");assert.equal(t("nav.home","ku"),"Malper");assert.equal(t("nav.home","en"),"Home");assert.equal(t("nav.settings","de"),"Einstellungen");assert.equal(t("ui.new","tr"),"Yeni Eklenenler");assert.equal(t("missing.key","ku"),"missing.key");assert.ok(["ku","en","de","tr"].every(k=>COPY[k]?.era&&COPY[k]?.civilization));
 assert.match(html,/id="main"/);assert.match(html,/id="speech-search"/);assert.match(html,/data-i18n-aria="ui\.speechSearch"/);assert.match(html,/data-i18n-title="ui\.speechSearch"/);assert.equal(t("ui.speechSearch","ku"),"Bi dengî bigere");assert.equal(t("ui.speechSearch","en"),"Voice search");assert.equal(t("ui.speechSearch","de"),"Sprachsuche");assert.equal(t("ui.speechSearch","tr"),"Sesli ara");assert.match(html,/id="speech-status"/);assert.match(html,/aria-live="polite"/);assert.match(app,/announceSpeech/);assert.match(app,/PERMISSION_DENIED/);assert.match(app,/LOW_CONFIDENCE/);assert.match(app,/NO_SPEECH/);assert.match(app,/NO_MICROPHONE/);assert.match(app,/state==="TRANSCRIPT"/);assert.match(app,/topQ\.value=transcript/);assert.match(app,/createSpeechRouter/);assert.match(app,/createSpeechInput/);const speechModule=read("./speech-router.js");assert.match(speechModule,/terminalState/);assert.match(speechModule,/if\(!terminalState\)onState\("IDLE"\)/);assert.match(speechModule,/if\(active\)return false/);assert.match(speechModule,/if\(!active\)return false/);assert.match(speechModule,/Math\.min\(1,Math\.max\(0/);assert.match(speechModule,/if\(!transcript\)/);assert.equal([...speechModule.matchAll(/recognition\.onstart=/g)].length,1);assert.equal([...speechModule.matchAll(/recognition\.onend=/g)].length,1);assert.match(app,/speechButton\.hidden=!speechInput\.available/);assert.match(app,/speechInput\.stop\(\);speechInput=createSpeechInput/);
 assert.match(html,/manifest\.webmanifest/);
