@@ -38,8 +38,9 @@ export function createDiscoveryService(contentAdapter){
   related(workId,{likedIds=[],likedValues=[]}={}){
    const source=contentAdapter.get(workId);if(!source)return[];
    const derived=this.preferences(likedIds);const prefs={values:new Set([...derived.values,...likedValues]),formats:derived.formats};
-   return eligible().filter(w=>w.workId!==workId).map(w=>({work:w,rank:score(source,w,prefs)}))
-    .sort((a,b)=>b.rank-a.rank||a.work.title.localeCompare(b.work.title,"tr")||a.work.workId.localeCompare(b.work.workId))
+   return eligible().filter(w=>w.workId!==workId).map(w=>({work:w,rank:score(source,w,prefs),topicRank:topicOverlap(source,w)}))
+    .filter(x=>x.rank>0)
+    .sort((a,b)=>b.topicRank-a.topicRank||b.rank-a.rank||a.work.title.localeCompare(b.work.title,"tr")||a.work.workId.localeCompare(b.work.workId))
     .map(x=>x.work);
   }
  });
