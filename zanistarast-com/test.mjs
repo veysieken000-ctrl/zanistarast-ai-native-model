@@ -411,4 +411,7 @@ assert.equal(normalizeRepresentation({id:"m",version:"1",kind:"video",src:"https
 const malformedMedia=normalizeRepresentation({id:"m",version:"1",kind:"video",src:"media.mp4",captions:{bad:true},chapters:"bad"});assert.deepEqual(malformedMedia.captions,[]);assert.deepEqual(malformedMedia.chapters,[]);
 assert.ok(app.includes('feedbackStore.submit({feedbackId:`feedback-'));
 assert.ok(feedbackModule.includes('return Object.freeze({next:"FEEDBACK_INTAKE",humanSignal:true,automaticVerdict:false})'));
+assert.ok(feedbackModule.includes('DETAIL:2000,QUEUE:200'));
+assert.ok(feedbackModule.includes('reason:"DUPLICATE_FEEDBACK"'));
+assert.ok(feedbackModule.includes('detail:clean(detail,LIMIT.DETAIL)||null'));
 console.log("zanistarast-com smoke: OK");
