@@ -121,7 +121,7 @@ assert.match(app,/function librarySearch\(/);
 assert.match(app,/data-library-search/);
 assert.match(app,/data-library-results/);
 assert.match(css,/:where\(a,button,input,select,textarea,summary\):focus-visible/);
-assert.match(css,/\\.card-more>summary\\{min-width:44px;min-height:44px/);
+assert.ok(css.includes(".card-more>summary{min-width:44px;min-height:44px"),"card menu summary keeps a 44px touch target");
 assert.match(css,/\.library-tools\{display:flex/);
 assert.match(css,/@media\(max-width:760px\).*?\.library-tools\{position:sticky/s);
 assert.match(css,/\.library-tools input\[type="search"\][^{]*\{[^}]*max-width:38rem/s);
