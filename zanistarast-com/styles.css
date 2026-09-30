@@ -52,3 +52,16 @@
 :where(a,button,input,select,textarea,summary):focus-visible{outline:3px solid currentColor;outline-offset:3px}
 .card-more>summary{min-width:44px;min-height:44px;display:inline-grid;place-items:center;cursor:pointer}
 .card-more>summary::marker{font-size:0}
+
+/* Mobile bottom navigation stays touch-friendly; desktop keeps the persistent left rail. */
+.mobile-nav{display:none}
+@media(max-width:760px){
+  body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+  .topbar{align-items:center;flex-direction:row;gap:.55rem}
+  .topbar .brand{flex:1}
+  .top-search{order:3;flex-basis:100%}
+  .mobile-nav{position:fixed;z-index:40;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(4,1fr);min-height:64px;padding-bottom:env(safe-area-inset-bottom);background:#fff;border-top:1px solid #ddd}
+  .mobile-nav a{display:grid;place-items:center;min-width:44px;min-height:56px;padding:.35rem .2rem;text-align:center;text-decoration:none;font-size:.78rem;font-weight:700}
+  .mobile-nav a:focus-visible{outline-offset:-4px}
+}
+@media(min-width:761px){.mobile-nav{display:none}}
