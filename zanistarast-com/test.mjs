@@ -409,6 +409,6 @@ assert.equal(safeMediaUrl("blob:https://example.org/id"),null);
 assert.equal(safeMediaUrl("ftp://example.org/video.mp4"),null);
 assert.equal(normalizeRepresentation({id:"m",version:"1",kind:"video",src:"https://user:secret@example.org/a.mp4"}).src,null);
 const malformedMedia=normalizeRepresentation({id:"m",version:"1",kind:"video",src:"media.mp4",captions:{bad:true},chapters:"bad"});assert.deepEqual(malformedMedia.captions,[]);assert.deepEqual(malformedMedia.chapters,[]);
-assert.match(app,/feedbackStore\\.submit\\(\\{feedbackId:\`feedback-/);
-assert.match(feedbackModule,/return Object\\.freeze\\(\\{next:"FEEDBACK_INTAKE",humanSignal:true,automaticVerdict:false\\}\\)/);
+assert.ok(app.includes('feedbackStore.submit({feedbackId:`feedback-'));
+assert.ok(feedbackModule.includes('return Object.freeze({next:"FEEDBACK_INTAKE",humanSignal:true,automaticVerdict:false})'));
 console.log("zanistarast-com smoke: OK");
