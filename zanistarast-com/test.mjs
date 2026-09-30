@@ -411,6 +411,16 @@ assert.equal(normalizeRepresentation({id:"m",version:"1",kind:"video",src:"https
 const malformedMedia=normalizeRepresentation({id:"m",version:"1",kind:"video",src:"media.mp4",captions:{bad:true},chapters:"bad"});assert.deepEqual(malformedMedia.captions,[]);assert.deepEqual(malformedMedia.chapters,[]);
 assert.ok(app.includes('matchMedia("(min-width:1100px)").matches'));
 assert.ok(app.includes('desktop-nav-collapsed'));
+assert.ok(html.includes('class="mobile-nav"'));
+assert.ok(css.includes('@media(max-width:760px)'));
+assert.ok(css.includes('.mobile-nav{position:fixed'));
+assert.ok(css.includes('@media(min-width:761px){.mobile-nav{display:none}}'));
+assert.ok(app.includes('function watchLaterPage()'));
+assert.ok(app.includes('function historyPage()'));
+assert.ok(app.includes('function likedPage()'));
+assert.ok(app.includes('function queuePage()'));
+assert.ok(app.includes('function librarySearch('));
+assert.ok(app.includes('data-card-context="watch-later"')||app.includes('context:"watch-later"'));
 assert.ok(css.includes('body.desktop-nav-collapsed main{margin-left:76px}'));
 assert.ok(css.includes('body.desktop-nav-collapsed .side-menu{width:76px'));
 assert.ok(app.includes('feedbackStore.submit({feedbackId:`feedback-'));
