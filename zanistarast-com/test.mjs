@@ -34,7 +34,7 @@ import{FEEDBACK_ACTION,REPORT_REASON,normalizeFeedback,feedbackReviewRoute,creat
 import{PREFILTER_REASON,contributionPrefilter,contributionReviewPlan}from"./contribution-review.js";
 
 const read=p=>fs.readFileSync(new URL(p,import.meta.url),"utf8");
-const html=read("./index.html"),css=read("./styles.css"),app=read("./app.js"),data=read("./data.js"),manifest=JSON.parse(read("./manifest.webmanifest")),sw=read("./sw.js"),mediaModule=read("./media.js"),userStateModule=read("./user-state.js");
+const html=read("./index.html"),css=read("./styles.css"),app=read("./app.js"),data=read("./data.js"),manifest=JSON.parse(read("./manifest.webmanifest")),sw=read("./sw.js"),mediaModule=read("./media.js"),userStateModule=read("./user-state.js"),feedbackModule=read("./feedback.js");
 
 assert.equal(KURMANCI_VISIBILITY_POLICY.purpose,"continuity-and-visibility");
 assert.equal(KURMANCI_VISIBILITY_POLICY.projectContext,"zanistarast-newroza-kawa");
