@@ -65,3 +65,13 @@
   .mobile-nav a:focus-visible{outline-offset:-4px}
 }
 @media(min-width:761px){.mobile-nav{display:none}}
+
+/* Desktop navigation can collapse without turning the Windows layout into stretched mobile UI. */
+@media(min-width:1100px){
+  body.desktop-nav-collapsed main{margin-left:76px}
+  body.desktop-nav-collapsed .side-menu{width:76px;padding-inline:.45rem}
+  body.desktop-nav-collapsed .side-menu nav>a{overflow:hidden;white-space:nowrap;text-indent:-9999px;position:relative;min-height:44px}
+  body.desktop-nav-collapsed .side-menu nav>a::after{content:"•";position:absolute;inset:0;display:grid;place-items:center;text-indent:0;font-size:1.2rem}
+  body.desktop-nav-collapsed .side-menu .language-control{display:none}
+  .topbar .menu-toggle{display:inline-grid;place-items:center}
+}
