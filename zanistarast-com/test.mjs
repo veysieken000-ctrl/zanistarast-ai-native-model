@@ -411,8 +411,8 @@ assert.equal(normalizeRepresentation({id:"m",version:"1",kind:"video",src:"https
 const malformedMedia=normalizeRepresentation({id:"m",version:"1",kind:"video",src:"media.mp4",captions:{bad:true},chapters:"bad"});assert.deepEqual(malformedMedia.captions,[]);assert.deepEqual(malformedMedia.chapters,[]);
 assert.ok(app.includes('matchMedia("(min-width:1100px)").matches'));
 assert.ok(app.includes('desktop-nav-collapsed'));
-assert.ok(styles.includes('body.desktop-nav-collapsed main{margin-left:76px}'));
-assert.ok(styles.includes('body.desktop-nav-collapsed .side-menu{width:76px'));
+assert.ok(css.includes('body.desktop-nav-collapsed main{margin-left:76px}'));
+assert.ok(css.includes('body.desktop-nav-collapsed .side-menu{width:76px'));
 assert.ok(app.includes('feedbackStore.submit({feedbackId:`feedback-'));
 assert.ok(feedbackModule.includes('return Object.freeze({next:"FEEDBACK_INTAKE",humanSignal:true,automaticVerdict:false})'));
 assert.ok(feedbackModule.includes('DETAIL:2000,QUEUE:200'));
