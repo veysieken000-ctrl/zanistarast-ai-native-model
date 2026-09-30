@@ -113,7 +113,7 @@ assert.match(app,/function closeCardMenus\(/);
 assert.match(app,/function bindInteractionA11y\(/);
 assert.match(app,/data-feedback-panel role="status" aria-live="polite"/);
 assert.match(app,/data-report-detail aria-label="\$\{tx\("ui\.detail"\)\}"/);
-assert.match(app,/data-feedback-detail aria-label="\$\{tx\("ui\.detail"\)\}"/);
+assert.ok(app.includes('if(!detail){e.currentTarget.querySelector("[data-feedback-detail]")?.focus();return}'));
 assert.match(app,/e\.key==="Escape"/);
 assert.match(app,/bindCardMenus\(\);bindInteractionA11y\(\);main\.focus/);
 // route binding regression sentinel: card menus -> a11y hooks -> main focus
