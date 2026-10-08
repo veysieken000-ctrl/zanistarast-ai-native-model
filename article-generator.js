@@ -102,6 +102,20 @@ sonra uygulama değerlendirilir ve en sonunda Rasterast doğrulaması yapılır.
   return examples[ctx.domain] || examples.genel;
 }
 
+
+function buildScientificIntegrityBlock() {
+  return `
+<h3>Bilimsel Statü ve Yanlışlanabilirlik</h3>
+<p>
+Bu metindeki her önemli önerme; <strong>tanım</strong>, <strong>başlangıç varsayımı</strong>,
+<strong>formal türetim</strong>, <strong>ampirik iddia</strong>, <strong>araştırma hipotezi</strong>,
+<strong>yorum</strong> veya <strong>spekülatif önerme</strong> olarak ayrılmalıdır.
+Hipotez ve yorumlar yerleşik bilimsel gerçek gibi sunulamaz.
+Karşı kanıt, alternatif açıklama ve çözülmemiş sorunlar metinden çıkarılamaz.
+</p>
+`;
+}
+
 function getLengthLimit(ctx) {
   if (ctx.length === "short") return "short";
   if (ctx.length === "long") return "long";
@@ -119,15 +133,15 @@ function buildShortArticle(ctx, parts) {
 
   <p>
   Zanistarast zinciri şöyledir:
-  <strong>Hebûn → Zanabûn → Mabûn → Rabûn → Rasterast → Newroza Kawa.</strong>
+  <strong>Ehad → Vahid → Yek → Hebûn → Zanabûn → Mabûn → Rabûn → Rasterast → Newroza Kawa.</strong>
   </p>
 
   <p>
   Hebûn konunun ne olduğunu belirler.
   Zanabûn nasıl bilineceğini açıklar.
-  Mabûn bilgiyi düzene bağlar.
-  Rabûn bu düzeni uygulamaya taşır.
-  Rasterast bütün süreci hakikat filtresinden geçirir.
+  Mabûn bilgi ile kaynak, dolaşım, denge ve ekonomi ilişkisini kurar.
+  Rabûn sorumluluk, yönetim, geri bildirim ve kurumsal uygulama modelini kurar.
+  Rasterast bütün süreci çelişki, kanıt, yanlışlanabilirlik ve doğrulama açısından denetler.
   Newroza Kawa ise bu bilginin medeniyet ufkunu gösterir.
   </p>
 
@@ -146,7 +160,7 @@ function buildMediumArticle(ctx, parts) {
     <p><strong>Soru:</strong> ${ctx.original}</p>
     <p><strong>Alan:</strong> ${ctx.domain}</p>
     <p><strong>Analiz Türü:</strong> ${ctx.intent}</p>
-    <p><strong>Zincir:</strong> Hebûn → Zanabûn → Mabûn → Rabûn → Rasterast → Newroza Kawa</p>
+    <p><strong>Zincir:</strong> Ehad → Vahid → Yek → Hebûn → Zanabûn → Mabûn → Rabûn → Rasterast → Newroza Kawa</p>
   </div>
 
   <h3>Giriş</h3>
@@ -155,6 +169,8 @@ function buildMediumArticle(ctx, parts) {
   ${buildOntologyBlock(ctx)}
 
   ${buildExpandedKnowledgeBlock(ctx)}
+
+  ${buildScientificIntegrityBlock()}
 
   ${getDomainExamples(ctx)}
 
@@ -194,7 +210,7 @@ function buildLongArticle(ctx, parts) {
     <p><strong>Alan:</strong> ${ctx.domain}</p>
     <p><strong>Analiz Türü:</strong> ${ctx.intent}</p>
     <p><strong>Derinlik:</strong> ${ctx.depth}</p>
-    <p><strong>Zincir:</strong> Hebûn → Zanabûn → Mabûn → Rabûn → Rasterast → Newroza Kawa</p>
+    <p><strong>Zincir:</strong> Ehad → Vahid → Yek → Hebûn → Zanabûn → Mabûn → Rabûn → Rasterast → Newroza Kawa</p>
   </div>
 
   <h3>Giriş</h3>
@@ -204,12 +220,16 @@ ${buildOntologyBlock(ctx)}
 
 ${buildExpandedKnowledgeBlock(ctx)}
 
+  ${buildScientificIntegrityBlock()}
+
 ${buildDeepParagraphs(ctx)}
 
   <p>
-  Zanistarast Bilimsel Sentezi'ne göre hiçbir mesele yalnızca görünen yüzüyle açıklanamaz.
-  Her olayın bir varlık zemini, bilgi düzeni, sistemsel sonucu, uygulama biçimi ve hakikat denetimi vardır.
-  Bu nedenle soru ne olursa olsun önce Hebûn ile başlar, sonra Zanabûn'a, Mabûn'a, Rabûn'a ve Rasterast doğrulamasına geçer.
+  Zanistarast Bilimsel Sentezi bir konuyu tek katmanlı kabul etmez.
+  Her ciddi iddia; başlangıç varsayımları, varlık zemini, bilgi gerekçesi, sistemsel sonucu,
+  uygulama biçimi ve doğrulama koşulları ayrılarak incelenmelidir.
+  Kanonik bağımlılık Ehad → Vahid → Yek → Hebûn → Zanabûn → Mabûn → Rabûn → Rasterast sırasıdır.
+  Sonraki katmanlar Hebûn'u geriye doğru kanıtlamak için kullanılamaz; yalnız sonuçları üzerinden sınayabilir.
   </p>
 
   ${getDomainExamples(ctx)}
@@ -232,7 +252,7 @@ ${buildDeepParagraphs(ctx)}
   Zanabûn, parçayı yok saymaz; parçayı kendi varlık zeminine yerleştirir.
   </p>
 
-  <h3>3. Mabûn — Düzen Zemini</h3>
+  <h3>3. Mabûn — Ekonomi, Dolaşım ve Denge Zemini</h3>
   <p>${parts.mabun}</p>
   <p>
   Mabûn, bilginin yapıya dönüşmesidir.
@@ -241,22 +261,21 @@ ${buildDeepParagraphs(ctx)}
   Atomda, hücrede, bedende, toplumda ve medeniyette bu ilke tekrar eder.
   </p>
 
-  <h3>4. Rabûn — Uygulama Zemini</h3>
+  <h3>4. Rabûn — Yönetim, Sorumluluk ve Uygulama Zemini</h3>
   <p>${parts.rabun}</p>
   <p>
-  Rabûn, Hebûn ontolojisinin insan dünyasındaki yapay karşılığıdır.
-  İnsan doğadaki düzeni keşfeder ve onu eğitim, hukuk, ekonomi, sağlık, yönetim ve teknoloji alanlarında yeniden kurar.
-  Bu nedenle Rabûn keyfî bir yönetim değil, varlık düzeninin bilinçli uygulanışıdır.
+  Rabûn, yönetim, sorumluluk, kurumsal görev dağılımı ve geri bildirim modelidir.
+  Eğitim, hukuk, ekonomi, sağlık, teknoloji ve diğer insan sistemlerinde uygulanırken
+  iddialar gözlem, ölçüm ve alanın kendi bilimsel standartlarıyla ayrıca sınanmalıdır.
   </p>
 
   <h3>5. Rasterast — Hakikat Denetimi</h3>
   <p>${parts.rasterast}</p>
   <p>
-  Rasterast olmadan Rabûn bozulabilir.
-  Çünkü her eylem doğru değildir.
-  Her düzen adil değildir.
-  Her bilgi güvenilir değildir.
-  Rasterast; sahte veriyi, manipülasyonu, gizli yönlendirmeyi, insana ve çevreye zarar veren uygulamayı durdurur.
+  Rasterast doğrulama ve eleştirel denetim katmanıdır.
+  Her eylem doğru, her düzen adil, her bilgi güvenilir kabul edilemez.
+  Rasterast; çelişkiyi, uydurma veriyi, gizli varsayımı, aşırı iddiayı ve zayıf yanlışlanabilirliği işaretler.
+  Bir iddia tanım, formal türetim, ampirik sonuç, hipotez, yorum veya spekülasyon ise statüsü açıkça belirtilmelidir.
   </p>
 
   <h3>6. Newroza Kawa — Medeniyet Ufku</h3>
