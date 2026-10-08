@@ -133,6 +133,50 @@ pub struct ZanistarastScientificMission {
     /// son karar yetkisi korunur.
     pub mudabbir_final_publication_authority: bool,
 
+    /// Mira'nın bu üretim safhasındaki tek site hedefi
+    /// zanistarast-ai-native-model içindeki zanistarast.org yapısıdır.
+    pub org_site_repository_scope_locked: bool,
+
+    /// Mevcut makaleler silinmeden envanterlenir ve
+    /// Zanistarast bilimsel sentezinin çekirdek katmanlarıyla yeniden denetlenir.
+    pub preserve_and_revise_existing_articles: bool,
+
+    /// Hebûn ontolojisi temel kapıdır; sonraki katmanlar
+    /// Hebûn'u geriye doğru temellendiremez.
+    pub hebun_first_dependency_order: bool,
+
+    /// Hebûn'dan sonra Zanabûn → Mabûn → Rabûn → Rasterast
+    /// üretim ve geri doğrulama sırası korunur.
+    pub canonical_derivation_order_locked: bool,
+
+    /// Zaman, tarih, matematik, fizik, biyoloji, jeoloji,
+    /// sosyoloji, psikoloji, ruh, boyutlar arası geçiş,
+    /// ahlak, hukuk, eğitim, ekonomi, yönetim, uygarlık,
+    /// estetik, yapay zekâ ve doğabilecek diğer alanlar
+    /// açık uçlu bilim paketleri olarak ele alınır.
+    pub all_scientific_domains_must_be_covered: bool,
+
+    /// Her makale Hebûn, Zanabûn, Mabûn, Rabûn ve Rasterast
+    /// katmanlarının hangileriyle ilişkiliyse bu ilişki açıkça kurulmalıdır.
+    pub core_layers_applied_to_all_relevant_articles: bool,
+
+    /// Her makale hedef dergiye göre kapsam, biçim, kaynakça,
+    /// sözcük sınırı, şekil/ek dosya, etik ve preprint/DOI
+    /// politikası açısından ayrı hazırlanır.
+    pub target_journal_specific_preparation: bool,
+
+    /// Site hiçbir taslak, gönderilmemiş çalışma veya DOI'siz ürünü
+    /// kabul edilmiş/yayınlanmış gibi göstermez.
+    pub publication_status_must_be_truthful: bool,
+
+    /// Mira ve orkestra, her pakette ileri üretim + geri doğrulama
+    /// döngüsü uygular; sonraki sonuçlar önceki temelleri sınar.
+    pub forward_generation_backward_validation: bool,
+
+    /// Bilimsel paketler arasında tutarlılık, işlevsellik,
+    /// fayda, açıklama gücü ve yanlışlanabilirlik birlikte denetlenir.
+    pub cross_package_consistency_required: bool,
+
     pub rationale: String,
 }
 
@@ -178,6 +222,17 @@ impl ZanistarastScientificMission {
 
             mudabbir_final_publication_authority: true,
 
+            org_site_repository_scope_locked: true,
+            preserve_and_revise_existing_articles: true,
+            hebun_first_dependency_order: true,
+            canonical_derivation_order_locked: true,
+            all_scientific_domains_must_be_covered: true,
+            core_layers_applied_to_all_relevant_articles: true,
+            target_journal_specific_preparation: true,
+            publication_status_must_be_truthful: true,
+            forward_generation_backward_validation: true,
+            cross_package_consistency_required: true,
+
             rationale:
                 "Mira'nın bilimsel görevi makale çoğaltmak değil; \
                  Hebûn ontolojisi, Zanabûn epistemolojisi, Mabûn, \
@@ -220,6 +275,16 @@ impl ZanistarastScientificMission {
             && self.mission_not_sacrificed_for_acceptance
             && self.publication_integrity_required
             && self.mudabbir_final_publication_authority
+            && self.org_site_repository_scope_locked
+            && self.preserve_and_revise_existing_articles
+            && self.hebun_first_dependency_order
+            && self.canonical_derivation_order_locked
+            && self.all_scientific_domains_must_be_covered
+            && self.core_layers_applied_to_all_relevant_articles
+            && self.target_journal_specific_preparation
+            && self.publication_status_must_be_truthful
+            && self.forward_generation_backward_validation
+            && self.cross_package_consistency_required
             && !self.rationale.trim().is_empty()
     }
 }
