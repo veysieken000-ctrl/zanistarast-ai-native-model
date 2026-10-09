@@ -11,7 +11,7 @@ const pkg=JSON.parse(read('backend/package.json'));
 const server=read('backend/server.js');
 const formal=read('api/zanistarast_formal_gateway.js');
 const route='backend/routes/mi_engine.js';
-check('ESM-CJS',!(pkg.type==='module' && /\brequire\s*\(/.test(server)), 'ESM package must not use unbound top-level require');
+check('ESM-CJS',pkg.type!=='module'||server.includes('const require = createRequire(import.meta.url);'), 'ESM requires an explicit createRequire binding');
 check('MI-ENGINE-EXISTS',fs.existsSync(file(route)), 'server.js imports '+route);
 check('BOOTSTRAP-ENTRY',fs.existsSync(file('backend/bootstrap.js')) || fs.existsSync(file('backend/bootstrap/index.js')), 'formal gateway requires backend/bootstrap; directory index may need explicit resolution depending on module system');
 check('EVIDENCE-UNCERTAINTY',!(/If evidence is weak, classify as FALSE/.test(server)), 'insufficient evidence must not be conflated with falsehood');
