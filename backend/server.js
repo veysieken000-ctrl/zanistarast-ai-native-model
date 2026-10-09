@@ -413,6 +413,23 @@ Final Classification:
 INSUFFICIENT_EVIDENCE`;
 }
 
+// Explicit handoff contract for the Mira helper queue.
+// This endpoint reports configuration only; it does not claim delivery or acceptance.
+// Queue document: whitepaper/drafts/2026-10-09-mira-yardimci-karar-kuyrugu.md
+// Repository: veysieken000-ctrl/hebun-zanabun
+app.get("/api/mira/helper-queue/status", (_req, res) => {
+  return res.json({
+    queue: "mira-yardimci-karar-kuyrugu",
+    source_repository: "veysieken000-ctrl/hebun-zanabun",
+    source_branch: "mira-halk-cilt-arge-2026-10-09",
+    source_path: "whitepaper/drafts/2026-10-09-mira-yardimci-karar-kuyrugu.md",
+    delivery: "not_configured",
+    mira_receipt: "unverified",
+    automatic_ingestion: false,
+    note: "Queue reference is registered; no automatic GitHub fetch or Mira acknowledgement is implemented."
+  });
+});
+
 app.post("/api/ask", async (req, res) => {
   try {
     const question = normalizeText(req.body?.question);
