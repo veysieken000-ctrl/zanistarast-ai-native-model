@@ -1,0 +1,23 @@
+name: Mira Bridge Safe Diagnostics
+on:
+  push:
+    branches:
+      - mira-bridge-diagnostics-2026-10-09
+    paths:
+      - 'tests/mira_bridge_static_diagnostics.mjs'
+      - '.github/workflows/mira_bridge_safe_diagnostics.yml'
+  workflow_dispatch:
+jobs:
+  static-diagnostics:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Read-only Mira bridge diagnostics
+        run: node tests/mira_bridge_static_diagnostics.mjs
