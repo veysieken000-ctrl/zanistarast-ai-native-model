@@ -23,6 +23,27 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Install backend dependencies
+        run: npm install --prefix backend --no-audit --no-fund --ignore-scripts
+      - name: Smoke test actual backend startup and API endpoints
+        run: |
+          set -euo pipefail
+          node backend/server.js > /tmp/mira-backend.log 2>&1 &
+          pid=$!
+          trap 'kill "$pid" 2>/dev/null || true; cat /tmp/mira-backend.log' EXIT
+          ready=0
+          for i in $(seq 1 20); do
+            if curl -fsS http://127.0.0.1:3000/api/debug/version > /tmp/mira-version.json; then
+              ready=1
+              break
+            fi
+            if ! kill -0 "$pid" 2>/dev/null; then break; fi
+            sleep 1
+          done
+          test "$ready" -eq 1
+          node -e 'const d=require("/tmp/mira-version.json");if(!d.ok)process.exit(1)'
+          curl -fsS http://127.0.0.1:3000/api/mira/helper-queue/status > /tmp/mira-queue.json
+          node -e 'const d=require("/tmp/mira-queue.json");if(d.automatic_ingestion!==false||d.mira_receipt!=="unverified")process.exit(1)'
       - name: Read-only Mira bridge diagnostics
         run: node tests/mira_bridge_static_diagnostics.mjs
       - name: Regression checks
