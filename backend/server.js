@@ -417,16 +417,50 @@ INSUFFICIENT_EVIDENCE`;
 // This endpoint reports configuration only; it does not claim delivery or acceptance.
 // Queue document: whitepaper/drafts/2026-10-09-mira-yardimci-karar-kuyrugu.md
 // Repository: veysieken000-ctrl/hebun-zanabun
+const miraQueueSource = {
+  owner: "veysieken000-ctrl",
+  repo: "hebun-zanabun",
+  branch: "mira-halk-cilt-arge-2026-10-09",
+  path: "whitepaper/drafts/2026-10-09-mira-yardimci-karar-kuyrugu.md",
+};
+
+// This fetch verifies the source exists. It is NOT a Mira receipt or approval.
+app.get("/api/mira/helper-queue/source", async (_req, res) => {
+  const { owner, repo, branch, path: queuePath } = miraQueueSource;
+  const url = `https://raw.githubusercontent.com/${owner}/${repo}/${encodeURIComponent(branch)}/${queuePath}`;
+  try {
+    const response = await fetch(url, { signal: AbortSignal.timeout(8000) });
+    if (!response.ok) {
+      return res.status(502).json({ source_reachable: false, http_status: response.status, mira_receipt: "unverified" });
+    }
+    const content = await response.text();
+    if (!content.includes("MIRA-HELP-20261009-001") || !content.includes("MIRA-HELP-20261009-003")) {
+      return res.status(502).json({ source_reachable: false, reason: "queue content failed identity checks", mira_receipt: "unverified" });
+    }
+    return res.json({
+      source_reachable: true,
+      source_url: url,
+      entries_present: ["MIRA-HELP-20261009-001", "MIRA-HELP-20261009-002", "MIRA-HELP-20261009-003"],
+      mira_receipt: "unverified",
+      automatic_mira_ingestion: false,
+      note: "The server retrieved the source document, not Mira."
+    });
+  } catch (error) {
+    return res.status(502).json({ source_reachable: false, reason: error.message, mira_receipt: "unverified" });
+  }
+});
+
 app.get("/api/mira/helper-queue/status", (_req, res) => {
   return res.json({
     queue: "mira-yardimci-karar-kuyrugu",
-    source_repository: "veysieken000-ctrl/hebun-zanabun",
-    source_branch: "mira-halk-cilt-arge-2026-10-09",
-    source_path: "whitepaper/drafts/2026-10-09-mira-yardimci-karar-kuyrugu.md",
+    source_repository: `${miraQueueSource.owner}/${miraQueueSource.repo}`,
+    source_branch: miraQueueSource.branch,
+    source_path: miraQueueSource.path,
+    source_check_endpoint: "/api/mira/helper-queue/source",
     delivery: "not_configured",
     mira_receipt: "unverified",
     automatic_ingestion: false,
-    note: "Queue reference is registered; no automatic GitHub fetch or Mira acknowledgement is implemented."
+    note: "Source retrieval is possible; Mira-specific authentication, delivery and receipt are not configured."
   });
 });
 
