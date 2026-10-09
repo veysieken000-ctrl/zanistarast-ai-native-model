@@ -4,8 +4,11 @@ import cors from "cors";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { createRequire } from "node:module";
 import { buildRagContext } from "./rag_search.js";
 import miEngineRoutes from "./routes/mi_engine.js";
+
+const require = createRequire(import.meta.url);
 
 const runtimeGateway =
     require("../api/runtime_gateway");
