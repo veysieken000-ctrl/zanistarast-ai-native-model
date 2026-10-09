@@ -45,4 +45,3 @@ module.exports =
     new OptimizationEngine();
 
 
-feat(algorithms): add optimization engine
