@@ -69,7 +69,7 @@ Examples:
 
 This indicates:
 
-> Physical systems depend on alignment with governing rules.
+> Physical systems evolve according to descriptive laws; this does not imply externally assigned goals or roles.
 
 ---
 
@@ -142,7 +142,7 @@ Functional alignment appears in:
 - computing → function execution
 - society → role responsibility
 
-Zanistarast models this as a universal structural requirement.
+Zanistarast proposes a cross-domain comparison; a universal causal mechanism has not been demonstrated.
 
 ---
 
@@ -150,8 +150,8 @@ Zanistarast models this as a universal structural requirement.
 
 Systems where:
 
-- components execute roles correctly  
-→ show higher stability
+- components meet an explicitly defined task objective  
+→ may improve task performance under stated workload conditions
 
 Systems where:
 
@@ -194,3 +194,9 @@ Some traditions describe human existence in terms of purpose or function.
 Zanistarast does not assume these as fixed truths,
 but explores whether functional alignment correlates with system stability.
 
+
+---
+
+## 12. Task-specific benchmark and counterexample (scientific revision, 2026-10-09)
+
+Specify a designed task, objective, input distribution, budget, and task-assignment policy before using the term *alignment*. Compare FIFO, capacity-aware and specialized routing under identical paired workloads. **Counterexample:** specialization improves performance on one task mix but fails when the mix reverses. **Verification:** hold out an entire workload family, report deadline completion over all offered tasks, rejection rate, cost and instance-cluster uncertainty. The concept of an intended role does not apply literally to particles in physics. This is a test proposal, not measured evidence.
