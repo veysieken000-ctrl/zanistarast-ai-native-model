@@ -7,7 +7,7 @@ const read=p=>fs.readFileSync(new URL('../'+p,import.meta.url),'utf8');
 const exists=p=>fs.existsSync(new URL('../'+p,import.meta.url));
 test('backend entrypoint has no undefined require under ESM',()=>{
  const pkg=JSON.parse(read('backend/package.json'));const server=read('backend/server.js');
- assert.ok(pkg.type!=='module'||!/(?:^|\n)\s*(?:const|let|var)\s+\w+\s*=\s*require\s*\(/.test(server),'ESM server contains top-level require');
+ assert.ok(pkg.type!=='module'||server.includes('const require = createRequire(import.meta.url);'),'ESM server requires createRequire binding');
 });
 test('server referenced mi_engine route exists',()=>{
  const server=read('backend/server.js');
@@ -20,7 +20,7 @@ test('formal bootstrap resolves to existing entrypoint',()=>{
 test('formal bootstrap is not assumed to be ESM compatible',()=>{
  const pkg=JSON.parse(read('backend/package.json'));
  const bootstrap=read('backend/bootstrap/index.js');
- assert.ok(pkg.type!=='module'||!bootstrap.includes('module.exports'),'CommonJS bootstrap inside ESM package scope');
+ assert.ok(pkg.type!=='module'||!bootstrap.includes('module.exports')||JSON.parse(read('backend/bootstrap/package.json')).type==='commonjs','CommonJS bootstrap needs its own package scope');
 });
 test('insufficient evidence is not automatically FALSE',()=>{
  const server=read('backend/server.js');
