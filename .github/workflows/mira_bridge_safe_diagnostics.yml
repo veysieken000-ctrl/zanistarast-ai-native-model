@@ -5,6 +5,10 @@ on:
       - mira-bridge-diagnostics-2026-10-09
     paths:
       - 'tests/mira_bridge_static_diagnostics.mjs'
+      - 'tests/mira_bridge_regression.test.mjs'
+      - 'backend/server.js'
+      - 'backend/routes/mi_engine.js'
+      - 'backend/**/package.json'
       - '.github/workflows/mira_bridge_safe_diagnostics.yml'
   workflow_dispatch:
 jobs:
@@ -21,3 +25,6 @@ jobs:
           node-version: '22'
       - name: Read-only Mira bridge diagnostics
         run: node tests/mira_bridge_static_diagnostics.mjs
+      - name: Regression checks
+        if: always()
+        run: node --test tests/mira_bridge_regression.test.mjs
