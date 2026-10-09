@@ -195,40 +195,31 @@ MANDATORY ANALYSIS FRAMEWORK:
 - Does it contain manipulation, deception, or abuse of power?
 
 5. Final Classification
-- TRUTH
-- FALSE
+- SUPPORTED
+- REFUTED
+- INSUFFICIENT_EVIDENCE
+- MIXED_OR_CONTEXT_DEPENDENT
 
-STRICT DECISION RULES:
-- You are NOT allowed to answer "mixed", "uncertain", "unknown", "both", or similar middle positions.
-- You MUST choose either TRUTH or FALSE.
-- If evidence is weak, classify as FALSE.
-- If the claim is mostly interpretation or speculation, classify as FALSE.
-- If the claim contradicts reality, classify as FALSE.
-- Only classify as TRUTH if it is strongly supported by evidence, structurally consistent, and ethically sound.
+DECISION RULES:
+- Distinguish lack of evidence from evidence of falsehood.
+- If evidence is weak or absent, choose INSUFFICIENT_EVIDENCE.
+- If reliable counterevidence refutes the claim, choose REFUTED.
+- If independent evidence supports the claim within a stated scope, choose SUPPORTED.
+- If credible evidence differs by context or parts of the claim, choose MIXED_OR_CONTEXT_DEPENDENT.
+- Identify theological or philosophical interpretations as interpretations, not automatically as empirical falsehoods.
+- Keep ethical assessment separate from empirical evidence.
 
-OUTPUT FORMAT (STRICT):
-
+OUTPUT FORMAT:
 Ontological Status:
 ...
-
 Epistemic Status:
 ...
-
 Structural Consistency:
 ...
-
 Ethical Impact:
 ...
-
 Final Classification:
-TRUTH or FALSE only
-
-IMPORTANT:
-- Do not output "mixed", "uncertain", "unknown", or any middle category.
-- If the evidence is insufficient, choose FALSE.
-- If the claim is speculative, choose FALSE.
-- If the claim is unclear, choose FALSE.
-- Only strong evidence + structural consistency can justify TRUTH.
+SUPPORTED or REFUTED or INSUFFICIENT_EVIDENCE or MIXED_OR_CONTEXT_DEPENDENT
 
 LANGUAGE:
 ${languageRule}
@@ -282,13 +273,13 @@ function isBadSystemAnswer(question, answer, language) {
   if (isTurkish) {
     const foundCount = mustHaveTurkish.filter((x) => a.includes(x)).length;
     if (foundCount < 3) return true;
-    if (!a.includes("truth") && !a.includes("false") && !a.includes("doğru") && !a.includes("yanlış")) {
+    if (!["supported", "refuted", "insufficient_evidence", "mixed_or_context_dependent"].some((v) => a.includes(v))) {
       return true;
     }
   } else {
     const missing = mustHaveEnglish.filter((x) => !a.includes(x));
     if (missing.length >= 2) return true;
-    if (!a.includes("truth") && !a.includes("false")) return true;
+    if (!["supported", "refuted", "insufficient_evidence", "mixed_or_context_dependent"].some((v) => a.includes(v))) return true;
   }
 
   if (
@@ -322,16 +313,13 @@ MANDATORY REWRITE RULES:
 - Structural Consistency
 - Ethical Impact
 - Final Classification
-4. Final classification MUST be either:
-- TRUTH
-- FALSE
-5. Do NOT use:
-- mixed
-- uncertain
-- unknown
-- maybe
-- both
-6. If evidence is weak or speculative, choose FALSE.
+4. Final classification must be exactly one of:
+- SUPPORTED
+- REFUTED
+- INSUFFICIENT_EVIDENCE
+- MIXED_OR_CONTEXT_DEPENDENT
+5. Never treat weak evidence alone as proof of falsehood.
+6. Keep theological interpretation distinct from empirical evidence.
 
 LANGUAGE:
 ${languageRule}
@@ -404,57 +392,25 @@ async function callOpenAI(systemPrompt, userPrompt, temperature = 0.35) {
 }
 function enforceTruthFormat(answer, language) {
   const text = normalizeText(answer);
-  const lower = text.toLowerCase();
-
-  const required = [
-    "ontological status",
-    "epistemic status",
-    "structural consistency",
-    "ethical impact",
-    "final classification",
-  ];
-
-  const hasTruthDecision =
-    lower.includes("final classification") &&
-    (lower.includes("truth") || lower.includes("false"));
-
-  const missing = required.filter((x) => !lower.includes(x));
-
-  if (missing.length >= 2 || !hasTruthDecision) {
-    if (language === "tr-TR") {
-      return `Ontological Status:
-Weak
+  const match = text.match(/Final Classification:\\s*(SUPPORTED|REFUTED|INSUFFICIENT_EVIDENCE|MIXED_OR_CONTEXT_DEPENDENT)\\b/i);
+  const required = ["ontological status", "epistemic status", "structural consistency", "ethical impact", "final classification"];
+  const hasSections = required.every((section) => text.toLowerCase().includes(section));
+  if (match && hasSections) return text;
+  // Do not invent a negative verdict when model output is malformed.
+  return `Ontological Status:
+Not established
 
 Epistemic Status:
-Insufficient evidence
+Insufficient evidence to classify the claim reliably
 
 Structural Consistency:
-Weak
+Not established
 
 Ethical Impact:
-Risk of confusion
+Not assessed
 
 Final Classification:
-FALSE`;
-    }
-
-    return `Ontological Status:
-Weak
-
-Epistemic Status:
-Insufficient evidence
-
-Structural Consistency:
-Weak
-
-Ethical Impact:
-Risk of confusion
-
-Final Classification:
-FALSE`;
-  }
-
-  return text;
+INSUFFICIENT_EVIDENCE`;
 }
 
 app.post("/api/ask", async (req, res) => {
