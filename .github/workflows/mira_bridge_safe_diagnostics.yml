@@ -9,6 +9,7 @@ on:
       - 'backend/server.js'
       - 'backend/routes/mi_engine.js'
       - 'backend/**/package.json'
+      - 'backend/algorithms/**'
       - '.github/workflows/mira_bridge_safe_diagnostics.yml'
   workflow_dispatch:
 jobs:
