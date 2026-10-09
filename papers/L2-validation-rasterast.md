@@ -11,7 +11,7 @@ a structural process that ensures coherence, correctness, and continuity.
 
 ## 1. Introduction
 
-No system can operate without internal consistency.
+Engineered systems often require explicit consistency constraints, while natural and social systems need domain-specific descriptions and tests.
 
 If inputs contradict structure,
 if actions violate rules,
@@ -33,9 +33,7 @@ In mathematics:
 - proofs must follow logical consistency
 - contradictions invalidate systems
 
-A single inconsistency:
-
-→ collapses the validity of the structure.
+A contradiction invalidates a classical proof under its assumptions; software may instead reject, isolate, log or recover from an inconsistent input.
 
 This implies:
 
@@ -60,7 +58,7 @@ Examples:
 
 This shows:
 
-> Systems survive by rejecting inconsistency.
+> Some engineered systems use validation to reduce particular errors, subject to false positives, false negatives and overhead.
 
 ---
 
@@ -80,7 +78,7 @@ Examples:
 
 This suggests:
 
-> Nature itself operates as a validation system.
+> Physical laws describe dynamics; they do not establish that nature contains a universal fact-checking mechanism.
 
 ---
 
@@ -154,8 +152,7 @@ Systems that:
 
 Validation acts as a **filter**:
 
-- correct states pass  
-- incorrect states are rejected  
+- some states pass, others fail, and uncertain cases may require abstention or human review  
 
 This filtering process:
 
@@ -190,3 +187,9 @@ Some traditions describe reality in terms of:
 Zanistarast explores whether such descriptions
 correspond to structural validation processes.
 
+
+---
+
+## 12. Testable verification protocol (scientific revision, 2026-10-09)
+
+**Rasterast:** Keep syntax, logical consistency, source entailment, empirical accuracy, confidence calibration and policy compliance as separate tests. For factual claims, record source passage, date, independent reference label and abstention. Include coherent-but-false negative controls and report false-positive/false-negative rates and verification latency. Compare verification-on/off only under matched offered workload; account for verification overhead. **Alternative explanation:** verification may be activated preferentially during high load, confounding a simple observational stability comparison. A checksum establishes byte integrity, not truth. The proposed protocol has not yet been executed or independently reviewed.
