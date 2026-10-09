@@ -13,7 +13,7 @@ Across different domains, systems appear complex, yet they are built upon simple
 
 Zanistarast proposes that:
 
-> All structured systems originate from a unified base state.
+> Some systems can be modeled from a declared initial state. This observation alone does not establish a single physical origin across all domains.
 
 ---
 
@@ -41,7 +41,7 @@ Natural systems exhibit uniqueness within shared structure:
 
 This indicates:
 
-> A unified generative rule can produce infinite variation.
+> Shared components can produce diverse configurations; whether variation is infinite depends on the specified model and constraints.
 
 ---
 
@@ -85,7 +85,7 @@ but investigates whether such descriptions correspond to observable system behav
 
 ## 7. Conclusion
 
-A wide range of systems—mathematical, physical, and computational—can be modeled as emerging from a unified source.
+Selected systems admit root-state descriptions; a common physical source across domains remains an untested interpretation.
 
 Zanistarast formalizes this as:
 
@@ -107,3 +107,9 @@ Similar root-based structures appear in:
 
 Zanistarast attempts to formalize this recurring pattern.
 
+
+---
+
+## 9. Operational test and limitations (scientific revision, 2026-10-09)
+
+**Hebûn:** Declare a system's unit, boundary, identity criterion, time window and intervention before measurement. Compare component continuity, interaction-network membership and functional-boundary criteria in an independent holdout. **Alternative explanation:** similar patterns may arise from different mechanisms. **Counterexample:** symbiosis or distributed services admit competing boundaries. **Decision rule:** report held-out prediction error and uncertainty for each definition; if no definition generalizes, narrow the claim. Ehad → Tek → Yek are conceptual antecedents, not experimentally measured stages. DNA, snowflakes and code examples are analogies, not proofs of one physical source. This revision proposes a test; it does not report a completed experiment.
