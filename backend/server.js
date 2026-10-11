@@ -50,6 +50,7 @@ app.get("/health", (_req, res) => res.json({
   aiKeyConfigured: Boolean(process.env.OPENAI_API_KEY),
   // Readiness is distinct from process liveness.
   ready: Boolean(process.env.OPENAI_API_KEY) && Boolean(runtimeGateway) && Boolean(formalGateway),
+  // A readiness flag does not replace a real inference smoke test.
 }));
 
 app.post(
@@ -249,13 +250,14 @@ async function callOpenAI(systemPrompt, userPrompt, temperature = 0.35) {
 
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      signal: AbortSignal.timeout(25000),
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
       },
       body: JSON.stringify({
-        model: "gpt-4o-mini",
+        model: process.env.OPENAI_MODEL || "gpt-4o-mini",
         temperature,
         messages: [
           {
@@ -271,11 +273,8 @@ async function callOpenAI(systemPrompt, userPrompt, temperature = 0.35) {
     });
 
     if (!response.ok) {
-      const errorText = await response.text();
-      return {
-        ok: false,
-        error: `API error: ${errorText}`,
-      };
+      // Do not expose upstream responses: they may contain sensitive data.
+      return { ok: false, error: `AI provider returned HTTP ${response.status}` };
     }
 
     const data = await response.json();
@@ -331,8 +330,9 @@ app.post("/api/ask", async (req, res) => {
     const firstPass = await callOpenAI(systemPrompt, question, 0.35);
 
     if (!firstPass.ok) {
-      return res.status(500).json({
-        answer: firstPass.error,
+      return res.status(503).json({
+        answer: "AI provider unavailable",
+        error: firstPass.error,
       });
     }
 
