@@ -1,0 +1,102 @@
+{
+  "date": "2026-10-11",
+  "repository": "veysieken000-ctrl/zanistarast-ai-native-model",
+  "branch": "research/revision-2026-10",
+  "baseline_commit": "10ac2f8d78720b8c6a82dda59c8110cff94940d1",
+  "status": "isolated_proposals_not_original_word_verified",
+  "original_articles": {
+    "user_reported": 11,
+    "missing_original_number": 10,
+    "if_found": 12,
+    "independently_verified": false,
+    "copies_counted_as_new": false
+  },
+  "sources": [
+    {
+      "id": "K1",
+      "url": "https://openstax.org/books/microbiology/pages/3-3-unique-characteristics-of-prokaryotic-cells",
+      "level": "textbook_section_read"
+    },
+    {
+      "id": "K2",
+      "url": "https://science.nasa.gov/mission/hubble/science/science-behind-the-discoveries/hubble-dark-matter/",
+      "level": "official_overview_read"
+    },
+    {
+      "id": "K3",
+      "url": "https://science.nasa.gov/universe/overview/",
+      "level": "official_overview_read"
+    }
+  ],
+  "claims": [
+    {
+      "id": "V5",
+      "path": "core-01.html",
+      "line": 711,
+      "excerpt": "Hücre çekirdeği ve zar yapısı",
+      "source_ids": [
+        "K1"
+      ],
+      "classification": "empirical_generalization_risk",
+      "word_verified": false
+    },
+    {
+      "id": "V6",
+      "path": "core-01.html",
+      "line": 713,
+      "excerpt": "fizik sistem dışında kendi işleyiş",
+      "source_ids": [],
+      "classification": "internal_consistency",
+      "word_verified": false,
+      "comparison": {
+        "path": "backend/knowledge/C1_hebun_ontology.txt",
+        "line": 48,
+        "excerpt": "If a higher layer contradicts physical laws:"
+      }
+    },
+    {
+      "id": "V7",
+      "path": "core-01.html",
+      "line": 415,
+      "excerpt": "Merkez ve çevre kuralı evrensel bir yasa",
+      "source_ids": [
+        "K2"
+      ],
+      "classification": "ontological_hypothesis_not_observed",
+      "word_verified": false
+    },
+    {
+      "id": "V8",
+      "path": "core-02.html",
+      "line": 424,
+      "excerpt": "Hidrojen ile birleşimler sonucu",
+      "source_ids": [
+        "K3"
+      ],
+      "classification": "cosmological_mechanism_and_ambiguity",
+      "word_verified": false
+    }
+  ],
+  "navigation": [
+    {
+      "path": "hebun.html",
+      "line": 151,
+      "excerpt": "Hebûn</strong> → Zanabûn → Rasterast → Rabûn → Mabûn"
+    },
+    {
+      "path": "zanabun.html",
+      "line": 53,
+      "excerpt": "Hebûn → Zanabûn → Rasterast → Rabûn → Mabûn"
+    }
+  ],
+  "verification": {
+    "line_anchor_tests_passed": 9,
+    "line_anchor_tests_total": 9,
+    "source_ids_unique": true,
+    "source_references_valid": true,
+    "original_word_available": false,
+    "code_tests": "not_run_documentation_only",
+    "ci": "not_asserted",
+    "new_original_article_count": "not_inferred"
+  }
+}
