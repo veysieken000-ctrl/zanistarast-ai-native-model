@@ -216,55 +216,8 @@ RULES:
 `.trim();
 }
 
-function isBadSystemAnswer(question, answer, language) {
-  const q = normalizeText(question).toLowerCase();
-  const a = normalizeText(answer).toLowerCase();
-
-  if (!a || a.length < 120) return true;
-
-  const mustHaveEnglish = [
-    "ontological status",
-    "epistemic status",
-    "structural consistency",
-    "ethical impact",
-    "final classification",
-  ];
-
-  const mustHaveTurkish = [
-    "ontolojik",
-    "epistemik",
-    "tutarl",
-    "etik",
-    "sınıflandır",
-  ];
-
-  const isTurkish = language === "tr-TR" || (!language && detectTurkish(question));
-
-  if (isTurkish) {
-    const foundCount = mustHaveTurkish.filter((x) => a.includes(x)).length;
-    if (foundCount < 3) return true;
-    if (!a.includes("truth") && !a.includes("false") && !a.includes("doğru") && !a.includes("yanlış")) {
-      return true;
-    }
-  } else {
-    const missing = mustHaveEnglish.filter((x) => !a.includes(x));
-    if (missing.length >= 2) return true;
-    if (!a.includes("truth") && !a.includes("false")) return true;
-  }
-
-  if (
-    q.includes("iddia") ||
-    q.includes("claim") ||
-    q.includes("hak") ||
-    q.includes("truth") ||
-    q.includes("falsehood") ||
-    q.includes("doğru") ||
-    q.includes("yanlış")
-  ) {
-    return false;
-  }
-
-  return false;
+function isBadSystemAnswer(_question, answer, _language) {
+  return !normalizeText(answer) || normalizeText(answer).length < 40;
 }
 
 function buildRepairSystemPrompt(question, ragContext, firstAnswer, languageRule) {
