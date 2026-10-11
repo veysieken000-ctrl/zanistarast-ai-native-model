@@ -105,7 +105,7 @@ function scoreChunk(question, chunk) {
   let score = 0;
 
   for (const word of qWords) {
-    if (text.includes(word)) {
+    if (new RegExp(`(?:^|\\s)${word}(?:\\s|$)`, "u").test(text)) {
       score += word.length >= 6 ? 3 : 1;
     }
   }
