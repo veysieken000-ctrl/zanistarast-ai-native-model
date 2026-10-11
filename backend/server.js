@@ -42,7 +42,15 @@ try {
   console.error("Mira engine routes unavailable:", error.message);
 }
 
-app.get("/health", (_req, res) => res.json({ ok: true, service: "zanistarast-ai-server" }));
+app.get("/health", (_req, res) => res.json({
+  ok: true,
+  service: "zanistarast-ai-server",
+  runtimeGatewayLoaded: Boolean(runtimeGateway),
+  formalGatewayLoaded: Boolean(formalGateway),
+  aiKeyConfigured: Boolean(process.env.OPENAI_API_KEY),
+  // Readiness is distinct from process liveness.
+  ready: Boolean(process.env.OPENAI_API_KEY) && Boolean(runtimeGateway) && Boolean(formalGateway),
+}));
 
 app.post(
     "/api/runtime/init",
