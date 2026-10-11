@@ -5,13 +5,22 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { buildRagContext } from "./rag_search.js";
-import miEngineRoutes from "./routes/mi_engine.js";
+import { createRequire } from "node:module";
 
-const runtimeGateway =
-    require("../api/runtime_gateway");
+const require = createRequire(import.meta.url);
 
-const formalGateway =
-    require("../api/zanistarast_formal_gateway");
+let runtimeGateway = null;
+let formalGateway = null;
+try {
+  runtimeGateway = require("../api/runtime_gateway");
+} catch (error) {
+  console.error("Runtime gateway unavailable:", error.message);
+}
+try {
+  formalGateway = require("../api/zanistarast_formal_gateway");
+} catch (error) {
+  console.error("Formal gateway unavailable:", error.message);
+}
 
 dotenv.config();
 
@@ -24,29 +33,38 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-app.use("/api", miEngineRoutes);
+// Optional integration: do not prevent the main server from starting when a
+// separately developed Mira route is absent from this deployment.
+try {
+  const { default: miEngineRoutes } = await import("./routes/mi_engine.js");
+  app.use("/api", miEngineRoutes);
+} catch (error) {
+  console.error("Mira engine routes unavailable:", error.message);
+}
+
+app.get("/health", (_req, res) => res.json({ ok: true, service: "zanistarast-ai-server" }));
 
 app.post(
     "/api/runtime/init",
-    runtimeGateway.initialize
+    runtimeGateway ? runtimeGateway.initialize.bind(runtimeGateway) : (_req, res) => res.status(503).json({ success: false, error: "Runtime gateway unavailable" })
 );
 
 app.post(
     "/api/runtime/process",
-    runtimeGateway.process
+    runtimeGateway ? runtimeGateway.process.bind(runtimeGateway) : (_req, res) => res.status(503).json({ success: false, error: "Runtime gateway unavailable" })
 );
 
 app.get(
     "/api/runtime/health",
-    runtimeGateway.health
+    runtimeGateway ? runtimeGateway.health.bind(runtimeGateway) : (_req, res) => res.status(503).json({ success: false, error: "Runtime gateway unavailable" })
 );
 
 app.post("/api/formal/verify", (req, res) => {
 
     try {
 
-        const result =
-            formalGateway.verify(req.body);
+        if (!formalGateway) return res.status(503).json({ success: false, error: "Formal gateway unavailable" });
+        const result = formalGateway.verify(req.body);
 
         res.json({
             success: true,
@@ -399,59 +417,10 @@ async function callOpenAI(systemPrompt, userPrompt, temperature = 0.35) {
     };
   }
 }
-function enforceTruthFormat(answer, language) {
-  const text = normalizeText(answer);
-  const lower = text.toLowerCase();
-
-  const required = [
-    "ontological status",
-    "epistemic status",
-    "structural consistency",
-    "ethical impact",
-    "final classification",
-  ];
-
-  const hasTruthDecision =
-    lower.includes("final classification") &&
-    (lower.includes("truth") || lower.includes("false"));
-
-  const missing = required.filter((x) => !lower.includes(x));
-
-  if (missing.length >= 2 || !hasTruthDecision) {
-    if (language === "tr-TR") {
-      return `Ontological Status:
-Weak
-
-Epistemic Status:
-Insufficient evidence
-
-Structural Consistency:
-Weak
-
-Ethical Impact:
-Risk of confusion
-
-Final Classification:
-FALSE`;
-    }
-
-    return `Ontological Status:
-Weak
-
-Epistemic Status:
-Insufficient evidence
-
-Structural Consistency:
-Weak
-
-Ethical Impact:
-Risk of confusion
-
-Final Classification:
-FALSE`;
-  }
-
-  return text;
+function enforceTruthFormat(answer, _language) {
+  // Never manufacture a FALSE verdict when a model response is malformed.
+  // Preserve the actual response so failures remain visible to callers.
+  return normalizeText(answer) || "No model answer was returned.";
 }
 
 app.post("/api/ask", async (req, res) => {
