@@ -80,14 +80,15 @@ function loadKnowledgeChunks() {
   for (const file of coreFiles) {
     const html = fs.readFileSync(path.join(coreDir, file), "utf8");
     const plain = html
-      .replace(/<script\\b[^>]*>[\\s\\S]*?<\\/script>/gi, " ")
-      .replace(/<style\\b[^>]*>[\\s\\S]*?<\\/style>/gi, " ")
+      .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ")
+      .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ")
+      .replace(/<\/(?:p|div|section|article|h[1-6]|li|br)>/gi, "\n\n")
       .replace(/<[^>]+>/g, " ")
       .replace(/&nbsp;|&#160;/gi, " ")
       .replace(/&amp;/gi, "&")
       .replace(/&lt;/gi, "<")
       .replace(/&gt;/gi, ">")
-      .replace(/\\s+/g, " ").trim();
+      .replace(/[ \t]+/g, " ").trim();
     splitIntoChunks(plain).forEach((content, index) => chunks.push({
       id: `${file}#${index + 1}`, title: file, domain: "core",
       layer: "core-html", content
