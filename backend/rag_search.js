@@ -47,13 +47,17 @@ function splitIntoChunks(text, maxLength = 700) {
 }
 
 function loadKnowledgeChunks() {
-  if (!fs.existsSync(KNOWLEDGE_DIR)) {
-    return [];
-  }
-
-  const files = fs
-    .readdirSync(KNOWLEDGE_DIR)
+  const files = (fs.existsSync(KNOWLEDGE_DIR) ? fs
+    .readdirSync(KNOWLEDGE_DIR, { withFileTypes: true }) : [])
+    .filter((entry) => entry.isFile())
+    .map((entry) => entry.name)
     .filter((file) => file.endsWith(".txt") || file.endsWith(".md"));
+
+  // Core HTML is the canonical structured article source. Read it as well as
+  // supporting text notes, without changing the original HTML files.
+  const coreDir = path.resolve(__dirname, "..");
+  const coreFiles = fs.readdirSync(coreDir)
+    .filter((file) => /^core-[\\w-]+\\.html$/i.test(file));
 
   const chunks = [];
 
@@ -71,6 +75,23 @@ function loadKnowledgeChunks() {
         content
       });
     });
+  }
+
+  for (const file of coreFiles) {
+    const html = fs.readFileSync(path.join(coreDir, file), "utf8");
+    const plain = html
+      .replace(/<script\\b[^>]*>[\\s\\S]*?<\\/script>/gi, " ")
+      .replace(/<style\\b[^>]*>[\\s\\S]*?<\\/style>/gi, " ")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/&nbsp;|&#160;/gi, " ")
+      .replace(/&amp;/gi, "&")
+      .replace(/&lt;/gi, "<")
+      .replace(/&gt;/gi, ">")
+      .replace(/\\s+/g, " ").trim();
+    splitIntoChunks(plain).forEach((content, index) => chunks.push({
+      id: `${file}#${index + 1}`, title: file, domain: "core",
+      layer: "core-html", content
+    }));
   }
 
   return chunks;
