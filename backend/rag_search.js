@@ -57,7 +57,7 @@ function loadKnowledgeChunks() {
   // supporting text notes, without changing the original HTML files.
   const coreDir = path.resolve(__dirname, "..");
   const coreFiles = fs.readdirSync(coreDir)
-    .filter((file) => /^core-[\\w-]+\\.html$/i.test(file));
+    .filter((file) => /^core-[\w-]+\.html$/i.test(file));
 
   const chunks = [];
 
