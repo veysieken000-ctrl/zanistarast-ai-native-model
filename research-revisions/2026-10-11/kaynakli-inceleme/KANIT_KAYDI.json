@@ -1,0 +1,230 @@
+{
+  "repository": "veysieken000-ctrl/zanistarast-ai-native-model",
+  "branch": "research/revision-2026-10",
+  "baseline_commit": "9b932b417aa0a8cebc53152c5fc0a599cdc7e379",
+  "baseline_tree": "ffeda2db6fd357b66b3b9173b5af053676322578",
+  "main_before": "e2699a2eea2288779796138b7b96d65a17b5aa8e",
+  "date": "2026-10-11",
+  "original_word_comparison": "blocked_missing_files",
+  "original_article_count": {
+    "user_provided": 11,
+    "if_missing_original_10_found": 12,
+    "independently_verified": false,
+    "copies_counted_separately": false
+  },
+  "sources": [
+    {
+      "id": "S1",
+      "url": "https://physics.nist.gov/PhysRefData/Handbook/Tables/hydrogentable1.htm",
+      "type": "official_atomic_data",
+      "read": "table"
+    },
+    {
+      "id": "S2",
+      "url": "https://home.web.cern.ch/science/physics/standard-model/",
+      "type": "official_science_explanation",
+      "read": "matter_particles_and_forces_sections"
+    },
+    {
+      "id": "S3",
+      "url": "https://science.nasa.gov/universe/stars/",
+      "type": "official_science_explanation",
+      "read": "stellar_fusion_sections"
+    },
+    {
+      "id": "S4",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26315443/",
+      "doi": "10.1126/science.aac4716",
+      "type": "primary_research",
+      "read": "bibliography_and_abstract_only"
+    },
+    {
+      "id": "S5",
+      "url": "https://courses.washington.edu/anmind/Harding%20etal%20on%20cognitive%20bias%20-%20Nature%202004.pdf",
+      "doi": "10.1038/427312a",
+      "type": "primary_research",
+      "read": "paper_pdf_methods_results_figure"
+    },
+    {
+      "id": "S6",
+      "url": "https://www.worldbank.org/en/topic/socialprotectionandjobs/publication/exploring-universal-basic-income-a-guide-to-navigating-concepts-evidence-and-practices",
+      "type": "official_report_overview",
+      "read": "overview_only"
+    }
+  ],
+  "claims": [
+    {
+      "id": "V1",
+      "path": "core-01.html",
+      "line": 156,
+      "excerpt": "Üç bileşen; atomda proton, nötron ve elektron;",
+      "source_ids": [
+        "S1"
+      ],
+      "evidence_type": "source_supported_correction_or_methodological_inference",
+      "word_verified": false
+    },
+    {
+      "id": "V2",
+      "path": "core-01.html",
+      "line": 246,
+      "excerpt": "üç çekim kuvvetinin birleşmesiyle ortaya çıkan ilk sistemdir.",
+      "source_ids": [
+        "S1",
+        "S2"
+      ],
+      "evidence_type": "source_supported_correction_or_methodological_inference",
+      "word_verified": false
+    },
+    {
+      "id": "V3",
+      "path": "core-01.html",
+      "line": 252,
+      "excerpt": "Daha ağır atomlar bu çekim sistemi üzerinden oluşur.",
+      "source_ids": [
+        "S3"
+      ],
+      "evidence_type": "source_supported_correction_or_methodological_inference",
+      "word_verified": false
+    },
+    {
+      "id": "V4",
+      "path": "core-01.html",
+      "line": 325,
+      "excerpt": "altı boyut halinde incelenebilir.",
+      "source_ids": [],
+      "evidence_type": "methodological_assessment",
+      "word_verified": false
+    },
+    {
+      "id": "A1",
+      "path": "core-03.html",
+      "line": 450,
+      "excerpt": "Bu ilişkinin bir ikinci özne tarafından onaylanması",
+      "source_ids": [
+        "S4"
+      ],
+      "evidence_type": "source_supported_correction_or_methodological_inference",
+      "word_verified": false
+    },
+    {
+      "id": "A2",
+      "path": "core-03.html",
+      "line": 478,
+      "excerpt": "Bir bilgi, doğal düzene uygun ise geçerlidir.",
+      "source_ids": [],
+      "evidence_type": "methodological_assessment",
+      "word_verified": false
+    },
+    {
+      "id": "A3",
+      "path": "core-03.html",
+      "line": 77,
+      "excerpt": "ancak nesne ile aynı doğrusal düzlemde bulunmasıyla mümkündür.",
+      "source_ids": [],
+      "evidence_type": "methodological_assessment",
+      "word_verified": false
+    },
+    {
+      "id": "D1",
+      "path": "core-05.html",
+      "line": 105,
+      "excerpt": "Duygu yalnızca insanlarda gözlemlenen bir his olduğundan",
+      "source_ids": [
+        "S5"
+      ],
+      "evidence_type": "source_supported_correction_or_methodological_inference",
+      "word_verified": false
+    },
+    {
+      "id": "D2",
+      "path": "core-05.html",
+      "line": 456,
+      "excerpt": "Hayvanlarda olmadığı için zekâlarına göre içgüdüleri harekete geçer.",
+      "source_ids": [
+        "S5"
+      ],
+      "evidence_type": "source_supported_correction_or_methodological_inference",
+      "word_verified": false
+    },
+    {
+      "id": "E1",
+      "path": "core-12-yasam-temelli-ekonomi.html",
+      "line": 121,
+      "excerpt": "Temel yaşam hizmetleri insanın doğuştan hakkıdır",
+      "source_ids": [
+        "S6"
+      ],
+      "evidence_type": "source_supported_correction_or_methodological_inference",
+      "word_verified": false
+    },
+    {
+      "id": "E2",
+      "path": "core-12-yasam-temelli-ekonomi.html",
+      "line": 81,
+      "excerpt": "Sonuç → güven ve süreklilik",
+      "source_ids": [
+        "S6"
+      ],
+      "evidence_type": "source_supported_correction_or_methodological_inference",
+      "word_verified": false
+    }
+  ],
+  "fetched_files": [
+    {
+      "path": "CONTRIBUTING.md",
+      "sha": "c9fcb4d213d9323b043ce9c9e7ebd1572b7bac67",
+      "reading_scope": "full_text"
+    },
+    {
+      "path": "PROJECT_LOCK.md",
+      "sha": "c3154f34cee4df8de0777a61997af615d81ce709",
+      "reading_scope": "full_text"
+    },
+    {
+      "path": "core-01.html",
+      "sha": "d5aa5208e7d1af687676af3d04b53fd74de61f18",
+      "reading_scope": "targeted_scientific_passages"
+    },
+    {
+      "path": "core-02.html",
+      "sha": "e02a8301f5259face7c146684cf7698289237b20",
+      "reading_scope": "title_and_structure"
+    },
+    {
+      "path": "core-03.html",
+      "sha": "6895cf5e3c1ff5bc23d6c57767e9b180c5022d2b",
+      "reading_scope": "targeted_scientific_passages"
+    },
+    {
+      "path": "core-04.html",
+      "sha": "d20794b598d7fee789d998924d026d8b1379bb48",
+      "reading_scope": "title_and_structure"
+    },
+    {
+      "path": "core-05.html",
+      "sha": "d3180d0fe0c1b370a7122f835e35b3a8483fd775",
+      "reading_scope": "targeted_scientific_passages"
+    },
+    {
+      "path": "core-12-yasam-temelli-ekonomi.html",
+      "sha": "35211b737a12e4e97fc3efb769bf0d81bd8a7cd6",
+      "reading_scope": "targeted_scientific_passages"
+    },
+    {
+      "path": "research-revisions/2026-10-11/ONCELIKLI_DORT_MAKALE_ILK_REVIZYON.md",
+      "sha": "424b7a59038fe33a41f7edc6c445282577f8e301",
+      "reading_scope": "full_text"
+    },
+    {
+      "path": ".github/workflows/zanistarast-autonomous_pulse.yml",
+      "sha": "35171c055e7448932d9fdcd0cd5429ecf92430fc",
+      "reading_scope": "full_text"
+    },
+    {
+      "path": ".github/workflows/zanistarast_autonomous_pulse.yml",
+      "sha": "35171c055e7448932d9fdcd0cd5429ecf92430fc",
+      "reading_scope": "full_text"
+    }
+  ]
+}
