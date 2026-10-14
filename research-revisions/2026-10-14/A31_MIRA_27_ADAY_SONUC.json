@@ -1,0 +1,35 @@
+{
+  "title": "A31 Mira candidate-document triage",
+  "date": "2026-10-14",
+  "source_repo": "veysieken000-ctrl/zanistarast-papers",
+  "source_workflow_run_id": 38532005193,
+  "source_head_sha": "e35571488bc4b02c728c9a00da7829c821e44b18",
+  "artifact_id": 11878745627,
+  "artifact_sha256": "491a1c5ef6e6a1c79116518b1f0a9f9d0c22cb7b37870654402a93e93fec98ea",
+  "candidate_documents": 27,
+  "unique_paths": 27,
+  "category_counts": {
+    "architecture": 10,
+    "scientific_platform_runtime": 5,
+    "formal_foundations": 3,
+    "native_ai": 1,
+    "other_phase_documents": 8
+  },
+  "total_heuristic_word_count": 34985,
+  "selected_journal": 0,
+  "references_verified": 0,
+  "simulations_verified": 0,
+  "mathematical_proofs_verified": 0,
+  "heuristic_all_sections_absent": 27,
+  "original_manuscripts_user_reported": 11,
+  "original_manuscript_identities_verified": 0,
+  "original_number_10": "unresolved_not_substituted",
+  "original_11_readiness": "unknown",
+  "local_unit_tests": {
+    "passed": 14,
+    "total": 14
+  },
+  "github_ci_verified": false,
+  "science_core_v1": "closed",
+  "production_changes": false
+}
