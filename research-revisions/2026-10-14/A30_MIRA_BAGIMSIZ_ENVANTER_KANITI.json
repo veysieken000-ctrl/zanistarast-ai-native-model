@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-14",
+  "source_repository": "veysieken000-ctrl/zanistarast-papers",
+  "workflow_run_id": 38532005193,
+  "workflow_run_url": "https://github.com/veysieken000-ctrl/zanistarast-papers/actions/runs/38532005193",
+  "artifact_id": 11878745627,
+  "artifact_name": "manuscript-readiness-inventory",
+  "artifact_sha256": "491a1c5ef6e6a1c79116518b1f0a9f9d0c22cb7b37870654402a93e93fec98ea",
+  "workflow_status": "success",
+  "candidate_document_count": 27,
+  "unique_source_paths": 27,
+  "readiness_counts": {
+    "needs_journal_selection": 27
+  },
+  "target_journal_selected_count": 0,
+  "heuristic_section_presence_counts": {
+    "abstract": 0,
+    "introduction": 0,
+    "methods": 0,
+    "results": 0,
+    "discussion": 0,
+    "references": 0
+  },
+  "references_verified_count": 0,
+  "simulations_verified_count": 0,
+  "mathematical_proofs_verified_count": 0,
+  "original_manuscript_identity_verified_count": 0,
+  "original_manuscript_count_user_reported": 11,
+  "original_number_10_status": "not_mapped",
+  "interpretation": "This is a heuristic readiness audit of 27 candidate documentation files. It does not identify or certify the 11 original manuscripts and does not prove the sections are absent from other source files. No paper is publication-ready on this evidence.",
+  "science_core_v1": "closed",
+  "production_changes": false
+}
