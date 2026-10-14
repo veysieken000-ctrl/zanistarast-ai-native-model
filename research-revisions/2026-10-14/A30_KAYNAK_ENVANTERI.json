@@ -1,0 +1,184 @@
+{
+  "title": "A30 source provenance inventory",
+  "date": "2026-10-14",
+  "source_repo": "veysieken000-ctrl/zanistarast-ai-native-model",
+  "ref": "main",
+  "git_tree_sha": "e2699a2eea2288779796138b7b96d65a17b5aa8e",
+  "git_tree_truncated": false,
+  "tree_blob_count": 740,
+  "core_count": 13,
+  "original_manuscript_count_user_reported": 11,
+  "original_manuscript_mapping_verified": false,
+  "missing_original_number_10_status": "unresolved_not_substituted",
+  "core": [
+    {
+      "path": "core-01.html",
+      "git_blob_sha": "d5aa5208e7d1af687676af3d04b53fd74de61f18",
+      "has_original_label": false,
+      "verified_original": false,
+      "git_readback_sha_match": true,
+      "html_title_h1_present": true
+    },
+    {
+      "path": "core-02.html",
+      "git_blob_sha": "e02a8301f5259face7c146684cf7698289237b20",
+      "has_original_label": false,
+      "verified_original": false,
+      "git_readback_sha_match": true,
+      "html_title_h1_present": true
+    },
+    {
+      "path": "core-03.html",
+      "git_blob_sha": "6895cf5e3c1ff5bc23d6c57767e9b180c5022d2b",
+      "has_original_label": false,
+      "verified_original": false,
+      "git_readback_sha_match": true,
+      "html_title_h1_present": true
+    },
+    {
+      "path": "core-04.html",
+      "git_blob_sha": "d20794b598d7fee789d998924d026d8b1379bb48",
+      "has_original_label": false,
+      "verified_original": false,
+      "git_readback_sha_match": true,
+      "html_title_h1_present": true
+    },
+    {
+      "path": "core-05.html",
+      "git_blob_sha": "d3180d0fe0c1b370a7122f835e35b3a8483fd775",
+      "has_original_label": true,
+      "verified_original": false,
+      "git_readback_sha_match": true,
+      "html_title_h1_present": true
+    },
+    {
+      "path": "core-06-bilim.html",
+      "git_blob_sha": "b85f3e137c2a907a4ea7ceca33d6e664d3ab5ee6",
+      "has_original_label": false,
+      "verified_original": false,
+      "git_readback_sha_match": true,
+      "html_title_h1_present": true
+    },
+    {
+      "path": "core-07-hukuk.html",
+      "git_blob_sha": "8c11ab88ecb05e6e13b6ae119526d0b6feeff68e",
+      "has_original_label": false,
+      "verified_original": false,
+      "git_readback_sha_match": true,
+      "html_title_h1_present": true
+    },
+    {
+      "path": "core-08-insan-ve-toplum.html",
+      "git_blob_sha": "e07a540777cb4196ef2288554df3c2cbfecae775",
+      "has_original_label": false,
+      "verified_original": false,
+      "git_readback_sha_match": true,
+      "html_title_h1_present": true
+    },
+    {
+      "path": "core-09-kurdistan-ortadogu-varlik-tarihi.html",
+      "git_blob_sha": "235ab92f28dd1daf42d0c2883fd5816109c71ceb",
+      "has_original_label": false,
+      "verified_original": false,
+      "git_readback_sha_match": true,
+      "html_title_h1_present": true
+    },
+    {
+      "path": "core-10-estetik-sanat-guzellik.html",
+      "git_blob_sha": "9447bfbc3c2e8ca27108bafe761021c5c6dcdc96",
+      "has_original_label": false,
+      "verified_original": false,
+      "git_readback_sha_match": true,
+      "html_title_h1_present": true
+    },
+    {
+      "path": "core-11-zanistarast-egitim-sistemi.html",
+      "git_blob_sha": "f581c0310e0b7e7cc1d104ed53d1e76484a80e8e",
+      "has_original_label": false,
+      "verified_original": false,
+      "git_readback_sha_match": true,
+      "html_title_h1_present": true
+    },
+    {
+      "path": "core-12-yasam-temelli-ekonomi.html",
+      "git_blob_sha": "35211b737a12e4e97fc3efb769bf0d81bd8a7cd6",
+      "has_original_label": false,
+      "verified_original": false,
+      "git_readback_sha_match": true,
+      "html_title_h1_present": true
+    },
+    {
+      "path": "core-13-zanistarast-medeniyet-modeli.html",
+      "git_blob_sha": "6a6c822a1910fd5f422eb1a0f2a50201566694ff",
+      "has_original_label": false,
+      "verified_original": false,
+      "git_readback_sha_match": true,
+      "html_title_h1_present": true
+    }
+  ],
+  "other_numbered_series_count": 12,
+  "number_10_candidates": [
+    {
+      "path": "10_TIME_THEORY_RESPONSIBILITY_AND_JUDGMENT.html",
+      "git_blob_sha": "361b87bb6c27ad546b85cf90539315a9db4e7de5",
+      "original_manuscript_verified": false
+    },
+    {
+      "path": "core-10-estetik-sanat-guzellik.html",
+      "git_blob_sha": "9447bfbc3c2e8ca27108bafe761021c5c6dcdc96",
+      "original_manuscript_verified": false
+    },
+    {
+      "path": "makale-10-00-ilahi-tekillik-paradoksu.html",
+      "git_blob_sha": "f0d021d58d92e6adac8afd63f01ebc4f4eee9ce1",
+      "original_manuscript_verified": false
+    },
+    {
+      "path": "makale-10-01-varlik-bilgi-ve-zaman-paradokslari.html",
+      "git_blob_sha": "b9ece0769167e6e8c702a8d847d1057e1e959360",
+      "original_manuscript_verified": false
+    },
+    {
+      "path": "makale-10-02-gozlem-parca-butun-ve-benlik-paradokslari.html",
+      "git_blob_sha": "be3af57407e5fb13ad890e522f12ac7e2b7fb66f",
+      "original_manuscript_verified": false
+    },
+    {
+      "path": "makale-10-03-ozgur-irade-ahlak-ve-kotuluk-paradokslari.html",
+      "git_blob_sha": "4e3592fa248def020b9d1a7a3e9790db75d30d79",
+      "original_manuscript_verified": false
+    },
+    {
+      "path": "makale-10-04-bilim-din-ve-ilahi-tekillik-paradokslari.html",
+      "git_blob_sha": "c1df346f405147fe16fcf19722eb7448a7d487bc",
+      "original_manuscript_verified": false
+    },
+    {
+      "path": "makale-10-05-paradokslarin-sonu.html",
+      "git_blob_sha": "8cac5c427fa437e893c884c0f0a0004b434dbc54",
+      "original_manuscript_verified": false
+    },
+    {
+      "path": "makale-10-dogum-olum-ve-tanikligin-sinirlari.html",
+      "git_blob_sha": "8c1ec4a6c6179ea999d83cfeab1809dae6d77073",
+      "original_manuscript_verified": false
+    },
+    {
+      "path": "makale-10-paradokslar-ve-rasterast-cozumleri.html",
+      "git_blob_sha": "0337e26ee55a75c4bc480f380436a9d050e531a0",
+      "original_manuscript_verified": false
+    }
+  ],
+  "tests": {
+    "tree_complete": true,
+    "core_count_13": true,
+    "core_numbers_unique_1_to_13": true,
+    "core_shas_40_hex": true,
+    "all_13_core_read_sha_match": true,
+    "all_13_have_title_and_h1": true,
+    "core_10_exists": true,
+    "numbered_00_to_11_12_files": true,
+    "distinct_number_10_candidates": true,
+    "original_labels_not_11": true
+  }
+}
