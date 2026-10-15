@@ -1,0 +1,81 @@
+{
+  "id": "A39",
+  "date": "2026-10-15",
+  "kind": "synthetic_discrete_threshold_and_source_trace_audit",
+  "canonical_source_blob_shas": {
+    "core-01.html": "d5aa5208e7d1af687676af3d04b53fd74de61f18",
+    "core-03.html": "6895cf5e3c1ff5bc23d6c57767e9b180c5022d2b",
+    "core-05.html": "d3180d0fe0c1b370a7122f835e35b3a8483fd775",
+    "core-12-yasam-temelli-ekonomi.html": "35211b737a12e4e97fc3efb769bf0d81bd8a7cd6"
+  },
+  "source_claim_correction": "Core05 refers to human-specific moral agency/free will, not to emotions being observed only in humans",
+  "baseline_A38": {
+    "optimum": "1/2",
+    "fractional_upper_bound": "5/8",
+    "budgets": [
+      16,
+      10,
+      12,
+      12
+    ]
+  },
+  "discrete_optimum": {
+    "minimum_allocation": [
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "resource_use": [
+      8,
+      8,
+      6,
+      6
+    ],
+    "unused_capacity": [
+      8,
+      2,
+      6,
+      6
+    ],
+    "next_required_resource_use": [
+      16,
+      16,
+      12,
+      12
+    ]
+  },
+  "volume_capacity_thresholds": {
+    "0_to_7": "0",
+    "8_to_15": "1/2",
+    "16_and_above": "1"
+  },
+  "tests": {
+    "A39_unit": "12/12 PASS",
+    "independent_random_cases": 300,
+    "independent_volume_cases": 21,
+    "A38_regression": "18/18 PASS"
+  },
+  "local_python_sha256": "e6bc849b5729c10e919c28303ac5cfa5ecca4c9ed35cd07690ec39c9df0c9129",
+  "original_11_authoritative_mapping_verified": false,
+  "original_10_separate_missing": true,
+  "science_core_v1": "closed",
+  "empirical_validation": false,
+  "publication_ready": false,
+  "production_modified": false,
+  "external_provider_success": {
+    "OpenAI": "not verified",
+    "Gemini": "not verified",
+    "Ollama": "not verified",
+    "llama.cpp": "not verified"
+  },
+  "render_last_verified_live_deploy": {
+    "timestamp_utc": "2026-10-14T21:31:08Z",
+    "commit": "c2a33b592e0638385c8b0a18aec31fb44af45854"
+  },
+  "limitations": "Source HTML Git blob hashes read via GitHub connector; no independent local source byte rehash; synthetic model only; code/test logs local not in this commit"
+}
