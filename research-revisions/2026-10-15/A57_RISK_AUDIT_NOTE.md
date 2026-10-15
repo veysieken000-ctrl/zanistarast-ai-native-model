@@ -1,0 +1,3 @@
+# A57 risk audit (2026-10-15)
+
+For two equiprobable demands (2,1) and (1,2), stock 3, integer allocation has robust minimum coverage 1/2 while divisible allocation (1.5,1.5) guarantees 3/4. With a signal (accuracy .8, timely probability .6, cost .05), two late-signal fallback policies both yield net mean .79, but P(coverage < .75) differs: .32 for integer fallback versus .12 for balanced fallback. A randomized information-purchase policy with probability 5/12 meets failure cap .05 and has net mean 23/30. This is a synthetic model, not empirical evidence. Exact 192 parameter checks and Monte Carlo n=200000 passed. Local code SHA256 7e62663fea2c1dba0952fc1a76e9d0467e5441f31414c83311efbaee924e05f2. No canonical changes; Science Core v1 closed.
