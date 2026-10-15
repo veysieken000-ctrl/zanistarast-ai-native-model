@@ -1,0 +1,3 @@
+# A61 — Galaxy-level pilot audit
+
+Date: 2026-10-16. Three galaxies, 152 SPARC-derived radial points; 3 independent galaxy clusters, not 152. RAR wins over flat-velocity baseline on 2/3 outer-radius tests; exact one-sided sign-test p=0.5. A no-leakage leave-one-galaxy-out stellar M/L selection (0.2–0.8 grid) worsened held-out RMSE in 2 galaxies and tied in one relative to fixed M/L=0.5. A smooth common-radius synthetic counterexample showed 0/1000 shuffled mappings outperform aligned mapping without any causal edge. These checks limit, not prove, physical interpretation. Main, canonical Core HTML and Science Core v1 untouched; original paper #10 remains unverified. Full local code/results available outside repository. Live provider success unverified.
