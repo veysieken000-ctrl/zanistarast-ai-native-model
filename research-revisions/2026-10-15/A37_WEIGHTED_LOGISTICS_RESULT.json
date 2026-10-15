@@ -1,0 +1,21 @@
+{
+  "id": "A37",
+  "date": "2026-10-15",
+  "kind": "synthetic_weighted_logistics",
+  "weights_kg_per_package": [
+    1,
+    3
+  ],
+  "capacity_kg": 10,
+  "naive_equal_weights": "1",
+  "weighted_fractional_baseline": "5/8",
+  "weighted_integer_optimum": "1/2",
+  "unit_tests": "14/14 PASS",
+  "independent_oracle_cases": 600,
+  "local_python_sha256": "c4af7a6c96a9881febdb85d2d8c13035c757b65f4015cd344dde85e5b4271556",
+  "original_11_mapped": false,
+  "original_10_missing": true,
+  "science_core_v1": "closed",
+  "publication_ready": false,
+  "production_modified": false
+}
