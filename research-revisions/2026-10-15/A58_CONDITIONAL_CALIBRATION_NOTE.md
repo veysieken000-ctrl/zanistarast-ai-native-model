@@ -1,0 +1,9 @@
+# A58 — Conditional accuracy and robust calibration (2026-10-15)
+
+Core 01/03/05/12 were read-only verified; A57 isolated note was re-read. A57's risk formula r*q*(1-p) requires p = P(signal correct | signal timely), not global accuracy. Counterexample: q=0.6 and global accuracy=0.8 in both worlds. World A has timely accuracy=0.7, late accuracy=0.95; World B has timely accuracy=0.9, late accuracy=0.65. At r=5/12, risk P(coverage<0.75) is 0.075 vs 0.025, despite identical global accuracy and timeliness. Thus global calibration cannot certify the 0.05 risk cap.
+
+With timely accuracy in [0.75,0.85] and timeliness in [0.55,0.65], cost 0.05, risk cap 0.05, robust purchase probability is r=4/13, worst-case net score 393/520, max risk 0.05. Nominal r=5/12 has worst-case risk 0.0677083. Hoeffding simultaneous 95% intervals from illustrative iid Bernoulli sample estimates p_hat=0.8, q_hat=0.6 (n_p=n_q=4000) give robust r≈0.359012, worst-case net≈0.760678, risk≤0.05 under sampling/model assumptions.
+
+Local Python checks: 320 exact enumerations; 108 robust rectangles x 101 policy candidates; 500 synthetic calibration replications (joint interval coverage 499/500, risk violations 0/500); A57 regression passed. Local code SHA256: 66392ec27013974eb00a6292935426ae33d3e7f213e24056b62a936eb29c7d5c. No empirical field data, no original-theorem claim, no publication readiness. Hoeffding (1963), JASA 58(301), 13-30, DOI 10.1080/01621459.1963.10500830.
+
+11 original papers remain distinct from 13 Core HTML; original #10 unresolved. Science Core v1 closed; no canonical/main/production modifications.
