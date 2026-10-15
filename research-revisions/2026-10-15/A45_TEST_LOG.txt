@@ -1,0 +1,6 @@
+A45 PASS: exact threshold, counterexamples, funding timing, ecology, randomized oracle
+random_scenarios: 1000
+seed: 4515
+engine: Python 3 standard library fractions.Fraction
+code SHA256 (local): a6d37df6d53be3e890cf22aebbed8073560464f80d9c7e0680b6cf402b9f7dd8
+Note: tests were run locally, not by GitHub CI; code upload not verified.
