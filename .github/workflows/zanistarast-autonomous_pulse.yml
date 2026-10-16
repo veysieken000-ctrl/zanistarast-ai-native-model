@@ -5,53 +5,89 @@ on:
     branches:
       - main
   schedule:
-    # Every 15 minutes, every day, offset from the hour to reduce GitHub scheduling congestion.
-    - cron: '7,22,37,52 * * * *'
+    # Hourly, off the hour to reduce GitHub scheduling congestion.
+    - cron: '17 * * * *'
   workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
 
 jobs:
   rasterast-validation:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Check whether a full validation is needed
+        id: freshness_gate
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          run_validation=true
+          # Push and manual runs always validate. Recheck unchanged code once daily (03:17 UTC).
+          if [[ "$GITHUB_EVENT_NAME" == "schedule" && "$(date -u +%H)" != "03" ]]; then
+            url="https://api.github.com/repos/$GITHUB_REPOSITORY/actions/workflows/zanistarast-autonomous_pulse.yml/runs?event=push&status=success&head_sha=$GITHUB_SHA&per_page=1"
+            response="$(curl --fail --silent --show-error --retry 2 --connect-timeout 5 --max-time 20 \
+              -H "Authorization: Bearer $GH_TOKEN" \
+              -H "Accept: application/vnd.github+json" "$url")" || response=''
+            if [[ -n "$response" ]]; then
+              successful="$(jq -r '.total_count // 0' <<< "$response")" || successful=0
+              if [[ "$successful" =~ ^[0-9]+$ ]] && (( successful > 0 )); then
+                run_validation=false
+                echo "Unchanged revision already passed push validation; skipping redundant tests."
+              fi
+            fi
+          fi
+          echo "run_validation=$run_validation" >> "$GITHUB_OUTPUT"
       - name: Checkout repository
+        if: steps.freshness_gate.outputs.run_validation == 'true'
         uses: actions/checkout@v4
 
       - name: Setup Python
+        if: steps.freshness_gate.outputs.run_validation == 'true'
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
       - name: Show repository structure
+        if: steps.freshness_gate.outputs.run_validation == 'true'
         run: |
           echo "ZANISTARAST AUTONOMOUS PULSE STARTED"
           ls -R
 
       - name: Run Universal Deduction Engine
+        if: steps.freshness_gate.outputs.run_validation == 'true'
         run: |
           python engines/zanistarast_universal_deduction_engine.py
 
       - name: Run Mabun Prevention Engine
+        if: steps.freshness_gate.outputs.run_validation == 'true'
         run: |
           python engines/zanistarast_mabun_prevention_engine.py
 
       - name: Run Heavy Stress Testbed
+        if: steps.freshness_gate.outputs.run_validation == 'true'
         run: |
           python engines/zanistarast_heavy_stress_testbed.py
 
       - name: Run Autonomous Testbed
+        if: steps.freshness_gate.outputs.run_validation == 'true'
         run: |
           python engines/zanistarast_autonomous_testbed.py
 
       - name: Run API Gateway Test
+        if: steps.freshness_gate.outputs.run_validation == 'true'
         run: |
           python api/zanistarast_api_gateway.py
 
       - name: Run Multilingual Dictionary Test
+        if: steps.freshness_gate.outputs.run_validation == 'true'
         run: |
           python i18n/zanistarast_multilingual_dictionary.py
 
       - name: Finish Pulse
+        if: steps.freshness_gate.outputs.run_validation == 'true'
         run: |
           echo "ZANISTARAST RASTERAST VALIDATION COMPLETED"
 
