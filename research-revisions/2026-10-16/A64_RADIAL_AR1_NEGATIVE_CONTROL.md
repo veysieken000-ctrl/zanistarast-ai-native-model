@@ -1,0 +1,3 @@
+# A64 — AR(1) sensitivity audit (2026-10-16)
+
+A63's radial residual-order permutation p values assume exchangeability. In a synthetic stationary Gaussian AR(1) negative control, NGC2403's observed lag-1 correlation (0.856264; n=30) had Monte Carlo exceedance p=0.250075 when rho=0.9 and p=0.476152 when rho=0.98, compared with A63's shuffle p=0.000200. Assumed rho is not a verified physical noise model. 120,000 synthetic series, 45 assertions, 39 independent covariance checks; A63 regression passed. Source pilot CSV SHA-256 12eb7ec8b7006c6f310daeb9d36d7d6d966afa85d46951aa916f70ccdddf666f. Full report/code/results local. No new physical law; official SPARC archive verification and journal readiness open. Science Core v1 closed.
