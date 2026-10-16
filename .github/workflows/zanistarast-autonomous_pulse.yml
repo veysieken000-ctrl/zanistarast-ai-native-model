@@ -91,6 +91,29 @@ jobs:
         run: |
           echo "ZANISTARAST RASTERAST VALIDATION COMPLETED"
 
+  article-source-inventory:
+    name: Hourly manuscript-source inventory (read-only)
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    concurrency:
+      group: zanistarast-article-inventory
+      cancel-in-progress: false
+    steps:
+      - name: Checkout isolated research program
+        uses: actions/checkout@v4
+        with:
+          ref: research/yek-6tek-makale-programi-2026-10-16
+          persist-credentials: false
 
+      - name: Setup Python for read-only inventory
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
 
-
+      - name: Calculate source counts and topic tags
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python research/yek-6tek-program/hourly_inventory.py --output-dir hourly-inventory
