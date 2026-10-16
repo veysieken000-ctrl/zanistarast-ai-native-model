@@ -2,9 +2,9 @@
 
 ## Kaynaklara sadık kurucu ilke
 
-Kullanıcının açık tanımı: **Ehad Yek'tir. Ehad, âlemlerdeki her şeyi Yek'e göre yaratmıştır.** Kar tanesinden parmak izi desenine bütün varlıkların kendilerine özgü fark ve düzenleri de buna dahildir. Ehad ile Yek iki yaratıcı, yaratılmış alt sistem veya makale bütünleştirme algoritması değildir. Bu teolojik/ontolojik temel ampirik bilimsel ispat diye sunulmaz.
+Kullanıcının kanonik beyanı (aynen): **Ehad Yek'tir ve Ehad âlemlerdeki her şeyi Yek'e göre yaratmıştır; her kar tanesi, her parmak izi dahil.** Ehad ile Yek iki yaratıcı, yaratılmış alt sistem veya makale bütünleştirme algoritması değildir. Bu teolojik/ontolojik temel ampirik bilimsel ispat diye sunulmaz.
 
-Ana Core 13 insan 6+Tek sınıflaması: fizik, biyoloji, zihin, ahlak, akıl, duygu + öz. Core 01 özün '6. boyut' olduğundan söz eder. Kaynaklar arasındaki farkı kayıt altına al, birini sessizce diğerine dönüştürme. Ruh, fıtrat, bilgi, zaman, kanun ve hüküm alt alanlarını otomatik fiziksel katman sayma; kavramın referansı ve delil türünü kaydet.
+**Kurucu açıklaması (16 Ekim 2026):** Kâinatın **boyutları** ile insan, hayvan ve bitkilerin **katmanları** ayrı sınıflandırmalardır; sıra numaralarını birbirine karşılaştırıp çelişki çıkarma. Kâinat: (1) fizik, (2) biyoloji, (3) beyinli canlılarda zihin/zekâ, (4) ruh ve melekler, (5) ilk dört boyutu da kapsayan iş, oluş, hareket, fıtrat ve ahlak düzeni, (6) ahlakın hükme bağlandığı ahiret. Ceylanın ruhu ve fıtratı vardır; varlık türlerinin fıtratı ile insanın en yüksek düzeydeki iradeli ahlakı aynı sorumluluk biçimi değildir. İnsan kâinatın özetidir; katmanları fizik, biyoloji, zihin/zekâ (3.), ruh/fıtrat, ahlak, akıl (6.), duygu ve özü kapsar. **Akıl zekâ değildir; Yek insan özü değildir.** Core 13 insan listesindeki 'fizik, biyoloji, zihin, ahlak, akıl, duygu + öz' ifadesini kâinat boyutlarıyla birebir eşleme. Kurucu beyanına ve özgün Core metinlerine sadık kal; açıklığa kavuşturulmamış alt sıra ayrıntılarını uydurma. Ayrıntılı kaynak notu: `KURUCU-BOYUT-KATMAN-DUZELTMESI-2026-10-16.md`. Teolojik ontoloji ile deneysel kanıtı ayrı tut.
 
 ## Üretim düzeni: çekirdek → doğrusal büyüme → disiplinlerarası dallanma → karşı sınama
 
@@ -35,7 +35,7 @@ GitHub Actions, varsayılan dalda saatlik iş akışına kaynak envanteri adım�
 ## İlk makale araştırma paketleri (taslak, yayın değil)
 
 1. **Ontoloji/Yek ve özgünlük**: Yek'e göre yaratılışın ontolojik anlamı; tekillik/farklılık iddiasının matematikteki 'benzersizlik' iddiasından ayrımı. Kur'an ve kaynak terminolojisi karşılaştırması.
-2. **6+Tek kaynak karşılaştırması**: Core 01 ve Core 13'te öz/duygu/akıl/ruh/ahlak konumlarının çatışan veya farklı ölçeklerdeki tanımları. Filolojik/kavramsal tablo ve geçerli düzeltme önerisi.
+2. **6+Tek kaynak karşılaştırması**: Core 01'in kâinat boyutları ile Core 13'ün insan katmanlarını ayrı ölçeklerde karşılaştıran, kurucu açıklamasına sadık kaynak tablosu; gerçek kaynak içi belirsizlikleri ayrıca kaydet.
 3. **Zanabûn bilgi kalitesi**: Gözlemci uyumu ne zaman doğruluk değildir? Bağımsızlık, ortak hata, adversary ve sahte mutabakat karşı örnekleri.
 4. **Rasterast deney düzeni**: Karşı örnek, tekrarlanabilir hipotez, hak-temelli karar kıyaslaması; simülasyonda hak ihlali ve dayanıklılık ölçütleri.
 5. **Jeoloji × biyoloji**: Jeolojik dönemler ile biyolojik çeşitlenme verilerini kuramsal 'eşik' iddialarından ayırıp literatürle sınama.
