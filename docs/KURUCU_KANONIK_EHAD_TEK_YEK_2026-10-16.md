@@ -31,3 +31,21 @@ Her boyut ve varlık katmanı kendi **1. ve 2. evresi** ile değerlendirilir; he
 5. Bu dosyanın bulunması, deponun tüm içeriklerinin düzeltildiği veya testlerinin geçtiği anlamına **gelmez**.
 
 **Koruma:** Uygulama ayrı uyum dalında başlatılmıştır; ana dal ve özgün dosyalar, tek tek doğrulanmadan değiştirilmez.
+
+
+## KURUCU ONAYLI NİHAİ TABLO — 6 BOYUT / 12 EVRE (16.10.2026)
+
+| Kozmik boyut | 1. evre | 2. evre |
+|---|---|---|
+| 1. Fizik | Atom | Yıldızlar ve gezegenler |
+| 2. Biyoloji | Tek hücreliler (bakteriler gibi) | Çok hücreliler |
+| 3. Zihin | Zekâ | Akıl |
+| 4. Ruh ve melekler | Ruh | Melekler |
+| 5. Ahlak | Fıtrî ahlak | İradeli ahlak |
+| 6. Ahiret / hüküm | Hesap / hüküm | Hükmün sonucu (ahiret karşılığı) |
+
+**Kurucu kararı:** Biyolojik boyutun iki evresi eşeysiz/eşeyli üreme değildir; bunlar ayrı üreme biçimleridir. Zihin boyutunun ilk evresi zekâdır; fıtrat zekânın yerine geçmez. Meleklerin de ruhu vardır. Beşinci boyutun evreleri iyi/kötü ahlak değil, fıtrî ahlak/iradeli ahlaktır; fıtrî ahlak yaratılmışların düzenini kapsar, iradeli ahlak bilinçli seçim ve sorumluluğu kapsar. Altıncı boyut hesap/hüküm ve hükmün sonucu olarak ayrılır. Boyut, varlık katmanı ve evre ayrı kavramlardır. İnsan katmanlarının evreleri bu kozmik tablodan otomatik türetilemez. **3+3+Tek→Yek** ve **Ehad'ın yaratılmış bütün Tek ve Yek'lerin varlık sebebi oluşu** geçerlidir; Ehad yaratılmış bir boyut veya katman değildir.
+
+Eski “biyoloji: eşeysiz→eşeyli”, “5. boyut: hak/hukuk→hüküm” veya “hüküm→ahlak” sıralamaları **kozmik boyut evrelerinin güncel tanımı değildir**. Tarihsel kaynaklar gerekirse eski görüş olarak korunur; çalışan kod ve kaynak metinler tek tek denetlenerek düzeltilir. Bu tablo Zanistarast'ın kuramsal sınıflandırmasıdır, ampirik bilimsel ispat iddiası değildir.
+
+**Durum: Kurucu tarafından onaylandı; evre adlandırması kararı kapandı.**
