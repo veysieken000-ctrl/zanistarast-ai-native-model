@@ -25,3 +25,13 @@ Fizikte ilk Yek'ten sonraki Yek'e ve Komel'e genişleme analojisinin biyolojidek
 Kurucunun sorusuna bugün belirli bir 'ilk DNA = Âdem' veya 'ikinci DNA = Havva' adı verilemez. En güçlü araştırma yolu ilk kalıtsal bilgi düzeninin DNA öncesi RNA-temelli olup olmadığını, eşlenik/ortak sistemin Komel oluşturma şartlarını ve Yek tanımını ayrı ayrı incelemektir. Bu açıklama Zanistarast kanoniğini değiştirmez; bilimsel doğrulama sınırlarını gösterir.
 
 **Koruma:** Yalnız araştırma dalı. main, özgün Core/Word, Science Core ve canlı site değiştirilmedi.
+
+## Kurucunun yeni hipotezi — 18 Ekim 2026
+
+Kurucu: İlk DNA'lı hücrenin RNA'sız olabileceği; **ilk tek hücreli Yek'in bölünmesiyle ikinci hücrenin** oluştuğu; çoğalan hücrelerin **Komel** oluşturduğu; bu Komel'in erken görünümünün **yosunlar** olabileceği görüşünü ileri sürdü. İfade, kanonik araştırma hipotezi olarak korunur; bilimsel olarak kanıtlanmış olay diye sunulmaz.
+
+**Üç ayrım:** (a) İlk biyolojik Yek = hücre hipotezi, ilk DNA molekülüyle özdeş değildir. (b) İlk bölünme ile iki hücre ortaya çıkması, iki Yek/Komel geçişi için modeldir; iki hücrenin tek başına Komel sayılması için ilişkisel bütünlük ölçütü ayrıca araştırılır. (c) Yosunlar örneği, ilk mikrobiyal toplulukların yosun olduğuna dair kanıt değildir; fotosentetik mikrobiyal örtüler ve stromatolitler daha eski adaylar arasında değerlendirilir. Siyanobakteriler gerçek alglerle taksonomik olarak aynı değildir.
+
+**Literatür kontrolü:** RNA'nın DNA genomlarından önce önemli kalıtım/kataliz işlevi görmüş olması güçlü bir bilimsel açıklamadır; bu yüzden 'ilk DNA'lı hücre RNA'sızdı' savı için bugün doğrudan kanıt yoktur. Günümüz DNA'lı hücrelerinin protein üretiminde RNA gerekir. Kaynaklar: https://pmc.ncbi.nlm.nih.gov/articles/PMC10351881/ ; https://www.ncbi.nlm.nih.gov/books/NBK26876/ ; https://pmc.ncbi.nlm.nih.gov/articles/PMC4484972/ ; https://pmc.ncbi.nlm.nih.gov/articles/PMC3021713/ .
+
+**Araştırma kararı:** Kurucunun hücre bölünmesi → Komel hipotezi kaynaklara dayalı karşılaştırma konusu yapılacak; ilk hücre, ilk kalıtsal molekül, ilk hücre topluluğu ve ilk çok hücreli organizma ayrı araştırılacak. Kullanıcının yorumunun anlamı korunacak; sonuçlar ona kesin bilgi gibi atfedilmeyecek.
