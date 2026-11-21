@@ -24,7 +24,7 @@
 .es-workbench{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);gap:24px;align-items:start}
 .es-map-card,.es-detail{border:1px solid #2e4b60;border-radius:22px;background:linear-gradient(160deg,#122b3b,#0b1925);padding:24px;min-width:0}
 .es-axis-tabs{margin-bottom:20px;gap:6px}
-.es-axis-tabs button{font-size:14px;flex:1;padding:10px 12px}
+.es-axis-tabs button{font-size:14px;flex:1;padding:10px 6px;white-space:nowrap}
 .es-creator{width:100%;display:block;cursor:pointer;border:1px solid #5c9693;background:#183c40;color:#e7fff7;border-radius:14px;padding:16px;text-align:center;font:inherit;min-height:78px}
 .es-creator strong{display:block;font-size:18px;letter-spacing:.06em}
 .es-creator span{display:block;color:#baded7;font-size:14px;margin-top:3px}
@@ -33,11 +33,11 @@
 .es-ring{cursor:pointer;transition:opacity .15s}
 .es-ring circle{stroke:#84bdd0;stroke-width:1.3}
 .es-ring[aria-pressed=true] circle{stroke:#ffe29a;stroke-width:4}
-.es-ring text{fill:#e7f5ff;font-size:24px;font-family:inherit;pointer-events:none}
+.es-ring text{fill:#e7f5ff;font-size:26px;font-family:inherit;pointer-events:none}
 .es-ring:focus{outline:none}
 .es-ring:focus circle{stroke:#ffe29a;stroke-width:4}
 .es-ring:hover{filter:brightness(1.2)}
-.es-ring-center{fill:#dbf0f4;font-size:19px;pointer-events:none}
+.es-ring-center{fill:#dbf0f4;font-size:26px;pointer-events:none}
 .es-map-legend{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:8px}
 .es-map-legend button{font-size:14px;padding:10px 7px;line-height:1.4}
 .es-map-legend button[aria-pressed=true],.es-layer-item[aria-pressed=true]{border-color:#ffe29a;background:#20394a;color:#fff3cf}

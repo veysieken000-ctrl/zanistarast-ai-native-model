@@ -1,6 +1,6 @@
 /* Public static files only. HTML and model data prefer the current published version. */
 const CACHE_PREFIX = 'zanistarast-ai-native-model-';
-const CACHE_NAME = CACHE_PREFIX + 'v04-20261122';
+const CACHE_NAME = CACHE_PREFIX + 'v04-20261122-ui2';
 const CORE_ASSETS = [
   './', './index.html', './paper.html', './graph.html', './speech.html',
   './repositories.html', './announcements.html', './css/style.css',
@@ -14,7 +14,8 @@ const staticPaths = new Set(CORE_ASSETS.map(path => new URL(path, self.location)
 const scopePath = new URL('./', self.location).pathname;
 
 self.addEventListener('install', event => {
-  event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(CORE_ASSETS)).then(() => self.skipWaiting()));
+  const requests = CORE_ASSETS.map(path => new Request(new URL(path, self.location), {cache:'reload'}));
+  event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(requests)).then(() => self.skipWaiting()));
 });
 self.addEventListener('activate', event => {
   event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key =>
@@ -30,7 +31,7 @@ self.addEventListener('fetch', event => {
   const fresh = publicNavigation || url.pathname.endsWith('.json') || url.pathname.endsWith('/navbar.html');
   event.respondWith(caches.open(CACHE_NAME).then(async cache => {
     const network = async () => {
-      const response = await fetch(request);
+      const response = await fetch(request, {cache:'no-cache'});
       if (!response.ok) throw new Error('Static file unavailable');
       await cache.put(request, response.clone());
       return response;
