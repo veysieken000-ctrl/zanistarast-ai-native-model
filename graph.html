@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Graph — Zanistarast Atom Sistemi</title>
+<title>Evrenin sistemi · Graph — Zanistarast</title>
+<meta name="description" content="Zanistarast Evrenin sistemi: altı boyut, evreler ve kavram ilişkileri. Veysi yê MALA SAF’ın kaynaklı kavramsal modelini etkileşimli olarak inceleyin." />
 <link rel="stylesheet" href="css/style.css" />
 <style>
 .graph-page{padding-bottom:90px}
@@ -179,9 +180,13 @@
 }  
 
 </style>
+<link rel="stylesheet" href="css/evrenin-sistemi.css" />
+<link rel="alternate" type="application/json" href="graph/evrenin-sistemi.json" title="Evrenin sistemi v04" />
+<script src="js/evrenin-sistemi.js" defer></script>
 </head>
 
-<body>
+<body class="graph-shell">
+<a class="es-skip" href="#graphViews">İçeriğe geç</a>
 <div id="navbar"></div>
 
 <script>
@@ -189,10 +194,85 @@ fetch("components/navbar.html")
 .then(res => res.text())
 .then(data => {
   document.getElementById("navbar").innerHTML = data;
-});
+  // Scripts inserted by innerHTML do not execute: wire this page's menu directly.
+  const button = document.getElementById("znMenuBtn");
+  const menu = document.getElementById("znMenu");
+  if (button && menu) {
+    button.setAttribute("aria-label", "Gezinme menüsü");
+    button.setAttribute("aria-controls", "znMenu");
+    button.setAttribute("aria-expanded", "false");
+    const close = () => { menu.classList.remove("active"); button.setAttribute("aria-expanded", "false"); };
+    button.addEventListener("click", () => { const open = menu.classList.toggle("active"); button.setAttribute("aria-expanded", String(open)); });
+    menu.querySelectorAll("a").forEach(a => a.addEventListener("click", close));
+    document.addEventListener("keydown", e => { if (e.key === "Escape" && menu.classList.contains("active")) { close(); button.focus(); } });
+  }
+}).catch(() => { document.getElementById("navbar").innerHTML = '<nav aria-label="Ana gezinme"><a href="index.html">Zanistarast ana sayfa</a></nav>'; });
 </script>
 
 <main class="container graph-page">
+<div id="graphViews" class="es-tabs" role="tablist" aria-label="Graph görünümü">
+  <button type="button" id="tab-evren" role="tab" data-graph-view="evren" aria-selected="true" aria-controls="evrenin-sistemi">Evrenin sistemi</button>
+  <button type="button" id="tab-genel" role="tab" data-graph-view="genel" aria-selected="false" aria-controls="generalGraph" tabindex="-1">Genel Graph</button>
+</div>
+<section id="evrenin-sistemi" role="tabpanel" aria-labelledby="tab-evren">
+  <header class="es-heading">
+    <div>
+      <p class="es-kicker">Zanistarast bilimsel sentezi / Graph</p>
+      <h1>Evrenin sistemi</h1>
+      <p class="es-intro">Varlıktan bilgiye, ahlaktan hükme. Boyutları, evreleri ve kavramların birbirine nasıl bağlandığını keşfedin.</p>
+      <p class="es-byline"><span id="es-author">Veysi yê MALA SAF</span> · <span id="es-version">v04</span></p>
+    </div>
+    <span class="es-status">Kavramsal sistem modeli</span>
+  </header>
+  <p id="es-loading" role="status">Model yükleniyor…</p>
+  <noscript><p class="es-noscript">Etkileşimli harita için JavaScript gerekir. <a href="docs/evrenin-sistemi-v04.pdf">PDF açıklamayı</a> veya <a href="docs/evrenin-sistemi.md">metin rehberini</a> okuyabilirsiniz.</p></noscript>
+  <div id="es-content" hidden>
+    <div id="es-metrics" class="es-meta" aria-label="Model kapsamı"></div>
+    <div class="es-workbench">
+      <section class="es-map-card" aria-label="Sistem haritası">
+        <div class="es-axis-tabs" role="tablist" aria-label="Sistem kapsamı">
+          <button id="es-axis-d" type="button" role="tab" data-es-axis="0" aria-selected="true" aria-controls="es-axis-panel">Boyutlar</button>
+          <button id="es-axis-h" type="button" role="tab" data-es-axis="1" aria-selected="false" aria-controls="es-axis-panel" tabindex="-1">İnsan</button>
+          <button id="es-axis-l" type="button" role="tab" data-es-axis="2" aria-selected="false" aria-controls="es-axis-panel" tabindex="-1">Araştırma</button>
+        </div>
+        <button id="es-creator" class="es-creator" type="button" aria-pressed="false">Ehad · Tek ve Yek</button>
+        <div id="es-axis-panel" role="tabpanel" aria-labelledby="es-axis-d">
+          <p id="es-axis-note" class="es-map-note"></p>
+          <div id="es-map"></div>
+        </div>
+        <p class="es-map-footnote">Bir boyutu seçerek evrelerini ve bağlantılarını açın. Halkalar simgeseldir; uzaklık, büyüklük veya dalga boyu ölçüsü değildir.</p>
+      </section>
+      <aside id="es-detail" class="es-detail" aria-label="Seçilen kavram ve arama">
+        <div class="es-search">
+          <label for="es-search">Kavram veya kimlik ara</label>
+          <div class="es-search-row"><input id="es-search" type="search" autocomplete="off" placeholder="Kara delik, Zanabûn, H6…" aria-controls="es-results" /><button id="es-clear" class="es-button" type="button">Temizle</button></div>
+          <p id="es-search-status" class="es-search-status" role="status"></p>
+          <div id="es-results" class="es-results" aria-label="Arama sonuçları" hidden></div>
+        </div>
+        <span id="es-selection-status" class="sr-only" role="status"></span>
+        <div id="es-node-detail" tabindex="-1"></div>
+        <button id="es-back" class="es-back" type="button">Haritaya dön ↑</button>
+      </aside>
+    </div>
+    <section class="es-explanation" aria-labelledby="es-explanation-title">
+      <p class="es-kicker">Haritayı okumak</p>
+      <h2 id="es-explanation-title" class="es-section-title">Boyutlar, evreler ve sistem mantığı</h2>
+      <p class="es-section-intro">Kozmik boyutlar D1–D6, insan katmanları H1–H6 ve araştırma katmanları L1–L6 kendi kapsamlarında izlenir. Kavramsal ve teolojik öncüller, araştırma iddiaları ve fiziksel gözlemler statüleriyle okunur.</p>
+      <div class="es-table-wrap"><table class="es-table"><caption class="sr-only">Altı kozmik boyut ve iki evreleri</caption><thead><tr><th scope="col">Boyut</th><th scope="col">1. evre</th><th scope="col">2. evre</th></tr></thead><tbody id="es-stage-body"></tbody></table></div>
+      <div id="es-sections"></div>
+    </section>
+    <section class="es-explanation" aria-labelledby="es-sources-title">
+      <p class="es-kicker">İnceleme ve kaynaklar</p>
+      <h2 id="es-sources-title" class="es-section-title">Okuyun, karşılaştırın, sınayın</h2>
+      <p id="es-validation" class="es-section-intro"></p>
+      <div id="es-downloads" class="es-downloads"></div>
+      <ul id="es-references" class="es-references"></ul>
+      <footer class="es-footer"><p id="es-provenance"></p><p>Tanımlar ve açıklamalar aynı sürümlü model kaydından üretilir. Kaynaklar, yanlarında belirtilen gözlemsel veya dinî bağlamlar içindir; kurucu modelin bütün iddialarını doğrulamaz.</p></footer>
+    </section>
+  </div>
+  <p><a href="docs/evrenin-sistemi-v04.pdf">PDF açıklama</a> · <a href="docs/evrenin-sistemi.md">Metin rehberi</a></p>
+</section>
+<div id="generalGraph" role="tabpanel" aria-labelledby="tab-genel" hidden>
 <a href="graph.html" data-i18n="nav.graph">Graph</a>
 <section class="hero graph-hero">
   <div class="atom-hero-bg">
@@ -263,13 +343,14 @@ fetch("components/navbar.html")
   <a href="rasterast.html">Rasterast</a>
 </section>
 
+</div>
 </main>
 
 <script>
 const graphData = {
   zanistarast:{title:"Zanistarast",tanim:"Hebûn, Zanabûn, Rasterast, Rabûn ve Mabûn katmanlarını birleştiren bilimsel sentez.",rol:"Merkez çekirdek.",fonksiyon:"Tüm katmanları tek sistem ve medeniyet modelinde toplar.",formul:"Hebûn + Zanabûn + Rasterast + Rabûn + Mabûn → Newroza Kawa",page:"zanistarast.html",related:"Theory, Theses, Core, Final"},
   hebun:{title:"Hebûn",tanim:"Varlığın ontolojik zemini.",rol:"Neyin var olduğunu belirler.",fonksiyon:"Sistemin gerçeklik tabanını kurar.",formul:"Varlık → Zemin → Ontoloji",page:"hebun.html",related:"Ontoloji, Core, Varlık Tarihi"},
-  zanabun:{title:"Zanabûn",tanim:"Bilginin oluşumu ve sınanması.",rol:"Gerçekliği bilinebilir hale getirir.",fonksiyon:"Gözlem, ölçüm, veri, model ve yorum arasında bağ kurar.",formul:"Gözlem → Ölçüm → Bilgi → Yorum",page:"zanabun.html",related:"Epistemoloji, Rêya fem û ferasetê"},
+  zanabun:{title:"Zanabûn",tanim:"Bilen öznenin bilinen nesneye yöneliminden doğan sonucun iki ayrı bilen tarafından aynı sonuç ve bağlam için onaylanmasıyla bilgi kaydı oluşur.",rol:"Bilgi kaydını, dayanağını ve inceleme sorumluluğunu düzenler.",fonksiyon:"Özdenetim ayrı tutulur; iki onay tek başına doğruluğu yaratmaz.",formul:"Özne → Nesne → Sonuç + Bilen 1 onayı ∧ Bilen 2 onayı → Bilgi kaydı",page:"zanabun.html",related:"Epistemoloji, Rêya fem û ferasetê, Evrenin sistemi"},
   rasterast:{title:"Rasterast",tanim:"Doğru okuma ve doğrulama filtresi.",rol:"Yanlışı ve çarpıtmayı eler.",fonksiyon:"Bilgi, hukuk, ekonomi ve yönetim kararlarını test eder.",formul:"Girdi → Filtre → Doğru Çıktı",page:"rasterast.html",related:"Doğrulama, hukuk, politika kontrolü"},
   rabun:{title:"Rabûn",tanim:"Doğaya uyumlu, geri bildirimli yönetim modeli.",rol:"Sistemin ayağa kalkma düzenidir.",fonksiyon:"Meclisleri, şûrayı ve denetimi dengeler.",formul:"Şûra + Meclis + Rasterast → Dengeli Yönetim",page:"rabun.html",related:"Yönetim, güvenlik, hukuk"},
   mabun:{title:"Mabûn",tanim:"Kaynak, değer ve dolaşım ekonomisi.",rol:"Ekonomik sürekliliği sağlar.",fonksiyon:"Kaynağı hizmete, hizmeti değere, değeri geri dönüşe bağlar.",formul:"Kaynak → Hizmet → Değer → Geri Dönüş",page:"mabun.html",related:"Ekonomi, dolaşım, sürdürülebilirlik"},
@@ -285,7 +366,7 @@ const graphData = {
   yonetim:{title:"Yönetim",tanim:"Rabûn’un meclis, şûra ve geri bildirim düzeni.",rol:"Gücü dengeye bağlar.",fonksiyon:"Hüküm, ahlak, güvenlik, hukuk ve ekonomi katmanlarını koordine eder.",formul:"Şûra + Meclis + Geri Bildirim → Yönetim",page:"rabun.html",related:"Rabûn, güvenlik, şûra"}
 };
 
-function showDetail(key, el) {
+function showDetail(key, el, shouldScroll = true) {
   const item = graphData[key];
   const box = document.getElementById("detailBox");
 
@@ -313,7 +394,7 @@ function showDetail(key, el) {
     </div>
   `;
 
-  setTimeout(function () {
+  if (shouldScroll) setTimeout(function () {
     box.scrollIntoView({
       behavior: "smooth",
       block: "start"
@@ -321,7 +402,7 @@ function showDetail(key, el) {
   }, 140);
 }
 
-showDetail("zanistarast", document.querySelector(".atom-core"));
+showDetail("zanistarast", document.querySelector(".atom-core"), false);
 </script>
 
 </body>
