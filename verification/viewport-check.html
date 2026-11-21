@@ -1,0 +1,7 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Graph yerleşim denetimi</title>
+<style>body{margin:0;background:#e8edf2;color:#13283c;font:16px system-ui}header{padding:14px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}button{font:inherit;padding:10px;cursor:pointer}iframe{display:block;margin:0 auto;border:1px solid #9aafbe;width:390px;height:900px;max-width:100%}output{font-weight:600}</style></head>
+<body><header><strong>Graph yerleşim denetimi</strong><button type="button" data-width="360">360 px</button><button type="button" data-width="390">390 px</button><button type="button" data-width="768">768 px</button><button type="button" data-width="1024">1024 px</button><output id="width">390 px</output></header>
+<iframe id="graph" title="Graph sayfası" src="../graph.html"></iframe>
+<script>document.querySelectorAll('[data-width]').forEach(button=>button.addEventListener('click',()=>{document.getElementById('graph').style.width=button.dataset.width+'px';document.getElementById('width').textContent=button.dataset.width+' px';}));</script>
+</body></html>

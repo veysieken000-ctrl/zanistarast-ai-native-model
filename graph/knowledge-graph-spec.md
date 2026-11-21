@@ -371,3 +371,39 @@ This document defines the canonical graph architecture of the system.
 
 All future graph visualizations, semantic traversals, and AI graph-reasoning layers must derive from this structure.
 
+# Public view extension: Evrenin sistemi v04
+
+The Graph page offers the existing general topic graph and the versioned
+**Evrenin sistemi** map. This extension preserves the general framework vocabulary.
+
+`graph/evrenin-sistemi.json` supplies the interactive diagram, node details, stage
+table and explanations. It exports approved active fields from Corpus commit
+`f937ba0b2a8fd4035d2c1d9bed8daab26d096f1b`. Source archives, previous models,
+conversations and private contact fields remain in the source archive, outside
+this public export. Public author attribution is retained.
+
+- D1–D6: cosmic domains; each has exactly two model stages.
+- H1–H6: each human's layers; H6 is voluntary morality/human judgment.
+- L1–L6: research-production layers. D6, H6 and L6 are distinct records.
+- Ehad (`E`) is the uncreated creator, above the created-domain rings, never a
+  product of their aggregation.
+- Black holes (`BH`) retain the founder's first-stage atom-domain placement and
+  explicit research-claim status. No physical identity with subatomic particles
+  follows from the analogy.
+- D6 stage 1: judgment/Haşir; stage 2: final disposition and eternal life in
+  Cennet or Cehennem. No third cosmic stage is introduced.
+- Knowledge registration requires two distinct knowers assenting to the same
+  result and context. Self-review is separate; agreement alone does not prove truth.
+
+All 143 core node IDs and 245 edge IDs are preserved. Twelve H/L slot records are
+searchable context records, counted separately. Edge direction, labels, scope and
+epistemic status appear in the selected-node panel. Circle radii are symbolic;
+they encode no distance, wavelength, energy or chronological measurement.
+
+Run `python3 verification/evrenin-sistemi-public.py` for publication checks. An
+optional `--source MODEL.json` compares exported fields with an authorized local
+source. These checks and the source model's synthetic trials are not empirical
+validation. Regenerate the guide, SVG and PDF with
+`python3 tools/build-evren-public.py` (ReportLab required for PDF). No network
+access, model training or source-archive modification occurs.
+

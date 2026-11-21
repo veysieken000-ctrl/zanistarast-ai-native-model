@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="1160" viewBox="0 0 1100 1160" role="img" aria-labelledby="title desc">
+<title id="title">Evrenin sistemi - v04</title><desc id="desc">Ehad üstte yaratıcı, altı boyut iç içe simgesel daireler ve evre tablosuyla gösterilir.</desc>
+<rect width="1100" height="1160" fill="#f7fafc"/>
+<g fill="#16304b" font-family="DejaVu Sans, sans-serif">
+<text x="42" y="47" font-size="29" font-weight="bold" text-anchor="start">Evrenin sistemi</text>
+<text x="42" y="77" font-size="16" font-weight="normal" text-anchor="start">Zanistarast bilimsel sentezi - kavramsal model v04</text>
+<rect x="200" y="105" width="700" height="102" rx="12" fill="#d9eee9" stroke="#c2d5df"/>
+<text x="550" y="143" font-size="24" font-weight="bold" text-anchor="middle">EHAD - TEK VE YEK</text>
+<text x="550" y="177" font-size="18" font-weight="normal" text-anchor="middle">Her şeyin yaratıcısı; bütün yaratılmışların üstünde</text>
+<text x="280" y="257" font-size="18" font-weight="bold" text-anchor="middle">Yaratılmış Yek / evren kapsamları</text>
+<circle cx="280" cy="535" r="225" fill="#eaf1f6" stroke="#fff" stroke-width="2"/>
+<text x="280" y="333" font-size="14" font-weight="bold" text-anchor="middle">D6 Hüküm</text>
+<circle cx="280" cy="535" r="191" fill="#dfebf0" stroke="#fff" stroke-width="2"/>
+<text x="280" y="367" font-size="14" font-weight="bold" text-anchor="middle">D5 Ahlak</text>
+<circle cx="280" cy="535" r="157" fill="#d0e3e9" stroke="#fff" stroke-width="2"/>
+<text x="280" y="401" font-size="14" font-weight="bold" text-anchor="middle">D4 Ruh</text>
+<circle cx="280" cy="535" r="123" fill="#c2dce3" stroke="#fff" stroke-width="2"/>
+<text x="280" y="435" font-size="14" font-weight="bold" text-anchor="middle">D3 Zihin</text>
+<circle cx="280" cy="535" r="89" fill="#b0ceda" stroke="#fff" stroke-width="2"/>
+<text x="280" y="469" font-size="14" font-weight="bold" text-anchor="middle">D2 Biyoloji</text>
+<circle cx="280" cy="535" r="55" fill="#97bfce" stroke="#fff" stroke-width="2"/>
+<text x="280" y="503" font-size="14" font-weight="bold" text-anchor="middle">D1 Fizik</text>
+<text x="280" y="547" font-size="17" font-weight="bold" text-anchor="middle">Tek / öz</text>
+<rect x="545" y="295" width="513" height="44" rx="12" fill="#16304b" stroke="#c2d5df"/>
+<g fill="#fff">
+<text x="560" y="324" font-size="14" font-weight="bold" text-anchor="start">Boyut</text>
+<text x="673" y="324" font-size="14" font-weight="bold" text-anchor="start">1. evre</text>
+<text x="858" y="324" font-size="14" font-weight="bold" text-anchor="start">2. evre</text>
+</g>
+<rect x="545" y="352" width="513" height="73" rx="12" fill="#e4eef4" stroke="#c2d5df"/>
+<text x="559" y="375" font-size="13" font-weight="normal" text-anchor="start">D1 Fizik</text>
+<text x="673" y="375" font-size="13" font-weight="normal" text-anchor="start">Atom evresi</text>
+<text x="859" y="375" font-size="13" font-weight="normal" text-anchor="start">Yıldız ve gezegen evresi</text>
+<rect x="545" y="432" width="513" height="73" rx="12" fill="#e4eef4" stroke="#c2d5df"/>
+<text x="559" y="455" font-size="13" font-weight="normal" text-anchor="start">D2 Biyoloji</text>
+<text x="673" y="455" font-size="13" font-weight="normal" text-anchor="start">Tek hücreli kuruluş</text>
+<text x="859" y="455" font-size="13" font-weight="normal" text-anchor="start">Çok hücreli kuruluş</text>
+<rect x="545" y="512" width="513" height="73" rx="12" fill="#e4eef4" stroke="#c2d5df"/>
+<text x="559" y="535" font-size="13" font-weight="normal" text-anchor="start">D3 Zihin</text>
+<text x="673" y="535" font-size="13" font-weight="normal" text-anchor="start">Zekâ</text>
+<text x="859" y="535" font-size="13" font-weight="normal" text-anchor="start">Akıl</text>
+<rect x="545" y="592" width="513" height="73" rx="12" fill="#e4eef4" stroke="#c2d5df"/>
+<text x="559" y="615" font-size="13" font-weight="normal" text-anchor="start">D4 Tümevarım</text>
+<text x="559" y="634" font-size="13" font-weight="normal" text-anchor="start">hükmü / ruh</text>
+<text x="559" y="653" font-size="13" font-weight="normal" text-anchor="start">alanı</text>
+<text x="673" y="615" font-size="13" font-weight="normal" text-anchor="start">Ruh</text>
+<text x="859" y="615" font-size="13" font-weight="normal" text-anchor="start">Melekler</text>
+<rect x="545" y="672" width="513" height="73" rx="12" fill="#e4eef4" stroke="#c2d5df"/>
+<text x="559" y="695" font-size="13" font-weight="normal" text-anchor="start">D5 Ahlak</text>
+<text x="673" y="695" font-size="13" font-weight="normal" text-anchor="start">Fıtrî ahlak</text>
+<text x="859" y="695" font-size="13" font-weight="normal" text-anchor="start">İradî ahlak</text>
+<rect x="545" y="752" width="513" height="73" rx="12" fill="#e4eef4" stroke="#c2d5df"/>
+<text x="559" y="775" font-size="13" font-weight="normal" text-anchor="start">D6 Tümdengelim</text>
+<text x="559" y="794" font-size="13" font-weight="normal" text-anchor="start">hükmü</text>
+<text x="673" y="775" font-size="13" font-weight="normal" text-anchor="start">Yargılama / Haşir</text>
+<text x="673" y="794" font-size="13" font-weight="normal" text-anchor="start">meydanı</text>
+<text x="859" y="775" font-size="13" font-weight="normal" text-anchor="start">Hükme bağlama / Cennet</text>
+<text x="859" y="794" font-size="13" font-weight="normal" text-anchor="start">veya Cehennem&#x27;de ebedî</text>
+<text x="859" y="813" font-size="13" font-weight="normal" text-anchor="start">hayat</text>
+<text x="545" y="857" font-size="13" font-weight="normal" text-anchor="start">Kara delikler: birinci evrede kurucu araştırma iddiası.</text>
+<text x="545" y="884" font-size="13" font-weight="normal" text-anchor="start">Evre sırası, evrensel bir zaman veya büyüklük sırası değildir.</text>
+<rect x="42" y="931" width="1016" height="117" rx="12" fill="#d9eee9" stroke="#c2d5df"/>
+<text x="62" y="963" font-size="16" font-weight="bold" text-anchor="start">İnsan katmanları H1-H6; araştırma katmanları L1-L6 ayrı sayımlardır.</text>
+<text x="62" y="994" font-size="15" font-weight="normal" text-anchor="start">Varlıksı: kendi ölçeğinde merkez-katman bütünlüğü oluşmamış parça.</text>
+<text x="62" y="1024" font-size="15" font-weight="normal" text-anchor="start">Zanabûn: aynı sonuç ve bağlam için iki ayrı bilenin onayı.</text>
+<text x="42" y="1080" font-size="14" font-weight="normal" text-anchor="start">Daireler simgeseldir; uzaklık veya dalga boyu ölçeği değildir.</text>
+<text x="42" y="1113" font-size="14" font-weight="normal" text-anchor="start">Veysi yê MALA SAF - 22 Kasım 2026 - v04</text>
+</g></svg>
