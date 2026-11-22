@@ -1,5 +1,12 @@
 # Zanistarast — Kurucu kanonik ontoloji ve düzeltme ilkeleri (16 Ekim 2026)
 
+> **22 Kasım 2026 güncel başvuru:**
+> [Evrenin sistemi — kanonik üretim bağlamı v04](EVRENIN_SISTEMI_KANONIK_V04_2026-11-22.md).
+> Aşağıdaki 16 Ekim kaydı tarihçesiyle korunmuştur. Ehad/Tek/Yek kapsamı,
+> D/H/L ayrımı, D1 kara delik araştırma statüsü, D6 Haşir/ebedî hayat evreleri
+> ve iki bilen koşulunda güncel v04 kaydı önceliklidir. Eski kısa tablo güncel
+> özel adlandırmanın yerine geçirilmez; bu not eski kaynakları silmez.
+
 > **Durum:** Kurucunun doğrudan açıklaması. Bu metin ontolojik/teolojik bir tanım ve tüm repo içerikleri için yorumlama ölçütüdür; ampirik ispat veya yazılım testinin geçtiği iddiası değildir.
 
 ## Ehad, Tek, Yek
@@ -49,3 +56,4 @@ Her boyut ve varlık katmanı kendi **1. ve 2. evresi** ile değerlendirilir; he
 Eski “biyoloji: eşeysiz→eşeyli”, “5. boyut: hak/hukuk→hüküm” veya “hüküm→ahlak” sıralamaları **kozmik boyut evrelerinin güncel tanımı değildir**. Tarihsel kaynaklar gerekirse eski görüş olarak korunur; çalışan kod ve kaynak metinler tek tek denetlenerek düzeltilir. Bu tablo Zanistarast'ın kuramsal sınıflandırmasıdır, ampirik bilimsel ispat iddiası değildir.
 
 **Durum: Kurucu tarafından onaylandı; evre adlandırması kararı kapandı.**
+

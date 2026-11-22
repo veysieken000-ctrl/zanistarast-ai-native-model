@@ -85,6 +85,9 @@
     "guide": "docs/evrenin-sistemi.md",
     "pdf": "docs/evrenin-sistemi-v04.pdf",
     "svg": "graph/evrenin-sistemi.svg",
-    "epistemic_scope": "Labelled conceptual model; publication checks do not constitute empirical validation."
+    "epistemic_scope": "Labelled conceptual model; publication checks do not constitute empirical validation.",
+    "canonical_context": "docs/EVRENIN_SISTEMI_KANONIK_V04_2026-11-22.md",
+    "agent_instructions": "AGENTS.md"
   }
 }
+
